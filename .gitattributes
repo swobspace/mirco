@@ -1,0 +1,26 @@
+# See https://git-scm.com/docs/gitattributes for more about git attribute files.
+
+# Mark the database schema as having been generated.
+db/schema.rb linguist-generated
+
+# Mark the yarn lockfile as having been generated.
+yarn.lock linguist-generated
+
+# Mark any vendored files as having been vendored.
+vendor/* linguist-vendored
+
+/config/database.yml    export-ignore
+/config/titracka.yml       export-ignore
+/config/secrets.yml     export-ignore
+/config/credentials.yml.enc     export-ignore
+/config/master.key      export-ignore
+/config/_custom-colors.scss     export-ignore
+/public/images          export-ignore
+/shared/images          export-ignore
+/shared/images/placeholder.png  !export-ignore
+/utils/*                export-ignore
+/shared/config/*.yml    export-ignore
+/config/deploy.rb       export-ignore
+/config/deploy/*        export-ignore
+/db/demo/*              export-ignore
+
