@@ -1,0 +1,23 @@
+@startuml
+top to bottom direction
+skinparam defaultTextAlignment center
+skinparam roundCorner 15
+
+class Server  {
+  name: string
+  uid: string
+  location: string
+  description: text
+  api_url: string
+  api_user: string
+  api_password: string
+  api_user_has_full_access: boolean
+}
+
+class Channel {
+  name: string
+  uid: string
+}
+
+Server "1" -- "*" Channel
+@enduml
