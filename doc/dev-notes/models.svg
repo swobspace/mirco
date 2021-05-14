@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="304px" preserveAspectRatio="none" style="width:498px;height:304px;" version="1.1" viewBox="0 0 498 304" width="498px" zoomAndPan="magnify">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="317px" preserveAspectRatio="none" style="width:498px;height:317px;" version="1.1" viewBox="0 0 498 317" width="498px" zoomAndPan="magnify">
     <defs>
-        <filter height="300%" id="f150e3kiba3dnc" width="300%" x="-1" y="-1">
+        <filter height="300%" id="f1bbgjolijonqo" width="300%" x="-1" y="-1">
             <feGaussianBlur result="blurOut" stdDeviation="2.0" />
             <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
             <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
@@ -10,24 +10,24 @@
     <g>
         <!--MD5=[c60af77fe5573b84a4aa4bce89659574]
 class Server-->
-        <rect codeLine="5" fill="#FEFECE" filter="url(#f150e3kiba3dnc)" height="150.4375" id="Server" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="209" x="7" y="7" />
+        <rect codeLine="5" fill="#FEFECE" filter="url(#f1bbgjolijonqo)" height="163.2422" id="Server" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="209" x="7" y="7" />
         <ellipse cx="87.25" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
         <path d="M90.2188,28.6406 Q89.6406,28.9375 89,29.0781 Q88.3594,29.2344 87.6563,29.2344 Q85.1563,29.2344 83.8281,27.5938 Q82.5156,25.9375 82.5156,22.8125 Q82.5156,19.6875 83.8281,18.0313 Q85.1563,16.375 87.6563,16.375 Q88.3594,16.375 89,16.5313 Q89.6563,16.6875 90.2188,16.9844 L90.2188,19.7031 Q89.5938,19.125 89,18.8594 Q88.4063,18.5781 87.7813,18.5781 Q86.4375,18.5781 85.75,19.6563 Q85.0625,20.7188 85.0625,22.8125 Q85.0625,24.9063 85.75,25.9844 Q86.4375,27.0469 87.7813,27.0469 Q88.4063,27.0469 89,26.7813 Q89.5938,26.5 90.2188,25.9219 L90.2188,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="40" x="107.75" y="27.1543">Server</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="215" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="13" y="53.2104">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="57" x="13" y="66.0151">uid: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="84" x="13" y="78.8198">location: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="91" x="13" y="91.6245">description: text</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="13" y="104.4292">api_url: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="13" y="117.2339">api_user: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="119" x="13" y="130.0386">api_password: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="197" x="13" y="142.8433">api_user_has_full_access: boolean</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="215" y1="149.4375" y2="149.4375" />
-        <path d="M251.5,62 L251.5,78 L216.09,82 L251.5,86 L251.5,102.3984 A7.5,7.5 0 0 0 259,109.8984 L474,109.8984 A7.5,7.5 0 0 0 481.5,102.3984 L481.5,64.5 L471.5,54.5 L259,54.5 A7.5,7.5 0 0 0 251.5,62 " fill="#FBFB77" filter="url(#f150e3kiba3dnc)" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M471.5,54.5 L471.5,60.75 A3.75,3.75 0 0 0 475.25,64.5 L481.5,64.5 L471.5,54.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="209" x="257.5" y="71.5669">api_user_has_full_access = false</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198" x="257.5" y="86.6997">for read only access to prevent</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142" x="257.5" y="101.8325">authentication failures</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="215" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="13" y="53.2104">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="57" x="13" y="66.0151">uid: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="84" x="13" y="78.8198">location: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="91" x="13" y="91.6245">description: text</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="78" x="13" y="104.4292">api_url: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="89" x="13" y="117.2339">api_user: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="169" x="13" y="130.0386">api_password_ciphertext: text</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="197" x="13" y="142.8433">api_user_has_full_access: boolean</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="13" y="155.6479">properties: jsonb</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="215" y1="162.2422" y2="162.2422" />
+        <path d="M251.5,68.5 L251.5,84.5 L216.09,88.5 L251.5,92.5 L251.5,108.8984 A7.5,7.5 0 0 0 259,116.3984 L474,116.3984 A7.5,7.5 0 0 0 481.5,108.8984 L481.5,71 L471.5,61 L259,61 A7.5,7.5 0 0 0 251.5,68.5 " fill="#FBFB77" filter="url(#f1bbgjolijonqo)" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M471.5,61 L471.5,67.25 A3.75,3.75 0 0 0 475.25,71 L481.5,71 L471.5,61 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="209" x="257.5" y="78.0669">api_user_has_full_access = false</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198" x="257.5" y="93.1997">for read only access to prevent</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142" x="257.5" y="108.3325">authentication failures</text>
         <!--MD5=[1e4e6ac1845d89d680410515caa0c0ac]
 class Channel-->
-        <rect codeLine="21" fill="#FEFECE" filter="url(#f150e3kiba3dnc)" height="73.6094" id="Channel" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="84" x="69.5" y="217" />
-        <ellipse cx="84.95" cy="233" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M87.9188,238.6406 Q87.3406,238.9375 86.7,239.0781 Q86.0594,239.2344 85.3563,239.2344 Q82.8563,239.2344 81.5281,237.5938 Q80.2156,235.9375 80.2156,232.8125 Q80.2156,229.6875 81.5281,228.0313 Q82.8563,226.375 85.3563,226.375 Q86.0594,226.375 86.7,226.5313 Q87.3563,226.6875 87.9188,226.9844 L87.9188,229.7031 Q87.2938,229.125 86.7,228.8594 Q86.1063,228.5781 85.4813,228.5781 Q84.1375,228.5781 83.45,229.6563 Q82.7625,230.7188 82.7625,232.8125 Q82.7625,234.9063 83.45,235.9844 Q84.1375,237.0469 85.4813,237.0469 Q86.1063,237.0469 86.7,236.7813 Q87.2938,236.5 87.9188,235.9219 L87.9188,238.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="99.05" y="237.1543">Channel</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="70.5" x2="152.5" y1="249" y2="249" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="75.5" y="263.2104">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="57" x="75.5" y="276.0151">uid: string</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="70.5" x2="152.5" y1="282.6094" y2="282.6094" />
+        <rect codeLine="22" fill="#FEFECE" filter="url(#f1bbgjolijonqo)" height="73.6094" id="Channel" rx="7.5" ry="7.5" style="stroke:#A80036;stroke-width:1.5;" width="109" x="57" y="230" />
+        <ellipse cx="83.7" cy="246" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M86.6688,251.6406 Q86.0906,251.9375 85.45,252.0781 Q84.8094,252.2344 84.1063,252.2344 Q81.6063,252.2344 80.2781,250.5938 Q78.9656,248.9375 78.9656,245.8125 Q78.9656,242.6875 80.2781,241.0313 Q81.6063,239.375 84.1063,239.375 Q84.8094,239.375 85.45,239.5313 Q86.1063,239.6875 86.6688,239.9844 L86.6688,242.7031 Q86.0438,242.125 85.45,241.8594 Q84.8563,241.5781 84.2313,241.5781 Q82.8875,241.5781 82.2,242.6563 Q81.5125,243.7188 81.5125,245.8125 Q81.5125,247.9063 82.2,248.9844 Q82.8875,250.0469 84.2313,250.0469 Q84.8563,250.0469 85.45,249.7813 Q86.0438,249.5 86.6688,248.9219 L86.6688,251.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="100.3" y="250.1543">Channel</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="58" x2="165" y1="262" y2="262" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="57" x="63" y="276.2104">uid: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="63" y="289.0151">properties: jsonb</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="58" x2="165" y1="295.6094" y2="295.6094" />
         <!--MD5=[af90eddff4a748015562140671816059]
 link Server to Channel-->
-        <path codeLine="26" d="M111.5,157.07 C111.5,177.83 111.5,199.47 111.5,216.93 " fill="none" id="Server-Channel" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="103.0875" y="177.6362">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="103.8547" y="205.8276">*</text>
-        <!--MD5=[de321abef3e4052cbb4c4f5b064b76ea]
+        <path codeLine="27" d="M111.5,170 C111.5,190.91 111.5,212.41 111.5,229.74 " fill="none" id="Server-Channel" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="103.1313" y="190.2665">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="103.8766" y="218.8806">*</text>
+        <!--MD5=[a2b9bf1155a55deb20487aa6934ee42f]
 @startuml
 top to bottom direction
 skinparam defaultTextAlignment center
@@ -40,8 +40,9 @@ class Server  {
   description: text
   api_url: string
   api_user: string
-  api_password: string
+  api_password_ciphertext: text
   api_user_has_full_access: boolean
+  properties: jsonb
 }
 note right of Server
   api_user_has_full_access = false
@@ -50,8 +51,8 @@ note right of Server
 end note
 
 class Channel {
-  name: string
   uid: string
+  properties: jsonb
 }
 
 Server "1" - - "*" Channel
