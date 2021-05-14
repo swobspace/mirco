@@ -12,11 +12,17 @@ class Server  {
   api_user: string
   api_password: string
   api_user_has_full_access: boolean
+  properties: jsonb
 }
+note right of Server
+  api_user_has_full_access = false
+  for read only access to prevent
+  authentication failures
+end note
 
 class Channel {
-  name: string
   uid: string
+  properties: jsonb
 }
 
 Server "1" -- "*" Channel

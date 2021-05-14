@@ -1,0 +1,10 @@
+@startwbs
+* /server
+** /server/id\n: String
+** /server/jvm\n: String
+** /server/version\n: String
+** /server/settings\n<serverSettings>
+*** environmentName
+*** serverName
+*** smtpHost\nsmtpPort\nsmtpFrom\n...
+@endwbs
