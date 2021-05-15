@@ -1,0 +1,7 @@
+= Modeling mirco
+
+== Home controller
+
+----
+bin/rails g controller Home index
+----

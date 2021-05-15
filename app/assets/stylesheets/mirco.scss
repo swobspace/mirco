@@ -1,0 +1,72 @@
+// --- bootstrap
+@import "bootstrap/scss/bootstrap";
+body {
+  padding-top: 60px;
+}
+
+// --- FOOTER
+div#footer{
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 24px;
+  padding-top: 4px;
+  border-top: 1px solid #eee;
+}
+
+.table {
+  tfoot.search {
+    display: table-header-group;
+    th {
+      padding: 0.25rem;
+      input[type="text"] {
+        width: 100%;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        box-sizing: border-box;
+        border: 1px solid #ced4da;
+      }
+    }
+  }
+}
+
+// --- simple form bootstrap v4 error workaround
+$form-feedback-invalid-color: rgb(220,53,69);
+
+.required {
+  span.select2-selection,
+  textarea.required, input.required, select.required {
+    background-color: #FFFAC2;
+  }
+}
+td.mandantory {
+  background-color: #FFFAC2;
+}
+
+.has-invalid {  
+  .invalid-feedback {
+    display: block;
+  }
+
+  label {
+    color: $form-feedback-invalid-color;
+  }
+
+  .form-control {
+    background: rgba(orange, .2);
+    border-color: $form-feedback-invalid-color;
+  }
+}
+
+.btn {
+  margin-bottom: .2em;
+}
+
+trix-editor.form-control {
+  height: auto;
+}
+
+.subtitle {
+  color: #999;
+} 
+
+
