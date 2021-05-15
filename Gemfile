@@ -71,7 +71,8 @@ group :production do
   gem 'mysql2'
 end
 gem 'cancancan'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
 gem 'simple_form'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
+gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'
