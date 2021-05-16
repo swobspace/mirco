@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_105756) do
     t.string "api_url", default: ""
     t.string "api_user", default: ""
     t.text "api_password_ciphertext"
-    t.boolean "api_user_has_fulll_access", default: true
+    t.boolean "api_user_has_full_access", default: true
     t.jsonb "properties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

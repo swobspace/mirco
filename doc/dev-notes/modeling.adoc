@@ -13,7 +13,7 @@ bin/rails g controller Home index \
 bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
   api_url:string api_user:string api_password_ciphertext:text \
-  api_user_has_fulll_access:boolean \
+  api_user_has_full_access:boolean \
   properties:jsonb \
   --no-stylesheets --no-javascripts --no-helper
 ----
