@@ -4,5 +4,16 @@
 
 ----
 bin/rails g controller Home index \
-    --no-stylesheets --no-javascripts --no-helper
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model Server
+
+----
+bin/rails g scaffold Server \
+  name:string uid:string:index location:string description:text \
+  api_url:string api_user:string api_password_ciphertext:text \
+  api_user_has_fulll_access:boolean \
+  properties:jsonb \
+  --no-stylesheets --no-javascripts --no-helper
 ----

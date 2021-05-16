@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @server.name %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @server.uid %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @server.location %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @server.description %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @server.text %>
+</p>
+
+<p>
+  <strong>Api url:</strong>
+  <%= @server.api_url %>
+</p>
+
+<p>
+  <strong>Api user:</strong>
+  <%= @server.api_user %>
+</p>
+
+<p>
+  <strong>Api password ciphertext:</strong>
+  <%= @server.api_password_ciphertext %>
+</p>
+
+<p>
+  <strong>Api user has fulll access:</strong>
+  <%= @server.api_user_has_fulll_access %>
+</p>
+
+<p>
+  <strong>Properties:</strong>
+  <%= @server.properties %>
+</p>
+
+<%= link_to 'Edit', edit_server_path(@server) %> |
+<%= link_to 'Back', servers_path %>

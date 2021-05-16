@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_151723) do
+ActiveRecord::Schema.define(version: 2021_05_16_105756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "servers", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "uid", default: ""
+    t.string "location", default: ""
+    t.text "description"
+    t.string "api_url", default: ""
+    t.string "api_user", default: ""
+    t.text "api_password_ciphertext"
+    t.boolean "api_user_has_fulll_access", default: true
+    t.jsonb "properties"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uid"], name: "index_servers_on_uid"
+  end
 
   create_table "wobauth_authorities", force: :cascade do |t|
     t.bigint "authorizable_id"

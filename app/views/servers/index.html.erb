@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Servers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uid</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Text</th>
+      <th>Api url</th>
+      <th>Api user</th>
+      <th>Api password ciphertext</th>
+      <th>Api user has fulll access</th>
+      <th>Properties</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @servers.each do |server| %>
+      <tr>
+        <td><%= server.name %></td>
+        <td><%= server.uid %></td>
+        <td><%= server.location %></td>
+        <td><%= server.description %></td>
+        <td><%= server.text %></td>
+        <td><%= server.api_url %></td>
+        <td><%= server.api_user %></td>
+        <td><%= server.api_password_ciphertext %></td>
+        <td><%= server.api_user_has_fulll_access %></td>
+        <td><%= server.properties %></td>
+        <td><%= link_to 'Show', server %></td>
+        <td><%= link_to 'Edit', edit_server_path(server) %></td>
+        <td><%= link_to 'Destroy', server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Server', new_server_path %>
