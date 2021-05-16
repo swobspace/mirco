@@ -34,5 +34,15 @@
     <%= yield %>
   </div>
 
+  <div id="footer" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9">
+        <%= render :partial => 'shared/footer' %>
+      </div>
+      <div class="col-sm-3">
+        <%= render :partial => 'shared/version' %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
