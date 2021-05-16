@@ -151,7 +151,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
-    database_rewinder (0.9.5)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -244,7 +243,6 @@ GEM
     msgpack (1.4.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
-    mysql2 (0.5.3)
     nenv (0.3.0)
     net-ldap (0.17.0)
     net-scp (3.0.0)
@@ -407,7 +405,6 @@ DEPENDENCIES
   capistrano-rails
   capistrano-yarn
   capybara
-  database_rewinder
   dotenv
   factory_bot_rails
   font-awesome-sass (>= 4.7, < 6)
@@ -420,7 +417,6 @@ DEPENDENCIES
   launchy
   listen (~> 3.3)
   lockbox
-  mysql2
   pg (~> 1.1)
   puma (~> 5.0)
   railroady

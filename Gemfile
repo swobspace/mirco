@@ -61,15 +61,11 @@ end
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_bot_rails'
-  gem 'database_rewinder'
   gem 'capybara'
   gem 'apparition'
   gem 'launchy'
 end
 
-group :production do
-  gem 'mysql2'
-end
 gem 'cancancan'
 gem 'simple_form'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
