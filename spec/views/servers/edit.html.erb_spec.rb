@@ -9,7 +9,7 @@ RSpec.describe "servers/edit", type: :view do
       description: "MyText",
       api_url: "MyString",
       api_user: "MyString",
-      api_password_ciphertext: "MyText",
+      api_password: "MyText",
       api_user_has_full_access: false,
       properties: ""
     ))
@@ -32,7 +32,7 @@ RSpec.describe "servers/edit", type: :view do
 
       assert_select "input[name=?]", "server[api_user]"
 
-      assert_select "textarea[name=?]", "server[api_password_ciphertext]"
+      assert_select "textarea[name=?]", "server[api_password]"
 
       assert_select "input[name=?]", "server[api_user_has_full_access]"
 

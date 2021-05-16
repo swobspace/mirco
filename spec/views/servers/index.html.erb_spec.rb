@@ -10,7 +10,7 @@ RSpec.describe "servers/index", type: :view do
         description: "MyText",
         api_url: "Api Url",
         api_user: "Api User",
-        api_password_ciphertext: "MyText",
+        api_password: "MyText",
         api_user_has_full_access: false,
         properties: ""
       ),
@@ -21,7 +21,7 @@ RSpec.describe "servers/index", type: :view do
         description: "MyText",
         api_url: "Api Url",
         api_user: "Api User",
-        api_password_ciphertext: "MyText",
+        api_password: "MyText",
         api_user_has_full_access: false,
         properties: ""
       )
