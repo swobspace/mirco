@@ -4,12 +4,18 @@ de:
       user: User
 
   attributes:
+    channel: Channel
+    home: Home
     description: Beschreibung
     displayname: Anzeigename
     givenname: Vorname
     name: Name
+    server: Server
     sn: Nachname
     username: Username
 
   controller:
+    channels: Channels
+    home: Home
+    servers: Server
     users: Benutzer
