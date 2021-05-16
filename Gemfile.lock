@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobauth.git
-  revision: b85711b01162c2b4557bd39a37beed567c0d6d45
+  revision: 504eed0ffba34fb765f8021882384d9b5bb926a1
   branch: develop
   specs:
     wobauth (6.0.0.pre.dev)
@@ -25,7 +25,6 @@ GIT
       immutable-struct
       jquery-rails
       rails (>= 6.1)
-      record_tag_helper (~> 1.0)
       sassc-rails
       simple_form
       wobaduser (~> 1.0)
