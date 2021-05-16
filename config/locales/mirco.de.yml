@@ -1,17 +1,26 @@
 de:
   activerecord:
     models:
+      channel: Channel
+      server: Server
       user: User
 
   attributes:
+    action: Aktion
+    api_url: API Url
+    api_user: API User
+    api_password: API Passwort
+    api_user_has_full_access: Vollzugriff
     channel: Channel
     home: Home
     description: Beschreibung
     displayname: Anzeigename
     givenname: Vorname
     name: Name
+    properties: Eigenschaften
     server: Server
     sn: Nachname
+    uid: UID
     username: Username
 
   controller:
