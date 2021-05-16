@@ -1,18 +1,22 @@
 class ServersController < ApplicationController
   before_action :set_server, only: [:show, :edit, :update, :destroy]
+  before_action :add_breadcrumb_show, only: [:show]
 
   # GET /servers
   def index
     @servers = Server.all
+    respond_with(@servers)
   end
 
   # GET /servers/1
   def show
+    respond_with(@server)
   end
 
   # GET /servers/new
   def new
     @server = Server.new
+    respond_with(@server)
   end
 
   # GET /servers/1/edit
@@ -23,26 +27,20 @@ class ServersController < ApplicationController
   def create
     @server = Server.new(server_params)
 
-    if @server.save
-      redirect_to @server, notice: 'Server was successfully created.'
-    else
-      render :new
-    end
+    @server.save
+    respond_with(@server)
   end
 
   # PATCH/PUT /servers/1
   def update
-    if @server.update(server_params)
-      redirect_to @server, notice: 'Server was successfully updated.'
-    else
-      render :edit
-    end
+    @server.update(server_params)
+    respond_with(@server)
   end
 
   # DELETE /servers/1
   def destroy
     @server.destroy
-    redirect_to servers_url, notice: 'Server was successfully destroyed.'
+    respond_with(@server)
   end
 
   private
@@ -51,8 +49,8 @@ class ServersController < ApplicationController
       @server = Server.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Only allow a trusted parameter "white list" through.
     def server_params
-      params.require(:server).permit(:name, :uid, :location, :description, :text, :api_url, :api_user, :api_password_ciphertext, :api_user_has_fulll_access, :properties)
+      params.require(:server).permit(:name, :uid, :location, :description, :api_url, :api_user, :api_password_ciphertext, :api_user_has_full_access, :properties)
     end
 end

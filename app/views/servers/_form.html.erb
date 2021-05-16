@@ -1,22 +1,32 @@
+<div class="container">
+  <%= simple_form_for(@server,
+    html: { class: 'form-horizontal card' }) do |f| %>
 
-<%= simple_form_for(@server) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="card-header">
+      <%= form_legend %>
+    </div>
+    <div class="card-body">
+      <%= f.input :name
+	 %>
+      <%= f.input :uid
+	 %>
+      <%= f.input :location
+	 %>
+      <%= f.input :description
+	 %>
+      <%= f.input :api_url
+	 %>
+      <%= f.input :api_user
+	 %>
+      <%= f.input :api_password_ciphertext
+	 %>
+      <%= f.input :api_user_has_full_access
+	 %>
+      <%= f.input :properties
+	 %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :uid %>
-    <%= f.input :location %>
-    <%= f.input :description %>
-    <%= f.input :text %>
-    <%= f.input :api_url %>
-    <%= f.input :api_user %>
-    <%= f.input :api_password_ciphertext %>
-    <%= f.input :api_user_has_fulll_access %>
-    <%= f.input :properties %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>

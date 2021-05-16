@@ -1,54 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.server') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.name')%>:</th>
+        <td><%= @server.name %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.uid')%>:</th>
+        <td><%= @server.uid %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.location')%>:</th>
+        <td><%= @server.location %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.description')%>:</th>
+        <td><%= @server.description %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.api_url')%>:</th>
+        <td><%= @server.api_url %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.api_user')%>:</th>
+        <td><%= @server.api_user %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.api_password_ciphertext')%>:</th>
+        <td><%= @server.api_password_ciphertext %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.api_user_has_full_access')%>:</th>
+        <td><%= @server.api_user_has_full_access %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.properties')%>:</th>
+        <td><%= @server.properties %></td>
+      </tr>
+        </table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @server.name %>
-</p>
-
-<p>
-  <strong>Uid:</strong>
-  <%= @server.uid %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @server.location %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @server.description %>
-</p>
-
-<p>
-  <strong>Text:</strong>
-  <%= @server.text %>
-</p>
-
-<p>
-  <strong>Api url:</strong>
-  <%= @server.api_url %>
-</p>
-
-<p>
-  <strong>Api user:</strong>
-  <%= @server.api_user %>
-</p>
-
-<p>
-  <strong>Api password ciphertext:</strong>
-  <%= @server.api_password_ciphertext %>
-</p>
-
-<p>
-  <strong>Api user has fulll access:</strong>
-  <%= @server.api_user_has_fulll_access %>
-</p>
-
-<p>
-  <strong>Properties:</strong>
-  <%= @server.properties %>
-</p>
-
-<%= link_to 'Edit', edit_server_path(@server) %> |
-<%= link_to 'Back', servers_path %>
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@server) %>
+      <%= delete_link(@server) %>
+      <%= new_link Server %>
+    </div>
+  </div>
+</div>

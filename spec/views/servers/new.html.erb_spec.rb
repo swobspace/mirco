@@ -6,12 +6,11 @@ RSpec.describe "servers/new", type: :view do
       name: "MyString",
       uid: "MyString",
       location: "MyString",
-      description: "MyString",
-      text: "MyString",
+      description: "MyText",
       api_url: "MyString",
       api_user: "MyString",
       api_password_ciphertext: "MyText",
-      api_user_has_fulll_access: false,
+      api_user_has_full_access: false,
       properties: ""
     ))
   end
@@ -27,9 +26,7 @@ RSpec.describe "servers/new", type: :view do
 
       assert_select "input[name=?]", "server[location]"
 
-      assert_select "input[name=?]", "server[description]"
-
-      assert_select "input[name=?]", "server[text]"
+      assert_select "textarea[name=?]", "server[description]"
 
       assert_select "input[name=?]", "server[api_url]"
 
@@ -37,7 +34,7 @@ RSpec.describe "servers/new", type: :view do
 
       assert_select "textarea[name=?]", "server[api_password_ciphertext]"
 
-      assert_select "input[name=?]", "server[api_user_has_fulll_access]"
+      assert_select "input[name=?]", "server[api_user_has_full_access]"
 
       assert_select "input[name=?]", "server[properties]"
     end
