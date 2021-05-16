@@ -1,9 +1,64 @@
 // --- bootstrap
+$font-family-sans-serif:
+  // Android
+  Roboto,
+  // Cross-platform generic font family (default user interface font)
+  system-ui,
+  // Safari for macOS and iOS (San Francisco)
+  -apple-system,
+  // Chrome < 56 for macOS (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  "Segoe UI",
+  // Basic web fallback
+  "Helvetica Neue", Arial,
+  // Linux
+  "Noto Sans",
+  "Liberation Sans",
+  // Sans serif fallback
+  sans-serif,
+  // Emoji fonts
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$primary: #137970;
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "bootstrap/scss/bootstrap";
+
+// -- FONTS
+@font-face {
+        font-family: 'Roboto';
+        src: font-url('Roboto-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+}
+@font-face {
+        font-family: 'Roboto';
+        src: font-url('Roboto-Italic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+}
+@font-face {
+        font-family: 'Roboto';
+        src: font-url('Roboto-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+}
+@font-face {
+        font-family: 'Roboto';
+        src: font-url('Roboto-BoldItalic.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+}
+
 body {
   padding-top: 60px;
 }
 
+// -- login form
+#new_user.card {
+  max-width: 800px;
+}
 // --- FOOTER
 div#footer{
   font-size: 0.9em;
