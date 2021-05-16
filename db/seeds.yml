@@ -1,0 +1,4 @@
+roles:
+  - name: Admin
+  - name: Manager
+  - name: Reader

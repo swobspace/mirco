@@ -1,7 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# -- load YAML config data
+config = YAML::load_file(File.join(Rails.root, 'db', 'seeds.yml'))
+
+# -- Roles from yaml(:uniqueness => true)
+Wobauth::Role.create(config['roles'])
+
+# -- start with Admin
+admin_role = Wobauth::Role.find_by_name("Admin")
+
+Wobauth::User.transaction do
+  admin = Wobauth::User.find_or_create_by(username: 'admin') do |adm|
+	    adm.sn = 'Admin'
+	    adm.givenname = 'Meister'
+	    adm.password = 'admin9999'
+	    adm.password_confirmation = 'admin9999'
+	  end
+
+  Wobauth::Authority.transaction do
+    a = Wobauth::Authority.find_or_create_by(authorizable: admin, role: admin_role)
+    raise ActiveRecord::Rollback if a.nil?
+  end
+end
+
+# only for datasets with uniq attribute
+[].each do |myklass|
+  mytable = myklass.name.underscore.pluralize
+  config = YAML::load_file(File.join(Rails.root, 'db', "#{mytable}.yml"))
+  myklass.create(config[mytable])
+end
