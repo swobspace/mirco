@@ -3,5 +3,6 @@
 == Home controller
 
 ----
-bin/rails g controller Home index
+bin/rails g controller Home index \
+    --no-stylesheets --no-javascripts --no-helper
 ----
