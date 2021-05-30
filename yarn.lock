@@ -2502,21 +2502,13 @@ dash-ast@^1.0.0:
   resolved "https://registry.yarnpkg.com/dash-ast/-/dash-ast-1.0.0.tgz#12029ba5fb2f8aa6f0a861795b23c1b4b6c27d37"
   integrity sha512-Vy4dx7gquTeMcQR/hDkYLGUnwVil6vk4FOOct+djUnHOUWt+zJPJAaRIXaAFkPXtJjvlY7o3rfRu0/3hpnwoUA==
 
-datatables.net-bs4@^1.10.15, datatables.net-bs4@^1.10.24:
-  version "1.10.24"
-  resolved "https://registry.yarnpkg.com/datatables.net-bs4/-/datatables.net-bs4-1.10.24.tgz#4b2ca1717e6dc06fd5b53a20015151f381473eb3"
-  integrity sha512-NgjQMqCo5pg49c5TWsc78UYhcvWPAFkZ7qH4yKAb1e0eLNCAo+TLeaIsDiAPpcWwP7xpjdAmZIIbXDpspNTCkg==
-  dependencies:
-    datatables.net "1.10.24"
-    jquery ">=1.7"
-
-datatables.net-buttons-bs4@^1.7.0:
+datatables.net-buttons-dt@^1.7.0:
   version "1.7.0"
-  resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs4/-/datatables.net-buttons-bs4-1.7.0.tgz#20fc7b80a14f80fb81272dd601f8ae683a4595fb"
-  integrity sha512-ZqZOB3nwXiV8vIjVLATUMUvp13eOC46cR9C/Ib1MZtxXMck8HKrspPZZ00BJrS/lLAvMCj0M7qbzug7AJuGznQ==
+  resolved "https://registry.yarnpkg.com/datatables.net-buttons-dt/-/datatables.net-buttons-dt-1.7.0.tgz#60361e0622b29b6185c18b1f817ac303e81d28c0"
+  integrity sha512-XnUynIGiVJneTrViD92MSD0qlD8G0xybPyk5cKIveH1KhDaBpIl0Ws8HnwaJA0bBGknKkfCxDh/dgOsLmYDi8g==
   dependencies:
-    datatables.net-bs4 "^1.10.15"
     datatables.net-buttons "1.7.0"
+    datatables.net-dt "^1.10.15"
     jquery ">=1.7"
 
 datatables.net-buttons@1.7.0:
@@ -2525,6 +2517,14 @@ datatables.net-buttons@1.7.0:
   integrity sha512-3bWeKBO+lR+aA/KTlJErWIYMrDD54eGbtd7todgLlRoMezQFZVpCyXzOsMaC611D+E4uvOgPnNrLuh3GlmMcRg==
   dependencies:
     datatables.net "^1.10.15"
+    jquery ">=1.7"
+
+datatables.net-dt@^1.10.15, datatables.net-dt@^1.10.24:
+  version "1.10.24"
+  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-1.10.24.tgz#64397d6842052afab9dedf9ba160849954fb4cc3"
+  integrity sha512-O7c/Fhqz9hZG8LkXLr9k3M2rZPFjqY6tylOnFl3UaTZfBp5TeCc1AXZbFmv3Y7aNkcNS2UVJRiYAk7bkQhxR+w==
+  dependencies:
+    datatables.net "1.10.24"
     jquery ">=1.7"
 
 datatables.net@1.10.24, datatables.net@^1.10.15:

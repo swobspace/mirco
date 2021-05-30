@@ -13,8 +13,10 @@ import "@fortawesome/fontawesome-free/css/all.css"
 
 import JSZip from 'jszip'
 require('pdfmake')
-require('datatables.net-bs4')
-require('datatables.net-buttons-bs4')
+// require('datatables.net-bs4')
+// require('datatables.net-buttons-bs4')
+require('datatables.net-dt')
+require('datatables.net-buttons-dt')
 require('datatables.net-buttons/js/buttons.colVis.js')
 require('datatables.net-buttons/js/buttons.html5.js')
 require('datatables.net-buttons/js/buttons.print.js')

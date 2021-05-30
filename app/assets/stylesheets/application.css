@@ -2,6 +2,8 @@
  *= require wobapphelpers/breadcrumbs
  *= require select2/dist/css/select2
  *= require select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme
+ *= require datatables.net-dt/css/jquery.dataTables
+ *= require datatables.net-buttons-dt/css/buttons.dataTables
  ** require actiontext
  *= require mirco
 */
