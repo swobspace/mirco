@@ -17,11 +17,11 @@ RSpec.describe "/servers", type: :request do
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:server)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: nil }
   }
 
   describe "GET /index" do
@@ -85,15 +85,20 @@ RSpec.describe "/servers", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) {{
+        uid: "f719add0-c126-11eb-ab66-f48e387521dd",
+        location: "Paris",
+        description: "A short description",
+        api_url: "https://localhost:8443/api",
+        api_user: "dummy",
+        api_user_has_full_access: false,
+      }}
 
       it "updates the requested server" do
         server = Server.create! valid_attributes
         patch server_url(server), params: { server: new_attributes }
         server.reload
-        skip("Add assertions for updated state")
+        expect(server.attributes.symbolize_keys).to include(new_attributes)
       end
 
       it "redirects to the server" do
