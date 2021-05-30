@@ -42,7 +42,7 @@
     </tfoot>
     <tbody>
       <% @servers.each do |server| %>
-        <%= content_tag_for(:tr, server) do %>
+        <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
                 <td><%= server.name %></td>
                 <td><%= server.uid %></td>
                 <td><%= server.location %></td>
