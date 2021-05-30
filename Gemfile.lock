@@ -229,6 +229,8 @@ GEM
       thor (>= 0.14, < 2.0)
     launchy (2.5.0)
       addressable (~> 2.7)
+    libnotify (0.9.4)
+      ffi (>= 1.0.11)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -252,6 +254,9 @@ GEM
     net-ftp (0.1.2)
       net-protocol
       time
+    net-http (0.1.1)
+      net-protocol
+      uri
     net-ldap (0.17.0)
     net-protocol (0.1.0)
     net-scp (3.0.0)
@@ -376,6 +381,7 @@ GEM
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uri (0.10.1)
     view_component (2.32.0)
       activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
@@ -425,8 +431,10 @@ DEPENDENCIES
   guard-rspec
   hotwire-rails
   launchy
+  libnotify
   listen (~> 3.3)
   lockbox
+  net-http
   pg (~> 1.1)
   puma (~> 5.0)
   railroady
