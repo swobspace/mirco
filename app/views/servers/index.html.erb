@@ -22,13 +22,11 @@
             <th><%= t('attributes.api_user') %></th>
             <th><%= t('attributes.api_password') %></th>
             <th><%= t('attributes.api_user_has_full_access') %></th>
-            <th><%= t('attributes.properties') %></th>
             <th class="nosort"><%= t('daisy.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -51,7 +49,6 @@
                 <td><%= server.api_user %></td>
                 <td><%= server.api_password%></td>
                 <td><%= server.api_user_has_full_access %></td>
-                <td><%= server.properties %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
             <%= edit_link server %>
