@@ -1,0 +1,4 @@
+var err = $('#error').show;
+err.html("<%= escape_javascript(flash[:error]) %>");
+err.hide("fade", { direction: "vertical" }, 2000);
+err.empty;

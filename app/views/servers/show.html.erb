@@ -30,15 +30,17 @@
         <td><%= @server.api_url %></td>
       </tr>
     
-      <tr>
-        <th><%= t('attributes.api_user')%>:</th>
-        <td><%= @server.api_user %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.api_password')%>:</th>
-        <td><%= @server.api_password %></td>
-      </tr>
+      <% if current_user.is_admin? %>
+        <tr>
+          <th><%= t('attributes.api_user')%>:</th>
+          <td><%= @server.api_user %></td>
+        </tr>
+        
+        <tr>
+          <th><%= t('attributes.api_password')%>:</th>
+          <td><%= @server.api_password %></td>
+        </tr>
+      <% end %>
     
       <tr>
         <th><%= t('attributes.api_user_has_full_access')%>:</th>

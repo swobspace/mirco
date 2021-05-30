@@ -19,8 +19,10 @@
             <th><%= t('attributes.location') %></th>
             <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.api_url') %></th>
-            <th><%= t('attributes.api_user') %></th>
-            <th><%= t('attributes.api_password') %></th>
+            <% if current_user.is_admin? %>
+              <th><%= t('attributes.api_user') %></th>
+              <th><%= t('attributes.api_password') %></th>
+            <% end %>
             <th><%= t('attributes.api_user_has_full_access') %></th>
             <th class="nosort"><%= t('daisy.action') %></th>
       </tr>
@@ -32,8 +34,10 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
-            <th></th>
+            <% if current_user.is_admin? %>
+              <th></th>
+              <th></th>
+            <% end %>
             <th></th>
             <th></th>
       </tr>
@@ -46,8 +50,10 @@
                 <td><%= server.location %></td>
                 <td><%= server.description %></td>
                 <td><%= server.api_url %></td>
-                <td><%= server.api_user %></td>
-                <td><%= server.api_password%></td>
+                <% if current_user.is_admin? %>
+                  <td><%= server.api_user %></td>
+                  <td><%= server.api_password%></td>
+                <% end %>
                 <td><%= server.api_user_has_full_access %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
