@@ -13,8 +13,10 @@ class Ability
     elsif @user.is_admin?
       can :manage, :all
       cannot [:update, :destroy], :roles, :ro => :true
+    elsif @user.authorities.any? || @user.group_authorities.any?
+      can :read, all
     else
-      can :read, :all
+      can :read, Home
     end
 
   end
