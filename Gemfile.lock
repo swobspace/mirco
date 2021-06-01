@@ -1,4 +1,16 @@
 GIT
+  remote: ../wobmire
+  revision: abb7f31b59b0ffdd8ca0c0faaceab2c7e29b00f9
+  branch: master
+  specs:
+    wobmire (0.1.0)
+      activesupport
+      faraday
+      immutable-struct
+      multi_json
+      nokogiri
+
+GIT
   remote: https://github.com/swobspace/wobapphelpers
   revision: 87bfeb6a8b59a2722f364a7fa88f869c9a1f6478
   branch: develop
@@ -29,18 +41,6 @@ GIT
       simple_form
       wobaduser (~> 1.0)
       wobapphelpers (> 4.99)
-
-GIT
-  remote: https://github.com/swobspace/wobmire
-  revision: 6a9eb1866f32840517071de1b7e8c06a27a65861
-  branch: master
-  specs:
-    wobmire (0.1.0)
-      activesupport
-      faraday
-      immutable-struct
-      multi_json
-      nokogiri
 
 GEM
   remote: https://rubygems.org/
