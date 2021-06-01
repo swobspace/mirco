@@ -86,7 +86,7 @@ RSpec.describe "/servers", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {{
-        uid: "f719add0-c126-11eb-ab66-f48e387521dd",
+        uid: "db5fd489-9335-4d31-adba-d7891bfe5433",
         location: "Paris",
         description: "A short description",
         api_url: "https://localhost:8443/api",
