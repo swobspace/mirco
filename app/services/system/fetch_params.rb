@@ -21,7 +21,43 @@ module System
     # fetching only, do not assign any value to server here
     #
     def call
-      return Result.new
+      success = true
+      errmsgs = []
+      params = {}
+
+      mapi = Wobmire::Api.new(server_options)
+      # login
+      unless mapi.login(server.api_user, server.api_password)
+        return Result.new(
+                 success: false, 
+                 error_messages: ["ERROR:: Login failed"],
+                 params: {}
+               )
+      end
+
+      # fetch system info and stats
+      sysinfo = Wobmire::SystemInfo.fetch(mapi)
+
+      if sysinfo.success?
+        params[:system_info] = sysinfo.info.info
+      else
+        errmsgs << "ERROR:: fetching sysinfo failed"
+        success = false
+      end
+
+      return Result.new(
+               success: success,
+               error_messages: errmsgs,
+               params: params
+            )
+    end
+
+  private
+    def server_options
+      {
+        url: server.api_url,
+        ssl: { verify: server.api_verify_ssl }
+      }
     end
   end
 end
