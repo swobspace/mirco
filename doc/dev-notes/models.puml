@@ -12,6 +12,7 @@ class Server  {
   api_user: string
   api_password_ciphertext: text
   api_user_has_full_access: boolean
+  api_verify_ssl: boolean
   properties: jsonb
 }
 note right of Server

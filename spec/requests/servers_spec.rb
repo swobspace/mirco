@@ -95,6 +95,7 @@ RSpec.describe "/servers", type: :request do
         api_url: "https://localhost:8443/api",
         api_user: "dummy",
         api_user_has_full_access: false,
+        api_verify_ssl: true,
       }}
 
       it "updates the requested server" do

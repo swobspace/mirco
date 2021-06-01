@@ -14,6 +14,9 @@ bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
+  api_verify_ssl:boolean \
   properties:jsonb \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
 ----

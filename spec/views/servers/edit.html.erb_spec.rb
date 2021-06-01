@@ -23,6 +23,7 @@ RSpec.describe "servers/edit", type: :view do
       assert_select "input[name=?]", "server[api_user]"
       assert_select "input[name=?]", "server[api_password]"
       assert_select "input[name=?]", "server[api_user_has_full_access]"
+      assert_select "input[name=?]", "server[api_verify_ssl]"
       assert_select "input[name=?]", "server[properties]", count: 0
     end
   end

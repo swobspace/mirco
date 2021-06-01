@@ -11,6 +11,7 @@ de:
     api_user: API User
     api_password: API Passwort
     api_user_has_full_access: Vollzugriff
+    api_verify_ssl: SSL-Prüfung
     channel: Channel
     home: Home
     description: Beschreibung

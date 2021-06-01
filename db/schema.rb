@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_105756) do
+ActiveRecord::Schema.define(version: 2021_06_01_090926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_105756) do
     t.jsonb "properties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "api_verify_ssl", default: false
     t.index ["uid"], name: "index_servers_on_uid"
   end
 
