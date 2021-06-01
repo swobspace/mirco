@@ -13,7 +13,6 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/servers", type: :request do
-  
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
@@ -23,6 +22,10 @@ RSpec.describe "/servers", type: :request do
   let(:invalid_attributes) {
     { name: nil }
   }
+
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
