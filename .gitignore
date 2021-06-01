@@ -61,6 +61,7 @@ shared/config/*.yml
 config/initializers/secret_token.rb
 config/secrets.yml
 config/deploy-config.yml
+.env
 
 # Ignore application configuration
 /shared/config/application.yml
