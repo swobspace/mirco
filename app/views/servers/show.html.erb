@@ -54,7 +54,7 @@
     
       <tr>
         <th><%= t('attributes.properties')%>:</th>
-        <td><%= @server.properties %></td>
+        <td><%=  @server.properties %></td>
       </tr>
         </table>
 
@@ -63,6 +63,10 @@
       <%= edit_link(@server) %>
       <%= delete_link(@server) %>
       <%= new_link Server %>
+      <%= link_to t('mirco.update_properties'), 
+                  update_properties_server_path(@server),
+                  method: :patch,
+                  class: 'btn btn-warning' %>
     </div>
   </div>
 </div>

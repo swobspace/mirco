@@ -29,3 +29,9 @@ de:
     home: Home
     servers: Server
     users: Benutzer
+
+  flash:
+    servers:
+      update_properties:
+        notice: "Server-Eigenschaften aktualisiert"
+        alert: "Server-Eigenschaften konnten nicht aktualisiert werden!"

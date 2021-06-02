@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :servers
+  resources :servers do
+    member do
+      patch :update_properties
+    end
+  end
   get 'home/index'
 
   get "/pages/index", to: 'pages#index'

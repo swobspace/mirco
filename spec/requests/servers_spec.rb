@@ -86,6 +86,24 @@ RSpec.describe "/servers", type: :request do
     end
   end
 
+  describe "PATCH /update_properties" do
+    let(:server) { FactoryBot.create(:server,
+      api_url: ENV['API_URL'],
+      api_user: ENV['API_USER'],
+      api_password: ENV['API_PASSWORD'],
+      api_verify_ssl: ENV['API_VERIFY_SSL']
+    )}
+    it "redirects to server" do
+      patch update_properties_server_url(server)
+      expect(response).to redirect_to(server_url(server))
+    end
+    it "updates server properties" do
+      patch update_properties_server_url(server)
+      server.reload
+      expect(server.properties[:server_id]).to be_present
+    end
+  end
+
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {{

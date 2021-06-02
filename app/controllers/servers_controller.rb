@@ -1,5 +1,5 @@
 class ServersController < ApplicationController
-  before_action :set_server, only: [:show, :edit, :update, :destroy]
+  before_action :set_server, only: [:show, :edit, :update, :update_properties, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /servers
@@ -35,6 +35,16 @@ class ServersController < ApplicationController
   def update
     @server.update(server_params)
     respond_with(@server)
+  end
+
+  def update_properties
+    result = System::FetchParams.new(server: @server).call
+    if result.success?
+      @server.update(properties: result.params)
+    else
+      @server.errors.add(:base, :invalid)
+    end
+    respond_with(@server, action: :show)
   end
 
   # DELETE /servers/1
