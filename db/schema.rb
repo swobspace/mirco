@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_090926) do
+ActiveRecord::Schema.define(version: 2021_06_02_090253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channels", force: :cascade do |t|
+    t.bigint "server_id", null: false
+    t.string "uid", null: false
+    t.jsonb "properties"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["server_id"], name: "index_channels_on_server_id"
+    t.index ["uid"], name: "index_channels_on_uid"
+  end
 
   create_table "servers", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -98,4 +108,5 @@ ActiveRecord::Schema.define(version: 2021_06_01_090926) do
     t.index ["username"], name: "index_wobauth_users_on_username", unique: true
   end
 
+  add_foreign_key "channels", "servers"
 end
