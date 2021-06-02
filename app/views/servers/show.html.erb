@@ -1,6 +1,13 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.server') %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="title"><%= t('activerecord.models.server') %>: <%= @server %></h4>
+      <div role="toolbar">
+        <%= back_link %>
+        <%= edit_link(@server) %>
+        <%= delete_link(@server) %>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-hover autowidth">
@@ -64,7 +71,15 @@
 
 <div class="card mt-3">
   <div class="card-header">
-    <h4><%= t('attributes.properties') %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="title"><%= t('attributes.properties') %> von <%= @server %></h4>
+      <div role="toolbar">
+        <%= link_to t('mirco.update_properties'), 
+                    update_properties_server_path(@server),
+                    method: :patch,
+                    class: 'btn btn-warning' %>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-hover autowidth">
@@ -100,14 +115,7 @@
     </table>
 
     <div role="toolbar">
-      <%= back_link %>
-      <%= edit_link(@server) %>
-      <%= delete_link(@server) %>
       <%= new_link Server %>
-      <%= link_to t('mirco.update_properties'), 
-                  update_properties_server_path(@server),
-                  method: :patch,
-                  class: 'btn btn-warning' %>
     </div>
   </div>
 </div>
