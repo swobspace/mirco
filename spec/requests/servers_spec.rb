@@ -100,7 +100,7 @@ RSpec.describe "/servers", type: :request do
     it "updates server properties" do
       patch update_properties_server_url(server)
       server.reload
-      expect(server.properties[:server_id]).to be_present
+      expect(server.properties['server_uid']).to be_present
     end
   end
 
