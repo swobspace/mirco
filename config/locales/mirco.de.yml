@@ -1,4 +1,6 @@
 de:
+  mirco:
+    update_properties: Aktualisiere Eigenschaften
   activerecord:
     models:
       channel: Channel
@@ -20,6 +22,11 @@ de:
     name: Name
     properties: Eigenschaften
     server: Server
+    server_uid: Server UUID
+    server_jvm: Server JVM
+    server_version: Server Version
+    system_info: Systeminfo
+    server_settings: Server-Einstellungen
     sn: Nachname
     uid: UID
     username: Username
