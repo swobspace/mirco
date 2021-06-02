@@ -30,14 +30,13 @@
     </tfoot>
     <tbody>
       <% @channels.each do |channel| %>
-        <%= content_tag_for(:tr, id: dom_id(channel), class: dom_class(channel)) do %>
-                <td><%= channel.server %></td>
-                <td><%= channel.uid %></td>
-                <td><%= channel.properties %></td>
-                <td class="text-nowrap">
-            <%= show_link channel %>
-            <%= edit_link channel %>
-            <%= delete_link channel %>
+        <%= content_tag(:tr, id: dom_id(channel), class: dom_class(channel)) do %>
+          <td><%= channel.server %></td>
+          <td><%= channel.uid %></td>
+          <td><%= channel.properties %></td>
+          <td class="text-nowrap">
+            <%= show_link [@server, channel] %>
+            <%= delete_link [@server, channel] %>
           </td>
         <% end %>
       <% end %>
@@ -48,4 +47,3 @@
 <br />
 
 <%= back_link %>
-<%= new_link Channel %>

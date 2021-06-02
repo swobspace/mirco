@@ -1,4 +1,5 @@
 class ChannelsController < ApplicationController
+  before_action :set_server
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
@@ -13,44 +14,35 @@ class ChannelsController < ApplicationController
     respond_with(@channel)
   end
 
-  # GET /channels/new
-  def new
-    @channel = Channel.new
-    respond_with(@channel)
-  end
-
-  # GET /channels/1/edit
-  def edit
-  end
-
-  # POST /channels
-  def create
-    @channel = Channel.new(channel_params)
-
-    @channel.save
-    respond_with(@channel)
-  end
-
-  # PATCH/PUT /channels/1
-  def update
-    @channel.update(channel_params)
-    respond_with(@channel)
+  def fetch
+    # dummy, just to satisfy spec for now
+    redirect_to server_channels_path(@server)
   end
 
   # DELETE /channels/1
   def destroy
     @channel.destroy
-    respond_with(@channel)
+    respond_with(@channel, location: @server)
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_channel
-      @channel = Channel.find(params[:id])
-    end
+private
 
-    # Only allow a trusted parameter "white list" through.
-    def channel_params
-      params.require(:channel).permit(:server_id, :uid, :properties)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_channel
+    @channel = Channel.find(params[:id])
+  end
+
+  def set_server
+    @server = Server.find(params[:server_id])
+  end
+
+  def add_breadcrumb_show
+    add_breadcrumb_for([@server, @channel])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def channel_params
+    params.require(:channel).permit(:server_id, :uid, :properties)
+  end
+    
 end
