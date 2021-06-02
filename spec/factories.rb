@@ -10,4 +10,9 @@ FactoryBot.define do
   factory :server do
     name { generate(:aname) }
   end
+
+  factory :channel do
+    server
+    uid { `uuid -v 4` }
+  end
 end
