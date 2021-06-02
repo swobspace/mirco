@@ -70,6 +70,7 @@ gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'
 gem 'asciidoctor'
+gem 'pp'
 
 # workaround for faraday-net_http
 gem "net-http"
