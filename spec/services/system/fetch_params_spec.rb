@@ -35,7 +35,7 @@ module System
       it { expect(result.params).to be_present }
       it { expect(result.params[:system_info]).to be_present }
       it { expect(result.params[:server_settings]).to be_present }
-      it { expect(result.params[:server_id]).to be_present }
+      it { expect(result.params[:server_uid]).to be_present }
       it { expect(result.params[:server_jvm]).to be_present }
       it { expect(result.params[:server_version]).to be_present }
       it "show :system_info" do
@@ -44,7 +44,7 @@ module System
         printf "\n-- :server_settings --\n"
         pp result.params[:server_settings]
         printf "\n-- id, version, jvm --\n"
-        puts "server_id: #{result.params[:server_id]}"
+        puts "server_uid: #{result.params[:server_uid]}"
         puts "server_version: #{result.params[:server_version]}"
         puts "server_jvm: #{result.params[:server_jvm]}"
         printf "\n"

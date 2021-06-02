@@ -53,10 +53,10 @@ module System
         success = false
       end
 
-      # server_id
+      # server_uid
       response = mapi.get("server/id")
       if response.success?
-        params[:server_id] = response.body.to_s
+        params[:server_uid] = response.body.to_s
       else
         errmsgs << "ERROR:: fetching server id failed"
         success = false
