@@ -1,0 +1,20 @@
+<div class="container">
+  <%= simple_form_for(@channel,
+    html: { class: 'form-horizontal card' }) do |f| %>
+
+    <div class="card-header">
+      <%= form_legend %>
+    </div>
+    <div class="card-body">
+      <%= f.association :server
+	 %>
+      <%= f.input :uid
+	 %>
+      <%= f.input :properties
+	 %>
+
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>

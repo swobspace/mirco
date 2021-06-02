@@ -20,3 +20,13 @@ bin/rails g scaffold Server \
 
 bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
 ----
+
+== model Channel
+
+----
+bin/rails g scaffold Channel \
+  server:belongs_to \
+  uid:string:index \
+  properties:jsonb \
+  --no-stylesheets --no-javascripts --no-helper
+----
