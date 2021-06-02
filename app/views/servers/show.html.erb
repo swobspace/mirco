@@ -1,121 +1,162 @@
-<div class="card">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <h4 class="title"><%= t('activerecord.models.server') %>: <%= @server %></h4>
-      <div role="toolbar">
-        <%= back_link %>
-        <%= edit_link(@server) %>
-        <%= delete_link(@server) %>
+<ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">Server</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab" aria-controls="properties" aria-selected="false">Properties</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="channels" aria-selected="false">Channels</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+ <div class="tab-pane fade show active" id="server" role="tabpanel" aria-labelledby="server-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="title"><%= t('activerecord.models.server') %></h4>
+        <div role="toolbar">
+          <%= back_link %>
+          <%= edit_link(@server) %>
+          <%= delete_link(@server) %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card-body">
-    <table class="table table-hover autowidth">
-    
-      <tr>
-        <th class="w-25"><%= t('attributes.name')%>:</th>
-        <td><%= @server.name %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.uid')%>:</th>
-        <td><%= @server.uid %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.location')%>:</th>
-        <td><%= @server.location %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.description')%>:</th>
-        <td><%= @server.description %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.api_url')%>:</th>
-        <td><%= @server.api_url %></td>
-      </tr>
-    
-      <% if current_user.is_admin? %>
+    <div class="card-body">
+      <table class="table table-hover autowidth">
+      
         <tr>
-          <th><%= t('attributes.api_user')%>:</th>
-          <td><%= @server.api_user %></td>
+          <th class="w-25"><%= t('attributes.name')%>:</th>
+          <td><%= @server.name %></td>
         </tr>
-        
+      
         <tr>
-          <th><%= t('attributes.api_password')%>:</th>
-          <td>
-            <div class="input-group mb3">
-              <input type="password" disabled value="<%= @server.api_password %>">
-              <span class="input-group-text" id="toggleShowPassword">
-                <i class="fas fa-eye"></i>
-              </span>
-            </div>
-          </td>
+          <th><%= t('attributes.uid')%>:</th>
+          <td><%= @server.uid %></td>
         </tr>
-      <% end %>
-    
-      <tr>
-        <th><%= t('attributes.api_user_has_full_access')%>:</th>
-        <td><%= @server.api_user_has_full_access %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.api_verify_ssl')%>:</th>
-        <td><%= @server.api_verify_ssl %></td>
-      </tr>
-    </table>
+      
+        <tr>
+          <th><%= t('attributes.location')%>:</th>
+          <td><%= @server.location %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.description')%>:</th>
+          <td><%= @server.description %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.api_url')%>:</th>
+          <td><%= @server.api_url %></td>
+        </tr>
+      
+        <% if current_user.is_admin? %>
+          <tr>
+            <th><%= t('attributes.api_user')%>:</th>
+            <td><%= @server.api_user %></td>
+          </tr>
+          
+          <tr>
+            <th><%= t('attributes.api_password')%>:</th>
+            <td>
+              <div class="input-group mb3">
+                <input type="password" disabled value="<%= @server.api_password %>">
+                <span class="input-group-text" id="toggleShowPassword">
+                  <i class="fas fa-eye"></i>
+                </span>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      
+        <tr>
+          <th><%= t('attributes.api_user_has_full_access')%>:</th>
+          <td><%= @server.api_user_has_full_access %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.api_verify_ssl')%>:</th>
+          <td><%= @server.api_verify_ssl %></td>
+        </tr>
+      </table>
+    </div>
   </div>
+ </div>
+
+ <div class="tab-pane fade" id="properties" role="tabpanel" aria-labelledby="properties-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="title"><%= t('attributes.properties') %></h4>
+        <div role="toolbar">
+          <%= link_to t('mirco.update_properties'), 
+                      update_properties_server_path(@server),
+                      method: :patch,
+                      class: 'btn btn-warning' %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover autowidth">
+        <tr>
+          <th><%= t('attributes.server_uid')%>:</th>
+          <td><%= @server.server_uid %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.server_jvm')%>:</th>
+          <td><%= @server.server_jvm %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.server_version')%>:</th>
+          <td><%= @server.server_version %></td>
+        </tr>
+
+        <tr>
+          <th><%= t('attributes.system_info')%>:</th>
+          <td><%= (@server.system_info || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.server_settings')%>:</th>
+          <td><%= (@server.server_settings || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
+        </tr>
+      
+        <tr>
+          <th><%= t('attributes.properties')%>:</th>
+          <td><%=  @server.properties %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+ </div>
+
+ <div class="tab-pane fade" id="channels" role="tabpanel" aria-labelledby="channels-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="title"><%= t('controller.channels') %></h4>
+        <div role="toolbar">
+          <%= link_to t('mirco.fetch_channels'), 
+                      fetch_server_channels_path(@server),
+                      method: :patch,
+                      class: 'btn btn-warning' %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover autowidth">
+      </table>
+    </div>
+  </div>
+ </div>
 </div>
-
-<div class="card mt-3">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <h4 class="title"><%= t('attributes.properties') %> von <%= @server %></h4>
-      <div role="toolbar">
-        <%= link_to t('mirco.update_properties'), 
-                    update_properties_server_path(@server),
-                    method: :patch,
-                    class: 'btn btn-warning' %>
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <table class="table table-hover autowidth">
-      <tr>
-        <th><%= t('attributes.server_uid')%>:</th>
-        <td><%= @server.server_uid %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.server_jvm')%>:</th>
-        <td><%= @server.server_jvm %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.server_version')%>:</th>
-        <td><%= @server.server_version %></td>
-      </tr>
-
-      <tr>
-        <th><%= t('attributes.system_info')%>:</th>
-        <td><%= (@server.system_info || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.server_settings')%>:</th>
-        <td><%= (@server.server_settings || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.properties')%>:</th>
-        <td><%=  @server.properties %></td>
-      </tr>
-    </table>
-
-    <div role="toolbar">
-      <%= new_link Server %>
-    </div>
+<div class="row mt-2">
+  <div role="toolbar">
+    <%= new_link Server %>
   </div>
 </div>

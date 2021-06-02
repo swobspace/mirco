@@ -1,6 +1,8 @@
 de:
   mirco:
     update_properties: Aktualisiere Eigenschaften
+    fetch_channels: Aktualisiere Channels
+
   activerecord:
     models:
       channel: Channel
