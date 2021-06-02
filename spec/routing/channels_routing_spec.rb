@@ -3,36 +3,42 @@ require "rails_helper"
 RSpec.describe ChannelsController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/channels").to route_to("channels#index")
+      expect(get: "/servers/99/channels").to route_to("channels#index", server_id: "99")
     end
 
     it "routes to #new" do
-      expect(get: "/channels/new").to route_to("channels#new")
+      pending "needs more grips"
+      expect(get: "/servers/99/channels/new").not_to be_routable
     end
 
     it "routes to #show" do
-      expect(get: "/channels/1").to route_to("channels#show", id: "1")
+      expect(get: "/servers/99/channels/1").to route_to("channels#show", id: "1", server_id: "99")
     end
 
     it "routes to #edit" do
-      expect(get: "/channels/1/edit").to route_to("channels#edit", id: "1")
+      expect(get: "/servers/99/channels/1/edit").not_to be_routable
     end
 
 
     it "routes to #create" do
-      expect(post: "/channels").to route_to("channels#create")
+      expect(post: "/servers/99/channels").not_to be_routable
     end
 
+    it "routes to #fetch" do
+      expect(post: "/servers/99/channels/fetch").to route_to("channels#fetch", server_id: "99")
+    end
+
+
     it "routes to #update via PUT" do
-      expect(put: "/channels/1").to route_to("channels#update", id: "1")
+      expect(put: "/servers/99/channels/1").not_to be_routable
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/channels/1").to route_to("channels#update", id: "1")
+      expect(patch: "/servers/99/channels/1").not_to be_routable
     end
 
     it "routes to #destroy" do
-      expect(delete: "/channels/1").to route_to("channels#destroy", id: "1")
+      expect(delete: "/servers/99/channels/1").to route_to("channels#destroy", id: "1", server_id: "99")
     end
   end
 end

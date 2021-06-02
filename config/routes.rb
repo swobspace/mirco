@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  resources :channels
   resources :servers do
     member do
       patch :update_properties
+    end
+    resources :channels, only: [:index, :show, :destroy] do
+      collection do
+        post :fetch
+      end
     end
   end
   get 'home/index'
