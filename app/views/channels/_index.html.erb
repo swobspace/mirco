@@ -1,0 +1,39 @@
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "channels_table",
+        class: "table table-bordered table-responsive-xl",
+        data: {
+          'datatables-target': 'datatable',
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr class="search">
+            <th><%= t('attributes.name') %></th>
+            <th><%= t('attributes.description') %></th>
+            <th><%= t('attributes.uid') %></th>
+            <th class="nosort"><%= t('daisy.action') %></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% channels.each do |channel| %>
+        <%= content_tag(:tr, id: dom_id(channel), class: dom_class(channel)) do %>
+          <td><%= channel.name %></td>
+          <td><%= channel.description %></td>
+          <td><%= channel.uid %></td>
+          <td class="text-nowrap">
+            <%= show_link [server, channel] %>
+            <%= delete_link [server, channel] %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>

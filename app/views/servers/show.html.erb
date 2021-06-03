@@ -155,8 +155,7 @@
       </div>
     </div>
     <div class="card-body">
-      <table class="table table-hover autowidth">
-      </table>
+      <%= render partial: 'channels/index', locals: {server: @server, channels: @server.channels } %>
     </div>
   </div>
  </div>
