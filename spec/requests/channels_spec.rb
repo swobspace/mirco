@@ -1,7 +1,12 @@
  require 'rails_helper'
 
 RSpec.describe "/channels", type: :request do
-  let!(:server) { FactoryBot.create(:server) }
+  let!(:server) { FactoryBot.create(:server,
+    api_url: ENV['API_URL'],
+    api_user: ENV['API_USER'],
+    api_password: ENV['API_PASSWORD'],
+    api_verify_ssl: ENV['API_VERIFY_SSL']
+  )}
   let(:valid_attributes) {
     FactoryBot.attributes_for(:channel, server_id: server.id)
   }
@@ -26,16 +31,16 @@ RSpec.describe "/channels", type: :request do
     end
   end
 
-  describe "POST /fetch" do
+  describe "POST /fetch_all" do
     it "creates a new Channel" do
       expect {
-        post fetch_server_channels_url(server)
+        post fetch_all_server_channels_url(server)
       }.to change(Channel, :count).by_at_least(1)
     end
 
     it "redirects to servers/:id/channels" do
-      post fetch_server_channels_url(server)
-      expect(response).to redirect_to(server_channels_url(server))
+      post fetch_all_server_channels_url(server)
+      expect(response).to redirect_to(server_url(server))
     end
   end
 

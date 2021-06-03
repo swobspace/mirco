@@ -14,9 +14,12 @@ class ChannelsController < ApplicationController
     respond_with(@channel)
   end
 
-  def fetch
-    # dummy, just to satisfy spec for now
-    redirect_to server_channels_path(@server)
+  def fetch_all
+    result = Channels::FetchAll.new(server: @server).call
+    unless result.success?
+      @server.errors.add(:base, :invalid)
+    end
+    respond_with(@server, action: :show)
   end
 
   # DELETE /channels/1
