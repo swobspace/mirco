@@ -6,7 +6,7 @@ module Channels
       uid: '3fa4fc38-1cb6-40ad-b91f-4aa7f3e44776',
     )}
     let(:properties) {{
-     'uid' => '445cda00-c847-4198-a9be-eb0dc6b5946d',
+     'id' => '445cda00-c847-4198-a9be-eb0dc6b5946d',
      'testdummy' => 'babbelfasel',
     }}
     subject { Channels::Creator.new(server: server, properties: properties) }
@@ -32,7 +32,7 @@ module Channels
           }.to raise_error(KeyError)
         end
       end
-      context "without :uid or properties['uid']" do
+      context "without :uid or properties['id']" do
         it "raises an ArgumentError" do
           expect {
             Creator.new(server: server, properties: {})

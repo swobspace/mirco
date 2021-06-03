@@ -14,7 +14,7 @@ module Channels
       options.symbolize_keys
       @server = options.fetch(:server)
       @properties = options.fetch(:properties)
-      @uid = options.fetch(:uid) { @properties['uid'] }
+      @uid = options.fetch(:uid) { @properties['id'] }
       if @uid.nil?
         raise ArgumentError, ":uid not specified and not in :properties"
       end
