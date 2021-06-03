@@ -3,13 +3,19 @@
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">Server</button>
+    <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">
+      <%= t('activerecords.models.server') %>
+    </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab" aria-controls="properties" aria-selected="false">Properties</button>
+    <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab" aria-controls="properties" aria-selected="false">
+      <%= t('attributes.properties') %>
+    </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="channels" aria-selected="false">Channels</button>
+    <button class="nav-link" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="channels" aria-selected="false">
+      <%= t('controllers.channels') %>
+    </button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">

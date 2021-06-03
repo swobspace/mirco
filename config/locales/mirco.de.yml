@@ -2,6 +2,7 @@ de:
   mirco:
     update_properties: Aktualisiere Eigenschaften
     fetch_channels: Aktualisiere Channels
+    new_server: Neuer Server
 
   activerecord:
     models:
