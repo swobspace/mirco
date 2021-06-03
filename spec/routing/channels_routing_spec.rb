@@ -24,8 +24,8 @@ RSpec.describe ChannelsController, type: :routing do
       expect(post: "/servers/99/channels").not_to be_routable
     end
 
-    it "routes to #fetch" do
-      expect(post: "/servers/99/channels/fetch").to route_to("channels#fetch", server_id: "99")
+    it "routes to #fetch_all" do
+      expect(post: "/servers/99/channels/fetch_all").to route_to("channels#fetch_all", server_id: "99")
     end
 
 

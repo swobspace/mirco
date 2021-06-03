@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     end
     resources :channels, only: [:index, :show, :destroy] do
       collection do
-        post :fetch
+        post :fetch_all
       end
     end
   end
