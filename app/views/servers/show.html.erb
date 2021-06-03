@@ -148,8 +148,8 @@
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
           <%= link_to t('mirco.fetch_channels'), 
-                      fetch_server_channels_path(@server),
-                      method: :patch,
+                      fetch_all_server_channels_path(@server),
+                      method: :post,
                       class: 'btn btn-warning' %>
         </div>
       </div>
