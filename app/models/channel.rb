@@ -10,6 +10,10 @@ class Channel < ApplicationRecord
   store_accessor :properties, :exportData
   store_accessor :properties, :sourceConnector
   store_accessor :properties, :destinationConnectors
+  store_accessor :properties, :deployScript
+  store_accessor :properties, :undeployScript
+  store_accessor :properties, :preprocessingScript
+  store_accessor :properties, :postprocessingScript
 
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { case_sensitive: false }
