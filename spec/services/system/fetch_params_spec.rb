@@ -33,11 +33,13 @@ module System
       it { expect(result.success?).to be_truthy }
       it { expect(result.error_messages.present?).to be_falsey }
       it { expect(result.params).to be_present }
+      it { expect(result.params[:server_uid]).to be_present }
       it { expect(result.params[:system_info]).to be_present }
       it { expect(result.params[:server_settings]).to be_present }
       it { expect(result.params[:server_uid]).to be_present }
       it { expect(result.params[:server_jvm]).to be_present }
       it { expect(result.params[:server_version]).to be_present }
+      it { expect(result.params[:server_uid]).to eq(server.uid) }
       it "show :system_info" do
         printf "\n-- :system_info --\n"
         pp result.params[:system_info]

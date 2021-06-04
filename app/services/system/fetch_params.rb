@@ -83,6 +83,13 @@ module System
       # close session
       mapi.logout
 
+      if server.uid.blank?
+        server.update(uid: params[:server_uid])
+      elsif server.uid != params[:server_uid]
+        errmsgs << "ERROR:: server uid mismatch"
+        success = false
+      end
+
       return Result.new(
                success: success,
                error_messages: errmsgs,
