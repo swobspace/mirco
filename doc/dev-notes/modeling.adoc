@@ -16,9 +16,12 @@ bin/rails g scaffold Server \
   api_user_has_full_access:boolean \
   api_verify_ssl:boolean \
   properties:jsonb \
+  last_channel_update:timestamp \
   --no-stylesheets --no-javascripts --no-helper
 
 bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
+bin/rails g migration AddLastChannelUpdateToServer \
+  last_channel_update:timestamp
 ----
 
 == model Channel
