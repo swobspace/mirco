@@ -159,7 +159,7 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'channels/index', locals: {server: @server, channels: @server.channels } %>
+      <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
     </div>
   </div>
  </div>
