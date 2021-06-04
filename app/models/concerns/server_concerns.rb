@@ -5,6 +5,10 @@ module ServerConcerns
   end
 
   def active_channels
-    channels.where("channels.updated_at >= ?", 1.minute.before(last_channel_update))
+    if last_channel_update.nil?
+      channels
+    else
+      channels.where("channels.updated_at >= ?", 1.minute.before(last_channel_update))
+    end
   end
 end
