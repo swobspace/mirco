@@ -15,4 +15,11 @@ FactoryBot.define do
     server
     uid { `uuid -v 4` }
   end
+
+  factory :channel_statistic do
+    server
+    channel
+    server_uid { `uuid -v 4` }
+    channel_uid { `uuid -v 4` }
+  end
 end

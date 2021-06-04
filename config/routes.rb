@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :channel_statistics
   resources :servers do
     member do
       patch :update_properties

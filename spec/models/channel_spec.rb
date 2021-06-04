@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Channel, type: :model do
   it { is_expected.to belong_to(:server) }
+  it { is_expected.to have_many(:channel_statistics).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:uid) }
 
   it "should get plain factory working" do

@@ -33,3 +33,19 @@ bin/rails g scaffold Channel \
   properties:jsonb \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
+== Model ChannelStatistic
+
+----
+bin/rails g scaffold ChannelStatistic \
+  server:belongs_to \
+  channel:belongs_to \
+  server_uid:string:index \
+  channel_uid:string:index \
+  received:integer \
+  sent:integer \
+  error:integer \
+  filtered:integer \
+  queued:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----

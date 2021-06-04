@@ -27,5 +27,18 @@ class Channel {
   properties: jsonb
 }
 
+class ChannelStatistic {
+  server_uid: string
+  channel_uid: string
+  received: integer
+  sent: integer
+  error: integer
+  filtered: integer
+  queued: integer
+}
+
 Server "1" -- "*" Channel
+Server "1" - "*" ChannelStatistic
+Channel "1" - "*" ChannelStatistic
+
 @enduml

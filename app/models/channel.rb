@@ -1,6 +1,7 @@
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
+  has_many :channel_statistics, dependent: :restrict_with_error
 
   # -- configuration
   store_accessor :properties, :name

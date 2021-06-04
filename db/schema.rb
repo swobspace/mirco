@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_074402) do
+ActiveRecord::Schema.define(version: 2021_06_04_142944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channel_statistics", force: :cascade do |t|
+    t.bigint "server_id", null: false
+    t.bigint "channel_id", null: false
+    t.string "server_uid", null: false
+    t.string "channel_uid", null: false
+    t.integer "received", default: 0
+    t.integer "sent", default: 0
+    t.integer "error", default: 0
+    t.integer "filtered", default: 0
+    t.integer "queued", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_channel_statistics_on_channel_id"
+    t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
+    t.index ["server_id"], name: "index_channel_statistics_on_server_id"
+    t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
+  end
 
   create_table "channels", force: :cascade do |t|
     t.bigint "server_id", null: false
@@ -109,5 +127,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_074402) do
     t.index ["username"], name: "index_wobauth_users_on_username", unique: true
   end
 
+  add_foreign_key "channel_statistics", "channels"
+  add_foreign_key "channel_statistics", "servers"
   add_foreign_key "channels", "servers"
 end
