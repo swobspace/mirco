@@ -16,19 +16,17 @@
       <tr class="search">
             <th><%= t('attributes.server') %></th>
             <th><%= t('attributes.channel') %></th>
-            <th><%= t('attributes.server_uid') %></th>
-            <th><%= t('attributes.channel_uid') %></th>
             <th><%= t('attributes.received') %></th>
             <th><%= t('attributes.sent') %></th>
             <th><%= t('attributes.error') %></th>
             <th><%= t('attributes.filtered') %></th>
             <th><%= t('attributes.queued') %></th>
+            <th><%= t('attributes.updated_at') %></th>
             <th class="nosort"><%= t('daisy.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -45,17 +43,14 @@
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
                 <td><%= channel_statistic.server %></td>
                 <td><%= channel_statistic.channel %></td>
-                <td><%= channel_statistic.server_uid %></td>
-                <td><%= channel_statistic.channel_uid %></td>
                 <td><%= channel_statistic.received %></td>
                 <td><%= channel_statistic.sent %></td>
                 <td><%= channel_statistic.error %></td>
                 <td><%= channel_statistic.filtered %></td>
                 <td><%= channel_statistic.queued %></td>
+                <td><%= channel_statistic.updated_at %></td>
                 <td class="text-nowrap">
             <%= show_link channel_statistic %>
-            <%= edit_link channel_statistic %>
-            <%= delete_link channel_statistic %>
           </td>
         <% end %>
       <% end %>
@@ -66,4 +61,3 @@
 <br />
 
 <%= back_link %>
-<%= new_link ChannelStatistic %>
