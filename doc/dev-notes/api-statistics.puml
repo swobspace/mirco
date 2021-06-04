@@ -1,0 +1,10 @@
+@startwbs
+* /channels/statistics\n<channelStatistics>
+** serverId
+** channelId
+** received
+** sent
+** error
+** filtered
+** queued
+@endwbs
