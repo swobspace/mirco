@@ -1,4 +1,4 @@
-module Channels
+module Statistics
   #
   # Service fetching all channels from one server via mirth api /channels
   #
@@ -34,24 +34,24 @@ module Channels
                )
       end
 
-      # fetch Channels
-      fetched = Wobmire::Channel.fetch(mapi)
+      # fetch ChannelStatistics
+      fetched = Wobmire::ChannelStatistic.fetch(mapi)
 
       # close session
       mapi.logout
 
       unless fetched.success?
-        errmsgs << "ERROR:: fetching channels failed"
+        errmsgs << "ERROR:: fetching channel statistics failed"
         return Result.new(success: false, error_messages: errmsgs)
       end
 
      server.touch(:last_channel_update)
 
       # create server channels if neccessary
-      fetched.channels.each do |ch|
-        creator = Channels::Creator.new(server: server, properties: ch.properties)
+      fetched.channel_statistics.each do |stat|
+        creator = Statistics::Creator.new(server: server, attributes: stat.statistics)
         unless creator.save
-          errmsgs << "ERROR:: could not create channel #{ch.properties['id']}"
+          errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"
           success = false
         end
       end
