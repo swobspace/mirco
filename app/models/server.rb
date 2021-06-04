@@ -1,4 +1,5 @@
 class Server < ApplicationRecord
+  include ServerConcerns
   # -- associations
   has_many :channels, dependent: :restrict_with_error
   # -- configuration
