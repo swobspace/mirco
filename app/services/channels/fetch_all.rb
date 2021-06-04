@@ -45,6 +45,8 @@ module Channels
         return Result.new(success: fallse, error_messages: errmsgs)
       end
 
+     server.touch(:last_channel_update)
+
       # create server channels if neccessary
       fetched.channels.each do |ch|
         creator = Channels::Creator.new(server: server, properties: ch.properties)

@@ -3,6 +3,7 @@ module Channels
   # Create Channel or retrieve from database and update properties
   #
   class Creator
+    attr_reader :channel
 
     # creator = Channels::Creator(server: server, properties: {})
     #
@@ -27,7 +28,7 @@ module Channels
       else
         @channel.properties = properties
       end
-      @channel.save
+      @channel.save && @channel.touch
     end
 
   private

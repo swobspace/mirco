@@ -38,6 +38,12 @@ module Channels
         }.to change(Channel, :count).by_at_least(1)
       end
 
+      it "update last_channel_update" do
+        expect {
+          subject.call
+        }.to change(server, :last_channel_update)
+      end
+
       it "DEBUG: some channels" do
         puts "\n\n"
         puts result.error_messages.join("\n")
