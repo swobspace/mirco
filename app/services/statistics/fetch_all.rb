@@ -48,7 +48,8 @@ module Statistics
         return Result.new(success: false, error_messages: errmsgs)
       end
 
-     server.touch(:last_channel_update)
+     # not yet implemented
+     # server.touch(:last_statistics_update)
 
       # create server channels if neccessary
       fetched.channel_statistics.each do |stat|
