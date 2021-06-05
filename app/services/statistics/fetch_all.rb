@@ -10,10 +10,13 @@ module Statistics
     #
     # mandantory options:
     # * :server  - server object
+    # optional:
+    # * :create_channel: boolean
     #
     def initialize(options = {})
       options.symbolize_keys
       @server = options.fetch(:server)
+      @create_channel = options.fetch(:create_channel) { false }
     end
 
     # service.call()
@@ -49,7 +52,9 @@ module Statistics
 
       # create server channels if neccessary
       fetched.channel_statistics.each do |stat|
-        creator = Statistics::Creator.new(server: server, attributes: stat.statistics)
+        creator = Statistics::Creator.new(server: server, 
+                                          attributes: stat.statistics,
+                                          create_channel: create_channel )
         unless creator.save
           errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"
           success = false
@@ -60,6 +65,8 @@ module Statistics
     end
 
   private
+    attr_reader :create_channel
+
     def server_options
       {
         url: server.api_url,

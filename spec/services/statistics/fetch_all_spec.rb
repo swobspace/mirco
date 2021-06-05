@@ -18,7 +18,7 @@ module Statistics
       api_password: ENV['API_PASSWORD'],
       api_verify_ssl: ENV['API_VERIFY_SSL']
     )}
-    subject { Statistics::FetchAll.new(server: server) }
+    subject { Statistics::FetchAll.new(server: server, create_channel: true) }
 
     # check for instance methods
     describe "check if instance methods exists" do
