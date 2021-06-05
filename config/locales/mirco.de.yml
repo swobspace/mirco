@@ -1,5 +1,6 @@
 de:
   mirco:
+    action: Aktion
     update_properties: Aktualisiere Eigenschaften
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
@@ -21,7 +22,9 @@ de:
     api_verify_ssl: SSL-Prüfung
     channel: Channel
     channel_statistic: Channel Statistik
+    channel_uid: Channel UUID
     error: error
+    exportData: exportData
     filtered: filtered
     home: Home
     description: Beschreibung
@@ -32,6 +35,7 @@ de:
     properties: Eigenschaften
     queued: queued
     received: received
+    revision: Revision
     sent: sent
     server: Server
     server_uid: Server UUID
@@ -41,7 +45,9 @@ de:
     server_settings: Server-Einstellungen
     sn: Nachname
     uid: UID
+    updated_at: zuletzt aktualisiert
     username: Username
+    version: Version
 
   controller:
     channels: Channels

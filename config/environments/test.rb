@@ -56,4 +56,12 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # --- wob
+  config.i18n.raise_on_missing_translations = true
+  config.colorize_logging = false
+  # -- strong parameters
+  config.action_controller.action_on_unpermitted_parameters = :raise
+
+  config.cache_store = :memory_store, { size: 32.megabytes }
 end
