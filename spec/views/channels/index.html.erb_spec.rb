@@ -25,7 +25,6 @@ RSpec.describe "channels/index", type: :view do
 
   it "renders a list of channels" do
     render
-    assert_select "tr>td", text: "xyzmirth".to_s, count: 2
     assert_select "tr>td", text: "0d612b6b-c4ff-4e88-a34c-f1ca2ece6349".to_s, count: 1
     assert_select "tr>td", text: "fa9c355f-d201-4431-b4af-92dccfd9224b".to_s, count: 1
     expect(rendered).to match("VeryFirstChannel")
