@@ -7,6 +7,7 @@ de:
   activerecord:
     models:
       channel: Channel
+      channel_statistic: Channel Statistik
       server: Server
       user: User
 
@@ -18,6 +19,9 @@ de:
     api_user_has_full_access: Vollzugriff
     api_verify_ssl: SSL-Prüfung
     channel: Channel
+    channel_statistic: Channel Statistik
+    error: error
+    filtered: filtered
     home: Home
     description: Beschreibung
     displayname: Anzeigename
@@ -25,6 +29,9 @@ de:
     last_channel_update: Letztes Update der Channels
     name: Name
     properties: Eigenschaften
+    queued: queued
+    received: received
+    sent: sent
     server: Server
     server_uid: Server UUID
     server_jvm: Server JVM
@@ -37,6 +44,7 @@ de:
 
   controller:
     channels: Channels
+    channel_statistics: Channel Statistiken
     home: Home
     servers: Server
     users: Benutzer
