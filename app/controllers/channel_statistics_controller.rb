@@ -4,42 +4,16 @@ class ChannelStatisticsController < ApplicationController
 
   # GET /channel_statistics
   def index
-    @channel_statistics = ChannelStatistic.all
+    if @server
+      @channel_statistics = @server.channel_statistics
+    else
+      @channel_statistics = ChannelStatistic.all
+    end
     respond_with(@channel_statistics)
   end
 
   # GET /channel_statistics/1
   def show
-    respond_with(@channel_statistic)
-  end
-
-  # GET /channel_statistics/new
-  def new
-    @channel_statistic = ChannelStatistic.new
-    respond_with(@channel_statistic)
-  end
-
-  # GET /channel_statistics/1/edit
-  def edit
-  end
-
-  # POST /channel_statistics
-  def create
-    @channel_statistic = ChannelStatistic.new(channel_statistic_params)
-
-    @channel_statistic.save
-    respond_with(@channel_statistic)
-  end
-
-  # PATCH/PUT /channel_statistics/1
-  def update
-    @channel_statistic.update(channel_statistic_params)
-    respond_with(@channel_statistic)
-  end
-
-  # DELETE /channel_statistics/1
-  def destroy
-    @channel_statistic.destroy
     respond_with(@channel_statistic)
   end
 
@@ -53,4 +27,9 @@ class ChannelStatisticsController < ApplicationController
     def channel_statistic_params
       params.require(:channel_statistic).permit(:server_id, :channel, :server_uid, :channel_uid, :received, :sent, :error, :filtered, :queued)
     end
+
+    def location
+      polymorphic_path(@server || @channel_statistic)
+    end
+
 end

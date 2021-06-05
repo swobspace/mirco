@@ -9,6 +9,11 @@ Rails.application.routes.draw do
         post :fetch_all
       end
     end
+    resources :channel_statistics, only: [:index, :show], module: :servers do
+      collection do
+        post :fetch_all
+      end
+    end
   end
   get 'home/index'
 
