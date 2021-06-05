@@ -70,6 +70,37 @@ module Statistics
         it { expect(statistic.queued).to eq(5) }
       end
 
+      context "existing channel statistic" do
+        let!(:statistik) { FactoryBot.create(:channel_statistic,
+          server_id: server.id,
+          server_uid: server.uid,
+          channel_id: channel.id,
+          channel_uid: channel.uid,
+          'received' => '11',
+          'sent' => '22',
+          'error' => '33',
+          'filtered' => '44',
+          'queued' => '55',
+          updated_at: 5.minutes.before(Time.now)
+        )}
+
+        let(:statistic) { subject.save; ChannelStatistic.first }
+        it "update existing channel statistic" do
+          expect {
+            result = subject.save
+            
+          }.to change(ChannelStatistic, :count).by(0)
+        end
+
+        # it { puts statistik.updated_at }
+        it { expect(statistic.received).to eq(1) }
+        it { expect(statistic.sent).to eq(2) }
+        it { expect(statistic.error).to eq(3) }
+        it { expect(statistic.filtered).to eq(4) }
+        it { expect(statistic.queued).to eq(5) }
+        it { expect(statistic.updated_at).to be >= 1.minute.before(Time.now) }
+      end
+
       context "nonexistent channel" do
         subject { Statistics::Creator.new(server: server, attributes: attributes, create_channel: true ) }
         let(:attributes) {{
