@@ -2,7 +2,7 @@
   <meta name="turbolinks-cache-control" content="no-cache">
 <% end %>
 
-<h1><%= t('controller.channel_statistics') %></h1>
+<h1> <%= t('controller.channel_statistics') %> <%= @server %> </h1>
 
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
