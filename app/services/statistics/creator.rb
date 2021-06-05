@@ -33,7 +33,7 @@ module Statistics
           queued: attributes['queued'],
         )
       else
-        @channel_statistic.update(
+        @channel_statistic.assign_attributes(
           received: attributes['received'],
           sent: attributes['sent'],
           error: attributes['error'],
