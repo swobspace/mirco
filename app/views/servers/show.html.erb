@@ -176,7 +176,7 @@
         <h4 class="title"><%= t('controller.channel_statistics') %></h4>
         <div role="toolbar">
           <%= link_to t('mirco.fetch_statistics'), 
-                      fetch_all_server_channels_path(@server),
+                      fetch_all_server_channel_statistics_path(@server),
                       method: :post,
                       class: 'btn btn-warning' %>
         </div>
