@@ -1,62 +1,6 @@
-<% content_for :head do %>
-  <meta name="turbolinks-cache-control" content="no-cache">
-<% end %>
-
 <h1> <%= t('controller.channel_statistics') %> <%= @server %> </h1>
 
-<div data-controller="datatables">
-  <%= content_tag :table, role: :datatable,
-        id: "channel_statistics_table",
-        class: "table table-bordered table-responsive-xl",
-        data: {
-          'datatables-target': 'datatable',
-          order: [[0, 'desc']].to_json
-        } do %>
-    <thead>
-      <tr class="search">
-            <th><%= t('attributes.server') %></th>
-            <th><%= t('attributes.channel') %></th>
-            <th><%= t('attributes.received') %></th>
-            <th><%= t('attributes.sent') %></th>
-            <th><%= t('attributes.error') %></th>
-            <th><%= t('attributes.filtered') %></th>
-            <th><%= t('attributes.queued') %></th>
-            <th><%= t('attributes.updated_at') %></th>
-            <th class="nosort"><%= t('daisy.action') %></th>
-      </tr>
-    </thead>
-    <tfoot>
-      <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-      </tr>
-    </tfoot>
-    <tbody>
-      <% @channel_statistics.each do |channel_statistic| %>
-        <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
-                <td><%= channel_statistic.server %></td>
-                <td><%= channel_statistic.channel %></td>
-                <td><%= channel_statistic.received %></td>
-                <td><%= channel_statistic.sent %></td>
-                <td><%= channel_statistic.error %></td>
-                <td><%= channel_statistic.filtered %></td>
-                <td><%= channel_statistic.queued %></td>
-                <td><%= channel_statistic.updated_at %></td>
-                <td class="text-nowrap">
-            <%= show_link channel_statistic %>
-          </td>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% end %>
-</div>
+<%= render partial: 'index', locals: {server: @server, channel_statistics: @channel_statistics} %>
 
 <br />
 

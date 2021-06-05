@@ -17,6 +17,11 @@
       <%= t('controllers.channels') %>
     </button>
   </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab" aria-controls="statistics" aria-selected="false">
+      <%= t('controllers.channel_statistics') %>
+    </button>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
  <div class="tab-pane fade show active" id="server" role="tabpanel" aria-labelledby="server-tab">
@@ -163,6 +168,26 @@
     </div>
   </div>
  </div>
+
+ <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="title"><%= t('controller.channel_statistics') %></h4>
+        <div role="toolbar">
+          <%= link_to t('mirco.fetch_statistics'), 
+                      fetch_all_server_channels_path(@server),
+                      method: :post,
+                      class: 'btn btn-warning' %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+    </div>
+  </div>
+ </div>
+
 </div>
 <div class="row mt-2">
   <div role="toolbar">
