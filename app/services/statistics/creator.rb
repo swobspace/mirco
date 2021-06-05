@@ -14,6 +14,7 @@ module Statistics
       options.symbolize_keys
       @server = options.fetch(:server)
       @attributes = options.fetch(:attributes)
+      @create_channel = options.fetch(:create_channel) { false }
       fetch_channel(@attributes['channelId']) 
       @channel_statistic ||= fetch_channel_statistic
     end
@@ -44,12 +45,16 @@ module Statistics
     end
 
   private
-    attr_reader :uid, :attributes, :server, :channel
+    attr_reader :attributes, :server, :channel, :create_channel
 
     def fetch_channel(uid)
       @channel ||= server.channels.where(uid: uid).first
-      if @channel.nil?
-        raise RuntimeError, "channel /#{@attributes['channelId']}/ does not exist"
+      if @channel.nil? 
+        if create_channel
+          @channel = server.channels.create(uid: uid)
+        else
+          raise RuntimeError, "channel /#{@attributes['channelId']}/ does not exist"
+        end
       end
     end
 
