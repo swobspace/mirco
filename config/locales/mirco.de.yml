@@ -47,6 +47,7 @@ de:
     channel_statistics: Channel Statistiken
     home: Home
     servers: Server
+    servers/channel_statistics: Channel Statistiken (Server)
     users: Benutzer
 
   flash:
