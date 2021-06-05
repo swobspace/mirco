@@ -27,11 +27,15 @@ de:
     exportData: exportData
     filtered: filtered
     home: Home
+    deployScript: Deploy Script
     description: Beschreibung
+    destinationConnectors: Destination Connectors
     displayname: Anzeigename
     givenname: Vorname
     last_channel_update: Letztes Update der Channels
     name: Name
+    postprocessingScript: Postprocessing Script
+    preprocessingScript: Preprocessing Script
     properties: Eigenschaften
     queued: queued
     received: received
@@ -41,10 +45,12 @@ de:
     server_uid: Server UUID
     server_jvm: Server JVM
     server_version: Server Version
+    sourceConnector: Source Connector
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
     uid: UID
+    undeployScript: Undeploy Script
     updated_at: zuletzt aktualisiert
     username: Username
     version: Version
