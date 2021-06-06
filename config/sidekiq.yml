@@ -1,0 +1,5 @@
+:schedule:
+  channels_fetch_statistics:
+    cron: '0 */15 * * * *'  # runs every 15min
+    class: Channels::FetchStatisticsJob
+    description: fetch channel statistics from mirth server

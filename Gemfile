@@ -9,7 +9,7 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -71,6 +71,9 @@ gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'
 gem 'asciidoctor'
 gem 'pp'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 
 # workaround for faraday-net_http
 gem "net-http"
+
