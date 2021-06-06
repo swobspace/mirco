@@ -28,7 +28,13 @@ module Channels
       else
         @channel.properties = properties
       end
-      @channel.save && @channel.touch
+      if @channel.save 
+        @channel.touch
+      else
+        Rails.logger.warn("WARN:: could not create or save channel #{@channel.uid}: " +
+          @channel.errors.full_messages.join("; "))
+        false
+      end
     end
 
   private
