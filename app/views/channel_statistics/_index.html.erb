@@ -48,7 +48,7 @@
           <td><%= channel_statistic.error %></td>
           <td><%= channel_statistic.filtered %></td>
           <td><%= channel_statistic.queued %></td>
-          <td><%= channel_statistic.updated_at %></td>
+          <td><%= channel_statistic.updated_at.to_formatted_s(:db) %></td>
           <td class="text-nowrap">
             <%= show_link channel_statistic %>
           </td>

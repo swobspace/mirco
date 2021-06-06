@@ -49,7 +49,11 @@
         <th><%= t('attributes.queued')%>:</th>
         <td><%= @channel_statistic.queued %></td>
       </tr>
-        </table>
+      <tr>
+        <th><%= t('attributes.updated_at')%>:</th>
+        <td><%= @channel_statistic.updated_at.to_formatted_s(:db) %></td>
+      </tr>
+    </table>
 
     <div role="toolbar">
       <%= back_link %>
