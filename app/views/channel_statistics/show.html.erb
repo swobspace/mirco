@@ -51,7 +51,9 @@
       </tr>
       <tr>
         <th><%= t('attributes.updated_at')%>:</th>
-        <td><%= @channel_statistic.updated_at.to_formatted_s(:db) %></td>
+          <%= render TdExpirationComponent.new(
+                       tstamp: @channel_statistic.updated_at,
+                       expiration_time: 5.minutes ) %>
       </tr>
     </table>
 

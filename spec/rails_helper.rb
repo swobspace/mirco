@@ -9,6 +9,7 @@ require 'rspec/rails'
 
 require 'shoulda/matchers'
 require 'factory_bot_rails'
+require "view_component/test_helpers"
 require 'capybara/rspec'
 require 'capybara/apparition'
 
@@ -64,5 +65,6 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :view
   config.include RequestMacros, type: :request
   config.include RequestMacros, type: :feature
-
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 end
