@@ -10,7 +10,7 @@ RSpec.describe Channel, type: :model do
     g = FactoryBot.create(:channel)
     expect(f).to be_valid
     expect(g).to be_valid
-    expect(f).to validate_uniqueness_of(:uid).case_insensitive
+    expect(f).to validate_uniqueness_of(:uid).scoped_to(:server_id)
   end
 
   it "to_s returns value" do

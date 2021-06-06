@@ -17,7 +17,7 @@ class Channel < ApplicationRecord
   store_accessor :properties, :postprocessingScript
 
   # -- validations and callbacks
-  validates :uid, presence: true, uniqueness: { case_sensitive: false }
+  validates :uid, presence: true, uniqueness: { scope: :server_id }
 
   def to_s
     "#{name}"
