@@ -2,6 +2,5 @@
 
 require_relative "config/environment"
 
-run Sidekiq::Web
 run Rails.application
 Rails.application.load_server
