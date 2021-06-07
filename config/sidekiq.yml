@@ -1,5 +1,14 @@
+---
 :dynamic: true
 :enabled: true
+
+:concurrency: 5
+:development:
+  :concurrency: 1
+
+:queues:
+  - default
+
 :schedule:
   channels_fetch_statistics:
     interval: '15m'  # 15min, just as startup value
