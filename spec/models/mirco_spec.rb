@@ -12,6 +12,7 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('check_interval').and_return(nil)
     end
     it { expect(Mirco.devise_modules).to contain_exactly(
                                            :remote_user_authenticatable,
@@ -29,6 +30,7 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.mail_to).to eq([]) }
     it { expect(Mirco.action_cable_allowed_request_origins).to contain_exactly(
          'http://localhost', 'https://localhost' ) }
+    it { expect(Mirco.check_interval).to eq(15) }
   end
 
   describe "::ldap_options" do

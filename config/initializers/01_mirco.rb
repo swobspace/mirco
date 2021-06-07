@@ -63,6 +63,14 @@ module Mirco
     end
   end
 
+  def self.check_interval
+    if CONFIG['check_interval'].present?
+      CONFIG['check_interval']
+    else
+      15
+    end
+  end
+
   def self.action_cable_allowed_request_origins
     if CONFIG['action_cable_allowed_request_origins'].present?
       Array(CONFIG['action_cable_allowed_request_origins'])
