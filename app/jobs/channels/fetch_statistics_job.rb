@@ -3,14 +3,18 @@ class Channels::FetchStatisticsJob < ApplicationJob
 
   def perform(options = {})
     options.symbolize_keys!
-    servers = options.fetch(:server) { Server.all }
-    servers = Array(servers)
-    Rails.logger.debug("DEBUG:: fetch statistics job from #{servers.map{|s| s.name}}")
+    server = options.fetch(:server) { Server.all.to_a }
 
-    servers.each do |srv|
-      result = Statistics::FetchAll.new(server: srv).call
+    if server.kind_of? Array
+      server.each do |srv|
+        # create one job for each server
+        Channels::FetchStatisticsJob.perform_later(server: srv)
+      end
+    else
+      Rails.logger.debug("DEBUG:: fetch statistics job from #{server.name}")
+      result = Statistics::FetchAll.new(server: server).call
       if result.success?
-        Rails.logger.debug("DEBUG:: fetching statistics from server #{srv.name} successful")
+        Rails.logger.debug("DEBUG:: fetching statistics from server #{server.name} successful")
       else
         msg = "WARN:: fetch channel statistics failed, server: #{@server}\n"
         msg += result.error_messages.join("\n")
