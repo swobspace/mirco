@@ -1,7 +1,8 @@
 <ul class="navbar-nav me-auto">
   <li class="nav-item"><a class="nav-link" href="<%=main_app.root_path%>">Home</a></li>
   <%= render partial: 'shared/navs/servers' %>
-  <li class="nav-item"><a class="nav-link" href="<%=main_app.sidekiq_web_path%>">Sidekiq</a></li>
-  
+  <% if current_user.present? and current_user.is_admin? %>
+    <li class="nav-item"><a class="nav-link" href="<%=main_app.sidekiq_web_path%>">Sidekiq</a></li>
+  <% end %>
 </ul>
 
