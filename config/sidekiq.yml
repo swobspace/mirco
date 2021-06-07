@@ -1,3 +1,5 @@
+:dynamic: true
+:enabled: true
 :schedule:
   channels_fetch_statistics:
     interval: '15m'  # 15min, just as startup value
