@@ -11,7 +11,7 @@ RSpec.describe TdExpirationComponent, type: :component do
       ).to_html
     ).to include(
 <<-EOT
-<td class="">
+<td class=" text-center">
   #{Time.now.localtime.to_formatted_s(:db)}
 </td>
 EOT
@@ -28,7 +28,7 @@ EOT
       ).to_html
     ).to include(
 <<-EOT
-<td class="bg-warning">
+<td class="bg-warning text-center">
   #{1.hour.before(Time.now).localtime.to_formatted_s(:db)}
 </td>
 EOT
