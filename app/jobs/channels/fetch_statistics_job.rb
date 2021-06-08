@@ -20,7 +20,11 @@ class Channels::FetchStatisticsJob < ApplicationJob
         msg += result.error_messages.join("\n")
         Rails.logger.warn(msg)
       end
+      Turbo::StreamsChannel.broadcast_replace_to :queued_messages,
+        target: :queued_messages,
+        partial: 'home/index',
+        locals: {queued_messages: ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc') }
     end
-    
+
   end
 end
