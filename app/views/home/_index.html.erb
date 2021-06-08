@@ -1,4 +1,4 @@
-<%= turbo_frame_tag :queued_messages do %>
+<div id="queued_messages">
   <%= content_tag :table, id: "queuing_table",
         class: "table table-bordered table-responsive-xl" do %>
     <thead>
@@ -34,4 +34,5 @@
       <% end %>
     </tbody>
   <% end %>
-<% end %>
+</div>
+

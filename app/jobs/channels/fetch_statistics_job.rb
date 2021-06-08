@@ -16,14 +16,15 @@ class Channels::FetchStatisticsJob < ApplicationJob
       if result.success?
         Rails.logger.debug("DEBUG:: fetching statistics from server #{server.name} successful")
       else
-        msg = "WARN:: fetch channel statistics failed, server: #{@server}\n"
+        msg = "WARN:: fetch channel statistics failed, server: #{server}\n"
         msg += result.error_messages.join("\n")
         Rails.logger.warn(msg)
       end
-      Turbo::StreamsChannel.broadcast_replace_to :queued_messages,
+      Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
         target: :queued_messages,
         partial: 'home/index',
-        locals: {queued_messages: ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc') }
+        locals: {queued_messages: ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc').to_a }
+      )
     end
 
   end
