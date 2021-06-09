@@ -53,7 +53,7 @@ module Statistics
 
       # create server channels if neccessary
       fetched.channel_statistics.each do |stat|
-        creator = Statistics::Creator.new(server: server, 
+        creator = Statistics::Creator.new(server: server,
                                           attributes: stat.statistics,
                                           create_channel: create_channel )
         unless creator.save
