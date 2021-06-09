@@ -1,4 +1,7 @@
 <h1>Queued Messages</h1>
 
 <%= turbo_stream_from :home_index %>
+<div id="home_index_flash">
+</div>
 <%= render 'index', queued_messages: @queued_messages %>
+

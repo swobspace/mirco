@@ -19,6 +19,11 @@ class Channels::FetchStatisticsJob < ApplicationJob
         msg = "WARN:: #{server.name}: fetch channel statistics failed\n"
         msg += result.error_messages.join("\n")
         Rails.logger.warn(msg)
+        Turbo::StreamsChannel.broadcast_append_later_to(:home_index,
+          target: :home_index_flash,
+          partial: 'home/flash',
+          locals: {alert_message:  msg }
+      )
       end
       Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
         target: :queued_messages,
