@@ -12,7 +12,7 @@ class Channels::FetchStatisticsJob < ApplicationJob
       end
     else
       Rails.logger.debug("DEBUG:: fetch statistics job from #{server.name}")
-      result = Statistics::FetchAll.new(server: server).call
+      result = Statistics::FetchAll.new(server: server, create_channel: true).call
       if result.success?
         Rails.logger.debug("DEBUG:: #{server.name}: fetching statistics successful")
       else
