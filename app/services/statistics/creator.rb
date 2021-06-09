@@ -15,12 +15,14 @@ module Statistics
       @server = options.fetch(:server)
       @attributes = options.fetch(:attributes)
       @create_channel = options.fetch(:create_channel) { false }
-      fetch_channel(@attributes['channelId']) 
+      fetch_channel(@attributes['channelId'])
       @channel_statistic ||= fetch_channel_statistic
     end
 
     def save
-      if @channel_statistic.nil? 
+      if channel.nil?
+        return false
+      elsif @channel_statistic.nil?
         @channel_statistic = ChannelStatistic.new(
           server_id: server.id,
           channel_id: channel.id,
@@ -49,11 +51,10 @@ module Statistics
 
     def fetch_channel(uid)
       @channel ||= server.channels.where(uid: uid).first
-      if @channel.nil? 
+      if @channel.nil?
         if create_channel
           @channel = server.channels.create(uid: uid)
-        else
-          raise RuntimeError, "channel /#{@attributes['channelId']}/ does not exist"
+          Rails.logger.warn("WARN:: channel /#{@attributes['channelId']}/ does not exist")
         end
       end
     end
