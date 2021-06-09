@@ -14,9 +14,9 @@ class Channels::FetchStatisticsJob < ApplicationJob
       Rails.logger.debug("DEBUG:: fetch statistics job from #{server.name}")
       result = Statistics::FetchAll.new(server: server).call
       if result.success?
-        Rails.logger.debug("DEBUG:: fetching statistics from server #{server.name} successful")
+        Rails.logger.debug("DEBUG:: #{server.name}: fetching statistics successful")
       else
-        msg = "WARN:: fetch channel statistics failed, server: #{server}\n"
+        msg = "WARN:: #{server.name}: fetch channel statistics failed\n"
         msg += result.error_messages.join("\n")
         Rails.logger.warn(msg)
       end

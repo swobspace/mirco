@@ -54,7 +54,7 @@ module Statistics
       if @channel.nil?
         if create_channel
           @channel = server.channels.create(uid: uid)
-          Rails.logger.warn("WARN:: channel /#{@attributes['channelId']}/ does not exist")
+          Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channelId']}/ does not exist")
         end
       end
     end
@@ -62,7 +62,7 @@ module Statistics
     def fetch_channel_statistic
       server.channel_statistics.where(
         server_id: server.id,
-        channel_id: channel.id,
+        channel_id: channel&.id,
         server_uid: attributes['serverId'],
         channel_uid: attributes['channelId'],
       ).first
