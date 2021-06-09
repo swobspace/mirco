@@ -23,7 +23,10 @@
           <td class="text-end"><%= channel_statistic.sent %></td>
           <td class="text-end"><%= channel_statistic.error %></td>
           <td class="text-end"><%= channel_statistic.filtered %></td>
-          <td class="text-end"><%= channel_statistic.queued %></td>
+          <%= render TdThresholdComponent.new(
+                value: channel_statistic.queued,
+                warning: 10, critical: 10, css: 'text-end'
+              ) %>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
                        expiration_time: (2 * Mirco.check_interval).minutes ) %>
