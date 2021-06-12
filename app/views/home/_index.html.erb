@@ -25,7 +25,7 @@
           <td class="text-end"><%= channel_statistic.filtered %></td>
           <%= render TdThresholdComponent.new(
                 value: channel_statistic.queued,
-                warning: 10, critical: 10, css: 'text-end'
+                warning: 10, critical: 50, css: 'text-end'
               ) %>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
