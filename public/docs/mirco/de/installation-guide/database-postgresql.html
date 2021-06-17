@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PostgreSQL Setup :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="de">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="encryption.html">Datenbankverschlüsselung</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Database Setup</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="database-postgresql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="database-rails.html">Rails Datenbank-Konfiguration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Konfiguration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">de</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">de</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Mirco</a></li>
+    <li>Installation Guide</li>
+    <li>Database Setup</li>
+    <li><a href="database-postgresql.html">PostgreSQL Setup</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///home/wob/Projects/github/mirco/doc/de_DE/modules/installation-guide/pages/database-postgresql.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">PostgreSQL Setup</h1>
+<div class="sect1">
+<h2 id="_useranlage"><a class="anchor" href="#_useranlage"></a>Useranlage</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Bash, user postgres</div>
+<div class="content">
+<pre>createuser -D -E -S -R -W mirco</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_datenbank_anlegen"><a class="anchor" href="#_datenbank_anlegen"></a>Datenbank anlegen</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Bash, user postgres</div>
+<div class="content">
+<pre>createdb -O mirco mirco_development
+createdb -O mirco mirco_test</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zugriffsberechtigungen"><a class="anchor" href="#_zugriffsberechtigungen"></a>Zugriffsberechtigungen</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">/var/lib/pgsql/data/pg_hba.conf</div>
+<div class="content">
+<pre>local   mirco_test      mirco                                  trust
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
