@@ -1,0 +1,22 @@
+= Konfiguration
+
+== Zentrale Konfigurationdatei `mirco.yml`
+
+Die Konfigurationsdatei `mirco.yml` ist reserviert für eine spätere
+Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
+leer sein.
+
+[[mirco.yml]]
+.mirco.yml
+[source,yaml]
+----
+# config/mirco.yml
+check_interval: 5 <!--1-->
+use_ssl: true <!--2-->
+action_cable_allowed_request_origins: <!--3-->
+  - http://mirco.example.com
+  - https://mirco.example.com
+----
+<1> Check-Intervall in Minuten; voreingestellt sind 15 min.
+<2> Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist
+<3> http:// und https:// Site-Urls für den Websocket

@@ -1,0 +1,33 @@
+= Rails Datenbank-Konfiguration
+:imagesdir: ../images
+
+== Die Rails-Konfigurationsdatei `database.yml`
+
+Die Rails-seitige Konfiguration der Datenbank besteht aus einer
+YAML-Datei, die Einträge für jede Umgebung enthält
+(Environment: `production`, `development`, `test`).
+Für die Produktivumgebung wird nur `production` benötigt,
+für eine Entwicklungsumgebung nur `development` und `test`.
+
+[[database.yml]]
+.database.yml
+[source]
+----
+# -- mysql2
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: mirco_production <!--1-->
+  pool: 5
+  username: ###PLEASE_EDIT###  <!--2-->
+  password: ###PLEASE_EDIT###  <!--3-->
+  min_messages: WARNING <!--4-->
+  host:  localhost <!--5-->
+  port: 5432
+----
+<1> Name der Datenbank. Zur besseren Unterscheidung sollte man immer
+    <name>_<environment> verwenden
+<2> Username für den Datenbankzugriff
+<3> Passwort für den Datenbankzugriff
+<4> Geschwätzigkeit des Adapters bremsen
+<5> Host und Port für den Datenbankzugriff

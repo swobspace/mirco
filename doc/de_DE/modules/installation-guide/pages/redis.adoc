@@ -1,0 +1,4 @@
+= Redis
+:imagedir: ../images
+
+#TBD#

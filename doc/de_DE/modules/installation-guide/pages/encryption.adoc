@@ -1,0 +1,39 @@
+= Datenbankverschlüsselung
+:imagesdir: ../images
+
+Secret für Sessions, Cookies und Co generieren:
+----
+bin/rake secret
+0c187ca505a516dd471c60db89b1f7d....
+----
+
+.Initialize encrypted credentials
+----
+EDITOR="vim" rails credentials:edit --environment <env>
+----
+
+.secret_key_base und Dummy Key für Lockbox einfügen
+----
+secret_key_base: 0c187ca505a516dd471c60db89b1f7d....
+lockbox:
+  master_key: 0000000000000000000000000000000000000000000000000000000000000000
+
+----
+und Editor wieder beenden.
+
+.Rails Console: bin/rails console -e <environment>
+----
+Lockbox.generate_key
+----
+
+Den Dummy Key jetzt mit `rails credentials:edit` durch den generierten Key
+ersetzen.
+
+.Konfiguration prüfen
+----
+bin/rails console
+Rails.application.credentials.config
+
+=> {:secret_key_base=>"0c187ca505a....",
+ :lockbox=>{:master_key=>"913b75b......"}}
+----

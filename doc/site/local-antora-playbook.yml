@@ -1,0 +1,16 @@
+site:
+  title: Mirco Dokumentation
+  start_page: mirco::index.adoc
+content:
+  sources:
+  - url: ../..
+    branches: HEAD
+    edit_url: ~
+    start_path: doc/de_DE
+output:
+  dir: ../../public/docs
+ui:
+  bundle:
+    url: ./ui-bundle/ui-bundle.zip
+    snapshot: false
+

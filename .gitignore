@@ -66,3 +66,7 @@ config/deploy-config.yml
 # Ignore application configuration
 /shared/config/application.yml
 
+
+/config/credentials/development.key
+/config/credentials/test.key
+/config/credentials/
