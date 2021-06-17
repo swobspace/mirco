@@ -11,6 +11,6 @@
 
 :schedule:
   channels_fetch_statistics:
-    interval: '15m'  # 15min, just as startup value
+    interval: '5m'  # 5min, just as startup value
     class: Channels::FetchStatisticsJob
     description: fetch channel statistics from mirth server
