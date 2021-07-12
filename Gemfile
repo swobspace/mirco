@@ -44,7 +44,7 @@ group :development do
   gem 'capistrano-yarn'
   gem 'guard'
   gem 'guard-livereload', require: false
-  gem 'guard-rails'
+  gem 'guard-puma'
   gem 'guard-bundler'
 end
 
