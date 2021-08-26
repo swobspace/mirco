@@ -1,0 +1,44 @@
+@startuml
+top to bottom direction
+skinparam defaultTextAlignment center
+skinparam roundCorner 15
+
+class Server  {
+  name: string
+  uid: string
+  location: string
+  description: text
+  api_url: string
+  api_user: string
+  api_password_ciphertext: text
+  api_user_has_full_access: boolean
+  api_verify_ssl: boolean
+  properties: jsonb
+  last_channel_update: timestamp
+}
+note right of Server
+  api_user_has_full_access = false
+  for read only access to prevent
+  authentication failures
+end note
+
+class Channel {
+  uid: string
+  properties: jsonb
+}
+
+class ChannelStatistic {
+  server_uid: string
+  channel_uid: string
+  received: integer
+  sent: integer
+  error: integer
+  filtered: integer
+  queued: integer
+}
+
+Server "1" -- "*" Channel
+Server "1" - "*" ChannelStatistic
+Channel "1" - "*" ChannelStatistic
+
+@enduml

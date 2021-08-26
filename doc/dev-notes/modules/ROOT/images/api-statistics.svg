@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="150px" preserveAspectRatio="none" style="width:604px;height:150px;" version="1.1" viewBox="0 0 604 150" width="604px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f2c2nbfyb7fbo" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="47.9375" style="stroke:#A80036;stroke-width:1.5;" width="148" x="163.5" y="10" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="122" x="173.5" y="31.1387">/channels/statistics</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="128" x="173.5" y="45.1074">&lt;channelStatistics&gt;</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="237.5" x2="237.5" y1="57.9375" y2="77.9375" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="45" x2="45" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="70" x="10" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="50" x="20" y="119.0762">serverId</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="140.5" x2="140.5" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="81" x="100" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="61" x="110" y="119.0762">channelId</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="237.5" x2="237.5" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="73" x="201" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="211" y="119.0762">received</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="318" x2="318" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="48" x="294" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="28" x="304" y="119.0762">sent</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="387.5" x2="387.5" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="51" x="362" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="31" x="372" y="119.0762">error</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="465" x2="465" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="64" x="433" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="44" x="443" y="119.0762">filtered</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="551" x2="551" y1="77.9375" y2="97.9375" />
+        <rect fill="#FEFECE" filter="url(#f2c2nbfyb7fbo)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="68" x="517" y="97.9375" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="527" y="119.0762">queued</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="45" x2="551" y1="77.9375" y2="77.9375" />
+        <!--MD5=[48b1fb67d9e1b5ea3643cb60fde0789e]
+@startwbs
+* /channels/statistics\n<channelStatistics>
+** serverId
+** channelId
+** received
+** sent
+** error
+** filtered
+** queued
+@endwbs
+
+PlantUML version 1.2021.01(Tue Feb 02 08:55:08 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+@startwbs
+* /system
+** /system/info\n<com.mirth.connect.model.SystemInfo>
+*** jvmVersion
+*** osVersion
+*** osArchitecture
+*** dbName
+*** dbVersion
+** /system/stats\n<com.mirth.connect.model.SystemStats>
+*** timestamp
+**** time
+**** timezone
+*** cpuUsagePct
+*** allocatedMemoryBytes
+*** freeMemoryBytes
+*** maxMemoryBytes
+*** diskFreeBytes
+*** diskTotalBytes
+@endwbs

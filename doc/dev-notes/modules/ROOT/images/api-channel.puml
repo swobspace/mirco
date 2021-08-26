@@ -1,0 +1,22 @@
+@startwbs
+* /channels\n<channel>
+** id
+** name
+** description
+** version
+** revision
+** exportData
+*** metadata
+**** enabled
+**** pruningSettings
+***** archiveEnabled
+***** pruneMetaDataDays
+** properties
+** nextMetaDataId
+** sourceConnector
+** destinationConnectors
+** deployScript
+** undeployScript
+** preprocessingScript
+** postprocessingScript
+@endwbs

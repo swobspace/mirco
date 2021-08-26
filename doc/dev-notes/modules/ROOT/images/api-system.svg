@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="591px" preserveAspectRatio="none" style="width:630px;height:591px;" version="1.1" viewBox="0 0 630 591" width="630px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="fd3qbgnfiemef" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="68" x="266.75" y="10" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="276.75" y="31.1387">/system</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="300.75" x2="300.75" y1="43.9688" y2="63.9688" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="145.5" y1="63.9688" y2="83.9688" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="47.9375" style="stroke:#A80036;stroke-width:1.5;" width="271" x="10" y="83.9688" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="75" x="20" y="105.1074">/system/info</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="251" x="20" y="119.0762">&lt;com.mirth.connect.model.SystemInfo&gt;</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="155.5" y1="163.8906" y2="163.8906" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="87" x="155.5" y="146.9063" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="67" x="165.5" y="168.0449">jvmVersion</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="155.5" y1="212.8594" y2="212.8594" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="82" x="155.5" y="195.875" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="62" x="165.5" y="217.0137">osVersion</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="155.5" y1="261.8281" y2="261.8281" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="112" x="155.5" y="244.8438" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="92" x="165.5" y="265.9824">osArchitecture</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="155.5" y1="310.7969" y2="310.7969" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="72" x="155.5" y="293.8125" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="52" x="165.5" y="314.9512">dbName</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="155.5" y1="359.7656" y2="359.7656" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="83" x="155.5" y="342.7813" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="63" x="165.5" y="363.9199">dbVersion</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="145.5" y1="131.9063" y2="359.7656" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="441.5" y1="63.9688" y2="83.9688" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="47.9375" style="stroke:#A80036;stroke-width:1.5;" width="281" x="301" y="83.9688" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="311" y="105.1074">/system/stats</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="261" x="311" y="119.0762">&lt;com.mirth.connect.model.SystemStats&gt;</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="163.8906" y2="163.8906" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="86" x="451.5" y="146.9063" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="461.5" y="168.0449">timestamp</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="494.5" x2="504.5" y1="212.8594" y2="212.8594" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="47" x="504.5" y="195.875" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="27" x="514.5" y="217.0137">time</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="494.5" x2="504.5" y1="261.8281" y2="261.8281" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="76" x="504.5" y="244.8438" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="56" x="514.5" y="265.9824">timezone</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="494.5" x2="494.5" y1="180.875" y2="261.8281" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="310.7969" y2="310.7969" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="103" x="451.5" y="293.8125" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="83" x="461.5" y="314.9512">cpuUsagePct</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="359.7656" y2="359.7656" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="160" x="451.5" y="342.7813" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="140" x="461.5" y="363.9199">allocatedMemoryBytes</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="408.7344" y2="408.7344" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="127" x="451.5" y="391.75" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="107" x="461.5" y="412.8887">freeMemoryBytes</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="457.7031" y2="457.7031" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="127" x="451.5" y="440.7188" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="107" x="461.5" y="461.8574">maxMemoryBytes</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="506.6719" y2="506.6719" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="107" x="451.5" y="489.6875" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="87" x="461.5" y="510.8262">diskFreeBytes</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="451.5" y1="555.6406" y2="555.6406" />
+        <rect fill="#FEFECE" filter="url(#fd3qbgnfiemef)" height="33.9688" style="stroke:#A80036;stroke-width:1.5;" width="110" x="451.5" y="538.6563" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="90" x="461.5" y="559.7949">diskTotalBytes</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="441.5" x2="441.5" y1="131.9063" y2="555.6406" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="145.5" x2="441.5" y1="63.9688" y2="63.9688" />
+        <!--MD5=[7fd231501c00af7f1b5f1d855af81784]
+@startwbs
+* /system
+** /system/info\n<com.mirth.connect.model.SystemInfo>
+*** jvmVersion
+*** osVersion
+*** osArchitecture
+*** dbName
+*** dbVersion
+** /system/stats\n<com.mirth.connect.model.SystemStats>
+*** timestamp
+**** time
+**** timezone
+*** cpuUsagePct
+*** allocatedMemoryBytes
+*** freeMemoryBytes
+*** maxMemoryBytes
+*** diskFreeBytes
+*** diskTotalBytes
+@endwbs
+
+PlantUML version 1.2021.5(Sun Apr 25 13:20:28 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>

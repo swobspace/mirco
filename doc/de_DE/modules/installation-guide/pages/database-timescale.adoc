@@ -1,0 +1,12 @@
+= Installation Timescale
+:imagesdir: ../images
+:experimental: true
+
+== Paket aus der Distribution
+
+=== Fedora
+
+[source]
+----
+dnf install timescaledb
+----

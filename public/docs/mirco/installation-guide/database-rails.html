@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Konfiguration :: Mirco Dokumentation</title>
+    <title>Rails Datenbank-Konfiguration :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 2.3.4">
-    <link rel="stylesheet" href="../../../_/css/site.css">
-    <script>var uiRootPath = '../../../_'</script>
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
   </head>
   <body class="article">
 <header class="header">
   <nav class="navbar">
     <div class="navbar-brand">
-      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <a class="navbar-item" href="../..">Mirco Dokumentation</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -24,7 +24,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="mirco" data-version="de">
+<div class="nav-container" data-component="mirco" data-version="master">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -52,12 +52,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="database-postgresql.html">PostgreSQL Setup</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="database-rails.html">Rails Datenbank-Konfiguration</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="configuration.html">Konfiguration</a>
   </li>
 </ul>
@@ -68,14 +68,22 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Mirco</span>
-    <span class="version">de</span>
+    <span class="version">master</span>
   </div>
   <ul class="components">
+    <li class="component">
+      <a class="title" href="../../dev-notes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../dev-notes/index.html">master</a>
+        </li>
+      </ul>
+    </li>
     <li class="component is-current">
       <a class="title" href="../index.html">Mirco</a>
       <ul class="versions">
         <li class="version is-current is-latest">
-          <a href="../index.html">de</a>
+          <a href="../index.html">master</a>
         </li>
       </ul>
     </li>
@@ -92,49 +100,66 @@
   <ul>
     <li><a href="../index.html">Mirco</a></li>
     <li>Installation Guide</li>
-    <li><a href="configuration.html">Konfiguration</a></li>
+    <li>Database Setup</li>
+    <li><a href="database-rails.html">Rails Datenbank-Konfiguration</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/wob/Projects/github/mirco/doc/de_DE/modules/installation-guide/pages/configuration.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/mirco/doc/de_DE/modules/installation-guide/pages/database-rails.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Konfiguration</h1>
+<h1 class="page">Rails Datenbank-Konfiguration</h1>
 <div class="sect1">
-<h2 id="_zentrale_konfigurationdatei_mirco_yml"><a class="anchor" href="#_zentrale_konfigurationdatei_mirco_yml"></a>Zentrale Konfigurationdatei <code>mirco.yml</code></h2>
+<h2 id="_die_rails_konfigurationsdatei_database_yml"><a class="anchor" href="#_die_rails_konfigurationsdatei_database_yml"></a>Die Rails-Konfigurationsdatei <code>database.yml</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Die Konfigurationsdatei <code>mirco.yml</code> ist reserviert für eine spätere
-Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
-leer sein.</p>
+<p>Die Rails-seitige Konfiguration der Datenbank besteht aus einer
+YAML-Datei, die Einträge für jede Umgebung enthält
+(Environment: <code>production</code>, <code>development</code>, <code>test</code>).
+Für die Produktivumgebung wird nur <code>production</code> benötigt,
+für eine Entwicklungsumgebung nur <code>development</code> und <code>test</code>.</p>
 </div>
-<div id="mirco.yml" class="listingblock">
-<div class="title">mirco.yml</div>
+<div id="database.yml" class="listingblock">
+<div class="title">database.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/mirco.yml
-check_interval: 5 <i class="conum" data-value="1"></i><b>(1)</b>
-use_ssl: true <i class="conum" data-value="2"></i><b>(2)</b>
-action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)</b>
-  - http://mirco.example.com
-  - https://mirco.example.com</code></pre>
+<pre class="highlightjs highlight"><code># -- mysql2
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: mirco_production <i class="conum" data-value="1"></i><b>(1)</b>
+  pool: 5
+  username: ###PLEASE_EDIT###  <i class="conum" data-value="2"></i><b>(2)</b>
+  password: ###PLEASE_EDIT###  <i class="conum" data-value="3"></i><b>(3)</b>
+  min_messages: WARNING <i class="conum" data-value="4"></i><b>(4)</b>
+  host:  localhost <i class="conum" data-value="5"></i><b>(5)</b>
+  port: 5432</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Check-Intervall in Minuten; voreingestellt sind 15 min.</td>
+<td>Name der Datenbank. Zur besseren Unterscheidung sollte man immer
+&lt;name&gt;_&lt;environment&gt; verwenden</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist</td>
+<td>Username für den Datenbankzugriff</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>http:// und https:// Site-Urls für den Websocket</td>
+<td>Passwort für den Datenbankzugriff</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Geschwätzigkeit des Adapters bremsen</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Host und Port für den Datenbankzugriff</td>
 </tr>
 </table>
 </div>
@@ -147,7 +172,7 @@ action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)
 <footer class="footer">
   <span>Wolfgang Barth (C) 2021</span>
 </footer>
-<script src="../../../_/js/site.js"></script>
-<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
   </body>
 </html>
