@@ -1,0 +1,50 @@
+= Timescale
+:imagesdir: ../images
+:experimental: true
+
+[source,bash]
+----
+rails generate migration add_timescale
+----
+
+[source,ruby]
+----
+class AddTimescale < ActiveRecord::Migration[5.2]
+  def change
+    enable_extension("timescaledb") unless extensions.include? "timescaledb"
+  end
+end
+----
+
+[source,bash]
+----
+rails db:migrate
+----
+
+.Check extension
+[source,bash]
+----
+echo "\dbx" | rails dbconsole
+----
+
+.create a table
+[source,ruby]
+----
+rails generate scaffold ChannelQueues \
+  channel:belongs_to \
+  queued:integer
+----
+
+[source,ruby]
+----
+class CreateChannelQueues < ActiveRecord::Migration[6.1]
+  def change
+    create_table :channel_queues, id: false do |t|
+      t.reference channel
+      t.integer queued
+
+      t.timestamps
+    end
+  end
+end
+----
