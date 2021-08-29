@@ -36,20 +36,20 @@ echo "\dx" | rails dbconsole
 
 include::partial$scaffold-channel_counter.adoc[]
 
-NOTE: `id: false` to avoid a PRIMARY KEY generation.
+NOTE: Use **++id: false++** to avoid a PRIMARY KEY generation.
 
 == Activate Hypertable on Channelcounter
 
 .Generate basic migration
 [source,bash]
 ----
-bin/rails generate migration add_hypertable
+bin/rails generate migration add_channel_counters_hypertable
 ----
 
 .Execute create_hypertable
 [source,bash]
 ----
-class AddHypertable < ActiveRecord::Migration[6.1]
+class AddChannelCounterHypertable < ActiveRecord::Migration[6.1]
   def change
     execute "SELECT create_hypertable('channel_counters', 'created_at');"
   end

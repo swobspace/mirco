@@ -52,6 +52,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="database-postgresql.html">PostgreSQL Setup</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="database-timescale.html">Installation Timescale</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="database-rails.html">Rails Datenbank-Konfiguration</a>
   </li>
@@ -99,6 +102,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Mirco</a></li>
+    <li>Installation Guide</li>
+    <li>Database Setup</li>
     <li><a href="database-timescale.html">Installation Timescale</a></li>
   </ul>
 </nav>
@@ -116,9 +121,25 @@
 <div class="sect2">
 <h3 id="_fedora"><a class="anchor" href="#_fedora"></a>Fedora</h3>
 <div class="listingblock">
+<div class="title">root bash</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>dnf install timescaledb</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install timescaledb</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minimal_setup"><a class="anchor" href="#_minimal_setup"></a>Minimal Setup</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">root bash</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">timescaledb-tune # oder
+
+echo "shared_preload_libraries = 'timescaledb'" &gt;&gt; /var/lib/pgsql/data/postgresql.
+
+systemctl restart postgresql</code></pre>
 </div>
 </div>
 </div>

@@ -97,8 +97,8 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g controller Home index \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g controller Home index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -108,7 +108,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold Server \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
@@ -119,7 +119,7 @@
 
 bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
 bin/rails g migration AddLastChannelUpdateToServer \
-  last_channel_update:timestamp</pre>
+  last_channel_update:timestamp</code></pre>
 </div>
 </div>
 </div>
@@ -129,11 +129,11 @@ bin/rails g migration AddLastChannelUpdateToServer \
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold Channel \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Channel \
   server:belongs_to \
   uid:string:index \
   properties:jsonb \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -143,7 +143,7 @@ bin/rails g migration AddLastChannelUpdateToServer \
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>bin/rails g scaffold ChannelStatistic \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
   channel:belongs_to \
   server_uid:string:index \
@@ -153,8 +153,47 @@ bin/rails g migration AddLastChannelUpdateToServer \
   error:integer \
   filtered:integer \
   queued:integer \
-  --no-stylesheets --no-javascripts --no-helper</pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_channelcounter"><a class="anchor" href="#_model_channelcounter"></a>Model ChannelCounter</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Generate model ChannelCounter</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">rails generate model ChannelCounter \
+  channel:belongs_to \
+  server:belongs_to \
+  received:integer sent:integer error:integer filtered:integer \
+  queued:integer \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ChannelCounter migration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class CreateChannelCounters &lt; ActiveRecord::Migration[6.1]
+  def change
+    create_table :channel_counters, id: false do |t|
+      t.belongs_to :channel, null: false
+      t.belongs_to :server, null: false
+      t.integer :received
+      t.integer :sent
+      t.integer :error
+      t.integer :filtered
+      t.integer :queued
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>see also: <a href="timescale.html" class="page">Timescale</a></p>
 </div>
 </div>
 </div>
