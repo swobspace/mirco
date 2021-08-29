@@ -9,6 +9,7 @@ de:
   activerecord:
     models:
       channel: Channel
+      channel_counter: Channel Counter
       channel_statistic: Channel Statistik
       server: Server
       user: User
@@ -21,6 +22,7 @@ de:
     api_user_has_full_access: Vollzugriff
     api_verify_ssl: SSL-Prüfung
     channel: Channel
+    channel_counters: Channel Counter
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
     error: error
@@ -57,7 +59,9 @@ de:
 
   controller:
     channels: Channels
+    channels/channel_counters: Channel Counters
     channel_statistics: Channel Statistiken
+    channel_counters: Channel Counters
     home: Home
     servers: Server
     servers/channel_statistics: Channel Statistiken (Server)
