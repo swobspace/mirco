@@ -43,7 +43,16 @@ module Statistics
           queued: attributes['queued'],
         )
       end
-      @channel_statistic.save && @channel_statistic.touch
+      channel_counter = ChannelCounter.new(
+          server_id: server.id,
+          channel_id: channel.id,
+          received: attributes['received'],
+          sent: attributes['sent'],
+          error: attributes['error'],
+          filtered: attributes['filtered'],
+          queued: attributes['queued'],
+      )
+      @channel_statistic.save && @channel_statistic.touch && channel_counter.save
     end
 
   private
