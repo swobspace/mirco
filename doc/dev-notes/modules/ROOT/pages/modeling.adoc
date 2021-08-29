@@ -60,6 +60,7 @@ include::partial$scaffold-channel_counter.adoc[]
 
 see also: xref:timescale.adoc[]
 
+.Generate Controller with action :index
 [source,bash]
 ----
 bin/rails g controller channel_counters index \
