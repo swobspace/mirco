@@ -2,5 +2,6 @@
 * xref:encryption.adoc[]
 * Database Setup
 ** xref:database-postgresql.adoc[]
+** xref:database-timescale.adoc[]
 ** xref:database-rails.adoc[]
 * xref:configuration.adoc[]

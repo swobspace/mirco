@@ -6,7 +6,16 @@
 
 === Fedora
 
-[source]
+.root bash
+[source,bash]
 ----
 dnf install timescaledb
+----
+
+== Minimal Setup
+
+.root bash
+[source,bash]
+----
+timescaledb-tune
 ----
