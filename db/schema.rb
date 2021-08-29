@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_142944) do
+ActiveRecord::Schema.define(version: 2021_08_29_111503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "timescaledb"
+
+  create_table "channel_counters", id: false, force: :cascade do |t|
+    t.bigint "channel_id", null: false
+    t.bigint "server_id", null: false
+    t.integer "received"
+    t.integer "sent"
+    t.integer "error"
+    t.integer "filtered"
+    t.integer "queued"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_channel_counters_on_channel_id"
+    t.index ["created_at"], name: "channel_counters_created_at_idx", order: :desc
+    t.index ["server_id"], name: "index_channel_counters_on_server_id"
+  end
 
   create_table "channel_statistics", force: :cascade do |t|
     t.bigint "server_id", null: false

@@ -2,6 +2,7 @@
 
 == Home controller
 
+[source,bash]
 ----
 bin/rails g controller Home index \
   --no-stylesheets --no-javascripts --no-helper
@@ -9,6 +10,7 @@ bin/rails g controller Home index \
 
 == model Server
 
+[source,bash]
 ----
 bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
@@ -26,6 +28,7 @@ bin/rails g migration AddLastChannelUpdateToServer \
 
 == model Channel
 
+[source,bash]
 ----
 bin/rails g scaffold Channel \
   server:belongs_to \
@@ -36,6 +39,7 @@ bin/rails g scaffold Channel \
 
 == Model ChannelStatistic
 
+[source,bash]
 ----
 bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
@@ -49,3 +53,9 @@ bin/rails g scaffold ChannelStatistic \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
+== Model ChannelCounter
+
+include::partial$scaffold-channel_counter.adoc[]
+
+see also: xref:timescale.adoc[]

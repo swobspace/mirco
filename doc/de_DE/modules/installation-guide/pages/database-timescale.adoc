@@ -17,5 +17,9 @@ dnf install timescaledb
 .root bash
 [source,bash]
 ----
-timescaledb-tune
+timescaledb-tune # oder
+
+echo "shared_preload_libraries = 'timescaledb'" >> /var/lib/pgsql/data/postgresql.
+
+systemctl restart postgresql
 ----

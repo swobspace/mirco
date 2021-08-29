@@ -2,9 +2,11 @@
 :imagesdir: ../images
 :experimental: true
 
+== Add Extension
+
 [source,bash]
 ----
-rails generate migration add_timescale
+bin/rails generate migration add_timescale
 ----
 
 [source,ruby]
@@ -18,33 +20,38 @@ end
 
 [source,bash]
 ----
-rails db:migrate
+bin/rails db:migrate
 ----
+
+NOTE: Die Migration setzt voraus, dass die Shared Libriaries von TimescaleDB in postgresql.conf eingetragen sind und PostgreSQL neu gestartet wurde. Siehe auch xref:mirco:installation-guide:database-timescale.adoc[].
+
 
 .Check extension
 [source,bash]
 ----
-echo "\dbx" | rails dbconsole
+echo "\dx" | rails dbconsole
 ----
 
-.create a table
-[source,ruby]
+== Generate ChannelCounter Model
+
+include::partial$scaffold-channel_counter.adoc[]
+
+NOTE: `id: false` to avoid a PRIMARY KEY generation.
+
+== Activate Hypertable on Channelcounter
+
+.Generate basic migration
+[source,bash]
 ----
-rails generate scaffold ChannelQueues \
-  channel:belongs_to \
-  queued:integer
+bin/rails generate migration add_hypertable
 ----
 
-[source,ruby]
+.Execute create_hypertable
+[source,bash]
 ----
-class CreateChannelQueues < ActiveRecord::Migration[6.1]
+class AddHypertable < ActiveRecord::Migration[6.1]
   def change
-    create_table :channel_queues, id: false do |t|
-      t.reference channel
-      t.integer queued
-
-      t.timestamps
-    end
+    execute "SELECT create_hypertable('channel_counters', 'created_at');"
   end
 end
 ----
