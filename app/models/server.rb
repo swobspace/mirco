@@ -3,6 +3,7 @@ class Server < ApplicationRecord
   # -- associations
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
+  has_many :channel_counters, dependent: :destroy
   # -- configuration
   encrypts :api_password
   store_accessor :properties, :server_uid

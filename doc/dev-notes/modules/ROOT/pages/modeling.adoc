@@ -59,3 +59,9 @@ bin/rails g scaffold ChannelStatistic \
 include::partial$scaffold-channel_counter.adoc[]
 
 see also: xref:timescale.adoc[]
+
+[source,bash]
+----
+bin/rails g controller channel_counters index \
+  --no-stylesheets --no-javascripts --no-helper
+----
