@@ -6,11 +6,42 @@
 
 === Fedora
 
-.root bash
+==== Fedora default distribution
+
+.Install from Fedora repository (license: apache = without retention policies)
 [source,bash]
 ----
 dnf install timescaledb
 ----
+////
+==== Rebuild RPM for license change
+
+
+.Non-root bash
+[source]
+----
+sudo dnf install fedora-packager
+rpmdev-setuptree
+dnf download timescaledb --source
+sudo dnf builddep timescaledb-2.3.1-1.fc34.src.rpm
+sudo dnf install postgresql-server-devel
+rpm -ihv timescaledb-2.3.1-1.fc34.src.rpm
+----
+.~/rpmbuild/SPECS/timescaledb.spec
+----
+... -DAPACHE_ONLY=0 ...
+# rm -rf tsl  # comment out
+... add timescaledb-tsl-2.3.1.so to load build files
+----
+
+.Rebuild
+----
+rpmbuild -ba ~/rpmbuild/SPECs/timescaledb.spec
+----
+
+// $ man dnf.plugin.builddep
+//  rpmbuild --rebuild fpaste-0.3.9.2-3.fc30.src.rpm
+////
 
 == Minimal Setup
 
