@@ -57,21 +57,25 @@
       </tr>
     </table>
 
-  <%= line_chart current_channel_statistic_path(@channel_statistic),
-        title: "Current (8h)",
-        xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-        ytitle: "Queued Messages",
-        height: "400px",
+  </div>
+  <div class="card-body">
+    <%= line_chart current_channel_statistic_path(@channel_statistic),
+          title: "Current (8h)",
+          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+          ytitle: "Queued Messages",
+          height: "400px",
+          download: true
+     %>
+  
+  </div>
+  <div class="card-body">
+    <%= column_chart last_week_channel_statistic_path(@channel_statistic),
+          title: "Last Week (max. per hour)",
+          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+          ytitle: "Queued Messages",
+          height: "400px",
         download: true
-   %>
-
-  <%= column_chart last_week_channel_statistic_path(@channel_statistic),
-        title: "Last Week (max. per hour)",
-        xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-        ytitle: "Queued Messages",
-        height: "400px",
-        download: true
-   %>
+     %>
 
 
     <div role="toolbar">
