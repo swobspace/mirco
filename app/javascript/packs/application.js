@@ -12,6 +12,8 @@ import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all'
 import "@fortawesome/fontawesome-free/css/all.css"
 
+import "chartkick/chart.js"
+
 import JSZip from 'jszip'
 require('pdfmake')
 // require('datatables.net-bs4')

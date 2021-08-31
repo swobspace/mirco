@@ -77,3 +77,5 @@ gem 'sidekiq-scheduler'
 # workaround for faraday-net_http
 gem "net-http"
 
+
+gem "chartkick", "~> 4.0"
