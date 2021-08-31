@@ -23,6 +23,10 @@ RSpec.describe ChannelStatisticsController, type: :routing do
       expect(get: "/channel_statistics/1/today").to route_to("channel_statistics#today", id: "1")
     end
 
+    it "routes to #current" do
+      expect(get: "/channel_statistics/1/current").to route_to("channel_statistics#current", id: "1")
+    end
+
     it "routes to #edit" do
       expect(get: "/channel_statistics/1/edit").not_to be_routable
     end

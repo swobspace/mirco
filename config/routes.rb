@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       get :last_week
       get :today
+      get :current
     end
   end
   resources :servers do

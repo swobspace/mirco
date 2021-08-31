@@ -57,10 +57,21 @@
       </tr>
     </table>
 
-  <h5>Today</h5>
-  <%= line_chart today_channel_statistic_path(@channel_statistic) %>
-  <h5>Last Week (maximum per hour)</h5>
-  <%= column_chart last_week_channel_statistic_path(@channel_statistic) %>
+  <%= line_chart current_channel_statistic_path(@channel_statistic),
+        title: "Current (8h)",
+        xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+        ytitle: "Queued Messages",
+        height: "400px",
+        download: true
+   %>
+
+  <%= column_chart last_week_channel_statistic_path(@channel_statistic),
+        title: "Last Week (max. per hour)",
+        xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+        ytitle: "Queued Messages",
+        height: "400px",
+        download: true
+   %>
 
 
     <div role="toolbar">
