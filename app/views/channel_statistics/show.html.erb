@@ -57,6 +57,9 @@
       </tr>
     </table>
 
+  <%= column_chart @channel_statistic.channel.channel_counters.last_week.per_15min.map{|x| [x.time.localtime, x.value]}, download: true %>
+  <%= line_chart @channel_statistic.channel.channel_counters.today.map{|x| [x.created_at.localtime, x.queued]}, download: true %>
+
     <div role="toolbar">
       <%= back_link %>
     </div>
