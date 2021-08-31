@@ -2,7 +2,12 @@ require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
   resources :channel_counters, only: [:index]
-  resources :channel_statistics, only: [:show, :index]
+  resources :channel_statistics, only: [:show, :index] do
+    member do
+      get :last_week
+      get :today
+    end
+  end
   resources :servers do
     member do
       patch :update_properties

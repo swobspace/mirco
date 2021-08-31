@@ -1,5 +1,5 @@
 class ChannelStatisticsController < ApplicationController
-  before_action :set_channel_statistic, only: [:show, :edit, :update, :destroy]
+  before_action :set_channel_statistic, only: [:show, :edit, :update, :destroy, :last_week, :today]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /channel_statistics
@@ -15,6 +15,14 @@ class ChannelStatisticsController < ApplicationController
   # GET /channel_statistics/1
   def show
     respond_with(@channel_statistic)
+  end
+
+  def last_week
+    render json: @channel_statistic.channel.channel_counters.last_week.per_hour.map{|x| [x.time.localtime.strftime("%a %H:%M"), x.value]}
+  end
+
+  def today
+    render json: @channel_statistic.channel.channel_counters.today.map{|x| [x.created_at.localtime.strftime("%H:%M"), x.queued]}
   end
 
   private
