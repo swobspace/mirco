@@ -3,15 +3,15 @@
     <h4><%= t('activerecord.models.channel_statistic') %></h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
+    <table class="table table-borderless table-hover table-sm">
     
       <tr>
-        <th><%= t('attributes.server')%>:</th>
+        <th class="w-25"><%= t('attributes.server')%>:</th>
         <td><%= @channel_statistic.server %></td>
       </tr>
     
       <tr>
-        <th><%= t('attributes.channel')%>:</th>
+        <th class="w-25"><%= t('attributes.channel')%>:</th>
         <td><%= @channel_statistic.channel %></td>
       </tr>
     
