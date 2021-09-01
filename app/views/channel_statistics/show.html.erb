@@ -66,6 +66,17 @@
           height: "400px",
           download: true
      %>
+
+  </div>
+  <div class="card-body">
+    <%= column_chart current_sent_channel_statistic_path(@channel_statistic),
+          title: "Current sent (8h)",
+          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+          ytitle: "Sent Messages",
+          height: "400px",
+          download: true
+     %>
+  
   
   </div>
   <div class="card-body">

@@ -14,6 +14,22 @@ class ChannelCounter < ApplicationRecord
       .group('time').order('time')
   }
 
+  # increase(value: 'error')
+  scope :increase, -> (value: 'sent') {
+    select(<<~SQL)
+        created_at as time,
+        (
+          CASE
+            WHEN #{value} >= lag(#{value}) OVER (ORDER BY created_at)
+              THEN #{value} - lag(#{value}) OVER  (ORDER BY created_at) 
+            WHEN lag(#{value}) OVER (ORDER BY created_at) IS NULL THEN NULL
+            ELSE #{value}
+          END
+        ) as delta
+    SQL
+    .order('time')
+  }
+
   scope :per_minute, -> { time_bucket('1 minute') }
   scope :per_5min, -> { time_bucket('5 minute') }
   scope :per_15min, -> { time_bucket('15 minute') }

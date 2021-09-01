@@ -17,6 +17,10 @@ class ChannelStatisticsController < ApplicationController
     respond_with(@channel_statistic)
   end
 
+  # 
+  # endpoints for highchart
+  #
+
   def last_week
     render json: @channel_statistic.channel.channel_counters.last_week.per_hour.map{|x| [x.time.localtime.strftime("%a %H:%M"), x.value]}
   end
@@ -27,6 +31,10 @@ class ChannelStatisticsController < ApplicationController
 
   def current
     render json: @channel_statistic.channel.channel_counters.last_8h.map{|x| [x.created_at.localtime.strftime("%H:%M"), x.queued]}
+  end
+
+  def current_sent
+    render json: @channel_statistic.channel.channel_counters.last_8h.increase().map{|x| [x.time.localtime.strftime("%H:%M"), x.delta]}
   end
 
   private

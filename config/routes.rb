@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :last_week
       get :today
       get :current
+      get :current_sent
     end
   end
   resources :servers do
