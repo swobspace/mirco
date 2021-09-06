@@ -73,6 +73,7 @@ gem 'asciidoctor'
 gem 'pp'
 # gem 'sidekiq'
 # gem 'sidekiq-scheduler'
+gem 'delayed_job_active_record'
 gem 'delayed_cron_job'
 
 # workaround for faraday-net_http
