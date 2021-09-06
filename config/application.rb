@@ -38,7 +38,6 @@ module Mirco
 
     config.after_initialize do
       Rails.application.reload_routes!
-      Sidekiq::Web.app_url = Rails.application.routes.url_helpers.root_path
     end
   end
 end
