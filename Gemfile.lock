@@ -151,8 +151,11 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
-    connection_pool (2.2.5)
     crass (1.0.6)
+    delayed_cron_job (0.7.4)
+      delayed_job (>= 4.1)
+    delayed_job (4.1.9)
+      activesupport (>= 3.0, < 6.2)
     devise (4.8.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -161,13 +164,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
     dotenv (2.7.6)
-    e2mmap (0.1.0)
     em-websocket (0.5.2)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     erubi (1.10.0)
-    et-orbi (1.2.4)
-      tzinfo
     eventmachine (1.2.7)
     execjs (2.8.1)
     factory_bot (6.2.0)
@@ -198,9 +198,6 @@ GEM
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     formatador (0.3.0)
-    fugit (1.5.1)
-      et-orbi (~> 1.1, >= 1.1.8)
-      raabro (~> 1.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     guard (2.18.0)
@@ -294,7 +291,6 @@ GEM
     public_suffix (4.0.6)
     puma (5.4.0)
       nio4r (~> 2.0)
-    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.7.0)
@@ -364,8 +360,6 @@ GEM
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
     ruby2_keywords (0.0.5)
-    rufus-scheduler (3.8.0)
-      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -380,17 +374,6 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
-    sidekiq (6.2.2)
-      connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      redis (>= 4.2.0)
-    sidekiq-scheduler (3.1.0)
-      e2mmap
-      redis (>= 3, < 5)
-      rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      thwait
-      tilt (>= 1.4.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -407,8 +390,6 @@ GEM
     stimulus-rails (0.4.2)
       rails (>= 6.0.0)
     thor (1.1.0)
-    thwait (0.2.0)
-      e2mmap
     tilt (2.0.10)
     timeout (0.1.1)
     turbo-rails (0.7.11)
@@ -457,6 +438,7 @@ DEPENDENCIES
   capistrano-yarn
   capybara
   chartkick (~> 4.0)
+  delayed_cron_job
   dotenv
   factory_bot_rails
   font-awesome-sass (>= 4.7, < 6)
@@ -481,8 +463,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   shoulda-matchers
-  sidekiq
-  sidekiq-scheduler
   simple_form
   tzinfo-data
   view_component

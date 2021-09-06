@@ -71,8 +71,9 @@ gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'
 gem 'asciidoctor'
 gem 'pp'
-gem 'sidekiq'
-gem 'sidekiq-scheduler'
+# gem 'sidekiq'
+# gem 'sidekiq-scheduler'
+gem 'delayed_cron_job'
 
 # workaround for faraday-net_http
 gem "net-http"
