@@ -14,7 +14,7 @@ class Ability
       can :manage, :all
       cannot [:update, :destroy], :roles, :ro => :true
     elsif @user.authorities.any? || @user.group_authorities.any?
-      can :read, all
+      can :read, :all
     else
       can :read, Home
     end
