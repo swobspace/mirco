@@ -41,6 +41,7 @@ group :development do
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger'
+  gem 'capistrano3-delayed-job'
   gem 'capistrano-yarn'
   gem 'guard'
   gem 'guard-livereload', require: false
