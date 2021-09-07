@@ -43,6 +43,9 @@
     <span class="nav-text">Installation Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="encryption.html">Datenbankverschlüsselung</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -148,6 +151,27 @@ action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)
 <td>http:// und https:// Site-Urls für den Websocket</td>
 </tr>
 </table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_config_yml"><a class="anchor" href="#_deploy_config_yml"></a>deploy-config.yml</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# copy me to deploy-config.yml and edit
+#
+hosts:
+  web: myserver
+  app: myserver
+  db: myserver
+repo_url: https://github.com/swobspace/mirco.git
+user: deploy
+deploy_to: /var/www/apps/mirco
+relative_url_root: /
+ruby_path: "/opt/ruby/2.7/bin:$PATH"</code></pre>
+</div>
 </div>
 </div>
 </div>

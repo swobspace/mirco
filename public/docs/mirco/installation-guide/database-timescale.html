@@ -43,6 +43,9 @@
     <span class="nav-text">Installation Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="encryption.html">Datenbankverschlüsselung</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -225,6 +228,23 @@ echo "shared_preload_libraries = 'timescaledb'" &gt;&gt; &lt;PostgreSQL-Config&g
 
 systemctl restart postgresql</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrade_timescaledb_extension"><a class="anchor" href="#_upgrade_timescaledb_extension"></a>Upgrade timescaledb Extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bei einem Upgrade z.B. von 2.3.1 auf 2.4.1 muss in der Datenbank ebenfalls die Version aktualisiert werden:</p>
+</div>
+<div class="listingblock">
+<div class="title">User postgres: ALTER EXTENSION</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>ALTER EXTENSION timescaledb UPDATE;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Befehl <code>\dx</code> sollte jetzt die installierte Version anzeigen.</p>
 </div>
 </div>
 </div>

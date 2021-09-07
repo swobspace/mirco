@@ -1,0 +1,141 @@
+= Setup
+
+== Installation benötigter Pakete
+
+[[packages-debian]]
+.Pakete für Debian/Ubuntu
+[source]
+----
+# development
+apt install autoconf binutils bison build-essential flex gettext ncurses-dev
+
+# database
+apt install postgresql postgresql-client postgresql-client-common \
+           postgresql-common postgresql-server-dev-all
+
+# webserver
+apt install apache2 apache2-bin apache2-data apache2-utils
+----
+
+.Apache Authentifikation
+[source]
+----
+apt install libapache2-mode-auth-cas
+----
+
+== Ruby
+
+.Manuelle Installation (root)
+----
+mkdir -p /usr/local/src/ruby
+cd /usr/local/src/ruby
+tar xvzf ruby-2.7.4.tar.gz
+----
+
+.do_configure
+----
+#!/bin/bash
+make distclean
+
+DEB_HOST_GNU_TYPE=$(dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+./configure --host=$DEB_HOST_GNU_TYPE \
+            --build=$DEB_BUILD_GNU_TYPE \
+            --prefix=/opt/ruby/2.7 \
+            --enable-shared \
+            --disable-install-doc
+----
+
+.Compilieren
+----
+./do_configure && make -j 4 && make install
+----
+
+== Yarn für das Deployment von Javascript
+
+[[yarn-packages-debian]]
+.Pakete für Debian/Ubuntu
+[source]
+----
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+----
+
+[[yarn-packages-fedora]]
+.Pakete für Fedora
+[source]
+----
+sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
+dnf install -y yarn
+----
+
+== User `deploy`
+
+Die Installation der Anwendung erfolgt unter dem User `deploy`. Bei der
+Installation und bei Updates werden Pakete aus dem Internet gezogen. In
+durch einen Proxy geschützten Netzwerken setzt man die Variablen
+`http_proxy` und `https_proxy` (`.bashrc`). Git greift nicht auf
+die Shellvariablen zu, sondern benötigt eine eigene Konfiguration.
+
+[[bashrc-deploy]]
+.bashrc: Proxy-Einstellungen
+[source]
+----
+export http_proxy=http://<proxy>:<proxyport>/
+export https_proxy=http://<proxy>:<proxyport>/
+----
+
+[[git-config]]
+.Git-Konfiguration User `deploy` für Updates der Anwendung
+[source]
+----
+git config --global http.proxy http://<proxy>:<proxyport>/
+git config --global https.proxy http://<proxy>:<proxyport>/
+----
+
+== Verzeichnisse für Mirco
+
+Vor dem ersten Deploy legt man die im Listing <<deployment-directories>>
+angegebenen Verzeichnisse an. Die Verzeichnisse müssen alle
+dem User `deploy` gehören.
+
+[[deployment-directories]]
+.Verzeichnisse für Mirco
+[source]
+----
+export BASE=/var/srv/www/mirco
+mkdir -p ${BASE}/mirco/releases
+mkdir -p ${BASE}/mirco/shared/config
+mkdir -p ${BASE}/mirco/shared/log
+mkdir -p ${BASE}/mirco/shared/files
+mkdir -p ${BASE}/mirco/shared/public/images
+mkdir -p ${BASE}/mirco/shared/Backup/models
+mkdir -p ${BASE}/mirco/shared/pids
+chown deploy:deploy -R ${BASE}/mirco
+----
+
+[horizontal]
+`./releases/`::
+  Verzeichnis für die Installation des Codes. Normalerweise befinden
+  sich hier die 5 letzten Updates, um bei Bedarf einen Rollback durchführen
+  zu können. Ältere Versionen werden beim Deployment automatisch gelöscht.
+`./current/`::
+  Ein Symlink auf das jeweils aktuelle Release.
+`./shared/`::
+  Zentrales Verzeichnis für die statische Konfiguration und alle Dateien,
+  die bei Updates der Anwendung unverändert bleiben.
+`./shared/config/`::
+  Konfigurationsdateien `application.yml`, `database.yml` und `secrets.yml` footnote:[secrets.yml ab ab Rails 4.2]
+`./shared/log/`::
+  Logdateien
+`./shared/files/`::
+  Dateiablage für Anlagen
+`./shared/images/`::
+  Dateiablage für Logos zu den OUs
+`./shared/Backup/`::
+  Konfigurationdateien für die Anwendungssicherung
+`./shared/pids/`::
+  wird von `delayed_job` für die Hintergrund-Jobs benötigt
