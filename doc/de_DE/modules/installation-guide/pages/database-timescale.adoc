@@ -50,7 +50,7 @@ rpmbuild -ba ~/rpmbuild/SPECs/timescaledb.spec
 ----
 timescaledb-tune # oder
 
-echo "shared_preload_libraries = 'timescaledb'" >> /var/lib/pgsql/data/postgresql.
+echo "shared_preload_libraries = 'timescaledb'" >> /var/lib/pgsql/data/postgresql.conf
 
 systemctl restart postgresql
 ----
