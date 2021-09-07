@@ -81,6 +81,4 @@ gem 'daemons'
 # workaround for faraday-net_http
 gem "net-http"
 
-
 gem "chartkick", "~> 4.0"
-gem "uri", "~> 0.10.1"
