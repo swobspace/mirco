@@ -2,14 +2,12 @@
 :imagesdir: ../images
 :experimental: true
 
-== Paket aus der Distribution
+== Fedora
 
-=== Fedora
-
-==== Fedora default distribution
+=== Fedora default distribution
 
 .Install from Fedora repository (license: apache = without retention policies)
-[source,bash]
+[source]
 ----
 dnf install timescaledb
 ----
@@ -43,14 +41,93 @@ rpmbuild -ba ~/rpmbuild/SPECs/timescaledb.spec
 //  rpmbuild --rebuild fpaste-0.3.9.2-3.fc30.src.rpm
 ////
 
+=== Quellen selbst übersetzen
+
+
+.Git clonen, übersetzen, installieren
+[source]
+----
+cd /usr/local/src ; mkdir timescaledb ; cd timescaledb
+git clone https://github.com/timescale/timescaledb.git
+cd timescaledb
+git checkout <branch>  # 2.4.x
+
+./bootstrap
+
+cd ./build && make -j 4 && make install
+----
+
+== Ubuntu
+
+Mindestversion ist Ubuntu 18.04, dort ist aber nur PostgreSQL bis Version 10
+enthalten. Timescale benötigt aber mindestens PostgreSQL 12, was in Ubuntu
+20.04 enthalten ist. Ubuntu 21.04. bringt bereits PostgreSQL 13 mit.
+
+
+=== Pakete von Packagecloud
+
+Von Ubuntu gibt es kein Paket in der Distribution selbst, die Installation
+erfolgt über das Timescale-Repository (Lizenz: Community-Version). Pakete gibt es **nur** für die LTS-Versionen (18.04, 20.04, 22.04, ...).
+
+----
+curl -s https://packagecloud.io/install/repositories/timescale/timescaledb/script.deb.sh | sudo bash
+apt-get update
+apt install timescaledb-2-postgresql-13
+----
+
+=== Quellen selbst übersetzen
+
+IMPORTANT: `pg_config` muss vorhanden sein und zur installierten PostgreSQL-Version passen.
+
+.Benötigte Pakete
+[source]
+----
+apt-get install build-essential cmake \
+        postgresql-contrib-13 postgresql-server-dev-all
+----
+
+.Git clonen, übersetzen, installieren
+[source]
+----
+cd /usr/local/src ; mkdir timescaledb ; cd timescaledb
+git clone https://github.com/timescale/timescaledb.git
+cd timescaledb
+git checkout <branch>  # 2.4.x
+
+./bootstrap
+
+cd ./build && make -j 4 && make install
+----
+
 == Minimal Setup
 
-.root bash
-[source,bash]
+.Zeige PostgreSQL-Konfigurationsfile
+[source]
+----
+su postgres -c 'psql -d postgres -c "SHOW config_file;"'
+
+  /var/lib/pgsql/data/postgresql.conf      # Fedora
+  /etc/postgresql/13/main/postgresql.conf  # Ubuntu 21.04
+----
+
+.Preload Shared Libraries in postgresql.conf ergänzen
+[source]
 ----
 timescaledb-tune # oder
 
-echo "shared_preload_libraries = 'timescaledb'" >> /var/lib/pgsql/data/postgresql.conf
+echo "shared_preload_libraries = 'timescaledb'" >> <PostgreSQL-Config>
 
 systemctl restart postgresql
 ----
+
+== Upgrade timescaledb Extension
+
+Bei einem Upgrade z.B. von 2.3.1 auf 2.4.1 muss in der Datenbank ebenfalls die Version aktualisiert werden:
+
+.User postgres: ALTER EXTENSION
+[source]
+----
+ALTER EXTENSION timescaledb UPDATE;
+----
+
+Der Befehl `\dx` sollte jetzt die installierte Version anzeigen.
