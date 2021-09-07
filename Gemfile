@@ -75,6 +75,7 @@ gem 'pp'
 # gem 'sidekiq-scheduler'
 gem 'delayed_job_active_record'
 gem 'delayed_cron_job'
+gem 'daemons'
 
 # workaround for faraday-net_http
 gem "net-http"
