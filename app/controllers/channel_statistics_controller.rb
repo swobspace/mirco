@@ -26,11 +26,11 @@ class ChannelStatisticsController < ApplicationController
   end
 
   def today
-    render json: @channel_statistic.channel.channel_counters.today.per_15min.map{|x| [x.created_at.localtime.strftime("%H:%M"), x.queued]}
+    render json: @channel_statistic.channel.channel_counters.today.per_15min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
   end
 
   def current
-    render json: @channel_statistic.channel.channel_counters.last_8h.map{|x| [x.created_at.localtime.strftime("%H:%M"), x.queued]}
+    render json: @channel_statistic.channel.channel_counters.last_8h.per_5min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
   end
 
   def current_sent
