@@ -8,7 +8,7 @@ class ChannelCounter < ApplicationRecord
   # -- scopes
   scope :time_bucket, -> (time_dimension, value: 'max(queued)') {
     select(<<~SQL)
-          time_bucket('#{time_dimension}', created_at) as time,
+          time_bucket_gapfill('#{time_dimension}', created_at) as time,
           #{value} as value
       SQL
       .group('time').order('time')
@@ -21,7 +21,7 @@ class ChannelCounter < ApplicationRecord
         (
           CASE
             WHEN #{value} >= lag(#{value}) OVER (ORDER BY created_at)
-              THEN #{value} - lag(#{value}) OVER  (ORDER BY created_at) 
+              THEN #{value} - lag(#{value}) OVER  (ORDER BY created_at)
             WHEN lag(#{value}) OVER (ORDER BY created_at) IS NULL THEN NULL
             ELSE #{value}
           END
@@ -36,12 +36,16 @@ class ChannelCounter < ApplicationRecord
   scope :per_hour, -> { time_bucket('1 hour') }
   scope :per_day, -> { time_bucket('1 day') }
 
-  scope :last_month, -> { where('created_at > ?', 1.month.ago) }
-  scope :last_week, -> { where('created_at > ?', 1.week.ago) }
-  scope :last_hour, -> { where('created_at > ?', 1.hour.ago) }
-  scope :last_8h, -> { where('created_at > ?', 8.hour.ago) }
-  scope :last_24h, -> { where('created_at > ?', 24.hour.ago) }
+  scope :time_period, -> (start, ende) {
+    where("created_at > ? and created_at <= ?", start, ende)
+  }
+  scope :last_month, -> { time_period(1.month.ago, Time.now) }
+  scope :last_week,  -> { time_period(1.week.ago,  Time.now) }
+  scope :last_hour,  -> { time_period(1.hour.ago,  Time.now) }
+  scope :last_8h,    -> { time_period(8.hour.ago,  Time.now) }
+  scope :last_24h,   -> { time_period(24.hour.ago, Time.now) }
+
   scope :yesterday, -> { where('DATE(created_at) = ?', 1.day.ago.to_date) }
   scope :today, -> { where('DATE(created_at) = ?', Date.today) }
-  
+
 end
