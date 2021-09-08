@@ -39,5 +39,10 @@ module Mirco
     config.after_initialize do
       Rails.application.reload_routes!
     end
+    unless Rails.env == 'test'
+      config.active_job.queue_adapter = :delayed_job
+      config.active_job.queue_name_prefix = "mirco_" + Rails.env.to_s
+    end
+
   end
 end
