@@ -35,6 +35,8 @@ de:
     displayname: Anzeigename
     givenname: Vorname
     last_channel_update: Letztes Update der Channels
+    last_check: Letzter Check
+    last_check_ok: Last OK
     name: Name
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script

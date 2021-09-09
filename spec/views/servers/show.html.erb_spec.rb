@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "servers/show", type: :view do
+  let(:time_now) { Time.now }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -21,7 +22,9 @@ RSpec.describe "servers/show", type: :view do
       api_user: "Api User",
       api_password: "MyText",
       api_user_has_full_access: false,
-      properties: {}
+      properties: {},
+      last_check: time_now,
+      last_check_ok: time_now,
     ))
   end
 
@@ -34,5 +37,6 @@ RSpec.describe "servers/show", type: :view do
     expect(rendered).to match(/Api Url/)
     expect(rendered).to match(/Api User/)
     expect(rendered).to match(/false/)
+    expect(rendered).to match("#{time_now.to_s.gsub(/\+\d{4}/, '')}")
   end
 end
