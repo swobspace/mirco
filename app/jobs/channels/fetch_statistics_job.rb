@@ -30,10 +30,13 @@ module Channels
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :server_status,
           partial: 'home/servers',
-          locals: { servers: Server.all.decorate }
+          locals: { servers: Server.all.to_a }
         )
       end
 
+    end
+    def max_attempts
+      0
     end
   end
 end

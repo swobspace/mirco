@@ -1,10 +1,7 @@
 <div id="server_status">
   <%= content_tag :table,
         id: "servers_table",
-        class: "table table-bordered table-responsive-xl",
-        data: {
-          order: [[0, 'desc']].to_json
-        } do %>
+        class: "table table-bordered table-sm table-responsive-xl" do %>
     <thead>
       <tr class="">
             <th><%= t('attributes.name') %></th>
@@ -14,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @servers.each do |server| %>
+      <% ServerDecorator.decorate_collection(servers).each do |server| %>
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
           <td><%= server.name %></td>
           <td><%= server.location %></td>

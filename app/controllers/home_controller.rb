@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
     @queued_messages = ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc')
-    @servers = Server.all.decorate
+    @servers = Server.all
   end
 end
