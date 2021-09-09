@@ -1,6 +1,7 @@
 module Channels
-  class FetchStatisticsJob < ApplicationJob
+  class FetchStatisticsJob < CronJob
     queue_as :default
+    self.cron_expression = '*/3 * * * *'
 
     def perform(options = {})
       options.symbolize_keys!
