@@ -1,0 +1,27 @@
+<div id="server_status">
+  <%= content_tag :table,
+        id: "servers_table",
+        class: "table table-bordered table-responsive-xl",
+        data: {
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr class="">
+            <th><%= t('attributes.name') %></th>
+            <th><%= t('attributes.location') %></th>
+            <th><%= t('attributes.last_check') %></th>
+            <th><%= t('attributes.last_check_ok') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @servers.each do |server| %>
+        <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
+          <td><%= server.name %></td>
+          <td><%= server.location %></td>
+          <td><%= server.last_check %></td>
+          <td><%= server.last_check_ok %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>
