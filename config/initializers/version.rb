@@ -1,4 +1,4 @@
 module Mirco
-  VERSION     = "0.1.0-dev".freeze
-  RELEASEDATE = "2021-05-xx".freeze
+  VERSION     = "0.2.0".freeze
+  RELEASEDATE = "2021-09-09".freeze
 end
