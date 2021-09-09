@@ -1,7 +1,10 @@
 = Changelog
 
-=== 0.1.0 / x.x.x
+=== 0.2.0 / 2021-09-09
 
 ----
-Starting
+* Working version
+* migrate to delayed_job/delayed_cron_job for scheduling instead of sidekiq
+* minimal graphs for ChannelStatistics
+* TimescaleDB function time_bucket_gapfill needs community license (called `timescale`)
 ----
