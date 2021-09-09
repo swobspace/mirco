@@ -30,9 +30,8 @@ bin/rails g scaffold Server \
 bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
 bin/rails g migration AddLastChannelUpdateToServer \
   last_channel_update:timestamp
-  bin/rails g migration AddLastCheckToServer \
-    last_check:timestamp last_check_ok:timestamp
-
+bin/rails g migration AddLastCheckToServer \
+  last_check:timestamp last_check_ok:timestamp
 ----
 
 == model Channel
