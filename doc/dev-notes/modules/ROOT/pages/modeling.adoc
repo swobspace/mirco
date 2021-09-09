@@ -1,4 +1,9 @@
 = Modeling mirco
+:imagesdir: ../images
+
+== Overall Picture
+
+image::models.svg[]
 
 == Home controller
 
