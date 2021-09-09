@@ -4,8 +4,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    alias_action :search, :to => :read
-    alias_action :search_form, :to => :read
+    alias_action :search, :search_form, :to => :read
+    # endpoints from channel_statistics_controller for graphs
+    alias_action :last_week, :today, :current, :current_sent, :to => :read
 
     @user = user
     if @user.nil?
@@ -14,7 +15,7 @@ class Ability
       can :manage, :all
       cannot [:update, :destroy], :roles, :ro => :true
     elsif @user.authorities.any? || @user.group_authorities.any?
-      can :read, all
+      can :read, :all
     else
       can :read, Home
     end

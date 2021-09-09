@@ -20,3 +20,21 @@ action_cable_allowed_request_origins: <!--3-->
 <1> Check-Intervall in Minuten; voreingestellt sind 15 min.
 <2> Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist
 <3> http:// und https:// Site-Urls für den Websocket
+
+== deploy-config.yml
+
+[source,yaml]
+----
+#
+# copy me to deploy-config.yml and edit
+#
+hosts:
+  web: myserver
+  app: myserver
+  db: myserver
+repo_url: https://github.com/swobspace/mirco.git
+user: deploy
+deploy_to: /var/www/apps/mirco
+relative_url_root: /
+ruby_path: "/opt/ruby/2.7/bin:$PATH"
+----

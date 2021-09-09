@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '~>2.7.3'
 
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'pg', '~> 1.1'
@@ -41,6 +41,7 @@ group :development do
   gem 'capistrano', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger'
+  gem 'capistrano3-delayed-job'
   gem 'capistrano-yarn'
   gem 'guard'
   gem 'guard-livereload', require: false
@@ -71,11 +72,14 @@ gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'
 gem 'asciidoctor'
 gem 'pp'
-gem 'sidekiq'
-gem 'sidekiq-scheduler'
+# gem 'sidekiq'
+# gem 'sidekiq-scheduler'
+gem 'delayed_job_active_record'
+gem 'delayed_cron_job'
+gem 'daemons'
 
 # workaround for faraday-net_http
 gem "net-http"
 
-
 gem "chartkick", "~> 4.0"
+gem 'uri', '0.10.0'

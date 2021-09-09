@@ -1,5 +1,3 @@
-require 'sidekiq/web'
-require 'sidekiq-scheduler/web'
 Rails.application.routes.draw do
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: [:show, :index] do
@@ -32,7 +30,4 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   mount Wobauth::Engine, at: '/auth'
-  authenticate :user, lambda {|u| u.is_admin?} do
-    mount Sidekiq::Web, at: '/sidekiq'
-  end
 end
