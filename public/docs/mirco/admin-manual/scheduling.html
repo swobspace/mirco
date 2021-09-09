@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Redis :: Mirco Dokumentation</title>
+    <title>Job Scheduling :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -42,11 +42,11 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Admin Manual</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/scheduling.html">Job Scheduling</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="scheduling.html">Job Scheduling</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/timescale.html">TimescaleDB</a>
+    <a class="nav-link" href="timescale.html">TimescaleDB</a>
   </li>
 </ul>
   </li>
@@ -55,28 +55,28 @@
     <span class="nav-text">Installation Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="setup.html">Setup</a>
+    <a class="nav-link" href="../installation-guide/setup.html">Setup</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="encryption.html">Datenbankverschlüsselung</a>
+    <a class="nav-link" href="../installation-guide/encryption.html">Datenbankverschlüsselung</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Database Setup</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="database-postgresql.html">PostgreSQL Setup</a>
+    <a class="nav-link" href="../installation-guide/database-postgresql.html">PostgreSQL Setup</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="database-timescale.html">Installation Timescale</a>
+    <a class="nav-link" href="../installation-guide/database-timescale.html">Installation Timescale</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="database-rails.html">Rails Datenbank-Konfiguration</a>
+    <a class="nav-link" href="../installation-guide/database-rails.html">Rails Datenbank-Konfiguration</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="configuration.html">Konfiguration</a>
+    <a class="nav-link" href="../installation-guide/configuration.html">Konfiguration</a>
   </li>
 </ul>
   </li>
@@ -117,19 +117,60 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Mirco</a></li>
-    <li><a href="redis.html">Redis</a></li>
+    <li>Admin Manual</li>
+    <li><a href="scheduling.html">Job Scheduling</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/mirco/doc/de_DE/modules/installation-guide/pages/redis.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/mirco/doc/de_DE/modules/admin-manual/pages/scheduling.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Redis</h1>
-<div class="paragraph">
-<p><mark>TBD</mark></p>
+<h1 class="page">Job Scheduling</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Rails Console</div>
+<div class="content">
+<pre>bin/rails console -e production</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_channelsfetchstatisticsjob"><a class="anchor" href="#_channelsfetchstatisticsjob"></a>Channels::FetchStatisticsJob</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>Channels::FetchStatisticsJob.schedule <i class="conum" data-value="1"></i><b>(1)</b>
+Channels::FetchStatisticsJob.scheduled? <i class="conum" data-value="2"></i><b>(2)</b>
+Channels::FetchStatisticsJob.delayed_job <i class="conum" data-value="3"></i><b>(3)</b>
+Channels::FetchStatisticsJob.remove <i class="conum" data-value="4"></i><b>(4)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Scheduled den Job, falls er nicht bereits aktiviert wurde</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Prüft, ob der Job schon im Scheduling ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Zeigt den dazugehörigen DelayedJob-Eintrag in der Datenbank</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>entfernt den Job wieder aus dem Scheduling</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </article>
   </div>
