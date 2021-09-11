@@ -53,7 +53,8 @@
         <th><%= t('attributes.updated_at')%>:</th>
           <%= render TdExpirationComponent.new(
                        tstamp: @channel_statistic.updated_at,
-                       expiration_time: 5.minutes ) %>
+                       expiration_time: 5.minutes,
+                       cssclass: 'text-left' ) %>
       </tr>
     </table>
 

@@ -29,7 +29,7 @@
               ) %>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
-                       expiration_time: (2 * Mirco.check_interval).minutes ) %>
+                       expiration_time: Mirco.warn_threshold.minutes ) %>
           <td class="text-nowrap text-center">
             <%= show_link channel_statistic %>
           </td>
