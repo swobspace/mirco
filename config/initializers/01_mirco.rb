@@ -56,7 +56,7 @@ module Mirco
   end
 
   def self.warn_threshold
-    self.fetch_config('cron_expression', 10)
+    self.fetch_config('warn_threshold', 10)
   end
 
 
