@@ -125,11 +125,14 @@
   api_verify_ssl:boolean \
   properties:jsonb \
   last_channel_update:timestamp \
+  last_check:timestamp last_check_ok:timestamp \
   --no-stylesheets --no-javascripts --no-helper
 
 bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
 bin/rails g migration AddLastChannelUpdateToServer \
-  last_channel_update:timestamp</code></pre>
+  last_channel_update:timestamp
+bin/rails g migration AddLastCheckToServer \
+  last_check:timestamp last_check_ok:timestamp</code></pre>
 </div>
 </div>
 </div>

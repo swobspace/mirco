@@ -141,9 +141,10 @@ leer sein.</p>
 <div class="title">mirco.yml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/mirco.yml
-check_interval: 5 <i class="conum" data-value="1"></i><b>(1)</b>
-use_ssl: true <i class="conum" data-value="2"></i><b>(2)</b>
-action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)</b>
+cron_expression: '*/5 * * * *' <i class="conum" data-value="1"></i><b>(1)</b>
+warn_threshold: 10 <i class="conum" data-value="2"></i><b>(2)</b>
+use_ssl: true <i class="conum" data-value="3"></i><b>(3)</b>
+action_cable_allowed_request_origins: <i class="conum" data-value="4"></i><b>(4)</b>
   - http://mirco.example.com
   - https://mirco.example.com</code></pre>
 </div>
@@ -152,14 +153,18 @@ action_cable_allowed_request_origins: <i class="conum" data-value="3"></i><b>(3)
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Check-Intervall in Minuten; voreingestellt sind 15 min.</td>
+<td>Cron-Ausdruck für das Scheduling der Checks; voreingestellt sind alle 5 min.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist</td>
+<td>Warnschwelle in Minuten; bei Überschreitung wird die Zeitangabe farblich markiert.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>http:// und https:// Site-Urls für den Websocket</td>
 </tr>
 </table>
