@@ -1,22 +1,26 @@
 <div id="server_status">
   <%= content_tag :table,
         id: "servers_table",
-        class: "table table-bordered table-sm table-responsive-xl" do %>
+        class: "table table-bordered table-sm table-responsive-xl mb-0" do %>
     <thead>
       <tr class="">
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.location') %></th>
-            <th><%= t('attributes.last_check') %></th>
-            <th><%= t('attributes.last_check_ok') %></th>
+            <th class="text-center"><%= t('attributes.last_check') %></th>
+            <th class="text-center"><%= t('attributes.last_check_ok') %></th>
       </tr>
     </thead>
     <tbody>
-      <% ServerDecorator.decorate_collection(servers).each do |server| %>
+      <% servers.each do |server| %>
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
           <td><%= server.name %></td>
           <td><%= server.location %></td>
-          <td><%= server.last_check %></td>
-          <td><%= server.last_check_ok %></td>
+         <%= render TdExpirationComponent.new(
+                       tstamp: server.last_check,
+                       expiration_time: Mirco.warn_threshold.minutes ) %>
+         <%= render TdExpirationComponent.new(
+                       tstamp: server.last_check_ok,
+                       expiration_time: Mirco.warn_threshold.minutes ) %>
         <% end %>
       <% end %>
     </tbody>

@@ -1,14 +1,14 @@
 <div id="queued_messages">
   <%= content_tag :table, id: "queuing_table",
-        class: "table table-bordered table-responsive-xl" do %>
+        class: "table table-bordered table-responsive-xl mb-0" do %>
     <thead>
       <tr class="search">
         <th class="text-start"><%= t('attributes.server') %></th>
         <th class="text-start"><%= t('attributes.channel') %></th>
-        <th class="text-end"><%= t('attributes.received') %></th>
-        <th class="text-end"><%= t('attributes.sent') %></th>
-        <th class="text-end"><%= t('attributes.error') %></th>
-        <th class="text-end"><%= t('attributes.filtered') %></th>
+        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received') %></th>
+        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.sent') %></th>
+        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.error') %></th>
+        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.filtered') %></th>
         <th class="text-end"><%= t('attributes.queued') %></th>
         <th class="text-center"><%= t('attributes.updated_at') %></th>
         <th class="nosort text-center"><%= t('mirco.action') %></th>
@@ -19,10 +19,10 @@
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <td class="text-start"><%= channel_statistic.server %></td>
           <td class="text-start"><%= channel_statistic.channel %></td>
-          <td class="text-end"><%= channel_statistic.received %></td>
-          <td class="text-end"><%= channel_statistic.sent %></td>
-          <td class="text-end"><%= channel_statistic.error %></td>
-          <td class="text-end"><%= channel_statistic.filtered %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.received %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.sent %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.error %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.filtered %></td>
           <%= render TdThresholdComponent.new(
                 value: channel_statistic.queued,
                 warning: 10, critical: 50, css: 'text-end'
