@@ -1,7 +1,7 @@
 module Channels
   class FetchStatisticsJob < CronJob
     queue_as :default
-    self.cron_expression = '*/3 * * * *'
+    self.cron_expression = Mirco.cron_expression
 
     def perform(options = {})
       options.symbolize_keys!
