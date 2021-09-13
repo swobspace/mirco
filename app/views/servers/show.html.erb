@@ -69,18 +69,6 @@
             <th><%= t('attributes.api_user')%>:</th>
             <td><%= @server.api_user %></td>
           </tr>
-          
-          <tr>
-            <th><%= t('attributes.api_password')%>:</th>
-            <td>
-              <div class="input-group mb3">
-                <input type="password" disabled value="<%= @server.api_password %>">
-                <span class="input-group-text" id="toggleShowPassword">
-                  <i class="fas fa-eye"></i>
-                </span>
-              </div>
-            </td>
-          </tr>
         <% end %>
       
         <tr>
@@ -128,34 +116,33 @@
     <div class="card-body">
       <table class="table table-hover autowidth">
         <tr>
-          <th><%= t('attributes.server_uid')%>:</th>
+          <th class="w-25"><%= t('attributes.server_uid')%>:</th>
           <td><%= @server.server_uid %></td>
         </tr>
       
         <tr>
-          <th><%= t('attributes.server_jvm')%>:</th>
+          <th class="w-25"><%= t('attributes.server_jvm')%>:</th>
           <td><%= @server.server_jvm %></td>
         </tr>
       
         <tr>
-          <th><%= t('attributes.server_version')%>:</th>
+          <th class="w-25"><%= t('attributes.server_version')%>:</th>
           <td><%= @server.server_version %></td>
         </tr>
 
         <tr>
-          <th><%= t('attributes.system_info')%>:</th>
+          <th class="w-25"><%= t('attributes.system_info')%>:</th>
           <td><%= (@server.system_info || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
         </tr>
       
         <tr>
-          <th><%= t('attributes.server_settings')%>:</th>
-          <td><%= (@server.server_settings || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
+          <th class="w-25"><%= t('attributes.server_settings')%>:</th>
+          <td>
+            <% ['serverName', 'environmentName', 'smtpHost'].each do |attr| %>
+              <%= attr %>: <%= @server.server_settings[attr] %> <br />
+            <% end %>
         </tr>
       
-        <tr>
-          <th><%= t('attributes.properties')%>:</th>
-          <td><%=  @server.properties %></td>
-        </tr>
       </table>
     </div>
   </div>
