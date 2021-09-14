@@ -1,4 +1,7 @@
 de:
+  enabled:
+    true: enabled
+    false: disabled
   mirco:
     action: Aktion
     update_properties: Aktualisiere Eigenschaften

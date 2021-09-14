@@ -5,6 +5,14 @@ class ConnectorComponent < ViewComponent::Base
     @connector = connector
     @mc = Mirco::Connector.new(connector)
   end
+
+  def enabled
+    unless mc.enabled
+      "text-danger"
+    end
+  end
+
 private
   attr_reader :connector, :mc
+
 end
