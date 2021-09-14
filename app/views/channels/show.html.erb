@@ -16,7 +16,9 @@
     
       <tr>
         <th><%= t('attributes.description')%>:</th>
-        <td><%= @channel.description %></td>
+        <td>
+          <pre><%= @channel.description %></pre>
+        </td>
       </tr>
     
       <tr>
@@ -49,7 +51,7 @@
       <tr>
         <th><%= t('attributes.destinationConnectors')%>:</th>
         <td>
-          <%= render ConnectorComponent.with_collection(@channel.destinationConnectors['connector']) %>
+          <%= render ConnectorComponent.with_collection(Array[@channel.destinationConnectors['connector']]) %>
        </td>
       </tr>
     
