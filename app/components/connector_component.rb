@@ -7,8 +7,10 @@ class ConnectorComponent < ViewComponent::Base
   end
 
   def enabled
-    unless mc.enabled
-      "text-danger"
+    if mc.enabled
+      "text-muted"
+    else
+      "fw-bolder text-danger"
     end
   end
 

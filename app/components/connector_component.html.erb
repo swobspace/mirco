@@ -1,7 +1,8 @@
 <div class="card mb-1">
   <div class="card-header">
     <div class="d-flex justify-content-between">
-      <span class="<%= enabled %>"><%= mc.name %> (<%= t(mc.enabled, scope: 'enabled') %>)</span>
+      <span class="fw-bolder"><%= mc.name %> </span>
+      <span class="<%=enabled %>"><%= t(mc.enabled, scope: 'enabled') %></span>
       <span class="text-muted"><%= mc.transportName %></span>
     </div>
   </div>

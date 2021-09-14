@@ -3,6 +3,7 @@ module Mirco
     class VmDispatcher < Generic
       def descriptor
         {
+          "writeToChannel": Channel.where(uid: properties['channelId']).first.to_s,
         }
       end
     end
