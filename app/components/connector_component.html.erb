@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-1">
   <div class="card-header">
     <div class="d-flex justify-content-between">
       <span class="<%= enabled %>"><%= mc.name %> (<%= t(mc.enabled, scope: 'enabled') %>)</span>
@@ -6,9 +6,16 @@
     </div>
   </div>
   <div class="card-body">
-    <% mc.descriptor.each do |k,v| %>
-      <%= k %>: <%= v %> <br />
-    <% end %>
+    <table class="connector table table-sm table-borderless">
+      <tbody>
+        <% mc.descriptor.each do |k,v| %>
+          <tr>
+            <td class="w-25"><%= k %>: </td>
+            <td> <%= v %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 
