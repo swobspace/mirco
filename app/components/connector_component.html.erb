@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <span><%= mc.name %> </span>
+      <span class="text-muted"><%= mc.transportName %></span>
+    </div>
+  </div>
+  <div class="card-body">
+    <% mc.descriptor.each do |k,v| %>
+      <%= k %>: <%= v %> <br />
+    <% end %>
+  </div>
+</div>
+
+

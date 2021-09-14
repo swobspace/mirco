@@ -7,7 +7,7 @@ module Mirco
         if properties['class'].empty?
           raise ArgumentError, "needs properties hash from source or destination connector"
         end
-        @variant = set_variant
+        @variant = set_variant || Mirco::ConnectorType::Generic
       end
 
       def descriptor
@@ -24,7 +24,7 @@ module Mirco
         when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
           Mirco::ConnectorType::TcpReceiver
         else
-          self
+          nil
         end
       end
     end

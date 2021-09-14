@@ -42,22 +42,14 @@
       <tr>
         <th><%= t('attributes.sourceConnector')%>:</th>
         <td>
-          <% mc = Mirco::Connector.new(@channel.sourceConnector) %>
-          <% ['mode', 'name', 'version', 'transportName' ].each do |attr| %>
-            <%= attr %>: <%= mc.send(attr) %> <br />
-          <% end %>
-          <% mc.descriptor.each do |k,v| %>
-            <%= k %>: <%= v %> <br />
-          <% end %>
+          <%= render ConnectorComponent.new(connector: @channel.sourceConnector) %>
         </td>
       </tr>
     
       <tr>
         <th><%= t('attributes.destinationConnectors')%>:</th>
         <td>
-          <% [].each do |attr| %>
-            <%= t('attributes.' + attr) %>: <%= @channel.send(attr) %>
-          <% end %>
+          <%= render ConnectorComponent.with_collection(@channel.destinationConnectors['connector']) %>
        </td>
       </tr>
     

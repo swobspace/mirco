@@ -31,7 +31,7 @@ module Mirco
     end
 
     def connector_type
-      Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
+      ctype = Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
     end
 
     def descriptor
