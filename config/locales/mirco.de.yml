@@ -44,6 +44,7 @@ de:
     queued: queued
     received: received
     revision: Revision
+    sc_transport_name: transportName
     sent: sent
     server: Server
     server_uid: Server UUID

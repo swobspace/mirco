@@ -41,38 +41,26 @@
     
       <tr>
         <th><%= t('attributes.sourceConnector')%>:</th>
-        <td><%= @channel.sourceConnector %></td>
+        <td>
+          <% mc = Mirco::Connector.new(@channel.sourceConnector) %>
+          <% ['mode', 'name', 'version', 'transportName' ].each do |attr| %>
+            <%= attr %>: <%= mc.send(attr) %> <br />
+          <% end %>
+          <% mc.descriptor.each do |k,v| %>
+            <%= k %>: <%= v %> <br />
+          <% end %>
+        </td>
       </tr>
     
       <tr>
         <th><%= t('attributes.destinationConnectors')%>:</th>
-        <td><%= @channel.destinationConnectors %></td>
+        <td>
+          <% [].each do |attr| %>
+            <%= t('attributes.' + attr) %>: <%= @channel.send(attr) %>
+          <% end %>
+       </td>
       </tr>
     
-      <tr>
-        <th><%= t('attributes.deployScript')%>:</th>
-        <td><%= @channel.deployScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.undeployScript')%>:</th>
-        <td><%= @channel.undeployScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.preprocessingScript')%>:</th>
-        <td><%= @channel.preprocessingScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.postprocessingScript')%>:</th>
-        <td><%= @channel.postprocessingScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.properties')%>:</th>
-        <td><%= @channel.properties %></td>
-      </tr>
         </table>
 
   </div>
