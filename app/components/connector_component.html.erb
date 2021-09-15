@@ -13,7 +13,15 @@
           <% mc.descriptor.each do |k,v| %>
             <tr>
               <td class="w-25"><%= k %>: </td>
-              <td> <%= v %></td>
+              <td>
+                <%=
+                  if v.kind_of? Array
+                    link_to(v[0], v[1], class: 'primary-link')
+                  else
+                    v
+                  end
+                %>
+              </td>
             </tr>
           <% end %>
         </tbody>
