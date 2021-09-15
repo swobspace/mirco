@@ -139,7 +139,7 @@
           <th class="w-25"><%= t('attributes.server_settings')%>:</th>
           <td>
             <% ['serverName', 'environmentName', 'smtpHost'].each do |attr| %>
-              <%= attr %>: <%= @server.server_settings[attr] %> <br />
+              <%= attr %>: <%= @server.server_settings[attr] if @server.server_settings.present? %> <br />
             <% end %>
         </tr>
       
