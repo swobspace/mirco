@@ -24,4 +24,12 @@ class Channel < ApplicationRecord
     "#{name}"
   end
 
+  def destination_connectors
+    if destinationConnectors.present?
+      destinationConnectors['connector']
+    else
+      nil
+    end
+  end
+
 end

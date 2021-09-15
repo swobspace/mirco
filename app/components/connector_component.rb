@@ -15,7 +15,7 @@ class ConnectorComponent < ViewComponent::Base
   end
 
   def render?
-    mc.present?
+    connector.present? && mc.present?
   end
 
 private
