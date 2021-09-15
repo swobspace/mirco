@@ -38,44 +38,44 @@
     </div>
     <div class="card-body">
       <table class="table table-hover autowidth">
-      
+
         <tr>
           <th class="w-25"><%= t('attributes.name')%>:</th>
           <td><%= @server.name %></td>
         </tr>
-      
+
         <tr>
           <th><%= t('attributes.uid')%>:</th>
           <td><%= @server.uid %></td>
         </tr>
-      
+
         <tr>
           <th><%= t('attributes.location')%>:</th>
           <td><%= @server.location %></td>
         </tr>
-      
+
         <tr>
           <th><%= t('attributes.description')%>:</th>
           <td><%= @server.description %></td>
         </tr>
-      
+
         <tr>
           <th><%= t('attributes.api_url')%>:</th>
           <td><%= @server.api_url %></td>
         </tr>
-      
+
         <% if current_user.is_admin? %>
           <tr>
             <th><%= t('attributes.api_user')%>:</th>
             <td><%= @server.api_user %></td>
           </tr>
         <% end %>
-      
+
         <tr>
           <th><%= t('attributes.api_user_has_full_access')%>:</th>
           <td><%= @server.api_user_has_full_access %></td>
         </tr>
-      
+
         <tr>
           <th><%= t('attributes.api_verify_ssl')%>:</th>
           <td><%= @server.api_verify_ssl %></td>
@@ -106,10 +106,10 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('attributes.properties') %></h4>
         <div role="toolbar">
-          <%= link_to t('mirco.update_properties'), 
+          <%= link_to(t('mirco.update_properties'),
                       update_properties_server_path(@server),
                       method: :patch,
-                      class: 'btn btn-warning' %>
+                      class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
     </div>
@@ -119,12 +119,12 @@
           <th class="w-25"><%= t('attributes.server_uid')%>:</th>
           <td><%= @server.server_uid %></td>
         </tr>
-      
+
         <tr>
           <th class="w-25"><%= t('attributes.server_jvm')%>:</th>
           <td><%= @server.server_jvm %></td>
         </tr>
-      
+
         <tr>
           <th class="w-25"><%= t('attributes.server_version')%>:</th>
           <td><%= @server.server_version %></td>
@@ -134,7 +134,7 @@
           <th class="w-25"><%= t('attributes.system_info')%>:</th>
           <td><%= (@server.system_info || []).map{|k,v| "#{k}: #{v}"}.join("<br/>").html_safe %></td>
         </tr>
-      
+
         <tr>
           <th class="w-25"><%= t('attributes.server_settings')%>:</th>
           <td>
@@ -142,7 +142,7 @@
               <%= attr %>: <%= @server.server_settings[attr] if @server.server_settings.present? %> <br />
             <% end %>
         </tr>
-      
+
       </table>
     </div>
   </div>
@@ -154,10 +154,10 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
-          <%= link_to t('mirco.fetch_channels'), 
+          <%= link_to(t('mirco.fetch_channels'),
                       fetch_all_server_channels_path(@server),
                       method: :post,
-                      class: 'btn btn-warning' %>
+                      class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
     </div>
@@ -173,10 +173,10 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channel_statistics') %></h4>
         <div role="toolbar">
-          <%= link_to t('mirco.fetch_statistics'), 
+          <%= link_to(t('mirco.fetch_statistics'),
                       fetch_all_server_channel_statistics_path(@server),
                       method: :post,
-                      class: 'btn btn-warning' %>
+                      class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
     </div>
