@@ -14,6 +14,10 @@ class ConnectorComponent < ViewComponent::Base
     end
   end
 
+  def render?
+    mc.present?
+  end
+
 private
   attr_reader :connector, :mc
 
