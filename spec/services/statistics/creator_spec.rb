@@ -92,7 +92,6 @@ module Statistics
           }.to change(ChannelStatistic, :count).by(0)
         end
 
-        # it { puts statistik.updated_at }
         it { expect(statistic.received).to eq(1) }
         it { expect(statistic.sent).to eq(2) }
         it { expect(statistic.error).to eq(3) }

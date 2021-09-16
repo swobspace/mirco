@@ -44,12 +44,6 @@ module Statistics
         expect(server.last_check_ok).to be >= 1.minutes.ago
       end
 
-      it "DEBUG: some channels" do
-        puts "\n\n"
-        puts result.error_messages.join("\n")
-        puts server.channel_statistics.inspect
-      end
-
     end
 
   end
