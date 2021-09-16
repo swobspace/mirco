@@ -12,7 +12,7 @@ class TdExpirationComponent < ViewComponent::Base
   attr_reader :tstamp, :expiration_time, :cssclass
 
   def background_color
-    if tstamp <= expiration_time.before(Time.now)
+    if tstamp.nil? || (tstamp <= expiration_time.before(Time.now))
       "bg-warning"
     else
       ""
