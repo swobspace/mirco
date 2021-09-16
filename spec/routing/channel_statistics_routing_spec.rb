@@ -19,6 +19,10 @@ RSpec.describe ChannelStatisticsController, type: :routing do
       expect(get: "/channel_statistics/1/last_week").to route_to("channel_statistics#last_week", id: "1")
     end
 
+    it "routes to #last_month" do
+      expect(get: "/channel_statistics/1/last_month").to route_to("channel_statistics#last_month", id: "1")
+    end
+
     it "routes to #today" do
       expect(get: "/channel_statistics/1/today").to route_to("channel_statistics#today", id: "1")
     end

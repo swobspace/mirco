@@ -97,6 +97,15 @@
         download: true
      %>
 
+  </div>
+  <div class="card-body">
+    <%= column_chart last_month_channel_statistic_path(@channel_statistic),
+          title: "Last Month (max. per hour)",
+          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+          ytitle: "Queued Messages",
+          height: "400px",
+        download: true
+     %>
 
     <div role="toolbar">
       <%= back_link %>

@@ -25,6 +25,11 @@ class ChannelStatisticsController < ApplicationController
     render json: @channel_statistic.channel.channel_counters.last_week.per_hour.map{|x| [x.time.localtime.strftime("%a %H:%M"), x.value]}
   end
 
+  def last_month
+    render json: @channel_statistic.channel.channel_counters.last_month.per_hour.map{|x| [x.time.localtime.strftime("%d.%m. %Hh"), x.value]}
+  end
+
+
   def today
     render json: @channel_statistic.channel.channel_counters.today.per_15min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
   end

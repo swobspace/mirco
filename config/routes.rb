@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :channel_statistics, only: [:show, :index] do
     member do
       get :last_week
+      get :last_month
       get :today
       get :current
       get :current_sent
