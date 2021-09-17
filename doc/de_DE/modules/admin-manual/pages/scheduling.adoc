@@ -1,0 +1,22 @@
+= Job Scheduling
+:imagesdir: ../images
+:experimental: true
+
+
+.Rails Console
+----
+bin/rails console -e production
+----
+
+== Channels::FetchStatisticsJob
+
+----
+Channels::FetchStatisticsJob.schedule <!--1-->
+Channels::FetchStatisticsJob.scheduled? <!--2-->
+Channels::FetchStatisticsJob.delayed_job <!--3-->
+Channels::FetchStatisticsJob.remove <!--4-->
+----
+<1> Scheduled den Job, falls er nicht bereits aktiviert wurde
+<2> Prüft, ob der Job schon im Scheduling ist
+<3> Zeigt den dazugehörigen DelayedJob-Eintrag in der Datenbank
+<4> entfernt den Job wieder aus dem Scheduling

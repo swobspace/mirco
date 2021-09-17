@@ -43,13 +43,6 @@ module Channels
           subject.call
         }.to change(server, :last_channel_update)
       end
-
-      it "DEBUG: some channels" do
-        puts "\n\n"
-        puts result.error_messages.join("\n")
-        puts server.channels.map{|c| c.uid}.join("\n")
-      end
     end
-
   end
 end

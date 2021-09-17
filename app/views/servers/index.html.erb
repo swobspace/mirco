@@ -15,14 +15,17 @@
     <thead>
       <tr class="search">
             <th><%= t('attributes.name') %></th>
-            <th><%= t('attributes.uid') %></th>
+            <th class="notvisible"><%= t('attributes.uid') %></th>
             <th><%= t('attributes.location') %></th>
             <th><%= t('attributes.description') %></th>
-            <th><%= t('attributes.api_url') %></th>
+            <th class="notvisible"><%= t('attributes.api_url') %></th>
             <% if current_user.is_admin? %>
               <th><%= t('attributes.api_user') %></th>
             <% end %>
-            <th><%= t('attributes.api_user_has_full_access') %></th>
+            <th class="notvisible"><%= t('attributes.api_user_has_full_access') %></th>
+            <th class="notvisible"><%= t('attributes.last_channel_update') %></th>
+            <th><%= t('attributes.last_check') %></th>
+            <th><%= t('attributes.last_check_ok') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
@@ -36,6 +39,9 @@
             <% if current_user.is_admin? %>
               <th></th>
             <% end %>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
       </tr>
@@ -52,6 +58,9 @@
                   <td><%= server.api_user %></td>
                 <% end %>
                 <td><%= server.api_user_has_full_access %></td>
+                <td><%= server.last_channel_update %></td>
+                <td><%= server.last_check %></td>
+                <td><%= server.last_check_ok %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
             <%= edit_link server %>

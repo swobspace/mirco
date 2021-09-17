@@ -4,12 +4,13 @@ class ServersController < ApplicationController
 
   # GET /servers
   def index
-    @servers = Server.all
+    @servers = Server.all.decorate
     respond_with(@servers)
   end
 
   # GET /servers/1
   def show
+    @server = @server.decorate
     respond_with(@server)
   end
 

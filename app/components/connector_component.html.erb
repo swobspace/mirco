@@ -1,0 +1,33 @@
+<div class="card mb-1">
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <span class="fw-bolder"><%= mc.name %> </span>
+      <span class="<%=enabled %>"><%= t(mc.enabled, scope: 'enabled') %></span>
+      <span class="text-muted"><%= mc.transportName %></span>
+    </div>
+  </div>
+  <% if mc.descriptor.any? %>
+    <div class="card-body">
+      <table class="connector table table-sm table-borderless">
+        <tbody>
+          <% mc.descriptor.each do |k,v| %>
+            <tr>
+              <td class="w-25"><%= k %>: </td>
+              <td>
+                <%=
+                  if v.kind_of? Array
+                    link_to(v[0], v[1], class: 'primary-link')
+                  else
+                    v
+                  end
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+
+

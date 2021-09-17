@@ -124,4 +124,11 @@ trix-editor.form-control {
   color: #999;
 } 
 
+a.primary-link {
+  text-decoration: none;
+}
 
+table.connector.table.table-sm > :not(caption) > * > * {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

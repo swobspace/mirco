@@ -28,7 +28,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'simple_form'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'font-awesome-sass', '>=4.7', '< 6'
 gem 'view_component', require: "view_component/engine"
@@ -83,3 +82,4 @@ gem "net-http"
 
 gem "chartkick", "~> 4.0"
 gem 'uri', '0.10.0'
+gem 'draper'

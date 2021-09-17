@@ -48,9 +48,6 @@ module Statistics
         return Result.new(success: false, error_messages: errmsgs)
       end
 
-     # not yet implemented
-     # server.touch(:last_statistics_update)
-
       # create server channels if neccessary
       fetched.channel_statistics.each do |stat|
         creator = Statistics::Creator.new(server: server,
@@ -60,6 +57,11 @@ module Statistics
           errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"
           success = false
         end
+      end
+      if success
+        server.touch(:last_check, :last_check_ok)
+      else
+        server.touch(:last_check)
       end
 
       return Result.new(success: success, error_messages: errmsgs)

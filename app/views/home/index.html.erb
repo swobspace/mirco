@@ -1,7 +1,20 @@
-<h1>Queued Messages</h1>
-
 <%= turbo_stream_from :home_index %>
-<div id="home_index_flash">
+<div class="container-xl">
+  <div class="card">
+    <div class="card-header">
+      <h4>Queued Messages</h4>
+    </div>
+    <div>
+      <%= render 'index', queued_messages: @queued_messages %>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <h4>Server Status</h4>
+    </div>
+    <div>
+      <%= render 'servers', servers: @servers %>
+    </div>
+  </div>
 </div>
-<%= render 'index', queued_messages: @queued_messages %>
 

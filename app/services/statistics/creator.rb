@@ -14,6 +14,9 @@ module Statistics
       options.symbolize_keys
       @server = options.fetch(:server)
       @attributes = options.fetch(:attributes)
+      if @attributes.empty?
+        raise RuntimeError, "Statistics::Creator.new: :attributes is empty!"
+      end
       @create_channel = options.fetch(:create_channel) { false }
       fetch_channel(@attributes['channelId'])
       @channel_statistic ||= fetch_channel_statistic

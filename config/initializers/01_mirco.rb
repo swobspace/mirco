@@ -40,36 +40,25 @@ module Mirco
   end
 
   def self.mail_from
-    if CONFIG['mail_from'].present?
-      CONFIG['mail_from']
-    else
-      'root'
-    end
+    self.fetch_config('mail_from', 'root')
   end
 
   def self.use_ssl
-    if CONFIG['use_ssl'].present?
-      CONFIG['use_ssl']
-    else
-      false
-    end
+    self.fetch_config('use_ssl', false)
   end
 
   def self.remote_user
-    if CONFIG['remote_user'].present?
-      CONFIG['remote_user']
-    else
-      "REMOTE_USER"
-    end
+    self.fetch_config('remote_user', 'REMOTE_USER')
   end
 
-  def self.check_interval
-    if CONFIG['check_interval'].present?
-      CONFIG['check_interval']
-    else
-      15
-    end
+  def self.cron_expression
+    self.fetch_config('cron_expression', '*/5 * * * *')
   end
+
+  def self.warn_threshold
+    self.fetch_config('warn_threshold', 10)
+  end
+
 
   def self.action_cable_allowed_request_origins
     if CONFIG['action_cable_allowed_request_origins'].present?
@@ -89,7 +78,7 @@ module Mirco
 
   def self.script_name
     if CONFIG['script_name'].present?
-      CONFIG['script_name']
+      CONFIG['scriptname']
     else
       "/"
     end
@@ -109,5 +98,15 @@ module Mirco
   }
   Rails.application.routes.default_url_options[:host] = self.host
   Rails.application.routes.default_url_options[:script_name] = self.script_name
+
+private
+
+  def self.fetch_config(attribute, default_value)
+    if CONFIG[attribute.to_s].present?
+      CONFIG[attribute.to_s]
+    else
+      default_value
+    end
+  end
 
 end

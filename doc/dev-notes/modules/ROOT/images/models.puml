@@ -15,6 +15,8 @@ class Server  {
   api_verify_ssl: boolean
   properties: jsonb
   last_channel_update: timestamp
+  last_check: timestamp
+  last_check_ok: timestamp
 }
 note right of Server
   api_user_has_full_access = false

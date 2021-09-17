@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     alias_action :search, :search_form, :to => :read
     # endpoints from channel_statistics_controller for graphs
-    alias_action :last_week, :today, :current, :current_sent, :to => :read
+    alias_action :last_week, :last_month, :today, :current, :current_sent, :to => :read
 
     @user = user
     if @user.nil?

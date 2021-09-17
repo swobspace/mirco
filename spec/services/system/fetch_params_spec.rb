@@ -40,17 +40,6 @@ module System
       it { expect(result.params[:server_jvm]).to be_present }
       it { expect(result.params[:server_version]).to be_present }
       it { expect(result.params[:server_uid]).to eq(server.uid) }
-      it "show :system_info" do
-        printf "\n-- :system_info --\n"
-        pp result.params[:system_info]
-        printf "\n-- :server_settings --\n"
-        pp result.params[:server_settings]
-        printf "\n-- id, version, jvm --\n"
-        puts "server_uid: #{result.params[:server_uid]}"
-        puts "server_version: #{result.params[:server_version]}"
-        puts "server_jvm: #{result.params[:server_jvm]}"
-        printf "\n"
-      end
     end
 
 

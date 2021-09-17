@@ -1,7 +1,7 @@
 module Channels
   class FetchStatisticsJob < CronJob
     queue_as :default
-    self.cron_expression = '*/3 * * * *'
+    self.cron_expression = Mirco.cron_expression
 
     def perform(options = {})
       options.symbolize_keys!
@@ -21,19 +21,22 @@ module Channels
           msg = "WARN:: #{server.name}: fetch channel statistics failed\n"
           msg += result.error_messages.join("\n")
           Rails.logger.warn(msg)
-          Turbo::StreamsChannel.broadcast_append_later_to(:home_index,
-            target: :home_index_flash,
-            partial: 'home/flash',
-            locals: {alert_message:  msg }
-        )
         end
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :queued_messages,
           partial: 'home/index',
           locals: {queued_messages: ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc').to_a }
         )
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+          target: :server_status,
+          partial: 'home/servers',
+          locals: { servers: Server.all.to_a }
+        )
       end
 
+    end
+    def max_attempts
+      0
     end
   end
 end

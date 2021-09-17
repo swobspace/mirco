@@ -1,6 +1,11 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.channel_statistic') %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <h4><%= t('activerecord.models.channel_statistic') %></h4>
+      <div role="toolbar">
+        <%= back_link %>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-borderless table-hover table-sm">
@@ -12,7 +17,10 @@
     
       <tr>
         <th class="w-25"><%= t('attributes.channel')%>:</th>
-        <td><%= @channel_statistic.channel %></td>
+        <td><%= link_to @channel_statistic.channel,
+                        server_channel_path(@channel_statistic.server,
+                                            @channel_statistic.channel),
+                       class: 'primary-link' %></td>
       </tr>
     
       <tr>
@@ -53,7 +61,8 @@
         <th><%= t('attributes.updated_at')%>:</th>
           <%= render TdExpirationComponent.new(
                        tstamp: @channel_statistic.updated_at,
-                       expiration_time: 5.minutes ) %>
+                       expiration_time: 5.minutes,
+                       cssclass: 'text-left' ) %>
       </tr>
     </table>
 
@@ -88,6 +97,15 @@
         download: true
      %>
 
+  </div>
+  <div class="card-body">
+    <%= column_chart last_month_channel_statistic_path(@channel_statistic),
+          title: "Last Month (max. per hour)",
+          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+          ytitle: "Queued Messages",
+          height: "400px",
+        download: true
+     %>
 
     <div role="toolbar">
       <%= back_link %>

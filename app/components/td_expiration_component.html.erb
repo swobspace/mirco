@@ -1,3 +1,3 @@
-<td class="<%= @background_color %> text-center">
-  <%= @tstamp.localtime.to_formatted_s(:db) %>
+<td class="<%= @background_color %> <%= cssclass %>">
+  <%= tstamp.localtime.to_formatted_s(:db) unless tstamp.nil? %>
 </td>

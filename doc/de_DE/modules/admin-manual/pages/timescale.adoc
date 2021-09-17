@@ -1,0 +1,61 @@
+= TimescaleDB Administration
+:navtitle: TimescaleDB
+:imagesdir: ../images
+:experimental: true
+
+NOTE: Alle Informationen zu Timescale-SQL-Erweiterungen erhält man unter https://docs.timescale.com/api/latest
+
+.Datenbankzugriff via rails dbconsole (Passwort erforderlich)
+----
+bin/rails dbconsole -e production
+----
+
+== Chunks
+
+.Einfache Anzeige der vorhandenen Chunks
+[source,sql]
+----
+select show_chunks('channel_counters');
+----
+
+
+.Anzeige der Chunks mit Größenangaben
+[source,sql]
+----
+SELECT * FROM chunks_detailed_size('channel_counters')
+  ORDER BY chunk_name, node_name;
+----
+
+=== Veränderung der Speicherdauer je Chunk
+
+Die voreingestellte Speicherdauer beträgt 7 Tage. D.h. alle 7 Tage wird ein neuer Chunk angelegt. Die Speicherdauer eines Chunks lässt sich verändern:
+
+[source,sql]
+----
+SELECT set_chunk_time_interval('channel_counters', INTERVAL '24 hours');
+----
+
+=== Manuell Chunks löschen
+
+.Alle Chunks löschen, deren Daten älter als 3 Monate sind
+[source,sql]
+----
+SELECT drop_chunks('channel_counters', INTERVAL '3 months');
+----
+
+NOTE: Es werde nur Chunks gelöscht, wenn ALLE Datensätze im Chunk älter als 3 Monate sind. Solange mindestens ein Datensatz enthalten ist, der jünger als 3 Monate ist, wird der Chunk nicht gelöscht.
+
+== Größe der Hypertables
+
+[source,sql]
+----
+SELECT hypertable_size('channel_counters') ;
+----
+
+.Größe aller Hypertables in MByte
+[source,sql]
+----
+SELECT hypertable_name,
+       hypertable_size(format('%I.%I', hypertable_schema, hypertable_name)::regclass) / 1024/1024 AS MBYTE
+  FROM timescaledb_information.hypertables;
+----

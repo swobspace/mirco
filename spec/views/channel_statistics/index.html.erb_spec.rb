@@ -40,7 +40,7 @@ RSpec.describe "channel_statistics/index", type: :view do
 
   it "renders a list of channel_statistics" do
     render
-    assert_select "tr>td", text: @server.to_s, count: 2
+    assert_select "tr>td", text: @server.to_s, count: 0
     assert_select "tr>td", text: "Channel1", count: 1
     assert_select "tr>td", text: "Channel2", count: 1
     assert_select "tr>td", text: 2.to_s, count: 2

@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="d-flex w-100 justify-content-between">
       <h4 class="title">
-        <%= t('activerecord.models.channel') %> 
+        <%= t('activerecord.models.channel') %>
         <%= @server %> &#8227; <%= @channel.name %>
       </h4>
       <div role="toolbar">
@@ -13,67 +13,54 @@
   </div>
   <div class="card-body">
     <table class="table table-bordered table-hover autowidth">
-    
+
       <tr>
         <th><%= t('attributes.description')%>:</th>
-        <td><%= @channel.description %></td>
+        <td>
+          <pre><%= @channel.description %></pre>
+        </td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.uid')%>:</th>
         <td><%= @channel.uid %></td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.version')%>:</th>
         <td><%= @channel.version %></td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.revision')%>:</th>
         <td><%= @channel.revision %></td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.exportData')%>:</th>
         <td><%= ( @channel.exportData || "may be missing if version < 3.9") %></td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.sourceConnector')%>:</th>
-        <td><%= @channel.sourceConnector %></td>
+        <td>
+          <%= render ConnectorComponent.new(connector: @channel.sourceConnector) %>
+        </td>
       </tr>
-    
+
       <tr>
         <th><%= t('attributes.destinationConnectors')%>:</th>
-        <td><%= @channel.destinationConnectors %></td>
+        <td>
+          <%=
+            if (connectors = @channel.destination_connectors).kind_of? Array
+              render ConnectorComponent.with_collection(connectors)
+            else
+              render ConnectorComponent.new(connector: connectors)
+            end
+           %>
+       </td>
       </tr>
-    
-      <tr>
-        <th><%= t('attributes.deployScript')%>:</th>
-        <td><%= @channel.deployScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.undeployScript')%>:</th>
-        <td><%= @channel.undeployScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.preprocessingScript')%>:</th>
-        <td><%= @channel.preprocessingScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.postprocessingScript')%>:</th>
-        <td><%= @channel.postprocessingScript %></td>
-      </tr>
-    
-      <tr>
-        <th><%= t('attributes.properties')%>:</th>
-        <td><%= @channel.properties %></td>
-      </tr>
-        </table>
+    </table>
 
   </div>
 </div>

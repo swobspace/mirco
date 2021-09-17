@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "servers/index", type: :view do
+  let(:time_now) { Time.now }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -22,7 +23,9 @@ RSpec.describe "servers/index", type: :view do
         api_user: "Api User",
         api_password: "MyText",
         api_user_has_full_access: false,
-        properties: ""
+        properties: "",
+        last_check: time_now,
+        last_check_ok: time_now,
       ),
       Server.create!(
         name: "MyServer2",
@@ -33,7 +36,9 @@ RSpec.describe "servers/index", type: :view do
         api_user: "Api User",
         api_password: "MyText",
         api_user_has_full_access: false,
-        properties: ""
+        properties: "",
+        last_check: time_now,
+        last_check_ok: time_now,
       )
     ])
   end
@@ -49,5 +54,6 @@ RSpec.describe "servers/index", type: :view do
     assert_select "tr>td", text: "Api Url".to_s, count: 2
     assert_select "tr>td", text: "Api User".to_s, count: 2
     assert_select "tr>td", text: false.to_s, count: 2
+    assert_select "tr>td", text: time_now.to_s, count: 4
   end
 end
