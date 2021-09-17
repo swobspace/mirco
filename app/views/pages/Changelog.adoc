@@ -1,5 +1,14 @@
 = Changelog
 
+=== 0.5.0 / 2021-09-17
+
+----
+* add server status to home page
+* link channels to channels#show
+* rewrite channels#show; display connectors with some info
+* fix a lot of bugs
+----
+
 === 0.2.0 / 2021-09-09
 
 ----
