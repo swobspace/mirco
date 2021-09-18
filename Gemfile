@@ -65,7 +65,7 @@ end
 
 gem 'cancancan'
 gem 'simple_form'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'develop'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'lockbox'

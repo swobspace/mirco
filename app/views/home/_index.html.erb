@@ -19,9 +19,11 @@
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <td class="text-start"><%= channel_statistic.server %></td>
           <td class="text-start">
-            <%= link_to channel_statistic.channel,
-                        server_channel_path(channel_statistic.server, channel_statistic.channel),
-                        class: "primary-link"
+            <%= link_to_if(
+                  can?(:read, channel_statistic.channel),
+                  channel_statistic.channel,
+                  server_channel_path(channel_statistic.server,channel_statistic.channel),
+                  class: "primary-link")
             %>
           </td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.received %></td>

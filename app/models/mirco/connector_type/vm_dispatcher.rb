@@ -2,12 +2,18 @@ module Mirco
   module ConnectorType
     class VmDispatcher < Generic
       def descriptor
-        {
-          "writeToChannel": [ 
-             channel.to_s,
-             Rails.application.routes.url_helpers.server_channel_path(channel.server, channel)
-          ]
-        }
+        if channel.present?
+          {
+            "writeToChannel": [
+               channel.to_s,
+               Rails.application.routes.url_helpers.server_channel_path(channel.server, channel)
+            ]
+          }
+        else
+          {
+            "writeToChannel": "none"
+          }
+        end
       end
     private
       def channel
