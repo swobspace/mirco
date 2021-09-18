@@ -13,7 +13,10 @@
     <tbody>
       <% servers.each do |server| %>
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
-          <td><%= link_to(server.name, server_path(server), class: "primary-link") %></td>
+          <td><%= link_to_if(can?(:read, server),
+                    server.name, 
+                    server_path(server), 
+                    class: "primary-link") %></td>
           <td><%= server.location %></td>
          <%= render TdExpirationComponent.new(
                        tstamp: server.last_check,
