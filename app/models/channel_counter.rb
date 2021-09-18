@@ -34,6 +34,7 @@ class ChannelCounter < ApplicationRecord
   scope :per_5min, -> { time_bucket('5 minute') }
   scope :per_15min, -> { time_bucket('15 minute') }
   scope :per_hour, -> { time_bucket('1 hour') }
+  scope :per_6hour, -> { time_bucket('6 hour') }
   scope :per_day, -> { time_bucket('1 day') }
 
   scope :time_period, -> (start, ende) {
