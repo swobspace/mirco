@@ -14,10 +14,10 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobauth.git
-  revision: 72feeab1d865d54ac4d094824a1526727deeb999
-  branch: develop
+  revision: d18072a2c5a8f6cdd34db9f7489c24c1e8001020
+  branch: master
   specs:
-    wobauth (6.0.0)
+    wobauth (6.0.1)
       cancancan
       coffee-rails
       devise
@@ -118,7 +118,7 @@ GEM
     asciidoctor (2.0.16)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.8.1)
+    bootsnap (1.9.0)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -193,7 +193,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faraday (1.7.2)
+    faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -414,7 +414,7 @@ GEM
     thor (1.1.0)
     tilt (2.0.10)
     timeout (0.1.1)
-    turbo-rails (0.7.12)
+    turbo-rails (0.7.14)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
