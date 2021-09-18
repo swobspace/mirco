@@ -1,5 +1,14 @@
 = Changelog
 
+=== 0.5.1 / 2021-09-18
+
+----
+Bugfix release:
+* fix login form if login failed
+* fix display channel with dummy channel writer (without a channel)
+* other minor fixes
+----
+
 === 0.5.0 / 2021-09-17
 
 ----
