@@ -7,7 +7,8 @@ module Mirco
 
       def puml(channel_id)
         {
-          alias: "interface_ch_#{channel_id}_src",
+          type: "interface",
+          alias: "ch_#{channel_id}_src",
           text: "Channel Reader"
         }
       end

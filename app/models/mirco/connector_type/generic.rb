@@ -19,7 +19,7 @@ module Mirco
       end
 
       def puml(channel_id)
-        { alias: nil, text: nil }
+        { type: nil, alias: nil, text: nil }
       end
 
     private
