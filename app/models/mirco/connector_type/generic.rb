@@ -23,6 +23,8 @@ module Mirco
         case connector_class
         when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
           Mirco::ConnectorType::TcpReceiver
+        when 'com.mirth.connect.connectors.vm.VmReceiverProperties'
+          Mirco::ConnectorType::VmReceiver
         when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
           Mirco::ConnectorType::TcpDispatcher
         when 'com.mirth.connect.connectors.file.FileDispatcherProperties'
