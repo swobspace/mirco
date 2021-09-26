@@ -1,0 +1,15 @@
+@startuml
+
+!unquoted procedure $destination($alias, $ip="-", $port="-")
+rectangle $alias as "<b>$ip</b>:<i>$port</i>"
+!endprocedure
+'$destination(ch_71_dst_1, cewede, 6001)
+
+'Channel S_ELI_CwdAdtOrm, id=71
+queue ch_71 as "S_ELI_CwdAdtOrm"
+interface ch_71_src as "Channel Reader"
+rectangle ch_71_dst_1 as "<b>cewede</b>:6001"
+ch_71_src --> ch_71
+ch_71 --> ch_71_dst_1
+
+@enduml
