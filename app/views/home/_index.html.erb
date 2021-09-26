@@ -19,8 +19,7 @@
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <td class="text-start"><%= channel_statistic.server %></td>
           <td class="text-start">
-            <%= link_to_if(
-                  can?(:read, channel_statistic.channel),
+            <%= link_to(
                   channel_statistic.channel,
                   server_channel_path(channel_statistic.server,channel_statistic.channel),
                   class: "primary-link")
@@ -38,7 +37,8 @@
                        tstamp: channel_statistic.updated_at,
                        expiration_time: Mirco.warn_threshold.minutes ) %>
           <td class="text-nowrap text-center">
-            <%= show_link channel_statistic %>
+            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary') %>
+
           </td>
         <% end %>
       <% end %>
