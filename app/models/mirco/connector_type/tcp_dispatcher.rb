@@ -14,7 +14,7 @@ module Mirco
 
       def puml(channel_id)
         {
-          alias: "ch_#{channel_id}_dst_#{properties['metaDataId'}",
+          alias: "ch_#{channel_id}_dst_#{properties['metaDataId']}",
           text: "<b>#{remote_address}</b>:#{remote_port}"
         }
       end
