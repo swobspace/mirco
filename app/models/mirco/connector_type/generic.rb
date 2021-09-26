@@ -18,6 +18,10 @@ module Mirco
         properties['class']
       end
 
+      def puml(channel_id)
+        { alias: nil, text: nil }
+      end
+
     private
       def set_variant
         case connector_class

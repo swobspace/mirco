@@ -32,4 +32,11 @@ class Channel < ApplicationRecord
     end
   end
 
+  def puml
+    {
+      alias: "ch_#{id}",
+      text: "#{name}"
+    }
+  end
+
 end
