@@ -52,11 +52,7 @@
         <th><%= t('attributes.destinationConnectors')%>:</th>
         <td>
           <%=
-            if (connectors = @channel.destination_connectors).kind_of? Array
-              render ConnectorComponent.with_collection(connectors)
-            else
-              render ConnectorComponent.new(connector: connectors)
-            end
+            render ConnectorComponent.with_collection(@channel.destination_connectors)
            %>
        </td>
       </tr>
