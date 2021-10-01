@@ -28,6 +28,22 @@
       </table>
     </div>
   <% end %>
+  <% if mc.transformers.any? %>
+    <div class="card-body">
+      <b>Transformers (<%= mc.transformers.size %>)</b>
+      <table class="transformer table table-sm table-borderless">
+        <tbody>
+          <% mc.transformers.each do |trf| %>
+            <tr>
+              <td class="w-25"><%= trf.step %>: </td>
+              <td><%= trf.name %></td>
+              <td><%= trf.type %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
 
 
