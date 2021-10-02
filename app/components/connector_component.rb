@@ -18,8 +18,8 @@ class ConnectorComponent < ViewComponent::Base
     connector.present? && mc.present?
   end
 
-  def formatted(text)
-    helpers.format(text)
+  def formatted(text, options)
+    helpers.format(text, options)
   end
 
 private
