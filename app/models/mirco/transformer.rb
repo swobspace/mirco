@@ -33,6 +33,10 @@ module Mirco
       when 'com.mirth.connect.plugins.javascriptstep.JavaScriptStep'
         hash['script']
       when 'com.mirth.connect.plugins.messagebuilder.MessageBuilderStep'
+        ['mapping', 'messageSegment', 'defaultValue', 'replacements'].map do |attr|
+          "#{attr}: #{hash[attr]}"
+        end.join("\n")
+        
       else
         ""
       end
