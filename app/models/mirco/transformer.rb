@@ -36,7 +36,10 @@ module Mirco
         ['mapping', 'messageSegment', 'defaultValue', 'replacements'].map do |attr|
           "#{attr}: #{hash[attr]}"
         end.join("\n")
-        
+      when 'com.mirth.connect.plugins.mapper.MapperStep'
+        ['mapping', 'variable', 'defaultValue', 'replacements'].map do |attr|
+          "#{attr}: #{hash[attr]}"
+        end.join("\n")
       else
         ""
       end
