@@ -42,11 +42,15 @@
     </div>
   <% end %>
   <% if mc.transformers.any? %>
-    <div class="card-body pb-0">
-      <b>Transformers (<%= mc.transformers.size %>)</b>
+    <div class="card-body pb-0"
+         data-controller="toggle"
+         data-toggle-toggle-class="hidden" id="id5">
+      <span data-action="click->toggle#toggleAll">
+        <b>Transformers (<%= mc.transformers.size %>)</b>
+      </span>
       <% mc.transformers.each do |trf| %>
        <div data data-controller="toggle" data-toggle-toggle-class="hidden">
-        <div class="row m-0"> 
+        <div class="row m-0">
           <span class="col-md-1"><%= trf.step %>: </span>
           <span class="col-md-6 col-xxl-4 text-primary" data-action="click->toggle#toggle"><%= trf.name %></span>
           <span class="col-md-3 col-xxl-2"><%= trf.short_type %></span>
