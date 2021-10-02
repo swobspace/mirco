@@ -16,7 +16,7 @@ module Mirco
     end
 
     def name
-      hash['name']
+      hash['name'] || "no description"
     end
 
     def step
