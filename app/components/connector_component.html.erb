@@ -29,22 +29,32 @@
     </div>
   <% end %>
   <% if mc.filters.any? %>
-    <div class="card-body pb-0">
-      <b>Filters (<%= mc.filters.size %>)</b>
+    <div class="card-body pb-0"
+         data-controller="toggle"
+         data-toggle-toggle-class="hidden">
+      <span data-action="click->toggle#toggleAll">
+        <b>Filters (<%= mc.filters.size %>)</b>
+      </span>
       <% mc.filters.each do |f| %>
+       <div data data-controller="toggle" data-toggle-toggle-class="hidden">
         <div class="row m-0">
           <span class="col-md-1"><%= f.step %>: </span>
-          <span class="col-md-6 col-xxl-4"><%= f.name %></span>
-          <span class="col-md-3 col-xxl-2"><%= f.short_type %></span>
+          <span class="col-md-5 col-xxl-4 text-primary" data-action="click->toggle#toggle"><%= f.name %></span>
+          <span class="col-md-2 col-xxl-1"><%= f.short_type %></span>
           <span class="col-md-2 col-xxl-1"><%= f.operator %></span>
+          <span class="col-md-1 <%=f.enabled %>"><%= t(f.enabled, scope: 'enabled') %></span>
         </div>
+        <div class="ps-3 pe-0 py-2 script_color hidden" data-toggle-target="content">
+          <%= formatted(f.content, style: :pre) %>
+        </div>
+       </div>
       <% end %>
     </div>
   <% end %>
   <% if mc.transformers.any? %>
     <div class="card-body pb-0"
          data-controller="toggle"
-         data-toggle-toggle-class="hidden" id="id5">
+         data-toggle-toggle-class="hidden">
       <span data-action="click->toggle#toggleAll">
         <b>Transformers (<%= mc.transformers.size %>)</b>
       </span>
@@ -52,8 +62,9 @@
        <div data data-controller="toggle" data-toggle-toggle-class="hidden">
         <div class="row m-0">
           <span class="col-md-1"><%= trf.step %>: </span>
-          <span class="col-md-6 col-xxl-4 text-primary" data-action="click->toggle#toggle"><%= trf.name %></span>
-          <span class="col-md-3 col-xxl-2"><%= trf.short_type %></span>
+          <span class="col-md-5 col-xxl-4 text-primary" data-action="click->toggle#toggle"><%= trf.name %></span>
+          <span class="col-md-4 col-xxl-1"><%= trf.short_type %></span>
+          <span class="col-md-1 <%=trf.enabled %>"><%= t(trf.enabled, scope: 'enabled') %></span>
         </div>
         <div class="ps-3 pe-0 py-2 script_color hidden" data-toggle-target="content">
           <%= formatted(trf.content, style: :pre) %>
