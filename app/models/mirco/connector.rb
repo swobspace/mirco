@@ -67,6 +67,9 @@ module Mirco
       @transformers ||= fetch_transformers
     end
 
+    def filters
+      @filters ||= fetch_filters
+    end
 
     def transportName
       hash['transportName']
@@ -98,6 +101,19 @@ module Mirco
           tarry +=  te.map{|t| Mirco::Transformer.new(k,t) }
         else
           tarry << Mirco::Transformer.new(k,te)
+        end
+      end
+      tarry
+    end
+
+    def fetch_filters
+      tarry = []
+      return tarry if filter_elements.nil?
+      filter_elements.each do |k,te|
+        if te.kind_of? Array
+          tarry +=  te.map{|t| Mirco::Filter.new(k,t) }
+        else
+          tarry << Mirco::Filter.new(k,te)
         end
       end
       tarry

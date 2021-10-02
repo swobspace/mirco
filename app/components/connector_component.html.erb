@@ -7,8 +7,8 @@
     </div>
   </div>
   <% if mc.descriptor.any? %>
-    <div class="card-body">
-      <table class="connector table table-sm table-borderless">
+    <div class="card-body pb-0">
+      <table class="connector table table-sm table-borderless mb-0">
         <tbody>
           <% mc.descriptor.each do |k,v| %>
             <tr>
@@ -28,8 +28,21 @@
       </table>
     </div>
   <% end %>
+  <% if mc.filters.any? %>
+    <div class="card-body pb-0">
+      <b>Filters (<%= mc.filters.size %>)</b>
+      <% mc.filters.each do |f| %>
+        <div class="row m-0">
+          <span class="col-md-1"><%= f.step %>: </span>
+          <span class="col-md-6 col-xxl-4"><%= f.name %></span>
+          <span class="col-md-3 col-xxl-2"><%= f.short_type %></span>
+          <span class="col-md-2 col-xxl-1"><%= f.operator %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
   <% if mc.transformers.any? %>
-    <div class="card-body">
+    <div class="card-body pb-0">
       <b>Transformers (<%= mc.transformers.size %>)</b>
       <% mc.transformers.each do |trf| %>
         <div class="row m-0">
@@ -40,6 +53,7 @@
       <% end %>
     </div>
   <% end %>
+  <div class="mb-3"></div>
 </div>
 
 

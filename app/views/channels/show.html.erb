@@ -19,7 +19,7 @@
       <tr>
         <th><%= t('attributes.description')%>:</th>
         <td>
-          <pre><%= @channel.description %></pre>
+          <%= format(@channel.description) %>
         </td>
       </tr>
 

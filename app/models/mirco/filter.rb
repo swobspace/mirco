@@ -1,5 +1,5 @@
 module Mirco
-  class Transformer
+  class Filter
     attr_reader :type, :hash
 
     def initialize(type, hash)
@@ -23,19 +23,13 @@ module Mirco
       hash['sequenceNumber']
     end
 
-    def short_type
-      m = type.match(/.*\.([A-Za-z]+)Step/)
-      m[1]
+    def operator
+      hash['operator']
     end
 
-    def content
-      case type
-      when 'com.mirth.connect.plugins.javascriptstep.JavaScriptStep'
-        hash['script']
-      when 'com.mirth.connect.plugins.messagebuilder.MessageBuilderStep'
-      else
-        ""
-      end
+    def short_type
+      m = type.match(/.*\.([A-Za-z]+)Rule/)
+      m[1]
     end
 
   end
