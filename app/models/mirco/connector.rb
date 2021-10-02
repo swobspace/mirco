@@ -34,7 +34,7 @@ module Mirco
       hash['name']
     end
 
-    def position
+    def meta_data_id
       hash['metaDataId']
     end
 

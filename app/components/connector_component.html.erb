@@ -1,7 +1,7 @@
 <div class="card mb-1">
   <div class="card-header">
     <div class="d-flex justify-content-between">
-      <span class="fw-bolder"><%= mc.name %> </span>
+      <span class="fw-bolder"><%= mc.meta_data_id %>: <%= mc.name %> </span>
       <span class="<%=enabled %>"><%= t(mc.enabled, scope: 'enabled') %></span>
       <span class="text-muted"><%= mc.transportName %></span>
     </div>
@@ -31,17 +31,13 @@
   <% if mc.transformers.any? %>
     <div class="card-body">
       <b>Transformers (<%= mc.transformers.size %>)</b>
-      <table class="transformer table table-sm table-borderless">
-        <tbody>
-          <% mc.transformers.each do |trf| %>
-            <tr>
-              <td class="w-25"><%= trf.step %>: </td>
-              <td><%= trf.name %></td>
-              <td><%= trf.type %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% mc.transformers.each do |trf| %>
+        <div class="row m-0">
+          <span class="col-md-1"><%= trf.step %>: </span>
+          <span class="col-md-6 col-xxl-4"><%= trf.name %></span>
+          <span class="col-md-3 col-xxl-2"><%= trf.short_type %></span>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

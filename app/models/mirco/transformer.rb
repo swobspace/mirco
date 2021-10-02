@@ -23,5 +23,10 @@ module Mirco
       hash['sequenceNumber']
     end
 
+    def short_type
+      m = type.match(/.*\.([A-Za-z]+)Step/)
+      m[1]
+    end
+
   end
 end
