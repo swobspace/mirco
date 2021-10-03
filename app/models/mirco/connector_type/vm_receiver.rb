@@ -5,12 +5,11 @@ module Mirco
         {}
       end
 
-      def puml(channel_id)
-        {
-          type: "interface",
-          alias: "ch_#{channel_id}_src",
-          text: "Channel Reader"
-        }
+      def puml_type
+      end
+
+      def puml_text
+        "Channel Reader"
       end
     end
   end

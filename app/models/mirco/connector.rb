@@ -79,6 +79,13 @@ module Mirco
       hash['version']
     end
 
+    def puml
+      {
+        alias: "src",
+        text: connector_type.puml_text
+      }
+    end
+
     # 
     # complex properties
     #

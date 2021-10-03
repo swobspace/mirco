@@ -18,8 +18,8 @@ module Mirco
         properties['class']
       end
 
-      def puml(channel_id)
-        { type: nil, alias: nil, text: nil }
+      def puml_text
+        "unknown"
       end
 
     private
