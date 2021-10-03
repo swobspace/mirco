@@ -1,10 +1,10 @@
 ' Channel <%= channel.name %>
 ' Definitions
 queue <%= ch_alias %> as "<%= channel.puml[:text] %>"
-interface <%= ch_alias %>_<%= source.puml[:alias] %> as "<%= source.puml[:text] %>"
+<%= source.puml[:type] %> <%= ch_alias %>_<%= source.puml[:alias] %> as "<%= source.puml[:text] %>"
 
 <% destinations.each do |dest| %>
-rectangle <%= ch_alias %>_dst_<%= dest.meta_data_id %> as "<%= dest.puml[:text] %>"
+<%= dest.puml[:type] %> <%= ch_alias %>_dst_<%= dest.meta_data_id %> as "<%= dest.puml[:text] %>"
 <% end %>
 
 ' Graphs
