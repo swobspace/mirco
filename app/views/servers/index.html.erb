@@ -64,6 +64,7 @@
                 <td><%= server.last_check_ok %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
+            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :puml), class: 'btn btn-secondary') %>
             <%= edit_link server %>
             <%= delete_link server %>
           </td>
