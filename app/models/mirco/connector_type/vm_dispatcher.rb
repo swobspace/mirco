@@ -24,7 +24,15 @@ module Mirco
       end
 
       def puml_text
-        "#{channel.name}"
+        if channel.present?
+          "#{channel.name}"
+        else
+          "none"
+        end
+      end
+
+      def destination_channel_id
+        ( channel.present? ) ? channel.id : nil
       end
 
     private

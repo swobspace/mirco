@@ -82,8 +82,8 @@ module Mirco
     def puml
       {
         type: connector_type.puml_type,
-        alias: "src",
-        text: connector_type.puml_text
+        text: connector_type.puml_text,
+        destination_channel_id: connector_type.destination_channel_id
       }
     end
 

@@ -26,6 +26,10 @@ module Mirco
         "unknown"
       end
 
+      def destination_channel_id
+        nil
+      end
+
     private
       def set_variant
         case connector_class

@@ -7,7 +7,7 @@ class ChannelPumlComponent < ViewComponent::Base
   end
 
   private
-  attr_reader :channel, :source, :destinations, :ch_alias
+  attr_reader :channel, :scope, :source, :destinations, :ch_alias
 
   def ch_alias
     channel.puml[:alias]
