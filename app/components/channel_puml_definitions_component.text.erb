@@ -7,9 +7,3 @@ queue <%= ch_alias %> as "<%= channel.puml[:text] %>"
 <%= dest.puml[:type] %> <%= ch_alias %>_dst_<%= dest.meta_data_id %> as "<%= dest.puml[:text] %>"
 <% end %>
 
-' Graphs
-
-<%= ch_alias %>_<%= source.puml[:alias] %> --> <%= ch_alias  %>
-<% destinations.each do |dest| %>
-<%= ch_alias %> --> "<%= dest.meta_data_id %>" <%= ch_alias %>_dst_<%= dest.meta_data_id %>
-<% end %>

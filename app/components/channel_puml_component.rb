@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class ChannelPumlComponent < ViewComponent::Base
-  def initialize(channel:)
+  def initialize(channel:, scope: :channel)
     @channel = channel
+    @scope   = scope
   end
 
   private
@@ -17,7 +18,9 @@ class ChannelPumlComponent < ViewComponent::Base
   end
 
   def destinations
-    @channel.destination_connectors.map{|c| Mirco::Connector.new(c) }
+    @channel.destination_connectors
+    .map{|c| Mirco::Connector.new(c) }
+    .reject{|c| c.enabled == 'false'}
   end
 
 end
