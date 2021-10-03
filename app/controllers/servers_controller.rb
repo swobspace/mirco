@@ -11,7 +11,11 @@ class ServersController < ApplicationController
   # GET /servers/1
   def show
     @server = @server.decorate
-    respond_with(@server)
+    respond_with(@server) do |format|
+      format.puml {
+        render format: :puml, layout: false
+      }
+    end
   end
 
   # GET /servers/new
