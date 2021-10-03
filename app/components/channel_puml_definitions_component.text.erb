@@ -1,0 +1,13 @@
+' Channel <%= channel.name %>
+' Definitions
+queue <%= ch_alias %> as "<%= channel.puml[:text] %>"
+<%= source.puml[:type] %> <%= ch_alias %>_src as "<%= source.puml[:text] %>"
+
+<% destinations.each do |dest| %>
+ <% if (scope == :channel) or dest.puml[:destination_channel_id].nil? %>
+
+  <%= dest.puml[:type] %> <%= ch_alias %>_dst_<%= dest.meta_data_id %> as "<%= dest.puml[:text] %>"
+
+  <% end %>
+<% end %>
+

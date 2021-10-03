@@ -1,0 +1,13 @@
+@startuml
+
+<% @server.channels.each do |channel| %>
+<%= render ChannelPumlDefinitionsComponent.new(channel: channel, scope: :server ) %>
+<% end %>
+
+
+<% @server.channels.each do |channel| %>
+<%= render ChannelPumlGraphsComponent.new(channel: channel, scope: :server ) %>
+<% end %>
+
+@enduml
+

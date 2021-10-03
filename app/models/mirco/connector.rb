@@ -79,6 +79,14 @@ module Mirco
       hash['version']
     end
 
+    def puml
+      {
+        type: connector_type.puml_type,
+        text: connector_type.puml_text,
+        destination_channel_id: connector_type.destination_channel_id
+      }
+    end
+
     # 
     # complex properties
     #

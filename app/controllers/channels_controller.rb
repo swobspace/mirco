@@ -11,7 +11,11 @@ class ChannelsController < ApplicationController
 
   # GET /channels/1
   def show
-    respond_with(@channel)
+    respond_with(@channel) do |format|
+      format.puml {
+        render format: :puml, layout: false
+      }
+    end
   end
 
   def fetch_all

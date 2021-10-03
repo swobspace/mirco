@@ -18,8 +18,16 @@ module Mirco
         properties['class']
       end
 
-      def puml(channel_id)
-        { type: nil, alias: nil, text: nil }
+      def puml_type
+        "rectangle"
+      end
+
+      def puml_text
+        "unknown"
+      end
+
+      def destination_channel_id
+        nil
       end
 
     private
@@ -29,6 +37,8 @@ module Mirco
           Mirco::ConnectorType::TcpReceiver
         when 'com.mirth.connect.connectors.vm.VmReceiverProperties'
           Mirco::ConnectorType::VmReceiver
+        when 'com.mirth.connect.connectors.file.FileReceiverProperties'
+          Mirco::ConnectorType::FileReceiver
         when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
           Mirco::ConnectorType::TcpDispatcher
         when 'com.mirth.connect.connectors.file.FileDispatcherProperties'

@@ -12,14 +12,12 @@ module Mirco
         }
       end
 
-      def puml(channel_id)
-        {
-          type: "rectangle",
-          alias: "ch_#{channel_id}_dst_#{properties['metaDataId']}",
-          text: "<b>#{remote_address}</b>:#{remote_port}"
-        }
+      def puml_text
+        "tcp://#{remote_address}:#{remote_port}".html_safe
       end
+
     private
+
       def remote_address
         properties['remoteAddress']
       end

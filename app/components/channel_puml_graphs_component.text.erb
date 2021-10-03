@@ -1,0 +1,11 @@
+' Channel <%= channel.name %>
+' Graphs
+
+<%= ch_alias %>_src --> <%= ch_alias  %>
+<% destinations.each do |dest| %>
+ <% if (scope == :channel) or dest.puml[:destination_channel_id].nil? %>
+  <%= ch_alias %> --> "<%= dest.meta_data_id %>" <%= ch_alias %>_dst_<%= dest.meta_data_id %> : <%= dest.name %>
+ <% elsif (scope == :server) and dest.puml[:destination_channel_id].present? %>
+  <%= ch_alias %> --> ch_<%= dest.puml[:destination_channel_id] %>_src : <%= dest.name %>
+ <% end %>
+<% end %>
