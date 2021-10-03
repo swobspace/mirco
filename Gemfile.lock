@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobmire
-  revision: 1c9b1f39294d54ad8a61c9090506820f6abeafed
+  revision: d7566644457febd4966595e9fe75371e2b1a55e7
   branch: master
   specs:
     wobmire (0.1.0)
@@ -273,7 +273,7 @@ GEM
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    lockbox (0.6.5)
+    lockbox (0.6.6)
     loofah (2.12.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -300,10 +300,10 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.12.4)
+    nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
