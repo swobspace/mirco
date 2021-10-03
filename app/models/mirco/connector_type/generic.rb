@@ -37,6 +37,8 @@ module Mirco
           Mirco::ConnectorType::TcpReceiver
         when 'com.mirth.connect.connectors.vm.VmReceiverProperties'
           Mirco::ConnectorType::VmReceiver
+        when 'com.mirth.connect.connectors.file.FileReceiverProperties'
+          Mirco::ConnectorType::FileReceiver
         when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
           Mirco::ConnectorType::TcpDispatcher
         when 'com.mirth.connect.connectors.file.FileDispatcherProperties'
