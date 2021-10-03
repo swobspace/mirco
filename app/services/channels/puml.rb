@@ -30,7 +30,7 @@ module Channels
     #   
 
     def call
+     "" 
     end
-
-  private
+  end
 end
