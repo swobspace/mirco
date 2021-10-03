@@ -1,5 +1,11 @@
 = Changelog
 
+=== 0.5.4 / 2021-10-03
+
+----
+* generate puml text for PlantUML charts
+----
+
 === 0.5.3 / 2021-10-03
 
 ----
