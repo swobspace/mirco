@@ -6,6 +6,7 @@ module Mirco
       end
 
       def puml_type
+        "interface"
       end
 
       def puml_text

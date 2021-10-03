@@ -11,14 +11,16 @@ module Mirco
         }
       end
 
-      def puml(channel_id)
-        {
-          type: "interface",
-          alias: "ch_#{channel_id}_src",
-          text: "#{listener_ip}:<b>#{listener_port}</b>"
-        }
+      def puml_type
+        "interface"
       end
+
+      def puml_text
+        "tcp://#{listener_ip}:#{listener_port}"
+      end
+
     private
+
       def listener_ip
         properties['listenerConnectorProperties']['host']
       end

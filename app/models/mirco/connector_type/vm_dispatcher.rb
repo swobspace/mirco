@@ -19,14 +19,14 @@ module Mirco
       #
       # no object definition, only for linking
       #
-      def puml(channel_id)
-        {
-          type: nil,
-          alias: "ch_#{channel.id}_src}",
-          text: nil
-        }
-
+      def puml_type
+        "queue"
       end
+
+      def puml_text
+        "#{channel.name}"
+      end
+
     private
       def channel
         Channel.where(uid: properties['channelId']).first

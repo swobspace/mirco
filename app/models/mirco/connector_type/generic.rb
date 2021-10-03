@@ -18,6 +18,10 @@ module Mirco
         properties['class']
       end
 
+      def puml_type
+        "rectangle"
+      end
+
       def puml_text
         "unknown"
       end
