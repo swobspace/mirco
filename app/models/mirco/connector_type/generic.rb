@@ -18,11 +18,17 @@ module Mirco
         properties['class']
       end
 
+      def puml(channel_id)
+        { type: nil, alias: nil, text: nil }
+      end
+
     private
       def set_variant
         case connector_class
         when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
           Mirco::ConnectorType::TcpReceiver
+        when 'com.mirth.connect.connectors.vm.VmReceiverProperties'
+          Mirco::ConnectorType::VmReceiver
         when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
           Mirco::ConnectorType::TcpDispatcher
         when 'com.mirth.connect.connectors.file.FileDispatcherProperties'

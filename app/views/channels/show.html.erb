@@ -7,6 +7,8 @@
       </h4>
       <div role="toolbar">
         <%= back_link %>
+        <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), server_channel_statistic_path(@server,@channel), class: 'btn btn-secondary') %>
+
         <%= delete_link([@server, @channel]) %>
       </div>
     </div>
@@ -17,7 +19,7 @@
       <tr>
         <th><%= t('attributes.description')%>:</th>
         <td>
-          <pre><%= @channel.description %></pre>
+          <%= format(@channel.description) %>
         </td>
       </tr>
 
@@ -52,11 +54,7 @@
         <th><%= t('attributes.destinationConnectors')%>:</th>
         <td>
           <%=
-            if (connectors = @channel.destination_connectors).kind_of? Array
-              render ConnectorComponent.with_collection(connectors)
-            else
-              render ConnectorComponent.new(connector: connectors)
-            end
+            render ConnectorComponent.with_collection(@channel.destination_connectors)
            %>
        </td>
       </tr>

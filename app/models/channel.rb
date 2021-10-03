@@ -26,10 +26,22 @@ class Channel < ApplicationRecord
 
   def destination_connectors
     if destinationConnectors.present?
-      destinationConnectors['connector']
+      dconns = destinationConnectors['connector']
+      if dconns.kind_of? Array
+        dconns
+      else
+        [dconns]
+      end 
     else
-      nil
+      []
     end
+  end
+
+  def puml
+    {
+      alias: "ch_#{id}",
+      text: "#{name}"
+    }
   end
 
 end

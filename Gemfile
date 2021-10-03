@@ -83,3 +83,4 @@ gem "net-http"
 gem "chartkick", "~> 4.0"
 gem 'uri', '0.10.0'
 gem 'draper'
+gem 'kramdown'
