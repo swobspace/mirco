@@ -15,6 +15,15 @@ class ChannelsController < ApplicationController
       format.puml {
         render format: :puml, layout: false
       }
+      format.svg {
+        puml = render_to_string :show, formats: [ :puml ], layout: false
+        File.write(pumlfile, puml)
+        `/usr/bin/plantuml -tsvg #{pumlfile}`
+        send_file svgfile, :filename => "image",
+                        :disposition => 'inline',
+                        :type => 'image/svg+xml'
+      }
+
     end
   end
 
@@ -55,5 +64,19 @@ private
   def channel_params
     params.require(:channel).permit(:server_id, :uid, :properties)
   end
+
+    # --- file stuff
+
+    def filebase
+      File.join( Rails.root, 'tmp', "server-#{@channel.id}" )
+    end
+
+    def pumlfile
+      "#{filebase}.puml"
+    end
+
+    def svgfile
+      "#{filebase}.svg"
+    end
     
 end

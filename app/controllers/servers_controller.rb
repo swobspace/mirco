@@ -15,6 +15,15 @@ class ServersController < ApplicationController
       format.puml {
         render format: :puml, layout: false
       }
+      format.svg {
+        puml = render_to_string :show, formats: [ :puml ], layout: false
+        File.write(pumlfile, puml)
+        `/usr/bin/plantuml -tsvg #{pumlfile}`
+        send_file svgfile, :filename => "image",
+                        :disposition => 'inline',
+                        :type => 'image/svg+xml'
+
+      }
     end
   end
 
@@ -71,4 +80,19 @@ class ServersController < ApplicationController
         :api_url, :api_user, :api_password, 
         :api_user_has_full_access, :api_verify_ssl)
     end
+
+    # --- file stuff
+
+    def filebase
+      File.join( Rails.root, 'tmp', "server-#{@server.id}" )
+    end
+
+    def pumlfile
+      "#{filebase}.puml"
+    end
+
+    def svgfile
+      "#{filebase}.svg"
+    end
+
 end
