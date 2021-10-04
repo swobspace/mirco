@@ -8,7 +8,7 @@
       <div role="toolbar">
         <%= back_link %>
         <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]), server_channel_statistic_path(@server,@channel), class: 'btn btn-secondary') %>
-        <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_channel_path(@server,@channel, format: :puml), class: 'btn btn-secondary') %>
+        <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_channel_path(@server,@channel, format: :svg), class: 'btn btn-secondary') %>
 
         <%= delete_link([@server, @channel]) %>
       </div>
