@@ -31,7 +31,12 @@
           <td><%= channel.uid %></td>
           <td class="text-owrap">
             <%= show_link [server, channel] %>
-            <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]), channel_statistic_path(channel.channel_statistic), class: 'btn btn-secondary') %>
+            <%= link_to(
+                  raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
+                  channel_statistics_path(channel.channel_statistic),
+                  class: 'btn btn-secondary'
+                ) if channel.channel_statistic.present?
+             %>
             <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_channel_path(server,channel, format: :svg), class: 'btn btn-secondary') %>
             <%= delete_link [server, channel] %>
           </td>
