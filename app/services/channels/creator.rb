@@ -41,7 +41,7 @@ module Channels
     attr_reader :uid, :properties, :server
 
     def fetch_channel
-      server.channels.where(uid: uid).first
+      server.channels.where(server_id: server.id, uid: uid).first
     end
 
   end
