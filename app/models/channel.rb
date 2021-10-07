@@ -1,7 +1,7 @@
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
-  has_many :channel_statistics, dependent: :destroy
+  has_one :channel_statistic, dependent: :destroy
   has_many :channel_counters, dependent: :destroy
 
   # -- configuration
