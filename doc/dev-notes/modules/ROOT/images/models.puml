@@ -51,7 +51,7 @@ class ChannelCounter {
 
 Server "1" -- "*" Channel
 Server "1" - "*" ChannelStatistic
-Channel "1" - "*" ChannelStatistic
+Channel "1" - "1" ChannelStatistic
 ChannelCounter "*" - "1" Server
 ChannelCounter "*" -- "1" Channel
 
