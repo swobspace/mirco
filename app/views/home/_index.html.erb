@@ -32,7 +32,9 @@
           <td class="text-end d-none d-lg-table-cell"><%= ch.sent_last_30min %></td>
           <%= render TdThresholdComponent.new(
                 value: channel_statistic.queued,
-                warning: 10, critical: 50, css: 'text-end'
+                warning: 10, critical: 50,
+                alert: (ch.sent_last_30min < 1),
+                css: 'text-end'
               ) %>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
