@@ -28,6 +28,7 @@ de:
     channel_counters: Channel Counter
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
+    created_at: angelegt am
     deployScript: Deploy Script
     description: Beschreibung
     destinationConnectors: Destination Connectors
