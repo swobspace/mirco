@@ -17,7 +17,7 @@ class ChannelsController < ApplicationController
       }
       format.svg {
         diagram = Mirco::ChannelDiagram.new(@channel)
-        send_file diagram.image(:svg), :filename => "image",
+        send_file diagram.image(:svg), :filename => "#{@channel.server.name}-#{@channel.name}.svg",
                         :disposition => 'inline',
                         :type => 'image/svg+xml'
       }
