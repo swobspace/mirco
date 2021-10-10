@@ -39,12 +39,16 @@ module Mirco
           Mirco::ConnectorType::VmReceiver
         when 'com.mirth.connect.connectors.file.FileReceiverProperties'
           Mirco::ConnectorType::FileReceiver
+        when 'com.mirth.connect.connectors.js.JavaScriptReceiverProperties'
+          Mirco::ConnectorType::JavascriptReceiver
         when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
           Mirco::ConnectorType::TcpDispatcher
         when 'com.mirth.connect.connectors.file.FileDispatcherProperties'
           Mirco::ConnectorType::FileDispatcher
         when 'com.mirth.connect.connectors.vm.VmDispatcherProperties'
           Mirco::ConnectorType::VmDispatcher
+        when 'com.mirth.connect.connectors.js.JavaScriptDispatcherProperties'
+          Mirco::ConnectorType::JavascriptDispatcher
         else
           nil
         end
