@@ -19,6 +19,11 @@ FactoryBot.define do
     uid { `uuid -v 4` }
   end
 
+  factory :channel_counter do
+    channel
+    server
+  end
+
   factory :channel_statistic do
     server
     channel

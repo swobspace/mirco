@@ -15,6 +15,13 @@ class ChannelsController < ApplicationController
       format.puml {
         render format: :puml, layout: false
       }
+      format.svg {
+        diagram = Mirco::ChannelDiagram.new(@channel)
+        send_file diagram.image(:svg), :filename => "#{@channel.server.name}-#{@channel.name}.svg",
+                        :disposition => 'inline',
+                        :type => 'image/svg+xml'
+      }
+
     end
   end
 
@@ -55,5 +62,19 @@ private
   def channel_params
     params.require(:channel).permit(:server_id, :uid, :properties)
   end
+
+    # --- file stuff
+
+    def filebase
+      File.join( Rails.root, 'tmp', "server-#{@channel.id}" )
+    end
+
+    def pumlfile
+      "#{filebase}.puml"
+    end
+
+    def svgfile
+      "#{filebase}.svg"
+    end
     
 end

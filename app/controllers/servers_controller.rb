@@ -15,6 +15,12 @@ class ServersController < ApplicationController
       format.puml {
         render format: :puml, layout: false
       }
+      format.svg {
+        diagram = Mirco::ServerDiagram.new(@server)
+        send_file diagram.image(:svg), :filename => "#{@server.name}.svg",
+                        :disposition => 'inline',
+                        :type => 'image/svg+xml'
+      }
     end
   end
 
@@ -71,4 +77,19 @@ class ServersController < ApplicationController
         :api_url, :api_user, :api_password, 
         :api_user_has_full_access, :api_verify_ssl)
     end
+
+    # --- file stuff
+
+    def filebase
+      File.join( Rails.root, 'tmp', "server-#{@server.id}" )
+    end
+
+    def pumlfile
+      "#{filebase}.puml"
+    end
+
+    def svgfile
+      "#{filebase}.svg"
+    end
+
 end

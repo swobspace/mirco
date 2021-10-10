@@ -1,15 +1,32 @@
 class ChannelDecorator < Draper::Decorator
   delegate_all
 
-  # sc = source connector
-  def sc_transport_name
-    if sc.present?
-      sc['transportName']
-    end
+  def sent_last_30min
+    object.channel_counters
+          .last_30min
+          .increase()
+          .map(&:delta).map(&:to_i).reduce( 0, :+)
   end
 
-  def sc
-    object.sourceConnector
+  def received_last_30min
+    object.channel_counters
+          .last_30min
+          .increase(value: 'received')
+          .map(&:delta).map(&:to_i).reduce( 0, :+)
+  end
+
+  def error_last_30min
+    object.channel_counters
+      .last_30min
+      .increase(value: 'error')
+      .map(&:delta).map(&:to_i).reduce( 0, :+)
+  end
+
+  def filtered_last_30min
+    object.channel_counters
+      .last_30min
+      .increase(value: 'filtered')
+      .map(&:delta).map(&:to_i).reduce( 0, :+)
   end
 
 end

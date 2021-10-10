@@ -1,5 +1,14 @@
 = Changelog
 
+=== 0.5.5 / 2021-10-10
+
+----
+* create svg diagrams from server and single channel (with caching)
+* show alerts: if queued is in warning and or critical an no messages sent 
+  within last 30min
+* bugfixes, cleanups
+----
+
 === 0.5.4 / 2021-10-03
 
 ----

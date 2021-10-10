@@ -1,0 +1,5 @@
+c = Channel.find <xyz>
+c.channel_counters.last_30min.increase().map(&:delta).map(&:to_i).reduce( 0, :+)
+c.channel_counters.last_30min.increase(value: 'received').map(&:delta).map(&:to_i).reduce( 0, :+)
+c.channel_counters.last_30min.increase(value: 'error').map(&:delta).map(&:to_i).reduce( 0, :+)
+c.channel_counters.last_30min.increase(value: 'filtered').map(&:delta).map(&:to_i).reduce( 0, :+)

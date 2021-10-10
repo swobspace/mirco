@@ -1,22 +1,31 @@
 # frozen_string_literal: true
 
 class TdThresholdComponent < ViewComponent::Base
-  def initialize(value:, warning:, critical:, css: "")
+  def initialize(value:, warning:, critical:, alert: false, css: "")
     @value = value.to_i
     @warning = warning.to_i
     @critical = critical.to_i
+    @alert = alert
     @css = css
     @background_color = background_color
   end
 
   private
-  attr_reader :value, :warning, :critical, :css, :background_color
+  attr_reader :value, :warning, :critical, :alert, :css, :background_color
 
   def background_color
     if value >= critical
-      "bg-danger"
+      if alert
+        "bg-alert"
+      else
+        "bg-danger"
+      end
     elsif value >= warning
-      "bg-warning"
+      if alert
+        "bg-alert"
+      else
+        "bg-warning"
+      end
     else
       ""
     end

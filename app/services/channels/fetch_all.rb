@@ -56,6 +56,9 @@ module Channels
         end
       end
 
+      # delete old server diagrams
+      Mirco::ServerDiagram.new(server).delete
+
       return Result.new(success: success, error_messages: errmsgs)
     end
 

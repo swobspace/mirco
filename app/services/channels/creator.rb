@@ -29,6 +29,7 @@ module Channels
         @channel.properties = properties
       end
       if @channel.save 
+        Mirco::ChannelDiagram.new(@channel).delete
         @channel.touch
       else
         Rails.logger.warn("WARN:: could not create or save channel #{@channel.uid}: " +
@@ -41,7 +42,7 @@ module Channels
     attr_reader :uid, :properties, :server
 
     def fetch_channel
-      server.channels.where(uid: uid).first
+      server.channels.where(server_id: server.id, uid: uid).first
     end
 
   end

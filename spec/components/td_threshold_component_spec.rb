@@ -43,6 +43,20 @@ EOT
     )
   end
 
+  it "renders alert if value > :critical and alert-condition = true" do
+    expect(
+      render_inline(
+        TdThresholdComponent.new(value: 99, warning: 5, alert: true, critical: 10)
+      ).to_html
+    ).to include(
+<<-EOT
+<td class="bg-alert">
+  99
+</td>
+EOT
+    )
+  end
+
   it "renders additional css class" do
     expect(
       render_inline(

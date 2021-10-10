@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="237px" preserveAspectRatio="none" style="width:157px;height:237px;background:#FFFFFF;" version="1.1" viewBox="0 0 157 237" width="157px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1jw113fo0ac94" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[97c8b39d9a226dbef67ee7e8ef14f22b]
+entity ch_71-->
+        <path d="M11,103 L145,103 C150,103 150,116.1484 150,116.1484 C150,116.1484 150,129.2969 145,129.2969 L11,129.2969 C6,129.2969 6,116.1484 6,116.1484 C6,116.1484 6,103 11,103 " fill="#FEFECE" filter="url(#f1jw113fo0ac94)" style="stroke:#A80036;stroke-width:1.5;" />
+        <path d="M145,103 C140,103 140,116.1484 140,116.1484 C140,129.2969 145,129.2969 145,129.2969 " fill="none" style="stroke:#A80036;stroke-width:1.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="11" y="120.9951">S_ELI_CwdAdtOrm</text>
+        <!--MD5=[f959411dfe385d9eaa209fd198c545ff]
+entity ch_71_src-->
+        <ellipse cx="78" cy="14" fill="#FEFECE" filter="url(#f1jw113fo0ac94)" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="22.5" y="43.9951">Channel Reader</text>
+        <!--MD5=[d128bf42848684d0b2dd9068739f64d6]
+entity ch_71_dst_1-->
+        <rect fill="#FEFECE" filter="url(#f1jw113fo0ac94)" height="36.2969" style="stroke:#000000;stroke-width:1.5;" width="124" x="16" y="189" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="63" x="26" y="211.9951">cewede</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="89" y="211.9951">:6001</text>
+        <!--MD5=[604d48c119c0be149cac9fa23d116639]
+link ch_71_src to ch_71-->
+        <path d="M78,23.18 C78,39.35 78,75.71 78,97.51 " fill="none" id="ch_71_src-to-ch_71" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="78,102.72,82,93.72,78,97.72,74,93.72,78,102.72" style="stroke:#A80036;stroke-width:1.0;" />
+        <!--MD5=[a5fc32910c7e59c5048896b908ab91c4]
+link ch_71 to ch_71_dst_1-->
+        <path d="M78,129 C78,142.93 78,166.21 78,183.53 " fill="none" id="ch_71-to-ch_71_dst_1" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="78,188.7,82,179.7,78,183.7,74,179.7,78,188.7" style="stroke:#A80036;stroke-width:1.0;" />
+        <!--MD5=[6204bca116d3b170761fca9d8ece371a]
+@startuml
+
+!unquoted procedure $destination($alias, $ip="-", $port="-")
+rectangle $alias as "<b>$ip</b>:<i>$port</i>"
+!endprocedure
+'$destination(ch_71_dst_1, cewede, 6001)
+
+'Channel S_ELI_CwdAdtOrm, id=71
+queue ch_71 as "S_ELI_CwdAdtOrm"
+interface ch_71_src as "Channel Reader"
+rectangle ch_71_dst_1 as "<b>cewede</b>:6001"
+ch_71_src - -> ch_71
+ch_71 - -> ch_71_dst_1
+
+@enduml
+
+@startuml
+
+
+queue ch_71 as "S_ELI_CwdAdtOrm"
+interface ch_71_src as "Channel Reader"
+rectangle ch_71_dst_1 as "<b>cewede</b>:6001"
+ch_71_src - -> ch_71
+ch_71 - -> ch_71_dst_1
+
+@enduml
+
+PlantUML version 1.2021.8(Sat Jun 26 10:20:59 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>

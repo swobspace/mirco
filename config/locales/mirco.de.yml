@@ -28,15 +28,17 @@ de:
     channel_counters: Channel Counter
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
-    error: error
-    exportData: exportData
-    filtered: filtered
-    home: Home
     deployScript: Deploy Script
     description: Beschreibung
     destinationConnectors: Destination Connectors
     displayname: Anzeigename
+    error: error
+    error_last_30min: error (30min)
+    exportData: exportData
+    filtered: filtered
+    filtered_last_30min: filtered (30min)
     givenname: Vorname
+    home: Home
     last_channel_update: Letztes Update der Channels
     last_check: Letzter Check
     last_check_ok: Last OK
@@ -46,9 +48,11 @@ de:
     properties: Eigenschaften
     queued: queued
     received: received
+    received_last_30min: received (30min)
     revision: Revision
     sc_transport_name: transportName
     sent: sent
+    sent_last_30min: sent (30min)
     server: Server
     server_uid: Server UUID
     server_jvm: Server JVM

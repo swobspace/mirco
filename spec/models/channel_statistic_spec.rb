@@ -13,6 +13,8 @@ RSpec.describe ChannelStatistic, type: :model do
     g = FactoryBot.create(:channel_statistic)
     expect(f).to be_valid
     expect(g).to be_valid
+    is_expected.to validate_uniqueness_of(:channel_id)
+    is_expected.to validate_uniqueness_of(:channel_uid).scoped_to(:server_id)
   end
 
 end

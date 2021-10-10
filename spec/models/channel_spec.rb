@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Channel, type: :model do
   it { is_expected.to belong_to(:server) }
-  it { is_expected.to have_many(:channel_statistics).dependent(:destroy) }
+  it { is_expected.to have_one(:channel_statistic).dependent(:destroy) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:uid) }
 
