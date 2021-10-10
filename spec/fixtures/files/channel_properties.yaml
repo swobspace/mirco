@@ -1,0 +1,574 @@
+---
+id: 2fd3d145-e0e3-4342-8585-03594add8846
+name: Tx_to_DMI
+version: 3.8.1
+revision: '7'
+properties:
+  version: 3.8.1
+  encryptData: 'false'
+  resourceIds:
+    class: linked-hash-map
+    entry:
+      string:
+      - Default Resource
+      - "[Default Resource]"
+  initialState: STARTED
+  metaDataColumns:
+    metaDataColumn:
+    - name: SOURCE
+      type: STRING
+      mappingName: mirth_source
+    - name: TYPE
+      type: STRING
+      mappingName: mirth_type
+    - name: FALLNR
+      type: STRING
+      mappingName: fallnr
+    - name: PATNR
+      type: STRING
+      mappingName: patientennr
+  storeAttachments: 'true'
+  messageStorageMode: PRODUCTION
+  attachmentProperties:
+    type: None
+    version: 3.8.1
+    properties: 
+  clearGlobalChannelMap: 'true'
+  removeContentOnCompletion: 'false'
+  removeAttachmentsOnCompletion: 'false'
+  removeOnlyFilteredOnCompletion: 'false'
+description: |-
+  Alle Nachrichten an das zentrale Pegasos-System bei DMI
+  Falls erforderlich, Nachrichten an unterschiedliche Ports via Filter und mehrere virtuelle Destinations aufsplitten
+
+
+  2021-09-30/wob
+  * Metadata FALLNR, PATNR mit Source-Transformer ergänzt
+deployScript: |-
+  // This script executes once when the channel is deployed
+  // You only have access to the globalMap and globalChannelMap here to persist data
+  return;
+nextMetaDataId: '2'
+undeployScript: |-
+  // This script executes once when the channel is undeployed
+  // You only have access to the globalMap and globalChannelMap here to persist data
+  return;
+sourceConnector:
+  mode: SOURCE
+  name: sourceConnector
+  filter:
+    version: 3.8.1
+    elements: 
+  enabled: 'true'
+  version: 3.8.1
+  metaDataId: '0'
+  properties:
+    class: com.mirth.connect.connectors.vm.VmReceiverProperties
+    version: 3.8.1
+    pluginProperties: 
+    sourceConnectorProperties:
+      version: 3.8.1
+      resourceIds:
+        class: linked-hash-map
+        entry:
+          string:
+          - Default Resource
+          - "[Default Resource]"
+      processBatch: 'false'
+      firstResponse: 'false'
+      queueBufferSize: '1000'
+      responseVariable: None
+      processingThreads: '1'
+      respondAfterProcessing: 'true'
+  transformer:
+    version: 3.8.1
+    elements:
+      com.mirth.connect.plugins.mapper.MapperStep:
+      - name: patientennr
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['PID']['PID.3'][0]['PID.3.1'].toString()
+        version: 3.8.1
+        variable: patientennr
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '0'
+      - name: fallnr
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['PV1']['PV1.19']['PV1.19.1'].toString()
+        version: 3.8.1
+        variable: fallnr
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '1'
+      - name: messagetype
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.9']['MSH.9.1'].toString()
+        version: 3.8.1
+        variable: messagetype
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '2'
+      - name: triggerevent
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.9']['MSH.9.2'].toString()
+        version: 3.8.1
+        variable: triggerevent
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '3'
+      - name: sending_application
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.3']['MSH.3.1'].toString()
+        version: 3.8.1
+        variable: sending_application
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '4'
+      - name: sending_facility
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.4']['MSH.4.1'].toString()
+        version: 3.8.1
+        variable: sending_facility
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '5'
+      - name: receiving_facility
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.6']['MSH.6.1'].toString()
+        version: 3.8.1
+        variable: receiving_facility
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '6'
+      - name: receiving_application
+        scope: CHANNEL
+        enabled: 'true'
+        mapping: msg['MSH']['MSH.5']['MSH.5.1'].toString()
+        version: 3.8.1
+        variable: receiving_application
+        defaultValue: 
+        replacements: 
+        sequenceNumber: '7'
+    inboundDataType: HL7V2
+    inboundTemplate: |-
+      TVNIfF5+XCZ8aTEgSVMtT1VUfEVpbjFeMjYxMDAwODk4fHx8MjAyMTA0MjcwODQ3NDR8fEFEVF5B
+      MDFeQURUX0EwMXwyNDAwMTI4fFB8Mi40fHx8QUx8TkV8REVVfHx8fA1FVk58QTAxfDIwMjEwNDI3
+      MDg0NzM4fHx8R2F0ZXdheUlTSHwyMDIxMDQyNzA4NDczOHxFaW4xDVBJRHwxfHwyMTMyMDc4MjNe
+      Xl5FaW4xXlBJfl5eXl5CU058fExpc21hbm4tR3LDpMOfXkhlaWtlIFRhdGphbmFeXl5eXkxeQX5M
+      aXNtYW5uXl5eXl5eQl5BfHwxOTY2MDkyNnxGfHx8QXVmIEFybGVycyAxMV5eTmV1bmtpcmNoZW5e
+      XjY2NTQwXkReSH5eXl5eXl5PfHwwMTU3LTgxMDEyMjMzXlBSTl5QSF5eXl4wMTU3LTgxMDEyMjMz
+      fl5QUk5eRlheXl5efl5QUk5eQ1BeXl5efl5ORVReWC40MDBeXl5efF5XUE5eUEheXl5efHx8RVZ8
+      fHx8fHxOZXVua2lyY2hlbnxOfHx8fHx8Tnx8fDIwMjEwNDI3MDg0NzM4fHx8fHwNUFYxfDF8SXxD
+      SElSXl5eQzFeXk58QXVmbm5hY2hWb3J8fFpQQV5eXkMxXl5OfF5eXl5efDY0NjYwODAxMV5CbGVz
+      c2luZ15GcmllZGVyXl5eRHIuIG1lZC5eXkxBTlJeXl5eXl43MzA4NjIyMDB8Nzc5NDMwXkhlbm5e
+      U2ViYXN0aWFuXl5eRHIuIG1lZC5eXkkxREJeXl5eXl58QkF8fEp8fHx8fF5eXl5efHwyMTM0NDk4
+      MzleXl5FaW4xXlZOfFN0YW5kYXJkfHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8MjAyMTA0MjcwODQ2
+      MDB8fHx8fHx8fA1JTjF8MXxUS0teIiJ8MTA5Mzc3NTA1Xl5eVEtLIEJpZWxlZmVsZF5OSUl+NDEx
+      OTg2Xl5eVEtLIEJpZWxlZmVsZF5OSUlQfFRLSyBCaWVsZWZlbGR8UG9zdGZhY2ggMTAyODEzXl5C
+      aWVsZWZlbGReXjMzNTI4fHwwNDAvNDYwNjYxNTgyMHx8fHx8MjAxMDAyMDF8OTk5OTEyMzF8fE1e
+      MXx8fHxeXl5eXnx8fHx8fHx8fHx8fHx8fHx8WTE1Njg5OTc5Mnx8fHx8fHx8fHx8fHxZMTU2ODk5
+      NzkyXl5eXl5eXjA5MjENWkJFfDg0MzIxOHwyMDIxMDQyNzA4NDYwMHx8QQ==
+    outboundDataType: HL7V2
+    outboundTemplate:
+      encoding: base64
+    inboundProperties:
+      class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+      version: 3.8.1
+      batchProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+        version: 3.8.1
+        splitType: MSH_Segment
+        batchScript: 
+      serializationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+        version: 3.8.1
+        stripNamespaces: 'true'
+        useStrictParser: 'false'
+        segmentDelimiter: "\\r"
+        convertLineBreaks: 'true'
+        handleRepetitions: 'true'
+        handleSubcomponents: 'true'
+        useStrictValidation: 'false'
+      deserializationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+        version: 3.8.1
+        useStrictParser: 'false'
+        segmentDelimiter: "\\r"
+        useStrictValidation: 'false'
+      responseGenerationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+        version: 3.8.1
+        dateFormat: yyyyMMddHHmmss.SSS
+        errorACKCode: AE
+        msh15ACKAccept: 'false'
+        errorACKMessage: An Error Occurred Processing Message.
+        rejectedACKCode: AR
+        segmentDelimiter: "\\r"
+        successfulACKCode: AA
+        rejectedACKMessage: Message Rejected.
+        successfulACKMessage: 
+      responseValidationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+        version: 3.8.1
+        errorACKCode: AE,CE
+        rejectedACKCode: AR,CR
+        successfulACKCode: AA,CA
+        originalIdMapVariable: 
+        originalMessageControlId: Destination_Encoded
+        validateMessageControlId: 'true'
+    outboundProperties:
+      class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+      version: 3.8.1
+      batchProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+        version: 3.8.1
+        splitType: MSH_Segment
+        batchScript: 
+      serializationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+        version: 3.8.1
+        stripNamespaces: 'true'
+        useStrictParser: 'false'
+        segmentDelimiter: "\\r"
+        convertLineBreaks: 'true'
+        handleRepetitions: 'true'
+        handleSubcomponents: 'true'
+        useStrictValidation: 'false'
+      deserializationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+        version: 3.8.1
+        useStrictParser: 'false'
+        segmentDelimiter: "\\r"
+        useStrictValidation: 'false'
+      responseGenerationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+        version: 3.8.1
+        dateFormat: yyyyMMddHHmmss.SSS
+        errorACKCode: AE
+        msh15ACKAccept: 'false'
+        errorACKMessage: An Error Occurred Processing Message.
+        rejectedACKCode: AR
+        segmentDelimiter: "\\r"
+        successfulACKCode: AA
+        rejectedACKMessage: Message Rejected.
+        successfulACKMessage: 
+      responseValidationProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+        version: 3.8.1
+        errorACKCode: AE,CE
+        rejectedACKCode: AR,CR
+        successfulACKCode: AA,CA
+        originalIdMapVariable: 
+        originalMessageControlId: Destination_Encoded
+        validateMessageControlId: 'true'
+  transportName: Channel Reader
+  waitForPrevious: 'true'
+preprocessingScript: |-
+  // Modify the message variable below to pre process data
+  return message;
+postprocessingScript: |-
+  // This script executes once after a message has been processed
+  // Responses returned from here will be stored as "Postprocessor" in the response map
+  return;
+destinationConnectors:
+  connector:
+    mode: DESTINATION
+    name: DMI / Pegasos (ADT)
+    filter:
+      version: 3.8.1
+      elements: 
+    enabled: 'true'
+    version: 3.8.1
+    metaDataId: '1'
+    properties:
+      class: com.mirth.connect.connectors.tcp.TcpDispatcherProperties
+      version: 3.8.1
+      template: "${message.encodedData}"
+      localPort: '0'
+      bufferSize: '65536'
+      remotePort: '8181'
+      sendTimeout: '30000'
+      localAddress: 0.0.0.0
+      remoteAddress: 192.168.225.206
+      dataTypeBinary: 'false'
+      ignoreResponse: 'false'
+      charsetEncoding: DEFAULT_ENCODING
+      checkRemoteHost: 'false'
+      responseTimeout: '5000'
+      pluginProperties: 
+      keepConnectionOpen: 'true'
+      overrideLocalBinding: 'false'
+      queueOnResponseTimeout: 'true'
+      transmissionModeProperties:
+        class: com.mirth.connect.plugins.mllpmode.MLLPModeProperties
+        ackBytes: '06'
+        nackBytes: '15'
+        useMLLPv2: 'false'
+        maxRetries: '2'
+        pluginPointName: MLLP
+        endOfMessageBytes: 1C0D
+        startOfMessageBytes: 0B
+      destinationConnectorProperties:
+        rotate: 'false'
+        version: 3.8.1
+        sendFirst: 'false'
+        retryCount: '0'
+        resourceIds:
+          class: linked-hash-map
+          entry:
+            string:
+            - Default Resource
+            - "[Default Resource]"
+        threadCount: '1'
+        queueEnabled: 'true'
+        queueBufferSize: '1000'
+        validateResponse: 'true'
+        regenerateTemplate: 'false'
+        reattachAttachments: 'true'
+        retryIntervalMillis: '10000'
+        includeFilterTransformer: 'false'
+        threadAssignmentVariable: 
+    transformer:
+      version: 3.8.1
+      elements:
+        com.mirth.connect.plugins.messagebuilder.MessageBuilderStep:
+        - name: 'MSH-4.1: Einr1 durch BNA ersetzen'
+          enabled: 'true'
+          mapping: "'BNA'"
+          version: 3.8.1
+          defaultValue: 
+          replacements: 
+          messageSegment: msg['MSH']['MSH.4']['MSH.4.1']
+          sequenceNumber: '0'
+        - name: 'PID-3.4: Einr1 durch BNA ersetzen.'
+          enabled: 'true'
+          mapping: "'BNA'"
+          version: 3.8.1
+          defaultValue: 
+          replacements: 
+          messageSegment: msg['PID']['PID.3']['PID.3.4']
+          sequenceNumber: '1'
+        - name: 'PV1-19.4: Einr1 durch BNA ersetzen'
+          enabled: 'true'
+          mapping: "'BNA'"
+          version: 3.8.1
+          defaultValue: 
+          replacements: 
+          messageSegment: msg['PV1']['PV1.19']['PV1.19.4']
+          sequenceNumber: '2'
+      inboundDataType: HL7V2
+      inboundTemplate: |-
+        TVNIfF5+XCZ8aU1lZE9uZV5CVFN8RWluMV4yNjA3MjAyMzh8TUlSVEh8fDIwMjEwMjE1MDc0ODI1
+        fDEzOTY0MjAxfEFEVF5BMDR8NjE0MDcwfFB8Mi40fHx8QUx8TkUNRVZOfEEwNHwyMDIxMDIxNTA3
+        NDgyNXx8fEdhdGV3YXlJU0h8MjAyMTAyMTUwNzQ4MjUNUElEfDF8fDEzNjAzNDQwN15eXkVpbjFe
+        UEl8fEp1bmdtYW5uXkJyaWdpdHRlXl5eXl5MXkF+UmV1dGVyXl5eXl5eQl5BfHwxOTM0MDcxOHxG
+        fHx8U2NodWxzdHIuIDg4Xl5IZXJtZXNrZWlsXl41NDQxMV5ERV5Ifl5eXl5eREVeT3x8MDY1MDMt
+        ODAwMzMxXlBSTl5QSF5eXl4wNjUwMzgwMDMzMX5eUFJOXkZYfl5QUk5eQ1B+Xk5FVF5YLjQwMHxe
+        V1BOXlBIfHx8Ukt8fHx8fHxTYWFyYnLDvGNrZW58Tnx8REV8fHx8Tnx8fDIwMjEwMjE1MDc0ODEx
+        DVBWMXwxfE98MTM2Vk5eXl4xMzZJQV5eTnxWQnx8Xl5eXl5OfHw5OTA3ODQyMDNeV2FnZW5lcl5N
+        YXJ0aW5hXl5eRHIuIG1lZC5eXkxBTlJeXl5eXl41MDc5MDMxMDB8OTkwNzg0MjAzXldhZ2VuZXJe
+        TWFydGluYV5eXkRyLiBtZWQuXl5MQU5SXl5eXl5eNTA3OTAzMTAwfFZJQXx8Snx8fHx8fHwxMzYz
+        NjU5NjVeXl5FaW4xXlZOfGFtYk5vcm1hbHx8fHxLfHx8fHx8fHx8fHx8fHx8fHx8fHwyMDIxMDIx
+        MjEwMjgwMA1QVjJ8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHxODUlOMXwxfFZB
+        S3wxMDE1NzAxMDReXl5IRUsgSGFtYnVyZ15OSUl+NDAzMzY3Xl5eSEVLIEhhbWJ1cmdeTklJUHxI
+        RUsgSGFtYnVyZ3xXYW5kc2Jla2VyIFpvbGxzdHJhc3NlICA4Mi04NF5eSGFtYnVyZ15eMjIwNDFe
+        RHx8MDQwLzY1Njk2MHx8fHx8MTkzNDA3MTh8MjAyMjA2MzB8fFJeMXx8fDE5MzQwNzE4fFNjaHVs
+        c3RyLiA4OF5eSGVybWVza2VpbF5eNTQ0MTFeRHx8fHx8fHx8fHx8fHx8fHx8UTQ5MTIwMTY1M3x8
+        fHx8fHx8fHx8fHxRNDkxMjAxNjUzDVpCRXw3MjYxNTl8MjAyMTAyMTIxMDI4MDB8fEE=
+      outboundDataType: HL7V2
+      outboundTemplate:
+        encoding: base64
+      inboundProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+        version: 3.8.1
+        batchProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+          version: 3.8.1
+          splitType: MSH_Segment
+          batchScript: 
+        serializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+          version: 3.8.1
+          stripNamespaces: 'true'
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          convertLineBreaks: 'true'
+          handleRepetitions: 'true'
+          handleSubcomponents: 'true'
+          useStrictValidation: 'false'
+        deserializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+          version: 3.8.1
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          useStrictValidation: 'false'
+        responseGenerationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+          version: 3.8.1
+          dateFormat: yyyyMMddHHmmss.SSS
+          errorACKCode: AE
+          msh15ACKAccept: 'false'
+          errorACKMessage: An Error Occurred Processing Message.
+          rejectedACKCode: AR
+          segmentDelimiter: "\\r"
+          successfulACKCode: AA
+          rejectedACKMessage: Message Rejected.
+          successfulACKMessage: 
+        responseValidationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+          version: 3.8.1
+          errorACKCode: AE,CE
+          rejectedACKCode: AR,CR
+          successfulACKCode: AA,CA
+          originalIdMapVariable: 
+          originalMessageControlId: Destination_Encoded
+          validateMessageControlId: 'true'
+      outboundProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+        version: 3.8.1
+        batchProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+          version: 3.8.1
+          splitType: MSH_Segment
+          batchScript: 
+        serializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+          version: 3.8.1
+          stripNamespaces: 'true'
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          convertLineBreaks: 'true'
+          handleRepetitions: 'true'
+          handleSubcomponents: 'true'
+          useStrictValidation: 'false'
+        deserializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+          version: 3.8.1
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          useStrictValidation: 'false'
+        responseGenerationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+          version: 3.8.1
+          dateFormat: yyyyMMddHHmmss.SSS
+          errorACKCode: AE
+          msh15ACKAccept: 'false'
+          errorACKMessage: An Error Occurred Processing Message.
+          rejectedACKCode: AR
+          segmentDelimiter: "\\r"
+          successfulACKCode: AA
+          rejectedACKMessage: Message Rejected.
+          successfulACKMessage: 
+        responseValidationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+          version: 3.8.1
+          errorACKCode: AE,CE
+          rejectedACKCode: AR,CR
+          successfulACKCode: AA,CA
+          originalIdMapVariable: 
+          originalMessageControlId: Destination_Encoded
+          validateMessageControlId: 'true'
+    transportName: TCP Sender
+    waitForPrevious: 'true'
+    responseTransformer:
+      version: 3.8.1
+      elements: 
+      inboundDataType: HL7V2
+      outboundDataType: HL7V2
+      inboundProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+        version: 3.8.1
+        batchProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+          version: 3.8.1
+          splitType: MSH_Segment
+          batchScript: 
+        serializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+          version: 3.8.1
+          stripNamespaces: 'true'
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          convertLineBreaks: 'true'
+          handleRepetitions: 'true'
+          handleSubcomponents: 'true'
+          useStrictValidation: 'false'
+        deserializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+          version: 3.8.1
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          useStrictValidation: 'false'
+        responseGenerationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+          version: 3.8.1
+          dateFormat: yyyyMMddHHmmss.SSS
+          errorACKCode: AE
+          msh15ACKAccept: 'false'
+          errorACKMessage: An Error Occurred Processing Message.
+          rejectedACKCode: AR
+          segmentDelimiter: "\\r"
+          successfulACKCode: AA
+          rejectedACKMessage: Message Rejected.
+          successfulACKMessage: 
+        responseValidationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+          version: 3.8.1
+          errorACKCode: AE,CE
+          rejectedACKCode: AR,CR
+          successfulACKCode: AA,CA
+          originalIdMapVariable: 
+          originalMessageControlId: Destination_Encoded
+          validateMessageControlId: 'true'
+      outboundProperties:
+        class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DataTypeProperties
+        version: 3.8.1
+        batchProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2BatchProperties
+          version: 3.8.1
+          splitType: MSH_Segment
+          batchScript: 
+        serializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2SerializationProperties
+          version: 3.8.1
+          stripNamespaces: 'true'
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          convertLineBreaks: 'true'
+          handleRepetitions: 'true'
+          handleSubcomponents: 'true'
+          useStrictValidation: 'false'
+        deserializationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2DeserializationProperties
+          version: 3.8.1
+          useStrictParser: 'false'
+          segmentDelimiter: "\\r"
+          useStrictValidation: 'false'
+        responseGenerationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseGenerationProperties
+          version: 3.8.1
+          dateFormat: yyyyMMddHHmmss.SSS
+          errorACKCode: AE
+          msh15ACKAccept: 'false'
+          errorACKMessage: An Error Occurred Processing Message.
+          rejectedACKCode: AR
+          segmentDelimiter: "\\r"
+          successfulACKCode: AA
+          rejectedACKMessage: Message Rejected.
+          successfulACKMessage: 
+        responseValidationProperties:
+          class: com.mirth.connect.plugins.datatypes.hl7v2.HL7v2ResponseValidationProperties
+          version: 3.8.1
+          errorACKCode: AE,CE
+          rejectedACKCode: AR,CR
+          successfulACKCode: AA,CA
+          originalIdMapVariable: 
+          originalMessageControlId: Destination_Encoded
+          validateMessageControlId: 'true'
