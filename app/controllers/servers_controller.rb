@@ -16,13 +16,10 @@ class ServersController < ApplicationController
         render format: :puml, layout: false
       }
       format.svg {
-        puml = render_to_string :show, formats: [ :puml ], layout: false
-        File.write(pumlfile, puml)
-        `/usr/bin/plantuml -tsvg #{pumlfile}`
-        send_file svgfile, :filename => "image",
+        diagram = Mirco::ServerDiagram.new(@server)
+        send_file diagram.image(:svg), :filename => "#{@server.name}.svg",
                         :disposition => 'inline',
                         :type => 'image/svg+xml'
-
       }
     end
   end
