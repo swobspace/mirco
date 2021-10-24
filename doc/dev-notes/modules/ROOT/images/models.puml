@@ -49,10 +49,30 @@ class ChannelCounter {
   queued: integer
 }
 
+class Alert {
+  channel_id
+  server_id
+  type: string : alert, recovery
+  message: text
+}
+
+class Note {
+  channel_id
+  server_id
+  user_id
+  message: text
+  type: string : ack, mail
+}
+
 Server "1" -- "*" Channel
 Server "1" - "*" ChannelStatistic
 Channel "1" - "1" ChannelStatistic
 ChannelCounter "*" - "1" Server
 ChannelCounter "*" -- "1" Channel
+Server "1" -- "*" Alert
+Channel "0..1" -- "*" Alert
+Server "1" -- "*" Note
+Channel "0..1" -- "*" Note
+
 
 @enduml
