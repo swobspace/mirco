@@ -3,15 +3,15 @@ require "rails_helper"
 RSpec.describe Channels::AlertsController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/channels/88/alerts").to route_to("channels/alerts#index", server_id: "88")
+      expect(get: "/channels/88/alerts").to route_to("channels/alerts#index", channel_id: "88")
     end
 
     it "routes to #new" do
-      expect(get: "/channels/88/alerts/new").to route_to("/channels/alerts#show", id: "new", server_id: "88")
+      expect(get: "/channels/88/alerts/new").to route_to("channels/alerts#show", id: "new", channel_id: "88")
     end
 
     it "routes to #show" do
-      expect(get: "/channels/88/alerts/1").to route_to("/channels/alerts#show", id: "1", server_id: "88")
+      expect(get: "/channels/88/alerts/1").to route_to("channels/alerts#show", id: "1", channel_id: "88")
     end
 
     it "routes to #edit" do

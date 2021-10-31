@@ -10,6 +10,12 @@ Rails.application.routes.draw do
       get :current_sent
     end
   end
+  resources :channels, only: [:index, :show, :destroy] do
+    collection do
+      post :fetch_all
+    end
+    resources :alerts, only: [:index, :show], module: :channels
+  end
   resources :servers do
     member do
       patch :update_properties
