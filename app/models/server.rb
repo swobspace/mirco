@@ -1,6 +1,7 @@
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
+  has_many :alerts, dependent: :destroy
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy

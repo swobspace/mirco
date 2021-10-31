@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Server, type: :model do
+  it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:channels).dependent(:restrict_with_error) }
   it { is_expected.to have_many(:channel_statistics).dependent(:restrict_with_error) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }

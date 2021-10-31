@@ -11,6 +11,7 @@ de:
 
   activerecord:
     models:
+      alert: alert
       channel: Channel
       channel_counter: Channel Counter
       channel_statistic: Channel Statistik
@@ -19,6 +20,7 @@ de:
 
   attributes:
     action: Aktion
+    alert: alert
     api_url: API Url
     api_user: API User
     api_password: API Passwort
@@ -43,6 +45,7 @@ de:
     last_channel_update: Letztes Update der Channels
     last_check: Letzter Check
     last_check_ok: Last OK
+    message: Nachricht
     name: Name
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script
@@ -62,6 +65,8 @@ de:
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
+    timestamp: Wann?
+    type: Typ
     uid: UID
     undeployScript: Undeploy Script
     updated_at: zuletzt aktualisiert
@@ -69,12 +74,15 @@ de:
     version: Version
 
   controller:
+    alerts: Alerts
     channels: Channels
+    channels/alerts: Alerts
     channels/channel_counters: Channel Counters
     channel_statistics: Channel Statistiken
     channel_counters: Channel Counters
     home: Home
     servers: Server
+    servers/alerts: Alerts
     servers/channel_statistics: Channel Statistiken (Server)
     users: Benutzer
 

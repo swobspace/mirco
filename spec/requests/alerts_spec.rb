@@ -13,16 +13,19 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/alerts", type: :request do
+  let(:server) { FactoryBot.create(:server, name: "MyServer") }
+  let(:channel) { FactoryBot.create(:channel, server: server, name: "MyChannel") }
   
-  # Alert. As you add validations to Alert, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{
+    server_id: server.id,
+    channel_id: channel.id,
+    type: 'alert',
+    message: "some special stuff"
+  }}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do

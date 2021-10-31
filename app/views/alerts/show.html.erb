@@ -24,13 +24,15 @@
         <th><%= t('attributes.message')%>:</th>
         <td><%= @alert.message %></td>
       </tr>
+
+      <tr>
+        <th><%= t('attributes.timestamp')%>:</th>
+        <td><%= @alert.created_at.localtime.to_formatted_s(:db) %></td>
+      </tr>
         </table>
 
     <div role="toolbar">
       <%= back_link %>
-      <%= edit_link(@alert) %>
-      <%= delete_link(@alert) %>
-      <%= new_link Alert %>
     </div>
   </div>
 </div>

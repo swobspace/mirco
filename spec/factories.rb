@@ -7,6 +7,13 @@ FactoryBot.define do
     "mail_#{n}@example.net"
   end
 
+  factory :alert do
+    server
+    channel
+    type { "alert" }
+    message { "some text" }
+  end
+
   factory :server do
     name { generate(:aname) }
     trait :with_uid do
