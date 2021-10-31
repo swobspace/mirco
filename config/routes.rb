@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alerts, only: [:index, :show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: [:show, :index] do
     member do
@@ -13,10 +14,12 @@ Rails.application.routes.draw do
     member do
       patch :update_properties
     end
+    resources :alerts, only: [:index, :show], module: :servers
     resources :channels, only: [:index, :show, :destroy] do
       collection do
         post :fetch_all
       end
+      resources :alerts, only: [:index, :show], module: :channels
     end
     resources :channel_statistics, only: [:index, :show], module: :servers do
       collection do
