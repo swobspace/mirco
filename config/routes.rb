@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notes
   resources :alerts, only: [:index, :show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: [:show, :index] do

@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.note') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.server')%>:</th>
+        <td><%= @note.server %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.channel')%>:</th>
+        <td><%= @note.channel %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.user')%>:</th>
+        <td><%= @note.user %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.type')%>:</th>
+        <td><%= @note.type %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@note) %>
+      <%= delete_link(@note) %>
+      <%= new_link Note %>
+    </div>
+  </div>
+</div>
