@@ -255,9 +255,36 @@ end</code></pre>
   server:belongs_to \
   channel:belongs_to \
   user:belongs_to \
-  message:text \
   type:string:index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>acknowledge</code>, <code>mail</code>, <code>note</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock bash">
+<div class="title">Install ActionText</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/rails action_text:install</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">app/models/note.rb</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Note &lt; ApplicationRecord
+  has_rich_text :message
+end</code></pre>
 </div>
 </div>
 </div>

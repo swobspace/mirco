@@ -101,7 +101,6 @@ bin/rails g scaffold Note \
   server:belongs_to \
   channel:belongs_to \
   user:belongs_to \
-  message:text \
   type:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
@@ -111,3 +110,17 @@ bin/rails g scaffold Note \
 |type
 a|`acknowledge`, `mail`, `note`
 |===
+
+.Install ActionText
+[source.bash]
+----
+bin/rails action_text:install
+----
+
+.app/models/note.rb
+[source,ruby]
+----
+class Note < ApplicationRecord
+  has_rich_text :message
+end
+----

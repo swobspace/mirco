@@ -18,11 +18,6 @@ class Server  {
   last_check: timestamp
   last_check_ok: timestamp
 }
-note right of Server
-  api_user_has_full_access = false
-  for read only access to prevent
-  authentication failures
-end note
 
 class Channel {
   uid: string
@@ -60,7 +55,6 @@ class Note {
   channel_id
   server_id
   user_id
-  message: text
   type: string : ack, mail
 }
 
