@@ -8,6 +8,7 @@ de:
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
     new_server: Neuer Server
+    for: für
 
   activerecord:
     models:

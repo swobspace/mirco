@@ -25,7 +25,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = @current_user.notes.build(note_params.merge(fix_note_params))
 
     @note.save
     respond_with(@note)
@@ -51,6 +51,14 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:server_id, :channel_id, :user_id, :type, :message)
+      params.require(:note).permit(:channel_id, :server_id, :message)
+    end
+
+    def fix_note_params
+      { 
+        type: 'note',
+        channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
+        server_id:  (@notable.kind_of?(Channel) ? @notable.server : @notable.id),
+      }
     end
 end

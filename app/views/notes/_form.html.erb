@@ -1,15 +1,22 @@
 <div class="container">
   <%= simple_form_for([@notable, @note],
-    html: { class: 'form-horizontal card' }) do |f| %>
+    html: { class: 'card' }) do |f| %>
 
     <div class="card-header">
-      <div><%= form_legend %></div>
-      <div><%= @notable %></div>
+      <div class="text-muted">
+        <span><%= t('activerecord.models.note') %> <%= t('mirco.for') %></span>
+      </div>
+      <h5 class="card-title">
+        <% if @notable.kind_of? Channel %>
+          <span><%= @notable.server %>::<%= @notable %></span>
+        <% else %>
+          <span><%= @notable %></span>
+        <% end %>
+      </h5>
     </div>
     <div class="card-body">
-      <%= f.rich_text_area :message %>
-      <%= f.input :type, value: 'note', readonly: true
-	 %>
+      <%= f.input :message, as: :rich_text_area
+       %>
 
       <%= f.button :submit, class: 'btn btn-primary' %>
       <%= cancel_button %>
