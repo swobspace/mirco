@@ -32,9 +32,17 @@ FactoryBot.define do
   end
 
   factory :channel_statistic do
-    server
-    channel
+    association :server
+    association :channel
     server_uid { `uuid -v 4` }
     channel_uid { `uuid -v 4` }
+  end
+
+  factory :note do
+    association :server
+    association :channel
+    association :user
+    type { "acknowledge" }
+    message { "some text" }
   end
 end
