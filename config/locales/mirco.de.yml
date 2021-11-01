@@ -13,9 +13,12 @@ de:
     models:
       alert: alert
       channel: Channel
+      channels/note: Notizen
       channel_counter: Channel Counter
       channel_statistic: Channel Statistik
+      note: Notizen
       server: Server
+      servers/note: Notizen
       user: User
 
   attributes:
@@ -47,6 +50,7 @@ de:
     last_check_ok: Last OK
     message: Nachricht
     name: Name
+    note: Notiz
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script
     properties: Eigenschaften
@@ -78,12 +82,15 @@ de:
     channels: Channels
     channels/alerts: Alerts
     channels/channel_counters: Channel Counters
+    channels/notes: Notizen
     channel_statistics: Channel Statistiken
     channel_counters: Channel Counters
     home: Home
+    notes: Notizen
     servers: Server
     servers/alerts: Alerts
     servers/channel_statistics: Channel Statistiken (Server)
+    servers/notes: Notizen
     users: Benutzer
 
   flash:

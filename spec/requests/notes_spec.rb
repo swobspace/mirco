@@ -13,16 +13,26 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/notes", type: :request do
+  let(:server) { FactoryBot.create(:server, name: "MyServer") }
+  let(:channel) { FactoryBot.create(:channel, server: server, name: "MyChannel") }
+  let(:user) { FactoryBot.create(:user) }
   
-  # Note. As you add validations to Note, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{
+    server_id: server.id,
+    channel_id: channel.id,
+    type: 'acknowledge',
+    message: "some special stuff",
+    user_id: user.id
+  }}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) {{
+    server_id: nil,
+    user_id: nil
+  }}
+
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -85,15 +95,15 @@ RSpec.describe "/notes", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) {{
+        message: "some other text"
+      }}
 
       it "updates the requested note" do
         note = Note.create! valid_attributes
         patch note_url(note), params: { note: new_attributes }
         note.reload
-        skip("Add assertions for updated state")
+        expect(note.message.to_plain_text).to eq("some other text")
       end
 
       it "redirects to the note" do
