@@ -36,7 +36,7 @@
             <%= show_link [server, channel] %>
             <%= link_to(
                   raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
-                  channel_statistics_path(channel.channel_statistic),
+                  channel_statistic_path(channel.channel_statistic),
                   class: 'btn btn-secondary'
                 ) if channel.channel_statistic.present?
              %>
