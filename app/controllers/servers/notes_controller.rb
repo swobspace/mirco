@@ -7,8 +7,5 @@ private
     @notable = Server.find(params[:server_id])
   end
 
-  def location
-    server_path(@notable)
-  end
 end
 

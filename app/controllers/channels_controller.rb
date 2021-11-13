@@ -40,7 +40,7 @@ class ChannelsController < ApplicationController
   # DELETE /channels/1
   def destroy
     @channel.destroy
-    respond_with(@channel, location: @server)
+    respond_with(@channel, location: @channel.server)
   end
 
 private
@@ -52,10 +52,6 @@ private
 
   def set_server
     @server = Server.find(params[:server_id])
-  end
-
-  def add_breadcrumb_show
-    add_breadcrumb_for([@server, @channel])
   end
 
   # Only allow a trusted parameter "white list" through.

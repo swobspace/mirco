@@ -17,6 +17,7 @@
             <th><%= t('attributes.created_at') %></th>
             <th><%= t('attributes.server') %></th>
             <th><%= t('attributes.channel') %></th>
+            <th><%= t('attributes.message') %></th>
             <th><%= t('attributes.user') %></th>
             <th><%= t('attributes.type') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
@@ -24,6 +25,7 @@
     </thead>
     <tfoot>
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -38,6 +40,7 @@
                 <td><%= note.created_at.localtime.to_formatted_s(:db) %></td>
                 <td><%= note.server %></td>
                 <td><%= note.channel %></td>
+                <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
                 <td><%= note.user %></td>
                 <td><%= note.type %></td>
                 <td class="text-nowrap">

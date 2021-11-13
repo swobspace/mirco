@@ -4,7 +4,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = @notable.notes
     respond_with(@notes)
   end
 
@@ -25,22 +25,31 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = @current_user.notes.build(note_params.merge(fix_note_params))
+    newparams = note_params.merge(fix_note_params)
+    Rails.logger.debug("DEBUG:: note params: #{newparams.inspect}")
+    @note = @current_user.notes.build(newparams)
+    # @note = @current_user.notes.build(note_params.merge(fix_note_params))
 
-    @note.save
-    respond_with(@note)
+    if @note.save
+      respond_with(@note, location: location)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /notes/1
   def update
-    @note.update(note_params)
-    respond_with(@note)
+    if @note.update(note_params)
+      respond_with(@note, location: location)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   # DELETE /notes/1
   def destroy
     @note.destroy
-    respond_with(@note)
+    respond_with(@note, location: location)
   end
 
   private
@@ -51,14 +60,23 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:channel_id, :server_id, :message)
+      params.require(:note).permit(:channel_id, :server_id, :message, :note)
     end
 
     def fix_note_params
       { 
         type: 'note',
         channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
-        server_id:  (@notable.kind_of?(Channel) ? @notable.server : @notable.id),
+        server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
       }
+    end
+
+    def add_breadcrumb_show
+      add_breadcrumb_for([@notable, @note])
+    end
+
+    def location
+      polymorphic_path([@notable, :notes])
+      # polymorphic_path(@notable, anchor: :notes)
     end
 end

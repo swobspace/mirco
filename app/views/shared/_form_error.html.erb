@@ -1,0 +1,9 @@
+<% if form.object.errors.present? %>
+  <div class="text-red-500 border-red-800 font-bold border-2 p-2 mb-2">
+    <%= form.error_notification(
+          message: form.object.errors.full_messages.to_sentence
+        ) %>
+    <%= form.object.errors.inspect %>
+  </div>
+<% end %>
+
