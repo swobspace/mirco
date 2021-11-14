@@ -19,6 +19,7 @@ de:
       channel_statistic: Channel Statistik
       note: Notizen
       server: Server
+      servers/channel: Channel
       servers/note: Notizen
       user: User
 
@@ -91,6 +92,7 @@ de:
     servers: Server
     servers/alerts: Alerts
     servers/channel_statistics: Channel Statistiken (Server)
+    servers/channels: Channels
     servers/notes: Notizen
     users: Benutzer
 

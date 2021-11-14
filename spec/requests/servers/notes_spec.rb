@@ -92,7 +92,7 @@ module Servers
 
         it "renders a successful response (i.e. to display the 'new' template)" do
           post server_notes_url(server), params: { note: invalid_attributes }
-          expect(response).not_to be_successful
+          expect(response).to have_http_status(422)
         end
       end
     end
@@ -122,7 +122,7 @@ module Servers
         it "renders a successful response (i.e. to display the 'edit' template)" do
           note = Note.create! valid_attributes
           patch server_note_url(server, note), params: { note: invalid_attributes }
-          expect(response).not_to be_successful
+          expect(response).to have_http_status(422)
         end
       end
     end

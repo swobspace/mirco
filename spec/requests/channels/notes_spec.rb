@@ -94,7 +94,7 @@ module Channels
 
         it "renders a successful response (i.e. to display the 'new' template)" do
           post channel_notes_url(channel), params: { note: invalid_attributes }
-          expect(response).not_to be_successful
+          expect(response).to have_http_status(422)
         end
       end
     end
@@ -124,7 +124,7 @@ module Channels
         it "renders a successful response (i.e. to display the 'edit' template)" do
           note = Note.create! valid_attributes
           patch channel_note_url(channel, note), params: { note: invalid_attributes }
-          expect(response).not_to be_successful
+          expect(response).to have_http_status(422)
         end
       end
     end
