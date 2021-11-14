@@ -67,7 +67,7 @@ class NotesController < ApplicationController
     end
 
     def location
-      polymorphic_path([@notable, :notes])
-      # polymorphic_path(@notable, anchor: :notes)
+      # polymorphic_path([@notable, :notes])
+      polymorphic_path(@notable, anchor: 'notes')
     end
 end
