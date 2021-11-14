@@ -1,7 +1,7 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "channels_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-bordered table-responsive",
         data: {
           'turbo': false,
           'datatables-target': 'datatable',
@@ -12,11 +12,13 @@
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.uid') %></th>
+            <th><%= t('attributes.updated_at') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -29,16 +31,17 @@
           <td><%= channel.name %></td>
           <td><%= format(channel.description) %></td>
           <td><%= channel.uid %></td>
+          <td><%= channel.updated_at.localtime.to_formatted_s(:db) %></td>
           <td class="text-owrap">
-            <%= show_link [server, channel] %>
+            <%= show_link channel %>
             <%= link_to(
                   raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
-                  channel_statistics_path(channel.channel_statistic),
+                  channel_statistic_path(channel.channel_statistic),
                   class: 'btn btn-secondary'
                 ) if channel.channel_statistic.present?
              %>
-            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_channel_path(server,channel, format: :svg), class: 'btn btn-secondary') %>
-            <%= delete_link [server, channel] %>
+            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), channel_path(channel, format: :svg), class: 'btn btn-secondary') %>
+            <%= delete_link [channel.server, channel] %>
           </td>
         <% end %>
       <% end %>

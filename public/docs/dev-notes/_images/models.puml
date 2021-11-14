@@ -18,11 +18,6 @@ class Server  {
   last_check: timestamp
   last_check_ok: timestamp
 }
-note right of Server
-  api_user_has_full_access = false
-  for read only access to prevent
-  authentication failures
-end note
 
 class Channel {
   uid: string
@@ -49,10 +44,29 @@ class ChannelCounter {
   queued: integer
 }
 
+class Alert {
+  channel_id
+  server_id
+  type: string : alert, recovery
+  message: text
+}
+
+class Note {
+  channel_id
+  server_id
+  user_id
+  type: string : ack, mail
+}
+
 Server "1" -- "*" Channel
 Server "1" - "*" ChannelStatistic
 Channel "1" - "1" ChannelStatistic
 ChannelCounter "*" - "1" Server
 ChannelCounter "*" -- "1" Channel
+Server "1" -- "*" Alert
+Channel "0..1" -- "*" Alert
+Server "1" -- "*" Note
+Channel "0..1" -- "*" Note
+
 
 @enduml

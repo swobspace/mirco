@@ -7,6 +7,13 @@ FactoryBot.define do
     "mail_#{n}@example.net"
   end
 
+  factory :alert do
+    server
+    channel
+    type { "alert" }
+    message { "some text" }
+  end
+
   factory :server do
     name { generate(:aname) }
     trait :with_uid do
@@ -25,9 +32,17 @@ FactoryBot.define do
   end
 
   factory :channel_statistic do
-    server
-    channel
+    association :server
+    association :channel
     server_uid { `uuid -v 4` }
     channel_uid { `uuid -v 4` }
+  end
+
+  factory :note do
+    association :server
+    association :channel
+    association :user
+    type { "acknowledge" }
+    message { "some text" }
   end
 end

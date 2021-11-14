@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
+<h1><%= t('controller.notes') %></h1>
+
+<%= render 'index', notable: @notable, notes: @notes %>
+
+<br />
+
+<%= back_link %>
+<%= new_link [@notable, Note] %>

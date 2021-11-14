@@ -3,6 +3,8 @@ class Channel < ApplicationRecord
   belongs_to :server
   has_one :channel_statistic, dependent: :destroy
   has_many :channel_counters, dependent: :destroy
+  has_many :alerts, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   # -- configuration
   store_accessor :properties, :name

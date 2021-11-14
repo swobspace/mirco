@@ -4,6 +4,6 @@
  *= require select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme
  *= require datatables.net-bs5/css/dataTables.bootstrap5
  *= require datatables.net-buttons-bs5/css/buttons.bootstrap5
- ** require actiontext
+ *= require actiontext
  *= require mirco
 */

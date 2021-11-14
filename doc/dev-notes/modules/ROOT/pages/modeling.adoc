@@ -74,3 +74,53 @@ see also: xref:timescale.adoc[]
 bin/rails g controller channel_counters index \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
+== Model Alert
+
+[source,bash]
+----
+bin/rails g scaffold Alert \
+  server:belongs_to \
+  channel:belongs_to \
+  type:string:index \
+  message:text \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+[cols="1,3"]
+|===
+|type
+a|`alert`, `recovery`, `acknowledge`
+|===
+
+== Model Note
+
+[source,bash]
+----
+bin/rails g scaffold Note \
+  server:belongs_to \
+  channel:belongs_to \
+  user:belongs_to \
+  type:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+[cols="1,3"]
+|===
+|type
+a|`acknowledge`, `mail`, `note`
+|===
+
+.Install ActionText
+[source.bash]
+----
+bin/rails action_text:install
+----
+
+.app/models/note.rb
+[source,ruby]
+----
+class Note < ApplicationRecord
+  has_rich_text :message
+end
+----

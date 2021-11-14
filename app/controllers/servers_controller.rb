@@ -37,7 +37,6 @@ class ServersController < ApplicationController
   # POST /servers
   def create
     @server = Server.new(server_params)
-
     @server.save
     respond_with(@server)
   end
@@ -75,7 +74,7 @@ class ServersController < ApplicationController
       params.require(:server).permit(
         :name, :uid, :location, :description, 
         :api_url, :api_user, :api_password, 
-        :api_user_has_full_access, :api_verify_ssl)
+        :api_user_has_full_access, :api_verify_ssl).compact_blank
     end
 
     # --- file stuff

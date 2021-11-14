@@ -8,17 +8,26 @@ de:
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
     new_server: Neuer Server
+    for: für
 
   activerecord:
     models:
+      alert: Alarm
       channel: Channel
+      channels/alert: Alarm
+      channels/note: Notizen
       channel_counter: Channel Counter
       channel_statistic: Channel Statistik
+      note: Notizen
       server: Server
+      servers/alert: Alarm
+      servers/channel: Channel
+      servers/note: Notizen
       user: User
 
   attributes:
     action: Aktion
+    alert: alert
     api_url: API Url
     api_user: API User
     api_password: API Passwort
@@ -28,6 +37,7 @@ de:
     channel_counters: Channel Counter
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
+    created_at: angelegt am
     deployScript: Deploy Script
     description: Beschreibung
     destinationConnectors: Destination Connectors
@@ -42,7 +52,9 @@ de:
     last_channel_update: Letztes Update der Channels
     last_check: Letzter Check
     last_check_ok: Last OK
+    message: Nachricht
     name: Name
+    note: Notiz
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script
     properties: Eigenschaften
@@ -61,6 +73,8 @@ de:
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
+    timestamp: Wann?
+    type: Typ
     uid: UID
     undeployScript: Undeploy Script
     updated_at: zuletzt aktualisiert
@@ -68,13 +82,20 @@ de:
     version: Version
 
   controller:
+    alerts: Alarme
     channels: Channels
+    channels/alerts: Alarme
     channels/channel_counters: Channel Counters
+    channels/notes: Notizen
     channel_statistics: Channel Statistiken
     channel_counters: Channel Counters
     home: Home
+    notes: Notizen
     servers: Server
+    servers/alerts: Alarme
     servers/channel_statistics: Channel Statistiken (Server)
+    servers/channels: Channels
+    servers/notes: Notizen
     users: Benutzer
 
   flash:

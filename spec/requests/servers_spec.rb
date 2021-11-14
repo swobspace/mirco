@@ -81,7 +81,7 @@ RSpec.describe "/servers", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post servers_url, params: { server: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -135,7 +135,7 @@ RSpec.describe "/servers", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         server = Server.create! valid_attributes
         patch server_url(server), params: { server: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to have_http_status(422)
       end
     end
   end

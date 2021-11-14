@@ -19,7 +19,13 @@
         <span></span>
       </button>
     </div>
+    <div class="abstand">
+    </div>
     <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../mirco/index.html">Mirco</a>
+      </div>
     </div>
   </nav>
 </header>
@@ -84,7 +90,6 @@
     <li><a href="modeling.html">Modeling mirco</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/wob/doc/Projects/github/mirco/doc/dev-notes/modules/ROOT/pages/modeling.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -217,6 +222,78 @@ end</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_model_alert"><a class="anchor" href="#_model_alert"></a>Model Alert</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Alert \
+  server:belongs_to \
+  channel:belongs_to \
+  type:string:index \
+  message:text \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>alert</code>, <code>recovery</code>, <code>acknowledge</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_note"><a class="anchor" href="#_model_note"></a>Model Note</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Note \
+  server:belongs_to \
+  channel:belongs_to \
+  user:belongs_to \
+  type:string:index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>acknowledge</code>, <code>mail</code>, <code>note</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock bash">
+<div class="title">Install ActionText</div>
+<div class="content">
+<pre class="highlightjs highlight"><code>bin/rails action_text:install</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">app/models/note.rb</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Note &lt; ApplicationRecord
+  has_rich_text :message
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
@@ -226,5 +303,7 @@ end</code></pre>
 </footer>
 <script src="../_/js/site.js"></script>
 <script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
   </body>
 </html>

@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.6.1 / 2021-11-14
+
+----
+* add notes and alerts to channels and servers. Not fully functional yet
+* fix some smaller bugs
+---
+
 === 0.5.5 / 2021-10-10
 
 ----
