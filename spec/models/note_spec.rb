@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Note, type: :model do
+  let(:server) { FactoryBot.create(:server) }
+  let(:channel) { FactoryBot.create(:channel, server: server) }
+  let(:user)   { FactoryBot.create(:user) }
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel).optional }
   it { is_expected.to belong_to(:user) }
@@ -20,4 +23,18 @@ RSpec.describe Note, type: :model do
     expect(f.to_s).to eq("#{f.created_at.localtime.to_formatted_s(:db)} #{f.server}::#{f.channel} ACKNOWLEDGE - some other text")
   end
 
+  it "sets server_id from channel if missing" do
+    f = FactoryBot.build(:note, server_id: nil, channel_id: channel.id, user_id: user.id)
+    f.save
+    expect(f).to be_valid
+    f.reload
+    expect(f.server_id).to eq(server.id)
+  end
+
+  it "don't save note if :message.blank?" do
+    f = FactoryBot.build(:note, message: "")
+    expect {
+      f.save
+    }.to change(Note, :count).by(0)
+  end
 end
