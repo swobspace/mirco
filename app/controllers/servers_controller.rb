@@ -37,7 +37,6 @@ class ServersController < ApplicationController
   # POST /servers
   def create
     @server = Server.new(server_params)
-
     @server.save
     respond_with(@server)
   end

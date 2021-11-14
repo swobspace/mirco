@@ -25,25 +25,15 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    newparams = note_params.merge(fix_note_params)
-    Rails.logger.debug("DEBUG:: note params: #{newparams.inspect}")
-    @note = @current_user.notes.build(newparams)
-    # @note = @current_user.notes.build(note_params.merge(fix_note_params))
-
-    if @note.save
-      respond_with(@note, location: location)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    @note = @current_user.notes.build(note_params.merge(fix_note_params))
+    @note.save
+    respond_with(@note, location: location)
   end
 
   # PATCH/PUT /notes/1
   def update
-    if @note.update(note_params)
-      respond_with(@note, location: location)
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @note.update(note_params)
+    respond_with(@note, location: location)
   end
 
   # DELETE /notes/1
