@@ -1,0 +1,45 @@
+<table class="table table-bordered table-hover autowidth">
+
+  <tr>
+    <th><%= t('attributes.description')%>:</th>
+    <td>
+      <%= format(@channel.description) %>
+    </td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.uid')%>:</th>
+    <td><%= @channel.uid %></td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.version')%>:</th>
+    <td><%= @channel.version %></td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.revision')%>:</th>
+    <td><%= @channel.revision %></td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.exportData')%>:</th>
+    <td><%= ( @channel.exportData || "may be missing if version < 3.9") %></td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.sourceConnector')%>:</th>
+    <td>
+      <%= render ConnectorComponent.new(connector: @channel.sourceConnector) %>
+    </td>
+  </tr>
+
+  <tr>
+    <th><%= t('attributes.destinationConnectors')%>:</th>
+    <td>
+      <%=
+        render ConnectorComponent.with_collection(@channel.destination_connectors)
+       %>
+   </td>
+  </tr>
+</table>

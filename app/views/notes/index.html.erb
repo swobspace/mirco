@@ -4,55 +4,7 @@
 
 <h1><%= t('controller.notes') %></h1>
 
-<div data-controller="datatables">
-  <%= content_tag :table, role: :datatable,
-        id: "notes_table",
-        class: "table table-bordered table-responsive-xl",
-        data: {
-          'datatables-target': 'datatable',
-          order: [[0, 'desc']].to_json
-        } do %>
-    <thead>
-      <tr class="search">
-            <th><%= t('attributes.created_at') %></th>
-            <th><%= t('attributes.server') %></th>
-            <th><%= t('attributes.channel') %></th>
-            <th><%= t('attributes.message') %></th>
-            <th><%= t('attributes.user') %></th>
-            <th><%= t('attributes.type') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
-      </tr>
-    </thead>
-    <tfoot>
-      <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-      </tr>
-    </tfoot>
-    <tbody>
-      <% @notes.each do |note| %>
-        <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
-                <td><%= note.created_at.localtime.to_formatted_s(:db) %></td>
-                <td><%= note.server %></td>
-                <td><%= note.channel %></td>
-                <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
-                <td><%= note.user %></td>
-                <td><%= note.type %></td>
-                <td class="text-nowrap">
-            <%= show_link [@notable, note] %>
-            <%= edit_link [@notable, note] %>
-            <%= delete_link [@notable, note] %>
-          </td>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% end %>
-</div>
+<%= render 'index', notable: @notable, notes: @notes %>
 
 <br />
 

@@ -1,0 +1,44 @@
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "alerts_table",
+        class: "table table-bordered table-responsive-xl",
+        data: {
+          'datatables-target': 'datatable',
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr class="search">
+            <th><%= t('attributes.server') %></th>
+            <th><%= t('attributes.channel') %></th>
+            <th><%= t('attributes.type') %></th>
+            <th><%= t('attributes.message') %></th>
+            <th><%= t('attributes.timestamp') %></th>
+            <th class="nosort"><%= t('mirco.action') %></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% alerts.each do |alert| %>
+        <%= content_tag(:tr, id: dom_id(alert), class: dom_class(alert)) do %>
+                <td><%= alert.server %></td>
+                <td><%= alert.channel %></td>
+                <td><%= alert.type %></td>
+                <td><%= alert.message %></td>
+                <td><%= alert.created_at.localtime.to_formatted_s(:db) %></td>
+                <td class="text-nowrap">
+            <%= show_link [alertable, alert] %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>
