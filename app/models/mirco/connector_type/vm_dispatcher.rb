@@ -6,7 +6,7 @@ module Mirco
           {
             "writeToChannel": [
                channel.to_s,
-               Rails.application.routes.url_helpers.server_channel_path(channel.server, channel)
+               Rails.application.routes.url_helpers.channel_path(channel)
             ]
           }
         else

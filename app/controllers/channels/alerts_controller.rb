@@ -5,11 +5,10 @@ private
 
   def set_channel
     @channel = Channel.find(params[:channel_id])
-    @server  = @channel.server
   end
 
   def location
-    server_channel_path(@server, @channel)
+    channel_path(@channel)
   end
 end
 

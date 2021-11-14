@@ -1,8 +1,14 @@
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link disabled fs-4 py-0 my-0" type="button" 
+    <button class="nav-link fs-4 py-0 my-0 pe-0 me-0" type="button"
             tabindex="-1" aria-disabled="true">
-          <%= @channel.server %> &#8227; <%= @channel.name %>
+      <%= link_to(@channel.server, @channel.server, {class: 'primary-link'}) %>
+    </button>
+  </li>
+  <li>
+    <button class="nav-link disabled fs-4 py-0 my-0 ps-1 ms-1" type="button"
+            tabindex="-1" aria-disabled="true">
+       &#8227; <%= @channel.name %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
@@ -37,7 +43,7 @@
                 class: 'btn btn-secondary'
               ) if @channel.channel_statistic.present?
            %>
-          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), 
+          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]),
                 channel_path(@channel, format: :svg), class: 'btn btn-secondary') %>
           <%= delete_link(@channel) %>
         </div>
