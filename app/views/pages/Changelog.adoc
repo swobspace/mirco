@@ -1,16 +1,12 @@
 = Changelog
 
-=== 0.6.2 / 2021-11-14
+=== 0.6.3 / 2021-11-14
 
 ----
 * update to turbo-rails 0.8.3, v7.1.1 is not longer available (released in error)
-----
-
-=== 0.6.1 / 2021-11-14
-
-----
 * add notes and alerts to channels and servers. Not fully functional yet
 * fix some smaller bugs
+* route channel directly in most cases
 ----
 
 === 0.5.5 / 2021-10-10
