@@ -4,7 +4,7 @@ class Alert < ApplicationRecord
   belongs_to :channel
 
   # -- configuration
-  TYPES = ['alert', 'recovery']
+  TYPES = ['alert', 'recovery', 'acknowledge']
   self.inheritance_column = nil
 
   # -- validations and callbacks

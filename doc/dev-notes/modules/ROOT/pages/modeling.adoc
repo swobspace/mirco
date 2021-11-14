@@ -90,7 +90,7 @@ bin/rails g scaffold Alert \
 [cols="1,3"]
 |===
 |type
-a|`alert`, `recovery`
+a|`alert`, `recovery`, `acknowledge`
 |===
 
 == Model Note
