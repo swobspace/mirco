@@ -9,8 +9,6 @@ class Note < ApplicationRecord
   self.inheritance_column = nil
   has_rich_text :message
 
-  broadcasts
-
   # -- validations and callbacks
   validates :server_id, :user_id, presence: true
   validates :type, inclusion: TYPES, allow_blank: false
