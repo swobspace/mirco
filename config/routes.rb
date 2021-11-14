@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
     resources :alerts, only: [:index, :show], module: :servers
     resources :notes, module: :servers
-    resources :channels, only: [:index, :show, :destroy] do
+    resources :channels, only: [:index, :destroy], module: :servers do
       collection do
         post :fetch_all
       end

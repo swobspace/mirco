@@ -50,7 +50,7 @@ class NotesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def note_params
-      params.require(:note).permit(:channel_id, :server_id, :message, :note)
+      params.require(:note).permit(:channel_id, :server_id, :message, :note, :type)
     end
 
     def fix_note_params
@@ -60,10 +60,6 @@ class NotesController < ApplicationController
         # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
         # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
       }
-    end
-
-    def add_breadcrumb_show
-      add_breadcrumb_for([@notable, @note])
     end
 
     def location

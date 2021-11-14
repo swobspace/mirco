@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-module Servers
+module Channels
   RSpec.describe "Notes", type: :request do
     let!(:server) { FactoryBot.create(:server, name: "MyServer") }
     let!(:channel) { FactoryBot.create(:channel, server: server, name: "MyChannel") }
@@ -33,8 +33,7 @@ module Servers
     }}
 
     let(:invalid_attributes) {{
-      server_id: nil,
-      channel_id: nil
+      type: 'very wrong type',
     }}
 
     before(:each) do
@@ -82,14 +81,14 @@ module Servers
 
         it "redirects to the created note" do
           post channel_notes_url(channel), params: { note: post_attributes }
-          expect(response).to redirect_to(note_url(Note.last))
+          expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))
         end
       end
 
       context "with invalid parameters" do
         it "does not create a new Note" do
           expect {
-            post channel_notes_url(channel), params: { note: post_attributes }
+            post channel_notes_url(channel), params: { note: invalid_attributes }
           }.to change(Note, :count).by(0)
         end
 
@@ -117,7 +116,7 @@ module Servers
           note = Note.create! valid_attributes
           patch channel_note_url(channel, note), params: { note: new_attributes }
           note.reload
-          expect(response).to redirect_to(channel_notes_url(channel))
+          expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))
         end
       end
 
@@ -141,7 +140,7 @@ module Servers
       it "redirects to the notes list" do
         note = Note.create! valid_attributes
         delete channel_note_url(channel, note)
-        expect(response).to redirect_to(channel_notes_url(channel))
+        expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))
       end
     end
   end

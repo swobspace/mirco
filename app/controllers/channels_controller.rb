@@ -51,7 +51,9 @@ private
   end
 
   def set_server
-    @server = Server.find(params[:server_id])
+    if params[:server_id].present?
+      @server = Server.find(params[:server_id])
+    end
   end
 
   # Only allow a trusted parameter "white list" through.
