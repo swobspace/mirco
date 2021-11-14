@@ -25,7 +25,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = @current_user.notes.build(note_params.merge(fix_note_params))
+    @note = @notable.notes.build(note_params.merge(fix_note_params))
     @note.save
     respond_with(@note, location: location)
   end
@@ -56,8 +56,9 @@ class NotesController < ApplicationController
     def fix_note_params
       { 
         type: 'note',
-        channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
-        server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
+        user_id: @current_user.id,
+        # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
+        # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
       }
     end
 
