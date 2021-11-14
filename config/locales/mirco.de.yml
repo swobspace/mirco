@@ -12,13 +12,15 @@ de:
 
   activerecord:
     models:
-      alert: alert
+      alert: Alarm
       channel: Channel
+      channels/alert: Alarm
       channels/note: Notizen
       channel_counter: Channel Counter
       channel_statistic: Channel Statistik
       note: Notizen
       server: Server
+      servers/alert: Alarm
       servers/channel: Channel
       servers/note: Notizen
       user: User
@@ -80,9 +82,9 @@ de:
     version: Version
 
   controller:
-    alerts: Alerts
+    alerts: Alarme
     channels: Channels
-    channels/alerts: Alerts
+    channels/alerts: Alarme
     channels/channel_counters: Channel Counters
     channels/notes: Notizen
     channel_statistics: Channel Statistiken
@@ -90,7 +92,7 @@ de:
     home: Home
     notes: Notizen
     servers: Server
-    servers/alerts: Alerts
+    servers/alerts: Alarme
     servers/channel_statistics: Channel Statistiken (Server)
     servers/channels: Channels
     servers/notes: Notizen
