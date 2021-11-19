@@ -1,0 +1,40 @@
+require 'rails_helper'
+
+RSpec.describe Mirco::DashboardStatus, type: :model do
+  let(:xmlfile) { 
+    File.join(Rails.root, 'spec', 'fixtures', 'files', 'channel_statuses.xml')
+  }
+
+  describe "::parse_xml" do
+    let!(:xml) { File.open(xmlfile) {|f| f.read }}
+    let(:statuses) { Mirco::DashboardStatus.parse_xml(xml) }
+
+    it { expect(statuses.count).to eq(10) }
+    it { expect(statuses.select{|x| x.status_type == "CHANNEL" }.count ).to eq(3) }
+    it { expect(statuses.select{|x| x.status_type == "SOURCE_CONNECTOR" }.count ).to eq(3) }
+    it { expect(statuses.select{|x| x.status_type == "DESTINATION_CONNECTOR" }.count ).to eq(4) }
+    it { expect(statuses[0].status_type).to eq("CHANNEL") }
+    it { expect(statuses[3].status_type).to eq("CHANNEL") }
+    it { expect(statuses[6].status_type).to eq("CHANNEL") }
+    it { expect(statuses[1].status_type).to eq("SOURCE_CONNECTOR") }
+    it { expect(statuses[4].status_type).to eq("SOURCE_CONNECTOR") }
+    it { expect(statuses[7].status_type).to eq("SOURCE_CONNECTOR") }
+    it { expect(statuses[1].meta_data_id).to eq(0) }
+    it { expect(statuses[4].meta_data_id).to eq(0) }
+    it { expect(statuses[7].meta_data_id).to eq(0) }
+    it { expect(statuses[0].received).to eq(117112) }
+    it { expect(statuses[0].filtered).to eq(0) }
+    it { expect(statuses[0].error).to eq(0) }
+    it { expect(statuses[0].queued).to eq(0) }
+    it { expect(statuses[0].sent).to eq(117112) }
+    it { expect(statuses[8].name).to eq("DMI/Pegasos") }
+    it { expect(statuses[8].meta_data_id).to eq(1) }
+    it { expect(statuses[8].received).to eq(154998) }
+    it { expect(statuses[8].filtered).to eq(0) }
+    it { expect(statuses[8].error).to eq(0) }
+    it { expect(statuses[8].queued).to eq(0) }
+    it { expect(statuses[8].sent).to eq(154979) }
+  end
+ 
+end
+
