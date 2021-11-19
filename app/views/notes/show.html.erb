@@ -6,7 +6,7 @@
     <table class="table table-bordered table-hover autowidth">
     
       <tr>
-        <th><%= t('attributes.server')%>:</th>
+        <th class="w-25"><%= t('attributes.server')%>:</th>
         <td><%= @note.server %></td>
       </tr>
     
@@ -29,7 +29,12 @@
         <th><%= t('attributes.type')%>:</th>
         <td><%= @note.type %></td>
       </tr>
-        </table>
+
+      <tr>
+        <th><%= t('attributes.created_at')%>:</th>
+        <td><%= @note.created_at.localtime.to_formatted_s(:db) %></td>
+      </tr>
+    </table>
 
     <div role="toolbar">
       <%= back_link %>
