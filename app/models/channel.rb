@@ -26,8 +26,12 @@ class Channel < ApplicationRecord
     "#{name}"
   end
 
+  def source_connector
+    @source_connector ||= Mirco::Connector.new(sourceConnector) if sourceConnector.present?
+  end
+
   def destination_connectors
-    if destinationConnectors.present?
+    @destination_connectors ||= if destinationConnectors.present?
       dconns = destinationConnectors['connector']
       if dconns.kind_of? Array
         dconns
@@ -36,7 +40,7 @@ class Channel < ApplicationRecord
       end 
     else
       []
-    end
+    end.map{|c| Mirco::Connector.new(c) }
   end
 
   def puml
