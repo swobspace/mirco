@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobmire
-  revision: d7566644457febd4966595e9fe75371e2b1a55e7
+  revision: 9ddf59fc388aa401592b5eb702af51ed1e47a16c
   branch: master
   specs:
     wobmire (0.1.0)
@@ -268,7 +268,7 @@ GEM
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     immutable-struct (2.4.1)
-    io-wait (0.1.0)
+    io-wait (0.2.1)
     jquery-rails (4.4.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -415,7 +415,7 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.3.0)
+    sprockets-rails (3.4.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
@@ -432,12 +432,12 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uri (0.10.0)
-    view_component (2.43.1)
+    view_component (2.44.0)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    web-console (4.1.0)
+    web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
