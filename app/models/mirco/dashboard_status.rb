@@ -2,7 +2,7 @@ module Mirco
   class DashboardStatus
     attr_reader :name, :channel_uid, :state, :status_type, :queued, :statistics,
                 :meta_data_id 
-    ATTRIBUTES = [ :name, :channel_uid, :state, :status_type, :queued, :statistics,
+    ATTRIBUTES = [ :name, :channel_uid, :state, :status_type, :queued,
                    :meta_data_id, :received, :sent, :filtered, :error ]
 
     # Mirco::DashboardStatus.new(doc)
@@ -53,6 +53,14 @@ module Mirco
 
     def error
       statistics['ERROR'].to_i
+    end
+
+    def attributes
+      {}.tap do |hash|
+        ATTRIBUTES.each do |attr|
+          hash[attr.to_s] = send(attr)
+        end
+      end
     end
 
   private

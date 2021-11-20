@@ -34,6 +34,21 @@ RSpec.describe Mirco::DashboardStatus, type: :model do
     it { expect(statuses[8].error).to eq(0) }
     it { expect(statuses[8].queued).to eq(0) }
     it { expect(statuses[8].sent).to eq(154979) }
+
+    it "set hash attributes" do
+      expect(statuses[8].attributes).to include(
+        'name' => 'DMI/Pegasos',
+        'state' => 'STARTED',
+        'status_type' => 'DESTINATION_CONNECTOR',
+        'channel_uid' => 'd1dd8a9f-5cf1-4653-96ef-55c31dac6fae',
+        'meta_data_id' => 1,
+        'received' => 154998,
+        'filtered' => 0,
+        'error' => 0,
+        'sent' => 154979,
+        'queued' => 0,
+      )
+    end
   end
  
 end
