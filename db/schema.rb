@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_093605) do
+ActiveRecord::Schema.define(version: 2021_11_20_094030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_093605) do
     t.integer "queued"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "meta_data_id"
     t.index ["channel_id"], name: "index_channel_counters_on_channel_id"
     t.index ["created_at"], name: "channel_counters_created_at_idx", order: :desc
     t.index ["server_id"], name: "index_channel_counters_on_server_id"
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_093605) do
     t.integer "queued", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "meta_data_id"
     t.index ["channel_id"], name: "index_channel_statistics_on_channel_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"

@@ -4,9 +4,12 @@
 rails generate model ChannelCounter \
   channel:belongs_to \
   server:belongs_to \
+  meta_data_id:integer \
   received:integer sent:integer error:integer filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddMetaDataIdToChannelCounter meta_data_id:integer
 ----
 
 .ChannelCounter migration
@@ -17,6 +20,7 @@ class CreateChannelCounters < ActiveRecord::Migration[6.1]
     create_table :channel_counters, id: false do |t|
       t.belongs_to :channel, null: false
       t.belongs_to :server, null: false
+      t.integer :meta_data_id
       t.integer :received
       t.integer :sent
       t.integer :error

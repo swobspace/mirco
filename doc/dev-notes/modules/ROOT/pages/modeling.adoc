@@ -52,6 +52,7 @@ bin/rails g scaffold Channel \
 bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
   channel:belongs_to \
+  meta_data_id:integer \
   server_uid:string:index \
   channel_uid:string:index \
   received:integer \
@@ -60,6 +61,9 @@ bin/rails g scaffold ChannelStatistic \
   filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
+
+bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
+
 ----
 
 == Model ChannelCounter
