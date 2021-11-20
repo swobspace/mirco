@@ -25,7 +25,13 @@ module Channels
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :queued_messages,
           partial: 'home/index',
-          locals: {queued_messages: ChannelStatistic.where('channel_statistics.queued > 0').order('queued desc').to_a }
+          locals: {
+            queued_messages: ChannelStatistic
+              .where('channel_statistics.meta_data_id > 0')
+              .where('channel_statistics.queued > 0')
+              .order('queued desc')
+              .to_a 
+          }
         )
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :server_status,
