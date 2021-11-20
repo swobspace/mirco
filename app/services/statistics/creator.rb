@@ -18,7 +18,7 @@ module Statistics
         raise RuntimeError, "Statistics::Creator.new: :attributes is empty!"
       end
       @create_channel = options.fetch(:create_channel) { false }
-      fetch_channel(@attributes['channelId'])
+      fetch_channel(@attributes['channel_uid'])
       @channel_statistic ||= fetch_channel_statistic
     end
 
@@ -30,7 +30,8 @@ module Statistics
           server_id: server.id,
           channel_id: channel.id,
           server_uid: server.uid,
-          channel_uid: attributes['channelId'],
+          channel_uid: attributes['channel_uid'],
+          meta_data_id: attributes['meta_data_id'],
           received: attributes['received'],
           sent: attributes['sent'],
           error: attributes['error'],
@@ -49,6 +50,7 @@ module Statistics
       channel_counter = ChannelCounter.new(
           server_id: server.id,
           channel_id: channel.id,
+          meta_data_id: attributes['meta_data_id'],
           received: attributes['received'],
           sent: attributes['sent'],
           error: attributes['error'],
@@ -66,7 +68,7 @@ module Statistics
       if @channel.nil?
         if create_channel
           @channel = server.channels.create(uid: uid)
-          Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channelId']}/ does not exist")
+          Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channel_uid']}/ does not exist")
         end
       end
     end
@@ -76,7 +78,8 @@ module Statistics
         server_id: server.id,
         channel_id: channel&.id,
         server_uid: server.uid,
-        channel_uid: attributes['channelId'],
+        channel_uid: attributes['channel_uid'],
+        meta_data_id: attributes['meta_data_id'],
       ).first
     end
 

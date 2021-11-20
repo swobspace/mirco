@@ -53,6 +53,7 @@ de:
     last_check: Letzter Check
     last_check_ok: Last OK
     message: Nachricht
+    meta_data_id: ConnNr.
     name: Name
     note: Notiz
     postprocessingScript: Postprocessing Script

@@ -13,6 +13,7 @@
           <th><%= t('attributes.server') %></th>
         <% end %>
         <th><%= t('attributes.channel') %></th>
+        <th><%= t('attributes.meta_data_id') %></th>
         <th><%= t('attributes.received') %></th>
         <th><%= t('attributes.sent') %></th>
         <th><%= t('attributes.error') %></th>
@@ -35,6 +36,7 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -49,6 +51,7 @@
                     class: 'primary-link')
               %>
           </td>
+          <td><%= channel_statistic.meta_data_id %></td>
           <td><%= channel_statistic.received %></td>
           <td><%= channel_statistic.sent %></td>
           <td><%= channel_statistic.error %></td>
