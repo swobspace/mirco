@@ -20,7 +20,8 @@ module Mirco
       @state = doc.xpath("state").text
       @status_type = doc.xpath("statusType").text
       @queued = doc.xpath("queued").text.to_i
-      @meta_data_id = doc.xpath("metaDataId").text.to_i
+      m_id = doc.xpath("metaDataId")&.text
+      @meta_data_id = ( m_id.blank?  ? nil : m_id.to_i )
       @statistics = fetch_statistics(doc.xpath("statistics/entry"))
     end
 

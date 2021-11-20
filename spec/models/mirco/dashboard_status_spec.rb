@@ -19,7 +19,9 @@ RSpec.describe Mirco::DashboardStatus, type: :model do
     it { expect(statuses[1].status_type).to eq("SOURCE_CONNECTOR") }
     it { expect(statuses[4].status_type).to eq("SOURCE_CONNECTOR") }
     it { expect(statuses[7].status_type).to eq("SOURCE_CONNECTOR") }
+    it { expect(statuses[0].meta_data_id).to be_nil }
     it { expect(statuses[1].meta_data_id).to eq(0) }
+    it { expect(statuses[3].meta_data_id).to be_nil }
     it { expect(statuses[4].meta_data_id).to eq(0) }
     it { expect(statuses[7].meta_data_id).to eq(0) }
     it { expect(statuses[0].received).to eq(117112) }
