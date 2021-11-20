@@ -16,7 +16,8 @@ module Statistics
       api_url: ENV['API_URL'],
       api_user: ENV['API_USER'],
       api_password: ENV['API_PASSWORD'],
-      api_verify_ssl: ENV['API_VERIFY_SSL']
+      api_verify_ssl: ENV['API_VERIFY_SSL'],
+      uid: ENV['SERVER_UID']
     )}
     subject { Statistics::FetchAll.new(server: server, create_channel: true) }
 

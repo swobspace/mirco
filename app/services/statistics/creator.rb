@@ -29,7 +29,7 @@ module Statistics
         @channel_statistic = ChannelStatistic.new(
           server_id: server.id,
           channel_id: channel.id,
-          server_uid: attributes['serverId'],
+          server_uid: server.uid,
           channel_uid: attributes['channelId'],
           received: attributes['received'],
           sent: attributes['sent'],
@@ -75,7 +75,7 @@ module Statistics
       server.channel_statistics.where(
         server_id: server.id,
         channel_id: channel&.id,
-        server_uid: attributes['serverId'],
+        server_uid: server.uid,
         channel_uid: attributes['channelId'],
       ).first
     end
