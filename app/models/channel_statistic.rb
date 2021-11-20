@@ -5,7 +5,7 @@ class ChannelStatistic < ApplicationRecord
   # -- configuration
   # -- validations and callbacks
   validates :server_id, :server_uid, presence: true
-  validates :channel_uid, presence: true, uniqueness: { scope: :server_id }
-  validates :channel_id, presence: true, uniqueness: true
-
+  validates :meta_data_id, uniqueness: { scope: [:server_id, :channel_id] }
+  validates :channel_uid, presence: true, uniqueness: { scope: [:server_id, :meta_data_id] }
+  validates :channel_id, presence: true, uniqueness: { scope: [:server_id, :meta_data_id] }
 end
