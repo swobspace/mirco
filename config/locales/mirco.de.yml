@@ -37,6 +37,7 @@ de:
     channel_counters: Channel Counter
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
+    connector: Connector
     created_at: angelegt am
     deployScript: Deploy Script
     description: Beschreibung
