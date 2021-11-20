@@ -30,6 +30,9 @@ class ChannelStatistic {
   server_uid: string
   channel_uid: string
   meta_data_id: integer
+  name: string
+  state: string
+  status_type: string
   received: integer
   sent: integer
   error: integer

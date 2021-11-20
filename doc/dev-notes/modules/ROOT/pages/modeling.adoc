@@ -7,7 +7,7 @@ image::models.svg[]
 
 == Home controller
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g controller Home index \
   --no-stylesheets --no-javascripts --no-helper
@@ -15,7 +15,7 @@ bin/rails g controller Home index \
 
 == model Server
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
@@ -27,16 +27,17 @@ bin/rails g scaffold Server \
   last_check:timestamp last_check_ok:timestamp \
   --no-stylesheets --no-javascripts --no-helper
 
-bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
-bin/rails g migration AddLastChannelUpdateToServer \
-  last_channel_update:timestamp
-bin/rails g migration AddLastCheckToServer \
-  last_check:timestamp last_check_ok:timestamp
 ----
+// bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
+// bin/rails g migration AddLastChannelUpdateToServer \
+//  last_channel_update:timestamp
+// bin/rails g migration AddLastCheckToServer \
+//  last_check:timestamp last_check_ok:timestamp
+
 
 == model Channel
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g scaffold Channel \
   server:belongs_to \
@@ -47,7 +48,7 @@ bin/rails g scaffold Channel \
 
 == Model ChannelStatistic
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
@@ -55,16 +56,17 @@ bin/rails g scaffold ChannelStatistic \
   meta_data_id:integer \
   server_uid:string:index \
   channel_uid:string:index \
+  name:string state:string status_type:string \
   received:integer \
   sent:integer \
   error:integer \
   filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
-
 ----
+// bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
+// bin/rails g migration AddStatusesFieldsToChannelStatistic \
+//   name:string state:string status_type:string
 
 == Model ChannelCounter
 
@@ -73,7 +75,7 @@ include::partial$scaffold-channel_counter.adoc[]
 see also: xref:timescale.adoc[]
 
 .Generate Controller with action :index
-[source,bash]
+[source,ruby]
 ----
 bin/rails g controller channel_counters index \
   --no-stylesheets --no-javascripts --no-helper
@@ -81,7 +83,7 @@ bin/rails g controller channel_counters index \
 
 == Model Alert
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g scaffold Alert \
   server:belongs_to \
@@ -99,7 +101,7 @@ a|`alert`, `recovery`, `acknowledge`
 
 == Model Note
 
-[source,bash]
+[source,ruby]
 ----
 bin/rails g scaffold Note \
   server:belongs_to \
@@ -116,7 +118,7 @@ a|`acknowledge`, `mail`, `note`
 |===
 
 .Install ActionText
-[source.bash]
+[source,ruby]
 ----
 bin/rails action_text:install
 ----

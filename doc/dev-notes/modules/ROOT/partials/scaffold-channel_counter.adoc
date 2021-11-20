@@ -8,9 +8,8 @@ rails generate model ChannelCounter \
   received:integer sent:integer error:integer filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddMetaDataIdToChannelCounter meta_data_id:integer
 ----
+// bin/rails g migration AddMetaDataIdToChannelCounter meta_data_id:integer
 
 .ChannelCounter migration
 [source,ruby]
