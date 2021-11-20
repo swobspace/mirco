@@ -45,6 +45,12 @@ module Statistics
         expect(server.last_check_ok).to be >= 1.minutes.ago
       end
 
+      it "creates statistics for channel, source and destinations" do
+        expect(ChannelStatistic.where(meta_data_id: nil).any?).to be_truthy
+        expect(ChannelStatistic.where(meta_data_id: 0).any?).to be_truthy
+        expect(ChannelStatistic.where(meta_data_id: 1).any?).to be_truthy
+      end
+
     end
 
   end

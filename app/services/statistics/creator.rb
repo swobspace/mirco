@@ -32,6 +32,9 @@ module Statistics
           server_uid: server.uid,
           channel_uid: attributes['channel_uid'],
           meta_data_id: attributes['meta_data_id'],
+          name: attributes['name'],
+          state: attributes['state'],
+          status_type: attributes['status_type'],
           received: attributes['received'],
           sent: attributes['sent'],
           error: attributes['error'],
@@ -40,6 +43,9 @@ module Statistics
         )
       else
         @channel_statistic.assign_attributes(
+          name: attributes['name'],
+          state: attributes['state'],
+          status_type: attributes['status_type'],
           received: attributes['received'],
           sent: attributes['sent'],
           error: attributes['error'],
