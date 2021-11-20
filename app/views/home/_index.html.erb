@@ -5,6 +5,7 @@
       <tr class="search">
         <th class="text-start"><%= t('attributes.server') %></th>
         <th class="text-start"><%= t('attributes.channel') %></th>
+        <th class="text-start"><%= t('attributes.connector') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.error_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.filtered_last_30min') %></th>
@@ -26,6 +27,7 @@
                   class: "primary-link")
             %>
           </td>
+          <td class="text-start"><%= channel_statistic.name %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.received_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.error_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.filtered_last_30min %></td>
