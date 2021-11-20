@@ -13,7 +13,7 @@
           <th><%= t('attributes.server') %></th>
         <% end %>
         <th><%= t('attributes.channel') %></th>
-        <th><%= t('attributes.meta_data_id') %></th>
+        <th><%= t('attributes.connector') %></th>
         <th><%= t('attributes.received') %></th>
         <th><%= t('attributes.sent') %></th>
         <th><%= t('attributes.error') %></th>
@@ -51,7 +51,13 @@
                     class: 'primary-link')
               %>
           </td>
-          <td><%= channel_statistic.meta_data_id %></td>
+          <td>
+            <% if channel_statistic.meta_data_id.nil? %>
+              -
+            <% else %>
+            <%= channel_statistic.name %> (<%= channel_statistic.meta_data_id %>) 
+            <% end %>
+          </td>
           <td><%= channel_statistic.received %></td>
           <td><%= channel_statistic.sent %></td>
           <td><%= channel_statistic.error %></td>
