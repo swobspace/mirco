@@ -15,6 +15,10 @@ RSpec.describe "channel_statistics/show", type: :view do
       channel: @channel,
       server_uid: @server.uid,
       channel_uid: @channel.uid,
+      name: "HORST",
+      state: "STARTED",
+      status_type: "DESTINATION",
+      meta_data_id: 99794,
       received: 2,
       sent: 3,
       error: 4,
@@ -29,6 +33,10 @@ RSpec.describe "channel_statistics/show", type: :view do
     expect(rendered).to match(/#{@channel}/)
     expect(rendered).to match(/#{@server.uid}/)
     expect(rendered).to match(/#{@channel.uid}/)
+    expect(rendered).to match(/HORST/)
+    expect(rendered).to match(/STARTED/)
+    expect(rendered).to match(/DESTINATION/)
+    expect(rendered).to match(/99794/)
     expect(rendered).to match(/2/)
     expect(rendered).to match(/3/)
     expect(rendered).to match(/4/)

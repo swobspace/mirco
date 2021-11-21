@@ -16,6 +16,10 @@ RSpec.describe "channel_statistics/index", type: :view do
         channel: channel1,
         server_uid: @server.uid,
         channel_uid: channel1.uid,
+        name: "FRITZ",
+        state: "STOPPED",
+        status_type: "DESTINATION",
+        meta_data_id: 2,
         received: 2,
         sent: 3,
         error: 4,
@@ -27,6 +31,10 @@ RSpec.describe "channel_statistics/index", type: :view do
         channel: channel2,
         server_uid: @server.uid,
         channel_uid: channel2.uid,
+        name: "HORST",
+        state: "STARTED",
+        status_type: "DESTINATION",
+        meta_data_id: 2,
         received: 2,
         sent: 3,
         error: 4,
@@ -43,6 +51,11 @@ RSpec.describe "channel_statistics/index", type: :view do
     assert_select "tr>td", text: @server.to_s, count: 0
     assert_select "tr>td", text: "Channel1", count: 1
     assert_select "tr>td", text: "Channel2", count: 1
+    assert_select "tr>td", text: "FRITZ", count: 1
+    assert_select "tr>td", text: "HORST", count: 1
+    assert_select "tr>td", text: "STOPPED", count: 1
+    assert_select "tr>td", text: "STARTED", count: 1
+    assert_select "tr>td", text: "DESTINATION", count: 2
     assert_select "tr>td", text: 2.to_s, count: 2
     assert_select "tr>td", text: 3.to_s, count: 2
     assert_select "tr>td", text: 4.to_s, count: 2
