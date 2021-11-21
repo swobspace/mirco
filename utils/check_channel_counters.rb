@@ -11,7 +11,6 @@ ChannelCounter.all.each do |cc|
   elsif (cc.server_id == cs.server_id) &&
      (cc.channel_id == cs.channel_id) &&
      (cc.meta_data_id == cs.meta_data_id)
-    print "."
   else
     puts "ERROR:: counter #{cc.id} mismatch with channel #{cs.id}"
   end
