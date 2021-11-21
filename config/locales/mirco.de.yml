@@ -41,6 +41,7 @@ de:
     created_at: angelegt am
     deployScript: Deploy Script
     description: Beschreibung
+    destination: Destination
     destinationConnectors: Destination Connectors
     displayname: Anzeigename
     error: error
