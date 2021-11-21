@@ -4,12 +4,16 @@
 rails generate model ChannelCounter \
   channel:belongs_to \
   server:belongs_to \
+  channel_statistic:belongs_to \
   meta_data_id:integer \
   received:integer sent:integer error:integer filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper
 ----
 // bin/rails g migration AddMetaDataIdToChannelCounter meta_data_id:integer
+// bin/rails g migration AddChannelStatisticIdToChannelCounter \
+//   channel_statistic:belongs_to
+
 
 .ChannelCounter migration
 [source,ruby]

@@ -43,6 +43,7 @@ class ChannelStatistic {
 class ChannelCounter {
   channel_id
   server_id
+  channel_statistic_id
   meta_data_id: integer
   received: integer
   sent: integer

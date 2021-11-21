@@ -53,7 +53,7 @@ module Statistics
           queued: attributes['queued'],
         )
       end
-      channel_counter = ChannelCounter.new(
+      channel_counter = @channel_statistic.channel_counters.build(
           server_id: server.id,
           channel_id: channel.id,
           meta_data_id: attributes['meta_data_id'],

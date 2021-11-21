@@ -2,6 +2,8 @@ class ChannelStatistic < ApplicationRecord
   # -- associations
   belongs_to :server
   belongs_to :channel
+  has_many :channel_counters, dependent: :destroy
+
   # has_many :channel_counters, ->(cs) {
   #   unscope(:where).where(
   #     "server_id = :server_id and channel_id = :channel_id and meta_data_id = :meta_id",
@@ -10,6 +12,7 @@ class ChannelStatistic < ApplicationRecord
   #      meta_id: cs.meta_data_id
   #   )
   # }
+
   # -- configuration
   # -- validations and callbacks
   validates :server_id, :server_uid, presence: true

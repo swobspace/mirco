@@ -148,6 +148,7 @@ Die Migration setzt voraus, dass die Shared Libriaries von TimescaleDB in postgr
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">rails generate model ChannelCounter \
   channel:belongs_to \
   server:belongs_to \
+  channel_statistic:belongs_to \
   meta_data_id:integer \
   received:integer sent:integer error:integer filtered:integer \
   queued:integer \
