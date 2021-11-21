@@ -76,6 +76,8 @@ de:
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
+    state: Status
+    status_type: Typ
     timestamp: Wann?
     type: Typ
     uid: UID
