@@ -3,7 +3,7 @@ module Mirco
     attr_reader :hash
 
     def initialize(hash)
-      @hash = hash
+      @hash = hash || {}
     end
 
     # 

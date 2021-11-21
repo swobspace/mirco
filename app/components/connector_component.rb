@@ -3,7 +3,7 @@
 class ConnectorComponent < ViewComponent::Base
   def initialize(connector:)
     @connector = connector
-    @mc = Mirco::Connector.new(connector)
+    @mc = connector
   end
 
   def enabled

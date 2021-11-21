@@ -4,7 +4,8 @@ RSpec.describe ConnectorComponent, type: :component do
   let(:yaml) { YAML::load_file(File.join(Rails.root, 'spec', 'fixtures', 'files', 'connectors.yaml')) }
 
   it "renders tcpReceiver" do
-    render_inline(described_class.new(connector: yaml['tcpReceiver']))
+    connector = Mirco::Connector.new(yaml['tcpReceiver'])
+    render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text("sourceConnector")
     expect(rendered_component).to have_text("enabled")
     expect(rendered_component).to have_text("TCP Listener")
@@ -21,7 +22,8 @@ RSpec.describe ConnectorComponent, type: :component do
   end
 
   it "renders fileDispatcher" do
-    render_inline(described_class.new(connector: yaml['fileDispatcher']))
+    connector = Mirco::Connector.new(yaml['fileDispatcher'])
+    render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text("HL7_ADT_TO_MARIS")
     expect(rendered_component).to have_text("enabled")
     expect(rendered_component).to have_text("File Writer")
@@ -38,7 +40,8 @@ RSpec.describe ConnectorComponent, type: :component do
     channel = FactoryBot.create(:channel, uid: 'db97d5d4-fd11-4f6a-b29c-aa006a853579', 
                                 properties: properties)
 
-    render_inline(described_class.new(connector: yaml['vmDispatcher']))
+    connector = Mirco::Connector.new(yaml['vmDispatcher'])
+    render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text("HL7_ADT_TO_ORGACARD")
     expect(rendered_component).to have_text("enabled")
     expect(rendered_component).to have_text("Channel Writer")
@@ -47,7 +50,8 @@ RSpec.describe ConnectorComponent, type: :component do
   end
 
   it "renders tcpDispatcher" do
-    render_inline(described_class.new(connector: yaml['tcpDispatcher']))
+    connector = Mirco::Connector.new(yaml['tcpDispatcher'])
+    render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text("HL7_ADT_TO_IXSERV")
     expect(rendered_component).to have_text("enabled")
     expect(rendered_component).to have_text("TCP Sender")

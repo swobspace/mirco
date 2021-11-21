@@ -13,6 +13,9 @@
           <th><%= t('attributes.server') %></th>
         <% end %>
         <th><%= t('attributes.channel') %></th>
+        <th><%= t('attributes.destination') %></th>
+        <th class="notvisible"><%= t('attributes.state') %></th>
+        <th class="notvisible"><%= t('attributes.status_type') %></th>
         <th><%= t('attributes.received') %></th>
         <th><%= t('attributes.sent') %></th>
         <th><%= t('attributes.error') %></th>
@@ -35,6 +38,9 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -49,6 +55,15 @@
                     class: 'primary-link')
               %>
           </td>
+          <td>
+            <% if channel_statistic.meta_data_id.nil? %>
+              -
+            <% else %>
+              <%= channel_statistic.name %>
+            <% end %>
+          </td>
+          <td><%= channel_statistic.state %></td>
+          <td><%= channel_statistic.status_type %></td>
           <td><%= channel_statistic.received %></td>
           <td><%= channel_statistic.sent %></td>
           <td><%= channel_statistic.error %></td>

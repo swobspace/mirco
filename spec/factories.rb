@@ -29,6 +29,7 @@ FactoryBot.define do
   factory :channel_counter do
     channel
     server
+    channel_statistic
   end
 
   factory :channel_statistic do

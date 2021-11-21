@@ -38,20 +38,22 @@ module Statistics
       end
 
       # fetch ChannelStatistics
-      fetched = Wobmire::ChannelStatistic.fetch(mapi)
-
+      response = mapi.get("channels/statuses")
       # close session
       mapi.logout
 
-      unless fetched.success?
-        errmsgs << "ERROR:: fetching channel statistics failed"
+      unless response.success?
+        errmsgs << "ERROR:: fetching channel statuses failed"
         return Result.new(success: false, error_messages: errmsgs)
       end
 
+      statuses = Mirco::DashboardStatus.parse_xml(response.body)
+
       # create server channels if neccessary
-      fetched.channel_statistics.each do |stat|
+      statuses.each do |stat|
+        next if (stat.meta_data_id == 0)
         creator = Statistics::Creator.new(server: server,
-                                          attributes: stat.statistics,
+                                          attributes: stat.attributes,
                                           create_channel: create_channel )
         unless creator.save
           errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"

@@ -14,13 +14,11 @@ class ChannelPumlComponent < ViewComponent::Base
   end
 
   def source
-    Mirco::Connector.new(@channel.sourceConnector)
+    @channel.source_connector
   end
 
   def destinations
-    @channel.destination_connectors
-    .map{|c| Mirco::Connector.new(c) }
-    .reject{|c| c.enabled == 'false'}
+    @channel.destination_connectors.reject{|c| c.enabled == 'false'}
   end
 
 end

@@ -1,7 +1,8 @@
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
-  has_one :channel_statistic, dependent: :destroy
+  has_one :channel_statistic, -> { where(meta_data_id: nil) }, dependent: :destroy
+  has_many :channel_statistics, dependent: :destroy
   has_many :channel_counters, dependent: :destroy
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
@@ -26,8 +27,12 @@ class Channel < ApplicationRecord
     "#{name}"
   end
 
+  def source_connector
+    @source_connector ||= Mirco::Connector.new(sourceConnector) if sourceConnector.present?
+  end
+
   def destination_connectors
-    if destinationConnectors.present?
+    @destination_connectors ||= if destinationConnectors.present?
       dconns = destinationConnectors['connector']
       if dconns.kind_of? Array
         dconns
@@ -36,7 +41,7 @@ class Channel < ApplicationRecord
       end 
     else
       []
-    end
+    end.map{|c| Mirco::Connector.new(c) }
   end
 
   def puml
