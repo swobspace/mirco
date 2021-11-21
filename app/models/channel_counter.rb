@@ -2,6 +2,7 @@ class ChannelCounter < ApplicationRecord
   # -- associations
   belongs_to :channel
   belongs_to :server
+  belongs_to :channel_statistic
   # -- configuration
   # -- validations and callbacks
 

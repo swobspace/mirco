@@ -112,7 +112,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g controller Home index \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller Home index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -123,7 +123,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Server \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Server \
   name:string uid:string:index location:string description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
@@ -131,13 +131,7 @@
   properties:jsonb \
   last_channel_update:timestamp \
   last_check:timestamp last_check_ok:timestamp \
-  --no-stylesheets --no-javascripts --no-helper
-
-bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
-bin/rails g migration AddLastChannelUpdateToServer \
-  last_channel_update:timestamp
-bin/rails g migration AddLastCheckToServer \
-  last_check:timestamp last_check_ok:timestamp</code></pre>
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
@@ -147,7 +141,7 @@ bin/rails g migration AddLastCheckToServer \
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Channel \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Channel \
   server:belongs_to \
   uid:string:index \
   properties:jsonb \
@@ -161,11 +155,13 @@ bin/rails g migration AddLastCheckToServer \
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold ChannelStatistic \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
   channel:belongs_to \
+  meta_data_id:integer \
   server_uid:string:index \
   channel_uid:string:index \
+  name:string state:string status_type:string \
   received:integer \
   sent:integer \
   error:integer \
@@ -185,6 +181,8 @@ bin/rails g migration AddLastCheckToServer \
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">rails generate model ChannelCounter \
   channel:belongs_to \
   server:belongs_to \
+  channel_statistic:belongs_to \
+  meta_data_id:integer \
   received:integer sent:integer error:integer filtered:integer \
   queued:integer \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
@@ -198,6 +196,7 @@ bin/rails g migration AddLastCheckToServer \
     create_table :channel_counters, id: false do |t|
       t.belongs_to :channel, null: false
       t.belongs_to :server, null: false
+      t.integer :meta_data_id
       t.integer :received
       t.integer :sent
       t.integer :error
@@ -216,7 +215,7 @@ end</code></pre>
 <div class="listingblock">
 <div class="title">Generate Controller with action :index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g controller channel_counters index \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller channel_counters index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -227,7 +226,7 @@ end</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Alert \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Alert \
   server:belongs_to \
   channel:belongs_to \
   type:string:index \
@@ -256,7 +255,7 @@ end</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails g scaffold Note \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Note \
   server:belongs_to \
   channel:belongs_to \
   user:belongs_to \
@@ -278,10 +277,10 @@ end</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="listingblock bash">
+<div class="listingblock">
 <div class="title">Install ActionText</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>bin/rails action_text:install</code></pre>
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails action_text:install</code></pre>
 </div>
 </div>
 <div class="listingblock">

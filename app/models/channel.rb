@@ -1,7 +1,8 @@
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
-  has_one :channel_statistic, dependent: :destroy
+  has_one :channel_statistic, -> { where(meta_data_id: nil) }, dependent: :destroy
+  has_many :channel_statistics, dependent: :destroy
   has_many :channel_counters, dependent: :destroy
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy

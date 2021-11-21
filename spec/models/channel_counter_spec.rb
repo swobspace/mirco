@@ -7,6 +7,7 @@ RSpec.describe ChannelCounter, type: :model do
 
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
+  it { is_expected.to belong_to(:channel_statistic) }
 
   it "should get plain factory working" do
     f = FactoryBot.create(:channel_counter)

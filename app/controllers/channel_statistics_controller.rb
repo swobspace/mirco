@@ -22,24 +22,24 @@ class ChannelStatisticsController < ApplicationController
   #
 
   def last_week
-    render json: @channel_statistic.channel.channel_counters.last_week.per_hour.map{|x| [x.time.localtime.strftime("%a %H:%M"), x.value]}
+    render json: @channel_statistic.channel_counters.last_week.per_hour.map{|x| [x.time.localtime.strftime("%a %H:%M"), x.value]}
   end
 
   def last_month
-    render json: @channel_statistic.channel.channel_counters.last_month.per_6hour.map{|x| [x.time.localtime.strftime("%d.%m. %Hh"), x.value]}
+    render json: @channel_statistic.channel_counters.last_month.per_6hour.map{|x| [x.time.localtime.strftime("%d.%m. %Hh"), x.value]}
   end
 
 
   def today
-    render json: @channel_statistic.channel.channel_counters.today.per_15min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
+    render json: @channel_statistic.channel_counters.today.per_15min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
   end
 
   def current
-    render json: @channel_statistic.channel.channel_counters.last_8h.per_5min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
+    render json: @channel_statistic.channel_counters.last_8h.per_5min.map{|x| [x.time.localtime.strftime("%H:%M"), x.value]}
   end
 
   def current_sent
-    render json: @channel_statistic.channel.channel_counters.last_8h.increase().map{|x| [x.time.localtime.strftime("%H:%M"), x.delta]}
+    render json: @channel_statistic.channel_counters.last_8h.increase().map{|x| [x.time.localtime.strftime("%H:%M"), x.delta]}
   end
 
   private

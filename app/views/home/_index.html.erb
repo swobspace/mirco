@@ -5,6 +5,7 @@
       <tr class="search">
         <th class="text-start"><%= t('attributes.server') %></th>
         <th class="text-start"><%= t('attributes.channel') %></th>
+        <th class="text-start"><%= t('attributes.destination') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.error_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.filtered_last_30min') %></th>
@@ -16,7 +17,7 @@
     </thead>
     <tbody>
       <% queued_messages.each do |channel_statistic| %>
-        <% ch = channel_statistic.channel.decorate %>
+        <% ch = channel_statistic.decorate %>
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <td class="text-start"><%= channel_statistic.server %></td>
           <td class="text-start">
@@ -26,6 +27,7 @@
                   class: "primary-link")
             %>
           </td>
+          <td class="text-start"><%= channel_statistic.name %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.received_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.error_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= ch.filtered_last_30min %></td>
@@ -40,7 +42,7 @@
                        tstamp: channel_statistic.updated_at,
                        expiration_time: Mirco.warn_threshold.minutes ) %>
           <td class="text-nowrap text-center">
-            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary') %>
+            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
 
           </td>
         <% end %>
