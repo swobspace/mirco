@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.7.0 / 2021-11-21
+
+----
+* introduce connector specific statistics, get statistics from 
+  /api/channels/statuses instead of /api/channels/statistics
+----
+
 === 0.6.3 / 2021-11-14
 
 ----
