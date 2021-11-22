@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobmire
-  revision: 453f3d150be7138fa2aecaa131380b1a1676b353
+  revision: 890f492ccabe824f22df98bdf3c9416d9e48f155
   branch: master
   specs:
     wobmire (0.1.0)
@@ -328,8 +328,6 @@ GEM
     raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-proxy (0.7.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     railroady (1.6.0)
@@ -405,7 +403,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    semantic_range (3.0.0)
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
@@ -442,11 +439,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -509,7 +501,6 @@ DEPENDENCIES
   uri (= 0.10.0)
   view_component
   web-console (>= 4.1.0)
-  webpacker (~> 5.0)
   wobapphelpers!
   wobauth!
   wobmire!
