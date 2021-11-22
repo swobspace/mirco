@@ -10,6 +10,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track' => 'reload' %>
   <%# javascript_pack_tag 'application', 'data-turbo-track' => 'reload' %>
   <%= yield :head %>
+    <%= javascript_include_tag "application-esbuild", "data-turbo-track": "reload", defer: true %>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" role="navigation">

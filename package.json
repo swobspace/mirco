@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "5",
-    "@hotwired/turbo-rails": "^7.0.0-beta.5",
+    "@hotwired/stimulus": "^3.0.1",
+    "@hotwired/turbo-rails": "^7.0.1",
     "@popperjs/core": "^2.9.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.4-1",
@@ -15,6 +16,7 @@
     "datatables.net-bs5": "^1.10.25",
     "datatables.net-buttons": "^1.7.1",
     "datatables.net-buttons-bs5": "^1.7.1",
+    "esbuild": "^0.13.15",
     "jszip": "^3.6.0",
     "pdfmake": "^0.1.71",
     "popper.js": "^1.16.1",
@@ -24,6 +26,8 @@
     "trix": "^1.2.0"
   },
   "version": "0.1.0",
-  "devDependencies": {
+  "devDependencies": {},
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
   }
 }

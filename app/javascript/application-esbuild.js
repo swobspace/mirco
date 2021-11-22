@@ -1,16 +1,12 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
+// app/javascript/application-esbuild.js
 import Rails from "@rails/ujs"
-import "@hotwired/turbo-rails"
+import { Turbo } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import "./channels"
 
-import "bootstrap";
-import '@fortawesome/fontawesome-free/js/all'
-import "@fortawesome/fontawesome-free/css/all.css"
+import * as bootstrap from "bootstrap"
+// import '@fortawesome/fontawesome-free/js/all'
+// import "@fortawesome/fontawesome-free/css/all.css"
 
 import "chartkick/chart.js"
 
@@ -30,7 +26,7 @@ require('select2/dist/js/select2')
 Rails.start()
 ActiveStorage.start()
 
-import "controllers"
+import "./controllers"
 
 require("trix")
 require("@rails/actiontext")
