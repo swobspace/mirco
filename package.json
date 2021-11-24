@@ -4,7 +4,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5",
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "^7.0.1",
+    "@hotwired/turbo-rails": "^7.1.0",
     "@popperjs/core": "^2.9.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.4-1",
@@ -13,20 +13,23 @@
     "bootstrap": "5",
     "chart.js": "^3.5.1",
     "chartkick": "^4.0.5",
-    "datatables.net-bs5": "^1.10.25",
-    "datatables.net-buttons": "^1.7.1",
-    "datatables.net-buttons-bs5": "^1.7.1",
+    "datatables.net-bs5": "^1.11.3",
+    "datatables.net-buttons": "^2.0.1",
+    "datatables.net-buttons-bs5": "^2.0.1",
     "esbuild": "^0.13.15",
-    "jszip": "^3.6.0",
-    "pdfmake": "^0.1.71",
+    "jszip": "^3.7.1",
+    "pdfmake": "^0.2.4",
     "popper.js": "^1.16.1",
     "select2": "^4.1.0-rc.0",
     "select2-bootstrap-5-theme": "^1.1.1",
-    "stimulus": "^2.0.0",
+    "stimulus": "^3.0.1",
     "trix": "^1.2.0"
   },
   "version": "0.1.0",
-  "devDependencies": {},
+  "devDependencies": {
+    "datatables.net": "^1.11.3",
+    "jquery": "^3.6.0"
+  },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
   }
