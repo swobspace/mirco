@@ -2,7 +2,7 @@
 import Rails from "@rails/ujs"
 import { Turbo } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
-import "./channels"
+// import "./channels"
 
 import * as bootstrap from "bootstrap"
 // import '@fortawesome/fontawesome-free/js/all'
