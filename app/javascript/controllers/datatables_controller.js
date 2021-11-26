@@ -27,8 +27,11 @@ export default class extends Controller {
   connect() {
     console.log("datatable controller connected")
     $(this.datatableTarget).DataTable({
+      "style": "bootstrap",
       "pagingType": "full_numbers",
-      "dom": "<'row'<'col'l><'col'BC><'col'f>>t<'row'<'col'ir><'col'p>>",
+      "dom": "<'row'<'col'l><'col'B><'col'f>>" +
+             "<'row'<'col-sm-12'tr>>" +
+             "<'row'<'col'i><'col'p>>",
       "stateSave": false,
       "lengthMenu": [ [10, 25, 100, 250, 1000], [10, 25, 100, 250, 1000] ],
       "buttons": [
