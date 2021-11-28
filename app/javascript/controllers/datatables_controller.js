@@ -14,6 +14,9 @@ import buttonsHtml5 from 'datatables.net-buttons/js/buttons.html5.js'
 buttonsHtml5(window, $)
 import buttonsPrint from 'datatables.net-buttons/js/buttons.print.js'
 buttonsPrint(window, $)
+// import responsive from 'datatables.net-responsive-bs5/js/responsive.bootstrap5.js'
+// import 'datatables.net-responsive'
+// responsive(window, $)
 // import colReorder from 'datatables.net-colreorder-bs4'
 // colReorder(window, $)
 // import fixedColumns from 'datatables.net-fixedcolumns-bs4'
