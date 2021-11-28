@@ -24,6 +24,18 @@ buttonsPrint(window, $)
 export default class extends Controller {
   static targets = [ "datatable", "remotetable", "plaintable" ]
 
+  initialize() {
+    // console.log("datatable controller initialized")
+    var myTable = $.fn.dataTable;
+    $.extend( true, myTable.Buttons.defaults, {
+      "dom": {
+        "button": {
+          "className": 'btn btn-outline-secondary btn-sm'
+        }
+      }
+    });
+  }
+
   connect() {
     console.log("datatable controller connected")
     $(this.datatableTarget).DataTable({
