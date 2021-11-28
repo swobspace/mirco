@@ -146,3 +146,7 @@ table.connector.table.table-sm > :not(caption) > * > * {
 .bg-alert {
   background-color: #B800FF !important;
 }
+
+div.dataTables_wrapper div.dt-buttons.btn-group div.btn-group:last-child {
+  border: 0px transparent;
+}
