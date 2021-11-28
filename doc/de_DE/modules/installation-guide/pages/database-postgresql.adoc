@@ -8,6 +8,11 @@
 createuser -D -E -S -R -W mirco
 ----
 
+.postgres> psql
+[source,sql]
+----
+ALTER USER mirco WITH PASSWORD '******';'
+----
 == Datenbank anlegen
 
 .Bash, user postgres
@@ -20,8 +25,8 @@ createdb -O mirco mirco_test
 
 ./var/lib/pgsql/data/pg_hba.conf
 ----
-local   mirco_test      mirco                                  trust
-local   all             all                                     peer
-host    all             all             127.0.0.1/32            md5
-host    all             all             ::1/128                 md5
+local   mirco_test      mirco                             trust
+local   all             all                               peer
+host    all             all       127.0.0.1/32            md5
+host    all             all       ::1/128                 md5
 ----
