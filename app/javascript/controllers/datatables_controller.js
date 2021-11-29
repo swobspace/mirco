@@ -52,7 +52,6 @@ export default class extends Controller {
       "buttons": [
         { 
           "extend": 'copy',
-          "className": 'btn-outline-secondary btn-sm',
           "exportOptions": {
             "columns": ':visible',
             "search": ':applied'
@@ -61,14 +60,12 @@ export default class extends Controller {
         { 
           "extend": 'excelHtml5',
            // "title": $('table[role="datatable"]').data('title'),
-          "className": 'btn-outline-secondary btn-sm',
           "exportOptions": {
             "search": ':applied'
           }
         },
         { 
           "extend": 'pdf',
-          "className": 'btn-outline-secondary btn-sm',
           "orientation": 'landscape',
           "pageSize": 'A4',
           "exportOptions": {
@@ -78,11 +75,9 @@ export default class extends Controller {
         },
         { 
           "extend": 'print',
-          "className": 'btn-outline-secondary btn-sm',
         },
         { 
           "extend": 'colvis',
-          "className": 'btn-outline-secondary btn-sm',
           // "text": "<%= I18n.t('titracka.change_columns') %>",
           "columns": ':gt(0)'
         }
