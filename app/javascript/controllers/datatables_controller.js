@@ -1,8 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import $ from 'jquery'
-window.jQuery = window.$ = $
-import JSZip from 'jszip'
-window.JSZip = JSZip
+import '../src/jquery.js'
 import 'pdfmake'
 import dataTable from 'datatables.net-bs5'
 dataTable(window, $)
@@ -15,7 +12,6 @@ buttonsHtml5(window, $)
 import buttonsPrint from 'datatables.net-buttons/js/buttons.print.js'
 buttonsPrint(window, $)
 // import responsive from 'datatables.net-responsive-bs5/js/responsive.bootstrap5.js'
-// import 'datatables.net-responsive'
 // responsive(window, $)
 // import colReorder from 'datatables.net-colreorder-bs4'
 // colReorder(window, $)
