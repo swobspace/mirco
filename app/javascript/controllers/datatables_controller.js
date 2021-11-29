@@ -42,7 +42,7 @@ export default class extends Controller {
   connect() {
     console.log("datatable controller connected")
     $(this.datatableTarget).DataTable({
-      "style": "bootstrap",
+      "autoWidth": false,
       "pagingType": "full_numbers",
       "dom": "<'row'<'col'l><'col'B><'col'f>>" +
              "<'row'<'col-sm-12'tr>>" +
