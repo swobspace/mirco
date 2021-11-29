@@ -3,10 +3,9 @@
 @import 'select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme';
 @import 'datatables.net-bs5/css/dataTables.bootstrap5';
 @import 'datatables.net-buttons-bs5/css/buttons.bootstrap5';
-@import 'datatables.net-responsive-bs5/css/responsive.bootstrap5.css';
 @import 'actiontext';
-// $fa-font-path: 'fafonts';
-$fa-font-path: 'webfonts';
+$fa-font-path: 'fafonts';
+// $fa-font-path: 'webfonts';
 // @use '@fortawesome/fontawesome-free/css/all.css';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 @import '@fortawesome/fontawesome-free/scss/brands';
