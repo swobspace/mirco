@@ -52,6 +52,7 @@ module Servers
                           api_url: ENV['API_URL'],
                           api_user: ENV['API_USER'],
                           api_password: ENV['API_PASSWORD'],
+                          uid: ENV['SERVER_UID'],
                           api_verify_ssl: ENV['API_VERIFY_SSL'])
       end
 
