@@ -120,6 +120,9 @@ echo "shared_preload_libraries = 'timescaledb'" >> <PostgreSQL-Config>
 systemctl restart postgresql
 ----
 
+NOTE: Die Extension timescaledb wird per Migration aktiviert, eine manuelle
+Aktivierung per SQL ist nicht erforderlich.
+
 == Upgrade timescaledb Extension
 
 Bei einem Upgrade z.B. von 2.3.1 auf 2.4.1 muss in der Datenbank ebenfalls die Version aktualisiert werden:

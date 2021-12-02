@@ -1,0 +1,15 @@
+@import 'breadcrumbs';
+@import 'select2/dist/css/select2';
+@import 'select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme';
+@import 'datatables.net-bs5/css/dataTables.bootstrap5';
+@import 'datatables.net-buttons-bs5/css/buttons.bootstrap5';
+@import 'actiontext';
+$fa-font-path: 'fafonts';
+// $fa-font-path: 'webfonts';
+// @use '@fortawesome/fontawesome-free/css/all.css';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+@import 'mirco';

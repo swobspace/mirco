@@ -70,3 +70,8 @@ config/deploy-config.yml
 /config/credentials/development.key
 /config/credentials/test.key
 /config/credentials/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+/config/credentials/production.key
