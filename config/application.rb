@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails'
@@ -41,7 +43,7 @@ module Mirco
     end
     unless Rails.env == 'test'
       config.active_job.queue_adapter = :delayed_job
-      config.active_job.queue_name_prefix = 'mirco_' + Rails.env.to_s
+      config.active_job.queue_name_prefix = "mirco_#{Rails.env}"
     end
   end
 end

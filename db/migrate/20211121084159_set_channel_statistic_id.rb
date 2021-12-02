@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SetChannelStatisticId < ActiveRecord::Migration[6.1]
   class ChannelCounter < ApplicationRecord; end
   class ChannelStatistic < ApplicationRecord; end

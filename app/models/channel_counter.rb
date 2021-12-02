@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChannelCounter < ApplicationRecord
   # -- associations
   belongs_to :channel

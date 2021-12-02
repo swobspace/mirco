@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   class Transformer
     attr_reader :type, :hash

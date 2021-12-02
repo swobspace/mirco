@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # -- load YAML config data
 config = YAML.load_file(File.join(Rails.root, 'db', 'seeds.yml'))
 

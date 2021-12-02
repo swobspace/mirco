@@ -1,13 +1,17 @@
-class Channels::AlertsController < AlertsController
-  before_action :set_channel
+# frozen_string_literal: true
 
-  private
+module Channels
+  class AlertsController < AlertsController
+    before_action :set_channel
 
-  def set_channel
-    @channel = Channel.find(params[:channel_id])
-  end
+    private
 
-  def location
-    channel_path(@channel)
+    def set_channel
+      @channel = Channel.find(params[:channel_id])
+    end
+
+    def location
+      channel_path(@channel)
+    end
   end
 end

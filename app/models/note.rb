@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Note < ApplicationRecord
   # -- associations
   belongs_to :server
@@ -5,7 +7,7 @@ class Note < ApplicationRecord
   belongs_to :user, class_name: 'Wobauth::User'
 
   # -- configuration
-  TYPES = %w[acknowledge mail note]
+  TYPES = %w[acknowledge mail note].freeze
   self.inheritance_column = nil
 
   # for checks only
@@ -27,7 +29,7 @@ class Note < ApplicationRecord
   private
 
   def set_server_id
-    self[:server_id] = channel.server_id if server_id.blank? and channel_id.present?
+    self[:server_id] = channel.server_id if server_id.blank? && channel_id.present?
     true
   end
 

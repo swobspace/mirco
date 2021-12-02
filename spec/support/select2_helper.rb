@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # methods with val only works with non ajax stuff
 
 module Select2Helper
@@ -15,7 +17,7 @@ module Select2Helper
   # source: gitlab.com/gitlab-org/gitlab-ce/spec/support/select2_helper.rb
 
   def select2(value, options = {})
-    raise "Must pass a hash containing 'from'" if !options.is_a?(Hash) or !options.has_key?(:from)
+    raise "Must pass a hash containing 'from'" if !options.is_a?(Hash) || !options.key?(:from)
 
     selector = options[:from]
     if options[:multiple]

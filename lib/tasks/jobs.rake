@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # autostart CronJob scheduling
 # see https://github.com/codez/delayed_cron_job/README.md for more information
 #
@@ -6,7 +8,7 @@ namespace :db do
   task schedule_jobs: :environment do
     # Need to load all jobs definitions in order to find subclasses
     glob = Rails.root.join('app', 'jobs', '**', '*_job.rb')
-    Dir.glob(glob).each { |file| require file }
+    Dir.glob(glob).sort.each { |file| require file }
     CronJob.subclasses.each(&:schedule)
   end
 end

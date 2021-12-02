@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Channels
   #
   # Create Channel or retrieve from database and update properties

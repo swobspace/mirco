@@ -1,13 +1,17 @@
-class Servers::NotesController < NotesController
-  before_action :set_notable
+# frozen_string_literal: true
 
-  private
+module Servers
+  class NotesController < NotesController
+    before_action :set_notable
 
-  def set_notable
-    @notable = Server.find(params[:server_id])
-  end
+    private
 
-  def add_breadcrumb_show
-    add_breadcrumb_for([set_notable, @note])
+    def set_notable
+      @notable = Server.find(params[:server_id])
+    end
+
+    def add_breadcrumb_show
+      add_breadcrumb_for([set_notable, @note])
+    end
   end
 end

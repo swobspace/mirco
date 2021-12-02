@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NoteDecorator < Draper::Decorator
   delegate_all
 

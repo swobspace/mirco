@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Alert < ApplicationRecord
   # -- associations
   belongs_to :server
   belongs_to :channel
 
   # -- configuration
-  TYPES = %w[alert recovery acknowledge]
+  TYPES = %w[alert recovery acknowledge].freeze
   self.inheritance_column = nil
 
   # -- validations and callbacks

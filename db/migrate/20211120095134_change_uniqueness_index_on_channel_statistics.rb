@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeUniquenessIndexOnChannelStatistics < ActiveRecord::Migration[6.1]
   def change
     remove_index :channel_statistics, :channel_id

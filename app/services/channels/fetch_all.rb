@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Channels
   #
   # Service fetching all channels from one server via mirth api /channels

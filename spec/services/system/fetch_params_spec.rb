@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # setup test environment
 # - you can use any running mirth version 3.8 and above
 # - set the the following variables in .env:

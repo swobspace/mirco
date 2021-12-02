@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   class Connector
     attr_reader :hash

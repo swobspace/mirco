@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]

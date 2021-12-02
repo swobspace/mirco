@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ServersController < ApplicationController
   before_action :set_server, only: %i[show edit update update_properties destroy]
   before_action :add_breadcrumb_show, only: [:show]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module System
   #
   # Service fetching params from mirth api /server and /system

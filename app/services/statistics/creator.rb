@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Statistics
   #
   # Create Channel or retrieve from database and update attributes
@@ -15,7 +17,7 @@ module Statistics
       @attributes = options.fetch(:attributes)
       raise 'Statistics::Creator.new: :attributes is empty!' if @attributes.empty?
 
-      @create_channel = options.fetch(:create_channel) { false }
+      @create_channel = options.fetch(:create_channel, false)
       fetch_channel(@attributes['channel_uid'])
       @channel_statistic ||= fetch_channel_statistic
     end

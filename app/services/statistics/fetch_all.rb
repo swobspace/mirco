@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Statistics
   #
   # Service fetching all channels from one server via mirth api /channels
@@ -17,7 +19,7 @@ module Statistics
     def initialize(options = {})
       options.symbolize_keys
       @server = options.fetch(:server)
-      @create_channel = options.fetch(:create_channel) { false }
+      @create_channel = options.fetch(:create_channel, false)
     end
 
     # service.call()
@@ -52,7 +54,7 @@ module Statistics
 
       # create server channels if neccessary
       statuses.each do |stat|
-        next if stat.meta_data_id == 0
+        next if stat.meta_data_id.zero?
 
         creator = Statistics::Creator.new(server: server,
                                           attributes: stat.attributes,

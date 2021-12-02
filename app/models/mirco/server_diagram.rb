@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   class ServerDiagram < Diagram
     def initialize(server, _options = {})

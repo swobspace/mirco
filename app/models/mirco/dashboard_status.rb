@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module Mirco
   class DashboardStatus
     attr_reader :name, :channel_uid, :state, :status_type, :queued, :statistics,
                 :meta_data_id
 
     ATTRIBUTES = %i[name channel_uid state status_type queued
-                    meta_data_id received sent filtered error]
+                    meta_data_id received sent filtered error].freeze
 
     # Mirco::DashboardStatus.new(doc)
     # doc = Nokogiri::XML(<xml>)

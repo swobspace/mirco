@@ -13,7 +13,7 @@ class Ability
       can :read, Home
     elsif @user.is_admin?
       can :manage, :all
-      cannot %i[update destroy], :roles, ro: :true
+      cannot %i[update destroy], :roles, ro: true
     elsif @user.role?(:manager)
       can :read, :all
       can :manage, [Note], user_id: @user.id

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Mirco::DashboardStatus, type: :model do
@@ -6,7 +8,7 @@ RSpec.describe Mirco::DashboardStatus, type: :model do
   end
 
   describe '::parse_xml' do
-    let!(:xml) { File.open(xmlfile) { |f| f.read } }
+    let!(:xml) { File.open(xmlfile, &:read) }
     let(:statuses) { Mirco::DashboardStatus.parse_xml(xml) }
 
     it { expect(statuses.count).to eq(10) }

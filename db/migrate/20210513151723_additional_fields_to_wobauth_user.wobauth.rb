@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from wobauth (originally 20171231084355)
 class AdditionalFieldsToWobauthUser < ActiveRecord::Migration[5.1]
   def change

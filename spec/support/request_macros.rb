@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RequestMacros
   include Warden::Test::Helpers
   Warden.test_mode!
@@ -6,8 +8,8 @@ module RequestMacros
   def login_user(options = {})
     options.symbolize_keys!
     user = options.fetch(:user) { FactoryBot.create(:user) }
-    ou = options.fetch(:org_unit) { nil }
-    role = options.fetch(:role) { false }
+    ou = options.fetch(:org_unit, nil)
+    role = options.fetch(:role, false)
     if role
       user_role = Wobauth::Role.find_or_create_by(name: role)
       FactoryBot.create(:authority, authorizable: user,

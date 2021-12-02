@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Mirco
   CONFIGURATION_CONTROLLER = [
     'servers'
-  ]
+  ].freeze
   CONFIGFILE = File.join(Rails.root, 'config', 'mirco.yml')
   config = YAML.load_file(CONFIGFILE) if File.readable? CONFIGFILE
   CONFIG = config || {}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChannelStatistic < ApplicationRecord
   # -- associations
   belongs_to :server

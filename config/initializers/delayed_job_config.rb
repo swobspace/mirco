@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if defined?(Delayed::Worker)
   Delayed::Worker.destroy_failed_jobs = true
   Delayed::Worker.sleep_delay = 60

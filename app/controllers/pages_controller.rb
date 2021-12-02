@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PagesController < ApplicationController
   skip_load_and_authorize_resource
   load_and_authorize_resource class: false

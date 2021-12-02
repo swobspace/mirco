@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   include Wobapphelpers::Helpers::All
 
@@ -5,7 +7,7 @@ module ApplicationHelper
     return '' if text.blank?
 
     options.symbolize_keys!
-    style = options.fetch(:style) { :markdown }
+    style = options.fetch(:style, :markdown)
     case style
     when :markdown
       text = text.gsub('\n', "\n")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AlertsController < ApplicationController
   before_action :set_alert, only: %i[show edit update destroy]
   before_action :add_breadcrumb_show, only: [:show]

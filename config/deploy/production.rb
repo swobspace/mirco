@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 config = YAML.load_file('config/deploy-config.yml') || {}
 
 set :rails_env, 'production'

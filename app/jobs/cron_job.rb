@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # CronJob
 # from https://github.com/codez/delayed_cron_job/README.md
 # Default configuration in `app/jobs/application_job.rb`

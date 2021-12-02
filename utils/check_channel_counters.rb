@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 ENV['RAILS_ENV'] ||= 'development'
-require File.dirname(__FILE__) + '/../config/environment.rb'
+require "#{File.dirname(__FILE__)}/../config/environment.rb"
 
 ChannelCounter.all.each do |cc|
   cs = ChannelStatistic.where(id: cc.channel_statistic_id).first
