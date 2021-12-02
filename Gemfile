@@ -42,9 +42,9 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-yarn'
   gem 'guard'
-  gem 'guard-bundler'
+  # gem 'guard-bundler'
   gem 'guard-livereload', require: false
-  gem 'guard-puma'
+  # gem 'guard-puma'
   gem 'libnotify'
   gem 'listen', '~> 3.3'
   gem 'web-console', '>= 4.1.0'
