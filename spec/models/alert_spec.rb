@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Alert, type: :model do
@@ -8,15 +10,14 @@ RSpec.describe Alert, type: :model do
   it { is_expected.to validate_inclusion_of(:type).in_array(Alert::TYPES) }
   it { is_expected.to validate_presence_of(:message) }
 
-
-  it "should get plain factory working" do
+  it 'should get plain factory working' do
     f = FactoryBot.create(:alert)
     g = FactoryBot.create(:alert)
     expect(f).to be_valid
     expect(g).to be_valid
   end
 
-  it "#to_s renders string" do
+  it '#to_s renders string' do
     f = FactoryBot.create(:alert, type: 'recovery', message: 'some other text')
     expect(f.to_s).to eq("#{f.server}::#{f.channel} RECOVERY - some other text")
   end

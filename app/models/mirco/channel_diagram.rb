@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Mirco
   class ChannelDiagram < Diagram
-
-    def initialize(channel, options = {})
+    def initialize(channel, _options = {})
       @channel = channel
     end
 
@@ -19,11 +20,11 @@ module Mirco
     end
 
     def type
-      "channel"
+      'channel'
     end
 
-  private
-    attr_reader :channel
+    private
 
+    attr_reader :channel
   end
 end

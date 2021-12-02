@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ServersController < ApplicationController
-  before_action :set_server, only: [:show, :edit, :update, :update_properties, :destroy]
+  before_action :set_server, only: %i[show edit update update_properties destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /servers
@@ -12,15 +14,15 @@ class ServersController < ApplicationController
   def show
     @server = @server.decorate
     respond_with(@server) do |format|
-      format.puml {
+      format.puml do
         render format: :puml, layout: false
-      }
-      format.svg {
+      end
+      format.svg do
         diagram = Mirco::ServerDiagram.new(@server)
-        send_file diagram.image(:svg), :filename => "#{@server.name}.svg",
-                        :disposition => 'inline',
-                        :type => 'image/svg+xml'
-      }
+        send_file diagram.image(:svg), filename: "#{@server.name}.svg",
+                                       disposition: 'inline',
+                                       type: 'image/svg+xml'
+      end
     end
   end
 
@@ -31,8 +33,7 @@ class ServersController < ApplicationController
   end
 
   # GET /servers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /servers
   def create
@@ -64,32 +65,33 @@ class ServersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_server
-      @server = Server.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def server_params
-      params.require(:server).permit(
-        :name, :uid, :location, :description, 
-        :api_url, :api_user, :api_password, 
-        :api_user_has_full_access, :api_verify_ssl)
-      .reject{|k,v| k == 'api_password' && v.blank?}
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_server
+    @server = Server.find(params[:id])
+  end
 
-    # --- file stuff
+  # Only allow a trusted parameter "white list" through.
+  def server_params
+    params.require(:server).permit(
+      :name, :uid, :location, :description,
+      :api_url, :api_user, :api_password,
+      :api_user_has_full_access, :api_verify_ssl
+    )
+          .reject { |k, v| k == 'api_password' && v.blank? }
+  end
 
-    def filebase
-      File.join( Rails.root, 'tmp', "server-#{@server.id}" )
-    end
+  # --- file stuff
 
-    def pumlfile
-      "#{filebase}.puml"
-    end
+  def filebase
+    File.join(Rails.root, 'tmp', "server-#{@server.id}")
+  end
 
-    def svgfile
-      "#{filebase}.svg"
-    end
+  def pumlfile
+    "#{filebase}.puml"
+  end
 
+  def svgfile
+    "#{filebase}.svg"
+  end
 end

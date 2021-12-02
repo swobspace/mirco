@@ -7,6 +7,7 @@ class ChannelPumlComponent < ViewComponent::Base
   end
 
   private
+
   attr_reader :channel, :scope, :source, :destinations, :ch_alias
 
   def ch_alias
@@ -18,7 +19,6 @@ class ChannelPumlComponent < ViewComponent::Base
   end
 
   def destinations
-    @channel.destination_connectors.reject{|c| c.enabled == 'false'}
+    @channel.destination_connectors.reject { |c| c.enabled == 'false' }
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   module ConnectorType
     class VmReceiver < Generic
@@ -6,11 +8,11 @@ module Mirco
       end
 
       def puml_type
-        "interface"
+        'interface'
       end
 
       def puml_text
-        "Channel Reader"
+        'Channel Reader'
       end
     end
   end

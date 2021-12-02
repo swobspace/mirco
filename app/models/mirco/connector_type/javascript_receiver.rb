@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   module ConnectorType
     class JavascriptReceiver < Generic
@@ -7,15 +9,12 @@ module Mirco
       end
 
       def puml_type
-        "frame"
+        'frame'
       end
 
       def puml_text
-        "javascript"
+        'javascript'
       end
-
-      private
-
     end
   end
 end

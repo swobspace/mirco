@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module System
   #
   # Service fetching params from mirth api /server and /system
   #
   class FetchParams
     attr_reader :server
-    Result = ImmutableStruct.new( :success?, :error_messages, :params )
+
+    Result = ImmutableStruct.new(:success?, :error_messages, :params)
 
     # service = System::FetchParams(server: server)
     #
@@ -29,10 +32,10 @@ module System
       # login
       unless mapi.login(server.api_user, server.api_password)
         return Result.new(
-                 success: false,
-                 error_messages: ["ERROR:: Login failed"],
-                 params: {}
-               )
+          success: false,
+          error_messages: ['ERROR:: Login failed'],
+          params: {}
+        )
       end
 
       # fetch system info and stats
@@ -42,41 +45,41 @@ module System
       if sysinfo.success?
         params[:system_info] = sysinfo.info.info
       else
-        errmsgs << "ERROR:: fetching sysinfo failed"
+        errmsgs << 'ERROR:: fetching sysinfo failed'
         success = false
       end
 
       if serversettings.success?
         params[:server_settings] = serversettings.settings.settings
       else
-        errmsgs << "ERROR:: fetching server settings failed"
+        errmsgs << 'ERROR:: fetching server settings failed'
         success = false
       end
 
       # server_uid
-      response = mapi.get("server/id")
+      response = mapi.get('server/id')
       if response.success?
         params[:server_uid] = response.body.to_s
       else
-        errmsgs << "ERROR:: fetching server id failed"
+        errmsgs << 'ERROR:: fetching server id failed'
         success = false
       end
 
       # server_jvm
-      response = mapi.get("server/jvm")
+      response = mapi.get('server/jvm')
       if response.success?
         params[:server_jvm] = response.body.to_s
       else
-        errmsgs << "ERROR:: fetching server jvm failed"
+        errmsgs << 'ERROR:: fetching server jvm failed'
         success = false
       end
 
       # server_version
-      response = mapi.get("server/version")
+      response = mapi.get('server/version')
       if response.success?
         params[:server_version] = response.body.to_s
       else
-        errmsgs << "ERROR:: fetching server version failed"
+        errmsgs << 'ERROR:: fetching server version failed'
         success = false
       end
 
@@ -86,24 +89,24 @@ module System
       if server.uid.blank?
         server.update(uid: params[:server_uid])
       elsif server.uid != params[:server_uid]
-        errmsgs << "ERROR:: server uid mismatch"
+        errmsgs << 'ERROR:: server uid mismatch'
         success = false
       end
 
-      return Result.new(
-               success: success,
-               error_messages: errmsgs,
-               params: params
-            )
+      Result.new(
+        success: success,
+        error_messages: errmsgs,
+        params: params
+      )
     end
 
-  private
+    private
+
     def server_options
       {
         url: server.api_url,
         ssl: { verify: server.api_verify_ssl }
       }
     end
-
   end
 end

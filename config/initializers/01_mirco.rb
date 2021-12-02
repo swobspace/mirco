@@ -1,70 +1,64 @@
+# frozen_string_literal: true
+
 module Mirco
   CONFIGURATION_CONTROLLER = [
-    "servers"
-  ]
+    'servers'
+  ].freeze
   CONFIGFILE = File.join(Rails.root, 'config', 'mirco.yml')
-  if File.readable? CONFIGFILE
-    config = YAML.load_file(CONFIGFILE)
-  end
-  CONFIG = config || Hash.new
+  config = YAML.load_file(CONFIGFILE) if File.readable? CONFIGFILE
+  CONFIG = config || {}
 
   def self.devise_modules
     if CONFIG['devise_modules'].present?
       CONFIG['devise_modules']
     else
-      [ :remote_user_authenticatable,
-        :database_authenticatable,
-        :registerable,
-        :recoverable,
-        :rememberable,
-        :trackable
-      ]
+      %i[remote_user_authenticatable
+         database_authenticatable
+         registerable
+         recoverable
+         rememberable
+         trackable]
     end
   end
 
   def self.ldap_options
     if CONFIG['ldap_options'].present?
       ldapopts = CONFIG['ldap_options']
-      if ldapopts.kind_of? Hash
-        ldapopts = [ldapopts]
-      end
+      ldapopts = [ldapopts] if ldapopts.is_a? Hash
       ldapopts.each do |opts|
         opts.symbolize_keys!
-        opts.each do |k,v|
-          opts[k] = opts[k].symbolize_keys if opts[k].kind_of? Hash
+        opts.each do |k, _v|
+          opts[k] = opts[k].symbolize_keys if opts[k].is_a? Hash
         end
       end
-    else
-      nil
     end
   end
 
   def self.mail_from
-    self.fetch_config('mail_from', 'root')
+    fetch_config('mail_from', 'root')
   end
 
   def self.use_ssl
-    self.fetch_config('use_ssl', false)
+    fetch_config('use_ssl', false)
   end
 
   def self.remote_user
-    self.fetch_config('remote_user', 'REMOTE_USER')
+    fetch_config('remote_user', 'REMOTE_USER')
   end
 
   def self.cron_expression
-    self.fetch_config('cron_expression', '*/5 * * * *')
+    fetch_config('cron_expression', '*/5 * * * *')
   end
 
   def self.warn_threshold
-    self.fetch_config('warn_threshold', 10)
+    fetch_config('warn_threshold', 10)
   end
-
 
   def self.action_cable_allowed_request_origins
     if CONFIG['action_cable_allowed_request_origins'].present?
       Array(CONFIG['action_cable_allowed_request_origins'])
     else
-      [ 'http://localhost', 'https://localhost' ]
+      ['http://localhost', 'https://localhost']
     end
   end
 
@@ -72,7 +66,7 @@ module Mirco
     if CONFIG['host'].present?
       CONFIG['host']
     else
-      "localhost"
+      'localhost'
     end
   end
 
@@ -80,7 +74,7 @@ module Mirco
     if CONFIG['script_name'].present?
       CONFIG['scriptname']
     else
-      "/"
+      '/'
     end
   end
 
@@ -93,13 +87,11 @@ module Mirco
   end
 
   ActionMailer::Base.default_url_options = {
-   host: self.host,
-   script_name: self.script_name
+    host: host,
+    script_name: script_name
   }
-  Rails.application.routes.default_url_options[:host] = self.host
-  Rails.application.routes.default_url_options[:script_name] = self.script_name
-
-private
+  Rails.application.routes.default_url_options[:host] = host
+  Rails.application.routes.default_url_options[:script_name] = script_name
 
   def self.fetch_config(attribute, default_value)
     if CONFIG[attribute.to_s].present?
@@ -108,5 +100,4 @@ private
       default_value
     end
   end
-
 end

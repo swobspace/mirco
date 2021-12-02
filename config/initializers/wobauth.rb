@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Wobauth.setup do |config|
   #
   # Configuration for Authorization

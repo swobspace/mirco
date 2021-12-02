@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 module Statistics
   #
   # Service fetching all channels from one server via mirth api /channels
   #
   class FetchAll
     attr_reader :server
-    Result = ImmutableStruct.new( :success?, :error_messages )
+
+    Result = ImmutableStruct.new(:success?, :error_messages)
 
     # service = System::FetchParams(server: server)
     #
@@ -16,7 +19,7 @@ module Statistics
     def initialize(options = {})
       options.symbolize_keys
       @server = options.fetch(:server)
-      @create_channel = options.fetch(:create_channel) { false }
+      @create_channel = options.fetch(:create_channel, false)
     end
 
     # service.call()
@@ -32,18 +35,18 @@ module Statistics
       # login
       unless mapi.login(server.api_user, server.api_password)
         return Result.new(
-                 success: false,
-                 error_messages: ["ERROR:: Login failed"]
-               )
+          success: false,
+          error_messages: ['ERROR:: Login failed']
+        )
       end
 
       # fetch ChannelStatistics
-      response = mapi.get("channels/statuses")
+      response = mapi.get('channels/statuses')
       # close session
       mapi.logout
 
       unless response.success?
-        errmsgs << "ERROR:: fetching channel statuses failed"
+        errmsgs << 'ERROR:: fetching channel statuses failed'
         return Result.new(success: false, error_messages: errmsgs)
       end
 
@@ -51,10 +54,13 @@ module Statistics
 
       # create server channels if neccessary
       statuses.each do |stat|
-        next if (stat.meta_data_id == 0)
+        # create statistics if meta_data_id == nil (channel itself)
+        # or if > 0 (all connectors except source)
+        next unless (stat.meta_data_id.nil? || stat.meta_data_id > 0)
+
         creator = Statistics::Creator.new(server: server,
                                           attributes: stat.attributes,
-                                          create_channel: create_channel )
+                                          create_channel: create_channel)
         unless creator.save
           errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"
           success = false
@@ -66,10 +72,11 @@ module Statistics
         server.touch(:last_check)
       end
 
-      return Result.new(success: success, error_messages: errmsgs)
+      Result.new(success: success, error_messages: errmsgs)
     end
 
-  private
+    private
+
     attr_reader :create_channel
 
     def server_options
@@ -78,6 +85,5 @@ module Statistics
         ssl: { verify: server.api_verify_ssl }
       }
     end
-
   end
 end

@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -80,5 +82,4 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
   # -- strong parameters
   config.action_controller.action_on_unpermitted_parameters = :raise
-
 end

@@ -8,9 +8,9 @@ class ConnectorComponent < ViewComponent::Base
 
   def enabled
     if mc.enabled == 'true'
-      "text-muted"
+      'text-muted'
     else
-      "fw-bolder text-danger"
+      'fw-bolder text-danger'
     end
   end
 
@@ -22,7 +22,7 @@ class ConnectorComponent < ViewComponent::Base
     helpers.format(text, options)
   end
 
-private
-  attr_reader :connector, :mc
+  private
 
+  attr_reader :connector, :mc
 end
