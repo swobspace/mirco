@@ -20,8 +20,6 @@ class Server < ApplicationRecord
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
 
   def to_s
-    "#{name}"
+    name.to_s
   end
-
-
 end

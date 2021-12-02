@@ -6,11 +6,11 @@ module Mirco
       end
 
       def puml_type
-        "interface"
+        'interface'
       end
 
       def puml_text
-        "Channel Reader"
+        'Channel Reader'
       end
     end
   end

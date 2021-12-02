@@ -8,7 +8,7 @@ RSpec.describe Channel, type: :model do
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:uid) }
 
-  it "should get plain factory working" do
+  it 'should get plain factory working' do
     f = FactoryBot.create(:channel)
     g = FactoryBot.create(:channel)
     expect(f).to be_valid
@@ -16,9 +16,8 @@ RSpec.describe Channel, type: :model do
     expect(f).to validate_uniqueness_of(:uid).scoped_to(:server_id)
   end
 
-  it "to_s returns value" do
-    f = FactoryBot.create(:channel, properties: {name: "special channel"})
-    expect("#{f}").to match ("special channel")
+  it 'to_s returns value' do
+    f = FactoryBot.create(:channel, properties: { name: 'special channel' })
+    expect(f.to_s).to match('special channel')
   end
-
 end

@@ -1,7 +1,7 @@
 class Servers::AlertsController < AlertsController
   before_action :set_server
 
-private
+  private
 
   def set_server
     @server = Server.find(params[:server_id])
@@ -11,4 +11,3 @@ private
     server_path(@server)
   end
 end
-

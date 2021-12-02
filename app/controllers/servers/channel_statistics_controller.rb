@@ -6,14 +6,14 @@ class Servers::ChannelStatisticsController < ChannelStatisticsController
     unless result.success?
       @server.errors.add(:base, :invalid)
       flash[:error] = "WARN:: fetch channel statistics failed, server: #{@server}"
-      flash[:error] += "<br/>"
-      flash[:error] += result.error_messages.join("<br/>")
+      flash[:error] += '<br/>'
+      flash[:error] += result.error_messages.join('<br/>')
       Rails.logger.warn(flash[:error])
     end
     respond_with(@server, location: location, render: 'servers/show')
   end
 
-private
+  private
 
   def set_server
     @server = Server.find(params[:server_id])
@@ -23,4 +23,3 @@ private
     server_path(@server)
   end
 end
-

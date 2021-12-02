@@ -4,7 +4,7 @@ class Alert < ApplicationRecord
   belongs_to :channel
 
   # -- configuration
-  TYPES = ['alert', 'recovery', 'acknowledge']
+  TYPES = %w[alert recovery acknowledge]
   self.inheritance_column = nil
 
   # -- validations and callbacks
@@ -14,5 +14,4 @@ class Alert < ApplicationRecord
   def to_s
     "#{server}::#{channel} #{type.upcase} - #{message}"
   end
-
 end

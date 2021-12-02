@@ -24,7 +24,7 @@ class Channel < ApplicationRecord
   validates :uid, presence: true, uniqueness: { scope: :server_id }
 
   def to_s
-    "#{name}"
+    name.to_s
   end
 
   def source_connector
@@ -33,22 +33,21 @@ class Channel < ApplicationRecord
 
   def destination_connectors
     @destination_connectors ||= if destinationConnectors.present?
-      dconns = destinationConnectors['connector']
-      if dconns.kind_of? Array
-        dconns
-      else
-        [dconns]
-      end 
-    else
-      []
-    end.map{|c| Mirco::Connector.new(c) }
+                                  dconns = destinationConnectors['connector']
+                                  if dconns.is_a? Array
+                                    dconns
+                                  else
+                                    [dconns]
+                                  end
+                                else
+                                  []
+                                end.map { |c| Mirco::Connector.new(c) }
   end
 
   def puml
     {
       alias: "ch_#{id}",
-      text: "#{name}"
+      text: name.to_s
     }
   end
-
 end

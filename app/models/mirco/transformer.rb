@@ -7,7 +7,7 @@ module Mirco
       @hash = hash
     end
 
-    # 
+    #
     # simple properties
     #
 
@@ -16,7 +16,7 @@ module Mirco
     end
 
     def name
-      hash['name'] || "no description"
+      hash['name'] || 'no description'
     end
 
     def step
@@ -33,17 +33,16 @@ module Mirco
       when 'com.mirth.connect.plugins.javascriptstep.JavaScriptStep'
         hash['script']
       when 'com.mirth.connect.plugins.messagebuilder.MessageBuilderStep'
-        ['mapping', 'messageSegment', 'defaultValue', 'replacements'].map do |attr|
+        %w[mapping messageSegment defaultValue replacements].map do |attr|
           "#{attr}: #{hash[attr]}"
         end.join("\n")
       when 'com.mirth.connect.plugins.mapper.MapperStep'
-        ['mapping', 'variable', 'defaultValue', 'replacements'].map do |attr|
+        %w[mapping variable defaultValue replacements].map do |attr|
           "#{attr}: #{hash[attr]}"
         end.join("\n")
       else
-        ""
+        ''
       end
     end
-
   end
 end

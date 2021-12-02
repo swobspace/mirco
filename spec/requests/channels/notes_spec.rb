@@ -13,83 +13,89 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 module Channels
-  RSpec.describe "Notes", type: :request do
-    let!(:server) { FactoryBot.create(:server, name: "MyServer") }
-    let!(:channel) { FactoryBot.create(:channel, server: server, name: "MyChannel") }
+  RSpec.describe 'Notes', type: :request do
+    let!(:server) { FactoryBot.create(:server, name: 'MyServer') }
+    let!(:channel) { FactoryBot.create(:channel, server: server, name: 'MyChannel') }
     let!(:user) { FactoryBot.create(:user) }
-    
-    let(:valid_attributes) {{
-      server_id: server.id,
-      channel_id: channel.id,
-      type: 'acknowledge',
-      message: "some special stuff",
-      user_id: user.id
-    }}
 
-    let(:post_attributes) {{
-      server_id: server.id,
-      channel_id: channel.id,
-      message: "some special stuff",
-    }}
+    let(:valid_attributes) do
+      {
+        server_id: server.id,
+        channel_id: channel.id,
+        type: 'acknowledge',
+        message: 'some special stuff',
+        user_id: user.id
+      }
+    end
 
-    let(:invalid_attributes) {{
-      type: 'very wrong type',
-    }}
+    let(:post_attributes) do
+      {
+        server_id: server.id,
+        channel_id: channel.id,
+        message: 'some special stuff'
+      }
+    end
+
+    let(:invalid_attributes) do
+      {
+        type: 'very wrong type'
+      }
+    end
 
     before(:each) do
       login_admin
     end
 
-    describe "GET /index" do
-      it "renders a successful response" do
+    describe 'GET /index' do
+      it 'renders a successful response' do
         Note.create! valid_attributes
         get channel_notes_url(channel)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /show" do
-      it "renders a successful response" do
+    describe 'GET /show' do
+      it 'renders a successful response' do
         note = Note.create! valid_attributes
         get channel_note_url(channel, note)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /new" do
-      it "renders a successful response" do
+    describe 'GET /new' do
+      it 'renders a successful response' do
         get new_channel_note_url(channel)
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
-      it "render a successful response" do
+    describe 'GET /edit' do
+      it 'render a successful response' do
         note = Note.create! valid_attributes
         get edit_channel_note_url(channel, note)
         expect(response).to be_successful
       end
     end
 
-    describe "POST /create" do
-      context "with valid parameters" do
-        it "creates a new Note" do
-          expect {
+    describe 'POST /create' do
+      context 'with valid parameters' do
+        it 'creates a new Note' do
+          expect do
             post channel_notes_url(channel), params: { note: post_attributes }
-          }.to change(Note, :count).by(1)
+          end.to change(Note, :count).by(1)
         end
 
-        it "redirects to the created note" do
+        it 'redirects to the created note' do
           post channel_notes_url(channel), params: { note: post_attributes }
           expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))
         end
       end
 
-      context "with invalid parameters" do
-        it "does not create a new Note" do
-          expect {
+      context 'with invalid parameters' do
+        it 'does not create a new Note' do
+          expect do
             post channel_notes_url(channel), params: { note: invalid_attributes }
-          }.to change(Note, :count).by(0)
+          end.to change(Note, :count).by(0)
         end
 
         it "renders a successful response (i.e. to display the 'new' template)" do
@@ -99,20 +105,22 @@ module Channels
       end
     end
 
-    describe "PATCH /update" do
-      context "with valid parameters" do
-        let(:new_attributes) {{
-          message: "some other text"
-        }}
+    describe 'PATCH /update' do
+      context 'with valid parameters' do
+        let(:new_attributes) do
+          {
+            message: 'some other text'
+          }
+        end
 
-        it "updates the requested note" do
+        it 'updates the requested note' do
           note = Note.create! valid_attributes
           patch channel_note_url(channel, note), params: { note: new_attributes }
           note.reload
-          expect(note.message.to_plain_text).to eq("some other text")
+          expect(note.message.to_plain_text).to eq('some other text')
         end
 
-        it "redirects to the note" do
+        it 'redirects to the note' do
           note = Note.create! valid_attributes
           patch channel_note_url(channel, note), params: { note: new_attributes }
           note.reload
@@ -120,7 +128,7 @@ module Channels
         end
       end
 
-      context "with invalid parameters" do
+      context 'with invalid parameters' do
         it "renders a successful response (i.e. to display the 'edit' template)" do
           note = Note.create! valid_attributes
           patch channel_note_url(channel, note), params: { note: invalid_attributes }
@@ -129,15 +137,15 @@ module Channels
       end
     end
 
-    describe "DELETE /destroy" do
-      it "destroys the requested note" do
+    describe 'DELETE /destroy' do
+      it 'destroys the requested note' do
         note = Note.create! valid_attributes
-        expect {
+        expect do
           delete channel_note_url(channel, note)
-        }.to change(Note, :count).by(-1)
+        end.to change(Note, :count).by(-1)
       end
 
-      it "redirects to the notes list" do
+      it 'redirects to the notes list' do
         note = Note.create! valid_attributes
         delete channel_note_url(channel, note)
         expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))

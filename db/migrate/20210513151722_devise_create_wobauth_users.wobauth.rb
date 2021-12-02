@@ -2,22 +2,21 @@
 class DeviseCreateWobauthUsers < ActiveRecord::Migration[5.1]
   def change
     create_table(:wobauth_users) do |t|
-
       # -- devise_cas_authenticable
-      t.string :username, :null => false, :default => ""
+      t.string :username, null: false, default: ''
 
       # -- wob's extensions
-      t.text "gruppen"
-      t.string "sn"
-      t.string "givenname"
-      t.string "displayname"
-      t.string "telephone"
-      t.string "active_directory_guid"
-      t.string "userprincipalname"
+      t.text 'gruppen'
+      t.string 'sn'
+      t.string 'givenname'
+      t.string 'displayname'
+      t.string 'telephone'
+      t.string 'active_directory_guid'
+      t.string 'userprincipalname'
 
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
@@ -43,7 +42,6 @@ class DeviseCreateWobauthUsers < ActiveRecord::Migration[5.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
 
       t.timestamps
     end

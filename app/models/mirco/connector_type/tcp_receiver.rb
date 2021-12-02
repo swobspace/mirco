@@ -12,14 +12,14 @@ module Mirco
       end
 
       def puml_type
-        "interface"
+        'interface'
       end
 
       def puml_text
         "tcp://#{listener_ip}:#{listener_port}"
       end
 
-    private
+      private
 
       def listener_ip
         properties['listenerConnectorProperties']['host']

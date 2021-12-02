@@ -8,7 +8,7 @@ module ServerConcerns
     if last_channel_update.nil?
       channels
     else
-      channels.where("channels.updated_at >= ?", 1.minute.before(last_channel_update))
+      channels.where('channels.updated_at >= ?', 1.minute.before(last_channel_update))
     end
   end
 end

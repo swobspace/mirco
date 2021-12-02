@@ -12,36 +12,37 @@
 require 'rails_helper'
 module Channels
   RSpec.describe FetchAll do
-    let!(:server) { FactoryBot.create(:server,
-      api_url: ENV['API_URL'],
-      api_user: ENV['API_USER'],
-      api_password: ENV['API_PASSWORD'],
-      api_verify_ssl: ENV['API_VERIFY_SSL']
-    )}
+    let!(:server) do
+      FactoryBot.create(:server,
+                        api_url: ENV['API_URL'],
+                        api_user: ENV['API_USER'],
+                        api_password: ENV['API_PASSWORD'],
+                        api_verify_ssl: ENV['API_VERIFY_SSL'])
+    end
     subject { Channels::FetchAll.new(server: server) }
 
     # check for instance methods
-    describe "check if instance methods exists" do
-      it { expect(subject.respond_to? :call).to be_truthy}
-      it { expect(subject.call.respond_to? :success?).to be_truthy }
-      it { expect(subject.call.respond_to? :error_messages).to be_truthy }
+    describe 'check if instance methods exists' do
+      it { expect(subject.respond_to?(:call)).to be_truthy }
+      it { expect(subject.call.respond_to?(:success?)).to be_truthy }
+      it { expect(subject.call.respond_to?(:error_messages)).to be_truthy }
     end
 
-    describe "#call" do
-     let(:result) { subject.call }
+    describe '#call' do
+      let(:result) { subject.call }
       it { expect(result.success?).to be_truthy }
       it { expect(result.error_messages.present?).to be_falsey }
 
-      it "assigns channels to server" do
-        expect {
+      it 'assigns channels to server' do
+        expect do
           subject.call
-        }.to change(Channel, :count).by_at_least(1)
+        end.to change(Channel, :count).by_at_least(1)
       end
 
-      it "update last_channel_update" do
-        expect {
+      it 'update last_channel_update' do
+        expect do
           subject.call
-        }.to change(server, :last_channel_update)
+        end.to change(server, :last_channel_update)
       end
     end
   end

@@ -2,11 +2,11 @@ module Mirco
   module ConnectorType
     class Generic
       attr_reader :properties, :variant
-      def initialize(properties={})
+
+      def initialize(properties = {})
         @properties = properties
-        if properties['class'].empty?
-          raise ArgumentError, "needs properties hash from source or destination connector"
-        end
+        raise ArgumentError, 'needs properties hash from source or destination connector' if properties['class'].empty?
+
         @variant = set_variant || Mirco::ConnectorType::Generic
       end
 
@@ -19,18 +19,19 @@ module Mirco
       end
 
       def puml_type
-        "rectangle"
+        'rectangle'
       end
 
       def puml_text
-        "unknown"
+        'unknown'
       end
 
       def destination_channel_id
         nil
       end
 
-    private
+      private
+
       def set_variant
         case connector_class
         when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
@@ -49,8 +50,6 @@ module Mirco
           Mirco::ConnectorType::VmDispatcher
         when 'com.mirth.connect.connectors.js.JavaScriptDispatcherProperties'
           Mirco::ConnectorType::JavascriptDispatcher
-        else
-          nil
         end
       end
     end

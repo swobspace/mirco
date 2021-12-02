@@ -8,7 +8,7 @@ module Mirco
           "localAddress": properties['localAddress'],
           "sendTimeout": properties['sendTimeout'],
           "responseTimeout": properties['responseTimeout'],
-          "keepConnectionOpen": properties['keepConnectionOpen'],
+          "keepConnectionOpen": properties['keepConnectionOpen']
         }
       end
 
@@ -16,7 +16,7 @@ module Mirco
         "tcp://#{remote_address}:#{remote_port}".html_safe
       end
 
-    private
+      private
 
       def remote_address
         properties['remoteAddress']

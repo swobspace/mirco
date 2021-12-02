@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_note, only: %i[show edit update destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /notes
@@ -20,8 +20,7 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /notes
   def create
@@ -43,27 +42,28 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def note_params
-      params.require(:note).permit(:channel_id, :server_id, :message, :note, :type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
 
-    def fix_note_params
-      { 
-        type: 'note',
-        user_id: @current_user.id,
-        # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
-        # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
-      }
-    end
+  # Only allow a trusted parameter "white list" through.
+  def note_params
+    params.require(:note).permit(:channel_id, :server_id, :message, :note, :type)
+  end
 
-    def location
-      # polymorphic_path([@notable, :notes])
-      polymorphic_path(@notable, anchor: 'notes')
-    end
+  def fix_note_params
+    {
+      type: 'note',
+      user_id: @current_user.id
+      # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
+      # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
+    }
+  end
+
+  def location
+    # polymorphic_path([@notable, :notes])
+    polymorphic_path(@notable, anchor: 'notes')
+  end
 end

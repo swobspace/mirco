@@ -1,7 +1,7 @@
 class Channels::NotesController < NotesController
   before_action :set_notable
 
-private
+  private
 
   def set_notable
     @notable = Channel.find(params[:channel_id])
@@ -10,6 +10,4 @@ private
   def add_breadcrumb_show
     add_breadcrumb_for([set_notable, @note])
   end
-
 end
-

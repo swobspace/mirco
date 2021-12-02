@@ -1,7 +1,7 @@
 class Channels::AlertsController < AlertsController
   before_action :set_channel
 
-private
+  private
 
   def set_channel
     @channel = Channel.find(params[:channel_id])
@@ -11,4 +11,3 @@ private
     channel_path(@channel)
   end
 end
-

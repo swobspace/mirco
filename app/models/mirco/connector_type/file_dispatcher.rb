@@ -5,12 +5,12 @@ module Mirco
         {
           "host": properties['host'],
           "scheme": properties['scheme'],
-          "outputPattern": properties['outputPattern'],
+          "outputPattern": properties['outputPattern']
         }
       end
 
       def puml_type
-        "file"
+        'file'
       end
 
       def puml_text
@@ -30,7 +30,6 @@ module Mirco
       def output_pattern
         properties['outputPattern']
       end
-
     end
   end
 end

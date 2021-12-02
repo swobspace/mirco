@@ -5,11 +5,12 @@ class Note < ApplicationRecord
   belongs_to :user, class_name: 'Wobauth::User'
 
   # -- configuration
-  TYPES = ['acknowledge', 'mail', 'note']
+  TYPES = %w[acknowledge mail note]
   self.inheritance_column = nil
 
   # for checks only
   attr_accessor :message
+
   # action text
   has_rich_text :message
 
@@ -23,18 +24,14 @@ class Note < ApplicationRecord
     "#{created_at.localtime.to_formatted_s(:db)} #{server}::#{channel} #{type.upcase} - #{message.to_plain_text}"
   end
 
-private
+  private
 
   def set_server_id
-    if server_id.blank? and channel_id.present?
-      self[:server_id] = channel.server_id
-    end
+    self[:server_id] = channel.server_id if server_id.blank? and channel_id.present?
     true
   end
 
   def note_message_present
-    if self.message.blank?
-      self.errors.add(:message, "can't be empty")
-    end
+    errors.add(:message, "can't be empty") if message.blank?
   end
 end

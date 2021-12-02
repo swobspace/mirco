@@ -1,9 +1,9 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock '~> 3.16.0'
 
 config = YAML.load_file('config/deploy-config.yml') || {}
 
-set :application, "mirco"
+set :application, 'mirco'
 set :repo_url, config['repo_url']
 set :relative_url_root, config['relative_url_root'] || '/'
 set :ruby_path, config['ruby_path']
@@ -30,23 +30,24 @@ set :deploy_to, config['deploy_to']
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml"
 
-append :linked_files, "config/database.yml", "config/mirco.yml", "config/secrets.yml", "config/Passengerfile.json", "tmp/restart.txt"
+append :linked_files, 'config/database.yml', 'config/mirco.yml', 'config/secrets.yml', 'config/Passengerfile.json',
+       'tmp/restart.txt'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
-append :linked_dirs, "log", "files", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "node_modules", 'config/credentials'
-
+append :linked_dirs, 'log', 'files', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system',
+       'node_modules', 'config/credentials'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 set :default_env, {
-  rails_relative_url_root: fetch(:relative_url_root) ,
-  path: fetch(:ruby_path) { "$PATH" }
+  rails_relative_url_root: fetch(:relative_url_root),
+  path: fetch(:ruby_path) { '$PATH' }
 }
 
-set :shell, "bash -l"
+set :shell, 'bash -l'
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -60,7 +61,7 @@ set :shell, "bash -l"
 set :ssh_options, verify_host_key: :secure
 
 namespace :check do
-  desc "Check that we can access everything"
+  desc 'Check that we can access everything'
   task :check_write_permissions do
     on roles(:all) do |host|
       if test("[ -w #{fetch(:deploy_to)} ]")
@@ -70,7 +71,7 @@ namespace :check do
       end
     end
   end
-  desc "check configuration and installation"
+  desc 'check configuration and installation'
   task :configinstall do
     on roles(:app, :web) do
       within release_path do
@@ -83,22 +84,21 @@ namespace :check do
 end
 
 namespace :deploy do
-  desc "printenv"
+  desc 'printenv'
   task :printenv do
-    on roles(:all) do |host|
-      execute "printenv"
+    on roles(:all) do |_host|
+      execute 'printenv'
     end
   end
 
-  desc "reload the database with seed data"
+  desc 'reload the database with seed data'
   task :seed do
     on primary :db do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "db:seed"
+          execute :rake, 'db:seed'
         end
       end
     end
   end
 end
-

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :alerts, only: [:index, :show]
+  resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
-  resources :channel_statistics, only: [:show, :index] do
+  resources :channel_statistics, only: %i[show index] do
     member do
       get :last_week
       get :last_month
@@ -10,26 +10,26 @@ Rails.application.routes.draw do
       get :current_sent
     end
   end
-  resources :channels, only: [:index, :show, :destroy] do
+  resources :channels, only: %i[index show destroy] do
     collection do
       post :fetch_all
     end
-    resources :alerts, only: [:index, :show], module: :channels
+    resources :alerts, only: %i[index show], module: :channels
     resources :notes, module: :channels
   end
   resources :servers do
     member do
       patch :update_properties
     end
-    resources :alerts, only: [:index, :show], module: :servers
+    resources :alerts, only: %i[index show], module: :servers
     resources :notes, module: :servers
-    resources :channels, only: [:index, :destroy], module: :servers do
+    resources :channels, only: %i[index destroy], module: :servers do
       collection do
         post :fetch_all
       end
-      resources :alerts, only: [:index, :show], module: :channels
+      resources :alerts, only: %i[index show], module: :channels
     end
-    resources :channel_statistics, only: [:index, :show], module: :servers do
+    resources :channel_statistics, only: %i[index show], module: :servers do
       collection do
         post :fetch_all
       end
@@ -37,8 +37,8 @@ Rails.application.routes.draw do
   end
   get 'home/index'
 
-  get "/pages/index", to: 'pages#index'
-  get "/pages/*page", to: 'pages#show', as: :page, format: false
+  get '/pages/index', to: 'pages#index'
+  get '/pages/*page', to: 'pages#show', as: :page, format: false
 
   root to: 'home#index'
   mount Wobauth::Engine, at: '/auth'

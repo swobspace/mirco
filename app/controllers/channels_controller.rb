@@ -1,6 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_server
-  before_action :set_channel, only: [:show, :edit, :update, :destroy]
+  before_action :set_channel, only: %i[show edit update destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /channels
@@ -12,16 +12,15 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   def show
     respond_with(@channel) do |format|
-      format.puml {
+      format.puml do
         render format: :puml, layout: false
-      }
-      format.svg {
+      end
+      format.svg do
         diagram = Mirco::ChannelDiagram.new(@channel)
-        send_file diagram.image(:svg), :filename => "#{@channel.server.name}-#{@channel.name}.svg",
-                        :disposition => 'inline',
-                        :type => 'image/svg+xml'
-      }
-
+        send_file diagram.image(:svg), filename: "#{@channel.server.name}-#{@channel.name}.svg",
+                                       disposition: 'inline',
+                                       type: 'image/svg+xml'
+      end
     end
   end
 
@@ -30,8 +29,8 @@ class ChannelsController < ApplicationController
     unless result.success?
       @server.errors.add(:base, :invalid)
       flash[:error] = "WARN:: fetch channels failed, server: #{@server}"
-      flash[:error] += "<br/>"
-      flash[:error] += result.error_messages.join("<br/>")
+      flash[:error] += '<br/>'
+      flash[:error] += result.error_messages.join('<br/>')
       Rails.logger.warn(flash[:error])
     end
     respond_with(@server, render: 'servers/show')
@@ -43,7 +42,7 @@ class ChannelsController < ApplicationController
     respond_with(@channel, location: @channel.server)
   end
 
-private
+  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_channel
@@ -51,9 +50,7 @@ private
   end
 
   def set_server
-    if params[:server_id].present?
-      @server = Server.find(params[:server_id])
-    end
+    @server = Server.find(params[:server_id]) if params[:server_id].present?
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -61,18 +58,17 @@ private
     params.require(:channel).permit(:server_id, :uid, :properties)
   end
 
-    # --- file stuff
+  # --- file stuff
 
-    def filebase
-      File.join( Rails.root, 'tmp', "server-#{@channel.id}" )
-    end
+  def filebase
+    File.join(Rails.root, 'tmp', "server-#{@channel.id}")
+  end
 
-    def pumlfile
-      "#{filebase}.puml"
-    end
+  def pumlfile
+    "#{filebase}.puml"
+  end
 
-    def svgfile
-      "#{filebase}.svg"
-    end
-    
+  def svgfile
+    "#{filebase}.svg"
+  end
 end

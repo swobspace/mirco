@@ -9,14 +9,13 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to validate_presence_of(:server_uid) }
   it { is_expected.to validate_presence_of(:channel_uid) }
 
-  it "should get plain factory working" do
+  it 'should get plain factory working' do
     f = FactoryBot.create(:channel_statistic)
     g = FactoryBot.create(:channel_statistic)
     expect(f).to be_valid
     expect(g).to be_valid
-    is_expected.to validate_uniqueness_of(:meta_data_id).scoped_to([:server_id, :channel_id]).allow_nil
-    is_expected.to validate_uniqueness_of(:channel_uid).scoped_to([:server_id, :meta_data_id])
-    is_expected.to validate_uniqueness_of(:channel_id).scoped_to([:server_id, :meta_data_id ])
+    is_expected.to validate_uniqueness_of(:meta_data_id).scoped_to(%i[server_id channel_id]).allow_nil
+    is_expected.to validate_uniqueness_of(:channel_uid).scoped_to(%i[server_id meta_data_id])
+    is_expected.to validate_uniqueness_of(:channel_id).scoped_to(%i[server_id meta_data_id])
   end
-
 end

@@ -7,7 +7,7 @@ module Mirco
       @hash = hash
     end
 
-    # 
+    #
     # simple properties
     #
 
@@ -16,7 +16,7 @@ module Mirco
     end
 
     def name
-      hash['name'] || "no description"
+      hash['name'] || 'no description'
     end
 
     def step
@@ -37,13 +37,12 @@ module Mirco
       when 'com.mirth.connect.plugins.javascriptrule.JavaScriptRule'
         hash['script']
       when 'com.mirth.connect.plugins.rulebuilder.RuleBuilderRule'
-        ['field', 'values', 'condition'].map do |attr|
+        %w[field values condition].map do |attr|
           "#{attr}: #{hash[attr]}"
         end.join("\n")
       else
-        ""
+        ''
       end
     end
-
   end
 end
