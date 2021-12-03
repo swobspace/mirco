@@ -47,6 +47,8 @@ group :development do
   # gem 'guard-puma'
   gem 'libnotify'
   gem 'listen', '~> 3.3'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'web-console', '>= 4.1.0'
 end
 

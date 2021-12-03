@@ -1,0 +1,13 @@
+require: rubocop-rails
+
+Style/Documentation:
+  Exclude: 
+    - 'app/channels/application_cable/*.rb'
+    - 'app/components/*.rb'
+    - 'app/controllers/**/*.rb'
+    - 'app/decorators/**/*.rb'
+    - 'app/helpers/**/*.rb'
+    - 'app/models/**/*.rb'
+    - 'config/**/*.rb'
+    - 'db/**/*.rb'
+    - 'spec/**/*.rb'
