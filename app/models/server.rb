@@ -21,7 +21,5 @@ class Server < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
 
-  def to_s
-    name.to_s
-  end
+  delegate :to_s, to: :name
 end

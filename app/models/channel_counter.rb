@@ -46,9 +46,9 @@ class ChannelCounter < ApplicationRecord
   scope :last_month, -> { time_period(1.month.ago, Time.now) }
   scope :last_week,  -> { time_period(1.week.ago,  Time.now) }
   scope :last_30min, -> { time_period(30.minutes.ago, Time.now) }
-  scope :last_hour,  -> { time_period(1.hour.ago,  Time.now) }
-  scope :last_8h,    -> { time_period(8.hour.ago,  Time.now) }
-  scope :last_24h,   -> { time_period(24.hour.ago, Time.now) }
+  scope :last_hour,  -> { time_period(1.hour.ago, Time.now) }
+  scope :last_8h,    -> { time_period(8.hours.ago,  Time.now) }
+  scope :last_24h,   -> { time_period(24.hours.ago, Time.now) }
 
   scope :yesterday, -> { where('DATE(created_at) = ?', 1.day.ago.to_date) }
   scope :today, -> { where('DATE(created_at) = ?', Date.today) }

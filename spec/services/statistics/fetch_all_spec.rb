@@ -44,8 +44,8 @@ module Statistics
       it 'changes server.last_check*' do
         result
         server.reload
-        expect(server.last_check).to be >= 1.minutes.ago
-        expect(server.last_check_ok).to be >= 1.minutes.ago
+        expect(server.last_check).to be >= 1.minute.ago
+        expect(server.last_check_ok).to be >= 1.minute.ago
       end
 
       it 'creates statistics for channel, source and destinations' do

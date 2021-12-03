@@ -9,16 +9,12 @@ module Mirco
   CONFIG = config || {}
 
   def self.devise_modules
-    if CONFIG['devise_modules'].present?
-      CONFIG['devise_modules']
-    else
-      %i[remote_user_authenticatable
-         database_authenticatable
-         registerable
-         recoverable
-         rememberable
-         trackable]
-    end
+    CONFIG['devise_modules'].presence || %i[remote_user_authenticatable
+                                            database_authenticatable
+                                            registerable
+                                            recoverable
+                                            rememberable
+                                            trackable]
   end
 
   def self.ldap_options
@@ -63,11 +59,7 @@ module Mirco
   end
 
   def self.host
-    if CONFIG['host'].present?
-      CONFIG['host']
-    else
-      'localhost'
-    end
+    CONFIG['host'].presence || 'localhost'
   end
 
   def self.script_name
@@ -94,10 +86,6 @@ module Mirco
   Rails.application.routes.default_url_options[:script_name] = script_name
 
   def self.fetch_config(attribute, default_value)
-    if CONFIG[attribute.to_s].present?
-      CONFIG[attribute.to_s]
-    else
-      default_value
-    end
+    CONFIG[attribute.to_s].presence || default_value
   end
 end

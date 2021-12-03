@@ -97,9 +97,7 @@ module Mirco
       ctype = Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
     end
 
-    def descriptor
-      connector_type.descriptor
-    end
+    delegate :descriptor, to: :connector_type
 
     private
 

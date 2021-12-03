@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
 
   def access_denied(exception)
     flash.now[:error] = 'Keine Berechtigung für diese Aktion!'
-    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}" if Rails.env == 'development'
+    Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}" if Rails.env.development?
     respond_to do |format|
       format.js   { render 'errors/access_denied' }
       format.html do
         add_breadcrumb('Fehlerseite', '#')
-        render 'errors/show_error', status: 401
+        render 'errors/show_error', status: :unauthorized
       end
     end
   end
