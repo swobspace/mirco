@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ServerDecorator do
-  let(:time_now) { Time.now }
+  let(:time_now) { Time.current }
   let(:srv) { server.decorate }
 
   describe 'with timestamps set' do

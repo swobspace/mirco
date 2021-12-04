@@ -7,7 +7,7 @@ config = YAML.load_file(File.join(Rails.root, 'db', 'seeds.yml'))
 Wobauth::Role.create(config['roles'])
 
 # -- start with Admin
-admin_role = Wobauth::Role.find_by_name('Admin')
+admin_role = Wobauth::Role.find_by(name: 'Admin')
 
 Wobauth::User.transaction do
   admin = Wobauth::User.find_or_create_by(username: 'admin') do |adm|

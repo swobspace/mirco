@@ -57,7 +57,7 @@ RSpec.describe ChannelStatisticDecorator do
                         filtered: 102,
                         error: 103,
                         queued: 0,
-                        created_at: 10.minutes.before(Time.now))
+                        created_at: 10.minutes.before(Time.current))
     end
     let!(:cc2) do
       FactoryBot.create(:channel_counter,
@@ -67,7 +67,7 @@ RSpec.describe ChannelStatisticDecorator do
                         filtered: 204,
                         error: 206,
                         queued: 5,
-                        created_at: 5.minutes.before(Time.now))
+                        created_at: 5.minutes.before(Time.current))
     end
     let!(:cc3) do
       FactoryBot.create(:channel_counter,
@@ -77,7 +77,7 @@ RSpec.describe ChannelStatisticDecorator do
                         filtered: 306,
                         error: 309,
                         queued: 5,
-                        created_at: Time.now)
+                        created_at: Time.current)
     end
     describe '#sent_last_30min' do
       let(:channel_statistic) { FactoryBot.create(:channel_statistic) }

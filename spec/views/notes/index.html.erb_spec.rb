@@ -5,7 +5,7 @@ require 'rails_helper'
 module Servers
   RSpec.describe 'notes/index', type: :view do
     let(:user) { FactoryBot.create(:user) }
-    let!(:time) { Time.now }
+    let!(:time) { Time.current }
     before(:each) do
       @ability = Object.new
       @ability.extend(CanCan::Ability)
@@ -36,7 +36,7 @@ module Servers
 
     it 'renders a list of notes' do
       render
-      assert_select 'tr>td', text: time.to_formatted_s(:db), count: 2
+      assert_select 'tr>td', text: time.localtime.to_formatted_s(:db), count: 2
       assert_select 'tr>td', text: nil.to_s, count: 4
       assert_select 'tr>td', text: user.to_s, count: 2
       assert_select 'tr>td', text: 'note'.to_s, count: 2

@@ -100,7 +100,7 @@ module Statistics
                             'error' => '33',
                             'filtered' => '44',
                             'queued' => '55',
-                            updated_at: 5.minutes.before(Time.now))
+                            updated_at: 5.minutes.before(Time.current))
         end
 
         let(:statistic) do
@@ -121,7 +121,7 @@ module Statistics
         it { expect(statistic.error).to eq(3) }
         it { expect(statistic.filtered).to eq(4) }
         it { expect(statistic.queued).to eq(5) }
-        it { expect(statistic.updated_at).to be >= 1.minute.before(Time.now) }
+        it { expect(statistic.updated_at).to be >= 1.minute.before(Time.current) }
       end
 
       context 'nonexistent channel' do

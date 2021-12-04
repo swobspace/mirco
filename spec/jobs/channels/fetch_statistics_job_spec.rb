@@ -23,7 +23,7 @@ RSpec.describe Channels::FetchStatisticsJob, type: :job do
     let(:now)     { Delayed::Job.db_time_now }
     let(:next_run) do
       run = now.hour * 60 + now.min >= 65 ? now + 1.day : now
-      Time.local(run.year, run.month, run.day, 1, 5)
+      Time.zone.local(run.year, run.month, run.day, 1, 5)
     end
 
     context 'with cron' do

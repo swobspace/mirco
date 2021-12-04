@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'notes/show', type: :view do
   let(:user) { FactoryBot.create(:user) }
-  let!(:time) { Time.now }
+  let!(:time) { Time.current }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -23,7 +23,7 @@ RSpec.describe 'notes/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/#{time.to_formatted_s(:db)}/)
+    expect(rendered).to match(/#{time.localtime.to_formatted_s(:db)}/)
     expect(rendered).to match(/xyzmirth/)
     expect(rendered).to match(//)
     expect(rendered).to match(/#{user}/)

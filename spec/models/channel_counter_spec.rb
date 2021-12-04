@@ -26,7 +26,7 @@ RSpec.describe ChannelCounter, type: :model do
                         sent: 150,
                         error: 132,
                         filtered: 143,
-                        created_at: 10.minutes.before(Time.now))
+                        created_at: 10.minutes.before(Time.current))
     end
     let!(:cc2) do
       FactoryBot.create(:channel_counter,
@@ -35,7 +35,7 @@ RSpec.describe ChannelCounter, type: :model do
                         sent: 250,
                         error: 234,
                         filtered: 246,
-                        created_at: 5.minutes.before(Time.now))
+                        created_at: 5.minutes.before(Time.current))
     end
     let!(:cc3) do
       FactoryBot.create(:channel_counter,

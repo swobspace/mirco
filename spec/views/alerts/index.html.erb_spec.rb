@@ -18,14 +18,14 @@ RSpec.describe 'alerts/index', type: :view do
                channel_id: channel.id,
                type: 'alert',
                message: 'MyText',
-               created_at: 1.day.before(Time.now)
+               created_at: 1.day.before(Time.current)
              ),
              Alert.create!(
                server_id: server.id,
                channel_id: channel.id,
                type: 'recovery',
                message: 'MyText',
-               created_at: 1.hour.before(Time.now)
+               created_at: 1.hour.before(Time.current)
              )
            ])
   end
@@ -37,7 +37,7 @@ RSpec.describe 'alerts/index', type: :view do
     assert_select 'tr>td', text: 'alert'.to_s, count: 1
     assert_select 'tr>td', text: 'recovery'.to_s, count: 1
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
-    assert_select 'tr>td', text: 1.day.before(Time.now).to_formatted_s(:db).to_s, count: 1
-    assert_select 'tr>td', text: 1.hour.before(Time.now).to_formatted_s(:db).to_s, count: 1
+    assert_select 'tr>td', text: 1.day.before(Time.current).localtime.to_formatted_s(:db).to_s, count: 1
+    assert_select 'tr>td', text: 1.hour.before(Time.current).localtime.to_formatted_s(:db).to_s, count: 1
   end
 end

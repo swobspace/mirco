@@ -2,7 +2,7 @@
 
 require_dependency 'wobauth/concerns/models/user_concerns'
 module Wobauth
-  class User < ActiveRecord::Base
+  class User < ApplicationRecord
     has_many :notes, dependent: :restrict_with_error
     # dependencies within wobauth models
     include UserConcerns

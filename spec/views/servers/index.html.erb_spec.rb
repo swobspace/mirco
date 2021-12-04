@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'servers/index', type: :view do
-  let(:time_now) { Time.now }
+  let(:time_now) { Time.current }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
