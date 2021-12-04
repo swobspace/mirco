@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module Statistics
   #
   # Create Channel or retrieve from database and update attributes
   #
   class Creator
-
     # creator = Statistics::Creator(server: server, attributes: {})
     #
     # mandantory options:
@@ -14,18 +15,18 @@ module Statistics
       options.symbolize_keys
       @server = options.fetch(:server)
       @attributes = options.fetch(:attributes)
-      if @attributes.empty?
-        raise RuntimeError, "Statistics::Creator.new: :attributes is empty!"
-      end
-      @create_channel = options.fetch(:create_channel) { false }
+      raise 'Statistics::Creator.new: :attributes is empty!' if @attributes.empty?
+
+      @create_channel = options.fetch(:create_channel, false)
       fetch_channel(@attributes['channel_uid'])
       @channel_statistic ||= fetch_channel_statistic
     end
 
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
     def save
-      if channel.nil?
-        return false
-      elsif @channel_statistic.nil?
+      return false if channel.nil?
+
+      if @channel_statistic.nil?
         @channel_statistic = ChannelStatistic.new(
           server_id: server.id,
           channel_id: channel.id,
@@ -39,7 +40,7 @@ module Statistics
           sent: attributes['sent'],
           error: attributes['error'],
           filtered: attributes['filtered'],
-          queued: attributes['queued'],
+          queued: attributes['queued']
         )
       else
         @channel_statistic.assign_attributes(
@@ -50,33 +51,34 @@ module Statistics
           sent: attributes['sent'],
           error: attributes['error'],
           filtered: attributes['filtered'],
-          queued: attributes['queued'],
+          queued: attributes['queued']
         )
       end
+
       channel_counter = @channel_statistic.channel_counters.build(
-          server_id: server.id,
-          channel_id: channel.id,
-          meta_data_id: attributes['meta_data_id'],
-          received: attributes['received'],
-          sent: attributes['sent'],
-          error: attributes['error'],
-          filtered: attributes['filtered'],
-          queued: attributes['queued'],
+        server_id: server.id,
+        channel_id: channel.id,
+        meta_data_id: attributes['meta_data_id'],
+        received: attributes['received'],
+        sent: attributes['sent'],
+        error: attributes['error'],
+        filtered: attributes['filtered'],
+        queued: attributes['queued']
       )
       @channel_statistic.save && @channel_statistic.touch && channel_counter.save
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
 
-  private
+    private
+
     attr_reader :attributes, :server, :channel, :create_channel
 
     def fetch_channel(uid)
       @channel ||= server.channels.where(uid: uid).first
-      if @channel.nil?
-        if create_channel
-          @channel = server.channels.create(uid: uid)
-          Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channel_uid']}/ does not exist")
-        end
-      end
+      return unless @channel.nil? && create_channel
+
+      @channel = server.channels.create(uid: uid)
+      Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channel_uid']}/ does not exist")
     end
 
     def fetch_channel_statistic
@@ -85,9 +87,8 @@ module Statistics
         channel_id: channel&.id,
         server_uid: server.uid,
         channel_uid: attributes['channel_uid'],
-        meta_data_id: attributes['meta_data_id'],
+        meta_data_id: attributes['meta_data_id']
       ).first
     end
-
   end
 end

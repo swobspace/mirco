@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop:todo Rails/UniqueValidationWithoutIndex, Rails/InverseOf
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
@@ -23,9 +26,7 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
 
-  def to_s
-    "#{name}"
-  end
+  delegate :to_s, to: :name
 
   def source_connector
     @source_connector ||= Mirco::Connector.new(sourceConnector) if sourceConnector.present?
@@ -33,22 +34,22 @@ class Channel < ApplicationRecord
 
   def destination_connectors
     @destination_connectors ||= if destinationConnectors.present?
-      dconns = destinationConnectors['connector']
-      if dconns.kind_of? Array
-        dconns
-      else
-        [dconns]
-      end 
-    else
-      []
-    end.map{|c| Mirco::Connector.new(c) }
+                                  dconns = destinationConnectors['connector']
+                                  if dconns.is_a? Array
+                                    dconns
+                                  else
+                                    [dconns]
+                                  end
+                                else
+                                  []
+                                end.map { |c| Mirco::Connector.new(c) }
   end
 
   def puml
     {
       alias: "ch_#{id}",
-      text: "#{name}"
+      text: name.to_s
     }
   end
-
 end
+# rubocop:enable Rails/UniqueValidationWithoutIndex, Rails/InverseOf

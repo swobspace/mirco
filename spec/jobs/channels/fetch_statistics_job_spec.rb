@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Channels::FetchStatisticsJob, type: :job do
-  before(:all)  { ActiveJob::Base.queue_adapter = :delayed_job }
+  before(:all) { ActiveJob::Base.queue_adapter = :delayed_job }
 
-  describe "#perform_later" do
-    it "fetch channel statistics" do
-      expect {
-        Channels::FetchStatisticsJob.perform_later()
-      }.to change(Delayed::Job, :count).by(1)
+  describe '#perform_later' do
+    it 'fetch channel statistics' do
+      expect do
+        Channels::FetchStatisticsJob.perform_later
+      end.to change(Delayed::Job, :count).by(1)
     end
   end
 
-  describe "scheduling" do
+  describe 'scheduling' do
     before { Delayed::Job.delete_all }
 
     let(:cron)    { '5 1 * * *' }
@@ -21,7 +23,7 @@ RSpec.describe Channels::FetchStatisticsJob, type: :job do
     let(:now)     { Delayed::Job.db_time_now }
     let(:next_run) do
       run = now.hour * 60 + now.min >= 65 ? now + 1.day : now
-      Time.local(run.year, run.month, run.day, 1, 5)
+      Time.zone.local(run.year, run.month, run.day, 1, 5)
     end
 
     context 'with cron' do
@@ -57,7 +59,6 @@ RSpec.describe Channels::FetchStatisticsJob, type: :job do
         expect(delayed_job.run_at).to be <= now
         expect(delayed_job.cron).to be_nil
       end
-
     end
   end
 end

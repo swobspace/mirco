@@ -1,14 +1,17 @@
-class Servers::AlertsController < AlertsController
-  before_action :set_server
+# frozen_string_literal: true
 
-private
+module Servers
+  class AlertsController < AlertsController
+    before_action :set_server
 
-  def set_server
-    @server = Server.find(params[:server_id])
-  end
+    private
 
-  def location
-    server_path(@server)
+    def set_server
+      @server = Server.find(params[:server_id])
+    end
+
+    def location
+      server_path(@server)
+    end
   end
 end
-

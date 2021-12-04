@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   module ConnectorType
     class FileReceiver < Generic
@@ -8,12 +10,12 @@ module Mirco
           "regex": properties['regex'],
           "binary": properties['binary'],
           "afterProcessingAction": properties['afterProcessingAction'],
-          "fileFilter": file_filter,
+          "fileFilter": file_filter
         }
       end
 
       def puml_type
-        "file"
+        'file'
       end
 
       def puml_text
@@ -37,7 +39,6 @@ module Mirco
       def directory_recursion?
         properties['directoryRecursion'] == 'true'
       end
-
     end
   end
 end

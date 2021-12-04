@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChannelStatistics < ActiveRecord::Migration[6.1]
   def change
     create_table :channel_statistics do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Wobapphelpers.setup do |config|
   #
   # exclude some controllers from breadcrumbs

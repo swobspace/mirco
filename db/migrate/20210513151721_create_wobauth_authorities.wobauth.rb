@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from wobauth (originally 20140504143328)
 class CreateWobauthAuthorities < ActiveRecord::Migration[5.1]
   def change

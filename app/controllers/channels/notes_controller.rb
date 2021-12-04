@@ -1,15 +1,17 @@
-class Channels::NotesController < NotesController
-  before_action :set_notable
+# frozen_string_literal: true
 
-private
+module Channels
+  class NotesController < NotesController
+    before_action :set_notable
 
-  def set_notable
-    @notable = Channel.find(params[:channel_id])
+    private
+
+    def set_notable
+      @notable = Channel.find(params[:channel_id])
+    end
+
+    def add_breadcrumb_show
+      add_breadcrumb_for([set_notable, @note])
+    end
   end
-
-  def add_breadcrumb_show
-    add_breadcrumb_for([set_notable, @note])
-  end
-
 end
-

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Mirco
   class ServerDiagram < Diagram
-
-    def initialize(server, options = {})
+    def initialize(server, _options = {})
       @server = server
     end
 
@@ -19,11 +20,11 @@ module Mirco
     end
 
     def type
-      "server"
+      'server'
     end
 
-  private
-    attr_reader :server
+    private
 
+    attr_reader :server
   end
 end

@@ -41,7 +41,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobmire
-  revision: 453f3d150be7138fa2aecaa131380b1a1676b353
+  revision: 890f492ccabe824f22df98bdf3c9416d9e48f155
   branch: master
   specs:
     wobmire (0.1.0)
@@ -125,9 +125,10 @@ GEM
       capybara (~> 3.13, < 4)
       websocket-driver (>= 0.6.5)
     asciidoctor (2.0.16)
+    ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    bootsnap (1.9.1)
+    bootsnap (1.9.3)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
@@ -169,6 +170,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    cssbundling-rails (0.2.6)
+      railties (>= 6.0.0)
     daemons (1.4.1)
     delayed_cron_job (0.9.0)
       fugit (>= 1.5)
@@ -231,7 +234,7 @@ GEM
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
-    globalid (0.5.2)
+    globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
       formatador (>= 0.2.4)
@@ -242,20 +245,12 @@ GEM
       pry (>= 0.13.0)
       shellany (~> 0.0)
       thor (>= 0.18.1)
-    guard-bundler (3.0.0)
-      bundler (>= 2.1, < 3)
-      guard (~> 2.2)
-      guard-compat (~> 1.1)
     guard-compat (1.2.1)
     guard-livereload (2.5.2)
       em-websocket (~> 0.5)
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
-    guard-puma (0.7.0)
-      guard (~> 2.14)
-      guard-compat (~> 1.2)
-      puma (>= 4.0, < 6)
     guard-rspec (4.7.3)
       guard (~> 2.1)
       guard-compat (~> 1.1)
@@ -273,6 +268,8 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jsbundling-rails (0.2.1)
+      railties (>= 6.0.0)
     kramdown (2.3.1)
       rexml
     launchy (2.5.0)
@@ -293,6 +290,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -309,12 +307,16 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.8)
-    nokogiri (1.12.5-x86_64-linux)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    parallel (1.21.0)
+    parser (3.0.3.1)
+      ast (~> 2.4.1)
     pg (1.2.3)
     pp (0.2.1)
       prettyprint
@@ -328,8 +330,6 @@ GEM
     raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-proxy (0.7.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     railroady (1.6.0)
@@ -362,6 +362,7 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+    rainbow (3.0.0)
     rake (13.0.6)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
@@ -394,9 +395,23 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    rubocop (1.23.0)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.12.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.14.0)
+      parser (>= 3.0.1.1)
+    rubocop-rails (2.12.4)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
+    ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -405,7 +420,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    semantic_range (3.0.0)
     shellany (0.0.1)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
@@ -415,24 +429,25 @@ GEM
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.4.0)
+    sprockets-rails (3.4.1)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stimulus-rails (0.7.2)
+    stimulus-rails (0.7.3)
       rails (>= 6.0.0)
     thor (1.1.0)
     tilt (2.0.10)
     timeout (0.2.0)
-    turbo-rails (0.8.3)
+    turbo-rails (0.9.0)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.1.0)
     uri (0.10.0)
-    view_component (2.44.0)
+    view_component (2.45.0)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
     warden (1.2.9)
@@ -442,11 +457,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webpacker (5.4.3)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -459,7 +469,7 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   apparition
@@ -474,19 +484,18 @@ DEPENDENCIES
   capistrano3-delayed-job
   capybara
   chartkick (~> 4.0)
+  cssbundling-rails (~> 0.2.6)
   daemons
   delayed_cron_job
   delayed_job_active_record
   dotenv
   draper
   factory_bot_rails
-  font-awesome-sass (>= 4.7, < 6)
   guard
-  guard-bundler
   guard-livereload
-  guard-puma
   guard-rspec
   hotwire-rails
+  jsbundling-rails (~> 0.2.1)
   kramdown
   launchy
   libnotify
@@ -502,20 +511,20 @@ DEPENDENCIES
   redis (~> 4.0)
   responders!
   rspec-rails
-  sass-rails (>= 6)
+  rubocop
+  rubocop-rails
   shoulda-matchers
   simple_form
   tzinfo-data
   uri (= 0.10.0)
   view_component
   web-console (>= 4.1.0)
-  webpacker (~> 5.0)
   wobapphelpers!
   wobauth!
   wobmire!
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.5p203
 
 BUNDLED WITH
-   2.2.30
+   2.1.4

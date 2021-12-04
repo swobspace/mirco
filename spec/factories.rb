@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   sequence :aname do |n|
     "aname_#{n}"
@@ -10,8 +12,8 @@ FactoryBot.define do
   factory :alert do
     server
     channel
-    type { "alert" }
-    message { "some text" }
+    type { 'alert' }
+    message { 'some text' }
   end
 
   factory :server do
@@ -43,7 +45,7 @@ FactoryBot.define do
     association :server
     association :channel
     association :user
-    type { "acknowledge" }
-    message { "some text" }
+    type { 'acknowledge' }
+    message { 'some text' }
   end
 end

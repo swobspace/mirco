@@ -1,0 +1,67 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+#     - 'lib/templates/rails/scaffold_controller/controller.rb'
+
+Style/Documentation:
+  Exclude: 
+    - 'app/channels/application_cable/*.rb'
+    - 'app/components/*.rb'
+    - 'app/controllers/**/*.rb'
+    - 'app/decorators/**/*.rb'
+    - 'app/helpers/**/*.rb'
+    - 'app/models/**/*.rb'
+    - 'spec/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*.rb'
+    - 'app/models/mirco/server_diagram.rb'
+    - 'app/models/mirco/channel_diagram.rb'
+
+Lint:
+  Exclude:
+    - 'lib/templates/rails/scaffold_controller/controller.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'Guardfile'
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+    - 'app/controllers/pages_controller.rb'
+    - 'app/models/mirco/connector_type/tcp_dispatcher.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Rails/TimeZone:
+  Exclude:
+    - 'spec/components/**/*.rb'
+

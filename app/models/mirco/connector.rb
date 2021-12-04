@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mirco
   class Connector
     attr_reader :hash
@@ -6,7 +8,7 @@ module Mirco
       @hash = hash || {}
     end
 
-    # 
+    #
     # simple properties
     #
 
@@ -62,7 +64,7 @@ module Mirco
 
     #
     # migrated data
-    #   
+    #
     def transformers
       @transformers ||= fetch_transformers
     end
@@ -71,9 +73,11 @@ module Mirco
       @filters ||= fetch_filters
     end
 
+    # rubocop:disable Naming/MethodName
     def transportName
       hash['transportName']
     end
+    # rubocop:enable Naming/MethodName
 
     def version
       hash['version']
@@ -87,28 +91,27 @@ module Mirco
       }
     end
 
-    # 
+    #
     # complex properties
     #
 
     def connector_type
-      ctype = Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
+      Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
     end
 
-    def descriptor
-      connector_type.descriptor
-    end
+    delegate :descriptor, to: :connector_type
 
-  private
+    private
 
     def fetch_transformers
       tarry = []
       return tarry if transformer_elements.nil?
-      transformer_elements.each do |k,te|
-        if te.kind_of? Array
-          tarry +=  te.map{|t| Mirco::Transformer.new(k,t) }
+
+      transformer_elements.each do |k, te|
+        if te.is_a? Array
+          tarry += te.map { |t| Mirco::Transformer.new(k, t) }
         else
-          tarry << Mirco::Transformer.new(k,te)
+          tarry << Mirco::Transformer.new(k, te)
         end
       end
       tarry
@@ -117,15 +120,15 @@ module Mirco
     def fetch_filters
       tarry = []
       return tarry if filter_elements.nil?
-      filter_elements.each do |k,te|
-        if te.kind_of? Array
-          tarry +=  te.map{|t| Mirco::Filter.new(k,t) }
+
+      filter_elements.each do |k, te|
+        if te.is_a? Array
+          tarry += te.map { |t| Mirco::Filter.new(k, t) }
         else
-          tarry << Mirco::Filter.new(k,te)
+          tarry << Mirco::Filter.new(k, te)
         end
       end
       tarry
     end
-
   end
 end

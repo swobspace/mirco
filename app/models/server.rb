@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
+# rubocop:todo Rails/UniqueValidationWithoutIndex
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
-  has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note'
+  has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy
@@ -19,9 +22,6 @@ class Server < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
 
-  def to_s
-    "#{name}"
-  end
-
-
+  delegate :to_s, to: :name
 end
+# rubocop:enable Rails/UniqueValidationWithoutIndex

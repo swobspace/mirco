@@ -8,18 +8,16 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track' => 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbo-track' => 'reload' %>
   <%= yield :head %>
+    <%= javascript_include_tag "application-esbuild", "data-turbo-track": "reload", defer: true %>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" role="navigation">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
-          <span class="toggler-icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<%= root_path if defined?(root_path)%>#">Mirco</a>
-      </div>
+      <a class="navbar-brand" href="<%= root_path if defined?(root_path)%>#">Mirco</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarTogglerMirco">
       <%= render partial: 'shared/navi' %>
       <%= render partial: 'wobauth/shared/admin' %>
