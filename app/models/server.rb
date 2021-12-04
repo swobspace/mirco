@@ -6,7 +6,7 @@ class Server < ApplicationRecord
   # -- associations
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
-  has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :servers
+  has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy
