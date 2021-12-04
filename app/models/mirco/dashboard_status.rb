@@ -17,6 +17,7 @@ module Mirco
     #   </dashboardStatus>
     # </list>
     #
+    # rubocop:disable Metrics/AbcSize
     def initialize(doc)
       @name = doc.xpath('name').text
       @channel_uid = doc.xpath('channelId').text
@@ -27,6 +28,7 @@ module Mirco
       @meta_data_id = (m_id.blank? ? nil : m_id.to_i)
       @statistics = fetch_statistics(doc.xpath('statistics/entry'))
     end
+    # rubocop:enable Metrics/AbcSize
 
     # Mirco::DashboardStatus.parse_xml(xml)
     # parses a xml document from https://mirth/api/channels/statuses

@@ -6,6 +6,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'bin/*'
+#     - 'lib/templates/rails/scaffold_controller/controller.rb'
 
 Style/Documentation:
   Exclude: 
@@ -17,20 +18,27 @@ Style/Documentation:
     - 'app/models/**/*.rb'
     - 'spec/**/*.rb'
 
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Lint/MissingSuper:
   Exclude:
     - 'app/components/**/*.rb'
     - 'app/models/mirco/server_diagram.rb'
     - 'app/models/mirco/channel_diagram.rb'
 
-# Lint/Syntax:
-#   Exclude:
-#     - 'lib/templates/rails/scaffold_controller/controller.rb'
+Lint:
+  Exclude:
+    - 'lib/templates/rails/scaffold_controller/controller.rb'
 
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
     - 'Guardfile'
+
+Metrics/MethodLength:
+  Max: 15
 
 Metrics/ModuleLength:
   Exclude:
@@ -42,6 +50,16 @@ Rails/FilePath:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/application_controller.rb'
+
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+    - 'app/controllers/pages_controller.rb'
+    - 'app/models/mirco/connector_type/tcp_dispatcher.rb'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'spec/**/*.rb'
 
 Rails/TimeZone:
   Exclude:

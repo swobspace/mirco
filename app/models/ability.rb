@@ -3,6 +3,7 @@
 class Ability
   include CanCan::Ability
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def initialize(user)
     alias_action :search, :search_form, to: :read
     # endpoints from channel_statistics_controller for graphs
@@ -23,4 +24,5 @@ class Ability
       can :read, Home
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 end

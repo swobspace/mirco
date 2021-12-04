@@ -23,6 +23,7 @@ module Channels
     # do all the work here ;-)
     # fetching only, do not assign any value to server here
     #
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
     def call
       success = true
       errmsgs = []
@@ -63,6 +64,7 @@ module Channels
 
       Result.new(success: success, error_messages: errmsgs)
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
 
     private
 

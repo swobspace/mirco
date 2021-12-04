@@ -23,6 +23,7 @@ module System
     # do all the work here ;-)
     # fetching only, do not assign any value to server here
     #
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def call
       success = true
       errmsgs = []
@@ -99,6 +100,7 @@ module System
         params: params
       )
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     private
 

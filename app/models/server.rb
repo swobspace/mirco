@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Rails/UniqueValidationWithoutIndex
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
@@ -23,3 +24,4 @@ class Server < ApplicationRecord
 
   delegate :to_s, to: :name
 end
+# rubocop:enable Rails/UniqueValidationWithoutIndex

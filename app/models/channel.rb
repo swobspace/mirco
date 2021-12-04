@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Rails/UniqueValidationWithoutIndex, Rails/InverseOf
 class Channel < ApplicationRecord
   # -- associations
   belongs_to :server
@@ -51,3 +52,4 @@ class Channel < ApplicationRecord
     }
   end
 end
+# rubocop:enable Rails/UniqueValidationWithoutIndex, Rails/InverseOf

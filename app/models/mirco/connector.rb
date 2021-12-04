@@ -73,9 +73,11 @@ module Mirco
       @filters ||= fetch_filters
     end
 
+    # rubocop:disable Naming/MethodName
     def transportName
       hash['transportName']
     end
+    # rubocop:enable Naming/MethodName
 
     def version
       hash['version']

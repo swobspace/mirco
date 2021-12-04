@@ -22,10 +22,11 @@ module Statistics
       @channel_statistic ||= fetch_channel_statistic
     end
 
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
     def save
-      if channel.nil?
-        return false
-      elsif @channel_statistic.nil?
+      return false if channel.nil?
+
+      if @channel_statistic.nil?
         @channel_statistic = ChannelStatistic.new(
           server_id: server.id,
           channel_id: channel.id,
@@ -66,6 +67,7 @@ module Statistics
       )
       @channel_statistic.save && @channel_statistic.touch && channel_counter.save
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
 
     private
 
@@ -73,10 +75,10 @@ module Statistics
 
     def fetch_channel(uid)
       @channel ||= server.channels.where(uid: uid).first
-      if @channel.nil? && create_channel
-        @channel = server.channels.create(uid: uid)
-        Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channel_uid']}/ does not exist")
-      end
+      return unless @channel.nil? && create_channel
+
+      @channel = server.channels.create(uid: uid)
+      Rails.logger.warn("WARN:: #{server.name}: channel /#{@attributes['channel_uid']}/ does not exist")
     end
 
     def fetch_channel_statistic

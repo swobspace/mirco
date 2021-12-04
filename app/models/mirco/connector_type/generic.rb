@@ -34,6 +34,7 @@ module Mirco
 
       private
 
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
       def set_variant
         case connector_class
         when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
@@ -54,6 +55,7 @@ module Mirco
           Mirco::ConnectorType::JavascriptDispatcher
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
     end
   end
 end

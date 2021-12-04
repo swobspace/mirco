@@ -23,12 +23,14 @@ module Channels
       @channel ||= fetch_channel
     end
 
+    # rubocop:disable Metrics/AbcSize, Rails/SkipsModelValidations
     def save
       if @channel.nil?
         @channel = server.channels.build(uid: uid, properties: properties)
       else
         @channel.properties = properties
       end
+
       if @channel.save
         Mirco::ChannelDiagram.new(@channel).delete
         @channel.touch
@@ -38,6 +40,7 @@ module Channels
         false
       end
     end
+    # rubocop:enable Metrics/AbcSize, Rails/SkipsModelValidations
 
     private
 

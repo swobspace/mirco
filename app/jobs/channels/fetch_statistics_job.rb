@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 module Channels
+  # fetch statistics data from all channels at once
   class FetchStatisticsJob < CronJob
     queue_as :default
     self.cron_expression = Mirco.cron_expression
 
+    # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     def perform(options = {})
       options.symbolize_keys!
       server = options.fetch(:server) { Server.all.to_a }
@@ -40,6 +42,7 @@ module Channels
                                                          locals: { servers: Server.all.to_a })
       end
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
     def max_attempts
       0

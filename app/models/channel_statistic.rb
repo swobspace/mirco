@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:todo Rails/UniqueValidationWithoutIndex
 class ChannelStatistic < ApplicationRecord
   # -- associations
   belongs_to :server
@@ -22,3 +23,4 @@ class ChannelStatistic < ApplicationRecord
   validates :channel_uid, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
 end
+# rubocop:enable Rails/UniqueValidationWithoutIndex

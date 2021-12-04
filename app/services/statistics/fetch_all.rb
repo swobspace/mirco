@@ -26,6 +26,7 @@ module Statistics
     # do all the work here ;-)
     # fetching only, do not assign any value to server here
     #
+    # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Rails/SkipsModelValidations
     def call
       success = true
       errmsgs = []
@@ -73,6 +74,7 @@ module Statistics
 
       Result.new(success: success, error_messages: errmsgs)
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Rails/SkipsModelValidations
 
     private
 
