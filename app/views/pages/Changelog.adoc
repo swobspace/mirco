@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.7.1 / 2021-12-04
+
+----
+* remove webpacker, switch to jsbundling-rails (esbuild) and cssbundling-rails (sass)
+* cleanup code with rubocop
+----
+
 === 0.7.0 / 2021-11-21
 
 ----
