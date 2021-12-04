@@ -96,6 +96,7 @@ de:
     channel_counters: Channel Counters
     home: Home
     notes: Notizen
+    pages: Seiten
     servers: Server
     servers/alerts: Alarme
     servers/channel_statistics: Channel Statistiken (Server)
