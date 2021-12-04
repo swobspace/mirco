@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Mirco::ServerDiagram, type: :model do
   let(:properties) do
     YAML.load_file(
-      File.join(Rails.root, 'spec', 'fixtures', 'files', 'channel_properties.yaml')
+      Rails.root.join('spec', 'fixtures', 'files', 'channel_properties.yaml')
     )
   end
 

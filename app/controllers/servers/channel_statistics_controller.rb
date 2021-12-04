@@ -8,9 +8,8 @@ module Servers
       result = Statistics::FetchAll.new(server: @server, create_channel: true).call
       unless result.success?
         @server.errors.add(:base, :invalid)
-        flash[:error] = "WARN:: fetch channel statistics failed, server: #{@server}"
-        flash[:error] += '<br/>'
-        flash[:error] += result.error_messages.join('<br/>')
+        flash[:error] = "WARN:: fetch channel statistics failed, server: #{@server}" \
+                        '<br/>' + result.error_messages.join('<br/>')
         Rails.logger.warn(flash[:error])
       end
       respond_with(@server, location: location, render: 'servers/show')

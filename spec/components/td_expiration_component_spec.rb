@@ -12,11 +12,11 @@ RSpec.describe TdExpirationComponent, type: :component do
         )
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_1
         <td class=" text-center">
           #{Time.now.to_formatted_s(:db)}
         </td>
-      EOT
+      EOT_1
     )
   end
 
@@ -29,11 +29,11 @@ RSpec.describe TdExpirationComponent, type: :component do
         )
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_2
         <td class="bg-warning text-center">
           #{1.hour.before(Time.current).localtime.to_formatted_s(:db)}
         </td>
-      EOT
+      EOT_2
     )
   end
 end

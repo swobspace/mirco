@@ -9,11 +9,11 @@ RSpec.describe TdThresholdComponent, type: :component do
         TdThresholdComponent.new(value: 2, warning: 5, critical: 10)
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_1
         <td class="">
           2
         </td>
-      EOT
+      EOT_1
     )
   end
 
@@ -23,11 +23,11 @@ RSpec.describe TdThresholdComponent, type: :component do
         TdThresholdComponent.new(value: 7, warning: 5, critical: 10)
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_2
         <td class="bg-warning">
           7
         </td>
-      EOT
+      EOT_2
     )
   end
 
@@ -37,11 +37,11 @@ RSpec.describe TdThresholdComponent, type: :component do
         TdThresholdComponent.new(value: 99, warning: 5, critical: 10)
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_3
         <td class="bg-danger">
           99
         </td>
-      EOT
+      EOT_3
     )
   end
 
@@ -51,11 +51,11 @@ RSpec.describe TdThresholdComponent, type: :component do
         TdThresholdComponent.new(value: 99, warning: 5, alert: true, critical: 10)
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_4
         <td class="bg-alert">
           99
         </td>
-      EOT
+      EOT_4
     )
   end
 
@@ -65,11 +65,11 @@ RSpec.describe TdThresholdComponent, type: :component do
         TdThresholdComponent.new(value: 99, warning: 5, critical: 10, css: 'text-end')
       ).to_html
     ).to include(
-      <<~EOT
+      <<~EOT_5
         <td class="bg-danger text-end">
           99
         </td>
-      EOT
+      EOT_5
     )
   end
 end

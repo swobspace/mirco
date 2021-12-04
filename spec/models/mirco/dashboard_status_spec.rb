@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Mirco::DashboardStatus, type: :model do
   let(:xmlfile) do
-    File.join(Rails.root, 'spec', 'fixtures', 'files', 'channel_statuses.xml')
+    Rails.root.join('spec', 'fixtures', 'files', 'channel_statuses.xml')
   end
 
   describe '::parse_xml' do

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ConnectorComponent, type: :component do
-  let(:yaml) { YAML.load_file(File.join(Rails.root, 'spec', 'fixtures', 'files', 'connectors.yaml')) }
+  let(:yaml) { YAML.load_file(Rails.root.join('spec', 'fixtures', 'files', 'connectors.yaml')) }
 
   it 'renders tcpReceiver' do
     connector = Mirco::Connector.new(yaml['tcpReceiver'])
@@ -40,8 +40,8 @@ RSpec.describe ConnectorComponent, type: :component do
 
   it 'renders vmDispatcher' do
     properties = { name: 'HL7_TO_SATURN' }
-    channel = FactoryBot.create(:channel, uid: 'db97d5d4-fd11-4f6a-b29c-aa006a853579',
-                                          properties: properties)
+    FactoryBot.create(:channel, uid: 'db97d5d4-fd11-4f6a-b29c-aa006a853579',
+                                properties: properties)
 
     connector = Mirco::Connector.new(yaml['vmDispatcher'])
     render_inline(described_class.new(connector: connector))

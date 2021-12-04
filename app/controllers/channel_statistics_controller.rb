@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChannelStatisticsController < ApplicationController
-  before_action :set_channel_statistic, only: %i[show edit update destroy last_week today]
+  before_action :set_channel_statistic, only: %i[show last_week today]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /channel_statistics

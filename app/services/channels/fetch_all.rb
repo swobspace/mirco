@@ -26,7 +26,6 @@ module Channels
     def call
       success = true
       errmsgs = []
-      channels = []
 
       mapi = Wobmire::Api.new(server_options)
       # login

@@ -12,7 +12,7 @@ class TdThresholdComponent < ViewComponent::Base
 
   private
 
-  attr_reader :value, :warning, :critical, :alert, :css, :background_color
+  attr_reader :value, :warning, :critical, :alert, :css
 
   def background_color
     if value >= critical

@@ -70,7 +70,7 @@ module Statistics
         end
         it 'create a new channel statistic' do
           expect do
-            result = subject.save
+            subject.save
           end.to change(ChannelStatistic, :count).by(1)
         end
 
@@ -109,7 +109,7 @@ module Statistics
         end
         it 'update existing channel statistic' do
           expect do
-            result = subject.save
+            subject.save
           end.to change(ChannelStatistic, :count).by(0)
         end
 
@@ -148,12 +148,12 @@ module Statistics
 
         it 'create a new channel statistic' do
           expect do
-            result = subject.save
+            subject.save
           end.to change(ChannelStatistic, :count).by(1)
         end
         it 'create a new channel statistic' do
           expect do
-            result = subject.save
+            subject.save
           end.to change(Channel, :count).by(1)
         end
 

@@ -2,7 +2,7 @@
 
 class ChannelsController < ApplicationController
   before_action :set_server
-  before_action :set_channel, only: %i[show edit update destroy]
+  before_action :set_channel, only: %i[show destroy]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /channels
@@ -30,9 +30,8 @@ class ChannelsController < ApplicationController
     result = Channels::FetchAll.new(server: @server).call
     unless result.success?
       @server.errors.add(:base, :invalid)
-      flash[:error] = "WARN:: fetch channels failed, server: #{@server}"
-      flash[:error] += '<br/>'
-      flash[:error] += result.error_messages.join('<br/>')
+      flash[:error] = "WARN:: fetch channels failed, server: #{@server}" \
+                      '<br/>' + result.error_messages.join('<br/>')
       Rails.logger.warn(flash[:error])
     end
     respond_with(@server, render: 'servers/show')
@@ -63,7 +62,7 @@ class ChannelsController < ApplicationController
   # --- file stuff
 
   def filebase
-    File.join(Rails.root, 'tmp', "server-#{@channel.id}")
+    Rails.root.join('tmp', "server-#{@channel.id}")
   end
 
   def pumlfile

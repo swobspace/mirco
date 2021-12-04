@@ -84,7 +84,7 @@ class ServersController < ApplicationController
   # --- file stuff
 
   def filebase
-    File.join(Rails.root, 'tmp', "server-#{@server.id}")
+    Rails.root.join('tmp', "server-#{@server.id}")
   end
 
   def pumlfile

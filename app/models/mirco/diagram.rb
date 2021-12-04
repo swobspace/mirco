@@ -34,7 +34,7 @@ module Mirco
     end
 
     def cachedir
-      File.join(Rails.root, 'tmp', 'cache', type.pluralize)
+      Rails.root.join('tmp', 'cache', type.pluralize)
     end
 
     protected

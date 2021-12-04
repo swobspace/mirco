@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   load_and_authorize_resource class: false
 
   def index
-    @pages = Dir["#{File.join(Rails.root, 'app', 'views', 'pages')}/*.adoc"]
+    @pages = Dir[Rails.root.join('app', 'views', 'pages', '*.adoc')]
     @pages = @pages.map { |p| p.split(%r{/})[-1].gsub(/.adoc/, '') }
   end
 

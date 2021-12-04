@@ -51,5 +51,5 @@ class ChannelCounter < ApplicationRecord
   scope :last_24h,   -> { time_period(24.hours.ago, Time.current) }
 
   scope :yesterday, -> { where('DATE(created_at) = ?', 1.day.ago.to_date) }
-  scope :today, -> { where('DATE(created_at) = ?', Date.today) }
+  scope :today, -> { where('DATE(created_at) = ?', Date.current) }
 end

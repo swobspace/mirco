@@ -1,5 +1,12 @@
 require: rubocop-rails
 
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+
 Style/Documentation:
   Exclude: 
     - 'app/channels/application_cable/*.rb'
@@ -8,6 +15,35 @@ Style/Documentation:
     - 'app/decorators/**/*.rb'
     - 'app/helpers/**/*.rb'
     - 'app/models/**/*.rb'
-    - 'config/**/*.rb'
-    - 'db/**/*.rb'
     - 'spec/**/*.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*.rb'
+    - 'app/models/mirco/server_diagram.rb'
+    - 'app/models/mirco/channel_diagram.rb'
+
+# Lint/Syntax:
+#   Exclude:
+#     - 'lib/templates/rails/scaffold_controller/controller.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'Guardfile'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+
+Rails/TimeZone:
+  Exclude:
+    - 'spec/components/**/*.rb'
+
