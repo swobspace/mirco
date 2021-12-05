@@ -10,6 +10,7 @@
       <tr class="search">
             <th><%= t('attributes.server') %></th>
             <th><%= t('attributes.channel') %></th>
+            <th><%= t('attributes.channel_detail') %></th>
             <th><%= t('attributes.type') %></th>
             <th><%= t('attributes.message') %></th>
             <th><%= t('attributes.timestamp') %></th>
@@ -24,6 +25,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
       </tr>
     </tfoot>
     <tbody>
@@ -31,6 +33,7 @@
         <%= content_tag(:tr, id: dom_id(alert), class: dom_class(alert)) do %>
                 <td><%= alert.server %></td>
                 <td><%= alert.channel %></td>
+                <td><%= alert.channel_statistic %></td>
                 <td><%= alert.type %></td>
                 <td><%= alert.message %></td>
                 <td><%= alert.created_at.localtime.to_formatted_s(:db) %></td>
