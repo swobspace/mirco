@@ -15,10 +15,12 @@ de:
       alert: Alarm
       channel: Channel
       channels/alert: Alarm
-      channels/note: Notizen
+      channels/note: Notiz
       channel_counter: Channel Counter
       channel_detail: Channel Detail
       channel_statistic: Channel Statistik
+      channel_statistic/alert: Alarm
+      channel_statistic/note: Notiz
       note: Notizen
       server: Server
       servers/alert: Alarm
@@ -96,6 +98,9 @@ de:
     channels/notes: Notizen
     channel_details: Channel Details
     channel_statistics: Channel Statistiken
+    channel_statistics/alerts: Alarme
+    channel_statistics/channel_counters: Channel Counters
+    channel_statistics/notes: Notizen
     channel_counters: Channel Counters
     home: Home
     notes: Notizen
