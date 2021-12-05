@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       get :current
       get :current_sent
     end
+    resources :alerts, only: %i[index show], module: :channel_statistics
+    resources :notes, module: :channel_statistics
   end
   resources :channels, only: %i[index show destroy] do
     collection do
