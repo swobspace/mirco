@@ -17,3 +17,6 @@ application.register("datatables", DatatablesController)
 
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)

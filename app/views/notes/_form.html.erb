@@ -1,25 +1,32 @@
-<div class="container">
-  <%= simple_form_for([@notable, @note],
-    html: { class: 'card' }) do |f| %>
+<%= simple_form_for([@notable, @note],
+  data: {
+    action: "turbo:submit-end->modal#handleSubmit"
+  }) do |f| %>
 
-    <div class="card-header">
-      <div class="text-muted">
-        <span><%= t('activerecord.models.note') %> <%= t('mirco.for') %></span>
-      </div>
-      <h5 class="card-title">
-        <% if @notable.kind_of? Channel %>
-          <span><%= @notable.server %>::<%= @notable %></span>
-        <% else %>
-          <span><%= @notable %></span>
-        <% end %>
-      </h5>
+  <div class="modal-header bg-light">
+   <div>
+    <div class="text-muted">
+      <span><%= t('activerecord.models.note') %> <%= t('mirco.for') %></span>
     </div>
-    <div class="card-body">
-      <%= f.input :message, as: :rich_text_area
-       %>
+    <h5 class="modal-title">
+      <% if @notable.kind_of? ChannelStatistic %>
+        <span><%= @notable.server %> &#x25B8; <%= @notable.channel %> &#x25B8; <%= @notable %></span>
+      <% elsif @notable.kind_of? Channel %>
+        <span><%= @notable.server %> &#x25B8; <%= @notable %></span>
+      <% else %>
+        <span><%= @notable %></span>
+      <% end %>
+    </h5>
+   </div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+    </button>
+  </div>
+  <div class="modal-body">
+    <%= f.input :message, as: :rich_text_area,
+                wrapper: :vertical_form
+     %>
 
-      <%= f.button :submit, class: 'btn btn-primary' %>
-      <%= cancel_button %>
-    </div>
-  <% end %>
-</div>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  </div>
+<% end %>
