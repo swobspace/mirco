@@ -13,7 +13,8 @@ RSpec.describe Alert, type: :model do
   it { is_expected.to belong_to(:channel).optional }
   it { is_expected.to belong_to(:channel_statistic).optional }
   it { is_expected.to validate_presence_of(:server_id) }
-  it { is_expected.to validate_presence_of(:channel_id) }
+  it { is_expected.not_to validate_presence_of(:channel_id) }
+  it { is_expected.not_to validate_presence_of(:channel_statistic_id) }
   it { is_expected.to validate_inclusion_of(:type).in_array(Alert::TYPES) }
   it { is_expected.to validate_presence_of(:message) }
 

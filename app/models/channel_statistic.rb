@@ -6,6 +6,8 @@ class ChannelStatistic < ApplicationRecord
   belongs_to :server
   belongs_to :channel
   has_many :channel_counters, dependent: :destroy
+  has_many :alerts, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   # has_many :channel_counters, ->(cs) {
   #   unscope(:where).where(

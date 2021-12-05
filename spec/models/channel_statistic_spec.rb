@@ -6,6 +6,8 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
+  it { is_expected.to have_many(:notes).dependent(:destroy) }
+  it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:server_id) }
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
