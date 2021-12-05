@@ -20,4 +20,10 @@ RSpec.describe ChannelStatistic, type: :model do
     is_expected.to validate_uniqueness_of(:channel_uid).scoped_to(%i[server_id meta_data_id])
     is_expected.to validate_uniqueness_of(:channel_id).scoped_to(%i[server_id meta_data_id])
   end
+
+  it '#to_s renders string' do
+    f = FactoryBot.create(:channel_statistic, name: 'Some Statistics')
+    expect(f.to_s).to eq("Some Statistics")
+  end
+
 end

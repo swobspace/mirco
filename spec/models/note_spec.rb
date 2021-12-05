@@ -5,9 +5,14 @@ require 'rails_helper'
 RSpec.describe Note, type: :model do
   let(:server) { FactoryBot.create(:server) }
   let(:channel) { FactoryBot.create(:channel, server: server) }
+  let(:channel_statistic) do
+    FactoryBot.create(:channel_statistic, server: server,
+                                          channel: channel)
+  end
   let(:user) { FactoryBot.create(:user) }
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel).optional }
+  it { is_expected.to belong_to(:channel_statistic).optional }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to validate_presence_of(:server_id) }
   it { is_expected.to validate_inclusion_of(:type).in_array(Note::TYPES) }
@@ -30,6 +35,18 @@ RSpec.describe Note, type: :model do
     expect(f).to be_valid
     f.reload
     expect(f.server_id).to eq(server.id)
+  end
+
+  it 'sets channel_id, server_id from channel_statistic if missing' do
+    f = FactoryBot.build(:note, server_id: nil,
+                                channel_id: nil,
+                                channel_statistic: channel_statistic,
+                                user_id: user.id)
+    f.save
+    expect(f).to be_valid
+    f.reload
+    expect(f.server_id).to eq(server.id)
+    expect(f.channel_id).to eq(channel.id)
   end
 
   it "don't save note if :message.blank?" do

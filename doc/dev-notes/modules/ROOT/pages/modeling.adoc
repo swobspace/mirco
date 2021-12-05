@@ -88,10 +88,13 @@ bin/rails g controller channel_counters index \
 bin/rails g scaffold Alert \
   server:belongs_to \
   channel:belongs_to \
+  channel_statistic:belongs_to \
   type:string:index \
   message:text \
   --no-stylesheets --no-javascripts --no-helper
 ----
+// bin/rails g migration AddChannelStatisticIdToAlert \
+//   channel_statistic:belongs_to
 
 [cols="1,3"]
 |===
@@ -106,10 +109,13 @@ a|`alert`, `recovery`, `acknowledge`
 bin/rails g scaffold Note \
   server:belongs_to \
   channel:belongs_to \
+  channel_statistic:belongs_to \
   user:belongs_to \
   type:string:index \
   --no-stylesheets --no-javascripts --no-helper
 ----
+// bin/rails g migration AddChannelStatisticIdToNote \
+//   channel_statistic:belongs_to
 
 [cols="1,3"]
 |===
