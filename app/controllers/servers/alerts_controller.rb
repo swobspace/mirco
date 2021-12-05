@@ -2,16 +2,17 @@
 
 module Servers
   class AlertsController < AlertsController
-    before_action :set_server
+    before_action :set_alertable
 
     private
 
-    def set_server
-      @server = Server.find(params[:server_id])
+    def set_alertable
+      @alertable = Server.find(params[:server_id])
     end
 
-    def location
-      server_path(@server)
+    def add_breadcrumb_show
+      add_breadcrumb_for([set_alertable, @alert])
     end
+
   end
 end

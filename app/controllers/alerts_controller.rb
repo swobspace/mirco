@@ -6,7 +6,7 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts = Alert.all
+    @alerts = @alertable.alerts
     respond_with(@alerts)
   end
 
@@ -26,4 +26,10 @@ class AlertsController < ApplicationController
   def alert_params
     params.require(:alert).permit(:server_id, :channel_id, :type, :message)
   end
+
+  def location
+    # polymorphic_path([@alertable, :alerts])
+    polymorphic_path(@alertable, anchor: 'alerts')
+  end
+
 end
