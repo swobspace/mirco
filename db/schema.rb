@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_083608) do
+ActiveRecord::Schema.define(version: 2021_12_05_093129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_12_05_083608) do
 
   create_table "alerts", force: :cascade do |t|
     t.bigint "server_id", null: false
-    t.bigint "channel_id", null: false
+    t.bigint "channel_id"
     t.string "type"
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
@@ -237,7 +237,6 @@ ActiveRecord::Schema.define(version: 2021_12_05_083608) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "alerts", "channels"
   add_foreign_key "alerts", "servers"
   add_foreign_key "channel_statistics", "channels"
   add_foreign_key "channel_statistics", "servers"
