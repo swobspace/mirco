@@ -12,7 +12,7 @@ class Alert < ApplicationRecord
 
   # -- validations and callbacks
   before_validation :set_server_and_channel_id
-  validates :channel_id, :server_id, :message, presence: true
+  validates :server_id, :message, presence: true
   validates :type, inclusion: TYPES, allow_blank: false
   validate :alert_message_present
 
