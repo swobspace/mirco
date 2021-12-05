@@ -52,15 +52,13 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:channel_id, :server_id, :message, :note, :type)
+    params.require(:note).permit(:channel_id, :server_id, :channel_statistic_id, :message, :note, :type)
   end
 
   def fix_note_params
     {
       type: 'note',
       user_id: @current_user.id
-      # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
-      # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
     }
   end
 
