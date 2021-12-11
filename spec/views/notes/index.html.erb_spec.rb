@@ -37,7 +37,7 @@ module Servers
     it 'renders a list of notes' do
       render
       assert_select 'tr>td', text: time.localtime.to_formatted_s(:db), count: 2
-      assert_select 'tr>td', text: nil.to_s, count: 4
+      assert_select 'tr>td', text: nil.to_s, count: 6
       assert_select 'tr>td', text: user.to_s, count: 2
       assert_select 'tr>td', text: 'note'.to_s, count: 2
       assert_select 'tr>td', text: 'some text'.to_s, count: 2

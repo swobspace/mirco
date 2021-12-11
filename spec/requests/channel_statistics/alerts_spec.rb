@@ -17,11 +17,15 @@ require 'rails_helper'
 RSpec.describe '/alerts', type: :request do
   let(:server) { FactoryBot.create(:server, name: 'MyServer') }
   let(:channel) { FactoryBot.create(:channel, server: server, name: 'MyChannel') }
+  let(:cs) { FactoryBot.create(:channel_statistic, server: server, 
+                                                   channel: channel, 
+                                                   name: 'MyStatistic') }
 
   let(:valid_attributes) do
     {
       server_id: server.id,
       channel_id: channel.id,
+      channel_statistic_id: cs.id,
       type: 'alert',
       message: 'some special stuff'
     }
@@ -34,7 +38,7 @@ RSpec.describe '/alerts', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
       Alert.create! valid_attributes
-      get alerts_url
+      get channel_statistic_alerts_url(cs)
       expect(response).to be_successful
     end
   end
@@ -42,7 +46,7 @@ RSpec.describe '/alerts', type: :request do
   describe 'GET /show' do
     it 'renders a successful response' do
       alert = Alert.create! valid_attributes
-      get alert_url(alert)
+      get channel_statistic_alert_url(cs, alert)
       expect(response).to be_successful
     end
   end

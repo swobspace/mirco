@@ -6,6 +6,8 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
+  it { is_expected.to have_many(:notes).dependent(:destroy) }
+  it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:server_id) }
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
@@ -20,4 +22,10 @@ RSpec.describe ChannelStatistic, type: :model do
     is_expected.to validate_uniqueness_of(:channel_uid).scoped_to(%i[server_id meta_data_id])
     is_expected.to validate_uniqueness_of(:channel_id).scoped_to(%i[server_id meta_data_id])
   end
+
+  it '#to_s renders string' do
+    f = FactoryBot.create(:channel_statistic, name: 'Some Statistics')
+    expect(f.to_s).to eq("Some Statistics")
+  end
+
 end

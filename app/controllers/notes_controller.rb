@@ -17,6 +17,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
+    Rails.logger.debug {"notable: #{@notable}"}
     @note = Note.new
     respond_with(@note)
   end
@@ -27,20 +28,33 @@ class NotesController < ApplicationController
   # POST /notes
   def create
     @note = @notable.notes.build(note_params.merge(fix_note_params))
-    @note.save
-    respond_with(@note, location: location)
+    respond_with(@note, location: location) do |format|
+      if @note.save
+        format.turbo_stream
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /notes/1
   def update
-    @note.update(note_params)
-    respond_with(@note, location: location)
+    respond_with(@note, location: location) do |format|
+      if @note.update(note_params)
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end 
   end
 
   # DELETE /notes/1
   def destroy
-    @note.destroy
-    respond_with(@note, location: location)
+    respond_with(@note, location: location) do |format|
+      if @note.destroy
+        format.turbo_stream
+      end
+    end
   end
 
   private
@@ -52,15 +66,13 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:channel_id, :server_id, :message, :note, :type)
+    params.require(:note).permit(:channel_id, :server_id, :channel_statistic_id, :message, :note, :type)
   end
 
   def fix_note_params
     {
       type: 'note',
       user_id: @current_user.id
-      # channel_id: (@notable.kind_of?(Channel) ? @notable.id : nil),
-      # server_id:  (@notable.kind_of?(Channel) ? @notable.server.id : @notable.id),
     }
   end
 

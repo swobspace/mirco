@@ -2,16 +2,17 @@
 
 module Channels
   class AlertsController < AlertsController
-    before_action :set_channel
+    before_action :set_alertable
 
     private
 
-    def set_channel
-      @channel = Channel.find(params[:channel_id])
+    def set_alertable
+      @alertable = Channel.find(params[:channel_id])
     end
 
-    def location
-      channel_path(@channel)
+    def add_breadcrumb_show
+      add_breadcrumb_for([set_alertable, @alert])
     end
+
   end
 end

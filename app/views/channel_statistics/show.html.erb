@@ -1,108 +1,186 @@
-<div class="card">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <h4><%= t('activerecord.models.channel_statistic') %></h4>
-      <div role="toolbar">
-        <%= back_link %>
+<ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-4 py-0 my-0 pe-0 me-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= link_to(@channel_statistic.server, @channel_statistic.server, {class: 'primary-link'}) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-4 py-0 my-0 pe-0 me-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      &#8227; <%= link_to(@channel_statistic.channel, @channel_statistic.channel, {class: 'primary-link'}) %>
+    </button>
+  </li>
+  <li>
+    <button class="nav-link disabled fs-4 py-0 my-0 ps-1 ms-1" type="button"
+            tabindex="-1" aria-disabled="true">
+       &#8227; <%= @channel_statistic.name %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="channel_statistic-tab" data-bs-toggle="tab" data-bs-target="#channel_statistic" type="button" role="tab" aria-controls="channel_statistic" aria-selected="false">
+      <%= t('attributes.channel_statistic') %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link " id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">
+      <%= t('controller.notes') %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link " id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts" type="button" role="tab" aria-controls="alerts" aria-selected="false">
+      <%= t('controller.alerts') %>
+    </button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+ <div class="tab-pane fade show active" id="channel_statistic" role="tabpanel" aria-labelledby="channel_statistic-tab">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex w-100 justify-content-between">
+          <h4><%= t('activerecord.models.channel_statistic') %></h4>
+          <div role="toolbar">
+            <%= back_link %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-borderless table-hover table-sm">
+
+          <tr>
+            <th><%= t('attributes.server')%>:</th>
+            <td><%= @channel_statistic.server %></td>
+            <th><%= t('attributes.received')%>:</th>
+            <td><%= @channel_statistic.received %></td>
+          </tr>
+          <tr>
+            <th><%= t('attributes.channel')%> /
+            <%= t('attributes.destination')%>:</th>
+
+            <td><%= link_to @channel_statistic.channel,
+                            channel_path(@channel_statistic.channel),
+                           class: 'primary-link' %> /
+                <%= @channel_statistic.name %>
+            </td>
+            <th><%= t('attributes.sent')%>:</th>
+            <td><%= @channel_statistic.sent %></td>
+          </tr>
+          <tr>
+            <th><%= t('attributes.server_uid')%>:</th>
+            <td><%= @channel_statistic.server_uid %></td>
+            <th><%= t('attributes.error')%>:</th>
+            <td><%= @channel_statistic.error %></td>
+          </tr>
+          <tr>
+            <th><%= t('attributes.channel_uid')%>:</th>
+            <td><%= @channel_statistic.channel_uid %></td>
+            <th><%= t('attributes.filtered')%>:</th>
+            <td><%= @channel_statistic.filtered %></td>
+          </tr>
+          <tr>
+            <th><%= t('attributes.state')%>:</th>
+            <td><%= @channel_statistic.state %></td>
+            <th><%= t('attributes.queued')%>:</th>
+            <td><%= @channel_statistic.queued %></td>
+          </tr>
+          <tr>
+            <th><%= t('attributes.status_type')%>:</th>
+            <td><%= @channel_statistic.status_type %>
+                (<%= (@channel_statistic.meta_data_id || "-" )%>)
+            </td>
+            <th><%= t('attributes.updated_at')%>:</th>
+              <%= render TdExpirationComponent.new(
+                           tstamp: @channel_statistic.updated_at,
+                           expiration_time: 5.minutes,
+                           cssclass: 'text-left' ) %>
+          </tr>
+        </table>
+
+      </div>
+      <div class="card-body">
+        <%= line_chart current_channel_statistic_path(@channel_statistic),
+              title: "Current (8h)",
+              xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+              ytitle: "Queued Messages",
+              height: "400px",
+              download: true
+         %>
+
+      </div>
+      <div class="card-body">
+        <%= column_chart current_sent_channel_statistic_path(@channel_statistic),
+              title: "Current sent (8h)",
+              xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+              ytitle: "Sent Messages",
+              height: "400px",
+              download: true
+         %>
+      </div>
+      <div class="card-body">
+        <%= column_chart last_week_channel_statistic_path(@channel_statistic),
+              title: "Last Week (max. per hour)",
+              xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+              ytitle: "Queued Messages",
+              height: "400px",
+            download: true
+         %>
+
+      </div>
+      <div class="card-body">
+        <%= column_chart last_month_channel_statistic_path(@channel_statistic),
+              title: "Last Month (max. per hour)",
+              xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
+              ytitle: "Queued Messages",
+              height: "400px",
+            download: true
+         %>
+
+        <div role="toolbar">
+          <%= back_link %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card-body">
-    <table class="table table-borderless table-hover table-sm">
-    
-      <tr>
-        <th><%= t('attributes.server')%>:</th>
-        <td><%= @channel_statistic.server %></td>
-        <th><%= t('attributes.received')%>:</th>
-        <td><%= @channel_statistic.received %></td>
-      </tr>
-      <tr>
-        <th><%= t('attributes.channel')%> /
-        <%= t('attributes.destination')%>:</th>
 
-        <td><%= link_to @channel_statistic.channel,
-                        channel_path(@channel_statistic.channel),
-                       class: 'primary-link' %> / 
-            <%= @channel_statistic.name %>
-        </td>
-        <th><%= t('attributes.sent')%>:</th>
-        <td><%= @channel_statistic.sent %></td>
-      </tr>
-      <tr>
-        <th><%= t('attributes.server_uid')%>:</th>
-        <td><%= @channel_statistic.server_uid %></td>
-        <th><%= t('attributes.error')%>:</th>
-        <td><%= @channel_statistic.error %></td>
-      </tr>
-      <tr>
-        <th><%= t('attributes.channel_uid')%>:</th>
-        <td><%= @channel_statistic.channel_uid %></td>
-        <th><%= t('attributes.filtered')%>:</th>
-        <td><%= @channel_statistic.filtered %></td>
-      </tr>
-      <tr>
-        <th><%= t('attributes.state')%>:</th>
-        <td><%= @channel_statistic.state %></td>
-        <th><%= t('attributes.queued')%>:</th>
-        <td><%= @channel_statistic.queued %></td>
-      </tr>
-      <tr>
-        <th><%= t('attributes.status_type')%>:</th>
-        <td><%= @channel_statistic.status_type %>
-            (<%= (@channel_statistic.meta_data_id || "-" )%>)
-        </td>
-        <th><%= t('attributes.updated_at')%>:</th>
-          <%= render TdExpirationComponent.new(
-                       tstamp: @channel_statistic.updated_at,
-                       expiration_time: 5.minutes,
-                       cssclass: 'text-left' ) %>
-      </tr>
-    
-    </table>
-
-  </div>
-  <div class="card-body">
-    <%= line_chart current_channel_statistic_path(@channel_statistic),
-          title: "Current (8h)",
-          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-          ytitle: "Queued Messages",
-          height: "400px",
-          download: true
-     %>
-
-  </div>
-  <div class="card-body">
-    <%= column_chart current_sent_channel_statistic_path(@channel_statistic),
-          title: "Current sent (8h)",
-          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-          ytitle: "Sent Messages",
-          height: "400px",
-          download: true
-     %>
-  
-  
-  </div>
-  <div class="card-body">
-    <%= column_chart last_week_channel_statistic_path(@channel_statistic),
-          title: "Last Week (max. per hour)",
-          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-          ytitle: "Queued Messages",
-          height: "400px",
-        download: true
-     %>
-
-  </div>
-  <div class="card-body">
-    <%= column_chart last_month_channel_statistic_path(@channel_statistic),
-          title: "Last Month (max. per hour)",
-          xtitle: "#{@channel_statistic.server}::#{@channel_statistic.channel}",
-          ytitle: "Queued Messages",
-          height: "400px",
-        download: true
-     %>
-
-    <div role="toolbar">
-      <%= back_link %>
+  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+    <div class="card mt-2">
+      <div class="card-header">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="title"><%= t('controller.notes') %></h4>
+          <div role="toolbar">
+            <%= link_to 'Add Note',
+                        new_channel_statistic_note_path(@channel_statistic),
+                        class: "btn btn-secondary",
+                        data: {
+                          controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body"
+                        } %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id='ts_notes'>
+          <%= render partial: 'notes/index', locals: {notable: @channel_statistic, notes: @channel_statistic.notes } %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
+   <div class="card mt-2">
+     <div class="card-header">
+       <div class="d-flex w-100 justify-content-between">
+         <h4 class="title"><%= t('controller.alerts') %></h4>
+         <div role="toolbar">
+         </div>
+       </div>
+     </div>
+     <div class="card-body">
+       <%= render partial: 'alerts/index', locals: {alertable: @channel_statistic, alerts: @channel_statistic.alerts } %>
+     </div>
+   </div>
+  </div>
+
 </div>

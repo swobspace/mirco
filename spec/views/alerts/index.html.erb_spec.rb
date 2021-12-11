@@ -11,11 +11,15 @@ RSpec.describe 'alerts/index', type: :view do
     allow(controller).to receive(:action_name) { 'index' }
     server = FactoryBot.create(:server, name: 'xyzmirth')
     channel = FactoryBot.create(:channel, server: server, name: 'other_channel')
+    cs = FactoryBot.create(:channel_statistic, server: server, 
+                                               channel: channel,
+                                               name: 'Some Statistics')
 
     assign(:alerts, [
              Alert.create!(
                server_id: server.id,
                channel_id: channel.id,
+               channel_statistic_id: cs.id,
                type: 'alert',
                message: 'MyText',
                created_at: 1.day.before(Time.current)
@@ -23,6 +27,7 @@ RSpec.describe 'alerts/index', type: :view do
              Alert.create!(
                server_id: server.id,
                channel_id: channel.id,
+               channel_statistic_id: cs.id,
                type: 'recovery',
                message: 'MyText',
                created_at: 1.hour.before(Time.current)
@@ -34,6 +39,7 @@ RSpec.describe 'alerts/index', type: :view do
     render
     assert_select 'tr>td', text: 'xyzmirth'.to_s, count: 2
     assert_select 'tr>td', text: 'other_channel'.to_s, count: 2
+    assert_select 'tr>td', text: 'Some Statistics'.to_s, count: 2
     assert_select 'tr>td', text: 'alert'.to_s, count: 1
     assert_select 'tr>td', text: 'recovery'.to_s, count: 1
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2

@@ -1,0 +1,21 @@
+<% if notable.present? %>
+  <%= simple_form_for([notable, note],
+        remote: true,
+        data: {
+          action: "turbo:submit-end->form#turboSubmit"
+        }
+      ) do |f| %>
+    <div class="modal-body">
+      <%= f.input :message, as: :rich_text_area
+       %>
+
+      <div data-form-target="errorSuccess" class="" role="alert"></div>
+      <div role="toolbar" class="">
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <!-- notable not present! -->
+<% end %>

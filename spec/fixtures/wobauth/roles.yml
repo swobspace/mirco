@@ -1,0 +1,8 @@
+admin:
+  name: Admin
+
+manager:
+  name: Manager
+
+reader:
+  name: Reader

@@ -1,0 +1,19 @@
+<div class="modal fade" id="formNoteModal" tabindex="-1" role="dialog"
+     aria-labelledby="formNoteModalLabel" aria-hidden="true"
+     data-controller="form" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title" id="formNoteModalLabel">
+            Notiz für  <%= notable&.name%>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <%= turbo_frame_tag "#{dom_id(notable)}_note" do %>
+        <%= render partial: 'notes/inner_form', locals: { notable: notable, note: note } %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

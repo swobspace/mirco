@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module Servers
+module ChannelStatistics
   class AlertsController < AlertsController
     before_action :set_alertable
 
     private
 
     def set_alertable
-      @alertable = Server.find(params[:server_id])
+      @alertable = ChannelStatistic.find(params[:channel_statistic_id])
     end
 
     def add_breadcrumb_show

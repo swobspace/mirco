@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.7.2 / 2021-12-11
+
+----
+* add notes and alerts to channel_statistic
+* create/update/destroy notes via modal, using turbo_stream
+----
+
 === 0.7.1 / 2021-12-04
 
 ----
