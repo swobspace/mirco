@@ -20,3 +20,6 @@ application.register("toggle", ToggleController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import BstabsController from "./bstabs_controller"
+application.register("bstabs", BstabsController)
