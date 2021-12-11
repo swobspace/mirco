@@ -26,20 +26,23 @@ module Channels
                 result.error_messages.join("\n")
           Rails.logger.warn(msg)
         end
+        # rubocop:disable Layout/ArgumentAlignment
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
-                                                         target: :queued_messages,
-                                                         partial: 'home/index',
-                                                         locals: {
-                                                           queued_messages: ChannelStatistic
-                                                             .where('channel_statistics.meta_data_id > 0')
-                                                             .where('channel_statistics.queued > 0')
-                                                             .order('queued desc')
-                                                             .to_a
-                                                         })
+          target: :queued_messages,
+          partial: 'home/index',
+          locals: {
+            queued_messages: ChannelStatistic
+                             .where('channel_statistics.meta_data_id > 0')
+                             .where('channel_statistics.queued > 0')
+                             .where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
+                             .order('queued desc')
+                             .to_a
+          })
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
                                                          target: :server_status,
                                                          partial: 'home/servers',
                                                          locals: { servers: Server.all.to_a })
+        # rubocop:enable Layout/ArgumentAlignment
       end
     end
     # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
