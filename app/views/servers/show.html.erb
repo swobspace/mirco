@@ -204,12 +204,22 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.notes') %></h4>
         <div role="toolbar">
-          <%= new_link([@server, Note]) %>
+            <%= link_to 'Add Note',
+                        new_server_note_path(@server),
+                        class: "btn btn-secondary",
+                        data: {
+                          controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body"
+                        } %>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.notes } %>
+      <div id='ts_notes'>
+        <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.notes } %>
+      </div>
     </div>
   </div>
  </div>
