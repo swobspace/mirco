@@ -9,26 +9,26 @@
     <thead>
       <tr class="search">
             <th><%= t('attributes.created_at') %></th>
-            <% unless notable.present? %>
-              <th><%= t('attributes.server') %></th>
-            <% end %>
-            <% unless notable.kind_of? Channel %>
+            <% if notable.kind_of? Server %>
               <th><%= t('attributes.channel') %></th>
+              <th><%= t('attributes.channel_detail') %></th>
+            <% elsif notable.kind_of? Channel %>
+              <th><%= t('attributes.channel_detail') %></th>
             <% end %>
 
             <th><%= t('attributes.message') %></th>
-            <th><%= t('attributes.user') %></th>
-            <th><%= t('attributes.type') %></th>
+            <th class="notvisible"><%= t('attributes.user') %></th>
+            <th class="notvisible"><%= t('attributes.type') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot>
       <tr>
             <th></th>
-            <% unless notable.present? %>
+            <% if notable.kind_of? Server %>
               <th></th>
-            <% end %>
-            <% unless notable.kind_of? Channel %>
+              <th></th>
+            <% elsif notable.kind_of? Channel %>
               <th></th>
             <% end %>
             <th></th>
@@ -41,11 +41,11 @@
       <% notes.each do |note| %>
         <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
           <td><%= note.created_at.localtime.to_formatted_s(:db) %></td>
-          <% unless notable.present? %>
-            <td><%= note.server %></td>
-          <% end %>
-          <% unless notable.kind_of? Channel %>
+          <% if notable.kind_of? Server %>
             <td><%= note.channel %></td>
+            <td><%= note.channel_statistic %></td>
+          <% elsif notable.kind_of? Channel %>
+            <td><%= note.channel_statistic %></td>
           <% end %>
           <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
           <td><%= note.user %></td>

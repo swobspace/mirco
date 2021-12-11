@@ -17,7 +17,7 @@ de:
       channels/alert: Alarm
       channels/note: Notiz
       channel_counter: Channel Counter
-      channel_detail: Channel Detail
+      channel_detail: Channel Connector
       channel_statistic: Channel Statistik
       channel_statistic/alert: Alarm
       channel_statistic/note: Notiz
@@ -38,7 +38,7 @@ de:
     api_verify_ssl: SSL-Prüfung
     channel: Channel
     channel_counters: Channel Counter
-    channel_detail: Channel Detail
+    channel_detail: Channel Connector
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
     connector: Connector
@@ -96,7 +96,7 @@ de:
     channels/alerts: Alarme
     channels/channel_counters: Channel Counters
     channels/notes: Notizen
-    channel_details: Channel Details
+    channel_details: Channel Connectors
     channel_statistics: Channel Statistiken
     channel_statistics/alerts: Alarme
     channel_statistics/channel_counters: Channel Counters
@@ -107,7 +107,7 @@ de:
     pages: Seiten
     servers: Server
     servers/alerts: Alarme
-    servers/channel_details: Channel Details (Server)
+    servers/channel_details: Channel Connectors (Server)
     servers/channel_statistics: Channel Statistiken (Server)
     servers/channels: Channels
     servers/notes: Notizen
