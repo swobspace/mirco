@@ -13,6 +13,7 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
                       server: server,
                       uid: '445cda00-c847-4198-a9be-eb0dc6b5946d')
   end
+  let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
 
   describe "without existing statistic" do
     let(:channel_statistic) do
@@ -29,7 +30,6 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
         filtered: '4',
         queued: '5')
     end
-    let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
 
     it { expect(processor.process).to be_truthy }
 
@@ -61,7 +61,6 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
         filtered: '4',
         queued: '5')
     end
-    let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
 
     before(:each) do
       channel_statistic.name = 'HORST'
@@ -99,4 +98,31 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
       expect(reload.queued).to eq(15)
     end
   end
+
+  describe "with existing statistic, but no changes" do
+    let!(:channel_statistic) do
+      FactoryBot.create(:channel_statistic,
+        server_id: server.id,
+        channel_id: channel.id,
+        meta_data_id: 13,
+        name: 'FRITZ',
+        state: 'STARTED',
+        status_type: 'DESTINATION_CONNECTOR',
+        received: '1',
+        sent: '2',
+        error: '3',
+        filtered: '4',
+        queued: '5',
+        created_at: 1.day.before(Time.current),
+        updated_at: 1.hour.before(Time.current),
+     )
+    end
+    it "updates timestamp" do
+      expect(channel_statistic.updated_at < 1.hour.before(Time.current)).to be_truthy
+      processor.process
+      channel_statistic.reload
+      expect(channel_statistic.updated_at > 1.minute.before(Time.current)).to be_truthy
+    end
+  end
+
 end

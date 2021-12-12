@@ -6,7 +6,7 @@ class ChannelStatisticProcessor
   end
 
   def process
-    channel_statistic.save && channel_counter.save
+    channel_statistic.save && channel_statistic.touch && channel_counter.save
   end
 
   private
