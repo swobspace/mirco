@@ -74,7 +74,7 @@
           <td><%= channel_statistic.filtered %></td>
           <td><%= channel_statistic.queued %></td>
           <td><%= channel_statistic.condition %></td>
-          <td><%= channel_statistic.last_condition_change.to_formatted_s(:db) %></td>
+          <td><%= channel_statistic.last_condition_change&.to_formatted_s(:db) %></td>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
                        expiration_time: 5.minutes ) %>

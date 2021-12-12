@@ -98,7 +98,7 @@
             <th><%= t('attributes.condition')%>:</th>
             <td><%= @channel_statistic.condition %></td>
             <th><%= t('attributes.last_condition_change')%>:</th>
-            <td><%= @channel_statistic.last_condition_change.to_formatted_s(:db) %></td>
+            <td><%= @channel_statistic.last_condition_change&.to_formatted_s(:db) %></td>
           </tr>
         </table>
 
