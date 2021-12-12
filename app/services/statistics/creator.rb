@@ -65,7 +65,7 @@ module Statistics
         filtered: attributes['filtered'],
         queued: attributes['queued']
       )
-      @channel_statistic.save && @channel_statistic.touch && channel_counter.save
+      ChannelStatisticProcessor.new(@channel_statistic).process
     end
     # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
 
