@@ -70,6 +70,7 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
       channel_statistic.error = 13
       channel_statistic.filtered = 14
       channel_statistic.queued = 15
+      channel_statistic.condition = ''
     end
 
     it { expect(processor.process).to be_truthy }
@@ -117,12 +118,54 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
         updated_at: 1.hour.before(Time.current),
      )
     end
+
     it "updates timestamp" do
       expect(channel_statistic.updated_at < 1.hour.before(Time.current)).to be_truthy
       processor.process
       channel_statistic.reload
       expect(channel_statistic.updated_at > 1.minute.before(Time.current)).to be_truthy
     end
+  end
+
+  describe "unsent queued messages" do
+    let!(:channel_statistic) do
+      FactoryBot.create(:channel_statistic,
+        server_id: server.id,
+        channel_id: channel.id,
+        meta_data_id: 13,
+        name: 'FRITZ',
+        state: 'STARTED',
+        status_type: 'DESTINATION_CONNECTOR',
+        received: '1',
+        sent: '2',
+        error: '3',
+        filtered: '4',
+        queued: '5'
+     )
+    end
+    let!(:counter1) do
+      FactoryBot.create(:channel_counter,
+        server_id: server.id,
+        channel_id: channel.id,
+        channel_statistic_id: channel_statistic.id,
+        meta_data_id: 13,
+        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
+        created_at: 10.minutes.before(Time.current)
+      )
+    end
+    let!(:counter2) do
+      FactoryBot.create(:channel_counter,
+        server_id: server.id,
+        channel_id: channel.id,
+        channel_statistic_id: channel_statistic.id,
+        meta_data_id: 13,
+        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
+        created_at: 5.minutes.before(Time.current)
+      )
+    end
+
+    it { expect(channel_statistic.sent_last_30min).to eq(0) }
+  
   end
 
 end
