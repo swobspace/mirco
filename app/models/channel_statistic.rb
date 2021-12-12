@@ -27,7 +27,7 @@ class ChannelStatistic < ApplicationRecord
   validates :meta_data_id, uniqueness: { scope: %i[server_id channel_id] }, allow_nil: true
   validates :channel_uid, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
-  validates :condition, inclusion: CONDITIONS, allow_blank: false
+  validates :condition, inclusion: CONDITIONS, allow_blank: true
 
 
   def to_s

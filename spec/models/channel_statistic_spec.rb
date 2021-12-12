@@ -12,7 +12,7 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
   it { is_expected.to validate_presence_of(:channel_uid) }
-  it { is_expected.to validate_inclusion_of(:condition).in_array(ChannelStatistic::CONDITIONS) }
+  it { is_expected.to validate_inclusion_of(:condition).in_array(ChannelStatistic::CONDITIONS).allow_blank }
 
 
   it 'should get plain factory working' do
