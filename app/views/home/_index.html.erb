@@ -17,7 +17,6 @@
     </thead>
     <tbody>
       <% queued_messages.each do |channel_statistic| %>
-        <% ch = channel_statistic.decorate %>
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <td class="text-start"><%= channel_statistic.server %></td>
           <td class="text-start">
@@ -28,14 +27,14 @@
             %>
           </td>
           <td class="text-start"><%= channel_statistic.name %></td>
-          <td class="text-end d-none d-lg-table-cell"><%= ch.received_last_30min %></td>
-          <td class="text-end d-none d-lg-table-cell"><%= ch.error_last_30min %></td>
-          <td class="text-end d-none d-lg-table-cell"><%= ch.filtered_last_30min %></td>
-          <td class="text-end d-none d-lg-table-cell"><%= ch.sent_last_30min %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.received_last_30min %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.error_last_30min %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.filtered_last_30min %></td>
+          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.sent_last_30min %></td>
           <%= render TdThresholdComponent.new(
                 value: channel_statistic.queued,
                 warning: 10, critical: 50,
-                alert: (ch.sent_last_30min < 1),
+                alert: (channel_statistic.sent_last_30min < 1),
                 css: 'text-end'
               ) %>
           <%= render TdExpirationComponent.new(

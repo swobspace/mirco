@@ -2,6 +2,7 @@
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex
 class ChannelStatistic < ApplicationRecord
+  include ChannelStatisticConcerns
   # -- associations
   belongs_to :server
   belongs_to :channel
