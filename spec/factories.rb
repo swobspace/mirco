@@ -39,6 +39,7 @@ FactoryBot.define do
     association :channel
     server_uid { `uuid -v 4` }
     channel_uid { `uuid -v 4` }
+    condition { 'ok' }
   end
 
   factory :note do

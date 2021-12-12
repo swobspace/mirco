@@ -12,6 +12,8 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
   it { is_expected.to validate_presence_of(:channel_uid) }
+  it { is_expected.to validate_inclusion_of(:condition).in_array(ChannelStatistic::CONDITIONS) }
+
 
   it 'should get plain factory working' do
     f = FactoryBot.create(:channel_statistic)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_093129) do
+ActiveRecord::Schema.define(version: 2021_12_12_122657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,8 +102,11 @@ ActiveRecord::Schema.define(version: 2021_12_05_093129) do
     t.string "name", default: ""
     t.string "state", default: ""
     t.string "status_type", default: ""
+    t.string "condition", default: ""
+    t.datetime "last_condition_change"
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
+    t.index ["condition"], name: "index_channel_statistics_on_condition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
   end
