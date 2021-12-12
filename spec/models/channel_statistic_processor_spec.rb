@@ -140,7 +140,9 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
         sent: '2',
         error: '3',
         filtered: '4',
-        queued: '5'
+        queued: '5',
+        condition: 'ok',
+        last_condition_change: 1.day.before(Time.current)
      )
     end
     let!(:counter1) do
@@ -164,7 +166,34 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
       )
     end
 
-    it { expect(channel_statistic.sent_last_30min).to eq(0) }
+    it { expect(processor.process).to be_truthy }
+    it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
+    it { processor.process ; expect(channel_statistic.condition).to eq('alert') }
+    it { processor.process ; expect(channel_statistic.alerts.last.type).to eq('alert') }
+
+    it "creates an alert entry" do
+      expect {
+        processor.process
+      }.to change(Alert, :count).by(1)
+    end
+
+    it "recovers after error" do
+      FactoryBot.create(:channel_counter,
+        server_id: server.id,
+        channel_id: channel.id,
+        channel_statistic_id: channel_statistic.id,
+        meta_data_id: 13,
+        received: '1', sent: '8', error: '3', filtered: '4', queued: '5',
+        created_at: 2.minutes.before(Time.current)
+      )
+      channel_statistic.update(condition: 'alert')
+      expect {
+        processor.process
+      }.to change(Alert, :count).by(1)
+      expect(channel_statistic.sent_last_30min).to eq(8)
+      expect(channel_statistic.condition).to eq('ok')
+      expect(channel_statistic.alerts.last.type).to eq('recovery')
+    end
   
   end
 

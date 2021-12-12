@@ -6,7 +6,7 @@ class ChannelStatisticProcessor
   end
 
   def process
-    channel_statistic.save && channel_statistic.touch && channel_counter.save
+    channel_statistic.save && channel_statistic.touch && channel_counter.save && update_condition
   end
 
   private
@@ -22,5 +22,41 @@ class ChannelStatisticProcessor
       filtered: channel_statistic.filtered,
       queued: channel_statistic.queued
     )
+  end
+
+  def update_condition
+    return true unless condition_changed?
+    toggle_condition && create_alert_entry
+    # process some notification
+  end
+
+  # if condition.blank? always assume a change (first try)
+  # else process alert same as acknowledge
+  def condition_changed?
+    # ok -> alert || alert, acknowledged -> ok
+    (current_condition == 'ok' and channel_statistic.condition != 'ok') ||
+    (current_condition != 'ok' and channel_statistic.condition == 'ok') ||
+    channel_statistic.condition.blank?
+  end
+
+  def toggle_condition
+    if ( channel_statistic.condition == 'ok' )
+      channel_statistic.update(condition: 'alert')
+    else
+      channel_statistic.update(condition: 'ok')
+    end
+  end
+
+  def current_condition
+    channel_statistic.sent_last_30min.zero? ? 'alert' : 'ok'
+  end
+
+  def create_alert_entry
+    if channel_statistic.condition == 'ok'
+      alert = channel_statistic.alerts.create(type: 'recovery', message: "#{channel_statistic} has recovered")
+    else
+      alert = channel_statistic.alerts.create(type: 'alert', message: "#{channel_statistic.queued} messages, but no messages sent in the last 30 minutes")
+    end
+    alert.persisted?
   end
 end
