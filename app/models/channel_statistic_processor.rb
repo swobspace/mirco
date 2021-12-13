@@ -48,7 +48,11 @@ class ChannelStatisticProcessor
   end
 
   def current_condition
-    channel_statistic.sent_last_30min.zero? ? 'alert' : 'ok'
+    if channel_statistic.sent_last_30min.zero? && channel_statistic.queued > Mirco.queued_warning_level
+      'alert' 
+    else
+      'ok'
+    end
   end
 
   def create_alert_entry

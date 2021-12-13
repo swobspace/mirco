@@ -140,7 +140,7 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
         sent: '2',
         error: '3',
         filtered: '4',
-        queued: '5',
+        queued: '12',
         condition: 'ok',
         last_condition_change: 1.day.before(Time.current)
      )
@@ -195,6 +195,38 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
       expect(channel_statistic.alerts.last.type).to eq('recovery')
     end
   
+  end
+
+  describe "threshold checks" do
+    let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
+
+    it "queued: 0, sent_last_30min > 0" do
+      expect(channel_statistic).to receive(:sent_last_30min).at_least(:once).and_return(0)
+      expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
+      processor.process
+      expect(channel_statistic.condition).to eq('ok')
+    end
+
+    it "queued: 12, sent_last_30min > 0" do
+      expect(channel_statistic).to receive(:sent_last_30min).at_least(:once).and_return(0)
+      expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
+      processor.process
+      expect(channel_statistic.condition).to eq('alert')
+    end
+
+    it "queued: 0, sent_last_30min > 10" do
+      expect(channel_statistic).to receive(:sent_last_30min).at_least(:once).and_return(12)
+      expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
+      processor.process
+      expect(channel_statistic.condition).to eq('ok')
+    end
+
+    it "queued: 12, sent_last_30min > 10" do
+      expect(channel_statistic).to receive(:sent_last_30min).at_least(:once).and_return(12)
+      expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
+      processor.process
+      expect(channel_statistic.condition).to eq('ok')
+    end
   end
 
 end
