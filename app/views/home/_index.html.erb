@@ -33,13 +33,13 @@
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.sent_last_30min %></td>
           <%= render TdThresholdComponent.new(
                 value: channel_statistic.queued,
-                warning: 10, critical: 50,
+                warning: Mirco.queued_warning_level, critical: Mirco.queued_critical_level,
                 alert: (channel_statistic.sent_last_30min < 1),
                 css: 'text-end'
               ) %>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
-                       expiration_time: Mirco.warn_threshold.minutes ) %>
+                       expiration_time: Mirco.warning_period.minutes ) %>
           <td class="text-nowrap text-center">
             <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
 

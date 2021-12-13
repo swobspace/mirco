@@ -20,10 +20,10 @@
           <td><%= server.location %></td>
          <%= render TdExpirationComponent.new(
                        tstamp: server.last_check,
-                       expiration_time: Mirco.warn_threshold.minutes ) %>
+                       expiration_time: Mirco.warning_period.minutes ) %>
          <%= render TdExpirationComponent.new(
                        tstamp: server.last_check_ok,
-                       expiration_time: Mirco.warn_threshold.minutes ) %>
+                       expiration_time: Mirco.warning_period.minutes ) %>
         <% end %>
       <% end %>
     </tbody>
