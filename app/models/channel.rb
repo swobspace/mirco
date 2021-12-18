@@ -26,7 +26,11 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
 
-  delegate :to_s, to: :name
+  alias_attribute :to_s, :name
+
+  def fullname
+    "#{server.to_s} &#8227; #{name}"
+  end
 
   def source_connector
     @source_connector ||= Mirco::Connector.new(sourceConnector) if sourceConnector.present?

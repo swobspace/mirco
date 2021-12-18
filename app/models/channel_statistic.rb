@@ -29,10 +29,12 @@ class ChannelStatistic < ApplicationRecord
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :condition, inclusion: CONDITIONS, allow_blank: true
 
+  alias_attribute :to_s, :name
 
-  def to_s
-    name.to_s
+  def fullname
+    "#{server.to_s} &#8227; #{channel.to_s} &#8227; #{name}"
   end
+
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex
 

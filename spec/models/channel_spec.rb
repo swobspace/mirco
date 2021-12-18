@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Channel, type: :model do
+  let(:channel) { FactoryBot.create(:channel, properties: { name: 'special channel' }) }
   it { is_expected.to belong_to(:server) }
   it { is_expected.to have_one(:channel_statistic).dependent(:destroy) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
@@ -18,8 +19,11 @@ RSpec.describe Channel, type: :model do
     expect(f).to validate_uniqueness_of(:uid).scoped_to(:server_id)
   end
 
-  it 'to_s returns value' do
-    f = FactoryBot.create(:channel, properties: { name: 'special channel' })
-    expect(f.to_s).to match('special channel')
+  describe "#to_s" do
+    it { expect(channel.to_s).to match('special channel') }
+  end
+
+  describe "#fullname" do
+    it { expect(channel.fullname).to match("#{channel.server.to_s} &#8227; special channel") }
   end
 end

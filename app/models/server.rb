@@ -22,6 +22,7 @@ class Server < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
 
-  delegate :to_s, to: :name
+  alias_attribute :to_s, :name
+  alias_attribute :fullname, :name
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex
