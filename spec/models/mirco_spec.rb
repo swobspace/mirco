@@ -9,6 +9,7 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('mail_from').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('use_ssl').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('host').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('port').and_return(3000)
       allow(Mirco::CONFIG).to receive(:[]).with('script_name').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('mail_to').and_return(nil)
 
@@ -30,6 +31,7 @@ RSpec.describe Mirco, type: :model do
       )
     }
     it { expect(Mirco.host).to eq('localhost') }
+    it { expect(Mirco.port).to eq(3000) }
     it { expect(Mirco.script_name).to eq('/') }
     it { expect(Mirco.mail_from).to eq('root') }
     it { expect(Mirco.use_ssl).to be_falsey }

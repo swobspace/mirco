@@ -73,6 +73,10 @@ module Mirco
     CONFIG['host'].presence || 'localhost'
   end
 
+  def self.port
+    CONFIG['port'].presence || 3000
+  end
+
   def self.script_name
     if CONFIG['script_name'].present?
       CONFIG['scriptname']
