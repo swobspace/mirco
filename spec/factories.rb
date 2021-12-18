@@ -11,7 +11,6 @@ FactoryBot.define do
 
   factory :alert do
     server
-    channel
     type { 'alert' }
     message { 'some text' }
   end
