@@ -38,4 +38,11 @@ RSpec.describe NotificationMailer, type: :mailer do
     expect(sanitize(mail.html_part.body.decoded, tags: [])).to match("Lorem ipsum dolor sit amet")
   end
 
+  describe "without mail_to" do
+    it "doesn't render anything" do
+      expect(Mirco).to receive(:mail_to).and_return([])
+      expect(mail.to).to eq([])
+    end
+  end
+
 end
