@@ -74,7 +74,7 @@ module Mirco
   end
 
   def self.port
-    CONFIG['port'].presence || 3000
+    CONFIG['port'].presence || nil
   end
 
   def self.script_name
