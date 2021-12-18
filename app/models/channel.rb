@@ -26,7 +26,9 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
 
-  alias_attribute :to_s, :name
+  def to_s
+    name.to_s
+  end
 
   def fullname
     "#{server.to_s} > #{name}"
