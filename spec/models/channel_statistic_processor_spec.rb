@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ChannelStatisticProcessor, type: :model do
+RSpec.describe ChannelStatisticProcessor, type: :mailer do
   let!(:server) do
     FactoryBot.create(:server,
                       name: 'testmirth',
@@ -175,6 +175,24 @@ RSpec.describe ChannelStatisticProcessor, type: :model do
       expect {
         processor.process
       }.to change(Alert, :count).by(1)
+    end
+
+    it "sends an email if mail_to.any?" do
+      expect(Mirco).to receive(:mail_to).at_least(:once).and_return(["operator@example.org"])
+      expect {
+        perform_enqueued_jobs do
+          processor.process
+        end
+      }.to change(ActionMailer::Base.deliveries, :count)
+    end
+
+    it "sends no email if mail_to.empty?" do
+      expect(Mirco).to receive(:mail_to).at_least(:once).and_return([])
+      expect {
+        perform_enqueued_jobs do
+          processor.process
+        end
+      }.not_to change(ActionMailer::Base.deliveries, :count)
     end
 
     it "recovers after error" do

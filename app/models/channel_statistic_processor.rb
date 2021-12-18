@@ -58,9 +58,16 @@ class ChannelStatisticProcessor
   def create_alert_entry
     if channel_statistic.condition == 'ok'
       alert = channel_statistic.alerts.create(type: 'recovery', message: "#{channel_statistic} has recovered")
+      send_alert(alert)
     else
       alert = channel_statistic.alerts.create(type: 'alert', message: "#{channel_statistic.queued} messages, but no messages sent in the last 30 minutes")
+      send_alert(alert)
     end
     alert.persisted?
+  end
+
+  def send_alert(alert)
+    return unless Mirco.mail_to.any?
+    NotificationMailer.with(alert: alert).alert.deliver_later
   end
 end

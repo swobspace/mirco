@@ -6,3 +6,5 @@ Type: <%= @alert.type %>
 ===
 
 <%= @message %>
+
+<%= polymorphic_url(@alert.alertable) %>

@@ -7,3 +7,7 @@
 <p>
   <%= @message %>
 </p>
+
+<p>  
+  Link: <%= link_to @alert.alertable.fullname, polymorphic_url(@alert.alertable) %>
+</p>  
