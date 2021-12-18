@@ -20,6 +20,16 @@ class Alert < ApplicationRecord
     "#{server}::#{channel} #{type.upcase} - #{message}"
   end
 
+  def alertable
+    if channel_statistic.present?
+      channel_statistic
+    elsif channel.present?
+      channel
+    else
+      server
+    end
+  end
+
   private
 
   def set_server_and_channel_id
@@ -31,5 +41,4 @@ class Alert < ApplicationRecord
   def alert_message_present
     errors.add(:message, "can't be empty") if message.blank?
   end
-
 end

@@ -56,4 +56,19 @@ RSpec.describe Alert, type: :model do
     end.to change(Note, :count).by(0)
   end
 
+  describe "#alertable" do
+    describe "with server" do
+      let(:alert) { FactoryBot.create(:alert, server: server) }
+      it { expect(alert.alertable).to eq(server) }
+    end
+    describe "with channel" do
+      let(:alert) { FactoryBot.create(:alert, channel: channel) }
+      it { expect(alert.alertable).to eq(channel) }
+    end
+    describe "with channel_statistic" do
+      let(:alert) { FactoryBot.create(:alert, channel_statistic: channel_statistic) }
+      it { expect(alert.alertable).to eq(channel_statistic) }
+    end
+  end
+
 end
