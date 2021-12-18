@@ -31,7 +31,7 @@ RSpec.describe ChannelStatistic, type: :model do
   end
 
   describe "#fullname" do
-    it { expect(cs.fullname).to match("#{cs.server.to_s} &#8227; #{cs.channel.to_s} &#8227; Some Statistics") }
+    it { expect(cs.fullname).to match("#{cs.server.to_s} > #{cs.channel.to_s} > Some Statistics") }
   end
 
 end

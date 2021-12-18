@@ -29,7 +29,7 @@ class Channel < ApplicationRecord
   alias_attribute :to_s, :name
 
   def fullname
-    "#{server.to_s} &#8227; #{name}"
+    "#{server.to_s} > #{name}"
   end
 
   def source_connector

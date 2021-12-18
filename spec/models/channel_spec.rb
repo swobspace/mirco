@@ -24,6 +24,6 @@ RSpec.describe Channel, type: :model do
   end
 
   describe "#fullname" do
-    it { expect(channel.fullname).to match("#{channel.server.to_s} &#8227; special channel") }
+    it { expect(channel.fullname).to match("#{channel.server.to_s} > special channel") }
   end
 end

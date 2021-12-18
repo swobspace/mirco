@@ -32,7 +32,7 @@ class ChannelStatistic < ApplicationRecord
   alias_attribute :to_s, :name
 
   def fullname
-    "#{server.to_s} &#8227; #{channel.to_s} &#8227; #{name}"
+    "#{server.to_s} > #{channel.to_s} > #{name}"
   end
 
 end
