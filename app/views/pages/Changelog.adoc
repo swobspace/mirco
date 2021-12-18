@@ -1,5 +1,13 @@
 = Changelog
 
+=== 0.7.3 / 2021-12-18
+
+----
+* add condition to channel_statistic for alerting
+* create channel_statistic_processor model for better logic handling on new statistics
+* notify via e-mail on condition change
+----
+
 === 0.7.2 / 2021-12-11
 
 ----
