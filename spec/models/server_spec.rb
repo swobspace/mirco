@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Server, type: :model do
+  let(:server) { FactoryBot.create(:server, name: 'xyzmirth') }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:channels).dependent(:restrict_with_error) }
@@ -19,8 +20,11 @@ RSpec.describe Server, type: :model do
     expect(f).to validate_uniqueness_of(:uid).case_insensitive
   end
 
-  it 'to_s returns value' do
-    f = FactoryBot.create(:server, name: 'xyzmirth')
-    expect(f.to_s).to match('xyzmirth')
+  describe "#to_s" do
+    it { expect(server.to_s).to match('xyzmirth') }
+  end
+
+  describe "#full_name" do
+    it { expect(server.fullname).to match('xyzmirth') }
   end
 end

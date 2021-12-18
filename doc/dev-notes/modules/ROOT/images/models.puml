@@ -38,6 +38,8 @@ class ChannelStatistic {
   error: integer
   filtered: integer
   queued: integer
+  condition: string
+  last_condition_change: timestamp
 }
 
 class ChannelCounter {

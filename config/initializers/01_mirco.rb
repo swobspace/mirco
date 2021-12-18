@@ -46,8 +46,19 @@ module Mirco
     fetch_config('cron_expression', '*/5 * * * *')
   end
 
-  def self.warn_threshold
-    fetch_config('warn_threshold', 10)
+  # warning if last check is older than warning_period minutes
+  def self.warning_period
+    fetch_config('warning_period', 10)
+  end
+
+  # warning if queued_messages > queued_warning_level
+  def self.queued_warning_level
+    fetch_config('queued_warning_level', 10)
+  end
+
+  # critical if queued_messages > queued_critical_level
+  def self.queued_critical_level
+    fetch_config('queued_critical_level', 50)
   end
 
   def self.action_cable_allowed_request_origins
@@ -60,6 +71,10 @@ module Mirco
 
   def self.host
     CONFIG['host'].presence || 'localhost'
+  end
+
+  def self.port
+    CONFIG['port'].presence || nil
   end
 
   def self.script_name

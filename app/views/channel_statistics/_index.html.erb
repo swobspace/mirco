@@ -21,6 +21,8 @@
         <th><%= t('attributes.error') %></th>
         <th><%= t('attributes.filtered') %></th>
         <th><%= t('attributes.queued') %></th>
+        <th><%= t('attributes.condition') %></th>
+        <th><%= t('attributes.last_condition_change') %></th>
         <th><%= t('attributes.updated_at') %></th>
         <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
@@ -30,6 +32,8 @@
         <% unless server.present? %>
           <th></th>
         <% end %>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -69,6 +73,8 @@
           <td><%= channel_statistic.error %></td>
           <td><%= channel_statistic.filtered %></td>
           <td><%= channel_statistic.queued %></td>
+          <td><%= channel_statistic.condition %></td>
+          <td><%= channel_statistic.last_condition_change&.to_formatted_s(:db) %></td>
           <%= render TdExpirationComponent.new(
                        tstamp: channel_statistic.updated_at,
                        expiration_time: 5.minutes ) %>

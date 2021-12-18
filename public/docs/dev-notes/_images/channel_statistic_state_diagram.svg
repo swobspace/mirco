@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="294px" preserveAspectRatio="none" style="width:310px;height:294px;background:#FFFFFF;" version="1.1" viewBox="0 0 310 294" width="310px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="fvbg5bhc6jud0" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <ellipse cx="32" cy="16" fill="#000000" filter="url(#fvbg5bhc6jud0)" rx="10" ry="10" style="stroke:none;stroke-width:1.0;" />
+        <g id="alert">
+            <rect fill="#FEFECE" filter="url(#fvbg5bhc6jud0)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="7" y="103" />
+            <line style="stroke:#A80036;stroke-width:1.5;" x1="7" x2="57" y1="129.2969" y2="129.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="17" y="120.9951">alert</text>
+        </g>
+        <g id="acknowledged">
+            <rect fill="#FEFECE" filter="url(#fvbg5bhc6jud0)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="121" x="175.5" y="103" />
+            <line style="stroke:#A80036;stroke-width:1.5;" x1="175.5" x2="296.5" y1="129.2969" y2="129.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="185.5" y="120.9951">acknowledged</text>
+        </g>
+        <g id="ok">
+            <rect fill="#FEFECE" filter="url(#fvbg5bhc6jud0)" height="50" rx="12.5" ry="12.5" style="stroke:#A80036;stroke-width:1.5;" width="50" x="108" y="230" />
+            <line style="stroke:#A80036;stroke-width:1.5;" x1="108" x2="158" y1="256.2969" y2="256.2969" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="124.5" y="247.9951">ok</text>
+        </g>
+        <!--MD5=[e0b3a59a3ae1952772db0987a05cecda]
+link *start to alert-->
+        <path d="M32,26 C32,41.46 32,73.68 32,97.6 " fill="none" id="*start-to-alert" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="32,102.87,36,93.87,32,97.87,28,93.87,32,102.87" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="48" x="33" y="69.0669">alerting</text>
+        <!--MD5=[8d4389915211e99a91117a2d32c89d2b]
+link alert to acknowledged-->
+        <path d="M57.01,128 C85.02,128 131.52,128 170.11,128 " fill="none" id="alert-to-acknowledged" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="175.26,128,166.26,124,170.26,128,166.26,132,175.26,128" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="75.25" y="121.0669">acknowledge</text>
+        <!--MD5=[f374046f55ded3110ed7381a39cff3ba]
+link alert to ok-->
+        <path d="M51.47,153.1 C68.31,173.94 92.66,204.07 110.36,225.98 " fill="none" id="alert-to-ok" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="113.59,229.97,111.0402,220.4569,110.4457,226.0824,104.8201,225.4879,113.59,229.97" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="90" y="196.0669">recovery</text>
+        <!--MD5=[f51909481630382e45fc9eead4f1e598]
+link acknowledged to ok-->
+        <path d="M216.14,153.1 C198.97,173.94 174.14,204.07 156.09,225.98 " fill="none" id="acknowledged-to-ok" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="152.8,229.97,161.6154,225.578,155.984,226.1149,155.4472,220.4836,152.8,229.97" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="191" y="196.0669">recovery</text>
+        <!--MD5=[3a22c4852777880b3750fe281644d013]
+@startuml
+
+[*] - -> alert : alerting
+alert -> acknowledged : acknowledge
+alert - -> ok : recovery
+acknowledged - -> ok :recovery
+@enduml
+
+PlantUML version 1.2021.8(Sat Jun 26 10:20:59 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>

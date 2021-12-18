@@ -7,7 +7,7 @@ class Alert < ApplicationRecord
   belongs_to :channel_statistic, optional: true
 
   # -- configuration
-  TYPES = %w[alert recovery acknowledge].freeze
+  TYPES = %w[alert recovery].freeze
   self.inheritance_column = nil
 
   # -- validations and callbacks
@@ -18,6 +18,16 @@ class Alert < ApplicationRecord
 
   def to_s
     "#{server}::#{channel} #{type.upcase} - #{message}"
+  end
+
+  def alertable
+    if channel_statistic.present?
+      channel_statistic
+    elsif channel.present?
+      channel
+    else
+      server
+    end
   end
 
   private
@@ -31,5 +41,4 @@ class Alert < ApplicationRecord
   def alert_message_present
     errors.add(:message, "can't be empty") if message.blank?
   end
-
 end

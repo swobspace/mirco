@@ -94,6 +94,12 @@
                            expiration_time: 5.minutes,
                            cssclass: 'text-left' ) %>
           </tr>
+          <tr>
+            <th><%= t('attributes.condition')%>:</th>
+            <td class="bg-<%= @channel_statistic.condition %>"><%= @channel_statistic.condition %></td>
+            <th><%= t('attributes.last_condition_change')%>:</th>
+            <td><%= @channel_statistic.last_condition_change&.to_formatted_s(:db) %></td>
+          </tr>
         </table>
 
       </div>

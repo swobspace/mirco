@@ -1,0 +1,10 @@
+Server: <%= @alert.server %>
+Channel: <%= @alert.channel %>
+Connector: <%= @alert.channel_statistic %>
+Type: <%= @alert.type %>
+
+===
+
+<%= @message %>
+
+<%= polymorphic_url(@alert.alertable) %>

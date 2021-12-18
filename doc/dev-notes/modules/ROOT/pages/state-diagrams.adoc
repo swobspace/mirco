@@ -1,0 +1,6 @@
+= Zustandsdiagramme
+:imagesdir: ../images
+
+== Alert->Recovery
+
+image::channel_statistic_state_diagram.svg[]

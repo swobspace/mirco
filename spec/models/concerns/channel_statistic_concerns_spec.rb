@@ -2,49 +2,44 @@
 
 require 'rails_helper'
 
-RSpec.describe ChannelStatisticDecorator do
+RSpec.describe ChannelStatisticConcerns, type: :model do
   let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
-  let(:cs) { channel_statistic.decorate }
 
   describe 'without counters' do
-    let(:ch) { channel_statistic.decorate }
     describe '#sent_last_30min' do
       it "doesn't raise an error" do
         expect do
-          cs.sent_last_30min
+          channel_statistic.sent_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.sent_last_30min).to eq(0) }
+      it { expect(channel_statistic.sent_last_30min).to eq(0) }
     end
 
     describe '#received_last_30min' do
-      let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
       it "doesn't raise an error" do
         expect do
-          cs.received_last_30min
+          channel_statistic.received_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.received_last_30min).to eq(0) }
+      it { expect(channel_statistic.received_last_30min).to eq(0) }
     end
 
     describe '#error_last_30min' do
-      let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
       it "doesn't raise an error" do
         expect do
-          cs.error_last_30min
+          channel_statistic.error_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.error_last_30min).to eq(0) }
+      it { expect(channel_statistic.error_last_30min).to eq(0) }
     end
 
     describe '#filtered_last_30min' do
-      let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
       it "doesn't raise an error" do
         expect do
-          cs.filtered_last_30min
+          channel_statistic.filtered_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.filtered_last_30min).to eq(0) }
+      it { expect(channel_statistic.filtered_last_30min).to eq(0) }
     end
   end
 
@@ -80,40 +75,39 @@ RSpec.describe ChannelStatisticDecorator do
                         created_at: Time.current)
     end
     describe '#sent_last_30min' do
-      let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
       it "doesn't raise an error" do
         expect do
-          cs.sent_last_30min
+          channel_statistic.sent_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.sent_last_30min).to eq(200) }
+      it { expect(channel_statistic.sent_last_30min).to eq(200) }
     end
 
     describe '#received_last_30min' do
       it "doesn't raise an error" do
         expect do
-          cs.received_last_30min
+          channel_statistic.received_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.received_last_30min).to eq(202) }
+      it { expect(channel_statistic.received_last_30min).to eq(202) }
     end
 
     describe '#error_last_30min' do
       it "doesn't raise an error" do
         expect do
-          cs.error_last_30min
+          channel_statistic.error_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.error_last_30min).to eq(206) }
+      it { expect(channel_statistic.error_last_30min).to eq(206) }
     end
 
     describe '#filtered_last_30min' do
       it "doesn't raise an error" do
         expect do
-          cs.filtered_last_30min
+          channel_statistic.filtered_last_30min
         end.not_to raise_error
       end
-      it { expect(cs.filtered_last_30min).to eq(204) }
+      it { expect(channel_statistic.filtered_last_30min).to eq(204) }
     end
   end
 end

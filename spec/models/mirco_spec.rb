@@ -9,13 +9,16 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('mail_from').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('use_ssl').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('host').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('port').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('script_name').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('mail_to').and_return(nil)
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_expression').and_return(nil)
-      allow(Mirco::CONFIG).to receive(:[]).with('warn_threshold').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(nil)
     end
     it {
       expect(Mirco.devise_modules).to contain_exactly(
@@ -28,6 +31,7 @@ RSpec.describe Mirco, type: :model do
       )
     }
     it { expect(Mirco.host).to eq('localhost') }
+    it { expect(Mirco.port).to eq(nil) }
     it { expect(Mirco.script_name).to eq('/') }
     it { expect(Mirco.mail_from).to eq('root') }
     it { expect(Mirco.use_ssl).to be_falsey }
@@ -39,7 +43,9 @@ RSpec.describe Mirco, type: :model do
       )
     }
     it { expect(Mirco.cron_expression).to eq('*/5 * * * *') }
-    it { expect(Mirco.warn_threshold).to eq(10) }
+    it { expect(Mirco.warning_period).to eq(10) }
+    it { expect(Mirco.queued_warning_level).to eq(10) }
+    it { expect(Mirco.queued_critical_level).to eq(50) }
   end
 
   describe '::ldap_options' do

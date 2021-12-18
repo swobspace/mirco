@@ -46,6 +46,9 @@
     <a class="nav-link" href="modeling.html">Modeling mirco</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="timescale.html">Timescale</a>
   </li>
 </ul>
@@ -167,6 +170,8 @@
   error:integer \
   filtered:integer \
   queued:integer \
+  condition:string:index \
+  last_condition_change:timestamp \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -229,6 +234,7 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Alert \
   server:belongs_to \
   channel:belongs_to \
+  channel_statistic:belongs_to \
   type:string:index \
   message:text \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
@@ -243,7 +249,7 @@ end</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>alert</code>, <code>recovery</code>, <code>acknowledge</code></p>
+<p><code>alert</code>, <code>recovery</code></p>
 </div></div></td>
 </tr>
 </tbody>
@@ -258,6 +264,7 @@ end</code></pre>
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Note \
   server:belongs_to \
   channel:belongs_to \
+  channel_statistic:belongs_to \
   user:belongs_to \
   type:string:index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>

@@ -1,0 +1,7 @@
+@startuml
+
+[*] --> alert : alerting
+alert -> acknowledged : acknowledge
+alert --> ok : recovery
+acknowledged --> ok :recovery
+@enduml

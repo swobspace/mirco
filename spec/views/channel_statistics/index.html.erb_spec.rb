@@ -26,7 +26,9 @@ RSpec.describe 'channel_statistics/index', type: :view do
                sent: 3,
                error: 4,
                filtered: 5,
-               queued: 6
+               queued: 6,
+               condition: 'alert',
+               last_condition_change: 1.day.before(Time.current)
              ),
              ChannelStatistic.create!(
                server: @server,
@@ -41,7 +43,9 @@ RSpec.describe 'channel_statistics/index', type: :view do
                sent: 3,
                error: 4,
                filtered: 5,
-               queued: 6
+               queued: 6,
+               condition: 'alert',
+               last_condition_change: 1.day.before(Time.current)
              )
            ])
     allow(channel1).to receive(:name).and_return('Channel1')
@@ -63,5 +67,6 @@ RSpec.describe 'channel_statistics/index', type: :view do
     assert_select 'tr>td', text: 4.to_s, count: 2
     assert_select 'tr>td', text: 5.to_s, count: 2
     assert_select 'tr>td', text: 6.to_s, count: 2
+    assert_select 'tr>td', text: 1.day.before(Time.current).to_formatted_s(:db), count: 2
   end
 end

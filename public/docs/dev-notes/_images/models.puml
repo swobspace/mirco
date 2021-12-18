@@ -38,6 +38,8 @@ class ChannelStatistic {
   error: integer
   filtered: integer
   queued: integer
+  condition: string
+  last_condition_change: timestamp
 }
 
 class ChannelCounter {
@@ -55,6 +57,7 @@ class ChannelCounter {
 class Alert {
   channel_id
   server_id
+  channel_statistic_id
   type: string : alert, recovery
   message: text
 }
@@ -62,19 +65,22 @@ class Alert {
 class Note {
   channel_id
   server_id
+  channel_statistic_id
   user_id
   type: string : ack, mail
 }
 
 Server "1" -- "*" Channel
 Server "1" - "*" ChannelStatistic
-Channel "1" - "1" ChannelStatistic
+Channel "1" - "*" ChannelStatistic
 ChannelCounter "*" - "1" Server
 ChannelCounter "*" -- "1" Channel
+ChannelCounter "*" -- "1" ChannelStatistic
 Server "1" -- "*" Alert
 Channel "0..1" -- "*" Alert
+ChannelStatistic "0..1" -- "*" Alert
 Server "1" -- "*" Note
 Channel "0..1" -- "*" Note
-
+ChannelStatistic "0..1" -- "*" Note
 
 @enduml

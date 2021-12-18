@@ -62,11 +62,15 @@ bin/rails g scaffold ChannelStatistic \
   error:integer \
   filtered:integer \
   queued:integer \
+  condition:string:index \
+  last_condition_change:timestamp \
   --no-stylesheets --no-javascripts --no-helper
 ----
 // bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
 // bin/rails g migration AddStatusesFieldsToChannelStatistic \
 //   name:string state:string status_type:string
+// bin/rails g migration AddConditionToChannelStatistic \
+//   condition:string:index last_condition_change:timestamp
 
 == Model ChannelCounter
 
@@ -99,7 +103,7 @@ bin/rails g scaffold Alert \
 [cols="1,3"]
 |===
 |type
-a|`alert`, `recovery`, `acknowledge`
+a|`alert`, `recovery`
 |===
 
 == Model Note

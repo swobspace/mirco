@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ChannelStatistic, type: :model do
+  let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
@@ -12,6 +13,8 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
   it { is_expected.to validate_presence_of(:channel_uid) }
+  it { is_expected.to validate_inclusion_of(:condition).in_array(ChannelStatistic::CONDITIONS).allow_blank }
+
 
   it 'should get plain factory working' do
     f = FactoryBot.create(:channel_statistic)
@@ -23,9 +26,12 @@ RSpec.describe ChannelStatistic, type: :model do
     is_expected.to validate_uniqueness_of(:channel_id).scoped_to(%i[server_id meta_data_id])
   end
 
-  it '#to_s renders string' do
-    f = FactoryBot.create(:channel_statistic, name: 'Some Statistics')
-    expect(f.to_s).to eq("Some Statistics")
+  describe "#to_s" do
+    it { expect(cs.to_s).to eq("Some Statistics") }
+  end
+
+  describe "#fullname" do
+    it { expect(cs.fullname).to match("#{cs.server.to_s} > #{cs.channel.to_s} > Some Statistics") }
   end
 
 end

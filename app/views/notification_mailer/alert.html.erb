@@ -1,0 +1,13 @@
+<p>
+  <b>Server:</b> <%= @alert.server.to_s %> <br/>
+  <b>Channel:</b> <%= @alert.channel.to_s %> <br/>
+  <b>Connector:</b> <%= @alert.channel_statistic.to_s %> <br/>
+  <b>Type:</b> <%= @alert.type %>
+</h1>
+<p>
+  <%= @message %>
+</p>
+
+<p>  
+  Link: <%= link_to @alert.alertable.fullname, polymorphic_url(@alert.alertable) %>
+</p>  

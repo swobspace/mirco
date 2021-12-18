@@ -2,6 +2,7 @@
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex
 class ChannelStatistic < ApplicationRecord
+  include ChannelStatisticConcerns
   # -- associations
   belongs_to :server
   belongs_to :channel
@@ -19,15 +20,21 @@ class ChannelStatistic < ApplicationRecord
   # }
 
   # -- configuration
+  CONDITIONS = %w[alert acknowledged ok].freeze
+
   # -- validations and callbacks
   validates :server_id, :server_uid, presence: true
   validates :meta_data_id, uniqueness: { scope: %i[server_id channel_id] }, allow_nil: true
   validates :channel_uid, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
+  validates :condition, inclusion: CONDITIONS, allow_blank: true
 
-  def to_s
-    name.to_s
+  alias_attribute :to_s, :name
+
+  def fullname
+    "#{server.to_s} > #{channel.to_s} > #{name}"
   end
+
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex
 
