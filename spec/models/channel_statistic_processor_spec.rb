@@ -169,6 +169,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
     it { expect(processor.process).to be_truthy }
     it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
     it { processor.process ; expect(channel_statistic.condition).to eq('alert') }
+    it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
     it { processor.process ; expect(channel_statistic.alerts.last.type).to eq('alert') }
 
     it "creates an alert entry" do
@@ -210,6 +211,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       }.to change(Alert, :count).by(1)
       expect(channel_statistic.sent_last_30min).to eq(8)
       expect(channel_statistic.condition).to eq('ok')
+      expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy
       expect(channel_statistic.alerts.last.type).to eq('recovery')
     end
   
@@ -244,6 +246,35 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
       processor.process
       expect(channel_statistic.condition).to eq('ok')
+    end
+  end
+
+  describe "with channel statistic type: CHANNEL" do
+    let!(:channel_statistic) do
+      FactoryBot.create(:channel_statistic,
+        server_id: server.id,
+        channel_id: channel.id,
+        meta_data_id: nil,
+        name: 'FRITZ',
+        state: 'STARTED',
+        status_type: 'CHANNEL',
+        received: '1',
+        sent: '2',
+        error: '3',
+        filtered: '4',
+        queued: 0,
+        condition: 'alert',
+        last_condition_change: 1.day.before(Time.current)
+     )
+    end
+
+    it { processor.process ; expect(channel_statistic.condition).to eq('ok') }
+    it "does not send a notification mail" do
+      expect {
+        perform_enqueued_jobs do
+          processor.process
+        end
+      }.not_to change(ActionMailer::Base.deliveries, :count)
     end
   end
 
