@@ -140,3 +140,14 @@ class Note < ApplicationRecord
   has_rich_text :message
 end
 ----
+
+== Model ServerConfiguration
+
+[source,ruby]
+----
+bin/rails g model ServerConfiguration \
+  server:belongs_to \
+  comment:string
+
+bin/rails g controller ServerConfiguration index show
+----

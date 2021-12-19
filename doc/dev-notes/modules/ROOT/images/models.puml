@@ -70,7 +70,14 @@ class Note {
   type: string : ack, mail
 }
 
+class ServerConfiguration {
+  server_id
+  comment: string
+  # has_one_attached :file
+}
+
 Server "1" -- "*" Channel
+Server "1" - "*" ServerConfiguration
 Server "1" - "*" ChannelStatistic
 Channel "1" - "*" ChannelStatistic
 ChannelCounter "*" - "1" Server
