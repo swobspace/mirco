@@ -7,6 +7,6 @@ class HomeController < ApplicationController
                        .where('channel_statistics.queued > 0')
                        .where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
                        .order('queued desc')
-    @servers = Server.all
+    @servers = Server.order(:name).all
   end
 end
