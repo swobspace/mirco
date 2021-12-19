@@ -1,5 +1,13 @@
 = Changelog
 
+=== 0.7.4 / 2021-12-19
+
+----
+* sort server list on start page by name
+* don't send notifications for channel statistics on channel itself 
+  (only notify on destination connector statistics)
+----
+
 === 0.7.3 / 2021-12-18
 
 ----
