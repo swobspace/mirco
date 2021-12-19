@@ -1,5 +1,5 @@
 class BackupServer
-  attr_reader :server
+  attr_reader :server, :configuration
 
   def initialize(server)
     @server = server
@@ -10,15 +10,17 @@ class BackupServer
     fetch_configuration && store_backup
   end
 
+  private
+
   def fetch_configuration
-    svc = System::FetchConfiguration.new(server)
+    svc = System::FetchConfiguration.new(server: server)
     result = svc.call
-    return false unless svc.success
+    return false unless result.success?
     @configuration = result.configuration
   end
 
   def store_backup
-    backup = server.server_configurations.create
+    backup = @server.server_configurations.create
     backup.xmlfile.attach(io: StringIO.new(configuration),
                           filename: "#{configuration.to_s}.xml",
                           content_type: 'text/xml',
