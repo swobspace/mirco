@@ -42,8 +42,10 @@ class ChannelStatisticProcessor
   def toggle_condition
     if ( channel_statistic.condition == 'ok' )
       channel_statistic.update(condition: 'alert')
+      channel_statistic.touch(:last_condition_change)
     else
       channel_statistic.update(condition: 'ok')
+      channel_statistic.touch(:last_condition_change)
     end
   end
 
@@ -67,7 +69,12 @@ class ChannelStatisticProcessor
   end
 
   def send_alert(alert)
+    # send mail is disabled unless mail_to is explicit configured
     return unless Mirco.mail_to.any?
+
+    # avoid duplicate alerts, one for the destination and one for the channel itself
+    return if alert.alertable&.status_type == 'CHANNEL'
+
     NotificationMailer.with(alert: alert).alert.deliver_later
   end
 end
