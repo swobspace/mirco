@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'server_configuration/index'
-  get 'server_configuration/show'
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: %i[show index] do
@@ -27,6 +25,7 @@ Rails.application.routes.draw do
     member do
       patch :update_properties
     end
+    resources :server_configurations, only: %i[index show]
     resources :alerts, only: %i[index show], module: :servers
     resources :notes, module: :servers
     resources :channels, only: %i[index destroy], module: :servers do
