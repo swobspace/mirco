@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'server_configuration/index'
+  get 'server_configuration/show'
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: %i[show index] do
