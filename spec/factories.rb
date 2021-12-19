@@ -22,6 +22,10 @@ FactoryBot.define do
     end
   end
 
+  factory :server_configuration do
+    server
+  end
+
   factory :channel do
     server
     uid { `uuid -v 4` }
