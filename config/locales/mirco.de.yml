@@ -4,6 +4,7 @@ de:
     false: disabled
   mirco:
     action: Aktion
+    add_note: Notiz erstellen
     update_properties: Aktualisiere Eigenschaften
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren

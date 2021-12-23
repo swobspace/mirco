@@ -209,9 +209,9 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.notes') %></h4>
         <div role="toolbar">
-            <%= link_to 'Add Note',
+            <%= link_to t('mirco.add_note'),
                         new_server_note_path(@server),
-                        class: "btn btn-secondary",
+                        class: "btn btn-warning",
                         data: {
                           controller: :modal,
                           'modal-modal-id-value': 'sharedModal',
@@ -253,7 +253,7 @@
         <div role="toolbar">
             <%= link_to t('mirco.backup_server_configuration'),
                         new_server_server_configuration_path(@server),
-                        class: "btn btn-secondary",
+                        class: "btn btn-warning",
                         data: {
                           controller: :modal,
                           'modal-modal-id-value': 'sharedModal',
