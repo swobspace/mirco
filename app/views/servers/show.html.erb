@@ -209,7 +209,7 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.notes') %></h4>
         <div role="toolbar">
-            <%= link_to t('mirco.add_note'),
+            <%= link_to(t('mirco.add_note'),
                         new_server_note_path(@server),
                         class: "btn btn-warning",
                         data: {
@@ -217,7 +217,7 @@
                           'modal-modal-id-value': 'sharedModal',
                           action: 'click->modal#open',
                           'turbo-frame': "modal-body"
-                        } %>
+                        }) if can? :create, Note %>
         </div>
       </div>
     </div>
@@ -251,7 +251,7 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.server_configurations') %></h4>
         <div role="toolbar">
-            <%= link_to t('mirco.backup_server_configuration'),
+            <%= link_to(t('mirco.backup_server_configuration'),
                         new_server_server_configuration_path(@server),
                         class: "btn btn-warning",
                         data: {
@@ -259,7 +259,7 @@
                           'modal-modal-id-value': 'sharedModal',
                           action: 'click->modal#open',
                           'turbo-frame': "modal-body"
-                        } %>
+                        }) if can? :create, ServerConfiguration %>
         </div>
       </div>
     </div>
