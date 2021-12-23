@@ -1,0 +1,4 @@
+<%= turbo_stream.update("ts_server_configurations", 
+                        partial: 'server_configurations/index',
+                        locals: { server: @server, 
+                                  server_configurations: @server.server_configurations }) %>

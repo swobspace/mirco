@@ -32,6 +32,11 @@
       <%= t('controller.alerts') %>
     </button>
   </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="configurations-tab" data-bs-toggle="tab" data-bs-target="#configurations" type="button" role="tab" aria-controls="configurations" aria-selected="false">
+      <%= t('controller.server_configurations') %>
+    </button>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
  <div class="tab-pane fade show active" id="server" role="tabpanel" aria-labelledby="server-tab">
@@ -239,6 +244,33 @@
     </div>
   </div>
  </div>
+
+ <div class="tab-pane fade" id="configurations" role="tabpanel" aria-labelledby="configurations-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="title"><%= t('controller.server_configurations') %></h4>
+        <div role="toolbar">
+            <%= link_to t('mirco.backup_server_configuration'),
+                        new_server_server_configuration_path(@server),
+                        class: "btn btn-secondary",
+                        data: {
+                          controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body"
+                        } %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div id='ts_server_configurations'>
+        <%= render partial: 'server_configurations/index', locals: {server: @server, server_configurations: @server.server_configurations } %>
+      </div>
+    </div>
+  </div>
+ </div>
+
 
 
 </div>

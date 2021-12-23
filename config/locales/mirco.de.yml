@@ -8,6 +8,7 @@ de:
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
     new_server: Neuer Server
+    backup_server_configuration: Server-Konfiguration sichern
     for: für
 
   activerecord:
@@ -23,7 +24,7 @@ de:
       channel_statistic/note: Notiz
       note: Notizen
       server: Server
-      server_configuration: Sicherung Konfiguration
+      server_configuration: Sicherung der Konfiguration
       servers/alert: Alarm
       servers/channel: Channel
       servers/note: Notizen
@@ -42,6 +43,7 @@ de:
     channel_detail: Channel Connector
     channel_statistic: Channel Statistik
     channel_uid: Channel UUID
+    comment: Kommentar
     condition: Zustand
     connector: Connector
     created_at: angelegt am
@@ -76,7 +78,7 @@ de:
     sent: sent
     sent_last_30min: sent (30min)
     server: Server
-    server_configuration: Sicherung Konfiguration
+    server_configuration: Sicherung der Konfiguration
     server_uid: Server UUID
     server_jvm: Server JVM
     server_version: Server Version
@@ -110,7 +112,7 @@ de:
     notes: Notizen
     pages: Seiten
     servers: Server
-    server_configurations: Sicherungen Konfiguration
+    server_configurations: Sicherungen der Konfiguration
     servers/alerts: Alarme
     servers/channel_details: Channel Connectors (Server)
     servers/channel_statistics: Channel Statistiken (Server)
