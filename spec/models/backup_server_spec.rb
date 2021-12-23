@@ -46,6 +46,11 @@ RSpec.describe BackupServer, type: :model do
       expect(doc.xpath("serverConfiguration/pluginProperties")).to be_present
       expect(doc.xpath("serverConfiguration/resourceProperties")).to be_present
     end
+
+    it "set some attributes from server_configuration_params" do
+      backup.create(comment: "Just a comment for backup")
+      expect(ServerConfiguration.last.comment).to eq("Just a comment for backup")
+    end
   end
 
 end

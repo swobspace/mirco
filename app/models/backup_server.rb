@@ -6,8 +6,8 @@ class BackupServer
     @configuration = nil
   end
 
-  def create
-    fetch_configuration && store_backup
+  def create(server_configuration_params = {})
+    fetch_configuration && store_backup(server_configuration_params)
   end
 
   private
@@ -19,8 +19,8 @@ class BackupServer
     @configuration = result.configuration
   end
 
-  def store_backup
-    backup = @server.server_configurations.create
+  def store_backup(server_configuration_params)
+    backup = @server.server_configurations.create(server_configuration_params)
     backup.xmlfile.attach(io: StringIO.new(configuration),
                           filename: "#{configuration.to_s}.xml",
                           content_type: 'text/xml',
