@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_122657) do
+ActiveRecord::Schema.define(version: 2021_12_19_120117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,14 @@ ActiveRecord::Schema.define(version: 2021_12_12_122657) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
+  create_table "server_configurations", force: :cascade do |t|
+    t.bigint "server_id", null: false
+    t.string "comment", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["server_id"], name: "index_server_configurations_on_server_id"
+  end
+
   create_table "servers", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "uid", default: ""
@@ -246,4 +254,5 @@ ActiveRecord::Schema.define(version: 2021_12_12_122657) do
   add_foreign_key "channels", "servers"
   add_foreign_key "notes", "servers"
   add_foreign_key "notes", "wobauth_users", column: "user_id"
+  add_foreign_key "server_configurations", "servers"
 end

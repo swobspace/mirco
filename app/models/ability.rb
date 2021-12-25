@@ -19,7 +19,7 @@ class Ability
       can :read, :all
       can :manage, [Note], user_id: @user.id
     elsif @user.authorities.any? || @user.group_authorities.any?
-      can :read, :all
+      can :read, [Home, Alert, Note, Server, Channel, ChannelStatistic]
     else
       can :read, Home
     end

@@ -1,0 +1,36 @@
+<div data-controller="datatables">
+  <%= content_tag :table, role: :datatable,
+        id: "server_configurations_table",
+        class: "table table-bordered table-responsive-xl",
+        data: {
+          'datatables-target': 'datatable',
+          order: [[0, 'desc']].to_json
+        } do %>
+    <thead>
+      <tr class="search">
+            <th><%= t('attributes.created_at') %></th>
+            <th class="w-75"><%= t('attributes.comment') %></th>
+            <th class="nosort"><%= t('mirco.action') %></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% server_configurations.each do |sconf| %>
+        <%= content_tag(:tr, id: dom_id(sconf), class: dom_class(sconf)) do %>
+          <td><%= sconf.created_at.localtime.to_formatted_s(:db) %></td>
+          <td><%= sconf.comment %></td>
+          <td class="text-nowrap">
+          <%= show_link [server, sconf] %>
+          <%= delete_link([server, sconf], { data: { turbo: { method: :delete, confirm: "Are you sure?" }}}) %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>

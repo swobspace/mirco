@@ -70,4 +70,9 @@ RSpec.configure do |config|
   config.include RequestMacros, type: :feature
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
+
+  config.after(:suite) do
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
+
 end

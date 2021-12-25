@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
+<h1><%= t('controller.server_configurations') %></h1>
+
+<%= render 'index', server: @server, server_configurations: @server_configurations %>
+
+<br />
+
+<%= back_link %>
+<%= new_link [@server, ServerConfiguration] %>
