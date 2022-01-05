@@ -4,11 +4,11 @@ module Mirco
   module ConnectorType
     class VmDispatcher < Generic
       def descriptor
-        if channel.present?
+        if dest_channel.present?
           {
             "writeToChannel": [
-              channel.to_s,
-              Rails.application.routes.url_helpers.channel_path(channel)
+              dest_channel.to_s,
+              Rails.application.routes.url_helpers.channel_path(dest_channel)
             ]
           }
         else
@@ -26,21 +26,21 @@ module Mirco
       end
 
       def puml_text
-        if channel.present?
-          channel.name.to_s
+        if dest_channel.present?
+          dest_channel.name.to_s
         else
           'none'
         end
       end
 
       def destination_channel_id
-        channel.present? ? channel.id : nil
+        dest_channel.present? ? dest_channel.id : nil
       end
 
       private
 
-      def channel
-        Channel.where(uid: properties['channelId']).first
+      def dest_channel
+        Channel.where(uid: properties['channelId'], server_id: channel.server_id).first
       end
     end
   end

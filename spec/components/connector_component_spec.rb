@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe ConnectorComponent, type: :component do
+  let(:server) { FactoryBot.create(:server) }
+  let(:channel) { FactoryBot.create(:channel, server: server) }
   let(:yaml) { YAML.load_file(Rails.root.join('spec', 'fixtures', 'files', 'connectors.yaml')) }
 
   it 'renders tcpReceiver' do
-    connector = Mirco::Connector.new(yaml['tcpReceiver'])
+    connector = Mirco::Connector.new(yaml['tcpReceiver'], channel: channel)
     render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text('sourceConnector')
     expect(rendered_component).to have_text('enabled')
@@ -24,7 +26,7 @@ RSpec.describe ConnectorComponent, type: :component do
   end
 
   it 'renders fileDispatcher' do
-    connector = Mirco::Connector.new(yaml['fileDispatcher'])
+    connector = Mirco::Connector.new(yaml['fileDispatcher'], channel: channel)
     render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text('HL7_ADT_TO_MARIS')
     expect(rendered_component).to have_text('enabled')
@@ -41,9 +43,10 @@ RSpec.describe ConnectorComponent, type: :component do
   it 'renders vmDispatcher' do
     properties = { name: 'HL7_TO_SATURN' }
     FactoryBot.create(:channel, uid: 'db97d5d4-fd11-4f6a-b29c-aa006a853579',
+                                server: server,
                                 properties: properties)
 
-    connector = Mirco::Connector.new(yaml['vmDispatcher'])
+    connector = Mirco::Connector.new(yaml['vmDispatcher'], channel: channel)
     render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text('HL7_ADT_TO_ORGACARD')
     expect(rendered_component).to have_text('enabled')
@@ -53,7 +56,7 @@ RSpec.describe ConnectorComponent, type: :component do
   end
 
   it 'renders tcpDispatcher' do
-    connector = Mirco::Connector.new(yaml['tcpDispatcher'])
+    connector = Mirco::Connector.new(yaml['tcpDispatcher'], channel: channel)
     render_inline(described_class.new(connector: connector))
     expect(rendered_component).to have_text('HL7_ADT_TO_IXSERV')
     expect(rendered_component).to have_text('enabled')
