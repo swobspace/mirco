@@ -1,5 +1,11 @@
 = Changelog
 
+=== next version / unpublished
+
+----
+* bugfix: show correct destination channel ond channel writers
+----
+
 === 0.7.5 / 2021-12-25
 
 ----
