@@ -1,6 +1,7 @@
 ' Channel <%= channel.name %>
 ' Definitions
 queue <%= ch_alias %> as "<%= channel.puml[:text] %>"
+url of <%= ch_alias %> is [[<%= channel_path(channel) %>]]
 <%= source.puml[:type] %> <%= ch_alias %>_src as "<%= source.puml[:text] %>"
 
 <% destinations.each do |dest| %>
