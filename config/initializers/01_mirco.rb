@@ -94,11 +94,13 @@ module Mirco
   end
 
   ActionMailer::Base.default_url_options = {
-    host: host,
-    script_name: script_name
+    host: self.host,
+    port: self.port,
+    script_name: self.script_name
   }
-  Rails.application.routes.default_url_options[:host] = host
-  Rails.application.routes.default_url_options[:script_name] = script_name
+  Rails.application.routes.default_url_options[:host] = self.host
+  Rails.application.routes.default_url_options[:port] = self.port
+  Rails.application.routes.default_url_options[:script_name] = self.script_name
 
   def self.fetch_config(attribute, default_value)
     CONFIG[attribute.to_s].presence || default_value
