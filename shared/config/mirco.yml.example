@@ -1,0 +1,37 @@
+---
+# -- check interval
+# cron_expression: '*/5 * * * *'
+
+# -- warning stuff
+# warning_period: 10
+# queued_warning_level: 10
+# queued_critical_level: 50
+
+# -- authentication modules
+# devise_modules:
+#   - remote_user_authenticatable
+#   - database_authenticatable
+#   - registerable
+#   - recoverable
+#   - rememberable
+#   - trackable
+
+# -- remote user variable for single sign on
+# remote_user: REMOTE_USER
+
+# -- SSL
+# use_ssl: false
+
+# -- action cable request origins
+# action_cable_allowed_request_origins:
+#   - http://localhost:3001
+#   - https://localhost:3001
+
+# -- action mailer settings
+# host: localhost
+# port: 3000
+# script_name: /
+# mail_from: do-not-reply@from-some-domain
+# mail_to:
+#  - jane.doe@example.org
+
