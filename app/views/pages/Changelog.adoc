@@ -4,6 +4,7 @@
 
 ----
 * bugfix: show correct destination channel ond channel writers
+* diagrams: add a hyperlink for channel to mirco
 ----
 
 === 0.7.5 / 2021-12-25
