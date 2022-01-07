@@ -109,7 +109,7 @@ RSpec.describe Mirco, type: :model do
     # Routes default url options has to be set in local configuration file mirco.yml
     it "sets default_url_options" do
       expect(Rails.application.routes.default_url_options).to include(
-             host: 'localhost', port: 3001, script_name: '/')
+             host: 'dev.local', port: 3001, script_name: '/')
     end
   end
 end

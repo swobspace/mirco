@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 module Mirco
-  CONFIGURATION_CONTROLLER = [
-    'servers'
-  ].freeze
   CONFIGFILE = File.join(Rails.root, 'config', 'mirco.yml')
   config = YAML.load_file(CONFIGFILE) if File.readable? CONFIGFILE
   CONFIG = config || {}
+
+  CONFIGURATION_CONTROLLER = [
+    'servers'
+  ].freeze
+
+  def self.fetch_config(attribute, default_value)
+    CONFIG[attribute.to_s].presence || default_value
+  end
+
 
   def self.devise_modules
     CONFIG['devise_modules'].presence || %i[remote_user_authenticatable
@@ -33,6 +39,11 @@ module Mirco
   def self.mail_from
     fetch_config('mail_from', 'root')
   end
+
+  def self.mail_to
+    fetch_config('mail_from', [])
+  end
+
 
   def self.use_ssl
     fetch_config('use_ssl', false)
@@ -62,35 +73,20 @@ module Mirco
   end
 
   def self.action_cable_allowed_request_origins
-    if CONFIG['action_cable_allowed_request_origins'].present?
-      Array(CONFIG['action_cable_allowed_request_origins'])
-    else
-      ['http://localhost', 'https://localhost']
-    end
+    fetch_config('action_cable_allowed_request_origins', 
+                 ['http://localhost', 'https://localhost'])
   end
 
   def self.host
-    CONFIG['host'].presence || 'localhost'
+    fetch_config('host', 'localhost')
   end
 
   def self.port
-    CONFIG['port'].presence || nil
+    fetch_config('port', nil)
   end
 
   def self.script_name
-    if CONFIG['script_name'].present?
-      CONFIG['scriptname']
-    else
-      '/'
-    end
-  end
-
-  def self.mail_to
-    if CONFIG['mail_to'].present?
-      Array(CONFIG['mail_to'])
-    else
-      []
-    end
+    fetch_config('script_name', '/')
   end
 
   ActionMailer::Base.default_url_options = {
@@ -98,11 +94,9 @@ module Mirco
     port: port,
     script_name: script_name
   }
+
   Rails.application.routes.default_url_options[:host] = host
   Rails.application.routes.default_url_options[:port] = port
   Rails.application.routes.default_url_options[:script_name] = script_name
 
-  def self.fetch_config(attribute, default_value)
-    CONFIG[attribute.to_s].presence || default_value
-  end
 end
