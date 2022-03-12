@@ -1,6 +1,6 @@
 = Changelog
 
-=== next version / unpublished
+=== 0.7.6 / 2022-03-12
 
 ----
 * bugfix: show correct destination channel ond channel writers
