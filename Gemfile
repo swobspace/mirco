@@ -72,7 +72,7 @@ gem 'cancancan'
 gem 'lockbox'
 gem 'pp'
 gem 'simple_form'
-gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'develop'
+gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 # gem 'sidekiq'
@@ -91,6 +91,6 @@ gem 'uri', '0.10.0'
 
 gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
 
-gem 'jsbundling-rails', '~> 0.2.1'
+gem 'jsbundling-rails'
 
-gem 'cssbundling-rails', '~> 0.2.6'
+gem 'cssbundling-rails'
