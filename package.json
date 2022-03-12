@@ -9,6 +9,8 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.1.4-1",
     "@rails/activestorage": "^6.0.0",
+    "@swobspace/stimulus-polymorphic-select": "https://github.com/swobspace/stimulus-polymorphic-select.git",
+    "@swobspace/stimulus-slim-select": "https://github.com/swobspace/stimulus-slim-select.git",
     "bootstrap": "5",
     "chart.js": "^3.5.1",
     "chartkick": "^4.0.5",
