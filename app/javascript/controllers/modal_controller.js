@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import * as bootstrap from 'bootstrap'
 
 // Call the controller from sharedModal in the application layout
