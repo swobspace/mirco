@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobauth.git
-  revision: 484da39f8b83894a7d0124a688f2c251d82afdff
+  revision: 9f209364a82af8371255a4dca2ae9933d83bf221
   branch: master
   specs:
     wobauth (7.0.0)
@@ -374,6 +374,14 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
@@ -393,6 +401,7 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     thor (1.2.1)
+    tilt (2.0.10)
     timeout (0.2.0)
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
@@ -428,7 +437,7 @@ PLATFORMS
 DEPENDENCIES
   apparition
   asciidoctor
-  bootsnap (>= 1.4.4)
+  bootsnap
   byebug
   cancancan
   capistrano
@@ -467,8 +476,10 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
+  sassc-rails
   shoulda-matchers
   simple_form
+  sprockets-rails
   tzinfo-data
   uri (= 0.10.0)
   view_component

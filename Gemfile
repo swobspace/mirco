@@ -8,17 +8,11 @@ ruby '>=2.7.3'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4'
-# gem 'sass-rails', '>= 6'
-# gem 'webpacker', '~> 5.0'
-# Use Redis adapter to run Action Cable in production
+gem "sprockets-rails"
+gem 'sassc-rails', require: false
 gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
-
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -31,7 +25,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'rails-i18n', '~> 6.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-# gem 'font-awesome-sass', '>=4.7', '< 6'
 gem 'hotwire-rails'
 gem 'view_component'
 
@@ -92,5 +85,4 @@ gem 'uri', '0.10.0'
 gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
 
 gem 'jsbundling-rails'
-
 gem 'cssbundling-rails'
