@@ -9,7 +9,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4'
 gem "sprockets-rails"
-gem 'sassc-rails', require: false
+# gem 'sassc-rails', require: false
 gem 'redis', '~> 4.0'
 
 gem 'bootsnap', require: false

@@ -374,14 +374,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
@@ -401,7 +393,6 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     thor (1.2.1)
-    tilt (2.0.10)
     timeout (0.2.0)
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
@@ -476,7 +467,6 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
-  sassc-rails
   shoulda-matchers
   simple_form
   sprockets-rails
