@@ -2,10 +2,11 @@
 
 module Mirco
   class Connector
-    attr_reader :hash
+    attr_reader :hash, :channel
 
-    def initialize(hash)
+    def initialize(hash, channel:)
       @hash = hash || {}
+      @channel = channel
     end
 
     #
@@ -41,7 +42,11 @@ module Mirco
     end
 
     def properties
-      hash['properties']
+      hash['properties'] || {}
+    end
+
+    def connector_class
+      properties['class']
     end
 
     #
@@ -96,7 +101,7 @@ module Mirco
     #
 
     def connector_type
-      Mirco::ConnectorType::Generic.new(properties).variant.new(properties)
+      variant.new(properties: properties, channel: channel)
     end
 
     delegate :descriptor, to: :connector_type
@@ -130,5 +135,32 @@ module Mirco
       end
       tarry
     end
+
+
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+    def variant
+      case connector_class
+      when 'com.mirth.connect.connectors.tcp.TcpReceiverProperties'
+        Mirco::ConnectorType::TcpReceiver
+      when 'com.mirth.connect.connectors.vm.VmReceiverProperties'
+        Mirco::ConnectorType::VmReceiver
+      when 'com.mirth.connect.connectors.file.FileReceiverProperties'
+        Mirco::ConnectorType::FileReceiver
+      when 'com.mirth.connect.connectors.js.JavaScriptReceiverProperties'
+        Mirco::ConnectorType::JavascriptReceiver
+      when 'com.mirth.connect.connectors.tcp.TcpDispatcherProperties'
+        Mirco::ConnectorType::TcpDispatcher
+      when 'com.mirth.connect.connectors.file.FileDispatcherProperties'
+        Mirco::ConnectorType::FileDispatcher
+      when 'com.mirth.connect.connectors.vm.VmDispatcherProperties'
+        Mirco::ConnectorType::VmDispatcher
+      when 'com.mirth.connect.connectors.js.JavaScriptDispatcherProperties'
+        Mirco::ConnectorType::JavascriptDispatcher
+      else
+        Mirco::ConnectorType::Generic
+      end
+    end
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+
   end
 end
