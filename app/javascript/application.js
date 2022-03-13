@@ -6,7 +6,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import * as bootstrap from "bootstrap"
 import "chartkick/chart.js"
 
-// Rails.start()
+// only for direct upload from browser
 // ActiveStorage.start()
 
 import "./controllers"
