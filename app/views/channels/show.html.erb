@@ -91,7 +91,9 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'alerts/index', locals: {alertable: @channel, alerts: @channel.alerts } %>
+      <div id="ts_alerts">
+        <%= render partial: 'alerts/index', locals: {alertable: @channel, alerts: @channel.alerts } %>
+      </div>
     </div>
   </div>
  </div>

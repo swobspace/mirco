@@ -177,7 +177,9 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
+      <div id="ts_channels">
+        <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
+      </div>
     </div>
   </div>
  </div>
@@ -195,7 +197,9 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+      <div id="ts_channel_statistics">
+        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+      </div>
     </div>
   </div>
  </div>
@@ -237,7 +241,9 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
+      <div id='ts_alerts'>
+        <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
+      </div>
     </div>
   </div>
  </div>
