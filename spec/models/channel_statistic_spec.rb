@@ -6,7 +6,7 @@ RSpec.describe ChannelStatistic, type: :model do
   let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
-  it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
+  it { is_expected.to have_many(:channel_counters).dependent(:delete_all) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:server_id) }
