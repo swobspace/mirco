@@ -1,5 +1,6 @@
-// app/javascript/application-esbuild.js
+// app/javascript/application.js
 import "@hotwired/turbo-rails"
+
 import * as ActiveStorage from "@rails/activestorage"
 // import "./channels"
 
