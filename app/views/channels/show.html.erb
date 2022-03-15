@@ -45,7 +45,7 @@
            %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]),
                 channel_path(@channel, format: :svg), class: 'btn btn-secondary me-1') %>
-          <%= delete_button(@channel) %>
+          <%= delete_button([@channel.server, @channel], 'data-turbo': false) %>
         </div>
       </div>
     </div>
