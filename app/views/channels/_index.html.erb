@@ -8,7 +8,7 @@
           order: [[0, 'desc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.uid') %></th>
@@ -16,13 +16,13 @@
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
             <th></th>
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
