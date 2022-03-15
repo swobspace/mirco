@@ -123,9 +123,8 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('attributes.properties') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.update_properties'),
+          <%= button_to(t('mirco.update_properties'),
                       update_properties_server_path(@server),
-                      method: :patch,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
@@ -171,9 +170,8 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.fetch_channels'),
+          <%= button_to(t('mirco.fetch_channels'),
                       fetch_all_server_channels_path(@server),
-                      method: :post,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
@@ -190,9 +188,8 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channel_statistics') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.fetch_statistics'),
+          <%= button_to(t('mirco.fetch_statistics'),
                       fetch_all_server_channel_statistics_path(@server),
-                      method: :post,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
