@@ -40,12 +40,12 @@
           <%= link_to(
                 raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
                 channel_statistic_path(@channel.channel_statistic),
-                class: 'btn btn-secondary'
+                class: 'btn btn-secondary me-1'
               ) if @channel.channel_statistic.present?
            %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]),
-                channel_path(@channel, format: :svg), class: 'btn btn-secondary') %>
-          <%= delete_link(@channel) %>
+                channel_path(@channel, format: :svg), class: 'btn btn-secondary me-1') %>
+          <%= delete_button(@channel) %>
         </div>
       </div>
     </div>

@@ -46,10 +46,10 @@
         <h4 class="title"><%= t('activerecord.models.server') %></h4>
         <div role="toolbar">
           <%= back_link %>
-          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary') %>
+          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary me-1') %>
 
           <%= edit_link(@server) %>
-          <%= delete_link(@server) %>
+          <%= delete_button(@server) %>
         </div>
       </div>
     </div>

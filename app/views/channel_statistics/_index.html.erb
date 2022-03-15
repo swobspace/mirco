@@ -80,7 +80,7 @@
                        tstamp: channel_statistic.updated_at,
                        expiration_time: 5.minutes ) %>
           <td class="text-nowrap">
-            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary') if can? :read, channel_statistic %>
+            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary me-1') if can? :read, channel_statistic %>
           </td>
         <% end %>
       <% end %>
