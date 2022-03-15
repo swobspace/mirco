@@ -32,7 +32,9 @@
        <% unless controller.action_name =~ /(new|edit)/ %>
          <%= render_breadcrumbs %>
        <% end %>
-      <%= show_flash %>
+      <div id="flash">
+        <%= show_flash %>
+      </div>
       <%= yield %>
     </div>
 

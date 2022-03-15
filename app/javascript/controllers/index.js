@@ -10,6 +10,9 @@ import { application } from "./application"
 import DatatablesController from "./datatables_controller"
 application.register("datatables", DatatablesController)
 
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
+
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
 
