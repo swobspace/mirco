@@ -7,7 +7,11 @@ class ChannelsController < ApplicationController
 
   # GET /channels
   def index
-    @channels = Channel.all
+    if @server
+      @channels = @server.channels
+    else
+      @channels = Channel.all
+    end
     respond_with(@channels)
   end
 
@@ -39,8 +43,12 @@ class ChannelsController < ApplicationController
 
   # DELETE /channels/1
   def destroy
-    @channel.destroy
-    respond_with(@channel, location: @channel.server)
+    respond_with(@channel) do |format|
+      if @channel.destroy
+        format.turbo_stream { flash.now[:notice] = "Channel successfully deleted" }
+        format.html {redirect_to [@server, :channels], notice: "Channel successfully deleted" }
+      end
+    end
   end
 
   private
