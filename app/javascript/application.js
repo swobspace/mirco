@@ -5,6 +5,8 @@ import * as ActiveStorage from "@rails/activestorage"
 // import "./channels"
 
 import * as bootstrap from "bootstrap"
+window.bootstrap = bootstrap
+
 import "chartkick/chart.js"
 
 // only for direct upload from browser
