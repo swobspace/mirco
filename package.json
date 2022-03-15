@@ -16,7 +16,6 @@
     "chartkick": "^4.0.5",
     "datatables.net-bs5": "^1.11.3",
     "datatables.net-buttons-bs5": "^2.0.1",
-    "datatables.net-responsive-bs5": "^2.2.9",
     "esbuild": "^0.14.25",
     "jquery": "3",
     "jszip": "^3.7.1",
