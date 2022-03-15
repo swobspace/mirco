@@ -41,7 +41,7 @@ module Mirco
   end
 
   def self.mail_to
-    fetch_config('mail_from', [])
+    Array(fetch_config('mail_from', nil))
   end
 
 
