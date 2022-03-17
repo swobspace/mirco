@@ -1,13 +1,14 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "alerts_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-bordered",
+        style: 'width: 100%;',
         data: {
           'datatables-target': 'datatable',
           order: [[0, 'desc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
             <th><%= t('attributes.server') %></th>
             <th><%= t('attributes.channel') %></th>
             <th><%= t('attributes.channel_detail') %></th>
@@ -17,7 +18,7 @@
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
             <th></th>
             <th></th>
@@ -25,7 +26,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>

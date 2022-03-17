@@ -2,13 +2,13 @@
   <%= content_tag :table, role: :datatable,
         id: "channels_table",
         class: "table table-bordered table-responsive",
+        style: 'width: 100%;',
         data: {
-          'turbo': false,
           'datatables-target': 'datatable',
           order: [[0, 'desc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.description') %></th>
             <th><%= t('attributes.uid') %></th>
@@ -16,13 +16,13 @@
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
             <th></th>
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
@@ -37,11 +37,11 @@
             <%= link_to(
                   raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
                   channel_statistic_path(channel.channel_statistic),
-                  class: 'btn btn-secondary'
+                  class: 'btn btn-secondary me-1'
                 ) if channel.channel_statistic.present?
              %>
-            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), channel_path(channel, format: :svg), class: 'btn btn-secondary') %>
-            <%= delete_link [channel.server, channel] %>
+            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), channel_path(channel, format: :svg), class: 'btn btn-secondary me-1') %>
+            <%= delete_button [channel.server, channel] %>
           </td>
         <% end %>
       <% end %>

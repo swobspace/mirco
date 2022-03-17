@@ -15,9 +15,6 @@ Rails.application.routes.draw do
     resources :notes, module: :channel_statistics
   end
   resources :channels, only: %i[index show destroy] do
-    collection do
-      post :fetch_all
-    end
     resources :alerts, only: %i[index show], module: :channels
     resources :notes, module: :channels
   end

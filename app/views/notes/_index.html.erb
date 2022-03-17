@@ -1,13 +1,14 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "notes_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-bordered",
+        style: 'width: 100%;',
         data: {
           'datatables-target': 'datatable',
           order: [[0, 'desc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
             <th><%= t('attributes.created_at') %></th>
             <% if notable.kind_of? Server %>
               <th><%= t('attributes.channel') %></th>
@@ -22,7 +23,7 @@
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
             <th></th>
             <% if notable.kind_of? Server %>
@@ -34,7 +35,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
@@ -60,7 +61,7 @@
                   'turbo-frame': "modal-body"
                }
            %>
-          <%= delete_link([notable, note], { data: { turbo: { method: :delete, confirm: "Are you sure?" }}}) %>
+          <%= delete_button([notable, note]) %>
           </td>
         <% end %>
       <% end %>

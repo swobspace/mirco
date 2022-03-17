@@ -1,7 +1,7 @@
 // bstabs_controller.js
 // trigger bootstrap v5 tabs with url anchor
 
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 import * as bootstrap from 'bootstrap'
 
 export default class extends Controller {

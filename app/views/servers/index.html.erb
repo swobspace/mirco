@@ -7,14 +7,14 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "servers_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-bordered",
+        style: 'width: 100%;',
         data: {
-          'turbo': false,
           'datatables-target': 'datatable',
           order: [[0, 'asc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
             <th><%= t('attributes.name') %></th>
             <th class="notvisible"><%= t('attributes.uid') %></th>
             <th><%= t('attributes.location') %></th>
@@ -30,7 +30,7 @@
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
             <th></th>
             <th></th>
@@ -44,7 +44,7 @@
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
+            <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
@@ -64,9 +64,9 @@
                 <td><%= server.last_check_ok %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
-            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :svg), class: 'btn btn-secondary') %>
+            <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :svg), class: 'btn btn-secondary me-1') %>
             <%= edit_link server %>
-            <%= delete_link server %>
+            <%= delete_button server %>
           </td>
         <% end %>
       <% end %>

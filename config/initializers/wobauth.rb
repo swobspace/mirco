@@ -19,4 +19,5 @@ Wobauth.setup do |config|
   # or for ancestry trees:
   # config.authorized_for_group_method = :arrange_as_array
   #
+  config.ldap_config = File.join( Rails.root, 'config', 'mirco.yml')
 end

@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from CanCan::AccessDenied, with: :access_denied
 
+
+  # workaround for the 302/303 dilemma with hotwired/turbo
+  def redirect_to(url_options = {}, response_options = {})
+    response_options[:status] ||= :see_other unless request.get?
+    super url_options, response_options
+  end
+
   protected
 
   def access_denied(exception)

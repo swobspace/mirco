@@ -26,7 +26,7 @@ RSpec.describe ChannelsController, type: :routing do
     end
 
     it 'routes to #fetch_all' do
-      expect(post: '/channels/fetch_all').to route_to('channels#fetch_all')
+      expect(post: '/channels/fetch_all').not_to be_routable
     end
 
     it 'routes to #update via PUT' do

@@ -1,14 +1,14 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "channel_statistics_table",
-        class: "table table-bordered table-responsive-xl",
+        class: "table table-bordered",
+        style: 'width: 100%;',
         data: {
-          'turbo': false,
           'datatables-target': 'datatable',
           order: [[0, 'desc']].to_json
         } do %>
     <thead>
-      <tr class="search">
+      <tr>
         <% unless server.present? %>
           <th><%= t('attributes.server') %></th>
         <% end %>
@@ -27,7 +27,7 @@
         <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot>
+    <tfoot class="search">
       <tr>
         <% unless server.present? %>
           <th></th>
@@ -44,7 +44,7 @@
         <th></th>
         <th></th>
         <th></th>
-        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
@@ -79,7 +79,7 @@
                        tstamp: channel_statistic.updated_at,
                        expiration_time: 5.minutes ) %>
           <td class="text-nowrap">
-            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary') if can? :read, channel_statistic %>
+            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary me-1') if can? :read, channel_statistic %>
           </td>
         <% end %>
       <% end %>

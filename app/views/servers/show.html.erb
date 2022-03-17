@@ -46,10 +46,10 @@
         <h4 class="title"><%= t('activerecord.models.server') %></h4>
         <div role="toolbar">
           <%= back_link %>
-          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary') %>
+          <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary me-1') %>
 
           <%= edit_link(@server) %>
-          <%= delete_link(@server) %>
+          <%= delete_button(@server) %>
         </div>
       </div>
     </div>
@@ -123,9 +123,8 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('attributes.properties') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.update_properties'),
+          <%= button_to(t('mirco.update_properties'),
                       update_properties_server_path(@server),
-                      method: :patch,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
@@ -171,15 +170,16 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.fetch_channels'),
+          <%= button_to(t('mirco.fetch_channels'),
                       fetch_all_server_channels_path(@server),
-                      method: :post,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
+      <div id="ts_channels">
+        <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
+      </div>
     </div>
   </div>
  </div>
@@ -190,15 +190,16 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channel_statistics') %></h4>
         <div role="toolbar">
-          <%= link_to(t('mirco.fetch_statistics'),
+          <%= button_to(t('mirco.fetch_statistics'),
                       fetch_all_server_channel_statistics_path(@server),
-                      method: :post,
                       class: 'btn btn-warning') if can? :manage, @server %>
         </div>
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+      <div id="ts_channel_statistics">
+        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+      </div>
     </div>
   </div>
  </div>
@@ -240,7 +241,9 @@
       </div>
     </div>
     <div class="card-body">
-      <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
+      <div id='ts_alerts'>
+        <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
+      </div>
     </div>
   </div>
  </div>
