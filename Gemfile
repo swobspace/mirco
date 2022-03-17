@@ -68,6 +68,8 @@ gem 'simple_form'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
+gem 'wobaduser'
+
 # gem 'sidekiq'
 # gem 'sidekiq-scheduler'
 gem 'daemons'

@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobauth.git
-  revision: 9f209364a82af8371255a4dca2ae9933d83bf221
+  revision: b3575336b3f9945a73322696da3a40ebcdf16b81
   branch: master
   specs:
     wobauth (7.0.0)
@@ -368,7 +368,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.16.0)
       parser (>= 3.1.1.0)
-    rubocop-rails (2.14.0)
+    rubocop-rails (2.14.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -474,6 +474,7 @@ DEPENDENCIES
   uri (= 0.10.0)
   view_component
   web-console (>= 4.1.0)
+  wobaduser
   wobapphelpers!
   wobauth!
   wobmire!
