@@ -1,5 +1,16 @@
 = Changelog
 
+=== 0.8.0 / 2022-03-17
+
+----
+* bugfix: ldapsearch for users in wobauth
+* bugfix: send email notifications
+* switch of rails ujs, migrate to hotwired/turbo
+* use button_to instead of links on non-get requests
+* update stimulus controller for datatables
+* starting with toast flash messages for turbo_stream actions
+----
+
 === 0.7.6 / 2022-03-12
 
 ----
