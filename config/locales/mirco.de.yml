@@ -11,6 +11,8 @@ de:
     new_server: Neuer Server
     backup_server_configuration: Server-Konfiguration sichern
     for: für
+    overview: Überblick
+    obsolete_channels: Obsolete Channels
 
   activerecord:
     models:

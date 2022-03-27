@@ -1,5 +1,15 @@
 = Changelog
 
+=== 0.8.1 / 2022-03-27
+
+----
+* rearranging alerts and channels index
+* navigation for alerts#index, channels#index and channel_statistics#index
+* fetch (update) channels once per week
+* show obsolete channels of a server
+* a lot of small bugfixes
+----
+
 === 0.8.0 / 2022-03-17
 
 ----

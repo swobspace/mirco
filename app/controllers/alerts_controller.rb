@@ -6,7 +6,12 @@ class AlertsController < ApplicationController
 
   # GET /alerts
   def index
-    @alerts = @alertable.alerts
+    if @alertable
+      @alerts = @alertable.alerts
+    else
+      @alerts = Alert.all
+    end
+    @alerts = @alerts.order("created_at desc").limit(100)
     respond_with(@alerts)
   end
 

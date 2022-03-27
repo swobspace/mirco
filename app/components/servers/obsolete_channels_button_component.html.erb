@@ -1,0 +1,6 @@
+<%= link_to server_channels_path(server, obsolete: "true"), class: "btn btn-info text-white" do %>
+  <%= t('mirco.obsolete_channels') %> 
+  <span class="badge bg-light text-danger"> 
+    <%= obsolete_channels_count %>
+  </span>
+<% end %>

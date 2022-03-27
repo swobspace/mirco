@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
@@ -170,6 +174,7 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
+          <%= render Servers::ObsoleteChannelsButtonComponent.new(server: @server) %>
           <%= button_to(t('mirco.fetch_channels'),
                       fetch_all_server_channels_path(@server),
                       class: 'btn btn-warning') if can? :manage, @server %>
@@ -178,7 +183,7 @@
     </div>
     <div class="card-body">
       <div id="ts_channels">
-        <%= render partial: 'channels/index', locals: {server: @server, channels: @server.active_channels } %>
+        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels } %>
       </div>
     </div>
   </div>

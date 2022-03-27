@@ -45,7 +45,7 @@ RSpec.describe '/channels', type: :request do
     it 'redirects to the channels list' do
       channel = Channel.create! valid_attributes
       delete channel_url(channel)
-      expect(response).to redirect_to(server_url(server))
+      expect(response).to redirect_to(channels_path)
     end
   end
 end
