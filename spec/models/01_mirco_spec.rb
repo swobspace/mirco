@@ -48,6 +48,42 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.queued_critical_level).to eq(50) }
   end
 
+  context ' with existing Settings' do
+    before(:each) do
+      allow(Mirco::CONFIG).to receive(:[]).with('devise_modules').and_return([:brabbel])
+      allow(Mirco::CONFIG).to receive(:[]).with('mail_from').and_return('from@example.org')
+      allow(Mirco::CONFIG).to receive(:[]).with('use_ssl').and_return(true)
+      allow(Mirco::CONFIG).to receive(:[]).with('host').and_return('myhost')
+      allow(Mirco::CONFIG).to receive(:[]).with('port').and_return(3031)
+      allow(Mirco::CONFIG).to receive(:[]).with('script_name').and_return('/water')
+      allow(Mirco::CONFIG).to receive(:[]).with('mail_to').and_return(['somebody@example.net'])
+
+      allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return('OTHER_USER')
+      allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(['http://otherwise'])
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_expression').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(23)
+      allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(47)
+      allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(71)
+    end
+    it { expect(Mirco.devise_modules).to contain_exactly(:brabbel) }
+    it { expect(Mirco.host).to eq('myhost') }
+    it { expect(Mirco.port).to eq(3031) }
+    it { expect(Mirco.script_name).to eq('/water') }
+    it { expect(Mirco.mail_from).to eq('from@example.org') }
+    it { expect(Mirco.use_ssl).to be_truthy }
+    it { expect(Mirco.remote_user).to eq('OTHER_USER') }
+    it { expect(Mirco.mail_to).to eq(['somebody@example.net']) }
+    it {
+      expect(Mirco.action_cable_allowed_request_origins).to contain_exactly(
+        'http://otherwise'
+      )
+    }
+    it { expect(Mirco.cron_expression).to eq('* * nix') }
+    it { expect(Mirco.warning_period).to eq(23) }
+    it { expect(Mirco.queued_warning_level).to eq(47) }
+    it { expect(Mirco.queued_critical_level).to eq(71) }
+  end
+
   describe '::ldap_options' do
     context ' with empty Settings' do
       before(:each) do
