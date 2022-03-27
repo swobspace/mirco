@@ -43,10 +43,9 @@ class ChannelsController < ApplicationController
 
   # DELETE /channels/1
   def destroy
-    respond_with(@channel) do |format|
+    respond_with(@channel, location: location) do |format|
       if @channel.destroy
         format.turbo_stream { flash.now[:notice] = "Channel successfully deleted" }
-        format.html {redirect_to [@server, :channels], notice: "Channel successfully deleted" }
       end
     end
   end

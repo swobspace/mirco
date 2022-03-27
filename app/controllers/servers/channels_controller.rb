@@ -11,7 +11,7 @@ module Servers
     end
 
     def location
-      server_path(@server, anchor: 'channels')
+      server_path(@server, anchor: 'channels-tab')
     end
   end
 end

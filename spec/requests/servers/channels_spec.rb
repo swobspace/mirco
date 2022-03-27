@@ -51,7 +51,13 @@ module Servers
       it 'redirects to the channels list' do
         channel = Channel.create! valid_attributes
         delete server_channel_url(server, channel)
-        expect(response).to redirect_to(server_url(server))
+        expect(response).to redirect_to(server_url(server, anchor: 'channels-tab'))
+      end
+
+      it 'turbo_stream gets :200' do
+        channel = Channel.create! valid_attributes
+        delete server_channel_url(server, channel, format: :turbo_stream)
+        expect(response.body).to match(/turbo-stream action="remove"/)
       end
     end
   end
