@@ -58,13 +58,22 @@ class ChannelStatisticProcessor
   end
 
   def create_alert_entry
+    # create only alerts for destinations
+    return true if channel_statistic.status_type == 'CHANNEL'
+
     if channel_statistic.condition == 'ok'
-      alert = channel_statistic.alerts.create(type: 'recovery', message: "#{channel_statistic} has recovered")
-      send_alert(alert)
+      alert = channel_statistic.alerts.create(
+                type: 'recovery', 
+                message: "#{channel_statistic} has recovered"
+              )
     else
-      alert = channel_statistic.alerts.create(type: 'alert', message: "#{channel_statistic.queued} messages, but no messages sent in the last 30 minutes")
-      send_alert(alert)
+      alert = channel_statistic.alerts.create(
+                type: 'alert', 
+                message: "#{channel_statistic.queued} messages," +
+                         " but no messages sent in the last 30 minutes"
+              )
     end
+    send_alert(alert)
     alert.persisted?
   end
 
