@@ -1,4 +1,6 @@
-// --- bootstrap
+// ------------------------------------------------------------------------
+// bootstrap
+// ------------------------------------------------------------------------
 $font-family-sans-serif:
   // Android
   Roboto,
@@ -25,7 +27,9 @@ $primary: #137970;
 // @import "font-awesome.css";
 @import "bootstrap/scss/bootstrap";
 
-// -- FONTS
+// ------------------------------------------------------------------------
+// FONTS
+// ------------------------------------------------------------------------
 @font-face {
         font-family: 'Roboto';
         src: font-url('Roboto-Regular.ttf') format('truetype');
@@ -51,15 +55,20 @@ $primary: #137970;
         font-style: italic;
 }
 
+// ------------------------------------------------------------------------
+// main
+// ------------------------------------------------------------------------
 body {
   padding-top: 60px;
 }
 
-// -- login form
+// login form
 #new_user.card {
   max-width: 800px;
 }
-// --- FOOTER
+// ------------------------------------------------------------------------
+// FOOTER
+// ------------------------------------------------------------------------
 div#footer{
   font-size: 0.9em;
   color: #999;
@@ -68,6 +77,9 @@ div#footer{
   border-top: 1px solid #eee;
 }
 
+// ------------------------------------------------------------------------
+// search fields for datatables
+// ------------------------------------------------------------------------
 .table {
   tfoot.search {
     display: table-header-group;
@@ -84,34 +96,24 @@ div#footer{
   }
 }
 
-// --- simple form bootstrap v4 error workaround
-$form-feedback-invalid-color: rgb(220,53,69);
 
+// ------------------------------------------------------------------------
+// required/mandantory fields
+// ------------------------------------------------------------------------
 .required {
   span.select2-selection,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
 }
+
 td.mandantory {
   background-color: #FFFAC2;
 }
 
-.has-invalid {  
-  .invalid-feedback {
-    display: block;
-  }
-
-  label {
-    color: $form-feedback-invalid-color;
-  }
-
-  .form-control {
-    background: rgba(orange, .2);
-    border-color: $form-feedback-invalid-color;
-  }
-}
-
+// ------------------------------------------------------------------------
+// misc
+// ------------------------------------------------------------------------
 .btn {
   margin-bottom: .2em;
 }
@@ -134,8 +136,6 @@ table.connector.table.table-sm > :not(caption) > * > * {
 }
 
 .script_color {
-  // background-color: #FFF6B5;
-  // background-color: #FFFAD6;
   background-color: #FFFDDB;
 }
 
@@ -152,14 +152,14 @@ div.dataTables_wrapper div.dt-buttons.btn-group div.btn-group:last-child {
 }
 
 // ------------------------------------------------------------------------
-// -- button_to: behaving just like a normal bootstrap button
+// button_to: behaving just like a normal bootstrap button
 // ------------------------------------------------------------------------
 form.button_to {
   display: inline-block;
 }
 
 // ------------------------------------------------------------------------
-// -- slim slelect
+// slim slelect
 // ------------------------------------------------------------------------
 // styling select box
 //
@@ -181,5 +181,13 @@ form.button_to {
       background-color: transparent;
     }
   }
+}
+
+// ------------------------------------------------------------------------
+// turbo progress bar
+// ------------------------------------------------------------------------
+.turbo-progress-bar {
+  height: 5px;
+  background-color: white;
 }
 
