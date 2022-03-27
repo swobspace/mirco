@@ -170,6 +170,7 @@
       <div class="d-flex w-100 justify-content-between">
         <h4 class="title"><%= t('controller.channels') %></h4>
         <div role="toolbar">
+          <%= render Servers::ObsoleteChannelsButtonComponent.new(server: @server) %>
           <%= button_to(t('mirco.fetch_channels'),
                       fetch_all_server_channels_path(@server),
                       class: 'btn btn-warning') if can? :manage, @server %>
