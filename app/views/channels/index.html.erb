@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <h1><%= t('controller.channels') %></h1>
 
 <%= render partial: 'index', locals: { channels: @channels } %>

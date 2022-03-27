@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <meta name="turbo-cache-control" content="no-cache">
+<% end %>
+
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
