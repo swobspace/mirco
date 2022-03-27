@@ -7,6 +7,10 @@ class Servers::ObsoleteChannelsButtonComponent < ViewComponent::Base
     @server = server
   end
 
+  def render?
+    obsolete_channels_count > 0
+  end
+
   def obsolete_channels_count
     server.obsolete_channels.count
   end
