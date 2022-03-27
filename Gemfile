@@ -84,7 +84,7 @@ gem 'draper'
 gem 'kramdown'
 gem 'uri', '0.10.0'
 
-gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main'
+gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main', ref: '56d00ac8894b38de9eff177cb50dda110ff79440'
 
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
