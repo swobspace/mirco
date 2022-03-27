@@ -9,12 +9,12 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.server') %></th>
-            <th><%= t('attributes.channel') %></th>
-            <th><%= t('attributes.channel_detail') %></th>
-            <th><%= t('attributes.type') %></th>
-            <th><%= t('attributes.message') %></th>
             <th><%= t('attributes.timestamp') %></th>
+            <th><%= t('attributes.type') %></th>
+            <th class="<%= 'notvisible' if alertable.present? %>"><%= t('attributes.server') %></th>
+            <th class="<%= 'notvisible' if alertable.kind_of? Channel %>"><%= t('attributes.channel') %></th>
+            <th><%= t('attributes.channel_detail') %></th>
+            <th><%= t('attributes.message') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
@@ -32,12 +32,12 @@
     <tbody>
       <% alerts.each do |alert| %>
         <%= content_tag(:tr, id: dom_id(alert), class: dom_class(alert)) do %>
+                <td><%= alert.created_at.localtime.to_formatted_s(:db) %></td>
+                <td><%= alert.type %></td>
                 <td><%= alert.server %></td>
                 <td><%= alert.channel %></td>
                 <td><%= alert.channel_statistic %></td>
-                <td><%= alert.type %></td>
                 <td><%= alert.message %></td>
-                <td><%= alert.created_at.localtime.to_formatted_s(:db) %></td>
                 <td class="text-nowrap">
             <%= show_link [alertable, alert] %>
           </td>
