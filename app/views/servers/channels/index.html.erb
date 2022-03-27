@@ -1,0 +1,7 @@
+<h1><%= @server %>: <%= t('controller.channels') %></h1>
+
+<%= render partial: 'index', locals: { server: @server, channels: @channels } %>
+
+<br />
+
+<%= back_link %>
