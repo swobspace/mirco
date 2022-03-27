@@ -88,3 +88,5 @@ gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: '
 
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
+
+gem "rails-controller-testing", "~> 1.0"

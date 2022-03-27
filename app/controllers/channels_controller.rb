@@ -8,7 +8,11 @@ class ChannelsController < ApplicationController
   # GET /channels
   def index
     if @server
-      @channels = @server.channels
+      if params[:obsolete].present?
+        @channels = @server.obsolete_channels
+      else
+        @channels = @server.channels
+      end
     else
       @channels = Channel.all
     end

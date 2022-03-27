@@ -24,8 +24,25 @@ module Servers
         Channel.create! valid_attributes
         get server_channels_url(server)
         expect(response).to be_successful
+        expect(assigns(:channels).count).to eq(1)
       end
     end
+
+    describe 'GET /index' do
+      let!(:obsolete) do 
+        FactoryBot.create(:channel, 
+          server_id: server.id,
+          updated_at: 1.week.before(Date.current)
+        )
+      end
+      it 'renders a successful response' do
+        Channel.create! valid_attributes
+        get server_channels_url(server, obsolete: true)
+        expect(response).to be_successful
+        expect(assigns(:channels).count).to eq(1)
+      end
+    end
+
 
     describe 'POST /fetch_all' do
       it 'creates a new Channel' do
