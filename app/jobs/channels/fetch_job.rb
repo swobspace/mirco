@@ -14,7 +14,7 @@ module Channels
       if server.is_a? Array
         server.each do |srv|
           # create one job for each server
-          Channels::FetchStatisticsJob.perform_later(server: srv)
+          Channels::FetchJob.perform_later(server: srv)
         end
       else
         Rails.logger.debug("DEBUG:: fetch channel job from #{server.name}")
