@@ -8,6 +8,7 @@ import * as bootstrap from "bootstrap"
 window.bootstrap = bootstrap
 
 import "chartkick/chart.js"
+import "@fortawesome/fontawesome-free/js/all.js"
 
 // only for direct upload from browser
 // ActiveStorage.start()
