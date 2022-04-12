@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :servers do
     member do
-      patch :update_properties
+      post :update_properties
     end
     resources :server_configurations, only: %i[index show new create destroy]
     resources :alerts, only: %i[index show], module: :servers
