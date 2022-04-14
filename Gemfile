@@ -90,3 +90,5 @@ gem 'jsbundling-rails'
 gem 'cssbundling-rails'
 
 gem "rails-controller-testing", "~> 1.0"
+
+gem "devise-remote-user", "~> 1.1"
