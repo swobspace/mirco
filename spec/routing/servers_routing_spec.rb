@@ -21,7 +21,7 @@ RSpec.describe ServersController, type: :routing do
     end
 
     it 'routes to #update_properties' do
-      expect(patch: '/servers/1/update_properties').to route_to('servers#update_properties', id: '1')
+      expect(post: '/servers/1/update_properties').to route_to('servers#update_properties', id: '1')
     end
 
     it 'routes to #create' do

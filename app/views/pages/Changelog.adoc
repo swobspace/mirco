@@ -1,5 +1,11 @@
 = Changelog
 
+=== 0.8.2 / 2022-04-15
+
+----
+* add authenication via Webserver (REMOTE_USER) using devise_remote_user
+----
+
 === 0.8.1 / 2022-03-27
 
 ----

@@ -9,7 +9,7 @@ module Wobauth
 
     # devise *#{@app_name}.devise_modules
     # or ... basic usage:
-    devise :database_authenticatable
+    devise *Mirco.devise_modules
 
     validates :password, confirmation: true
   end
