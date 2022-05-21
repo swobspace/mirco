@@ -49,7 +49,7 @@ group :test, :development do
   gem 'dotenv'
   gem 'guard-rspec', require: false
   gem 'railroady'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 6.0.0.rc1'
 end
 
 group :test do
