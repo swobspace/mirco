@@ -1,0 +1,73 @@
+= Software interfaces
+:imagesdir: ../images
+
+Using Mirth comes with other application software having its own software
+interfaces. Software interfaces in mirco is primarily for documentation
+purposes to get the full picture of data flows in one application.
+
+== Overall Picture
+
+image::software-interfaces.svg[]
+
+
+== model Location
+
+[source,ruby]
+----
+bin/rails g scaffold Location \
+  lid:string:index name:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model Software
+
+[source,ruby]
+----
+bin/rails g scaffold Location \
+  location:belongs_to \
+  name:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model SoftwareInterface
+
+[source,ruby]
+----
+bin/rails g scaffold SoftwareInterface \
+  software:belongs_to \
+  name:string \
+  hostname: string \
+  ipaddress: inet \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model InterfaceConnector
+
+[source,ruby]
+----
+bin/rails g scaffold InterfaceConnector \
+  software_interface:belongs_to \
+  type:string:index \
+  url:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model HL7Event
+
+[source,ruby]
+----
+bin/rails g scaffold HL7Event \
+  interface_connector:belongs_to \
+  message_type:string:index trigger_event:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== model HL7Segment
+
+[source,ruby]
+----
+bin/rails g scaffold HL7Segment \
+  hl7_event:belongs_to \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper
+----

@@ -1,4 +1,5 @@
 * xref:api-memo.adoc[]
 * xref:modeling.adoc[]
+* xref:software-interfaces.adoc[]
 * xref:state-diagrams.adoc[]
 * xref:timescale.adoc[]

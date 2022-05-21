@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Setup :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -140,7 +140,7 @@
 <div id="packages-debian" class="listingblock">
 <div class="title">Pakete für Debian/Ubuntu</div>
 <div class="content">
-<pre class="highlightjs highlight"><code># development
+<pre class="highlightjs highlight"><code class="language-none hljs"># development
 apt install autoconf binutils bison build-essential flex gettext ncurses-dev
 
 # database
@@ -154,7 +154,7 @@ apt install apache2 apache2-bin apache2-data apache2-utils</code></pre>
 <div class="listingblock">
 <div class="title">Apache Authentifikation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>apt install libapache2-mode-auth-cas</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">apt install libapache2-mode-auth-cas</code></pre>
 </div>
 </div>
 </div>
@@ -200,7 +200,7 @@ DEB_BUILD_GNU_TYPE=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 <div id="yarn-packages-debian" class="listingblock">
 <div class="title">Pakete für Debian/Ubuntu</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></pre>
 </div>
@@ -208,7 +208,7 @@ sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></pre>
 <div id="yarn-packages-fedora" class="listingblock">
 <div class="title">Pakete für Fedora</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
+<pre class="highlightjs highlight"><code class="language-none hljs">sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
 dnf install -y yarn</code></pre>
 </div>
@@ -228,14 +228,14 @@ die Shellvariablen zu, sondern benötigt eine eigene Konfiguration.</p>
 <div id="bashrc-deploy" class="listingblock">
 <div class="title">bashrc: Proxy-Einstellungen</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>export http_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/
+<pre class="highlightjs highlight"><code class="language-none hljs">export http_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/
 export https_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
 </div>
 </div>
 <div id="git-config" class="listingblock">
 <div class="title">Git-Konfiguration User <code>deploy</code> für Updates der Anwendung</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>git config --global http.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/
+<pre class="highlightjs highlight"><code class="language-none hljs">git config --global http.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/
 git config --global https.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
 </div>
 </div>
@@ -252,7 +252,7 @@ dem User <code>deploy</code> gehören.</p>
 <div id="deployment-directories" class="listingblock">
 <div class="title">Verzeichnisse für Mirco</div>
 <div class="content">
-<pre class="highlightjs highlight"><code>export BASE=/var/srv/www/mirco
+<pre class="highlightjs highlight"><code class="language-none hljs">export BASE=/var/srv/www/mirco
 mkdir -p ${BASE}/mirco/releases
 mkdir -p ${BASE}/mirco/shared/config
 mkdir -p ${BASE}/mirco/shared/log

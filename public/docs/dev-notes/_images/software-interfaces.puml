@@ -1,0 +1,72 @@
+@startuml
+
+'skinparam nodesep 60
+
+skinparam interface {
+  padding 100
+}
+
+class Location {
+  lid: string
+  name: string
+}
+
+class Software {
+  location_id
+  name: string
+  description: <<actiontext>>
+}
+
+class SoftwareInterface {
+  software_id
+  name: string
+  description: <<actiontext>>
+  hostname: string
+  ipaddress: inet
+}
+
+class InterfaceConnector {
+  software_interface_id
+  type: string
+  url: string
+  description: <<actiontext>>
+}
+
+note left of InterfaceConnector
+**type:**
+  TxConnector|RxConnector
+**url:**
+  tcp://host:port
+  file:///whatever/path
+  smb://host/path
+end note
+
+
+class HL7Event {
+  interface_connector_id
+  message_type: string
+  trigger_event: string
+  description: <<actiontext>>
+}
+
+note right of HL7Event
+**message_type:**
+  ADT, ORM, ORU ...
+**trigger_event:**
+  A04, P12, T02, ...
+end note
+
+Class HL7Segment {
+  hl7_event_id
+  name: string
+  comment: <<actiontext>>
+}
+
+Location "1" - "*" Software
+Software "1" -- "*" SoftwareInterface
+SoftwareInterface "1" -- "*" InterfaceConnector
+
+InterfaceConnector "1" -- "*" HL7Event
+HL7Event "1" -- "*" HL7Segment
+
+@enduml
