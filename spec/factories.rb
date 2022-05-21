@@ -4,6 +4,9 @@ FactoryBot.define do
   sequence :aname do |n|
     "aname_#{n}"
   end
+  sequence :lid do |n|
+    "L#{n}"
+  end
 
   sequence :amail do |n|
     "mail_#{n}@example.net"
@@ -13,6 +16,11 @@ FactoryBot.define do
     server
     type { 'alert' }
     message { 'some text' }
+  end
+
+  factory :location do
+    lid { generate(:lid) }
+    name { generate(:aname) }
   end
 
   factory :server do
