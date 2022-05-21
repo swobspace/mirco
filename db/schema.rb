@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_120117) do
+ActiveRecord::Schema.define(version: 2022_05_21_095014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,14 @@ ActiveRecord::Schema.define(version: 2021_12_19_120117) do
     t.datetime "updated_at", precision: 6
     t.string "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "lid", null: false
+    t.string "name", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lid"], name: "index_locations_on_lid"
   end
 
   create_table "notes", force: :cascade do |t|
