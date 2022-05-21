@@ -17,6 +17,7 @@ de:
   activerecord:
     models:
       alert: Alarm
+      location: Standort
       channel: Channel
       channels/alert: Alarm
       channels/note: Notiz
@@ -25,12 +26,17 @@ de:
       channel_statistic: Channel Statistik
       channel_statistic/alert: Alarm
       channel_statistic/note: Notiz
+      hl7_event: HL7-Typ
+      hl7_segment: HL7-Segment
+      interface_connector: Connector
       note: Notizen
       server: Server
       server_configuration: Sicherung der Konfiguration
       servers/alert: Alarm
       servers/channel: Channel
       servers/note: Notizen
+      software: Software
+      software_interface: Software Interface
       user: User
 
   attributes:
@@ -61,12 +67,18 @@ de:
     filtered: filtered
     filtered_last_30min: filtered (30min)
     givenname: Vorname
+    hl7_event: HL7 Event
+    hl7_segment: HL7 Segment
     home: Home
+    interface_connector: Connector
     last_channel_update: Letztes Update der Channels
     last_check: Letzter Check
     last_check_ok: Last OK
     last_condition_change: letzte Zustandsänderung
+    lid: StandortID
+    location: Standort
     message: Nachricht
+    message_type: Nachrichtentyp
     meta_data_id: ConnNr.
     name: Name
     note: Notiz
@@ -89,6 +101,8 @@ de:
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
+    software: Software
+    software_interface: Software Interface
     state: Status
     status_type: Typ
     timestamp: Wann?
@@ -111,7 +125,11 @@ de:
     channel_statistics/channel_counters: Channel Counters
     channel_statistics/notes: Notizen
     channel_counters: Channel Counters
+    hl7_events: HL7 Events
+    hl7_segments: HL7 Segmente
     home: Home
+    interface_connectors: Connectoren
+    locations: Standorte
     notes: Notizen
     pages: Seiten
     servers: Server
@@ -121,6 +139,8 @@ de:
     servers/channel_statistics: Channel Statistiken (Server)
     servers/channels: Channels
     servers/notes: Notizen
+    software: Software
+    software_interfaces: Software Interfaces
     users: Benutzer
 
   flash:
