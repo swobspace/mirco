@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <h4><%= t('activerecord.models.location') %></h4>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-hover autowidth">
+    
+      <tr>
+        <th><%= t('attributes.lid')%>:</th>
+        <td><%= @location.lid %></td>
+      </tr>
+    
+      <tr>
+        <th><%= t('attributes.name')%>:</th>
+        <td><%= @location.name %></td>
+      </tr>
+        </table>
+
+    <div role="toolbar">
+      <%= back_link %>
+      <%= edit_link(@location) %>
+      <%= delete_link(@location) %>
+      <%= new_link Location %>
+    </div>
+  </div>
+</div>

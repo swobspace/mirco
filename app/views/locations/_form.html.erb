@@ -1,0 +1,18 @@
+<div class="container">
+  <%= simple_form_for(@location,
+    html: { class: 'form-horizontal card' }) do |f| %>
+
+    <div class="card-header">
+      <%= form_legend %>
+    </div>
+    <div class="card-body">
+      <%= f.input :lid
+	 %>
+      <%= f.input :name
+	 %>
+
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <%= cancel_button %>
+    </div>
+  <% end %>
+</div>

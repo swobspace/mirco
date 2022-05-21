@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :locations
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: %i[show index] do
