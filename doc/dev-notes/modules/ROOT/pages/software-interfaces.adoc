@@ -23,7 +23,7 @@ bin/rails g scaffold Location \
 
 [source,ruby]
 ----
-bin/rails g scaffold Location \
+bin/rails g scaffold Software \
   location:belongs_to \
   name:string \
   --no-stylesheets --no-javascripts --no-helper
