@@ -1,26 +1,35 @@
 <div class="card">
   <div class="card-header">
-    <h4><%= t('activerecord.models.software') %></h4>
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle"><%= t('activerecord.models.software') %>: #<%= @software.id %></span>
+        <h4 class="title"><%= @software %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@software) %>
+        <%= delete_link(@software) %>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <table class="table table-borderless table-sm">
-    
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
         <td><%= @software.location %></td>
       </tr>
-    
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
         <td><%= @software.name %></td>
       </tr>
-        </table>
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+        <td><%= @software.description %></td>
+      </tr>
+    </table>
+  </div>
 
-    <div role="toolbar">
-      <%= back_link %>
-      <%= edit_link(@software) %>
-      <%= delete_link(@software) %>
-      <%= new_link Software %>
-    </div>
+  <div class="card-footer">
+    <%= back_link %>
+    <%= new_link Software %>
   </div>
 </div>
