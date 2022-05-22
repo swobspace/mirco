@@ -18,22 +18,6 @@ FactoryBot.define do
     message { 'some text' }
   end
 
-  factory :location do
-    lid { generate(:lid) }
-    name { generate(:aname) }
-  end
-
-  factory :server do
-    name { generate(:aname) }
-    trait :with_uid do
-      uid { `uuid -v 4` }
-    end
-  end
-
-  factory :server_configuration do
-    server
-  end
-
   factory :channel do
     server
     uid { `uuid -v 4` }
@@ -53,6 +37,11 @@ FactoryBot.define do
     condition { 'ok' }
   end
 
+  factory :location do
+    lid { generate(:lid) }
+    name { generate(:aname) }
+  end
+
   factory :note do
     association :server
     association :channel
@@ -60,4 +49,21 @@ FactoryBot.define do
     type { 'acknowledge' }
     message { 'some text' }
   end
+
+  factory :server do
+    name { generate(:aname) }
+    trait :with_uid do
+      uid { `uuid -v 4` }
+    end
+  end
+
+  factory :server_configuration do
+    server
+  end
+
+  factory :software do
+    location
+    name { generate(:aname) }
+  end
+
 end
