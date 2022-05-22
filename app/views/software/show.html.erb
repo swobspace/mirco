@@ -3,15 +3,15 @@
     <h4><%= t('activerecord.models.software') %></h4>
   </div>
   <div class="card-body">
-    <table class="table table-bordered table-hover autowidth">
+    <table class="table table-borderless table-sm">
     
       <tr>
-        <th><%= t('attributes.location')%>:</th>
+        <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
         <td><%= @software.location %></td>
       </tr>
     
       <tr>
-        <th><%= t('attributes.name')%>:</th>
+        <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
         <td><%= @software.name %></td>
       </tr>
         </table>
