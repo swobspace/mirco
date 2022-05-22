@@ -2,7 +2,10 @@
   <div class="card-header">
     <div class="d-flex w-100 justify-content-between">
       <div>
-        <span class="subtitle"><%= t('activerecord.models.software') %>: #<%= @software.id %></span>
+        <span class="subtitle">
+          <%= t('activerecord.models.software') %>: 
+          #<%= @software.id %>
+        </span>
         <h4 class="title"><%= @software %></h4>
       </div>
       <div role="toolbar" class="pt-3">
@@ -11,16 +14,20 @@
       </div>
     </div>
   </div>
+
   <div class="card-body">
-    <table class="table table-borderless table-sm">
+    <table class="table table-sm table-borderless">
+    
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
         <td><%= @software.location %></td>
       </tr>
+
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
         <td><%= @software.name %></td>
       </tr>
+
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
         <td><%= @software.description %></td>
