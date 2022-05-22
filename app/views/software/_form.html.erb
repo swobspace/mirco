@@ -3,7 +3,8 @@
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-input">
-    <%= form.association :location
+    <%= form.association :location, wrapper: :horizontal_select,
+          label_method: :to_s
        %>
     <%= form.input :name
        %>
