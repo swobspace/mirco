@@ -26,6 +26,7 @@ bin/rails g scaffold Location \
 bin/rails g scaffold Software \
   location:belongs_to \
   name:string \
+  description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -38,6 +39,7 @@ bin/rails g scaffold SoftwareInterface \
   name:string \
   hostname: string \
   ipaddress: inet \
+  description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -49,6 +51,7 @@ bin/rails g scaffold InterfaceConnector \
   software_interface:belongs_to \
   type:string:index \
   url:string \
+  description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -59,6 +62,7 @@ bin/rails g scaffold InterfaceConnector \
 bin/rails g scaffold HL7Event \
   interface_connector:belongs_to \
   message_type:string:index trigger_event:string \
+  description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -69,5 +73,6 @@ bin/rails g scaffold HL7Event \
 bin/rails g scaffold HL7Segment \
   hl7_event:belongs_to \
   name:string:index \
+  description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
