@@ -5,9 +5,11 @@
   <div class="form-input">
     <%= form.association :location, wrapper: :horizontal_select,
           label_method: :to_s
-       %>
+     %>
     <%= form.input :name
-       %>
+     %>
+    <%= form.input :description, as: :rich_text_area
+     %>
 
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= cancel_button %>
