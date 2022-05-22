@@ -1,6 +1,5 @@
 class Location < ApplicationRecord
   # -- associations
-
   has_many :software, dependent: :restrict_with_error
 
   # -- configuration
