@@ -66,4 +66,9 @@ FactoryBot.define do
     name { generate(:aname) }
   end
 
+  factory :software_interface do
+    software
+    name { generate(:aname) }
+  end
+
 end
