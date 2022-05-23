@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_22_091447) do
+ActiveRecord::Schema.define(version: 2022_05_23_152814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,16 @@ ActiveRecord::Schema.define(version: 2022_05_22_091447) do
     t.index ["location_id"], name: "index_software_on_location_id"
   end
 
+  create_table "software_interfaces", force: :cascade do |t|
+    t.bigint "software_id", null: false
+    t.string "name", null: false
+    t.string "hostname", default: ""
+    t.inet "ipaddress"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["software_id"], name: "index_software_interfaces_on_software_id"
+  end
+
   create_table "wobauth_authorities", force: :cascade do |t|
     t.bigint "authorizable_id"
     t.string "authorizable_type"
@@ -272,4 +282,5 @@ ActiveRecord::Schema.define(version: 2022_05_22_091447) do
   add_foreign_key "notes", "wobauth_users", column: "user_id"
   add_foreign_key "server_configurations", "servers"
   add_foreign_key "software", "locations"
+  add_foreign_key "software_interfaces", "software"
 end
