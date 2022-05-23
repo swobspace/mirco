@@ -101,12 +101,13 @@ div#footer{
 // required/mandantory fields
 // ------------------------------------------------------------------------
 .required {
-  span.select2-selection,
+  span.select-selection,
+  div.ss-main.select.required > div.ss-single-selected,
+  div.ss-main.select.required > div.ss-multi-selected,
   textarea.required, input.required, select.required {
     background-color: #FFFAC2;
   }
 }
-
 td.mandantory {
   background-color: #FFFAC2;
 }
