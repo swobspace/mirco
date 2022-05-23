@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :software_interfaces
   resources :software
   resources :locations
   resources :alerts, only: %i[index show]

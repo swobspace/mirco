@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle">
+          <%= t('activerecord.models.software_interface') %>: 
+          #<%= @software_interface.id %>
+        </span>
+        <h4 class="title"><%= @software_interface %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@software_interface) %>
+        <%= delete_link(@software_interface) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-borderless">
+    
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
+        <td><%= @software_interface.software %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+        <td><%= @software_interface.name %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.hostname')%>:</th>
+        <td><%= @software_interface.hostname %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.ipaddress')%>:</th>
+        <td><%= @software_interface.ipaddress %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+        <td><%= @software_interface.description %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-footer">
+    <%= back_link %>
+    <%= new_link SoftwareInterface %>
+  </div>
+</div>
