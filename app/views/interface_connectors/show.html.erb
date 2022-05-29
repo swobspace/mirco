@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle">
+          <%= t('activerecord.models.interface_connector') %>: 
+          #<%= @interface_connector.id %>
+        </span>
+        <h4 class="title"><%= @interface_connector %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@interface_connector) %>
+        <%= delete_link(@interface_connector) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-borderless">
+    
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
+        <td><%= @interface_connector.software_interface %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
+        <td><%= @interface_connector.type %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.url')%>:</th>
+        <td><%= @interface_connector.url %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+        <td><%= @interface_connector.description %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-footer">
+    <%= back_link %>
+    <%= new_link InterfaceConnector %>
+  </div>
+</div>

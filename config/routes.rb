@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :interface_connectors
   resources :software_interfaces
   resources :software
   resources :locations

@@ -37,6 +37,13 @@ FactoryBot.define do
     condition { 'ok' }
   end
 
+  factory :interface_connector do
+    software_interface
+    name { generate(:aname) }
+    type { 'TxConnector' } 
+    url { 'tcp://1.2.3.4:5678' }
+  end
+
   factory :location do
     lid { generate(:lid) }
     name { generate(:aname) }
