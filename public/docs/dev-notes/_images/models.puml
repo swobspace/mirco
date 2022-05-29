@@ -3,10 +3,15 @@ top to bottom direction
 skinparam defaultTextAlignment center
 skinparam roundCorner 15
 
+class Location {
+  lid: string
+  name: string
+}
+
 class Server  {
+  location_id
   name: string
   uid: string
-  location: string
   description: text
   api_url: string
   api_user: string
@@ -76,6 +81,7 @@ class ServerConfiguration {
   # has_one_attached :file
 }
 
+Location "1" -- "*" Server
 Server "1" -- "*" Channel
 Server "1" - "*" ServerConfiguration
 Server "1" - "*" ChannelStatistic

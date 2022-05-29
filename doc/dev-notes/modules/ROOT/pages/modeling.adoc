@@ -18,7 +18,8 @@ bin/rails g controller Home index \
 [source,ruby]
 ----
 bin/rails g scaffold Server \
-  name:string uid:string:index location:string description:text \
+  location:belongs_to \
+  name:string uid:string:index description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
   api_verify_ssl:boolean \
@@ -33,6 +34,8 @@ bin/rails g scaffold Server \
 //  last_channel_update:timestamp
 // bin/rails g migration AddLastCheckToServer \
 //  last_check:timestamp last_check_ok:timestamp
+// bin/rails g migration AddLocationToServer location:belongs_to
+// bin/rails g migration RemoveLocationFromServer
 
 
 == model Channel

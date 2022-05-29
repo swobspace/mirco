@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'servers/show', type: :view do
+  let(:location) { FactoryBot.create(:location, lid: 'LLX', name: 'Koka') }
   let(:time_now) { Time.current }
   before(:each) do
     @ability = Object.new
@@ -18,7 +19,7 @@ RSpec.describe 'servers/show', type: :view do
     @server = assign(:server, Server.create!(
                                 name: 'MyServer',
                                 uid: '04170347-f80c-441d-81e6-c963ff80a984',
-                                location: 'Location',
+                                location: location,
                                 description: 'MyText',
                                 api_url: 'Api Url',
                                 api_user: 'Api User',
@@ -34,7 +35,7 @@ RSpec.describe 'servers/show', type: :view do
     render
     expect(rendered).to match(/MyServer/)
     expect(rendered).to match(/04170347-f80c-441d-81e6-c963ff80a984/)
-    expect(rendered).to match(/Location/)
+    expect(rendered).to match(/LLX: Koka/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Api Url/)
     expect(rendered).to match(/Api User/)

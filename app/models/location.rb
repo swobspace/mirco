@@ -1,6 +1,7 @@
 class Location < ApplicationRecord
   # -- associations
   has_many :software, dependent: :restrict_with_error
+  has_many :servers, dependent: :restrict_with_error
 
   # -- configuration
   # -- validations and callbacks

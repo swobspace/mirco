@@ -4,6 +4,7 @@
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
+  belongs_to :location, optional: true
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server

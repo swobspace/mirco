@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_29_093541) do
+ActiveRecord::Schema.define(version: 2022_05_29_160351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(version: 2022_05_29_093541) do
   create_table "servers", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "uid", default: ""
-    t.string "location", default: ""
     t.text "description"
     t.string "api_url", default: ""
     t.string "api_user", default: ""
@@ -195,6 +194,8 @@ ActiveRecord::Schema.define(version: 2022_05_29_093541) do
     t.datetime "last_channel_update"
     t.datetime "last_check"
     t.datetime "last_check_ok"
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_servers_on_location_id"
     t.index ["uid"], name: "index_servers_on_uid"
   end
 
@@ -293,6 +294,7 @@ ActiveRecord::Schema.define(version: 2022_05_29_093541) do
   add_foreign_key "notes", "servers"
   add_foreign_key "notes", "wobauth_users", column: "user_id"
   add_foreign_key "server_configurations", "servers"
+  add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
   add_foreign_key "software_interfaces", "software"
 end

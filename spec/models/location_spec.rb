@@ -4,6 +4,7 @@ RSpec.describe Location, type: :model do
   let(:location) { FactoryBot.create(:location, lid: 'ACM', name: 'ACME Main') }
 
   it { is_expected.to have_many(:software).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:servers).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:lid) }
 

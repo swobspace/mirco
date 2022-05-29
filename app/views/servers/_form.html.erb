@@ -10,7 +10,8 @@
 	 %>
       <%= f.input :uid
 	 %>
-      <%= f.input :location
+      <%= f.association :location, wrapper: :horizontal_select,
+                        label_method: :to_s
 	 %>
       <%= f.input :description
 	 %>

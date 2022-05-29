@@ -19,7 +19,7 @@ RSpec.describe 'servers/edit', type: :view do
     assert_select 'form[action=?][method=?]', server_path(@server), 'post' do
       assert_select 'input[name=?]', 'server[name]'
       assert_select 'input[name=?]', 'server[uid]'
-      assert_select 'input[name=?]', 'server[location]'
+      assert_select 'select[name=?]', 'server[location_id]'
       assert_select 'textarea[name=?]', 'server[description]'
       assert_select 'input[name=?]', 'server[api_url]'
       assert_select 'input[name=?]', 'server[api_user]'

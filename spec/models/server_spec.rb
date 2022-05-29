@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Server, type: :model do
   let(:server) { FactoryBot.create(:server, name: 'xyzmirth') }
+  it { is_expected.to belong_to(:location).optional }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:channels).dependent(:restrict_with_error) }
