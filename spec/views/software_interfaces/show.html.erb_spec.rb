@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "software_interfaces/show", type: :view do
-  let(:software) { FactoryBot.create(:software, name: 'MySoft') }
+  let(:location) { FactoryBot.create(:location, lid: "LLX", name: "Location X") }
+  let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -20,6 +21,7 @@ RSpec.describe "software_interfaces/show", type: :view do
 
   it "renders attributes in <p>" do
     render
+    expect(rendered).to match(/LLX: Location X/)
     expect(rendered).to match(/MySoft/)
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Hostname/)

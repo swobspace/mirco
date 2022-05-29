@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "interface_connectors/show", type: :view do
-  let(:software_interface) { FactoryBot.create(:software_interface, name: 'IM4HC') }
+  let(:location) { FactoryBot.create(:location, lid: "LLX", name: "Location X") }
+  let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
+  let(:software_interface) { FactoryBot.create(:software_interface, name: 'IM4HC', software: software) }
 
   before(:each) do
     @ability = Object.new
@@ -21,6 +23,8 @@ RSpec.describe "interface_connectors/show", type: :view do
 
   it "renders attributes in <p>" do
     render
+    expect(rendered).to match(/LLX/)
+    expect(rendered).to match(/MySoft/)
     expect(rendered).to match(/IM4HC/)
     expect(rendered).to match(/BAR out/)
     expect(rendered).to match(/TxConnector/)

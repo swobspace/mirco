@@ -14,6 +14,8 @@
         } do %>
     <thead>
       <tr>
+            <th><%= t('attributes.lid') %></th>
+            <th><%= t('attributes.software') %></th>
             <th><%= t('attributes.software_interface') %></th>
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.type') %></th>
@@ -29,13 +31,17 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
+            <th></th>
             <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @interface_connectors.each do |interface_connector| %>
         <%= content_tag(:tr, id: dom_id(interface_connector), class: dom_class(interface_connector)) do %>
-                <td><%= interface_connector.software_interface %></td>
+                <td><%= interface_connector.location.lid %></td>
+                <td><%= interface_connector.software_interface.software.name %></td>
+                <td><%= interface_connector.software_interface.name %></td>
                 <td><%= interface_connector.name %></td>
                 <td><%= interface_connector.type %></td>
                 <td><%= interface_connector.url %></td>

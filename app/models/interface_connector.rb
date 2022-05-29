@@ -14,11 +14,13 @@ class InterfaceConnector < ApplicationRecord
   validates :name, :software_interface_id, :url, :type, presence: true
   validates_inclusion_of :type, in: TYPES
 
+  delegate :port, :host, :scheme, to: :uri
+  delegate :location, to: :software_interface
+
   def to_s
     "#{name} (#{url})"
   end
 
-  delegate :port, :host, :scheme, to: :uri
 
   def uri
     URI(url)

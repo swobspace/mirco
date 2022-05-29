@@ -19,8 +19,18 @@
     <table class="table table-sm table-borderless">
     
       <tr>
+        <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
+        <td><%= @interface_connector.location.lid %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
+        <td><%= @interface_connector.software_interface.software.name %></td>
+      </tr>
+
+      <tr>
         <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
-        <td><%= @interface_connector.software_interface %></td>
+        <td><%= @interface_connector.software_interface.name %></td>
       </tr>
 
       <tr>

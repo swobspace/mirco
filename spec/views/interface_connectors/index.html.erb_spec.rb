@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "interface_connectors/index", type: :view do
-  let(:software_interface) { FactoryBot.create(:software_interface, name: 'IM4HC') }
+  let(:location) { FactoryBot.create(:location, lid: "LLX", name: "Location X") }
+  let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
+  let(:software_interface) { FactoryBot.create(:software_interface, name: 'IM4HC', software: software) }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -30,6 +32,8 @@ RSpec.describe "interface_connectors/index", type: :view do
   it "renders a list of interface_connectors" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    assert_select cell_selector, text: Regexp.new("LLX".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("MySoft".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("IM4HC".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("ADT out".to_s), count: 1
     assert_select cell_selector, text: Regexp.new("BAR in".to_s), count: 1
