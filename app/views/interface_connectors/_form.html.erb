@@ -5,11 +5,14 @@
   <div class="form-input">
     <%= form.association :software_interface
        %>
-    <%= form.input :type
+    <%= form.input :name
+       %>
+    <%= form.input :type, collection: InterfaceConnector::TYPES,
+                   include_blank: false
        %>
     <%= form.input :url
        %>
-    <%= form.input :description
+    <%= form.input :description, as: :rich_text_area
        %>
 
     <%= form.button :submit, class: 'btn btn-primary' %>

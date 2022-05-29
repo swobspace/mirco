@@ -5,11 +5,14 @@ class InterfaceConnector < ApplicationRecord
   belongs_to :software_interface
 
   # -- configuration
+  TYPES = %w[ TxConnector RxConnector ]
+
   self.inheritance_column = nil
   has_rich_text :description
 
   # -- validations and callbacks
   validates :name, :software_interface_id, :url, :type, presence: true
+  validates_inclusion_of :type, in: TYPES
 
   def to_s
     "#{name} (#{url})"

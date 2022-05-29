@@ -15,6 +15,7 @@ RSpec.describe InterfaceConnector, type: :model do
   it { is_expected.to validate_presence_of(:url) }
   it { is_expected.to validate_presence_of(:type) }
   it { is_expected.to have_rich_text(:description) }
+  it { is_expected.to validate_inclusion_of(:type).in_array(InterfaceConnector::TYPES) }
 
   it 'should get plain factory working' do
     f = FactoryBot.create(:interface_connector)
