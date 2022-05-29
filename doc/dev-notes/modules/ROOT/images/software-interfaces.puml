@@ -27,6 +27,7 @@ class SoftwareInterface {
 
 class InterfaceConnector {
   software_interface_id
+  name: string
   type: string
   url: string
   description: <<actiontext>>

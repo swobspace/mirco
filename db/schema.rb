@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2022_05_29_093541) do
 
   create_table "interface_connectors", force: :cascade do |t|
     t.bigint "software_interface_id", null: false
+    t.string "name", default: ""
     t.string "type", default: ""
     t.string "url", default: ""
     t.datetime "created_at", precision: 6, null: false

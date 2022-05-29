@@ -49,6 +49,7 @@ bin/rails g scaffold SoftwareInterface \
 ----
 bin/rails g scaffold InterfaceConnector \
   software_interface:belongs_to \
+  name:string \
   type:string:index \
   url:string \
   description:rich_text \
