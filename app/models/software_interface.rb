@@ -9,6 +9,8 @@ class SoftwareInterface < ApplicationRecord
   # -- validations and callbacks
   validates :name, :software_id, presence: true
 
+  delegate :location, to: :software
+
   def to_s
     "#{name} (#{hostname})"
   end
