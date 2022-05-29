@@ -9,7 +9,8 @@ module Servers
                         api_url: ENV['API_URL'],
                         api_user: ENV['API_USER'],
                         api_password: ENV['API_PASSWORD'],
-                        api_verify_ssl: ENV['API_VERIFY_SSL'])
+                        api_verify_ssl: ENV['API_VERIFY_SSL'],
+                        last_channel_update: Time.current)
     end
     let(:valid_attributes) do
       FactoryBot.attributes_for(:channel, server_id: server.id)
@@ -36,8 +37,7 @@ module Servers
         )
       end
       it 'renders a successful response' do
-        Channel.create! valid_attributes
-        get server_channels_url(server, obsolete: true)
+        get server_channels_url(server, obsolete: "true")
         expect(response).to be_successful
         expect(assigns(:channels).count).to eq(1)
       end

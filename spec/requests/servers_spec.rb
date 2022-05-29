@@ -97,11 +97,11 @@ RSpec.describe '/servers', type: :request do
                         api_verify_ssl: ENV['API_VERIFY_SSL'])
     end
     it 'redirects to server' do
-      patch update_properties_server_url(server)
+      post update_properties_server_url(server)
       expect(response).to redirect_to(server_url(server))
     end
     it 'updates server properties' do
-      patch update_properties_server_url(server)
+      post update_properties_server_url(server)
       server.reload
       expect(server.properties['server_uid']).to be_present
     end
