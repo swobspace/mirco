@@ -113,6 +113,7 @@ de:
     uid: UID
     undeployScript: Undeploy Script
     updated_at: zuletzt aktualisiert
+    url: URL
     username: Username
     version: Version
 

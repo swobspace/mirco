@@ -51,6 +51,7 @@ class InterfaceConnectorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def interface_connector_params
-      params.require(:interface_connector).permit(:software_interface_id, :type, :url, :description)
+      params.require(:interface_connector)
+            .permit(:software_interface_id, :type, :url, :description, :name)
     end
 end
