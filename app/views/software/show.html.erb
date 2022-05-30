@@ -1,3 +1,4 @@
+<div class="container-xxl">
 <div class="card mb-2">
   <div class="card-header">
     <div class="d-flex w-100 justify-content-between">
@@ -38,3 +39,23 @@
 
 <%= back_link %>
 <%= new_link Software %>
+
+
+<div class="card my-2">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <h4><%= t('controller.software_interfaces') %></h4>
+      </div>
+      <div role="toolbar" class="pt-0">
+        <%= new_link([@software, SoftwareInterface]) %>
+      </div>
+    </div>
+  </div>
+  <div id="software_interfaces">
+    <% @software.software_interfaces.each do |software_interface| %>
+      <%= render 'software/software_interfaces/software_interface', software_interface: software_interface %>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,0 +1,16 @@
+<div id="<%= dom_id software_interface %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <span class="fw-bold">
+        <%= software_interface.name %>
+      </span> 
+      <span class="text-muted"> /
+        <%= software_interface.hostname %> /
+        <%= software_interface.ipaddress %>
+      </span>
+    </div>
+    <div class="ps-3">
+      <%= software_interface.description %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,11 @@ class SoftwareInterfacesController < ApplicationController
 
   # GET /software_interfaces
   def index
-    @software_interfaces = SoftwareInterface.all
+    if @software
+      @software_interfaces = @software.software_interfaces
+    else
+      @software_interfaces = SoftwareInterface.all
+    end
     respond_with(@software_interfaces)
   end
 
@@ -15,7 +19,12 @@ class SoftwareInterfacesController < ApplicationController
 
   # GET /software_interfaces/new
   def new
-    @software_interface = SoftwareInterface.new
+    if @software
+      @software_interface = @software.software_interfaces.build
+    else
+      @software_interface = SoftwareInterface.new
+    end
+    
     respond_with(@software_interface)
   end
 

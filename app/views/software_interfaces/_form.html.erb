@@ -1,4 +1,4 @@
-<%= simple_form_for(@software_interface) do |form| %>
+<%= simple_form_for([@software, @software_interface]) do |form| %>
 <%= form.error_notification %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
