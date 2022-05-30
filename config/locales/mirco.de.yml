@@ -5,19 +5,20 @@ de:
   mirco:
     action: Aktion
     add_note: Notiz erstellen
-    update_properties: Aktualisiere Eigenschaften
+    backup_server_configuration: Server-Konfiguration sichern
+    configuration: Konfiguration
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
+    for: für
+    interfaces: Schnittstellen
+    new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_server: Neuer Server
     new_software: Neue Software
     new_software_interface: Neues Software-Interface
-    new_interface_connector: Neuer Connector
-    backup_server_configuration: Server-Konfiguration sichern
-    for: für
-    configuration: Konfiguration
-    overview: Überblick
     obsolete_channels: Obsolete Channels
+    overview: Überblick
+    update_properties: Aktualisiere Eigenschaften
 
   activerecord:
     models:
