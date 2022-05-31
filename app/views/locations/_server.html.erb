@@ -1,0 +1,13 @@
+<div id="<%= dom_id server %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <div>
+        <span class="fw-bold"><%= link_to server %></span>
+        <span>(<%= server.host %>)</span>
+      </div> 
+    </div>
+    <div class="ps-3">
+      <%= server.description %>
+    </div>
+  </div>
+</div>

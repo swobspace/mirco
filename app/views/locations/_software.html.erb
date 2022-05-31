@@ -1,0 +1,20 @@
+<div id="<%= dom_id software %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <div class="fw-bold">
+        <%= link_to software.name, software %>
+      </div> 
+    </div>
+    <div class="ps-3">
+      <%= software.description %>
+    </div>
+    <% if software.software_interfaces.any? %>
+      <div class="fw-bold pt-2"><%= t('controller.software_interfaces') %></div>
+      <ul>
+        <% software.software_interfaces.each do |software_interface| %>
+          <li><%= link_to software_interface %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
