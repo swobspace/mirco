@@ -1,9 +1,9 @@
-<%= simple_form_for(@interface_connector) do |form| %>
-<%= form.error_notification %>
+<%= simple_form_for([@software_interface, @interface_connector]) do |form| %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-input">
-    <%= form.association :software_interface
+    <%= form.association :software_interface, wrapper: :horizontal_select,
+          label_method: :to_s
        %>
     <%= form.input :name
        %>

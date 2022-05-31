@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   resources :interface_connectors
-  resources :software_interfaces
+  resources :software_interfaces do
+    resources :interface_connectors, module: :software_interfaces
+  end
   resources :software do
     resources :software_interfaces, module: :software
   end

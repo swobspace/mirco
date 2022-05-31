@@ -4,7 +4,11 @@ class InterfaceConnectorsController < ApplicationController
 
   # GET /interface_connectors
   def index
-    @interface_connectors = InterfaceConnector.all
+    if @software_interface
+      @interface_connectors = @software_interface.interface_connectors
+    else
+      @interface_connectors = InterfaceConnector.all
+    end
     respond_with(@interface_connectors)
   end
 
@@ -15,7 +19,11 @@ class InterfaceConnectorsController < ApplicationController
 
   # GET /interface_connectors/new
   def new
-    @interface_connector = InterfaceConnector.new
+    if @software_interface
+      @interface_connector = @software_interface.interface_connectors.build
+    else
+      @interface_connector = InterfaceConnector.new
+    end
     respond_with(@interface_connector)
   end
 
