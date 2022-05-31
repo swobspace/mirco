@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Modeling mirco :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -44,6 +44,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
@@ -127,7 +130,8 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Server \
-  name:string uid:string:index location:string description:text \
+  location:belongs_to \
+  name:string uid:string:index description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
   api_verify_ssl:boolean \
@@ -215,7 +219,7 @@ end</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>see also: <a href="timescale.html" class="page">Timescale</a></p>
+<p>see also: <a href="timescale.html" class="xref page">Timescale</a></p>
 </div>
 <div class="listingblock">
 <div class="title">Generate Controller with action :index</div>

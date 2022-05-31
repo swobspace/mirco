@@ -15,6 +15,7 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe '/servers', type: :request do
+  let(:location) { FactoryBot.create(:location, lid: 'LLX') }
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
@@ -97,11 +98,11 @@ RSpec.describe '/servers', type: :request do
                         api_verify_ssl: ENV['API_VERIFY_SSL'])
     end
     it 'redirects to server' do
-      patch update_properties_server_url(server)
+      post update_properties_server_url(server)
       expect(response).to redirect_to(server_url(server))
     end
     it 'updates server properties' do
-      patch update_properties_server_url(server)
+      post update_properties_server_url(server)
       server.reload
       expect(server.properties['server_uid']).to be_present
     end
@@ -112,12 +113,12 @@ RSpec.describe '/servers', type: :request do
       let(:new_attributes) do
         {
           uid: 'db5fd489-9335-4d31-adba-d7891bfe5433',
-          location: 'Paris',
           description: 'A short description',
           api_url: 'https://localhost:8443/api',
           api_user: 'dummy',
           api_user_has_full_access: false,
-          api_verify_ssl: true
+          api_verify_ssl: true,
+          location_id: location.id
         }
       end
 

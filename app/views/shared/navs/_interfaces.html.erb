@@ -1,0 +1,32 @@
+<% if can? :navigate, :software %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarSoftwareDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <%= t('mirco.interfaces') %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarSoftwareDropdown">
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.software')), 
+                  main_app.software_index_path, class: "dropdown-item" %>
+      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                       t('mirco.new_software')), 
+                  main_app.new_software_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.software_interfaces')), 
+                  main_app.software_interfaces_path, class: "dropdown-item" %>
+      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                       t('mirco.new_software_interface')), 
+                  main_app.new_software_interface_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.interface_connectors')), 
+                  main_app.interface_connectors_path, class: "dropdown-item" %>
+      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                       t('mirco.new_interface_connector')), 
+                  main_app.new_interface_connector_path, class: "dropdown-item" %>
+    </div>
+  </li>
+<% end %>
+
+

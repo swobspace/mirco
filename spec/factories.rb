@@ -4,6 +4,9 @@ FactoryBot.define do
   sequence :aname do |n|
     "aname_#{n}"
   end
+  sequence :lid do |n|
+    "L#{n}"
+  end
 
   sequence :amail do |n|
     "mail_#{n}@example.net"
@@ -13,17 +16,6 @@ FactoryBot.define do
     server
     type { 'alert' }
     message { 'some text' }
-  end
-
-  factory :server do
-    name { generate(:aname) }
-    trait :with_uid do
-      uid { `uuid -v 4` }
-    end
-  end
-
-  factory :server_configuration do
-    server
   end
 
   factory :channel do
@@ -45,6 +37,18 @@ FactoryBot.define do
     condition { 'ok' }
   end
 
+  factory :interface_connector do
+    software_interface
+    name { generate(:aname) }
+    type { 'TxConnector' } 
+    url { 'tcp://1.2.3.4:5678' }
+  end
+
+  factory :location do
+    lid { generate(:lid) }
+    name { generate(:aname) }
+  end
+
   factory :note do
     association :server
     association :channel
@@ -52,4 +56,26 @@ FactoryBot.define do
     type { 'acknowledge' }
     message { 'some text' }
   end
+
+  factory :server do
+    name { generate(:aname) }
+    trait :with_uid do
+      uid { `uuid -v 4` }
+    end
+  end
+
+  factory :server_configuration do
+    server
+  end
+
+  factory :software do
+    location
+    name { generate(:aname) }
+  end
+
+  factory :software_interface do
+    software
+    name { generate(:aname) }
+  end
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_120117) do
+ActiveRecord::Schema.define(version: 2022_05_29_160351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,25 @@ ActiveRecord::Schema.define(version: 2021_12_19_120117) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "interface_connectors", force: :cascade do |t|
+    t.bigint "software_interface_id", null: false
+    t.string "name", default: ""
+    t.string "type", default: ""
+    t.string "url", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["software_interface_id"], name: "index_interface_connectors_on_software_interface_id"
+    t.index ["type"], name: "index_interface_connectors_on_type"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "lid", null: false
+    t.string "name", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lid"], name: "index_locations_on_lid"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.bigint "server_id", null: false
     t.bigint "channel_id"
@@ -163,7 +182,6 @@ ActiveRecord::Schema.define(version: 2021_12_19_120117) do
   create_table "servers", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "uid", default: ""
-    t.string "location", default: ""
     t.text "description"
     t.string "api_url", default: ""
     t.string "api_user", default: ""
@@ -176,7 +194,27 @@ ActiveRecord::Schema.define(version: 2021_12_19_120117) do
     t.datetime "last_channel_update"
     t.datetime "last_check"
     t.datetime "last_check_ok"
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_servers_on_location_id"
     t.index ["uid"], name: "index_servers_on_uid"
+  end
+
+  create_table "software", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_software_on_location_id"
+  end
+
+  create_table "software_interfaces", force: :cascade do |t|
+    t.bigint "software_id", null: false
+    t.string "name", null: false
+    t.string "hostname", default: ""
+    t.inet "ipaddress"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["software_id"], name: "index_software_interfaces_on_software_id"
   end
 
   create_table "wobauth_authorities", force: :cascade do |t|
@@ -252,7 +290,11 @@ ActiveRecord::Schema.define(version: 2021_12_19_120117) do
   add_foreign_key "channel_statistics", "channels"
   add_foreign_key "channel_statistics", "servers"
   add_foreign_key "channels", "servers"
+  add_foreign_key "interface_connectors", "software_interfaces"
   add_foreign_key "notes", "servers"
   add_foreign_key "notes", "wobauth_users", column: "user_id"
   add_foreign_key "server_configurations", "servers"
+  add_foreign_key "servers", "locations"
+  add_foreign_key "software", "locations"
+  add_foreign_key "software_interfaces", "software"
 end

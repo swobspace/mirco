@@ -1,0 +1,23 @@
+<div id="<%= dom_id interface_connector %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div class="row">
+      <div class="col">
+        <div class="fw-bold">
+          <%= link_to interface_connector.name, interface_connector %>
+        </div>
+        <div class="ps-3">
+          <%= interface_connector.description %>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="text-muted ps-3">
+          <%= interface_connector.type %> 
+        </div>
+        <div class="text-muted ps-3">
+          <%= interface_connector.url %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
