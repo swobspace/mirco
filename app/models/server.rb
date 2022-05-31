@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+require 'uri'
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex
 class Server < ApplicationRecord
@@ -26,5 +26,11 @@ class Server < ApplicationRecord
 
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
+
+  delegate :host, to: :uri
+
+  def uri
+    URI(api_url)
+  end
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex
