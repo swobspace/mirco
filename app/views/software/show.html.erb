@@ -21,7 +21,7 @@
     
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
-        <td><%= @software.location %></td>
+        <td><%= link_to @software.location, @software.location %></td>
       </tr>
 
       <tr>
