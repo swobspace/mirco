@@ -79,7 +79,7 @@ RSpec.describe "/software", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        { description: "Some text info" }
+        { description: "Some text info", vendor: "ACME Ltd." }
       end 
 
       it "updates the requested software" do
@@ -87,6 +87,7 @@ RSpec.describe "/software", type: :request do
         patch software_url(software), params: { software: new_attributes }
         software.reload
         expect(software.description.to_plain_text).to eq("Some text info")
+        expect(software.vendor).to eq("ACME Ltd.")
       end
 
       it "redirects to the software" do

@@ -121,6 +121,7 @@ de:
     updated_at: zuletzt aktualisiert
     url: URL
     username: Username
+    vendor: Hersteller
     version: Version
 
   controller:
