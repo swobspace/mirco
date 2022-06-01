@@ -31,3 +31,7 @@ bin/rails g scaffold SoftwareConnection \
 . Iterate over all channels with an external source (tcp_receiver, file_receiver) and search for external destinations (may be through other channels)
 . Create software connection entries without source and destination connector if software_connection does not always exist
 . For each software connection without assigned source or destination connector search for an interface connector with matching url (real url)
+
+== Example
+
+image::software-connection-example.svg[]
