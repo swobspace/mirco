@@ -14,6 +14,7 @@ class Location {
 class Software {
   location_id
   name: string
+  vendor: string
   description: <<actiontext>>
 }
 
