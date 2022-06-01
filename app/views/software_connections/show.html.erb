@@ -1,0 +1,60 @@
+<div class="card mb-2">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle">
+          <%= t('activerecord.models.software_connection') %>: 
+          #<%= @software_connection.id %>
+        </span>
+        <h4 class="title"><%= @software_connection %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@software_connection) %>
+        <%= delete_link(@software_connection) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-borderless">
+    
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.source_connector')%>:</th>
+        <td><%= @software_connection.source_connector %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.source_url')%>:</th>
+        <td><%= @software_connection.source_url %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.destination_connector')%>:</th>
+        <td><%= @software_connection.destination_connector %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.destination_url')%>:</th>
+        <td><%= @software_connection.destination_url %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.ignore')%>:</th>
+        <td><%= @software_connection.ignore %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.ignore_reason')%>:</th>
+        <td><%= @software_connection.ignore_reason %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+        <td><%= @software_connection.description %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%= back_link %>
+<%= new_link SoftwareConnection %>

@@ -1,0 +1,23 @@
+<%= simple_form_for(@software_connection) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <%= form.association :source_connector
+       %>
+    <%= form.input :source_url
+       %>
+    <%= form.association :destination_connector
+       %>
+    <%= form.input :destination_url
+       %>
+    <%= form.input :ignore
+       %>
+    <%= form.input :ignore_reason
+       %>
+    <%= form.input :description
+       %>
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>
