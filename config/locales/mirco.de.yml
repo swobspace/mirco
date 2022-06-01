@@ -42,6 +42,7 @@ de:
       servers/channel: Channel
       servers/note: Notizen
       software: Software
+      software_connection: Verbindung
       software_interface: Software Interface
       user: User
 
@@ -66,6 +67,8 @@ de:
     description: Beschreibung
     destination: Destination
     destinationConnectors: Destination Connectors
+    destination_connector: Destination Connector
+    destination_url: Destination URL
     displayname: Anzeigename
     error: error
     error_last_30min: error (30min)
@@ -78,6 +81,8 @@ de:
     home: Home
     host: Host
     hostname: Hostname
+    ignore: Ingorieren
+    ignore_reason: Grund
     interface_connector: Connector
     ipaddress: IP-Adresse
     last_channel_update: Letztes Update der Channels
@@ -107,10 +112,13 @@ de:
     server_jvm: Server JVM
     server_version: Server Version
     sourceConnector: Source Connector
+    source_connector: Source Connector
+    source_url: Source URL
     system_info: Systeminfo
     server_settings: Server-Einstellungen
     sn: Nachname
     software: Software
+    software_connection: Verbindung
     software_interface: Software Interface
     state: Status
     status_type: Typ
@@ -151,6 +159,7 @@ de:
     servers/channels: Channels
     servers/notes: Notizen
     software: Software
+    software_connections: Verbindungen
     software_interfaces: Software Interfaces
     users: Benutzer
 
