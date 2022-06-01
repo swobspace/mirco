@@ -1,0 +1,33 @@
+= Software connections
+:imagesdir: ../images
+
+Imagine a software application with sends data to a Mirth server over tcp. Within Mirth following the path from the source connector through some channel to a final destination connector which sends the data over tcp to another software application.
+
+The endpoints in mirth from source connector to destination connector can be mapped to the model SoftwareConnection. The concrete path within Mirth doesn't matter, only the endpoints are neccessary.
+
+The idea is to create the instances of SoftwareConnection automatically from the available Mirth channels. Since there may be filters and some data may not reach the destination, you can manually flag a software connection to be ignored. Don't delete it, otherwise rerun the automatic mapping from mirth channels will recreate this connection.
+
+You can create a software connection manually too, but be careful specifying the correct source and destination url.
+
+== Model SoftwareConnection
+
+image::software-connections.svg[]
+
+[source,ruby]
+----
+bin/rails g scaffold SoftwareConnection \
+  source_connector:belongs_to \
+  source_url:string \
+  destination_connector:belongs_to \
+  destination_url:string \
+  ignore:boolean \
+  ignore_reason:string \
+  description:rich_text \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== Autogenerate software connections
+
+. Iterate over all channels with an external source (tcp_receiver, file_receiver) and search for external destinations (may be through other channels)
+. Create software connection entries without source and destination connector if software_connection does not always exist
+. For each software connection without assigned source or destination connector search for an interface connector with matching url (real url)
