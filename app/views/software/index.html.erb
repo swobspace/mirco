@@ -29,8 +29,8 @@
     <tbody>
       <% @software.each do |software| %>
         <%= content_tag(:tr, id: dom_id(software), class: dom_class(software)) do %>
-                <td><%= software.location %></td>
-                <td><%= software.name %></td>
+                <td><%= link_to software.location %></td>
+                <td><%= link_to software %></td>
                 <td class="text-nowrap">
             <%= show_link software %>
             <%= edit_link software %>
