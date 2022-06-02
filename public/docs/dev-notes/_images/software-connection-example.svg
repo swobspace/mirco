@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="390px" preserveAspectRatio="none" style="width:422px;height:390px;background:#FFFFFF;" version="1.1" viewBox="0 0 422 390" width="422px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1mwvwy98aijo0" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[faad0f0e7f13faf098622c4536db09e2]
+cluster source-->
+        <rect fill="#FFFFFF" filter="url(#f1mwvwy98aijo0)" height="112" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;" width="192" x="7" y="7" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="130" x="38" y="21.9951">ICM (192.0.2.10)</text>
+        <!--MD5=[1c0047be4ce16adb6407eef5b3a9607f]
+cluster connection-->
+        <rect fill="#FFFFFF" filter="url(#f1mwvwy98aijo0)" height="99" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;" width="403" x="7" y="143" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="132" x="142.5" y="157.9951">Mirth (192.0.2.1)</text>
+        <!--MD5=[70c199928828bc2f4192af5e4868768f]
+cluster destination-->
+        <rect fill="#FFFFFF" filter="url(#f1mwvwy98aijo0)" height="112" rx="5" ry="5" style="stroke:#000000;stroke-width:1.5;" width="208" x="202" y="266" /><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="171" x="220.5" y="280.9951">iMedOne (192.0.2.20)</text>
+        <!--MD5=[f1822627d66b5dd7e06e7c3e71d1742a]
+class tx-->
+        <rect codeLine="5" fill="#FEFECE" filter="url(#f1mwvwy98aijo0)" height="60.8047" id="tx" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="160" x="23" y="42" />
+        <ellipse cx="38" cy="58" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M33.9219,53.7656 L33.9219,51.6094 L41.3125,51.6094 L41.3125,53.7656 L38.8438,53.7656 L38.8438,61.8438 L41.3125,61.8438 L41.3125,64 L33.9219,64 L33.9219,61.8438 L36.3906,61.8438 L36.3906,53.7656 L33.9219,53.7656 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="128" x="52" y="62.1543">tcp://192.0.2.1:5555</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="24" x2="182" y1="74" y2="74" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="44" x="29" y="88.2104">BAR out</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="24" x2="182" y1="94.8047" y2="94.8047" />
+        <!--MD5=[81929fff21f273c646ccb0cc1f78b616]
+class source_if-->
+        <rect codeLine="10" fill="#FEFECE" filter="url(#f1mwvwy98aijo0)" height="48" id="source_if" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="160" x="23" y="178" />
+        <ellipse cx="38" cy="194" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M33.9219,189.7656 L33.9219,187.6094 L41.3125,187.6094 L41.3125,189.7656 L38.8438,189.7656 L38.8438,197.8438 L41.3125,197.8438 L41.3125,200 L33.9219,200 L33.9219,197.8438 L36.3906,197.8438 L36.3906,189.7656 L33.9219,189.7656 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="128" x="52" y="198.1543">tcp://192.0.2.1:5555</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="24" x2="182" y1="210" y2="210" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="24" x2="182" y1="218" y2="218" />
+        <!--MD5=[73ec8bce5213f4de28cf0d12d76bf4a2]
+class dest_if-->
+        <rect codeLine="11" fill="#FEFECE" filter="url(#f1mwvwy98aijo0)" height="48" id="dest_if" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="176" x="218" y="178" />
+        <ellipse cx="233" cy="194" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M228.9219,189.7656 L228.9219,187.6094 L236.3125,187.6094 L236.3125,189.7656 L233.8438,189.7656 L233.8438,197.8438 L236.3125,197.8438 L236.3125,200 L228.9219,200 L228.9219,197.8438 L231.3906,197.8438 L231.3906,189.7656 L228.9219,189.7656 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="144" x="247" y="198.1543">tcp://192.0.2.20:13006</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="219" x2="393" y1="210" y2="210" />
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="219" x2="393" y1="218" y2="218" />
+        <!--MD5=[c3c2ad2dab3c317f52a5592ca9ea9ca5]
+class rx-->
+        <rect codeLine="17" fill="#FEFECE" filter="url(#f1mwvwy98aijo0)" height="60.8047" id="rx" rx="5" ry="5" style="stroke:#A80036;stroke-width:1.5;" width="176" x="218" y="301" />
+        <ellipse cx="233" cy="317" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
+        <path d="M228.9219,312.7656 L228.9219,310.6094 L236.3125,310.6094 L236.3125,312.7656 L233.8438,312.7656 L233.8438,320.8438 L236.3125,320.8438 L236.3125,323 L228.9219,323 L228.9219,320.8438 L231.3906,320.8438 L231.3906,312.7656 L228.9219,312.7656 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="144" x="247" y="321.1543">tcp://192.0.2.20:13006</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="219" x2="393" y1="333" y2="333" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="224" y="347.2104">BAR ICM in</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="219" x2="393" y1="353.8047" y2="353.8047" />
+        <!--MD5=[b719308b3c300207fbf0303e6380982a]
+link source_if to dest_if-->
+        <path codeLine="12" d="M183.09,202 C194.61,202 206.14,202 217.66,202 " fill="none" id="source_if-dest_if" style="stroke:#A80036;stroke-width:1.0;" />
+        <!--MD5=[7758b044a31a33133d871b659eef27d8]
+link tx to source_if-->
+        <path codeLine="21" d="M103,103.07 C103,124.09 103,152.16 103,172.85 " fill="none" id="tx-to-source_if" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="103,177.95,107,168.95,103,172.95,99,168.95,103,177.95" style="stroke:#A80036;stroke-width:1.0;" />
+        <!--MD5=[8c51a71a1c0e3201bd23eeb2dd4ab589]
+link dest_if to rx-->
+        <path codeLine="22" d="M306,226.09 C306,245.49 306,273.51 306,295.64 " fill="none" id="dest_if-to-rx" style="stroke:#A80036;stroke-width:1.0;" />
+        <polygon fill="#A80036" points="306,300.84,310,291.84,306,295.84,302,291.84,306,300.84" style="stroke:#A80036;stroke-width:1.0;" />
+        <!--MD5=[d9d533dc5b6e9dda63f068752e818eec]
+@startuml
+
+skinparam roundcorner 10
+
+rectangle source as "ICM (192.0.2.10)" {
+  interface "tcp://192.0.2.1:5555" as tx
+  tx : BAR out
+}
+
+rectangle connection as "Mirth (192.0.2.1)" {
+  interface "tcp://192.0.2.1:5555" as source_if
+  interface "tcp://192.0.2.20:13006" as dest_if
+  source_if = dest_if
+}
+
+
+rectangle destination as "iMedOne (192.0.2.20)" {
+  interface "tcp://192.0.2.20:13006" as rx
+  rx : BAR ICM in
+}
+
+tx - -> source_if
+dest_if - -> rx
+
+@enduml
+
+PlantUML version 1.2021.8(Sat Jun 26 10:20:59 CEST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+-->
+    </g>
+</svg>

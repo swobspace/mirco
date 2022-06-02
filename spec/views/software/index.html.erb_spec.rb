@@ -12,11 +12,13 @@ RSpec.describe "software/index", type: :view do
     assign(:software, [
       Software.create!(
         location: location,
-        name: "Name"
+        name: "Name",
+        vendor: "ACME small"
       ),
       Software.create!(
         location: location,
-        name: "Name"
+        name: "Name",
+        vendor: "ACME small"
       )
     ])
   end
@@ -26,5 +28,6 @@ RSpec.describe "software/index", type: :view do
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
     assert_select cell_selector, text: Regexp.new("L1".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("ACME small".to_s), count: 2
   end
 end

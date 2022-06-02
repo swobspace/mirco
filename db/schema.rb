@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_29_160351) do
+ActiveRecord::Schema.define(version: 2022_06_01_152035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,7 +204,24 @@ ActiveRecord::Schema.define(version: 2022_05_29_160351) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "vendor", default: ""
     t.index ["location_id"], name: "index_software_on_location_id"
+  end
+
+  create_table "software_connections", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "source_connector_id"
+    t.string "source_url", default: ""
+    t.bigint "destination_connector_id"
+    t.string "destination_url", default: ""
+    t.boolean "ignore", default: false
+    t.string "ignore_reason", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["destination_connector_id"], name: "index_software_connections_on_destination_connector_id"
+    t.index ["location_id", "source_url", "destination_url"], name: "index_loc_src_dst_url", unique: true
+    t.index ["location_id"], name: "index_software_connections_on_location_id"
+    t.index ["source_connector_id"], name: "index_software_connections_on_source_connector_id"
   end
 
   create_table "software_interfaces", force: :cascade do |t|
@@ -296,5 +313,6 @@ ActiveRecord::Schema.define(version: 2022_05_29_160351) do
   add_foreign_key "server_configurations", "servers"
   add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
+  add_foreign_key "software_connections", "locations"
   add_foreign_key "software_interfaces", "software"
 end

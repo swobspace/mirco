@@ -1,0 +1,28 @@
+@startuml
+
+class TxConnector {
+  ...
+  url
+  ...
+}
+
+class SoftwareConnection {
+  location_id
+  source_connector_id
+  source_url: string
+  destination_connector_id
+  destination_url: string
+  ignore: boolean
+  ignore_reason: string
+  description: <<actiontext>>
+}
+
+class RxConnector {
+  ...
+  url
+  ...
+}
+
+TxConnector "1" -> "*" SoftwareConnection
+SoftwareConnection "*" -> "1" RxConnector
+@enduml

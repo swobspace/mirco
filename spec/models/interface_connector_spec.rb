@@ -44,4 +44,12 @@ RSpec.describe InterfaceConnector, type: :model do
     it { expect(interface_connector.port).to eq(5555) }
   end
 
+  describe "#if_name" do
+    it { expect(interface_connector.if_name).to eq(interface_connector.software_interface.name) }
+  end
+
+  describe "#sw_name" do
+    it { expect(interface_connector.sw_name).to eq(interface_connector.software_interface.software.name) }
+  end
+
 end

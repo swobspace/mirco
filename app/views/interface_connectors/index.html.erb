@@ -10,7 +10,7 @@
         class: "table table-bordered table-responsive-xl",
         data: {
           'datatables-target': 'datatable',
-          order: [[0, 'desc']].to_json
+          order: [[0, 'asc']].to_json
         } do %>
     <thead>
       <tr>
@@ -39,10 +39,10 @@
     <tbody>
       <% @interface_connectors.each do |interface_connector| %>
         <%= content_tag(:tr, id: dom_id(interface_connector), class: dom_class(interface_connector)) do %>
-                <td><%= interface_connector.location.lid %></td>
-                <td><%= interface_connector.software_interface.software.name %></td>
-                <td><%= interface_connector.software_interface.name %></td>
-                <td><%= interface_connector.name %></td>
+                <td><%= link_to interface_connector.location.lid, interface_connector.location %></td>
+                <td><%= link_to interface_connector.software_interface.software %></td>
+                <td><%= link_to interface_connector.software_interface.name, interface_connector.software_interface %></td>
+                <td><%= link_to interface_connector.name, interface_connector %></td>
                 <td><%= interface_connector.type %></td>
                 <td><%= interface_connector.url %></td>
                 <td><%= interface_connector.description.to_plain_text.truncate(300) %></td>

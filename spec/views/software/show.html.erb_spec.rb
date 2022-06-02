@@ -10,7 +10,8 @@ RSpec.describe "software/show", type: :view do
     allow(controller).to receive(:action_name) { 'show' }
     @software = assign(:software, Software.create!(
       location: location,
-      name: "MySoft"
+      name: "MySoft",
+      vendor: "ACME bg"
     ))
   end
 
@@ -18,5 +19,6 @@ RSpec.describe "software/show", type: :view do
     render
     expect(rendered).to match(/L1/)
     expect(rendered).to match(/MySoft/)
+    expect(rendered).to match(/ACME bg/)
   end
 end

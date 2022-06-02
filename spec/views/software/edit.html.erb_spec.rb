@@ -17,8 +17,8 @@ RSpec.describe "software/edit", type: :view do
     assert_select "form[action=?][method=?]", software_path(@software), "post" do
 
       assert_select "select[name=?]", "software[location_id]"
-
       assert_select "input[name=?]", "software[name]"
+      assert_select "input[name=?]", "software[vendor]"
     end
   end
 end

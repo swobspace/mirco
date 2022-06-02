@@ -1,0 +1,25 @@
+@startuml
+
+skinparam roundcorner 10
+
+rectangle source as "ICM (192.0.2.10)" {
+  interface "tcp://192.0.2.1:5555" as tx
+  tx : BAR out
+}
+
+rectangle connection as "Mirth (192.0.2.1)" {
+  interface "tcp://192.0.2.1:5555" as source_if
+  interface "tcp://192.0.2.20:13006" as dest_if
+  source_if = dest_if
+}
+
+
+rectangle destination as "iMedOne (192.0.2.20)" {
+  interface "tcp://192.0.2.20:13006" as rx
+  rx : BAR ICM in
+}
+
+tx --> source_if
+dest_if --> rx
+
+@enduml

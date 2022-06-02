@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Software connections :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <script>var uiRootPath = '../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../mirco/index.html">Mirco</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="dev-notes" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">DevNotes</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-memo.html">Mirth API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="software-connections.html">Software connections</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DevNotes</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../mirco/index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../mirco/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../mirco/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DevNotes</a></li>
+    <li><a href="software-connections.html">Software connections</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Software connections</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Imagine a software application with sends data to a Mirth server over tcp. Within Mirth following the path from the source connector through some channel to a final destination connector which sends the data over tcp to another software application.</p>
+</div>
+<div class="paragraph">
+<p>The endpoints in mirth from source connector to destination connector can be mapped to the model SoftwareConnection. The concrete path within Mirth doesn&#8217;t matter, only the endpoints are neccessary.</p>
+</div>
+<div class="paragraph">
+<p>The idea is to create the instances of SoftwareConnection automatically from the available Mirth channels. Since there may be filters and some data may not reach the destination, you can manually flag a software connection to be ignored. Don&#8217;t delete it, otherwise rerun the automatic mapping from mirth channels will recreate this connection.</p>
+</div>
+<div class="paragraph">
+<p>You can create a software connection manually too, but be careful specifying the correct source and destination url. Each connection is unique on <code>(location, source_url, destination_url)</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_softwareconnection"><a class="anchor" href="#_model_softwareconnection"></a>Model SoftwareConnection</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/software-connections.svg" alt="software connections">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareConnection \
+  location:belongs_to \
+  source_connector:belongs_to \
+  source_url:string \
+  destination_connector:belongs_to \
+  destination_url:string \
+  ignore:boolean \
+  ignore_reason:string \
+  description:rich_text \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_autogenerate_software_connections"><a class="anchor" href="#_autogenerate_software_connections"></a>Autogenerate software connections</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Iterate over all channels with an external source (tcp_receiver, file_receiver) and search for external destinations (may be through other channels)</p>
+</li>
+<li>
+<p>Create software connection entries without source and destination connector if software_connection does not always exist</p>
+</li>
+<li>
+<p>For each software connection without assigned source or destination connector search for an interface connector with matching url (real url)</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/software-connection-example.svg" alt="software connection example">
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021</span>
+</footer>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

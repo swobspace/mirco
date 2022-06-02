@@ -26,9 +26,11 @@ bin/rails g scaffold Location \
 bin/rails g scaffold Software \
   location:belongs_to \
   name:string \
+  vendor: string \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
+// bin/rails g migration AddVendorToSoftware vendor:string
 
 == model SoftwareInterface
 

@@ -1,0 +1,28 @@
+<%= simple_form_for(@software_connection) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <%= form.association :location, wrapper: :horizontal_select,
+          label_method: :to_s
+       %>
+    <%= form.association :source_connector, wrapper: :horizontal_select,
+          label_method: :to_s
+       %>
+    <%= form.input :source_url
+       %>
+    <%= form.association :destination_connector, wrapper: :horizontal_select,
+          label_method: :to_s
+       %>
+    <%= form.input :destination_url
+       %>
+    <%= form.input :ignore
+       %>
+    <%= form.input :ignore_reason
+       %>
+    <%= form.input :description, as: :rich_text_area
+       %>
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>
