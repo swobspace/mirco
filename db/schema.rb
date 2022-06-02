@@ -209,18 +209,18 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
   end
 
   create_table "software_connections", force: :cascade do |t|
-    t.bigint "server_id", null: false
-    t.bigint "source_connector_id", null: false
+    t.bigint "location_id", null: false
+    t.bigint "source_connector_id"
     t.string "source_url", default: ""
-    t.bigint "destination_connector_id", null: false
+    t.bigint "destination_connector_id"
     t.string "destination_url", default: ""
     t.boolean "ignore", default: false
     t.string "ignore_reason", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destination_connector_id"], name: "index_software_connections_on_destination_connector_id"
-    t.index ["server_id", "source_url", "destination_url"], name: "index_srv_src_dst_url", unique: true
-    t.index ["server_id"], name: "index_software_connections_on_server_id"
+    t.index ["location_id", "source_url", "destination_url"], name: "index_loc_src_dst_url", unique: true
+    t.index ["location_id"], name: "index_software_connections_on_location_id"
     t.index ["source_connector_id"], name: "index_software_connections_on_source_connector_id"
   end
 
@@ -313,6 +313,6 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
   add_foreign_key "server_configurations", "servers"
   add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
-  add_foreign_key "software_connections", "servers"
+  add_foreign_key "software_connections", "locations"
   add_foreign_key "software_interfaces", "software"
 end

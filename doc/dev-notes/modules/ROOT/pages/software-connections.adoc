@@ -7,7 +7,7 @@ The endpoints in mirth from source connector to destination connector can be map
 
 The idea is to create the instances of SoftwareConnection automatically from the available Mirth channels. Since there may be filters and some data may not reach the destination, you can manually flag a software connection to be ignored. Don't delete it, otherwise rerun the automatic mapping from mirth channels will recreate this connection.
 
-You can create a software connection manually too, but be careful specifying the correct source and destination url. Each connection is unique on `(server, source_url, destination_url)`.
+You can create a software connection manually too, but be careful specifying the correct source and destination url. Each connection is unique on `(location, source_url, destination_url)`.
 
 == Model SoftwareConnection
 
@@ -16,7 +16,7 @@ image::software-connections.svg[]
 [source,ruby]
 ----
 bin/rails g scaffold SoftwareConnection \
-  server:belongs_to \
+  location:belongs_to \
   source_connector:belongs_to \
   source_url:string \
   destination_connector:belongs_to \
