@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
   end
 
   create_table "software_connections", force: :cascade do |t|
+    t.bigint "server_id", null: false
     t.bigint "source_connector_id", null: false
     t.string "source_url", default: ""
     t.bigint "destination_connector_id", null: false
@@ -218,8 +219,9 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["destination_connector_id"], name: "index_software_connections_on_destination_connector_id"
+    t.index ["server_id", "source_url", "destination_url"], name: "index_srv_src_dst_url", unique: true
+    t.index ["server_id"], name: "index_software_connections_on_server_id"
     t.index ["source_connector_id"], name: "index_software_connections_on_source_connector_id"
-    t.index ["source_url", "destination_url"], name: "index_software_connections_on_source_url_and_destination_url", unique: true
   end
 
   create_table "software_interfaces", force: :cascade do |t|
@@ -311,5 +313,6 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
   add_foreign_key "server_configurations", "servers"
   add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
+  add_foreign_key "software_connections", "servers"
   add_foreign_key "software_interfaces", "software"
 end
