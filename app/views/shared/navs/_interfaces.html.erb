@@ -8,23 +8,38 @@
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software')), 
                   main_app.software_index_path, class: "dropdown-item" %>
-      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
-                       t('mirco.new_software')), 
-                  main_app.new_software_path, class: "dropdown-item" %>
+      <% if can? :create, Software %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_software')), 
+                    main_app.new_software_path, class: "dropdown-item" %>
+      <% end %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software_interfaces')), 
                   main_app.software_interfaces_path, class: "dropdown-item" %>
-      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
-                       t('mirco.new_software_interface')), 
-                  main_app.new_software_interface_path, class: "dropdown-item" %>
+      <% if can? :create, SoftwareInterface %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_software_interface')), 
+                    main_app.new_software_interface_path, class: "dropdown-item" %>
+      <% end %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.interface_connectors')), 
                   main_app.interface_connectors_path, class: "dropdown-item" %>
-      <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
-                       t('mirco.new_interface_connector')), 
-                  main_app.new_interface_connector_path, class: "dropdown-item" %>
+      <% if can? :create, InterfaceConnector %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_interface_connector')), 
+                    main_app.new_interface_connector_path, class: "dropdown-item" %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.software_connections')), 
+                  main_app.software_connections_path, class: "dropdown-item" %>
+      <% if can? :create, SoftwareConnection %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_software_connection')), 
+                    main_app.new_software_connection_path, class: "dropdown-item" %>
+      <% end %>
     </div>
   </li>
 <% end %>
