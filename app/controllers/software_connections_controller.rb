@@ -51,6 +51,11 @@ class SoftwareConnectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def software_connection_params
-      params.require(:software_connection).permit(:source_connector_id, :source_url, :destination_connector_id, :destination_url, :ignore, :ignore_reason, :description)
+      params.require(:software_connection).permit(
+        :location_id,
+        :source_connector_id, :source_url, 
+        :destination_connector_id, :destination_url, 
+        :ignore, :ignore_reason, :description
+      )
     end
 end
