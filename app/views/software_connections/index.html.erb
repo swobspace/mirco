@@ -50,12 +50,12 @@
       <% @software_connections.each do |software_connection| %>
         <%= content_tag(:tr, id: dom_id(software_connection), class: dom_class(software_connection)) do %>
                 <td><%= software_connection.location.lid %></td>
-                <td><%= software_connection.source_connector.sw_name %></td>
-                <td><%= software_connection.source_connector.if_name %></td>
+                <td><%= software_connection.source_connector&.sw_name %></td>
+                <td><%= software_connection.source_connector&.if_name %></td>
                 <td><%= software_connection.source_connector %></td>
                 <td><%= software_connection.source_url %></td>
-                <td><%= software_connection.destination_connector.sw_name %></td>
-                <td><%= software_connection.destination_connector.if_name %></td>
+                <td><%= software_connection.destination_connector&.sw_name %></td>
+                <td><%= software_connection.destination_connector&.if_name %></td>
                 <td><%= software_connection.destination_connector %></td>
                 <td><%= software_connection.destination_url %></td>
                 <td><%= software_connection.ignore %></td>
