@@ -21,6 +21,13 @@ class InterfaceConnector < ApplicationRecord
     "#{name} (#{url})"
   end
 
+  def if_name
+    "#{software_interface&.name}"
+  end
+
+  def sw_name
+    "#{software_interface&.software&.name}"
+  end
 
   def uri
     URI(url)
