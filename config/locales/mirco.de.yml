@@ -82,7 +82,7 @@ de:
     host: Host
     hostname: Hostname
     ignore: Ignorieren
-    ignore_reason: Grund
+    ignore_reason: Grund für das Ignorieren
     interface_connector: Connector
     ipaddress: IP-Adresse
     last_channel_update: Letztes Update der Channels

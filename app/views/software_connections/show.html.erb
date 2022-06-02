@@ -1,6 +1,6 @@
 <div class="card mb-2">
   <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
+    <div class="d-flex w-250 justify-content-between">
       <div>
         <span class="subtitle">
           <%= t('activerecord.models.software_connection') %>: 
@@ -18,38 +18,63 @@
   <div class="card-body">
     <table class="table table-sm table-borderless">
     
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.source_connector')%>:</th>
-        <td><%= @software_connection.source_connector %></td>
+      <tr class=border-bottom>
+        <th class="w-25 pe-3"><%= t('attributes.location')%>:</th>
+        <td><%= @software_connection.location %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.source_url')%>:</th>
+        <th class="w-25 pe-3"><%= t('attributes.software')%> (SRC):</th>
+        <td><%= @software_connection.source_connector&.sw_name %></td>
+      </tr>
+
+      <tr>
+        <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (SRC):</th>
+        <td><%= @software_connection.source_connector&.if_name %></td>
+      </tr>
+
+      <tr>
+        <th class="w-25 pe-3"><%= t('attributes.source_connector')%>:</th>
+        <td><%= @software_connection.source_connector %></td>
+      </tr>
+
+      <tr class="border-bottom">
+        <th class="w-25 pe-3"><%= t('attributes.source_url')%>:</th>
         <td><%= @software_connection.source_url %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.destination_connector')%>:</th>
-        <td><%= @software_connection.destination_connector %></td>
+        <th class="w-25 pe-3"><%= t('attributes.software')%> (DST):</th>
+        <td><%= @software_connection.destination_connector&.sw_name %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.destination_url')%>:</th>
+        <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (DST):</th>
+        <td><%= @software_connection.destination_connector&.if_name %></td>
+      </tr>
+
+      <tr>
+        <th class="w-25 pe-3"><%= t('attributes.destination_connector')%>:</th>
+        <td><%= @software_connection.destination_connector %></td>
+      </tr>
+
+      <tr class="border-bottom">
+        <th class="w-25 pe-3"><%= t('attributes.destination_url')%>:</th>
         <td><%= @software_connection.destination_url %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.ignore')%>:</th>
+        <th class="w-25 pe-3"><%= t('attributes.ignore')%>:</th>
         <td><%= @software_connection.ignore %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.ignore_reason')%>:</th>
+        <th class="w-25 pe-3"><%= t('attributes.ignore_reason')%>:</th>
         <td><%= @software_connection.ignore_reason %></td>
       </tr>
 
       <tr>
-        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+        <th class="w-25 pe-3"><%= t('attributes.description')%>:</th>
         <td><%= @software_connection.description %></td>
       </tr>
     </table>
