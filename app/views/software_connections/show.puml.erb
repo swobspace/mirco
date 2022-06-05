@@ -1,0 +1,20 @@
+@startuml
+
+skinparam roundCorner 15
+<style>
+  circle {
+    BackGroundColor #aaaaaaa
+  }
+
+  rectangle {
+    BackGroundColor #FBE23F
+  }
+  document {
+    BackGroundColor white
+  }
+</style>
+
+<%= render ConnectionPumlDefinitionsComponent.new(connection: @software_connection) %>
+<%= render ConnectionPumlGraphsComponent.new(connection: @software_connection) %>
+
+@enduml

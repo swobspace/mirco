@@ -10,7 +10,18 @@ class SoftwareConnectionsController < ApplicationController
 
   # GET /software_connections/1
   def show
-    respond_with(@software_connection)
+    respond_with(@software_connection) do |format|
+      format.puml do
+        render format: :puml, layout: false
+      end
+      format.svg do
+        diagram = Mirco::ConnectionDiagram.new(@software_connection)
+        send_file diagram.image(:svg), filename: "connection-#{@software_connection.id}.svg",
+                                       disposition: 'inline',
+                                       type: 'image/svg+xml'
+      end
+
+    end
   end
 
   # GET /software_connections/new

@@ -1,0 +1,7 @@
+' Connection <%= connection.to_s %>
+' Graphs
+
+<%= src_identifier %> --> if_<%= src_identifier %> 
+if_<%= src_identifier %>  --> mirth
+mirth --> if_<%= dst_identifier %> 
+if_<%= dst_identifier %> --> <%= dst_identifier %> 

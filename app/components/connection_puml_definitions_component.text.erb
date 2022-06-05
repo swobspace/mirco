@@ -1,0 +1,8 @@
+' Connection <%= connection.to_s %>
+' Definitions
+rectangle <%= src_identifier %> as "<%= src_text %>"
+rectangle mirth as "MIRTH"
+rectangle <%= dst_identifier %> as "<%= dst_text %>"
+
+circle if_<%= src_identifier %> as "<%= src.url %>"
+circle if_<%= dst_identifier %> as "<%= dst.url %>"
