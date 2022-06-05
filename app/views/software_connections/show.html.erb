@@ -30,9 +30,22 @@
 
       <tr>
         <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (SRC):</th>
-        <td><%= @software_connection.source_connector&.if_name %></td>
+        <td>
+          <%= @software_connection.source_connector&.if_name %>
+        </td>
       </tr>
-
+      <tr>
+        <td class="w-25 pe-3 text-muted"><%= t('attributes.hostname')%>:</td>
+        <td class="text-muted">
+          <%= @software_connection.source_connector&.hostname %>
+        </td>
+      </tr>
+      <tr>
+        <td class="w-25 pe-3 text-muted"><%= t('attributes.ipaddress')%>:</td>
+        <td class="text-muted">
+          <%= @software_connection.source_connector&.ipaddress %>
+        </td>
+      </tr>
       <tr>
         <th class="w-25 pe-3"><%= t('attributes.source_connector')%>:</th>
         <td><%= @software_connection.source_connector %></td>
@@ -50,7 +63,21 @@
 
       <tr>
         <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (DST):</th>
-        <td><%= @software_connection.destination_connector&.if_name %></td>
+        <td>
+          <%= @software_connection.destination_connector&.if_name %>
+        </td>
+      </tr>
+      <tr>
+        <td class="w-25 pe-3 text-muted"><%= t('attributes.hostname')%>:</td>
+        <td class="text-muted">
+          <%= @software_connection.destination_connector&.hostname %>
+        </td>
+      </tr>
+      <tr>
+        <td class="w-25 pe-3 text-muted"><%= t('attributes.ipaddress')%>:</td>
+        <td class="text-muted">
+          <%= @software_connection.destination_connector&.ipaddress %>
+        </td>
       </tr>
 
       <tr>

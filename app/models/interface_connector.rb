@@ -15,7 +15,7 @@ class InterfaceConnector < ApplicationRecord
   validates_inclusion_of :type, in: TYPES
 
   delegate :port, :host, :scheme, to: :uri
-  delegate :location, to: :software_interface
+  delegate :location, :hostname, :ipaddress, to: :software_interface
 
   def to_s
     "#{name} (#{url})"
