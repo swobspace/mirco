@@ -18,11 +18,25 @@ class ConnectionPumlComponent < ViewComponent::Base
   end
 
   def src_identifier
-    "connection_#{src.id}"
+    if src
+      "connection_#{src.id}"
+    else
+      "unknown_src_#{connection.id}"
+    end
   end
 
   def src_text
-    src.to_s
+    if src
+      src.to_s
+    else
+      "not configured"
+    end
+  end
+
+  def src_color
+    unless src
+      "#AAAAAA"
+    end
   end
 
   def dst
@@ -30,11 +44,26 @@ class ConnectionPumlComponent < ViewComponent::Base
   end
 
   def dst_identifier
-    "connection_#{dst.id}"
+    if dst
+      "connection_#{dst.id}"
+    else
+      "unknown_dst_#{connection.id}"
+    end
   end
 
   def dst_text
-    dst.to_s
+    if dst
+      dst.to_s
+    else
+      "not configured"
+    end
   end
+
+  def dst_color
+    unless dst
+      "#AAAAAA"
+    end
+  end
+
 
 end

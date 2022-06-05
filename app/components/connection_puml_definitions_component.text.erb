@@ -1,8 +1,8 @@
 ' Connection <%= connection.to_s %>
 ' Definitions
-rectangle <%= src_identifier %> as "<%= src_text %>"
+rectangle <%= src_identifier %> as "<%= src_text %>" <%= src_color %> 
 rectangle mirth as "MIRTH"
-rectangle <%= dst_identifier %> as "<%= dst_text %>"
+rectangle <%= dst_identifier %> as "<%= dst_text %>" <%= dst_color %> 
 
-circle if_<%= src_identifier %> as "<%= src.url %>"
-circle if_<%= dst_identifier %> as "<%= dst.url %>"
+circle if_<%= src_identifier %> as "<%= connection.source_url %>"
+circle if_<%= dst_identifier %> as "<%= connection.destination_url %>"
