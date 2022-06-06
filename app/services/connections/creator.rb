@@ -17,7 +17,8 @@ module Connections
     def save
       build_connection_attributes(source_channel)
       connection_attributes.each do |attributes|
-        SoftwareConnection.find_or_create_by(attributes)
+        software_connection = SoftwareConnection.find_or_create_by(attributes)
+        Mirco::ConnectionDiagram.new(software_connection).delete
       end
     end
 
