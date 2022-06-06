@@ -19,6 +19,7 @@ bin/rails g scaffold SoftwareConnection \
   location:belongs_to \
   source_connector:belongs_to \
   source_url:string \
+  channel_ids:integer (array:true) \
   destination_connector:belongs_to \
   destination_url:string \
   ignore:boolean \

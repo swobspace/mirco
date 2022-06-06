@@ -12,6 +12,7 @@ class SoftwareConnection {
   source_url: string
   destination_connector_id
   destination_url: string
+  channel_ids: integer, array:true
   ignore: boolean
   ignore_reason: string
   description: <<actiontext>>
