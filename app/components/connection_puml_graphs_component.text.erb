@@ -2,6 +2,13 @@
 ' Graphs
 
 <%= src_identifier %> --> if_<%= src_identifier %> 
-if_<%= src_identifier %>  --> mirth
-mirth --> if_<%= dst_identifier %> 
+if_<%= src_identifier %>  --> channel_<%= connection.channel_ids.first %>
+
+<% if connection.channel_ids.count > 1 %>
+  <% connection.channel_ids[0..-2].each_with_index do |chid,idx| %>
+    channel_<%= chid %> --> channel_<%= connection.channel_ids[idx+1] %>
+  <% end %>
+<% end %>
+
+channel_<%= connection.channel_ids.last %> --> if_<%= dst_identifier %> 
 if_<%= dst_identifier %> --> <%= dst_identifier %> 
