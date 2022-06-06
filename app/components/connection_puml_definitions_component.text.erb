@@ -1,9 +1,9 @@
 ' Connection <%= connection.to_s %>
 ' Definitions
 rectangle <%= src_identifier %> as "<%= src_text %>" <%= src_color %> 
+circle if_<%= src_identifier %> as "<%= connection.source_url %>"
 
 rectangle mirth as "MIRTH\n<%=connection.location%>" {
-  circle if_<%= src_identifier %> as "<%= connection.source_url %>"
   <% connection.channel_ids.each do |chid| %>
     queue channel_<%= chid %> as "<%= Channel.find(chid).name %>"
   <% end %>
