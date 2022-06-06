@@ -47,6 +47,9 @@ module Channels
     end
 
     describe '#save' do
+      before(:each) do
+        allow_any_instance_of(Channel).to receive_message_chain(:source_connector, :url).and_return(nil)
+      end
       context 'new channel' do
         it 'create a new channel' do
           expect do
