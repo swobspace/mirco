@@ -17,8 +17,12 @@ module Mirco
         'interface'
       end
 
-      def puml_text
+      def url
         "tcp://#{listener_ip}:#{listener_port}"
+      end
+
+      def puml_text
+        url
       end
 
       private

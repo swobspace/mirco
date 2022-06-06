@@ -3,6 +3,7 @@
 module Mirco
   class Connector
     attr_reader :hash, :channel
+    delegate :destination_channel_id, to: :connector_type
 
     def initialize(hash, channel:)
       @hash = hash || {}
@@ -88,11 +89,15 @@ module Mirco
       hash['version']
     end
 
+    def url
+      connector_type.url
+    end
+
     def puml
       {
         type: connector_type.puml_type,
         text: connector_type.puml_text,
-        destination_channel_id: connector_type.destination_channel_id
+        destination_channel_id: destination_channel_id
       }
     end
 
