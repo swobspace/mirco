@@ -27,8 +27,8 @@ class ConnectionPumlComponent < ViewComponent::Base
 
   def src_text
     if src
-      raw("<color:grey>#{src.sw_name} / #{src.if_name}</color>\n" + 
-          "<size:16><b>#{src.name}</b></size>\n" +
+      raw("<size:16><b>#{src.name}</b></size>\n" +
+          "<color:black>#{src.sw_name} / #{src.if_name}</color>\n" + 
           "<color:grey>#{src.hostname} (#{src.ipaddress})</color>")
     else
       "not configured"
@@ -55,8 +55,8 @@ class ConnectionPumlComponent < ViewComponent::Base
 
   def dst_text
     if dst
-      raw("<color:grey>#{dst.sw_name} / #{dst.if_name}</color>\n" + 
-          "<size:16><b>#{dst.name}</b></size>\n" +
+      raw("<size:16><b>#{dst.name}</b></size>\n" +
+          "<color:black>#{dst.sw_name} / #{dst.if_name}</color>\n" + 
           "<color:grey>#{dst.hostname} (#{dst.ipaddress})</color>")
     else
       "not configured"
