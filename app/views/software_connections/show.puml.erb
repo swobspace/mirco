@@ -1,19 +1,5 @@
 @startuml
-skinparam defaultTextAlignment center
-skinparam roundCorner 15
-<style>
-  circle {
-    BackGroundColor #aaaaaaa
-  }
-
-  rectangle {
-   'BackGroundColor #FBE23F
-    BackGroundColor #FBEC8D
-  }
-  document {
-    BackGroundColor white
-  }
-</style>
+!theme mirco from <%= Rails.root.join('config') %>
 
 <%= render ConnectionPumlDefinitionsComponent.new(connection: @software_connection) %>
 <%= render ConnectionPumlGraphsComponent.new(connection: @software_connection) %>

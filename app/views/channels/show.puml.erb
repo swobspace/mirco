@@ -1,4 +1,5 @@
 @startuml
+!theme mirco from <%= Rails.root.join('config') %>
 
 <%= render ChannelPumlDefinitionsComponent.new(channel: @channel) %>
 <%= render ChannelPumlGraphsComponent.new(channel: @channel) %>

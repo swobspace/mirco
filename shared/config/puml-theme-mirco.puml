@@ -1,0 +1,29 @@
+''
+'' puml theme for mirco
+''
+
+skinparam defaultTextAlignment center
+skinparam roundCorner 15
+skinparam shadowing 4.0
+<style>
+  circle {
+    BackGroundColor #aaaaaaa
+  }
+  rectangle {
+    BackGroundColor Gold
+  }
+  file {
+    BackGroundColor Gold
+  }
+  queue {
+    '' BackgroundColor #FFF982
+    BackgroundColor #C7FCF6
+    padding 10
+    ''LineThickness 1.0
+    ''LineColor Maroon
+  }
+  document {
+    BackGroundColor white
+  }
+</style>
+
