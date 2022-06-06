@@ -46,8 +46,7 @@ module Connections
                                       destination_url: dst.url }
         elsif dst.destination_channel_id.present?
           ch = Channel.where(id: dst.destination_channel_id).first
-          channel_ids << ch.id
-          build_connection_attributes(ch, channel_ids)
+          build_connection_attributes(ch, channel_ids + [ch.id] )
         end
       end
     end
