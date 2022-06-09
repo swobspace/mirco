@@ -33,5 +33,15 @@ RSpec.describe SoftwareConnection, type: :model do
     it { expect(software_connection.to_s).to match("#{location.lid}: #{srcconn} -> #{dstconn}") }
   end
 
+  describe "#channel_ids" do
+    it "return [] if channel_ids.nil?" do
+      expect(software_connection.channel_ids).to eq([])
+    end
+    it "returns channels_ids if present?" do
+      software_connection.channel_ids = [42]
+      software_connection.save; software_connection.reload
+      expect(software_connection.channel_ids).to contain_exactly(42)
+    end
+  end
 
 end

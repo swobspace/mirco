@@ -17,5 +17,8 @@ class SoftwareConnection < ApplicationRecord
     "#{location&.lid}: #{source_connector} -> #{destination_connector}"
   end
 
+  def channel_ids
+    (self[:channel_ids].present?) ? self[:channel_ids] : []
+  end
 
 end

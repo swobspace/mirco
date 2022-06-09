@@ -14,8 +14,10 @@
 require 'rails_helper'
 module Channels
   RSpec.describe FetchAll do
+    let(:location) { FactoryBot.create(:location) }
     let!(:server) do
       FactoryBot.create(:server,
+                        location: location,
                         api_url: ENV['API_URL'],
                         api_user: ENV['API_USER'],
                         api_password: ENV['API_PASSWORD'],
