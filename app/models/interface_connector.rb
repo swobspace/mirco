@@ -22,6 +22,11 @@ class InterfaceConnector < ApplicationRecord
     "#{name} (#{url})"
   end
 
+  def to_label
+    # "#{url} - #{name} - #{sw_name}, #{location.lid}"
+    "#{name} (#{url}) > #{sw_name}/#{if_name} > #{location.lid}"
+  end
+
   def if_name
     "#{software_interface&.name}"
   end

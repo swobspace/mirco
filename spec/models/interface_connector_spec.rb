@@ -2,8 +2,11 @@ require 'rails_helper'
 require 'ipaddr'
 
 RSpec.describe InterfaceConnector, type: :model do
+  let(:location) { FactoryBot.create(:location, lid: 'QUK') }
+  let(:software) { FactoryBot.create(:software, name: "QUAKKA", location: location) }
   let(:software_interface) do
     FactoryBot.create(:software_interface, 
+      software: software,
       name: "IM4HC"
     )
   end
@@ -33,6 +36,10 @@ RSpec.describe InterfaceConnector, type: :model do
 
   describe "#to_s" do
     it { expect(interface_connector.to_s).to match('BAR in (tcp://0.0.0.0:5555)') }
+  end
+
+  describe "#to_label" do
+    it { expect(interface_connector.to_label).to eq('BAR in (tcp://0.0.0.0:5555) > QUAKKA/IM4HC > QUK') }
   end
 
   describe "#direction" do
