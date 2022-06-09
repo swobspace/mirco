@@ -1,11 +1,18 @@
 require 'rails_helper'
+require 'ipaddr'
 
 RSpec.describe InterfaceConnector, type: :model do
+  let(:software_interface) do
+    FactoryBot.create(:software_interface, 
+      name: "IM4HC"
+    )
+  end
   let(:interface_connector) do
     FactoryBot.create(:interface_connector,
       name: 'BAR in',
       type: 'TxConnector',
-      url: 'tcp://0.0.0.0:5555'
+      url: 'tcp://0.0.0.0:5555',
+      software_interface: software_interface
     )
   end
   it { is_expected.to belong_to(:software_interface) }
@@ -50,6 +57,19 @@ RSpec.describe InterfaceConnector, type: :model do
 
   describe "#sw_name" do
     it { expect(interface_connector.sw_name).to eq(interface_connector.software_interface.software.name) }
+  end
+
+  describe "#save" do
+    let(:ip) { IPAddr.new("12.34.56.78") }
+    it "replace 0.0.0.0 by ipaddress of software_interface if present" do
+      allow(software_interface).to receive(:ipaddress).and_return(ip)
+      software_interface.save; software_interface.reload
+      expect(interface_connector.host.to_s).to eq("12.34.56.78")
+    end
+    it "doesn't replace 0.0.0.0 if software interface has no ip" do
+      software_interface.save; software_interface.reload
+      expect(interface_connector.host.to_s).to eq("0.0.0.0")
+    end
   end
 
 end

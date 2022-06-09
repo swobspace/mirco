@@ -11,6 +11,7 @@ class InterfaceConnector < ApplicationRecord
   has_rich_text :description
 
   # -- validations and callbacks
+  before_save :check_url_host
   validates :name, :software_interface_id, :url, :type, presence: true
   validates_inclusion_of :type, in: TYPES
 
@@ -44,5 +45,14 @@ class InterfaceConnector < ApplicationRecord
     end
   end
 
+  private
 
+  def check_url_host
+    if software_interface.present? and software_interface.ipaddress.present?
+      uri = URI(url)
+      uri.host = software_interface.ipaddress.to_s
+      self[:url] = uri.to_s
+    end
+  end
+  
 end
