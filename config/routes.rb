@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   resources :software_connections
-  resources :interface_connectors
+  resources :interface_connectors do
+    resources :software_connections, only: %i[index update], module: :interface_connectors
+  end
   resources :software_interfaces do
     resources :interface_connectors, module: :software_interfaces
   end
