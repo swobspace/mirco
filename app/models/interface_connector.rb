@@ -61,9 +61,9 @@ class InterfaceConnector < ApplicationRecord
   def software_connections
     case type
     when 'TxConnector'
-      destination_connections
-    when 'RxConnector'
       source_connections
+    when 'RxConnector'
+      destination_connections
     else
       raise RuntimeError, "type #{type} not yet implemented"
     end
