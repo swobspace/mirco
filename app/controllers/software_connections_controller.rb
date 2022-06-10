@@ -4,7 +4,11 @@ class SoftwareConnectionsController < ApplicationController
 
   # GET /software_connections
   def index
-    @software_connections = SoftwareConnection.all
+    if @interface_connector
+      @software_connections = @interface_connector.software_connections
+    else
+      @software_connections = SoftwareConnection.all
+    end
     respond_with(@software_connections)
   end
 
