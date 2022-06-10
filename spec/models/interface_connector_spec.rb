@@ -20,6 +20,8 @@ RSpec.describe InterfaceConnector, type: :model do
   end
   it { is_expected.to belong_to(:software_interface) }
   it { pending; is_expected.to have_many(:hl7_events).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:source_connections).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:destination_connections).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:software_interface_id) }
   it { is_expected.to validate_presence_of(:url) }

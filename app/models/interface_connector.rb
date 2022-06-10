@@ -3,6 +3,14 @@ require 'uri'
 class InterfaceConnector < ApplicationRecord
   # -- associations
   belongs_to :software_interface
+  has_many :source_connections, 
+           class_name: "SoftwareConnection",
+           foreign_key: :source_connector_id,
+           dependent: :restrict_with_error
+  has_many :destination_connections, 
+           class_name: "SoftwareConnection",
+           foreign_key: :destination_connector_id,
+           dependent: :restrict_with_error
 
   # -- configuration
   TYPES = %w[ TxConnector RxConnector ]
@@ -45,6 +53,17 @@ class InterfaceConnector < ApplicationRecord
       'out'
     when 'RxConnector'
       'in'
+    else
+      raise RuntimeError, "type #{type} not yet implemented"
+    end
+  end
+
+  def software_connections
+    case type
+    when 'TxConnector'
+      destination_connections
+    when 'RxConnector'
+      source_connections
     else
       raise RuntimeError, "type #{type} not yet implemented"
     end
