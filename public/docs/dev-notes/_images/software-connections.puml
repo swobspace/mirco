@@ -25,5 +25,13 @@ class RxConnector {
 }
 
 TxConnector "1" -> "*" SoftwareConnection
+note on link
+**Source:**
+url == source_url
+end note
 SoftwareConnection "*" -> "1" RxConnector
+note on link
+**Destination:**
+destination_url == url
+end note
 @enduml
