@@ -72,7 +72,7 @@
 
         <tr>
           <th><%= t('attributes.location')%>:</th>
-          <td><%= @server.location %></td>
+          <td><%= link_to @server.location, location_path(@server.location) %></td>
         </tr>
 
         <tr>

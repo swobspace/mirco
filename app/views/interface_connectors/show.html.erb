@@ -21,17 +21,19 @@
       
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
-          <td><%= @interface_connector.location.lid %></td>
+          <td><%= link_to @interface_connector.location.lid, @interface_connector.location %></td>
         </tr>
 
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
-          <td><%= @interface_connector.software_interface.software.name %></td>
+          <td><%= link_to @interface_connector.sw_name,
+                          @interface_connector.software_interface.software %></td>
         </tr>
 
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
-          <td><%= @interface_connector.software_interface.name %></td>
+          <td><%= link_to @interface_connector.if_name,
+                          @interface_connector.software_interface %></td>
         </tr>
 
         <tr>
