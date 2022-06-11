@@ -1,7 +1,7 @@
 <div id="<%= dom_id software_connection %>">
   <div class="card-body py-2 border-bottom border-bottom-1">
     <div class="row">
-      <div class="col-9">
+      <div class="col">
         <div class="fw-bold">
           <%= link_to software_connection.to_s, software_connection %>
         </div>
@@ -9,13 +9,13 @@
           <%= software_connection.source_url %> == <%= software_connection.destination_url %>
         </div>
       </div>
-      <div class="col">
+      <div class="col text-center">
         <%= image_tag software_connection_path(software_connection, format: :svg),
               height: "80",
               data: { controller: 'imagezoom'}
          %>
       </div>
-      <div class="col">
+      <div class="col text-end">
         <%= button_to addremove_text, software_connection_path(software_connection),
               method: :patch,
               params: addremove_params,
