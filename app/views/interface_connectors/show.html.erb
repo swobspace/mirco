@@ -64,26 +64,25 @@
 
   <div class="card my-3">
     <div class="card-header">
-      <h4><%= t('controller.software_connections') %> (Assigned)</h4>
+      <h4><%= t('mirco.assigned_connections') %></h4>
     </div>
     <div id="software_connections">
-      <% @interface_connector.software_connections.each do |software_connection| %>
-        <%= render 'interface_connectors/software_connections/software_connection', software_connection: software_connection %>
-      <% end %>
+      <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                   @interface_connector.software_connections, 
+                   interface_connector: @interface_connector)
+       %>
     </div>
   </div>
 
   <div class="card my-3">
     <div class="card-header">
-      <h4><%= t('controller.software_connections') %> (Possible)</h4>
+      <h4><%= t('mirco.possible_connections') %></h4>
     </div>
     <div id="software_connections">
-      <% SoftwareConnection
-         .where(location_id: @interface_connector.location.id)
-         .where("source_url = :ifurl or destination_url = :ifurl",
-                ifurl: @interface_connector.url).each do |software_connection| %>
-        <%= render 'interface_connectors/software_connections/software_connection', software_connection: software_connection %>
-      <% end %>
+      <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                   @interface_connector.possible_connections,
+                   interface_connector: @interface_connector)
+       %>
     </div>
   </div>
 

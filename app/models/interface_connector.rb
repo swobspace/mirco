@@ -1,6 +1,7 @@
 require 'uri'
 
 class InterfaceConnector < ApplicationRecord
+  include InterfaceConnectorConcerns
   # -- associations
   belongs_to :software_interface
   has_many :source_connections, 
@@ -45,28 +46,6 @@ class InterfaceConnector < ApplicationRecord
 
   def uri
     URI(url)
-  end
-
-  def direction
-    case type
-    when 'TxConnector'
-      'out'
-    when 'RxConnector'
-      'in'
-    else
-      raise RuntimeError, "type #{type} not yet implemented"
-    end
-  end
-
-  def software_connections
-    case type
-    when 'TxConnector'
-      source_connections
-    when 'RxConnector'
-      destination_connections
-    else
-      raise RuntimeError, "type #{type} not yet implemented"
-    end
   end
 
   private

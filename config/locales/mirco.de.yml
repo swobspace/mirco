@@ -20,6 +20,10 @@ de:
     obsolete_channels: Obsolete Channels
     overview: Überblick
     update_properties: Aktualisiere Eigenschaften
+    assigned_connections: Zugewiesene Verbindungen
+    possible_connections: Mögliche Verbindungen
+    add_connection: Verbindung zuweisen
+    remove_connection: Verbindung entfernen
 
   activerecord:
     models:
