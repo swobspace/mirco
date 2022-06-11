@@ -10,6 +10,12 @@
         </div>
       </div>
       <div class="col">
+        <%= image_tag software_connection_path(software_connection, format: :svg),
+              height: "80",
+              data: { controller: 'imagezoom'}
+         %>
+      </div>
+      <div class="col">
         <%= button_to addremove_text, software_connection_path(software_connection),
               method: :patch,
               params: addremove_params,
