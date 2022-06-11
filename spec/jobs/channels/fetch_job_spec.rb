@@ -23,6 +23,7 @@ RSpec.describe Channels::FetchJob, type: :job do
     let(:now)     { Delayed::Job.db_time_now }
     let(:next_run) do
       run = Date.parse("Saturday")
+      run += 1.week if (run == Date.current)
       Time.zone.local(run.year, run.month, run.day, 1, 0)
     end
 
