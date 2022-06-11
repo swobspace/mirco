@@ -4,6 +4,9 @@ module Mirco
   class ConnectionDiagram < Diagram
     def initialize(connection, _options = {})
       @connection = connection
+      if !oldest_filedate.nil? && oldest_filedate < connection.updated_at
+        delete
+      end
     end
 
     def render_puml

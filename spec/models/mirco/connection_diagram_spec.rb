@@ -12,7 +12,8 @@ RSpec.describe Mirco::ConnectionDiagram, type: :model do
       source_connector_id: src.id,
       source_url: src.url,
       destination_connector_id: dst.id,
-      destination_url: dst.url
+      destination_url: dst.url,
+      updated_at: Time.now
     )
   end
 
@@ -46,16 +47,30 @@ RSpec.describe Mirco::ConnectionDiagram, type: :model do
   end
 
   describe '#create' do
+    before(:each) do
+      subject.create(:svg)
+    end
     after(:each) do
       subject.delete
     end
 
     it 'creates puml file' do
-      subject.create(:svg)
-
-      puts subject.filename(:puml)
       expect(File.exist?(subject.filename(:puml))).to be_truthy
       expect(File.exist?(subject.filename(:svg))).to be_truthy
+    end
+
+    it "new initialisation won't delete files" do
+      diag1 = Mirco::ConnectionDiagram.new(connection)
+      expect(File.exist?(diag1.filename(:puml))).to be_truthy
+      expect(File.exist?(diag1.filename(:svg))).to be_truthy
+    end
+
+    it "new initialisation after connection change does delete existing files" do
+      sleep 1
+      connection.touch
+      newdiag = Mirco::ConnectionDiagram.new(connection)
+      expect(File.exist?(newdiag.filename(:puml))).to be_falsey
+      expect(File.exist?(newdiag.filename(:svg))).to be_falsey
     end
   end
 end
