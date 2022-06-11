@@ -18,73 +18,33 @@
   <div class="card-body">
     <div class="row">
       <div class="col-9">
-        <table class="table table-sm table-borderless">
+        <table class="table table-borderless">
         
           <tr class=border-bottom>
             <th class="w-25 pe-3"><%= t('attributes.location')%>:</th>
-            <td><%= @software_connection.location %></td>
+            <td><%= link_to @software_connection.location, @software_connection.location %></td>
           </tr>
 
           <tr>
-            <th class="w-25 pe-3"><%= t('attributes.software')%> (SRC):</th>
-            <td><%= @software_connection.source_connector&.sw_name %></td>
-          </tr>
-
-          <tr>
-            <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (SRC):</th>
+            <th>
+              Source Connector
+            </th>
             <td>
-              <%= @software_connection.source_connector&.if_name %>
+              <%= render Connections::ConnectorComponent.new(connector: @software_connection.source_connector) %>
             </td>
           </tr>
-          <tr>
-            <td class="w-25 pe-3 text-muted"><%= t('attributes.hostname')%>:</td>
-            <td class="text-muted">
-              <%= @software_connection.source_connector&.hostname %>
-            </td>
-          </tr>
-          <tr>
-            <td class="w-25 pe-3 text-muted"><%= t('attributes.ipaddress')%>:</td>
-            <td class="text-muted">
-              <%= @software_connection.source_connector&.ipaddress %>
-            </td>
-          </tr>
-          <tr>
-            <th class="w-25 pe-3"><%= t('attributes.source_connector')%>:</th>
-            <td><%= @software_connection.source_connector %></td>
-          </tr>
-
           <tr class="border-bottom">
             <th class="w-25 pe-3"><%= t('attributes.source_url')%>:</th>
             <td><%= @software_connection.source_url %></td>
           </tr>
 
           <tr>
-            <th class="w-25 pe-3"><%= t('attributes.software')%> (DST):</th>
-            <td><%= @software_connection.destination_connector&.sw_name %></td>
-          </tr>
-
-          <tr>
-            <th class="w-25 pe-3"><%= t('attributes.software_interface')%> (DST):</th>
+            <th>
+              Destination Connector
+            </th>
             <td>
-              <%= @software_connection.destination_connector&.if_name %>
+              <%= render Connections::ConnectorComponent.new(connector: @software_connection.destination_connector) %>
             </td>
-          </tr>
-          <tr>
-            <td class="w-25 pe-3 text-muted"><%= t('attributes.hostname')%>:</td>
-            <td class="text-muted">
-              <%= @software_connection.destination_connector&.hostname %>
-            </td>
-          </tr>
-          <tr>
-            <td class="w-25 pe-3 text-muted"><%= t('attributes.ipaddress')%>:</td>
-            <td class="text-muted">
-              <%= @software_connection.destination_connector&.ipaddress %>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="w-25 pe-3"><%= t('attributes.destination_connector')%>:</th>
-            <td><%= @software_connection.destination_connector %></td>
           </tr>
 
           <tr class="border-bottom">
