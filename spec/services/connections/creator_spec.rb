@@ -21,8 +21,22 @@ RSpec.describe Connections::Creator, type: :model do
       subject.save
     end
     it { skip "debug"; puts subject.connection_attributes }
-    it { expect(subject.connection_attributes[0]).to include(:location_id=>location.id, :source_url=>"tcp://1.2.3.4:6101", :destination_url=>"tcp://172.17.32.97:7200") }
-    it { expect(subject.connection_attributes[1]).to include(:location_id=>location.id, :source_url=>"tcp://1.2.3.4:6101", :destination_url=>"tcp://172.17.35.56:13005") }
+    it "sets connection_attributes[0]" do
+      expect(subject.connection_attributes[0]).to include(
+        'location_id'     => location.id, 
+        'channel_ids'     => [channel.id],
+        'source_url'      => "tcp://1.2.3.4:6101", 
+        'destination_url' => "tcp://172.17.32.97:7200"
+      )
+    end
+    it "sets connection_attributes[1]" do
+      expect(subject.connection_attributes[1]).to include(
+        'location_id'     => location.id, 
+        'channel_ids'     => [channel.id],
+        'source_url'      => "tcp://1.2.3.4:6101", 
+        'destination_url' => "tcp://172.17.35.56:13005"
+      )
+    end
   end
 
   describe "#save" do
@@ -39,13 +53,18 @@ RSpec.describe Connections::Creator, type: :model do
         FactoryBot.create(:software_connection,
           location_id: location.id,
           source_url: 'tcp://1.2.3.4:6101',
-          destination_url: 'tcp://172.17.35.56:13005'
+          destination_url: 'tcp://172.17.35.56:13005',
+          channel_ids: [4711,815]
         )
       end
       it "creates only one new connection" do
         expect {
           subject.save
         }.to change(SoftwareConnection, :count).by(1)
+      end
+      it "updates #channel_ids" do
+        subject.save; connection.reload
+        expect(connection.channel_ids).to contain_exactly(channel.id)
       end
     end
   end
