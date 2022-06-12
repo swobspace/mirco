@@ -1,21 +1,28 @@
 @startuml
 
-'skinparam nodesep 60
+!theme mirco from .
 
-skinparam interface {
-  padding 100
-}
+skinparam nodesep 60
 
 class Location {
   lid: string
   name: string
 }
 
+class SoftwareGroup {
+  ...
+}
+
 class Software {
   location_id
+  software_group_id
   name: string
   vendor: string
   description: <<actiontext>>
+}
+
+class Host {
+  ...
 }
 
 class SoftwareInterface {
@@ -65,7 +72,10 @@ Class HL7Segment {
 }
 
 Location "1" - "*" Software
+Software "*" - "1" SoftwareGroup
 Software "1" -- "*" SoftwareInterface
+SoftwareInterface "*" - "1" Host
+SoftwareGroup "1" -- "*" Host
 SoftwareInterface "1" -- "*" InterfaceConnector
 
 InterfaceConnector "1" -- "*" HL7Event

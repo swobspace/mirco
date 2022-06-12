@@ -1,0 +1,26 @@
+@startuml
+
+!theme mirco from .
+
+class Location {
+  lid: string
+  name: string
+}
+
+class SoftwareGroup {
+  name: string
+  description: string
+}
+
+class Host {
+  location_id
+  software_group_id
+  name: string
+  ipadress: inet
+  description: <<actiontext>>
+  server_id: optional
+}
+
+Location "1" --> "*" Host
+SoftwareGroup "1" --> "*" Host
+@enduml

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Software interfaces :: Mirco Dokumentation</title>
+    <title>Hosts :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
@@ -45,10 +45,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="modeling.html">Modeling mirco</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="hosts.html">Hosts</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -99,7 +99,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">DevNotes</a></li>
-    <li><a href="software-interfaces.html">Software interfaces</a></li>
+    <li><a href="hosts.html">Hosts</a></li>
   </ul>
 </nav>
 </div>
@@ -108,109 +108,40 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Software interfaces</h1>
+<h1 class="page">Hosts</h1>
 <div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Using Mirth comes with other application software having its own software
-interfaces. Software interfaces in mirco is primarily for documentation
-purposes to get the full picture of data flows in one application.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_overall_picture"><a class="anchor" href="#_overall_picture"></a>Overall Picture</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="_images/software-interfaces.svg" alt="software interfaces">
+<img src="_images/hosts.svg" alt="hosts">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_model_location"><a class="anchor" href="#_model_location"></a>model Location</h2>
+<h2 id="_model_softwaregroup"><a class="anchor" href="#_model_softwaregroup"></a>Model SoftwareGroup</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Location \
-  lid:string:index name:string \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareGroup \
+  name:string \
+  description:string \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_model_software"><a class="anchor" href="#_model_software"></a>model Software</h2>
+<h2 id="_model_host"><a class="anchor" href="#_model_host"></a>Model Host</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Software \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Host \
   location:belongs_to \
   software_group:belongs_to \
+  server:belongs_to \
   name:string \
-  vendor: string \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_softwareinterface"><a class="anchor" href="#_model_softwareinterface"></a>model SoftwareInterface</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareInterface \
-  software:belongs_to \
-  host:belongs_to \
-  name:string \
-  hostname:string \
-  ipaddress:inet \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_interfaceconnector"><a class="anchor" href="#_model_interfaceconnector"></a>model InterfaceConnector</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold InterfaceConnector \
-  software_interface:belongs_to \
-  name:string \
-  type:string:index \
-  url:string \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_hl7event"><a class="anchor" href="#_model_hl7event"></a>model HL7Event</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold HL7Event \
-  interface_connector:belongs_to \
-  message_type:string:index trigger_event:string \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_hl7segment"><a class="anchor" href="#_model_hl7segment"></a>model HL7Segment</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold HL7Segment \
-  hl7_event:belongs_to \
-  name:string:index \
+  ipaddress: inet \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>

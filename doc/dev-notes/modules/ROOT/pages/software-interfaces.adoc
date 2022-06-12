@@ -25,6 +25,7 @@ bin/rails g scaffold Location \
 ----
 bin/rails g scaffold Software \
   location:belongs_to \
+  software_group:belongs_to \
   name:string \
   vendor: string \
   description:rich_text \
@@ -38,6 +39,7 @@ bin/rails g scaffold Software \
 ----
 bin/rails g scaffold SoftwareInterface \
   software:belongs_to \
+  host:belongs_to \
   name:string \
   hostname:string \
   ipaddress:inet \

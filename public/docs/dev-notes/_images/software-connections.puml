@@ -1,5 +1,7 @@
 @startuml
 
+!theme mirco from .
+
 class TxConnector {
   ...
   url

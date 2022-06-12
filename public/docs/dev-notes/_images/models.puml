@@ -1,7 +1,7 @@
 @startuml
 top to bottom direction
-skinparam defaultTextAlignment center
-skinparam roundCorner 15
+
+!theme mirco from .
 
 class Location {
   lid: string

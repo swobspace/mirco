@@ -1,5 +1,6 @@
 * xref:api-memo.adoc[]
 * xref:modeling.adoc[]
+* xref:hosts.adoc[]
 * xref:software-interfaces.adoc[]
 * xref:software-connections.adoc[]
 * xref:state-diagrams.adoc[]
