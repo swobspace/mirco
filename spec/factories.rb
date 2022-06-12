@@ -76,6 +76,7 @@ FactoryBot.define do
 
   factory :software do
     location
+    software_group
     name { generate(:aname) }
   end
 
@@ -83,6 +84,10 @@ FactoryBot.define do
     location
     source_url { generate(:url) }
     destination_url { generate(:url) }
+  end
+
+  factory :software_group do
+    name { generate(:aname) }
   end
 
   factory :software_interface do

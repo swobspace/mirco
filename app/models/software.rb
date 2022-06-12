@@ -1,6 +1,7 @@
 class Software < ApplicationRecord
   # -- associations
   belongs_to :location
+  belongs_to :software_group
   has_many :software_interfaces, dependent: :restrict_with_error
 
   # -- configuration
