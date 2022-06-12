@@ -15,8 +15,12 @@ module Mirco
         'file'
       end
 
-      def puml_text
+      def url
         "#{scheme}://#{host}/#{output_pattern}"
+      end
+
+      def puml_text
+        url
       end
 
       private

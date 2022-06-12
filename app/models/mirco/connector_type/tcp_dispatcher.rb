@@ -14,8 +14,12 @@ module Mirco
         }
       end
 
-      def puml_text
+      def url
         "tcp://#{remote_address}:#{remote_port}".html_safe
+      end
+
+      def puml_text
+        url
       end
 
       private

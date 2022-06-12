@@ -21,6 +21,10 @@ module Mirco
       Dir.glob("#{path}.*").each { |f| File.delete(f) }
     end
 
+    def oldest_filedate
+      Dir.glob("#{path}.*").map{ |f| File.mtime(f) }.sort.first
+    end
+
     def path
       File.join(cachedir, basename)
     end

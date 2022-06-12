@@ -1,15 +1,27 @@
 require 'rails_helper'
+require 'ipaddr'
 
 RSpec.describe InterfaceConnector, type: :model do
+  let(:location) { FactoryBot.create(:location, lid: 'QUK') }
+  let(:software) { FactoryBot.create(:software, name: "QUAKKA", location: location) }
+  let(:software_interface) do
+    FactoryBot.create(:software_interface, 
+      software: software,
+      name: "IM4HC"
+    )
+  end
   let(:interface_connector) do
     FactoryBot.create(:interface_connector,
       name: 'BAR in',
       type: 'TxConnector',
-      url: 'tcp://0.0.0.0:5555'
+      url: 'tcp://0.0.0.0:5555',
+      software_interface: software_interface
     )
   end
   it { is_expected.to belong_to(:software_interface) }
   it { pending; is_expected.to have_many(:hl7_events).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:source_connections).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:destination_connections).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:software_interface_id) }
   it { is_expected.to validate_presence_of(:url) }
@@ -26,6 +38,10 @@ RSpec.describe InterfaceConnector, type: :model do
 
   describe "#to_s" do
     it { expect(interface_connector.to_s).to match('BAR in (tcp://0.0.0.0:5555)') }
+  end
+
+  describe "#to_label" do
+    it { expect(interface_connector.to_label).to eq('BAR in (tcp://0.0.0.0:5555) > QUAKKA/IM4HC > QUK') }
   end
 
   describe "#direction" do
@@ -50,6 +66,19 @@ RSpec.describe InterfaceConnector, type: :model do
 
   describe "#sw_name" do
     it { expect(interface_connector.sw_name).to eq(interface_connector.software_interface.software.name) }
+  end
+
+  describe "#save" do
+    let(:ip) { IPAddr.new("12.34.56.78") }
+    it "replace 0.0.0.0 by ipaddress of software_interface if present" do
+      allow(software_interface).to receive(:ipaddress).and_return(ip)
+      software_interface.save; software_interface.reload
+      expect(interface_connector.host.to_s).to eq("12.34.56.78")
+    end
+    it "doesn't replace 0.0.0.0 if software interface has no ip" do
+      software_interface.save; software_interface.reload
+      expect(interface_connector.host.to_s).to eq("0.0.0.0")
+    end
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_152035) do
+ActiveRecord::Schema.define(version: 2022_06_06_120445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 2022_06_01_152035) do
     t.string "ignore_reason", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "channel_ids", array: true
     t.index ["destination_connector_id"], name: "index_software_connections_on_destination_connector_id"
     t.index ["location_id", "source_url", "destination_url"], name: "index_loc_src_dst_url", unique: true
     t.index ["location_id"], name: "index_software_connections_on_location_id"

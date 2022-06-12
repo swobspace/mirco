@@ -19,14 +19,15 @@
     "esbuild": "^0.14.25",
     "jquery": "3",
     "jszip": "^3.7.1",
+    "medium-zoom": "^1.0.6",
     "pdfmake": "^0.2.4",
     "sass": "^1.43.5",
     "trix": "^1.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@antora/cli": "3.0.0",
-    "@antora/site-generator": "3.0.0"
+    "@antora/cli": "^3.0.0",
+    "@antora/site-generator": "^3.0.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",

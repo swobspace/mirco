@@ -31,6 +31,10 @@ module Mirco
       def destination_channel_id
         nil
       end
+
+      def url
+        nil
+      end
     end
   end
 end

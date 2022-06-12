@@ -33,6 +33,7 @@ module Channels
 
       if @channel.save
         Mirco::ChannelDiagram.new(@channel).delete
+        create_connections(@channel)
         @channel.touch
       else
         Rails.logger.warn("WARN:: could not create or save channel #{@channel.uid}: " +
@@ -48,6 +49,15 @@ module Channels
 
     def fetch_channel
       server.channels.where(server_id: server.id, uid: uid).first
+    end
+
+    # create connections only for channels with receiving data from extern
+    #
+    def create_connections(channel)
+      if channel.source_connector.url.present?
+        creator = Connections::Creator.new(channel: channel)
+        creator.save
+      end
     end
   end
 end

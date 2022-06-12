@@ -1,5 +1,7 @@
 @startuml
 
+!theme mirco from .
+
 class TxConnector {
   ...
   url
@@ -8,10 +10,12 @@ class TxConnector {
 
 class SoftwareConnection {
   location_id
+  server_id
   source_connector_id
   source_url: string
   destination_connector_id
   destination_url: string
+  channel_ids: integer, array:true
   ignore: boolean
   ignore_reason: string
   description: <<actiontext>>
@@ -24,5 +28,13 @@ class RxConnector {
 }
 
 TxConnector "1" -> "*" SoftwareConnection
+note on link
+**Source:**
+url == source_url
+end note
 SoftwareConnection "*" -> "1" RxConnector
+note on link
+**Destination:**
+destination_url == url
+end note
 @enduml

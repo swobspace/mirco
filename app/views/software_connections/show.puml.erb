@@ -1,0 +1,7 @@
+@startuml
+!theme mirco from <%= Rails.root.join('config') %>
+
+<%= render ConnectionPumlDefinitionsComponent.new(connection: @software_connection) %>
+<%= render ConnectionPumlGraphsComponent.new(connection: @software_connection) %>
+
+@enduml

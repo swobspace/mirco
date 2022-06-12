@@ -12,7 +12,7 @@
       <div class="fw-bold pt-2"><%= t('controller.software_interfaces') %></div>
       <ul>
         <% software.software_interfaces.each do |software_interface| %>
-          <li><%= link_to software_interface %></li>
+          <li><%= link_to software_interface, software_interface_path(software_interface) %></li>
         <% end %>
       </ul>
     <% end %>

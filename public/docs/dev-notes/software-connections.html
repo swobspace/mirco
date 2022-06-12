@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Software connections :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.0">
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -44,6 +44,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="hosts.html">Hosts</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
@@ -134,8 +137,10 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareConnection \
   location:belongs_to \
+  server:belongs_to \
   source_connector:belongs_to \
   source_url:string \
+  channel_ids:integer (array:true) \
   destination_connector:belongs_to \
   destination_url:string \
   ignore:boolean \

@@ -1,0 +1,28 @@
+= Hosts
+:imagesdir: ../images
+
+image::hosts.svg[]
+
+== Model SoftwareGroup
+
+[source,ruby]
+----
+bin/rails g scaffold SoftwareGroup \
+  name:string \
+  description:string \
+  --no-stylesheets --no-javascripts --no-helper
+----
+
+== Model Host
+
+[source,ruby]
+----
+bin/rails g scaffold Host \
+  location:belongs_to \
+  software_group:belongs_to \
+  server:belongs_to \
+  name:string \
+  ipaddress: inet \
+  description:rich_text \
+  --no-stylesheets --no-javascripts --no-helper
+----

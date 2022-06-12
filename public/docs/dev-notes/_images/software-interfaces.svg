@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="769px" preserveAspectRatio="none" style="width:576px;height:769px;background:#FFFFFF;" version="1.1" viewBox="0 0 576 769" width="576px" zoomAndPan="magnify">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="857px" preserveAspectRatio="none" style="width:662px;height:857px;background:#FFFFFF;" version="1.1" viewBox="0 0 662 857" width="662px" zoomAndPan="magnify">
     <defs>
-        <filter height="300%" id="flt1fug0p20sm" width="300%" x="-1" y="-1">
+        <filter height="300%" id="f1ocndbca4cdwa" width="300%" x="-1" y="-1">
             <feGaussianBlur result="blurOut" stdDeviation="2.0" />
             <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
             <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
@@ -10,84 +10,174 @@
     <g>
         <!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
 class Location-->
-        <rect codeLine="8" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="73.6094" id="Location" style="stroke:#A80036;stroke-width:1.5;" width="85" x="115.5" y="19.5" />
-        <ellipse cx="130.5" cy="35.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M133.4688,41.1406 Q132.8906,41.4375 132.25,41.5781 Q131.6094,41.7344 130.9063,41.7344 Q128.4063,41.7344 127.0781,40.0938 Q125.7656,38.4375 125.7656,35.3125 Q125.7656,32.1875 127.0781,30.5313 Q128.4063,28.875 130.9063,28.875 Q131.6094,28.875 132.25,29.0313 Q132.9063,29.1875 133.4688,29.4844 L133.4688,32.2031 Q132.8438,31.625 132.25,31.3594 Q131.6563,31.0781 131.0313,31.0781 Q129.6875,31.0781 129,32.1563 Q128.3125,33.2188 128.3125,35.3125 Q128.3125,37.4063 129,38.4844 Q129.6875,39.5469 131.0313,39.5469 Q131.6563,39.5469 132.25,39.2813 Q132.8438,39 133.4688,38.4219 L133.4688,41.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="144.5" y="39.6543">Location</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="116.5" x2="199.5" y1="51.5" y2="51.5" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="54" x="121.5" y="65.7104">lid: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="121.5" y="78.5151">name: string</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="116.5" x2="199.5" y1="85.1094" y2="85.1094" />
+        <g id="elem_Location">
+            <rect codeLine="6" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="82.5" y="31" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="82.5" y="31" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="82.5" y="58" />
+            <rect codeLine="6" fill="none" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="82.5" y="31" />
+            <ellipse cx="101.55" cy="47" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M104.5188,52.6406 Q103.9406,52.9375 103.3,53.0781 Q102.6594,53.2344 101.9563,53.2344 Q99.4563,53.2344 98.1281,51.5938 Q96.8156,49.9375 96.8156,46.8125 Q96.8156,43.6875 98.1281,42.0313 Q99.4563,40.375 101.9563,40.375 Q102.6594,40.375 103.3,40.5313 Q103.9563,40.6875 104.5188,40.9844 L104.5188,43.7031 Q103.8938,43.125 103.3,42.8594 Q102.7063,42.5781 102.0813,42.5781 Q100.7375,42.5781 100.05,43.6563 Q99.3625,44.7188 99.3625,46.8125 Q99.3625,48.9063 100.05,49.9844 Q100.7375,51.0469 102.0813,51.0469 Q102.7063,51.0469 103.3,50.7813 Q103.8938,50.5 104.5188,49.9219 L104.5188,52.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="116.45" y="51.8467">Location</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="180.5" y1="63" y2="63" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="88.5" y="79.9951">lid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="88.5" y="96.292">name: string</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="83.5" x2="180.5" y1="103.5938" y2="103.5938" />
+        </g>
+        <!--MD5=[0fbd175c8eaa036bf0841e7179506dc2]
+class SoftwareGroup-->
+        <g id="elem_SoftwareGroup">
+            <rect codeLine="11" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="64.2969" id="SoftwareGroup" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="135" x="486.5" y="39.5" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="135" x="486.5" y="39.5" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="135" x="486.5" y="66.5" />
+            <rect codeLine="11" fill="none" height="64.2969" id="SoftwareGroup" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="135" x="486.5" y="39.5" />
+            <ellipse cx="501.5" cy="55.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M504.4688,61.1406 Q503.8906,61.4375 503.25,61.5781 Q502.6094,61.7344 501.9063,61.7344 Q499.4063,61.7344 498.0781,60.0938 Q496.7656,58.4375 496.7656,55.3125 Q496.7656,52.1875 498.0781,50.5313 Q499.4063,48.875 501.9063,48.875 Q502.6094,48.875 503.25,49.0313 Q503.9063,49.1875 504.4688,49.4844 L504.4688,52.2031 Q503.8438,51.625 503.25,51.3594 Q502.6563,51.0781 502.0313,51.0781 Q500.6875,51.0781 500,52.1563 Q499.3125,53.2188 499.3125,55.3125 Q499.3125,57.4063 500,58.4844 Q500.6875,59.5469 502.0313,59.5469 Q502.6563,59.5469 503.25,59.2813 Q503.8438,59 504.4688,58.4219 L504.4688,61.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103" x="515.5" y="60.3467">SoftwareGroup</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="487.5" x2="620.5" y1="71.5" y2="71.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="492.5" y="88.4951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="487.5" x2="620.5" y1="95.7969" y2="95.7969" />
+        </g>
         <!--MD5=[ec93e680e5c079a1bb6337ff2b922fa4]
 class Software-->
-        <rect codeLine="13" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="99.2188" id="Software" style="stroke:#A80036;stroke-width:1.5;" width="152" x="236" y="7" />
-        <ellipse cx="280.25" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M283.2188,28.6406 Q282.6406,28.9375 282,29.0781 Q281.3594,29.2344 280.6563,29.2344 Q278.1563,29.2344 276.8281,27.5938 Q275.5156,25.9375 275.5156,22.8125 Q275.5156,19.6875 276.8281,18.0313 Q278.1563,16.375 280.6563,16.375 Q281.3594,16.375 282,16.5313 Q282.6563,16.6875 283.2188,16.9844 L283.2188,19.7031 Q282.5938,19.125 282,18.8594 Q281.4063,18.5781 280.7813,18.5781 Q279.4375,18.5781 278.75,19.6563 Q278.0625,20.7188 278.0625,22.8125 Q278.0625,24.9063 278.75,25.9844 Q279.4375,27.0469 280.7813,27.0469 Q281.4063,27.0469 282,26.7813 Q282.5938,26.5 283.2188,25.9219 L283.2188,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="55" x="300.75" y="27.1543">Software</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="60" x="242" y="53.2104">location_id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="242" y="66.0151">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="242" y="78.8198">vendor: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="242" y="91.6245">description: «actiontext»</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="98.2188" y2="98.2188" />
+        <g id="elem_Software">
+            <rect codeLine="15" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="129.4844" id="Software" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="242" y="7" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="242" y="7" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="242" y="34" />
+            <rect codeLine="15" fill="none" height="129.4844" id="Software" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="242" y="7" />
+            <ellipse cx="299.75" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M302.7188,28.6406 Q302.1406,28.9375 301.5,29.0781 Q300.8594,29.2344 300.1563,29.2344 Q297.6563,29.2344 296.3281,27.5938 Q295.0156,25.9375 295.0156,22.8125 Q295.0156,19.6875 296.3281,18.0313 Q297.6563,16.375 300.1563,16.375 Q300.8594,16.375 301.5,16.5313 Q302.1563,16.6875 302.7188,16.9844 L302.7188,19.7031 Q302.0938,19.125 301.5,18.8594 Q300.9063,18.5781 300.2813,18.5781 Q298.9375,18.5781 298.25,19.6563 Q297.5625,20.7188 297.5625,22.8125 Q297.5625,24.9063 298.25,25.9844 Q298.9375,27.0469 300.2813,27.0469 Q300.9063,27.0469 301.5,26.7813 Q302.0938,26.5 302.7188,25.9219 L302.7188,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="320.25" y="27.8467">Software</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="243" x2="425" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="248" y="55.9951">location_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="248" y="72.292">software_group_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="248" y="88.5889">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="248" y="104.8857">vendor: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="248" y="121.1826">description: «actiontext»</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="243" x2="425" y1="128.4844" y2="128.4844" />
+        </g>
+        <!--MD5=[c62846c0c9715c1d98dd5933e5913037]
+class Host-->
+        <g id="elem_Host">
+            <rect codeLine="23" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="513" y="228.5" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="513" y="228.5" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="513" y="255.5" />
+            <rect codeLine="23" fill="none" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="513" y="228.5" />
+            <ellipse cx="528" cy="244.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M530.9688,250.1406 Q530.3906,250.4375 529.75,250.5781 Q529.1094,250.7344 528.4063,250.7344 Q525.9063,250.7344 524.5781,249.0938 Q523.2656,247.4375 523.2656,244.3125 Q523.2656,241.1875 524.5781,239.5313 Q525.9063,237.875 528.4063,237.875 Q529.1094,237.875 529.75,238.0313 Q530.4063,238.1875 530.9688,238.4844 L530.9688,241.2031 Q530.3438,240.625 529.75,240.3594 Q529.1563,240.0781 528.5313,240.0781 Q527.1875,240.0781 526.5,241.1563 Q525.8125,242.2188 525.8125,244.3125 Q525.8125,246.4063 526.5,247.4844 Q527.1875,248.5469 528.5313,248.5469 Q529.1563,248.5469 529.75,248.2813 Q530.3438,248 530.9688,247.4219 L530.9688,250.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="542" y="249.3467">Host</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="514" x2="576" y1="260.5" y2="260.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="519" y="277.4951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="514" x2="576" y1="284.7969" y2="284.7969" />
+        </g>
         <!--MD5=[e09e51d4558c4c6b5720f49ee604fd03]
 class SoftwareInterface-->
-        <rect codeLine="20" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="112.0234" id="SoftwareInterface" style="stroke:#A80036;stroke-width:1.5;" width="152" x="236" y="166" />
-        <ellipse cx="255.05" cy="182" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M258.0188,187.6406 Q257.4406,187.9375 256.8,188.0781 Q256.1594,188.2344 255.4563,188.2344 Q252.9563,188.2344 251.6281,186.5938 Q250.3156,184.9375 250.3156,181.8125 Q250.3156,178.6875 251.6281,177.0313 Q252.9563,175.375 255.4563,175.375 Q256.1594,175.375 256.8,175.5313 Q257.4563,175.6875 258.0188,175.9844 L258.0188,178.7031 Q257.3938,178.125 256.8,177.8594 Q256.2063,177.5781 255.5813,177.5781 Q254.2375,177.5781 253.55,178.6563 Q252.8625,179.7188 252.8625,181.8125 Q252.8625,183.9063 253.55,184.9844 Q254.2375,186.0469 255.5813,186.0469 Q256.2063,186.0469 256.8,185.7813 Q257.3938,185.5 258.0188,184.9219 L258.0188,187.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="111" x="269.95" y="186.1543">SoftwareInterface</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="198" y2="198" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="242" y="212.2104">software_id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="242" y="225.0151">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="242" y="237.8198">description: «actiontext»</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="98" x="242" y="250.6245">hostname: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="86" x="242" y="263.4292">ipaddress: inet</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="270.0234" y2="270.0234" />
+        <g id="elem_SoftwareInterface">
+            <rect codeLine="27" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="129.4844" id="SoftwareInterface" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="196" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="196" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="223" />
+            <rect codeLine="27" fill="none" height="129.4844" id="SoftwareInterface" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="196" />
+            <ellipse cx="289.4" cy="212" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M292.3688,217.6406 Q291.7906,217.9375 291.15,218.0781 Q290.5094,218.2344 289.8063,218.2344 Q287.3063,218.2344 285.9781,216.5938 Q284.6656,214.9375 284.6656,211.8125 Q284.6656,208.6875 285.9781,207.0313 Q287.3063,205.375 289.8063,205.375 Q290.5094,205.375 291.15,205.5313 Q291.8063,205.6875 292.3688,205.9844 L292.3688,208.7031 Q291.7438,208.125 291.15,207.8594 Q290.5563,207.5781 289.9313,207.5781 Q288.5875,207.5781 287.9,208.6563 Q287.2125,209.7188 287.2125,211.8125 Q287.2125,213.9063 287.9,214.9844 Q288.5875,216.0469 289.9313,216.0469 Q290.5563,216.0469 291.15,215.7813 Q291.7438,215.5 292.3688,214.9219 L292.3688,217.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="306.6" y="216.8467">SoftwareInterface</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="228" y2="228" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="266" y="244.9951">software_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="266" y="261.292">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="266" y="277.5889">description: «actiontext»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="266" y="293.8857">hostname: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="103" x="266" y="310.1826">ipaddress: inet</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="317.4844" y2="317.4844" />
+        </g>
         <!--MD5=[e8bf85857bb46fa7104c9b334c975ab6]
 class InterfaceConnector-->
-        <rect codeLine="28" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="112.0234" id="InterfaceConnector" style="stroke:#A80036;stroke-width:1.5;" width="153" x="235.5" y="338" />
-        <ellipse cx="250.5" cy="354" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M253.4688,359.6406 Q252.8906,359.9375 252.25,360.0781 Q251.6094,360.2344 250.9063,360.2344 Q248.4063,360.2344 247.0781,358.5938 Q245.7656,356.9375 245.7656,353.8125 Q245.7656,350.6875 247.0781,349.0313 Q248.4063,347.375 250.9063,347.375 Q251.6094,347.375 252.25,347.5313 Q252.9063,347.6875 253.4688,347.9844 L253.4688,350.7031 Q252.8438,350.125 252.25,349.8594 Q251.6563,349.5781 251.0313,349.5781 Q249.6875,349.5781 249,350.6563 Q248.3125,351.7188 248.3125,353.8125 Q248.3125,355.9063 249,356.9844 Q249.6875,358.0469 251.0313,358.0469 Q251.6563,358.0469 252.25,357.7813 Q252.8438,357.5 253.4688,356.9219 L253.4688,359.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="121" x="264.5" y="358.1543">InterfaceConnector</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="236.5" x2="387.5" y1="370" y2="370" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="122" x="241.5" y="384.2104">software_interface_id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="241.5" y="397.0151">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="65" x="241.5" y="409.8198">type: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="241.5" y="422.6245">url: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="241.5" y="435.4292">description: «actiontext»</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="236.5" x2="387.5" y1="442.0234" y2="442.0234" />
-        <path d="M6,343.5 L6,444.2969 A0,0 0 0 0 6,444.2969 L200,444.2969 A0,0 0 0 0 200,444.2969 L200,398 L235.1,394 L200,390 L200,353.5 L190,343.5 L6,343.5 A0,0 0 0 0 6,343.5 " fill="#FBFB77" filter="url(#flt1fug0p20sm)" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M190,343.5 L190,353.5 L200,353.5 L190,343.5 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="38" x="12" y="360.5669">type:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="165" x="20" y="375.6997">TxConnector|RxConnector</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="24" x="12" y="390.8325">url:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="20" y="405.9653">tcp://host:port</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125" x="20" y="421.0981">file:///whatever/path</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="20" y="436.231">smb://host/path</text>
+        <g id="elem_InterfaceConnector">
+            <rect codeLine="35" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="129.4844" id="InterfaceConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="385" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="385" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="412" />
+            <rect codeLine="35" fill="none" height="129.4844" id="InterfaceConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="385" />
+            <ellipse cx="283.55" cy="401" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M286.5188,406.6406 Q285.9406,406.9375 285.3,407.0781 Q284.6594,407.2344 283.9563,407.2344 Q281.4563,407.2344 280.1281,405.5938 Q278.8156,403.9375 278.8156,400.8125 Q278.8156,397.6875 280.1281,396.0313 Q281.4563,394.375 283.9563,394.375 Q284.6594,394.375 285.3,394.5313 Q285.9563,394.6875 286.5188,394.9844 L286.5188,397.7031 Q285.8938,397.125 285.3,396.8594 Q284.7063,396.5781 284.0813,396.5781 Q282.7375,396.5781 282.05,397.6563 Q281.3625,398.7188 281.3625,400.8125 Q281.3625,402.9063 282.05,403.9844 Q282.7375,405.0469 284.0813,405.0469 Q284.7063,405.0469 285.3,404.7813 Q285.8938,404.5 286.5188,403.9219 L286.5188,406.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="133" x="299.45" y="405.8467">InterfaceConnector</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="417" y2="417" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="266" y="433.9951">software_interface_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="266" y="450.292">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="78" x="266" y="466.5889">type: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="266" y="482.8857">url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="266" y="499.1826">description: «actiontext»</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="506.4844" y2="506.4844" />
+        </g>
+        <g id="elem_GMN8">
+            <path d="M6,404 L6,494.7969 A5,5 0 0 0 11,499.7969 L195,499.7969 A5,5 0 0 0 200,494.7969 L200,453.5 L259.83,449.5 L200,445.5 L200,409 L190,399 L11,399 A5,5 0 0 0 6,404 " fill="#FEFFDD" filter="url(#f1ocndbca4cdwa)" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M190,399 L190,406.5 A2.5,2.5 0 0 0 192.5,409 L200,409 L190,399 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="38" x="79.5" y="416.0669">type:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="165" x="20" y="431.1997">TxConnector|RxConnector</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="24" x="86.5" y="446.3325">url:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="57.5" y="461.4653">tcp://host:port</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125" x="40" y="476.5981">file:///whatever/path</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="52" y="491.731">smb://host/path</text>
+        </g>
         <!--MD5=[3fd54a38f72d66a21dc05727b0266d37]
 class HL7Event-->
-        <rect codeLine="46" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="99.2188" id="HL7Event" style="stroke:#A80036;stroke-width:1.5;" width="152" x="236" y="510" />
-        <ellipse cx="278.9" cy="526" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M281.8688,531.6406 Q281.2906,531.9375 280.65,532.0781 Q280.0094,532.2344 279.3063,532.2344 Q276.8063,532.2344 275.4781,530.5938 Q274.1656,528.9375 274.1656,525.8125 Q274.1656,522.6875 275.4781,521.0313 Q276.8063,519.375 279.3063,519.375 Q280.0094,519.375 280.65,519.5313 Q281.3063,519.6875 281.8688,519.9844 L281.8688,522.7031 Q281.2438,522.125 280.65,521.8594 Q280.0563,521.5781 279.4313,521.5781 Q278.0875,521.5781 277.4,522.6563 Q276.7125,523.7188 276.7125,525.8125 Q276.7125,527.9063 277.4,528.9844 Q278.0875,530.0469 279.4313,530.0469 Q280.0563,530.0469 280.65,529.7813 Q281.2438,529.5 281.8688,528.9219 L281.8688,531.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="58" x="299.1" y="530.1543">HL7Event</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="542" y2="542" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="128" x="242" y="556.2104">interface_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="124" x="242" y="569.0151">message_type: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="116" x="242" y="581.8198">trigger_event: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="140" x="242" y="594.6245">description: «actiontext»</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="237" x2="387" y1="601.2188" y2="601.2188" />
-        <path d="M423,524 L423,555.5 L388.13,559.5 L423,563.5 L423,594.5313 A0,0 0 0 0 423,594.5313 L567,594.5313 A0,0 0 0 0 567,594.5313 L567,534 L557,524 L423,524 A0,0 0 0 0 423,524 " fill="#FBFB77" filter="url(#flt1fug0p20sm)" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M557,524 L557,534 L567,534 L557,524 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="112" x="429" y="541.0669">message_type:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="437" y="556.1997">ADT, ORM, ORU ...</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="104" x="429" y="571.3325">trigger_event:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="437" y="586.4653">A04, P12, T02, ...</text>
+        <g id="elem_HL7Event">
+            <rect codeLine="53" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="113.1875" id="HL7Event" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="574" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="574" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="184" x="260" y="601" />
+            <rect codeLine="53" fill="none" height="113.1875" id="HL7Event" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="184" x="260" y="574" />
+            <ellipse cx="315.25" cy="590" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M318.2188,595.6406 Q317.6406,595.9375 317,596.0781 Q316.3594,596.2344 315.6563,596.2344 Q313.1563,596.2344 311.8281,594.5938 Q310.5156,592.9375 310.5156,589.8125 Q310.5156,586.6875 311.8281,585.0313 Q313.1563,583.375 315.6563,583.375 Q316.3594,583.375 317,583.5313 Q317.6563,583.6875 318.2188,583.9844 L318.2188,586.7031 Q317.5938,586.125 317,585.8594 Q316.4063,585.5781 315.7813,585.5781 Q314.4375,585.5781 313.75,586.6563 Q313.0625,587.7188 313.0625,589.8125 Q313.0625,591.9063 313.75,592.9844 Q314.4375,594.0469 315.7813,594.0469 Q316.4063,594.0469 317,593.7813 Q317.5938,593.5 318.2188,592.9219 L318.2188,595.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="335.75" y="594.8467">HL7Event</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="606" y2="606" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="157" x="266" y="622.9951">interface_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="266" y="639.292">message_type: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="266" y="655.5889">trigger_event: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="266" y="671.8857">description: «actiontext»</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="261" x2="443" y1="679.1875" y2="679.1875" />
+        </g>
+        <g id="elem_GMN12">
+            <path d="M504,600 L504,626.5 L444.31,630.5 L504,634.5 L504,660.5313 A5,5 0 0 0 509,665.5313 L643,665.5313 A5,5 0 0 0 648,660.5313 L648,605 L638,595 L509,595 A5,5 0 0 0 504,600 " fill="#FEFFDD" filter="url(#f1ocndbca4cdwa)" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M638,595 L638,602.5 A2.5,2.5 0 0 0 640.5,605 L648,605 L638,595 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="112" x="515.5" y="612.0669">message_type:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="518" y="627.1997">ADT, ORM, ORU ...</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="104" x="519.5" y="642.3325">trigger_event:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="108" x="521.5" y="657.4653">A04, P12, T02, ...</text>
+        </g>
         <!--MD5=[37a2a404fd0dd9b7c92e0e8311449ebd]
 class HL7Segment-->
-        <rect codeLine="60" fill="#FEFECE" filter="url(#flt1fug0p20sm)" height="86.4141" id="HL7Segment" style="stroke:#A80036;stroke-width:1.5;" width="142" x="241" y="669" />
-        <ellipse cx="269.95" cy="685" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;" />
-        <path d="M272.9188,690.6406 Q272.3406,690.9375 271.7,691.0781 Q271.0594,691.2344 270.3563,691.2344 Q267.8563,691.2344 266.5281,689.5938 Q265.2156,687.9375 265.2156,684.8125 Q265.2156,681.6875 266.5281,680.0313 Q267.8563,678.375 270.3563,678.375 Q271.0594,678.375 271.7,678.5313 Q272.3563,678.6875 272.9188,678.9844 L272.9188,681.7031 Q272.2938,681.125 271.7,680.8594 Q271.1063,680.5781 270.4813,680.5781 Q269.1375,680.5781 268.45,681.6563 Q267.7625,682.7188 267.7625,684.8125 Q267.7625,686.9063 268.45,687.9844 Q269.1375,689.0469 270.4813,689.0469 Q271.1063,689.0469 271.7,688.7813 Q272.2938,688.5 272.9188,687.9219 L272.9188,690.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="79" x="287.05" y="689.1543">HL7Segment</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="242" x2="382" y1="701" y2="701" /><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="247" y="715.2104">hl7_event_id</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="247" y="728.0151">name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="130" x="247" y="740.8198">comment: «actiontext»</text>
-        <line style="stroke:#A80036;stroke-width:1.5;" x1="242" x2="382" y1="747.4141" y2="747.4141" />
+        <g id="elem_HL7Segment">
+            <rect codeLine="67" fill="#FFF1D9" filter="url(#f1ocndbca4cdwa)" height="96.8906" id="HL7Segment" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="173" x="265.5" y="747" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="173" x="265.5" y="747" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="173" x="265.5" y="774" />
+            <rect codeLine="67" fill="none" height="96.8906" id="HL7Segment" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="173" x="265.5" y="747" />
+            <ellipse cx="303.9" cy="763" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M306.8688,768.6406 Q306.2906,768.9375 305.65,769.0781 Q305.0094,769.2344 304.3063,769.2344 Q301.8063,769.2344 300.4781,767.5938 Q299.1656,765.9375 299.1656,762.8125 Q299.1656,759.6875 300.4781,758.0313 Q301.8063,756.375 304.3063,756.375 Q305.0094,756.375 305.65,756.5313 Q306.3063,756.6875 306.8688,756.9844 L306.8688,759.7031 Q306.2438,759.125 305.65,758.8594 Q305.0563,758.5781 304.4313,758.5781 Q303.0875,758.5781 302.4,759.6563 Q301.7125,760.7188 301.7125,762.8125 Q301.7125,764.9063 302.4,765.9844 Q303.0875,767.0469 304.4313,767.0469 Q305.0563,767.0469 305.65,766.7813 Q306.2438,766.5 306.8688,765.9219 L306.8688,768.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="323.1" y="767.8467">HL7Segment</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="266.5" x2="437.5" y1="779" y2="779" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="271.5" y="795.9951">hl7_event_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="271.5" y="812.292">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="161" x="271.5" y="828.5889">comment: «actiontext»</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="266.5" x2="437.5" y1="835.8906" y2="835.8906" />
+        </g>
         <!--MD5=[27e112577207184687ed610ff3ec0a81]
 link Location to Software-->
-        <path codeLine="66" d="M200.71,56.5 C212.45,56.5 224.19,56.5 235.92,56.5 " fill="none" id="Location-Software" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="208.4463" y="52.3681">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="221.0863" y="52.8244">*</text>
+        <g id="link_Location_Software">
+            <path codeLine="73" d="M181.71,71.5 C201.74,71.5 221.77,71.5 241.79,71.5 " fill="none" id="Location-Software" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="189.5987" y="67.5049">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="226.864" y="67.9312">*</text>
+        </g>
+        <!--MD5=[9285245d6458995b9baa1f4e390e877d]
+link Software to SoftwareGroup-->
+        <g id="link_Software_SoftwareGroup">
+            <path codeLine="74" d="M426.38,71.5 C446.32,71.5 466.26,71.5 486.2,71.5 " fill="none" id="Software-SoftwareGroup" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="434.0204" y="67.9552">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="470.3469" y="67.7376">1</text>
+        </g>
         <!--MD5=[28491190a5c1beeb2ab5c91a3ac5e94f]
 link Software to SoftwareInterface-->
-        <path codeLine="67" d="M312,106.11 C312,124.94 312,146.59 312,165.98 " fill="none" id="Software-SoftwareInterface" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="303.4375" y="126.2019">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="304.5516" y="154.9154">*</text>
+        <g id="link_Software_SoftwareInterface">
+            <path codeLine="75" d="M340.12,136.07 C341.97,155.34 344.01,176.51 345.87,195.79 " fill="none" id="Software-SoftwareInterface" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="332.3651" y="156.4497">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="337.8167" y="184.9397">*</text>
+        </g>
+        <!--MD5=[b1aa5e322fe190c2225d5849cd099961]
+link SoftwareInterface to Host-->
+        <g id="link_SoftwareInterface_Host">
+            <path codeLine="76" d="M444.35,260.5 C467.16,260.5 489.96,260.5 512.76,260.5 " fill="none" id="SoftwareInterface-Host" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="451.988" y="256.9552">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="496.8325" y="255.9083">1</text>
+        </g>
+        <!--MD5=[535e2f72dbe0c1ab6141d622b5b28e30]
+link SoftwareGroup to Host-->
+        <g id="link_SoftwareGroup_Host">
+            <path codeLine="77" d="M552.49,103.8 C550.83,138.42 548.16,193.87 546.5,228.41 " fill="none" id="SoftwareGroup-Host" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="543.3536" y="124.0587">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="539.0875" y="217.2945">*</text>
+        </g>
         <!--MD5=[0b8d221235333bfaf2609887eca45e2f]
 link SoftwareInterface to InterfaceConnector-->
-        <path codeLine="68" d="M312,278.19 C312,297.29 312,318.69 312,337.79 " fill="none" id="SoftwareInterface-InterfaceConnector" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="303.5125" y="298.0258">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="304.5734" y="327.0989">*</text>
+        <g id="link_SoftwareInterface_InterfaceConnector">
+            <path codeLine="78" d="M352,325.07 C352,344.34 352,365.51 352,384.79 " fill="none" id="SoftwareInterface-InterfaceConnector" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="343.5375" y="345.4497">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="344.6172" y="373.9397">*</text>
+        </g>
         <!--MD5=[8180285abff2d6b99b3970b83b16f229]
 link InterfaceConnector to HL7Event-->
-        <path codeLine="70" d="M312,450.35 C312,469.62 312,491.08 312,509.78 " fill="none" id="InterfaceConnector-HL7Event" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="303.5125" y="470.2053">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="304.5078" y="498.7943">*</text>
+        <g id="link_InterfaceConnector_HL7Event">
+            <path codeLine="80" d="M352,514.11 C352,533.61 352,554.89 352,573.82 " fill="none" id="InterfaceConnector-HL7Event" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="343.5375" y="534.4943">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="344.5734" y="563.0616">*</text>
+        </g>
         <!--MD5=[99c07b5a76337be860f9cb6d92cb1262]
 link HL7Event to HL7Segment-->
-        <path codeLine="71" d="M312,609.36 C312,628.59 312,650.45 312,668.95 " fill="none" id="HL7Event-HL7Segment" style="stroke:#A80036;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="303.4625" y="629.1289">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="304.4422" y="657.9381">*</text>
-        <!--MD5=[ea93aeca7e0ca316746ba36a6329441b]
+        <g id="link_HL7Event_HL7Segment">
+            <path codeLine="81" d="M352,687.14 C352,706.6 352,728.25 352,746.99 " fill="none" id="HL7Event-HL7Segment" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="343.4875" y="707.4213">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="344.4859" y="735.8482">*</text>
+        </g>
+        <!--MD5=[7217dbcab8a7a99a91df702366b18d15]
 @startuml
 
-'skinparam nodesep 60
+!theme mirco from .
 
-skinparam interface {
-  padding 100
-}
+skinparam nodesep 60
 
 class Location {
   lid: string
   name: string
 }
 
+class SoftwareGroup {
+  ...
+}
+
 class Software {
   location_id
+  software_group_id
   name: string
   vendor: string
   description: <<actiontext>>
+}
+
+class Host {
+  ...
 }
 
 class SoftwareInterface {
@@ -137,7 +227,10 @@ Class HL7Segment {
 }
 
 Location "1" - "*" Software
+Software "*" - "1" SoftwareGroup
 Software "1" - - "*" SoftwareInterface
+SoftwareInterface "*" - "1" Host
+SoftwareGroup "1" - - "*" Host
 SoftwareInterface "1" - - "*" InterfaceConnector
 
 InterfaceConnector "1" - - "*" HL7Event
@@ -148,20 +241,55 @@ HL7Event "1" - - "*" HL7Segment
 @startuml
 
 
-skinparam interface {
-  padding 100
+skinparam defaultTextAlignment center
+skinparam roundCorner 10
+skinparam shadowing 4.0
+<style>
+  circle {
+    BackGroundColor #aaaaaaa
+  }
+  rectangle {
+    BackGroundColor Gold
+  }
+  file {
+    BackGroundColor Gold
+  }
+  queue {
+    BackgroundColor #C7FCF6
+    padding 10
+  }
+  document {
+    BackGroundColor white
+  }
+</style>
+
+
+skinparam class {
+  BackgroundColor #FFF1D9
+	HeaderBackgroundColor  #FFD080
 }
+
+skinparam nodesep 60
 
 class Location {
   lid: string
   name: string
 }
 
+class SoftwareGroup {
+  ...
+}
+
 class Software {
   location_id
+  software_group_id
   name: string
   vendor: string
   description: <<actiontext>>
+}
+
+class Host {
+  ...
 }
 
 class SoftwareInterface {
@@ -211,7 +339,10 @@ Class HL7Segment {
 }
 
 Location "1" - "*" Software
+Software "*" - "1" SoftwareGroup
 Software "1" - - "*" SoftwareInterface
+SoftwareInterface "*" - "1" Host
+SoftwareGroup "1" - - "*" Host
 SoftwareInterface "1" - - "*" InterfaceConnector
 
 InterfaceConnector "1" - - "*" HL7Event
@@ -219,7 +350,7 @@ HL7Event "1" - - "*" HL7Segment
 
 @enduml
 
-PlantUML version 1.2021.8(Sat Jun 26 10:20:59 CEST 2021)
+PlantUML version 1.2022.5(Sat Apr 30 12:55:52 CEST 2022)
 (GPL source distribution)
 Java Runtime: OpenJDK Runtime Environment
 JVM: OpenJDK 64-Bit Server VM

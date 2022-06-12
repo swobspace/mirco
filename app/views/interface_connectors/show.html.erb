@@ -1,60 +1,90 @@
-<div class="card mb-2">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <div>
-        <span class="subtitle">
-          <%= t('activerecord.models.interface_connector') %>: 
-          #<%= @interface_connector.id %>
-        </span>
-        <h4 class="title"><%= @interface_connector %></h4>
+<div class="container-xxl">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <span class="subtitle">
+            <%= t('activerecord.models.interface_connector') %>: 
+            #<%= @interface_connector.id %>
+          </span>
+          <h4 class="title"><%= @interface_connector %></h4>
+        </div>
+        <div role="toolbar" class="pt-3">
+          <%= edit_link(@interface_connector) %>
+          <%= delete_link(@interface_connector) %>
+        </div>
       </div>
-      <div role="toolbar" class="pt-3">
-        <%= edit_link(@interface_connector) %>
-        <%= delete_link(@interface_connector) %>
-      </div>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-sm table-borderless">
+      
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
+          <td><%= link_to @interface_connector.location.lid, @interface_connector.location %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
+          <td><%= link_to @interface_connector.sw_name,
+                          @interface_connector.software_interface.software %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
+          <td><%= link_to @interface_connector.if_name,
+                          @interface_connector.software_interface %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+          <td><%= @interface_connector.name %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
+          <td><%= @interface_connector.type %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.url')%>:</th>
+          <td><%= @interface_connector.url %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+          <td><%= @interface_connector.description %></td>
+        </tr>
+      </table>
     </div>
   </div>
 
-  <div class="card-body">
-    <table class="table table-sm table-borderless">
-    
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
-        <td><%= @interface_connector.location.lid %></td>
-      </tr>
+  <%= back_link %>
+  <%= new_link InterfaceConnector %>
 
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
-        <td><%= @interface_connector.software_interface.software.name %></td>
-      </tr>
-
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
-        <td><%= @interface_connector.software_interface.name %></td>
-      </tr>
-
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
-        <td><%= @interface_connector.name %></td>
-      </tr>
-
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
-        <td><%= @interface_connector.type %></td>
-      </tr>
-
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.url')%>:</th>
-        <td><%= @interface_connector.url %></td>
-      </tr>
-
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
-        <td><%= @interface_connector.description %></td>
-      </tr>
-    </table>
+  <div class="card my-3">
+    <div class="card-header">
+      <h4><%= t('mirco.assigned_connections') %></h4>
+    </div>
+    <div id="software_connections">
+      <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                   @interface_connector.software_connections, 
+                   interface_connector: @interface_connector)
+       %>
+    </div>
   </div>
-</div>
 
-<%= back_link %>
-<%= new_link InterfaceConnector %>
+  <div class="card my-3">
+    <div class="card-header">
+      <h4><%= t('mirco.possible_connections') %></h4>
+    </div>
+    <div id="software_connections">
+      <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                   @interface_connector.possible_connections,
+                   interface_connector: @interface_connector)
+       %>
+    </div>
+  </div>
+
+
+</div>
