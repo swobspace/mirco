@@ -13,9 +13,11 @@ de:
     interfaces: Schnittstellen
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
+    new_host: Neuer Host
     new_server: Neues Mirth-System
     new_software: Neue Software
     new_software_connection: Neue Verbindung
+    new_software_group: Neue Software-Gruppe
     new_software_interface: Neues Software-Interface
     obsolete_channels: Obsolete Channels
     overview: Überblick
@@ -39,6 +41,7 @@ de:
       channel_statistic/note: Notiz
       hl7_event: HL7-Typ
       hl7_segment: HL7-Segment
+      host: Host
       interface_connector: Connector
       note: Notizen
       server: Mirth-System
@@ -154,6 +157,7 @@ de:
     hl7_events: HL7 Events
     hl7_segments: HL7 Segmente
     home: Home
+    hosts: Hosts
     interface_connectors: Connectors
     locations: Standorte
     notes: Notizen

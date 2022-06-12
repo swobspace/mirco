@@ -1,0 +1,22 @@
+<% if can? :navigate, :hosts %>
+  <li class="nav-item dropdown <%= active_class('hosts') %>">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarHostDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <%= t('controller.hosts') %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarHostDropdown">
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+            t('controller.hosts')),
+          main_app.hosts_path, class: "dropdown-item" %>
+      <% if can? :create, Server %>
+        <div class="dropdown-divider"></div>
+        <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                        t('mirco.new_host')),
+              main_app.new_host_path,
+              class: "dropdown-item" %>
+      <% end %>
+    </div>
+  </li>
+<% end %>
+
+
