@@ -9,7 +9,7 @@ RSpec.describe Server, type: :model do
       api_url: 'https://11.22.33.55:8443/api'
     ) 
   end
-  it { is_expected.to belong_to(:location).optional }
+  it { is_expected.to belong_to(:location) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:channels).dependent(:restrict_with_error) }
