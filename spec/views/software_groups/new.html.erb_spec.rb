@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "software_groups/new", type: :view do
   before(:each) do
-    assign(:software_group, SoftwareGroup.new(
-      name: "MyString",
-      description: "MyString"
-    ))
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @ability }
+    allow(controller).to receive(:controller_name) { 'software_group' }
+    allow(controller).to receive(:action_name) { 'edit' }
+
+    @software_group = assign(:software_group, FactoryBot.build(:software_group))
   end
 
   it "renders new software_group form" do
