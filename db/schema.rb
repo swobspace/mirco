@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_151636) do
+ActiveRecord::Schema.define(version: 2022_06_12_161110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,8 @@ ActiveRecord::Schema.define(version: 2022_06_12_151636) do
     t.datetime "last_check"
     t.datetime "last_check_ok"
     t.bigint "location_id"
+    t.bigint "host_id"
+    t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["location_id"], name: "index_servers_on_location_id"
     t.index ["uid"], name: "index_servers_on_uid"
   end
@@ -253,6 +255,8 @@ ActiveRecord::Schema.define(version: 2022_06_12_151636) do
     t.inet "ipaddress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "host_id"
+    t.index ["host_id"], name: "index_software_interfaces_on_host_id"
     t.index ["software_id"], name: "index_software_interfaces_on_software_id"
   end
 
@@ -335,9 +339,11 @@ ActiveRecord::Schema.define(version: 2022_06_12_151636) do
   add_foreign_key "notes", "servers"
   add_foreign_key "notes", "wobauth_users", column: "user_id"
   add_foreign_key "server_configurations", "servers"
+  add_foreign_key "servers", "hosts"
   add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
   add_foreign_key "software", "software_groups"
   add_foreign_key "software_connections", "locations"
+  add_foreign_key "software_interfaces", "hosts"
   add_foreign_key "software_interfaces", "software"
 end

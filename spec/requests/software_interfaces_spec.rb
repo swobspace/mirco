@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "/software_interfaces", type: :request do
   let(:software) { FactoryBot.create(:software) }
+  let(:host) { FactoryBot.create(:host) }
 
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:software_interface, software_id: software.id)
+    FactoryBot.attributes_for(:software_interface, software_id: software.id, host_id: host.id)
   end
 
   let(:invalid_attributes) do

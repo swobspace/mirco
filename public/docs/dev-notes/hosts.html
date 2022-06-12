@@ -124,7 +124,7 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareGroup \
-  name:string \
+  name:string:index \
   description:string \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
@@ -140,7 +140,7 @@
   location:belongs_to \
   software_group:belongs_to \
   name:string \
-  ipaddress: inet \
+  ipaddress:inet \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>

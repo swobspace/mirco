@@ -5,6 +5,7 @@ class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
   belongs_to :location
+  belongs_to :host
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
@@ -27,7 +28,7 @@ class Server < ApplicationRecord
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :host, to: :uri
+  delegate :ipaddress, to: :host
 
   def uri
     URI(api_url)

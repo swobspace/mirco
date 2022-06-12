@@ -8,6 +8,7 @@ RSpec.describe SoftwareInterface, type: :model do
     )
   end
   it { is_expected.to belong_to(:software) }
+  it { is_expected.to belong_to(:host) }
   it { is_expected.to have_many(:interface_connectors).dependent(:restrict_with_error) }
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:software_id) }

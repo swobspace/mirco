@@ -74,7 +74,7 @@ class ServersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def server_params
     params.require(:server).permit(
-      :name, :uid, :location_id, :description,
+      :name, :uid, :location_id, :description, :host_id,
       :api_url, :api_user, :api_password,
       :api_user_has_full_access, :api_verify_ssl
     )

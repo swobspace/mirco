@@ -60,6 +60,8 @@ class SoftwareInterfacesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def software_interface_params
-      params.require(:software_interface).permit(:software_id, :name, :hostname, :ipaddress, :description)
+      params.require(:software_interface)
+            .permit(:software_id, :name, :hostname, :ipaddress, 
+                    :description, :host_id)
     end
 end

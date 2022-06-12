@@ -3,8 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Server, type: :model do
+  let(:host) { FactoryBot.create(:host, ipaddress: '11.22.33.55') }
   let(:server) do 
     FactoryBot.create(:server, 
+      host: host,
       name: 'xyzmirth',
       api_url: 'https://11.22.33.55:8443/api'
     ) 
@@ -35,8 +37,8 @@ RSpec.describe Server, type: :model do
     it { expect(server.fullname).to match('xyzmirth') }
   end
 
-  describe "#host" do
-    it { expect(server.host).to eq('11.22.33.55') }
+  describe "#ipaddress" do
+    it { expect(server.ipaddress).to eq('11.22.33.55') }
   end
 
 end

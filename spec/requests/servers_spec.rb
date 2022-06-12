@@ -16,10 +16,11 @@ require 'rails_helper'
 
 RSpec.describe '/servers', type: :request do
   let(:location) { FactoryBot.create(:location, lid: 'LLX') }
+  let(:host) { FactoryBot.create(:host) }
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:server, location_id: location.id)
+    FactoryBot.attributes_for(:server, location_id: location.id, host_id: host.id)
   end
 
   let(:invalid_attributes) do

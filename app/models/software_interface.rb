@@ -1,6 +1,7 @@
 class SoftwareInterface < ApplicationRecord
   # -- associations
   belongs_to :software
+  belongs_to :host
   has_many :interface_connectors, dependent: :restrict_with_error
 
   # -- configuration
