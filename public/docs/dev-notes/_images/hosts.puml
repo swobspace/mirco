@@ -18,7 +18,6 @@ class Host {
   name: string
   ipadress: inet
   description: <<actiontext>>
-  server_id: optional
 }
 
 Location "1" --> "*" Host

@@ -20,7 +20,6 @@ bin/rails g scaffold SoftwareGroup \
 bin/rails g scaffold Host \
   location:belongs_to \
   software_group:belongs_to \
-  server:belongs_to \
   name:string \
   ipaddress: inet \
   description:rich_text \

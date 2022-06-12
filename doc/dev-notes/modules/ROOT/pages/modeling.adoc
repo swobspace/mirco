@@ -19,6 +19,7 @@ bin/rails g controller Home index \
 ----
 bin/rails g scaffold Server \
   location:belongs_to \
+  host:belongs_to \
   name:string uid:string:index description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \
