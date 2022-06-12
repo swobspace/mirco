@@ -21,7 +21,7 @@ bin/rails g scaffold Host \
   location:belongs_to \
   software_group:belongs_to \
   name:string \
-  ipaddress: inet \
+  ipaddress:inet \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----
