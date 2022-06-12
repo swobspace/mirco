@@ -8,7 +8,7 @@ image::hosts.svg[]
 [source,ruby]
 ----
 bin/rails g scaffold SoftwareGroup \
-  name:string \
+  name:string:index \
   description:string \
   --no-stylesheets --no-javascripts --no-helper
 ----
