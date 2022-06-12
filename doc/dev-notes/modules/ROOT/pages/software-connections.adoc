@@ -17,6 +17,7 @@ image::software-connections.svg[]
 ----
 bin/rails g scaffold SoftwareConnection \
   location:belongs_to \
+  server:belongs_to \
   source_connector:belongs_to \
   source_url:string \
   channel_ids:integer (array:true) \

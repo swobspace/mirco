@@ -10,6 +10,7 @@ class TxConnector {
 
 class SoftwareConnection {
   location_id
+  server_id
   source_connector_id
   source_url: string
   destination_connector_id
