@@ -19,7 +19,7 @@ RSpec.describe '/servers', type: :request do
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:server)
+    FactoryBot.attributes_for(:server, location_id: location.id)
   end
 
   let(:invalid_attributes) do
