@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "/software", type: :request do
   let(:location) { FactoryBot.create(:location) }
+  let(:software_group) { FactoryBot.create(:software_group) }
   
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:software, location_id: location.id)
+    FactoryBot.attributes_for(:software, location_id: location.id, 
+                                         software_group_id: software_group.id)
   end
 
   let(:invalid_attributes) do
