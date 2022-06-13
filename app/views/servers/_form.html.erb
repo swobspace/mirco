@@ -13,6 +13,9 @@
       <%= f.association :location, wrapper: :horizontal_select,
                         label_method: :to_s
 	 %>
+      <%= f.association :host, wrapper: :horizontal_select,
+                        label_method: :to_s
+	 %>
       <%= f.input :description
 	 %>
       <%= f.input :api_url

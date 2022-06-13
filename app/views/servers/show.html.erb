@@ -76,6 +76,11 @@
         </tr>
 
         <tr>
+          <th><%= t('attributes.host')%>:</th>
+          <td><%= link_to @server.host, host_path(@server.host) %></td>
+        </tr>
+
+        <tr>
           <th><%= t('attributes.description')%>:</th>
           <td><%= @server.description %></td>
         </tr>
