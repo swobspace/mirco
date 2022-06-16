@@ -13,11 +13,11 @@ RSpec.describe Connections::Creator, type: :model do
   subject { Connections::Creator.new(channel: channel) }
   before(:each) do
     allow(channel).to receive(:location).and_return(location)
-    allow(channel).to receive(:ipaddress).and_return('1.2.3.4')
   end
 
   describe "#connection_attributes" do
     before(:each) do
+      allow(channel).to receive(:ipaddress).and_return('1.2.3.4')
       subject.save
     end
     it { skip "debug"; puts subject.connection_attributes }
@@ -40,6 +40,9 @@ RSpec.describe Connections::Creator, type: :model do
   end
 
   describe "#save" do
+    before(:each) do
+      allow(channel).to receive(:ipaddress).and_return('1.2.3.4')
+    end
     context "without existing connections" do
       it "creates 2 new connections" do
         expect {
@@ -66,6 +69,37 @@ RSpec.describe Connections::Creator, type: :model do
         subject.save; connection.reload
         expect(connection.channel_ids).to contain_exactly(channel.id)
       end
+    end
+  end
+
+  describe "with source host == 0.0.0.0|localhost" do
+    let(:host) { FactoryBot.create(:host, ipaddress: '192.0.2.83') }
+    let(:server) { FactoryBot.create(:server, host: host) }
+
+    before(:each) do
+      allow(channel).to receive(:server).and_return(server)
+    end
+
+    it "sets server ip (1)" do
+      allow(channel).to receive_message_chain(:source_connector, :url).and_return('tcp://0.0.0.0:5678')
+      subject.save
+      expect(subject.connection_attributes[1]).to include(
+        'location_id'     => location.id, 
+        'channel_ids'     => [channel.id],
+        'source_url'      => "tcp://192.0.2.83:5678", 
+        'destination_url' => "tcp://172.17.35.56:13005"
+      )
+    end
+
+    it "sets server ip (2)" do
+      allow(channel).to receive_message_chain(:source_connector, :url).and_return('tcp://localhost:3247')
+      subject.save
+      expect(subject.connection_attributes[1]).to include(
+        'location_id'     => location.id, 
+        'channel_ids'     => [channel.id],
+        'source_url'      => "tcp://192.0.2.83:3247", 
+        'destination_url' => "tcp://172.17.35.56:13005"
+      )
     end
   end
 end
