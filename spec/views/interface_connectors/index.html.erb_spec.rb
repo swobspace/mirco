@@ -2,8 +2,15 @@ require 'rails_helper'
 
 RSpec.describe "interface_connectors/index", type: :view do
   let(:location) { FactoryBot.create(:location, lid: "LLX", name: "Location X") }
-  let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
-  let(:software_interface) { FactoryBot.create(:software_interface, name: 'IM4HC', software: software) }
+  let(:software) { FactoryBot.create(:software, name: 'MySoft') }
+  let(:host) { FactoryBot.create(:host, location: location) }
+  let(:software_interface) do
+    FactoryBot.create(:software_interface, 
+      host: host,
+      name: 'IM4HC', 
+      software: software
+    )
+  end
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)

@@ -3,9 +3,11 @@ require 'ipaddr'
 
 RSpec.describe InterfaceConnector, type: :model do
   let(:location) { FactoryBot.create(:location, lid: 'QUK') }
-  let(:software) { FactoryBot.create(:software, name: "QUAKKA", location: location) }
+  let(:software) { FactoryBot.create(:software, name: "QUAKKA") }
+  let(:host) { FactoryBot.create(:host, ipaddress: '99.88.77.66', location: location) }
   let(:software_interface) do
     FactoryBot.create(:software_interface, 
+      host: host,
       software: software,
       name: "IM4HC"
     )
@@ -37,11 +39,11 @@ RSpec.describe InterfaceConnector, type: :model do
   end
 
   describe "#to_s" do
-    it { expect(interface_connector.to_s).to match('BAR in (tcp://0.0.0.0:5555)') }
+    it { expect(interface_connector.to_s).to match('BAR in (tcp://99.88.77.66:5555)') }
   end
 
   describe "#to_label" do
-    it { expect(interface_connector.to_label).to eq('BAR in (tcp://0.0.0.0:5555) > QUAKKA/IM4HC > QUK') }
+    it { expect(interface_connector.to_label).to eq('BAR in (tcp://99.88.77.66:5555) > QUAKKA/IM4HC > QUK') }
   end
 
   describe "#direction" do
@@ -53,11 +55,11 @@ RSpec.describe InterfaceConnector, type: :model do
   end
 
   describe "#host" do
-    it { expect(interface_connector.host).to eq('0.0.0.0') }
+    it { expect(interface_connector.host).to eq('99.88.77.66') }
   end
 
   describe "#ipaddress" do
-    it { expect(interface_connector.ipaddress).to be_nil }
+    it { expect(interface_connector.ipaddress.to_s).to eq('99.88.77.66') }
   end
 
   describe "#port" do
@@ -78,11 +80,6 @@ RSpec.describe InterfaceConnector, type: :model do
       allow(software_interface).to receive(:ipaddress).and_return(ip)
       software_interface.save; software_interface.reload
       expect(interface_connector.ipaddress.to_s).to eq("12.34.56.78")
-    end
-    it "doesn't replace 0.0.0.0 if software interface has no ip" do
-      software_interface.save; software_interface.reload
-      expect(interface_connector.ipaddress).to be_nil
-      expect(interface_connector.host.to_s).to eq("0.0.0.0")
     end
   end
 
