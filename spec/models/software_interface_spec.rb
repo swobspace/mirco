@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe SoftwareInterface, type: :model do
+  let(:host) do
+    FactoryBot.create(:host, 
+      hostname: 'SSrv'
+    )
+  end
   let(:software_interface) do
     FactoryBot.create(:software_interface, 
+      host: host,
       name: '.NETHL7',
-      hostname: 'SSrv'
     )
   end
   it { is_expected.to belong_to(:software) }

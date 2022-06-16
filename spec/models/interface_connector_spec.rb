@@ -56,6 +56,10 @@ RSpec.describe InterfaceConnector, type: :model do
     it { expect(interface_connector.host).to eq('0.0.0.0') }
   end
 
+  describe "#ipaddress" do
+    it { expect(interface_connector.ipaddress).to be_nil }
+  end
+
   describe "#port" do
     it { expect(interface_connector.port).to eq(5555) }
   end
@@ -73,10 +77,11 @@ RSpec.describe InterfaceConnector, type: :model do
     it "replace 0.0.0.0 by ipaddress of software_interface if present" do
       allow(software_interface).to receive(:ipaddress).and_return(ip)
       software_interface.save; software_interface.reload
-      expect(interface_connector.host.to_s).to eq("12.34.56.78")
+      expect(interface_connector.ipaddress.to_s).to eq("12.34.56.78")
     end
     it "doesn't replace 0.0.0.0 if software interface has no ip" do
       software_interface.save; software_interface.reload
+      expect(interface_connector.ipaddress).to be_nil
       expect(interface_connector.host.to_s).to eq("0.0.0.0")
     end
   end

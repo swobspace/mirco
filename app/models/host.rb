@@ -5,6 +5,8 @@ class Host < ApplicationRecord
   has_many :servers, dependent: :restrict_with_error
   has_many :software_interfaces, dependent: :restrict_with_error
 
+  alias_attribute :hostname, :name
+
   # -- configuration
   has_rich_text :description
 

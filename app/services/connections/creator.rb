@@ -56,8 +56,8 @@ module Connections
 
     def true_source_url(url)
       uri = URI(url)
-      if uri.host == '0.0.0.0'
-        uri.host = source_channel.host
+      if (uri.host == '0.0.0.0' || uri.host == 'localhost' || uri.host == '127.0.0.1') and source_channel.ipaddress.present?
+          uri.host = source_channel.ipaddress
       end
       uri.to_s
     end

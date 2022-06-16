@@ -13,7 +13,7 @@ RSpec.describe Connections::Creator, type: :model do
   subject { Connections::Creator.new(channel: channel) }
   before(:each) do
     allow(channel).to receive(:location).and_return(location)
-    allow(channel).to receive(:host).and_return('1.2.3.4')
+    allow(channel).to receive(:ipaddress).and_return('1.2.3.4')
   end
 
   describe "#connection_attributes" do
