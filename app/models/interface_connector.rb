@@ -25,7 +25,7 @@ class InterfaceConnector < ApplicationRecord
   validates_inclusion_of :type, in: TYPES
 
   delegate :port, :host, :scheme, to: :uri
-  delegate :location, :hostname, :ipaddress, to: :software_interface
+  delegate :location, :hostname, :ipaddress, to: :software_interface, allow_nil: true
 
   def to_s
     "#{name} (#{url})"
@@ -33,7 +33,7 @@ class InterfaceConnector < ApplicationRecord
 
   def to_label
     # "#{url} - #{name} - #{sw_name}, #{location.lid}"
-    "#{name} (#{url}) > #{sw_name}/#{if_name} > #{location.lid}"
+    "#{name} (#{url}) > #{sw_name}/#{if_name} > #{location&.lid}"
   end
 
   def if_name
