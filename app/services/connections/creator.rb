@@ -17,9 +17,11 @@ module Connections
     def save
       build_connection_attributes(source_channel, [source_channel.id])
       connection_attributes.each do |attributes|
+        find_attributes = attributes.slice!('location_id', 'source_url', 
+                                            'channel_ids', 'destination_url')
         software_connection = SoftwareConnection
-                              .create_with(channel_ids: attributes['channel_ids'])
-                              .find_or_create_by(attributes.except('channel_ids'))
+                              .create_with(attributes)
+                              .find_or_create_by(find_attributes)
         Mirco::ConnectionDiagram.new(software_connection).delete
         unless software_connection.channel_ids == attributes['channel_ids']
           software_connection.update(channel_ids: attributes['channel_ids'])
@@ -45,6 +47,7 @@ module Connections
         if dst.url.present?
           @connection_attributes << { 'location_id' => location.id,
                                       'source_url' => source_url,
+                                      'server_id' => channel.server_id,
                                       'channel_ids'=> channel_ids,
                                       'destination_url' => dst.url }
         elsif dst.destination_channel_id.present?
