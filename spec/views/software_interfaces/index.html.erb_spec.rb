@@ -20,7 +20,6 @@ RSpec.describe "software_interfaces/index", type: :view do
       ),
       SoftwareInterface.create!(
         software: software,
-        name: "Name",
         name: "IF Anywhere",
         host: host,
         description: 'some text'
