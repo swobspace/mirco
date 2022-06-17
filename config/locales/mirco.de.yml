@@ -161,6 +161,7 @@ de:
     hosts: Hosts
     interface_connectors: Connectors
     locations: Standorte
+    locations/hosts: Hosts
     notes: Notizen
     pages: Seiten
     servers: Mirth-Systeme

@@ -4,7 +4,11 @@ class HostsController < ApplicationController
 
   # GET /hosts
   def index
-    @hosts = Host.all
+    if @location
+      @hosts = @location.hosts
+    else
+      @hosts = Host.all
+    end
     respond_with(@hosts)
   end
 
@@ -15,7 +19,11 @@ class HostsController < ApplicationController
 
   # GET /hosts/new
   def new
-    @host = Host.new
+    if @location
+      @host = @location.hosts.build
+    else
+      @host = Host.new
+    end
     respond_with(@host)
   end
 
@@ -25,22 +33,26 @@ class HostsController < ApplicationController
 
   # POST /hosts
   def create
-    @host = Host.new(host_params)
+    if @location
+      @host = @location.hosts.create(host_params)
+    else
+      @host = Host.new(host_params)
+    end
 
     @host.save
-    respond_with(@host)
+    respond_with(@host, location: rlocation)
   end
 
   # PATCH/PUT /hosts/1
   def update
     @host.update(host_params)
-    respond_with(@host)
+    respond_with(@host, location: rlocation)
   end
 
   # DELETE /hosts/1
   def destroy
     @host.destroy
-    respond_with(@host)
+    respond_with(@host, location: rlocation)
   end
 
   private
@@ -52,5 +64,8 @@ class HostsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def host_params
       params.require(:host).permit(:location_id, :software_group_id, :name, :ipaddress, :description)
+    end
+    def rlocation
+      polymorphic_path(@host || :hosts)
     end
 end

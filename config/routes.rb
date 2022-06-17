@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :software do
     resources :software_interfaces, module: :software
   end
-  resources :locations
+  resources :locations do
+    resources :hosts, module: :locations
+  end
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: %i[show index] do
