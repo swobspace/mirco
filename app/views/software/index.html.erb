@@ -33,7 +33,7 @@
     <tbody>
       <% @software.each do |software| %>
         <%= content_tag(:tr, id: dom_id(software), class: dom_class(software)) do %>
-                <td><%= link_to software.location %></td>
+                <td><%= link_to software.location&.lid %></td>
                 <td><%= link_to software.name, software %></td>
                 <td><%= software.vendor %></td>
                 <td><%= software.software_group %></td>
