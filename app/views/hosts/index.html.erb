@@ -35,7 +35,7 @@
     <tbody>
       <% @hosts.each do |host| %>
         <%= content_tag(:tr, id: dom_id(host), class: dom_class(host)) do %>
-                <td><%= host.location %></td>
+                <td><%= host.location&.lid %></td>
                 <td><%= host.software_group %></td>
                 <td><%= host.name %></td>
                 <td><%= host.ipaddress %></td>
