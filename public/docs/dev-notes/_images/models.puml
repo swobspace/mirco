@@ -10,6 +10,9 @@ class Location {
 class Host {
   ...
 }
+class SoftwareConnection {
+  ...
+}
 
 class Server  {
   location_id
@@ -87,6 +90,7 @@ class ServerConfiguration {
 
 Location "1" -- "*" Server
 Host "1" -- "*" Server
+SoftwareConnection "*" -- "1" "Server"
 Server "1" -- "*" Channel
 Server "1" - "*" ServerConfiguration
 Server "1" - "*" ChannelStatistic

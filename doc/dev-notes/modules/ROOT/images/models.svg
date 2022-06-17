@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="979px" preserveAspectRatio="none" style="width:746px;height:979px;background:#FFFFFF;" version="1.1" viewBox="0 0 746 979" width="746px" zoomAndPan="magnify">
     <defs>
-        <filter height="300%" id="f1rjlvhpr6nso4" width="300%" x="-1" y="-1">
+        <filter height="300%" id="f1jludu1plckye" width="300%" x="-1" y="-1">
             <feGaussianBlur result="blurOut" stdDeviation="2.0" />
             <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
             <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
@@ -11,34 +11,46 @@
         <!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
 class Location-->
         <g id="elem_Location">
-            <rect codeLine="5" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="283.5" y="7" />
-            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="283.5" y="7" />
-            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="283.5" y="34" />
-            <rect codeLine="5" fill="none" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="283.5" y="7" />
-            <ellipse cx="302.55" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M305.5188,28.6406 Q304.9406,28.9375 304.3,29.0781 Q303.6594,29.2344 302.9563,29.2344 Q300.4563,29.2344 299.1281,27.5938 Q297.8156,25.9375 297.8156,22.8125 Q297.8156,19.6875 299.1281,18.0313 Q300.4563,16.375 302.9563,16.375 Q303.6594,16.375 304.3,16.5313 Q304.9563,16.6875 305.5188,16.9844 L305.5188,19.7031 Q304.8938,19.125 304.3,18.8594 Q303.7063,18.5781 303.0813,18.5781 Q301.7375,18.5781 301.05,19.6563 Q300.3625,20.7188 300.3625,22.8125 Q300.3625,24.9063 301.05,25.9844 Q301.7375,27.0469 303.0813,27.0469 Q303.7063,27.0469 304.3,26.7813 Q304.8938,26.5 305.5188,25.9219 L305.5188,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="317.45" y="27.8467">Location</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="284.5" x2="381.5" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="289.5" y="55.9951">lid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="289.5" y="72.292">name: string</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="284.5" x2="381.5" y1="79.5938" y2="79.5938" />
+            <rect codeLine="5" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="225.5" y="7" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="225.5" y="7" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="99" x="225.5" y="34" />
+            <rect codeLine="5" fill="none" height="80.5938" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="99" x="225.5" y="7" />
+            <ellipse cx="244.55" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M247.5188,28.6406 Q246.9406,28.9375 246.3,29.0781 Q245.6594,29.2344 244.9563,29.2344 Q242.4563,29.2344 241.1281,27.5938 Q239.8156,25.9375 239.8156,22.8125 Q239.8156,19.6875 241.1281,18.0313 Q242.4563,16.375 244.9563,16.375 Q245.6594,16.375 246.3,16.5313 Q246.9563,16.6875 247.5188,16.9844 L247.5188,19.7031 Q246.8938,19.125 246.3,18.8594 Q245.7063,18.5781 245.0813,18.5781 Q243.7375,18.5781 243.05,19.6563 Q242.3625,20.7188 242.3625,22.8125 Q242.3625,24.9063 243.05,25.9844 Q243.7375,27.0469 245.0813,27.0469 Q245.7063,27.0469 246.3,26.7813 Q246.8938,26.5 247.5188,25.9219 L247.5188,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="259.45" y="27.8467">Location</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="226.5" x2="323.5" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="231.5" y="55.9951">lid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="231.5" y="72.292">name: string</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="226.5" x2="323.5" y1="79.5938" y2="79.5938" />
         </g>
         <!--MD5=[c62846c0c9715c1d98dd5933e5913037]
 class Host-->
         <g id="elem_Host">
-            <rect codeLine="9" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="418" y="15.5" />
-            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="418" y="15.5" />
-            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="418" y="42.5" />
-            <rect codeLine="9" fill="none" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="418" y="15.5" />
-            <ellipse cx="433" cy="31.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M435.9688,37.1406 Q435.3906,37.4375 434.75,37.5781 Q434.1094,37.7344 433.4063,37.7344 Q430.9063,37.7344 429.5781,36.0938 Q428.2656,34.4375 428.2656,31.3125 Q428.2656,28.1875 429.5781,26.5313 Q430.9063,24.875 433.4063,24.875 Q434.1094,24.875 434.75,25.0313 Q435.4063,25.1875 435.9688,25.4844 L435.9688,28.2031 Q435.3438,27.625 434.75,27.3594 Q434.1563,27.0781 433.5313,27.0781 Q432.1875,27.0781 431.5,28.1563 Q430.8125,29.2188 430.8125,31.3125 Q430.8125,33.4063 431.5,34.4844 Q432.1875,35.5469 433.5313,35.5469 Q434.1563,35.5469 434.75,35.2813 Q435.3438,35 435.9688,34.4219 L435.9688,37.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="447" y="36.3467">Host</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="419" x2="481" y1="47.5" y2="47.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="424" y="64.4951">...</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="419" x2="481" y1="71.7969" y2="71.7969" />
+            <rect codeLine="9" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="360" y="15.5" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="360" y="15.5" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="64" x="360" y="42.5" />
+            <rect codeLine="9" fill="none" height="64.2969" id="Host" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="64" x="360" y="15.5" />
+            <ellipse cx="375" cy="31.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M377.9688,37.1406 Q377.3906,37.4375 376.75,37.5781 Q376.1094,37.7344 375.4063,37.7344 Q372.9063,37.7344 371.5781,36.0938 Q370.2656,34.4375 370.2656,31.3125 Q370.2656,28.1875 371.5781,26.5313 Q372.9063,24.875 375.4063,24.875 Q376.1094,24.875 376.75,25.0313 Q377.4063,25.1875 377.9688,25.4844 L377.9688,28.2031 Q377.3438,27.625 376.75,27.3594 Q376.1563,27.0781 375.5313,27.0781 Q374.1875,27.0781 373.5,28.1563 Q372.8125,29.2188 372.8125,31.3125 Q372.8125,33.4063 373.5,34.4844 Q374.1875,35.5469 375.5313,35.5469 Q376.1563,35.5469 376.75,35.2813 Q377.3438,35 377.9688,34.4219 L377.9688,37.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="389" y="36.3467">Host</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="361" x2="423" y1="47.5" y2="47.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="366" y="64.4951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="361" x2="423" y1="71.7969" y2="71.7969" />
+        </g>
+        <!--MD5=[9a4e82909ed2a34282a01ef45d4a08d6]
+class SoftwareConnection-->
+        <g id="elem_SoftwareConnection">
+            <rect codeLine="12" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="64.2969" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="172" x="459" y="15.5" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="172" x="459" y="15.5" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="172" x="459" y="42.5" />
+            <rect codeLine="12" fill="none" height="64.2969" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="172" x="459" y="15.5" />
+            <ellipse cx="474" cy="31.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M476.9688,37.1406 Q476.3906,37.4375 475.75,37.5781 Q475.1094,37.7344 474.4063,37.7344 Q471.9063,37.7344 470.5781,36.0938 Q469.2656,34.4375 469.2656,31.3125 Q469.2656,28.1875 470.5781,26.5313 Q471.9063,24.875 474.4063,24.875 Q475.1094,24.875 475.75,25.0313 Q476.4063,25.1875 476.9688,25.4844 L476.9688,28.2031 Q476.3438,27.625 475.75,27.3594 Q475.1563,27.0781 474.5313,27.0781 Q473.1875,27.0781 472.5,28.1563 Q471.8125,29.2188 471.8125,31.3125 Q471.8125,33.4063 472.5,34.4844 Q473.1875,35.5469 474.5313,35.5469 Q475.1563,35.5469 475.75,35.2813 Q476.3438,35 476.9688,34.4219 L476.9688,37.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="488" y="36.3467">SoftwareConnection</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="460" x2="630" y1="47.5" y2="47.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="465" y="64.4951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="460" x2="630" y1="71.7969" y2="71.7969" />
         </g>
         <!--MD5=[c60af77fe5573b84a4aa4bce89659574]
 class Server-->
         <g id="elem_Server">
-            <rect codeLine="13" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="276.1563" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="249" x="267.5" y="148" />
+            <rect codeLine="16" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="276.1563" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="249" x="267.5" y="148" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="249" x="267.5" y="148" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="249" x="267.5" y="175" />
-            <rect codeLine="13" fill="none" height="276.1563" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="249" x="267.5" y="148" />
+            <rect codeLine="16" fill="none" height="276.1563" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="249" x="267.5" y="148" />
             <ellipse cx="365.75" cy="164" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M368.7188,169.6406 Q368.1406,169.9375 367.5,170.0781 Q366.8594,170.2344 366.1563,170.2344 Q363.6563,170.2344 362.3281,168.5938 Q361.0156,166.9375 361.0156,163.8125 Q361.0156,160.6875 362.3281,159.0313 Q363.6563,157.375 366.1563,157.375 Q366.8594,157.375 367.5,157.5313 Q368.1563,157.6875 368.7188,157.9844 L368.7188,160.7031 Q368.0938,160.125 367.5,159.8594 Q366.9063,159.5781 366.2813,159.5781 Q364.9375,159.5781 364.25,160.6563 Q363.5625,161.7188 363.5625,163.8125 Q363.5625,165.9063 364.25,166.9844 Q364.9375,168.0469 366.2813,168.0469 Q366.9063,168.0469 367.5,167.7813 Q368.0938,167.5 368.7188,166.9219 L368.7188,169.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44" x="386.25" y="168.8467">Server</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="268.5" x2="515.5" y1="180" y2="180" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="273.5" y="196.9951">location_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="273.5" y="213.292">host_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="273.5" y="229.5889">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="273.5" y="245.8857">uid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="273.5" y="262.1826">description: text</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="273.5" y="278.4795">api_url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="273.5" y="294.7764">api_user: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="205" x="273.5" y="311.0732">api_password_ciphertext: text</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="237" x="273.5" y="327.3701">api_user_has_full_access: boolean</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="273.5" y="343.667">api_verify_ssl: boolean</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="273.5" y="359.9639">properties: jsonb</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224" x="273.5" y="376.2607">last_channel_update: timestamp</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="155" x="273.5" y="392.5576">last_check: timestamp</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="179" x="273.5" y="408.8545">last_check_ok: timestamp</text>
@@ -47,10 +59,10 @@ class Server-->
         <!--MD5=[1e4e6ac1845d89d680410515caa0c0ac]
 class Channel-->
         <g id="elem_Channel">
-            <rect codeLine="30" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="80.5938" id="Channel" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="130" x="7" y="589.5" />
+            <rect codeLine="33" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="80.5938" id="Channel" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="130" x="7" y="589.5" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="130" x="7" y="589.5" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="130" x="7" y="616.5" />
-            <rect codeLine="30" fill="none" height="80.5938" id="Channel" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="130" x="7" y="589.5" />
+            <rect codeLine="33" fill="none" height="80.5938" id="Channel" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="130" x="7" y="589.5" />
             <ellipse cx="40.45" cy="605.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M43.4188,611.1406 Q42.8406,611.4375 42.2,611.5781 Q41.5594,611.7344 40.8563,611.7344 Q38.3563,611.7344 37.0281,610.0938 Q35.7156,608.4375 35.7156,605.3125 Q35.7156,602.1875 37.0281,600.5313 Q38.3563,598.875 40.8563,598.875 Q41.5594,598.875 42.2,599.0313 Q42.8563,599.1875 43.4188,599.4844 L43.4188,602.2031 Q42.7938,601.625 42.2,601.3594 Q41.6063,601.0781 40.9813,601.0781 Q39.6375,601.0781 38.95,602.1563 Q38.2625,603.2188 38.2625,605.3125 Q38.2625,607.4063 38.95,608.4844 Q39.6375,609.5469 40.9813,609.5469 Q41.6063,609.5469 42.2,609.2813 Q42.7938,609 43.4188,608.4219 L43.4188,611.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="57" x="58.55" y="610.3467">Channel</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="136" y1="621.5" y2="621.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="13" y="638.4951">uid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="13" y="654.792">properties: jsonb</text>
@@ -59,10 +71,10 @@ class Channel-->
         <!--MD5=[c7e4a3a7f219bd375d4e17cb1ffb3909]
 class ChannelStatistic-->
         <g id="elem_ChannelStatistic">
-            <rect codeLine="35" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="292.4531" id="ChannelStatistic" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="248" x="172" y="484" />
+            <rect codeLine="38" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="292.4531" id="ChannelStatistic" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="248" x="172" y="484" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="248" x="172" y="484" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="248" x="172" y="511" />
-            <rect codeLine="35" fill="none" height="292.4531" id="ChannelStatistic" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="248" x="172" y="484" />
+            <rect codeLine="38" fill="none" height="292.4531" id="ChannelStatistic" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="248" x="172" y="484" />
             <ellipse cx="236.25" cy="500" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M239.2188,505.6406 Q238.6406,505.9375 238,506.0781 Q237.3594,506.2344 236.6563,506.2344 Q234.1563,506.2344 232.8281,504.5938 Q231.5156,502.9375 231.5156,499.8125 Q231.5156,496.6875 232.8281,495.0313 Q234.1563,493.375 236.6563,493.375 Q237.3594,493.375 238,493.5313 Q238.6563,493.6875 239.2188,493.9844 L239.2188,496.7031 Q238.5938,496.125 238,495.8594 Q237.4063,495.5781 236.7813,495.5781 Q235.4375,495.5781 234.75,496.6563 Q234.0625,497.7188 234.0625,499.8125 Q234.0625,501.9063 234.75,502.9844 Q235.4375,504.0469 236.7813,504.0469 Q237.4063,504.0469 238,503.7813 Q238.5938,503.5 239.2188,502.9219 L239.2188,505.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="256.75" y="504.8467">ChannelStatistic</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="173" x2="419" y1="516" y2="516" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="178" y="532.9951">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="178" y="549.292">channel_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="178" y="565.5889">server_uid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="178" y="581.8857">channel_uid: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="178" y="598.1826">meta_data_id: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="178" y="614.4795">name: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="178" y="630.7764">state: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="178" y="647.0732">status_type: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117" x="178" y="663.3701">received: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="178" y="679.667">sent: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="178" y="695.9639">error: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="178" y="712.2607">filtered: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="178" y="728.5576">queued: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="178" y="744.8545">condition: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="236" x="178" y="761.1514">last_condition_change: timestamp</text>
@@ -71,10 +83,10 @@ class ChannelStatistic-->
         <!--MD5=[13ebb944a94f76c7ef0a19d303697e17]
 class ChannelCounter-->
         <g id="elem_ChannelCounter">
-            <rect codeLine="53" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="194.6719" id="ChannelCounter" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="161" x="71.5" y="188.5" />
+            <rect codeLine="56" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="194.6719" id="ChannelCounter" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="161" x="71.5" y="188.5" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="161" x="71.5" y="188.5" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="161" x="71.5" y="215.5" />
-            <rect codeLine="53" fill="none" height="194.6719" id="ChannelCounter" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="161" x="71.5" y="188.5" />
+            <rect codeLine="56" fill="none" height="194.6719" id="ChannelCounter" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="161" x="71.5" y="188.5" />
             <ellipse cx="93.7" cy="204.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M96.6688,210.1406 Q96.0906,210.4375 95.45,210.5781 Q94.8094,210.7344 94.1063,210.7344 Q91.6063,210.7344 90.2781,209.0938 Q88.9656,207.4375 88.9656,204.3125 Q88.9656,201.1875 90.2781,199.5313 Q91.6063,197.875 94.1063,197.875 Q94.8094,197.875 95.45,198.0313 Q96.1063,198.1875 96.6688,198.4844 L96.6688,201.2031 Q96.0438,200.625 95.45,200.3594 Q94.8563,200.0781 94.2313,200.0781 Q92.8875,200.0781 92.2,201.1563 Q91.5125,202.2188 91.5125,204.3125 Q91.5125,206.4063 92.2,207.4844 Q92.8875,208.5469 94.2313,208.5469 Q94.8563,208.5469 95.45,208.2813 Q96.0438,208 96.6688,207.4219 L96.6688,210.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="109.3" y="209.3467">ChannelCounter</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="72.5" x2="231.5" y1="220.5" y2="220.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="77.5" y="237.4951">channel_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="77.5" y="253.792">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="77.5" y="270.0889">channel_statistic_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="77.5" y="286.3857">meta_data_id: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="117" x="77.5" y="302.6826">received: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="77.5" y="318.9795">sent: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="91" x="77.5" y="335.2764">error: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="77.5" y="351.5732">filtered: integer</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="77.5" y="367.8701">queued: integer</text>
@@ -83,10 +95,10 @@ class ChannelCounter-->
         <!--MD5=[0df93ba7b86d6e3ff3f57d8b1170b96e]
 class Alert-->
         <g id="elem_Alert">
-            <rect codeLine="65" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="129.4844" id="Alert" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="200" x="88" y="836" />
+            <rect codeLine="68" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="129.4844" id="Alert" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="200" x="88" y="836" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="200" x="88" y="836" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="200" x="88" y="863" />
-            <rect codeLine="65" fill="none" height="129.4844" id="Alert" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="200" x="88" y="836" />
+            <rect codeLine="68" fill="none" height="129.4844" id="Alert" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="200" x="88" y="836" />
             <ellipse cx="168.25" cy="852" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M171.2188,857.6406 Q170.6406,857.9375 170,858.0781 Q169.3594,858.2344 168.6563,858.2344 Q166.1563,858.2344 164.8281,856.5938 Q163.5156,854.9375 163.5156,851.8125 Q163.5156,848.6875 164.8281,847.0313 Q166.1563,845.375 168.6563,845.375 Q169.3594,845.375 170,845.5313 Q170.6563,845.6875 171.2188,845.9844 L171.2188,848.7031 Q170.5938,848.125 170,847.8594 Q169.4063,847.5781 168.7813,847.5781 Q167.4375,847.5781 166.75,848.6563 Q166.0625,849.7188 166.0625,851.8125 Q166.0625,853.9063 166.75,854.9844 Q167.4375,856.0469 168.7813,856.0469 Q169.4063,856.0469 170,855.7813 Q170.5938,855.5 171.2188,854.9219 L171.2188,857.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="188.75" y="856.8467">Alert</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="89" x2="287" y1="868" y2="868" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="94" y="884.9951">channel_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="94" y="901.292">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="94" y="917.5889">channel_statistic_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="188" x="94" y="933.8857">type: string : alert, recovery</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="94" y="950.1826">message: text</text>
@@ -95,10 +107,10 @@ class Alert-->
         <!--MD5=[5d3c9bb25b1b07c105e03cfa5bc0b7ee]
 class Note-->
         <g id="elem_Note">
-            <rect codeLine="73" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="129.4844" id="Note" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="162" x="323" y="836" />
+            <rect codeLine="76" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="129.4844" id="Note" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="162" x="323" y="836" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="162" x="323" y="836" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="162" x="323" y="863" />
-            <rect codeLine="73" fill="none" height="129.4844" id="Note" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="162" x="323" y="836" />
+            <rect codeLine="76" fill="none" height="129.4844" id="Note" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="162" x="323" y="836" />
             <ellipse cx="383.25" cy="852" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M386.2188,857.6406 Q385.6406,857.9375 385,858.0781 Q384.3594,858.2344 383.6563,858.2344 Q381.1563,858.2344 379.8281,856.5938 Q378.5156,854.9375 378.5156,851.8125 Q378.5156,848.6875 379.8281,847.0313 Q381.1563,845.375 383.6563,845.375 Q384.3594,845.375 385,845.5313 Q385.6563,845.6875 386.2188,845.9844 L386.2188,848.7031 Q385.5938,848.125 385,847.8594 Q384.4063,847.5781 383.7813,847.5781 Q382.4375,847.5781 381.75,848.6563 Q381.0625,849.7188 381.0625,851.8125 Q381.0625,853.9063 381.75,854.9844 Q382.4375,856.0469 383.7813,856.0469 Q384.4063,856.0469 385,855.7813 Q385.5938,855.5 386.2188,854.9219 L386.2188,857.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="403.75" y="856.8467">Note</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="324" x2="484" y1="868" y2="868" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="329" y="884.9951">channel_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="329" y="901.292">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="329" y="917.5889">channel_statistic_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="329" y="933.8857">user_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="150" x="329" y="950.1826">type: string : ack, mail</text>
@@ -107,10 +119,10 @@ class Note-->
         <!--MD5=[d19e87a2954ae03571d2212ad7d3f494]
 class ServerConfiguration-->
         <g id="elem_ServerConfiguration">
-            <rect codeLine="81" fill="#FFF1D9" filter="url(#f1rjlvhpr6nso4)" height="96.8906" id="ServerConfiguration" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="181" x="551.5" y="237.5" />
+            <rect codeLine="84" fill="#FFF1D9" filter="url(#f1jludu1plckye)" height="96.8906" id="ServerConfiguration" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="181" x="551.5" y="237.5" />
             <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="181" x="551.5" y="237.5" />
             <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="181" x="551.5" y="264.5" />
-            <rect codeLine="81" fill="none" height="96.8906" id="ServerConfiguration" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="181" x="551.5" y="237.5" />
+            <rect codeLine="84" fill="none" height="96.8906" id="ServerConfiguration" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="181" x="551.5" y="237.5" />
             <ellipse cx="572.35" cy="253.5" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
             <path d="M575.3188,259.1406 Q574.7406,259.4375 574.1,259.5781 Q573.4594,259.7344 572.7563,259.7344 Q570.2563,259.7344 568.9281,258.0938 Q567.6156,256.4375 567.6156,253.3125 Q567.6156,250.1875 568.9281,248.5313 Q570.2563,246.875 572.7563,246.875 Q573.4594,246.875 574.1,247.0313 Q574.7563,247.1875 575.3188,247.4844 L575.3188,250.2031 Q574.6938,249.625 574.1,249.3594 Q573.5063,249.0781 572.8813,249.0781 Q571.5375,249.0781 570.85,250.1563 Q570.1625,251.2188 570.1625,253.3125 Q570.1625,255.4063 570.85,256.4844 Q571.5375,257.5469 572.8813,257.5469 Q573.5063,257.5469 574.1,257.2813 Q574.6938,257 575.3188,256.4219 L575.3188,259.1406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="587.65" y="258.3467">ServerConfiguration</text>
             <line style="stroke:#181818;stroke-width:0.5;" x1="552.5" x2="731.5" y1="269.5" y2="269.5" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="571.5" y="286.4951">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="571.5" y="302.792">comment: string</text>
@@ -120,79 +132,84 @@ class ServerConfiguration-->
         <!--MD5=[ff05fea499c3ce8f68d82856ddb7c3bc]
 link Location to Server-->
         <g id="link_Location_Server">
-            <path codeLine="87" d="M342.88,88.08 C347.11,105.05 352.32,125.96 357.76,147.76 " fill="none" id="Location-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="335.7804" y="107.5504">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="348.6961" y="136.8561">*</text>
+            <path codeLine="90" d="M294.58,88.08 C302.97,105.05 313.32,125.96 324.11,147.76 " fill="none" id="Location-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="288.9657" y="107.5504">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="313.2059" y="136.8561">*</text>
         </g>
         <!--MD5=[98bb40404081c9409142fcd2a16e7a2d]
 link Host to Server-->
         <g id="link_Host_Server">
-            <path codeLine="88" d="M442.3,79.91 C437.85,98.06 431.9,122.31 425.66,147.76 " fill="none" id="Host-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="431.9966" y="99.818">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="420.3094" y="136.8561">*</text>
+            <path codeLine="91" d="M392,79.91 C392,98.06 392,122.31 392,147.76 " fill="none" id="Host-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="383.2125" y="99.818">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="384.8086" y="136.8561">*</text>
+        </g>
+        <!--MD5=[2ae6832cfa9b6872f98777380031d694]
+link SoftwareConnection to Server-->
+        <g id="link_SoftwareConnection_Server">
+            <path codeLine="92" d="M524.68,79.91 C512.94,98.06 497.25,122.31 480.79,147.76 " fill="none" id="SoftwareConnection-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="512.9904" y="99.818">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="477.427" y="136.8561">1</text>
         </g>
         <!--MD5=[af90eddff4a748015562140671816059]
 link Server to Channel-->
         <g id="link_Server_Channel">
-            <path codeLine="89" d="M267.45,409.85 C261.64,414.73 255.8,419.47 250,424 C210.35,454.97 188.79,447.65 154,484 C124.61,514.71 101.93,557.97 87.95,589.23 " fill="none" id="Server-Channel" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="251.6165" y="414.0063">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="83.012" y="578.3468">*</text>
+            <path codeLine="93" d="M267.45,409.85 C261.64,414.73 255.8,419.47 250,424 C210.35,454.97 188.79,447.65 154,484 C124.61,514.71 101.93,557.97 87.95,589.23 " fill="none" id="Server-Channel" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="251.6165" y="414.0063">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="83.012" y="578.3468">*</text>
         </g>
         <!--MD5=[830d6e454d5b2f37b38112460f363d60]
 link Server to ServerConfiguration-->
         <g id="link_Server_ServerConfiguration">
-            <path codeLine="90" d="M516.51,286 C528.11,286 539.71,286 551.32,286 " fill="none" id="Server-ServerConfiguration" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="524.3411" y="282.6091">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="536.5207" y="282.4558">*</text>
+            <path codeLine="94" d="M516.51,286 C528.11,286 539.71,286 551.32,286 " fill="none" id="Server-ServerConfiguration" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="524.3411" y="282.6091">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="536.5207" y="282.4558">*</text>
         </g>
         <!--MD5=[faf6992dae569d3f9d8c0508873b900b]
 link Server to ChannelStatistic-->
         <g id="link_Server_ChannelStatistic">
-            <path codeLine="91" d="M353.51,424.13 C347.98,443.83 342.27,464.16 336.7,484 " fill="none" id="Server-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="343.1863" y="444.1604">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="331.6181" y="473.1438">*</text>
+            <path codeLine="95" d="M353.51,424.13 C347.98,443.83 342.27,464.16 336.7,484 " fill="none" id="Server-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="343.1863" y="444.1604">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="331.6181" y="473.1438">*</text>
         </g>
         <!--MD5=[02fb209db51a37146f55d7f3b5bc6356]
 link Channel to ChannelStatistic-->
         <g id="link_Channel_ChannelStatistic">
-            <path codeLine="92" d="M137.19,630 C148.77,630 160.35,630 171.93,630 " fill="none" id="Channel-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="145.1901" y="626.2309">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="157.1562" y="626.6001">*</text>
+            <path codeLine="96" d="M137.19,630 C148.77,630 160.35,630 171.93,630 " fill="none" id="Channel-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="145.1901" y="626.2309">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="157.1562" y="626.6001">*</text>
         </g>
         <!--MD5=[fbc738c16708044cbeb4f448191a1908]
 link ChannelCounter to Server-->
         <g id="link_ChannelCounter_Server">
-            <path codeLine="93" d="M232.62,286 C244.25,286 255.87,286 267.49,286 " fill="none" id="ChannelCounter-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="240.3748" y="282.3967">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="251.6589" y="282.6091">1</text>
+            <path codeLine="97" d="M232.62,286 C244.25,286 255.87,286 267.49,286 " fill="none" id="ChannelCounter-Server" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="240.3748" y="282.3967">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="251.6589" y="282.6091">1</text>
         </g>
         <!--MD5=[b5736cd7f93e7ae9006cc69f0c23953f]
 link ChannelCounter to Channel-->
         <g id="link_ChannelCounter_Channel">
-            <path codeLine="94" d="M129.4,383.63 C113.46,451.78 92.94,539.49 81.25,589.47 " fill="none" id="ChannelCounter-Channel" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="120.5648" y="403.1051">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="74.1523" y="578.3281">1</text>
+            <path codeLine="98" d="M129.4,383.63 C113.46,451.78 92.94,539.49 81.25,589.47 " fill="none" id="ChannelCounter-Channel" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="120.5648" y="403.1051">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="74.1523" y="578.3281">1</text>
         </g>
         <!--MD5=[bbb9afc21c5fea95aabcd00d79c6ecf1]
 link ChannelCounter to ChannelStatistic-->
         <g id="link_ChannelCounter_ChannelStatistic">
-            <path codeLine="95" d="M192.69,383.63 C205.79,414.74 220.6,449.93 234.84,483.75 " fill="none" id="ChannelCounter-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="188.3049" y="403.1051">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="223.4802" y="472.8809">1</text>
+            <path codeLine="99" d="M192.69,383.63 C205.79,414.74 220.6,449.93 234.84,483.75 " fill="none" id="ChannelCounter-ChannelStatistic" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="188.3049" y="403.1051">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="223.4802" y="472.8809">1</text>
         </g>
         <!--MD5=[987492a66c42a09406bf1d72e829ce6c]
 link Server to Alert-->
         <g id="link_Server_Alert">
-            <path codeLine="96" d="M448.11,424.18 C481.25,528.73 505,671.96 438,776 C403.11,830.18 363.74,807.38 306,836 C300.16,838.89 294.19,841.91 288.19,845 " fill="none" id="Server-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="442.9598" y="444.2131">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="296.1288" y="837.23">*</text>
+            <path codeLine="100" d="M448.11,424.18 C481.25,528.73 505,671.96 438,776 C403.11,830.18 363.74,807.38 306,836 C300.16,838.89 294.19,841.91 288.19,845 " fill="none" id="Server-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="442.9598" y="444.2131">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="296.1288" y="837.23">*</text>
         </g>
         <!--MD5=[27ed311f81354a581ed11163d2220eff]
 link Channel to Alert-->
         <g id="link_Channel_Alert">
-            <path codeLine="97" d="M89.12,670.62 C107.9,714.09 138.31,784.49 160.46,835.75 " fill="none" id="Channel-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="93.579" y="690.0965">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="150.065" y="824.8953">*</text>
+            <path codeLine="101" d="M89.12,670.62 C107.9,714.09 138.31,784.49 160.46,835.75 " fill="none" id="Channel-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="93.579" y="690.0965">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="150.065" y="824.8953">*</text>
         </g>
         <!--MD5=[4a412d2b4f6ae338b5d74d2103219064]
 link ChannelStatistic to Alert-->
         <g id="link_ChannelStatistic_Alert">
-            <path codeLine="98" d="M237.57,776.25 C229.18,797.13 220.92,817.66 213.63,835.79 " fill="none" id="ChannelStatistic-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="209.7184" y="796.7163">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="209.0505" y="824.9397">*</text>
+            <path codeLine="102" d="M237.57,776.25 C229.18,797.13 220.92,817.66 213.63,835.79 " fill="none" id="ChannelStatistic-Alert" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="209.7184" y="796.7163">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="209.0505" y="824.9397">*</text>
         </g>
         <!--MD5=[ceed5b908f4994f3d88bd37b0b85a256]
 link Server to Note-->
         <g id="link_Server_Note">
-            <path codeLine="99" d="M477.43,424.18 C486.29,443.66 493.9,463.91 499,484 C530.95,609.78 540.79,653.13 499,776 C491.73,797.38 479.09,817.96 465.37,835.97 " fill="none" id="Server-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="473.8832" y="444.2131">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="464.6995" y="825.1394">*</text>
+            <path codeLine="103" d="M477.43,424.18 C486.29,443.66 493.9,463.91 499,484 C530.95,609.78 540.79,653.13 499,776 C491.73,797.38 479.09,817.96 465.37,835.97 " fill="none" id="Server-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="473.8832" y="444.2131">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="464.6995" y="825.1394">*</text>
         </g>
         <!--MD5=[b70cc4d2e094749d2eb05ba79b8eb3be]
 link Channel to Note-->
         <g id="link_Channel_Note">
-            <path codeLine="100" d="M85.83,670.67 C98.9,702.94 121.38,747.62 154,776 C208.79,823.67 241.43,802.76 306,836 C311.59,838.88 317.26,841.99 322.91,845.23 " fill="none" id="Channel-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="62.1102" y="690.1542">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="308.1119" y="836.4941">*</text>
+            <path codeLine="104" d="M85.83,670.67 C98.9,702.94 121.38,747.62 154,776 C208.79,823.67 241.43,802.76 306,836 C311.59,838.88 317.26,841.99 322.91,845.23 " fill="none" id="Channel-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="62.1102" y="690.1542">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="308.1119" y="836.4941">*</text>
         </g>
         <!--MD5=[631f6531af220d90bdc65bbca1a614ce]
 link ChannelStatistic to Note-->
         <g id="link_ChannelStatistic_Note">
-            <path codeLine="101" d="M354.43,776.25 C362.82,797.13 371.08,817.66 378.37,835.79 " fill="none" id="ChannelStatistic-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="332.9691" y="796.7163">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="368.1839" y="824.9397">*</text>
+            <path codeLine="105" d="M354.43,776.25 C362.82,797.13 371.08,817.66 378.37,835.79 " fill="none" id="ChannelStatistic-Note" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="332.9691" y="796.7163">0..1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="368.1839" y="824.9397">*</text>
         </g>
-        <!--MD5=[aa2005a56727637ef33a70a47b41b8ec]
+        <!--MD5=[aba4976882c37870c1d60edf7c35a808]
 @startuml
 top to bottom direction
 
@@ -203,6 +220,9 @@ class Location {
   name: string
 }
 class Host {
+  ...
+}
+class SoftwareConnection {
   ...
 }
 
@@ -282,6 +302,7 @@ class ServerConfiguration {
 
 Location "1" - - "*" Server
 Host "1" - - "*" Server
+SoftwareConnection "*" - - "1" "Server"
 Server "1" - - "*" Channel
 Server "1" - "*" ServerConfiguration
 Server "1" - "*" ChannelStatistic
@@ -337,6 +358,9 @@ class Location {
 class Host {
   ...
 }
+class SoftwareConnection {
+  ...
+}
 
 class Server  {
   location_id
@@ -414,6 +438,7 @@ class ServerConfiguration {
 
 Location "1" - - "*" Server
 Host "1" - - "*" Server
+SoftwareConnection "*" - - "1" "Server"
 Server "1" - - "*" Channel
 Server "1" - "*" ServerConfiguration
 Server "1" - "*" ChannelStatistic

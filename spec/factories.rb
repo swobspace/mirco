@@ -89,6 +89,7 @@ FactoryBot.define do
 
   factory :software_connection do
     location
+    server
     source_url { generate(:url) }
     destination_url { generate(:url) }
   end

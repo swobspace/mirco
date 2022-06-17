@@ -12,6 +12,8 @@ RSpec.describe Server, type: :model do
     ) 
   end
   it { is_expected.to belong_to(:location) }
+  it { is_expected.to belong_to(:host) }
+  it { is_expected.to have_many(:software_connections).dependent(:destroy) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:channels).dependent(:restrict_with_error) }

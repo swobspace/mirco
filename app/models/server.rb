@@ -7,6 +7,7 @@ class Server < ApplicationRecord
   belongs_to :location
   belongs_to :host
   has_many :alerts, dependent: :destroy
+  has_many :software_connections, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error

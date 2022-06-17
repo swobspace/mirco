@@ -16,6 +16,7 @@ RSpec.describe SoftwareConnection, type: :model do
   it { is_expected.to belong_to(:source_connector).class_name('InterfaceConnector').optional }
   it { is_expected.to belong_to(:destination_connector).class_name('InterfaceConnector').optional }
   it { is_expected.to belong_to(:location) }
+  it { is_expected.to belong_to(:server) }
   it { is_expected.to validate_presence_of(:source_url) }
   it { is_expected.to validate_presence_of(:destination_url) }
   it { is_expected.to validate_presence_of(:location_id) }
