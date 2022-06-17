@@ -21,7 +21,7 @@
       
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
-          <td><%= link_to @interface_connector.location.lid, @interface_connector.location %></td>
+          <td><%= link_to @interface_connector.location&.lid, @interface_connector.location %></td>
         </tr>
 
         <tr>
