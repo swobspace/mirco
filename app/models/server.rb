@@ -15,7 +15,7 @@ class Server < ApplicationRecord
   has_many :channel_counters, dependent: :destroy
   has_many :server_configurations, dependent: :restrict_with_error
   # -- configuration
-  encrypts :api_password
+  has_encrypted :api_password
   store_accessor :properties, :server_uid
   store_accessor :properties, :server_jvm
   store_accessor :properties, :server_version
