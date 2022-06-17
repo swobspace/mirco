@@ -47,6 +47,27 @@
           <% end %>
         </div>
       </div>
+      <div class="card mt-2">
+        <div class="card-header">
+          <div class="d-flex w-100 justify-content-between">
+            <div>
+              <h4><%= t('controller.hosts') %></h4>
+            </div>
+            <div role="toolbar" class="pt-0">
+              <%= link_to raw(%Q[<i class="fas fa-table"></i>]), 
+                    location_hosts_path(@location),
+                    class: 'btn btn-secondary'
+               %>
+              <%= new_link([@location, Host]) %>
+            </div>
+          </div>
+        </div>
+        <div id="hosts">
+          <% @location.hosts.each do |host| %>
+            <%= render 'locations/host', host: host %>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-6">
       <div class="card">
