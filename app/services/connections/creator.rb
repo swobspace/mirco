@@ -5,6 +5,7 @@ module Connections
   # using source_url and destination_url as endpoint
   #
   class Creator
+    FIND_ATTRIBUTES = %w[location_id source_url destination_url]
     attr_reader :connection_attributes
 
     def initialize(channel:)
@@ -17,14 +18,16 @@ module Connections
     def save
       build_connection_attributes(source_channel, [source_channel.id])
       connection_attributes.each do |attributes|
-        find_attributes = attributes.slice!('location_id', 'source_url', 
-                                            'channel_ids', 'destination_url')
+        find_attributes = attributes.slice(*FIND_ATTRIBUTES)
+        create_with_attributes = attributes.except(*FIND_ATTRIBUTES)
         software_connection = SoftwareConnection
                               .create_with(attributes)
                               .find_or_create_by(find_attributes)
         Mirco::ConnectionDiagram.new(software_connection).delete
-        unless software_connection.channel_ids == attributes['channel_ids']
-          software_connection.update(channel_ids: attributes['channel_ids'])
+        attributes.each_pair do |key,value|
+          unless software_connection.send(key) == value
+            software_connection.update(key => value)
+          end
         end
       end
     end

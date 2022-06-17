@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "/software_connections", type: :request do
+  let(:server) { FactoryBot.create(:server) }
   let(:location) { FactoryBot.create(:location) }
   let(:srcconn) { FactoryBot.create(:interface_connector) }
   let(:dstconn) { FactoryBot.create(:interface_connector) }
   
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:software_connection, location_id: location.id)
+    FactoryBot.attributes_for(:software_connection, 
+      location_id: location.id, 
+      server_id: server.id
+    )
   end
 
   let(:invalid_attributes) do

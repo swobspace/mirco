@@ -26,6 +26,7 @@ de:
     possible_connections: Mögliche Verbindungen
     add_connection: Verbindung zuweisen
     remove_connection: Verbindung entfernen
+    create_manual_software_connections_warning: "Achtung: Verbindungen auf einem Mirth-System werden automatisch erstellt. Manuell sollten nur Verbindungen angelegt werden, die dem Mirth-System nicht bekannt sind!"
 
   activerecord:
     models:

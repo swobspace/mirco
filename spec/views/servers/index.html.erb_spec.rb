@@ -4,7 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'servers/index', type: :view do
   let(:location) { FactoryBot.create(:location, lid: 'LLX', name: 'Koka') }
-  let(:host) { FactoryBot.create(:host, name: 'BND03x', ipaddress: '4.5.6.7') }
+  let(:host) do
+    FactoryBot.create(:host, 
+      name: 'BND03x', 
+      ipaddress: '4.5.6.7', 
+      location: location
+    )
+  end
   let(:time_now) { Time.current }
   before(:each) do
     @ability = Object.new
@@ -21,7 +27,6 @@ RSpec.describe 'servers/index', type: :view do
              Server.create!(
                name: 'MyServer1',
                uid: '0abac8b3-c096-485c-914f-ee8199d55db1',
-               location_id: location.id,
                host_id: host.id,
                description: 'MyText',
                api_url: 'Api Url',
@@ -35,7 +40,6 @@ RSpec.describe 'servers/index', type: :view do
              Server.create!(
                name: 'MyServer2',
                uid: '9568b611-63b1-4870-8ee2-c309c16376ae',
-               location_id: location.id,
                host_id: host.id,
                description: 'MyText',
                api_url: 'Api Url',

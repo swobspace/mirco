@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_080547) do
+ActiveRecord::Schema.define(version: 2022_06_17_085603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,10 +205,8 @@ ActiveRecord::Schema.define(version: 2022_06_17_080547) do
     t.datetime "last_channel_update"
     t.datetime "last_check"
     t.datetime "last_check_ok"
-    t.bigint "location_id"
     t.bigint "host_id"
     t.index ["host_id"], name: "index_servers_on_host_id"
-    t.index ["location_id"], name: "index_servers_on_location_id"
     t.index ["uid"], name: "index_servers_on_uid"
   end
 
@@ -340,7 +338,6 @@ ActiveRecord::Schema.define(version: 2022_06_17_080547) do
   add_foreign_key "notes", "wobauth_users", column: "user_id"
   add_foreign_key "server_configurations", "servers"
   add_foreign_key "servers", "hosts"
-  add_foreign_key "servers", "locations"
   add_foreign_key "software", "locations"
   add_foreign_key "software", "software_groups"
   add_foreign_key "software_connections", "locations"

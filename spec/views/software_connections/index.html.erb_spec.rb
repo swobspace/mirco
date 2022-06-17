@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "software_connections/index", type: :view do
+  let(:server) { FactoryBot.create(:server, name: 'XYZMIRTH') }
   let(:location) { FactoryBot.create(:location, lid: 'LLY') }
   let(:swif1) { FactoryBot.create(:interface_connector) }
   let(:swif2) { FactoryBot.create(:interface_connector) }
@@ -18,6 +19,7 @@ RSpec.describe "software_connections/index", type: :view do
 
     assign(:software_connections, [
       SoftwareConnection.create!(
+        server: server,
         location: location,
         source_connector: swif1,
         source_url: "Source Url",
@@ -28,6 +30,7 @@ RSpec.describe "software_connections/index", type: :view do
         description: "Some TEXT"
       ),
       SoftwareConnection.create!(
+        server: server,
         location: location,
         source_connector: swif1,
         source_url: "Source Url",
@@ -43,6 +46,7 @@ RSpec.describe "software_connections/index", type: :view do
   it "renders a list of software_connections" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    assert_select cell_selector, text: Regexp.new("XYZMIRTH".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("LLY".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(swif1.sw_name.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(swif1.if_name.to_s), count: 2

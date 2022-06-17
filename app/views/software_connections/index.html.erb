@@ -15,6 +15,7 @@
     <thead>
       <tr>
             <th><%= t('attributes.lid') %></th>
+            <th><%= t('attributes.server') %></th>
             <th><%= t('attributes.software') %> (SRC)</th>
             <th><%= t('attributes.software_interface') %> (SRC)</th>
             <th><%= t('attributes.source_connector') %></th>
@@ -43,6 +44,7 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
             <th class="nosearch"></th>
       </tr>
     </tfoot>
@@ -50,6 +52,7 @@
       <% @software_connections.each do |software_connection| %>
         <%= content_tag(:tr, id: dom_id(software_connection), class: dom_class(software_connection)) do %>
                 <td><%= software_connection.location.lid %></td>
+                <td><%= software_connection.server %></td>
                 <td><%= software_connection.source_connector&.sw_name %></td>
                 <td><%= software_connection.source_connector&.if_name %></td>
                 <td><%= software_connection.source_connector %></td>

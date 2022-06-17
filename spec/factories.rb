@@ -69,7 +69,6 @@ FactoryBot.define do
   end
 
   factory :server do
-    location
     host
     name { generate(:aname) }
     trait :with_uid do

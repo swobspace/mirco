@@ -3,7 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Server, type: :model do
-  let(:host) { FactoryBot.create(:host, ipaddress: '11.22.33.55') }
+  let(:location) { FactoryBot.create(:location, lid: 'XAZ') }
+  let(:host) do
+    FactoryBot.create(:host, 
+      location: location,
+      name: 'XYZMIRTH.LOCAL', 
+      ipaddress: '11.22.33.55'
+    )
+  end
   let(:server) do 
     FactoryBot.create(:server, 
       host: host,
@@ -11,7 +18,7 @@ RSpec.describe Server, type: :model do
       api_url: 'https://11.22.33.55:8443/api'
     ) 
   end
-  it { is_expected.to belong_to(:location) }
+  it { is_expected.not_to belong_to(:location) }
   it { is_expected.to belong_to(:host) }
   it { is_expected.to have_many(:software_connections).dependent(:destroy) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
@@ -35,7 +42,11 @@ RSpec.describe Server, type: :model do
     it { expect(server.to_s).to match('xyzmirth') }
   end
 
-  describe "#full_name" do
+  describe "#to_label" do
+    it { expect(server.to_label).to eq('xyzmirth / XYZMIRTH.LOCAL (11.22.33.55) / XAZ') }
+  end
+
+  describe "#fullname" do
     it { expect(server.fullname).to match('xyzmirth') }
   end
 

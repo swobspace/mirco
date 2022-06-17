@@ -4,7 +4,7 @@ require 'uri'
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
-  belongs_to :location
+  # belongs_to :location
   belongs_to :host
   has_many :alerts, dependent: :destroy
   has_many :software_connections, dependent: :destroy
@@ -29,10 +29,14 @@ class Server < ApplicationRecord
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :ipaddress, to: :host
+  delegate :location, :ipaddress, to: :host, allow_nil: true
 
   def uri
     URI(api_url)
+  end
+
+  def to_label
+    "#{name} / #{host.name} (#{host.ipaddress}) / #{location.lid}"
   end
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex

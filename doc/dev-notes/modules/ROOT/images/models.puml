@@ -4,8 +4,7 @@ top to bottom direction
 !theme mirco from .
 
 class Location {
-  lid: string
-  name: string
+  ...
 }
 class Host {
   ...
@@ -15,7 +14,6 @@ class SoftwareConnection {
 }
 
 class Server  {
-  location_id
   host_id
   name: string
   uid: string
@@ -88,7 +86,7 @@ class ServerConfiguration {
   # has_one_attached :file
 }
 
-Location "1" -- "*" Server
+Location "1" -- "*" Host
 Host "1" -- "*" Server
 SoftwareConnection "*" -- "1" "Server"
 Server "1" -- "*" Channel

@@ -2,6 +2,14 @@
 
 !theme mirco from .
 
+class Location {
+  ...
+}
+
+class Server {
+  ...
+}
+
 class TxConnector {
   ...
   url
@@ -26,6 +34,9 @@ class RxConnector {
   url
   ...
 }
+
+Location "1" -- "*" SoftwareConnection
+Server "1" -- "*" SoftwareConnection
 
 TxConnector "1" -> "*" SoftwareConnection
 note on link
