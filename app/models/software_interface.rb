@@ -11,6 +11,7 @@ class SoftwareInterface < ApplicationRecord
   validates :name, :software_id, presence: true
 
   delegate :location, :hostname, :ipaddress, to: :host, allow_nil: :true
+  delegate :lid, to: :location, allow_nil: true
 
   def to_s
     "#{name} (#{hostname})"
