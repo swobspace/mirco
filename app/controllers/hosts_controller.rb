@@ -39,6 +39,7 @@ class HostsController < ApplicationController
       @host = Host.new(host_params)
     end
 
+    Rails.logger.debug("DEBUG:: #{rlocation}")
     @host.save
     respond_with(@host, location: rlocation)
   end
@@ -65,6 +66,7 @@ class HostsController < ApplicationController
     def host_params
       params.require(:host).permit(:location_id, :software_group_id, :name, :ipaddress, :description)
     end
+
     def rlocation
       polymorphic_path(@host || :hosts)
     end

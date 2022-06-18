@@ -3,10 +3,12 @@
 
   <div class="form-input">
     <%= form.association :location, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @hostable.kind_of?(Location)
        %>
     <%= form.association :software_group, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @hostable.kind_of?(SoftwareGroup)
        %>
     <%= form.input :name
        %>
