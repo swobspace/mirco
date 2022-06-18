@@ -1,0 +1,27 @@
+<div id="<%= dom_id software_interface %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <div class="fw-bold">
+        <%= link_to software_interface.name, software_interface %>
+      </div> 
+      <div class="ps-4">
+        <em><%= software_interface.hostname %> (<%= software_interface.ipaddress %>)</em>
+      </div>
+    </div>
+    <div class="ps-4">
+      <%= software_interface.description %>
+    </div>
+    <% if software_interface.interface_connectors.any? %>
+      <div class="card my-2 ms-3">
+        <div class="card-header">
+          <span class="fw-bold"><%= t('controller.interface_connectors') %></span>
+        </div>
+        <div id="interface_connectors">
+          <% software_interface.interface_connectors.each do |interface_connector| %>
+            <%= render 'software_interfaces/interface_connectors/interface_connector', interface_connector: interface_connector %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
