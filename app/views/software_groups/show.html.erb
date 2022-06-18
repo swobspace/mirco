@@ -1,58 +1,76 @@
-<div class="card mb-2">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <div>
-        <span class="subtitle">
-          <%= t('activerecord.models.software_group') %>: 
-          #<%= @software_group.id %>
-        </span>
-        <h4 class="title"><%= @software_group %></h4>
+<div class="container-xxl">
+  <div class="card mb-2">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <span class="subtitle">
+            <%= t('activerecord.models.software_group') %>: 
+            #<%= @software_group.id %>
+          </span>
+          <h4 class="title"><%= @software_group %></h4>
+        </div>
+        <div role="toolbar" class="pt-3">
+          <%= edit_link(@software_group) %>
+          <%= delete_link(@software_group) %>
+        </div>
       </div>
-      <div role="toolbar" class="pt-3">
-        <%= edit_link(@software_group) %>
-        <%= delete_link(@software_group) %>
-      </div>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-sm table-borderless">
+      
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+          <td><%= @software_group.name %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+          <td><%= @software_group.description %></td>
+        </tr>
+      </table>
     </div>
   </div>
 
-  <div class="card-body">
-    <table class="table table-sm table-borderless">
-    
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
-        <td><%= @software_group.name %></td>
-      </tr>
+  <%= back_link %>
+  <%= new_link SoftwareGroup %>
 
-      <tr>
-        <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
-        <td><%= @software_group.description %></td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-<%= back_link %>
-<%= new_link SoftwareGroup %>
-
-<div class="card mt-2">
-  <div class="card-header">
-    <div class="d-flex w-100 justify-content-between">
-      <div>
-        <h4><%= t('controller.hosts') %></h4>
-      </div>
-      <div role="toolbar" class="pt-0">
-        <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
-              location_hosts_path(@software_group),
-              class: 'btn btn-secondary'
-         %>
-        <%= new_link([@software_group, Host]) %>
+  <div class="row my-3">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex w-100 justify-content-between">
+            <div>
+              <h4><%= t('controller.hosts') %></h4>
+            </div>
+            <div role="toolbar" class="pt-0">
+              <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                    software_group_hosts_path(@software_group),
+                    class: 'btn btn-secondary'
+               %>
+              <%= new_link([@software_group, Host]) %>
+            </div>
+          </div>
+        </div>
+        <div id="hosts">
+          <% @software_group.hosts.each do |host| %>
+            <%= render 'software_groups/host', host: host %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="hosts">
-    <% @software_group.hosts.each do |host| %>
-      <%= render 'software_groups/host', host: host %>
-    <% end %>
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h4><%= t('controller.software') %></h4>
+        </div>
+        <div id="software">
+          <% @software_group.software.each do |software| %>
+            <%= render 'software_groups/software', software: software %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
