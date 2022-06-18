@@ -36,7 +36,7 @@
 
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.hostname')%>:</th>
-          <td><%= @software_interface.hostname %></td>
+          <td><%= link_to @software_interface.hostname, @software_interface.host %></td>
         </tr>
 
         <tr>
