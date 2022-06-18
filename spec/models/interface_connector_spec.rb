@@ -80,6 +80,22 @@ RSpec.describe InterfaceConnector, type: :model do
       allow(software_interface).to receive(:ipaddress).and_return(ip)
       software_interface.save; software_interface.reload
       expect(interface_connector.ipaddress.to_s).to eq("12.34.56.78")
+      expect(interface_connector.url.to_s).to eq("tcp://12.34.56.78:5555")
+    end
+    context "with non localhost/0.0.0.0 url" do
+      let(:interface_connector) do
+        FactoryBot.create(:interface_connector,
+          name: 'BAR in',
+          type: 'TxConnector',
+          url: 'tcp://22.33.44.55:9938',
+          software_interface: software_interface
+        )
+      end
+      it "does not replace ipaddress" do
+        interface_connector.save; interface_connector.reload
+        expect(interface_connector.ipaddress.to_s).to eq("99.88.77.66")
+        expect(interface_connector.url.to_s).to eq("tcp://22.33.44.55:9938")
+      end
     end
   end
 

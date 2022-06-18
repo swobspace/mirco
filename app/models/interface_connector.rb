@@ -51,10 +51,15 @@ class InterfaceConnector < ApplicationRecord
   private
 
   def check_url_host
-    if software_interface.present? and software_interface.ipaddress.present?
-      uri = URI(url)
-      uri.host = software_interface.ipaddress.to_s
-      self[:url] = uri.to_s
+    uri = URI(url)
+    case uri.host.to_s
+    when '127.0.0.1', 'localhost', '0.0.0.0'
+      if software_interface.present? and software_interface.ipaddress.present?
+        uri.host = software_interface.ipaddress.to_s
+        self[:url] = uri.to_s
+      end
+    else 
+      # don't touch uri
     end
   end
   
