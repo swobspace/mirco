@@ -7,7 +7,7 @@ class InterfaceConnectors::SoftwareConnectionComponent < ViewComponent::Base
   end
 
   private
-  attr_reader :software_connection, :interface_connector
+  attr_reader :software_connection, :interface_connector, :btn_class
 
   def addremove_text
     case interface_connector.type
@@ -19,10 +19,12 @@ class InterfaceConnectors::SoftwareConnectionComponent < ViewComponent::Base
   end
 
   def remove
+    @btn_class = 'btn btn-warning'
     I18n.t('mirco.remove_connection')
   end
 
   def add
+    @btn_class = 'btn btn-primary'
     I18n.t('mirco.add_connection')
   end
 
