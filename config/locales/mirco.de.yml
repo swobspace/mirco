@@ -161,6 +161,7 @@ de:
     hosts: Hosts
     hosts/software_interfaces: Software Interfaces
     interface_connectors: Connectors
+    interface_connectors/software_connections: Verbindungen
     locations: Standorte
     locations/hosts: Hosts
     notes: Notizen
@@ -178,6 +179,7 @@ de:
     software_groups: Software-Gruppen
     software_groups/hosts: Hosts
     software_interfaces: Software Interfaces
+    software_interfaces/interface_connectors: Connectors
     users: Benutzer
 
   flash:
