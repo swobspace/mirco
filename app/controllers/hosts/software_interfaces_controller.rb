@@ -1,10 +1,10 @@
-class Software::SoftwareInterfacesController < SoftwareInterfacesController
+class Hosts::SoftwareInterfacesController < SoftwareInterfacesController
   before_action :set_interfaceable
 
   private
 
   def set_interfaceable
-    @interfaceable = Software.find(params[:software_id])
+    @interfaceable = Host.find(params[:host_id])
   end
 
   def add_breadcrumb_show

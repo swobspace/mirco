@@ -159,6 +159,7 @@ de:
     hl7_segments: HL7 Segmente
     home: Home
     hosts: Hosts
+    hosts/software_interfaces: Software Interfaces
     interface_connectors: Connectors
     locations: Standorte
     locations/hosts: Hosts
@@ -172,6 +173,7 @@ de:
     servers/channels: Channels
     servers/notes: Notizen
     software: Software
+    software/software_interfaces: Software Interfaces
     software_connections: Verbindungen
     software_groups: Software-Gruppen
     software_groups/hosts: Hosts

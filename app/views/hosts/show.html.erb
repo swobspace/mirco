@@ -67,7 +67,18 @@
 
   <div class="card my-3">
     <div class="card-header">
-      <h4><%= t('controller.software_interfaces') %></h4>
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <h4><%= t('controller.software_interfaces') %></h4>
+        </div>
+        <div role="toolbar" class="pt-0">
+          <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                host_software_interfaces_path(@host),
+                class: 'btn btn-secondary'
+           %>
+          <%= new_link([@host, SoftwareInterface]) %>
+        </div>
+      </div>
     </div>
     <div id="software_interface">
       <% @host.software_interfaces.each do |software_interface| %>

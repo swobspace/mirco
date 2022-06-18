@@ -1,14 +1,16 @@
-<%= simple_form_for([@software, @software_interface]) do |form| %>
+<%= simple_form_for([@interfaceable, @software_interface]) do |form| %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-input">
     <%= form.input :name
        %>
     <%= form.association :software, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @interfaceable.kind_of?(Software)
        %>
     <%= form.association :host, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @interfaceable.kind_of?(Host)
        %>
     <%= form.input :description, as: :rich_text_area
        %>
