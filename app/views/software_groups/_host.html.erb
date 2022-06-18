@@ -1,0 +1,16 @@
+<div id="<%= dom_id host %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <div>
+        <span class="fw-bold"><%= link_to host.name, host_path(host) %></span>
+        <span>(<%= host.ipaddress %>)</span> 
+      </div> 
+    </div>
+    <div class="ps-3">
+      <%= host.location %>
+    </div>
+    <div class="ps-3">
+      <%= host.description || host.software_group %>
+    </div>
+  </div>
+</div>
