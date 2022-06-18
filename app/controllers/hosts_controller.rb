@@ -4,8 +4,8 @@ class HostsController < ApplicationController
 
   # GET /hosts
   def index
-    if @location
-      @hosts = @location.hosts
+    if @hostable
+      @hosts = @hostable.hosts
     else
       @hosts = Host.all
     end
@@ -19,8 +19,8 @@ class HostsController < ApplicationController
 
   # GET /hosts/new
   def new
-    if @location
-      @host = @location.hosts.build
+    if @hostable
+      @host = @hostable.hosts.build
     else
       @host = Host.new
     end
@@ -33,8 +33,8 @@ class HostsController < ApplicationController
 
   # POST /hosts
   def create
-    if @location
-      @host = @location.hosts.create(host_params)
+    if @hostable
+      @host = @hostable.hosts.create(host_params)
     else
       @host = Host.new(host_params)
     end

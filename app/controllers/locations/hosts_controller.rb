@@ -2,20 +2,20 @@
 
 module Locations
   class HostsController < HostsController
-    before_action :set_location
+    before_action :set_hostable
 
     private
 
-    def set_location
-      @location = Location.find(params[:location_id])
+    def set_hostable
+      @hostable = Location.find(params[:location_id])
     end
 
     def add_breadcrumb_show
-      add_breadcrumb_for([set_location, @host])
+      add_breadcrumb_for([set_hostable, @host])
     end
 
     def rlocation
-      location_path(@location)
+      location_path(@hostable)
     end
   end
 end
