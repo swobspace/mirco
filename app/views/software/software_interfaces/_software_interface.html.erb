@@ -4,11 +4,11 @@
       <div class="fw-bold">
         <%= link_to software_interface.name, software_interface %>
       </div> 
-      <div class="text-muted ps-3">
+      <div class="text-muted ps-4">
         <%= software_interface.hostname %> (<%= software_interface.ipaddress %>)
       </div>
     </div>
-    <div class="ps-3">
+    <div class="ps-4">
       <%= software_interface.description %>
     </div>
     <% if software_interface.interface_connectors.any? %>
