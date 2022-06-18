@@ -1,12 +1,14 @@
-<%= simple_form_for(@software) do |form| %>
+<%= simple_form_for([@softwareable, @software]) do |form| %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-input">
     <%= form.association :location, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @softwareable.kind_of?(Location)
      %>
     <%= form.association :software_group, wrapper: :horizontal_select,
-          label_method: :to_s
+          label_method: :to_s,
+          disabled: @softwareable.kind_of?(Location)
      %>
     <%= form.input :name
      %>

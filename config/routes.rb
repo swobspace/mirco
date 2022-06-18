@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :software_groups do
     resources :hosts, module: :software_groups
+    resources :software, module: :software_groups
   end
   resources :software_connections
   resources :interface_connectors do
