@@ -17,6 +17,7 @@
             <th><%= t('attributes.name') %></th>
             <th class="notvisible"><%= t('attributes.uid') %></th>
             <th><%= t('attributes.location') %></th>
+            <th><%= t('attributes.host') %></th>
             <th><%= t('attributes.description') %></th>
             <th class="notvisible"><%= t('attributes.api_url') %></th>
             <% if current_user.is_admin? %>
@@ -31,6 +32,7 @@
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -52,6 +54,7 @@
                 <td><%= server.name %></td>
                 <td><%= server.uid %></td>
                 <td><%= server.location %></td>
+                <td><%= server.host %></td>
                 <td><%= server.description %></td>
                 <td><%= server.api_url %></td>
                 <% if current_user.is_admin? %>

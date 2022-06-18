@@ -8,6 +8,10 @@ class SoftwareInterfaces::InterfaceConnectorsController < InterfaceConnectorsCon
   end
 
   def add_breadcrumb_show
-    add_breadcrumb_for([@software_interface, @interface_connector])
+    add_breadcrumb_for([set_software_interface, @interface_connector])
+  end
+
+  def location
+    polymorphic_path(@software_interface)
   end
 end

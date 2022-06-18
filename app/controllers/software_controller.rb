@@ -51,6 +51,7 @@ class SoftwareController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def software_params
-      params.require(:software).permit(:location_id, :name, :description, :vendor)
+      params.require(:software).permit(:location_id, :name, :description, :vendor,
+                                       :software_group_id)
     end
 end

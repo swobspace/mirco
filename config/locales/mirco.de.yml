@@ -5,7 +5,7 @@ de:
   mirco:
     action: Aktion
     add_note: Notiz erstellen
-    backup_server_configuration: Server-Konfiguration sichern
+    backup_server_configuration: Mirth-Konfiguration sichern
     configuration: Konfiguration
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
@@ -13,9 +13,11 @@ de:
     interfaces: Schnittstellen
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
-    new_server: Neuer Server
+    new_host: Neuer Host
+    new_server: Neues Mirth-System
     new_software: Neue Software
     new_software_connection: Neue Verbindung
+    new_software_group: Neue Software-Gruppe
     new_software_interface: Neues Software-Interface
     obsolete_channels: Obsolete Channels
     overview: Überblick
@@ -24,6 +26,7 @@ de:
     possible_connections: Mögliche Verbindungen
     add_connection: Verbindung zuweisen
     remove_connection: Verbindung entfernen
+    create_manual_software_connections_warning: "Achtung: Verbindungen auf einem Mirth-System werden automatisch erstellt. Manuell sollten nur Verbindungen angelegt werden, die dem Mirth-System nicht bekannt sind!"
 
   activerecord:
     models:
@@ -39,15 +42,17 @@ de:
       channel_statistic/note: Notiz
       hl7_event: HL7-Typ
       hl7_segment: HL7-Segment
+      host: Host
       interface_connector: Connector
       note: Notizen
-      server: Server
+      server: Mirth-System
       server_configuration: Sicherung der Konfiguration
       servers/alert: Alarm
       servers/channel: Channel
       servers/note: Notizen
       software: Software
       software_connection: Verbindung
+      software_group: Software-Gruppe
       software_interface: Software Interface
       user: User
 
@@ -111,19 +116,20 @@ de:
     sc_transport_name: transportName
     sent: sent
     sent_last_30min: sent (30min)
-    server: Server
+    server: Mirth-System
     server_configuration: Sicherung der Konfiguration
-    server_uid: Server UUID
-    server_jvm: Server JVM
+    server_uid: Mirth Server UUID
+    server_jvm: Mirth Server JVM
     server_version: Server Version
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
     system_info: Systeminfo
-    server_settings: Server-Einstellungen
+    server_settings: Mirth Server-Einstellungen
     sn: Nachname
     software: Software
     software_connection: Verbindung
+    software_group: Software-Gruppe
     software_interface: Software Interface
     state: Status
     status_type: Typ
@@ -152,11 +158,15 @@ de:
     hl7_events: HL7 Events
     hl7_segments: HL7 Segmente
     home: Home
+    hosts: Hosts
+    hosts/software_interfaces: Software Interfaces
     interface_connectors: Connectors
+    interface_connectors/software_connections: Verbindungen
     locations: Standorte
+    locations/hosts: Hosts
     notes: Notizen
     pages: Seiten
-    servers: Server
+    servers: Mirth-Systeme
     server_configurations: Sicherungen der Konfiguration
     servers/alerts: Alarme
     servers/channel_details: Channel Connectors (Server)
@@ -164,8 +174,12 @@ de:
     servers/channels: Channels
     servers/notes: Notizen
     software: Software
+    software/software_interfaces: Software Interfaces
     software_connections: Verbindungen
+    software_groups: Software-Gruppen
+    software_groups/hosts: Hosts
     software_interfaces: Software Interfaces
+    software_interfaces/interface_connectors: Connectors
     users: Benutzer
 
   flash:

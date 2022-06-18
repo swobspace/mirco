@@ -25,6 +25,11 @@
             <td><%= link_to @software_connection.location, @software_connection.location %></td>
           </tr>
 
+          <tr class=border-bottom>
+            <th class="w-25 pe-3"><%= t('attributes.server')%>:</th>
+            <td><%= link_to @software_connection.server, @software_connection.server %></td>
+          </tr>
+
           <tr>
             <th>
               Source Connector

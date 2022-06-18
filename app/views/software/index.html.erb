@@ -17,11 +17,13 @@
             <th><%= t('attributes.location') %></th>
             <th><%= t('attributes.name') %></th>
             <th><%= t('attributes.vendor') %></th>
+            <th><%= t('attributes.software_group') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -31,9 +33,10 @@
     <tbody>
       <% @software.each do |software| %>
         <%= content_tag(:tr, id: dom_id(software), class: dom_class(software)) do %>
-                <td><%= link_to software.location %></td>
+                <td><%= link_to software.location&.lid %></td>
                 <td><%= link_to software.name, software %></td>
                 <td><%= software.vendor %></td>
+                <td><%= software.software_group %></td>
                 <td class="text-nowrap">
             <%= show_link software %>
             <%= edit_link software %>

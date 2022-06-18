@@ -1,0 +1,13 @@
+<div id="<%= dom_id software %>">
+  <div class="card-body py-2 border-bottom border-bottom-1">
+    <div>
+      <div>
+        <span class="fw-bold"><%= link_to software.name, software %></span>
+        <span>(<%= software.location&.lid %>)</span>
+      </div> 
+    </div>
+    <div class="ps-4">
+      <%= software.description %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Modeling mirco :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.1">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -137,6 +137,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Server \
   location:belongs_to \
+  host:belongs_to \
   name:string uid:string:index description:text \
   api_url:string api_user:string api_password_ciphertext:text \
   api_user_has_full_access:boolean \

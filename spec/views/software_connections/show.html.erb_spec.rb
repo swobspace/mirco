@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "software_connections/show", type: :view do
+  let(:server) { FactoryBot.create(:server, name: 'XYZMIRTH') }
   let(:location) { FactoryBot.create(:location, lid: 'LLY') }
   let(:conn1) { FactoryBot.create(:interface_connector) }
   let(:conn2) { FactoryBot.create(:interface_connector) }
@@ -14,6 +15,7 @@ RSpec.describe "software_connections/show", type: :view do
     allow(conn2).to receive(:to_s).and_return("SWIF2")
 
     @software_connection = assign(:software_connection, SoftwareConnection.create!(
+      server: server,
       location: location,
       source_connector: conn1,
       source_url: "Source Url",
@@ -28,6 +30,7 @@ RSpec.describe "software_connections/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/LLY/)
+    expect(rendered).to match(/XYZMIRTH/)
     expect(rendered).to match(/#{conn1.sw_name}/)
     expect(rendered).to match(/#{conn1.if_name}/)
     expect(rendered).to match(/SWIF1/)

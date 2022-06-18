@@ -8,7 +8,7 @@ image::hosts.svg[]
 [source,ruby]
 ----
 bin/rails g scaffold SoftwareGroup \
-  name:string \
+  name:string:index \
   description:string \
   --no-stylesheets --no-javascripts --no-helper
 ----
@@ -20,9 +20,8 @@ bin/rails g scaffold SoftwareGroup \
 bin/rails g scaffold Host \
   location:belongs_to \
   software_group:belongs_to \
-  server:belongs_to \
   name:string \
-  ipaddress: inet \
+  ipaddress:inet \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper
 ----

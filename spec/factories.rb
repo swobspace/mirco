@@ -42,6 +42,12 @@ FactoryBot.define do
     condition { 'ok' }
   end
 
+  factory :host do
+    association :location
+    association :software_group
+    name { generate(:aname) }
+  end
+
   factory :interface_connector do
     software_interface
     name { generate(:aname) }
@@ -63,6 +69,7 @@ FactoryBot.define do
   end
 
   factory :server do
+    host
     name { generate(:aname) }
     trait :with_uid do
       uid { `uuid -v 4` }
@@ -75,17 +82,24 @@ FactoryBot.define do
 
   factory :software do
     location
+    software_group
     name { generate(:aname) }
   end
 
   factory :software_connection do
     location
+    server
     source_url { generate(:url) }
     destination_url { generate(:url) }
   end
 
+  factory :software_group do
+    name { generate(:aname) }
+  end
+
   factory :software_interface do
     software
+    host
     name { generate(:aname) }
   end
 

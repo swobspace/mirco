@@ -25,7 +25,7 @@ class InterfaceConnector < ApplicationRecord
   validates_inclusion_of :type, in: TYPES
 
   delegate :port, :host, :scheme, to: :uri
-  delegate :location, :hostname, :ipaddress, to: :software_interface
+  delegate :location, :hostname, :ipaddress, to: :software_interface, allow_nil: true
 
   def to_s
     "#{name} (#{url})"
@@ -33,7 +33,7 @@ class InterfaceConnector < ApplicationRecord
 
   def to_label
     # "#{url} - #{name} - #{sw_name}, #{location.lid}"
-    "#{name} (#{url}) > #{sw_name}/#{if_name} > #{location.lid}"
+    "#{name} (#{url}) > #{sw_name}/#{if_name} > #{location&.lid}"
   end
 
   def if_name
@@ -51,10 +51,15 @@ class InterfaceConnector < ApplicationRecord
   private
 
   def check_url_host
-    if software_interface.present? and software_interface.ipaddress.present?
-      uri = URI(url)
-      uri.host = software_interface.ipaddress.to_s
-      self[:url] = uri.to_s
+    uri = URI(url)
+    case uri.host.to_s
+    when '127.0.0.1', 'localhost', '0.0.0.0'
+      if software_interface.present? and software_interface.ipaddress.present?
+        uri.host = software_interface.ipaddress.to_s
+        self[:url] = uri.to_s
+      end
+    else 
+      # don't touch uri
     end
   end
   

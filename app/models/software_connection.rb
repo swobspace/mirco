@@ -1,6 +1,7 @@
 class SoftwareConnection < ApplicationRecord
   # -- associations
   belongs_to :location
+  belongs_to :server
   belongs_to :source_connector, -> { where(type: 'TxConnector') },
              class_name: "InterfaceConnector", optional: true
   belongs_to :destination_connector, -> { where(type: 'RxConnector') },

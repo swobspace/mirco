@@ -5,6 +5,9 @@
     <%= form.association :location, wrapper: :horizontal_select,
           label_method: :to_s
      %>
+    <%= form.association :software_group, wrapper: :horizontal_select,
+          label_method: :to_s
+     %>
     <%= form.input :name
      %>
     <%= form.input :vendor

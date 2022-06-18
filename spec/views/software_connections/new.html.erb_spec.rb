@@ -17,6 +17,7 @@ RSpec.describe "software_connections/new", type: :view do
     assert_select "form[action=?][method=?]", software_connections_path, "post" do
 
       assert_select "select[name=?]", "software_connection[location_id]"
+      assert_select "select[name=?]", "software_connection[server_id]"
       assert_select "select[name=?]", "software_connection[source_connector_id]"
       assert_select "input[name=?]", "software_connection[source_url]"
       assert_select "select[name=?]", "software_connection[destination_connector_id]"

@@ -1,0 +1,23 @@
+<%= simple_form_for([@hostable, @host]) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <%= form.association :location, wrapper: :horizontal_select,
+          label_method: :to_s,
+          disabled: @hostable.kind_of?(Location)
+       %>
+    <%= form.association :software_group, wrapper: :horizontal_select,
+          label_method: :to_s,
+          disabled: @hostable.kind_of?(SoftwareGroup)
+       %>
+    <%= form.input :name
+       %>
+    <%= form.input :ipaddress, as: :string
+       %>
+    <%= form.input :description, as: :rich_text_area
+       %>
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>

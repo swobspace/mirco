@@ -16,10 +16,11 @@ require 'rails_helper'
 
 RSpec.describe '/servers', type: :request do
   let(:location) { FactoryBot.create(:location, lid: 'LLX') }
+  let(:host) { FactoryBot.create(:host, location: location) }
   # Server. As you add validations to Server, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:server)
+    FactoryBot.attributes_for(:server, host_id: host.id)
   end
 
   let(:invalid_attributes) do
@@ -118,7 +119,6 @@ RSpec.describe '/servers', type: :request do
           api_user: 'dummy',
           api_user_has_full_access: false,
           api_verify_ssl: true,
-          location_id: location.id
         }
       end
 

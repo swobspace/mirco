@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="231px" preserveAspectRatio="none" style="width:899px;height:231px;background:#FFFFFF;" version="1.1" viewBox="0 0 899 231" width="899px" zoomAndPan="magnify">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="356px" preserveAspectRatio="none" style="width:899px;height:356px;background:#FFFFFF;" version="1.1" viewBox="0 0 899 356" width="899px" zoomAndPan="magnify">
     <defs>
-        <filter height="300%" id="f6myc4kbxpkqw" width="300%" x="-1" y="-1">
+        <filter height="300%" id="f1bt50vab4kzct" width="300%" x="-1" y="-1">
             <feGaussianBlur result="blurOut" stdDeviation="2.0" />
             <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
             <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
@@ -8,62 +8,104 @@
         </filter>
     </defs>
     <g>
+        <!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
+class Location-->
+        <g id="elem_Location">
+            <rect codeLine="4" fill="#FFF1D9" filter="url(#f1bt50vab4kzct)" height="64.2969" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="90" x="327.5" y="7" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="90" x="327.5" y="7" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="90" x="327.5" y="34" />
+            <rect codeLine="4" fill="none" height="64.2969" id="Location" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="90" x="327.5" y="7" />
+            <ellipse cx="342.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M345.4688,28.6406 Q344.8906,28.9375 344.25,29.0781 Q343.6094,29.2344 342.9063,29.2344 Q340.4063,29.2344 339.0781,27.5938 Q337.7656,25.9375 337.7656,22.8125 Q337.7656,19.6875 339.0781,18.0313 Q340.4063,16.375 342.9063,16.375 Q343.6094,16.375 344.25,16.5313 Q344.9063,16.6875 345.4688,16.9844 L345.4688,19.7031 Q344.8438,19.125 344.25,18.8594 Q343.6563,18.5781 343.0313,18.5781 Q341.6875,18.5781 341,19.6563 Q340.3125,20.7188 340.3125,22.8125 Q340.3125,24.9063 341,25.9844 Q341.6875,27.0469 343.0313,27.0469 Q343.6563,27.0469 344.25,26.7813 Q344.8438,26.5 345.4688,25.9219 L345.4688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="356.5" y="27.8467">Location</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="328.5" x2="416.5" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="333.5" y="55.9951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="328.5" x2="416.5" y1="63.2969" y2="63.2969" />
+        </g>
+        <!--MD5=[c60af77fe5573b84a4aa4bce89659574]
+class Server-->
+        <g id="elem_Server">
+            <rect codeLine="8" fill="#FFF1D9" filter="url(#f1bt50vab4kzct)" height="64.2969" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="76" x="452.5" y="7" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="76" x="452.5" y="7" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="76" x="452.5" y="34" />
+            <rect codeLine="8" fill="none" height="64.2969" id="Server" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="76" x="452.5" y="7" />
+            <ellipse cx="467.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M470.4688,28.6406 Q469.8906,28.9375 469.25,29.0781 Q468.6094,29.2344 467.9063,29.2344 Q465.4063,29.2344 464.0781,27.5938 Q462.7656,25.9375 462.7656,22.8125 Q462.7656,19.6875 464.0781,18.0313 Q465.4063,16.375 467.9063,16.375 Q468.6094,16.375 469.25,16.5313 Q469.9063,16.6875 470.4688,16.9844 L470.4688,19.7031 Q469.8438,19.125 469.25,18.8594 Q468.6563,18.5781 468.0313,18.5781 Q466.6875,18.5781 466,19.6563 Q465.3125,20.7188 465.3125,22.8125 Q465.3125,24.9063 466,25.9844 Q466.6875,27.0469 468.0313,27.0469 Q468.6563,27.0469 469.25,26.7813 Q469.8438,26.5 470.4688,25.9219 L470.4688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="44" x="481.5" y="27.8467">Server</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="453.5" x2="527.5" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="458.5" y="55.9951">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="453.5" x2="527.5" y1="63.2969" y2="63.2969" />
+        </g>
         <!--MD5=[cc6cb879c91a918221bd0f46c90c4303]
 class TxConnector-->
         <g id="elem_TxConnector">
-            <rect codeLine="4" fill="#FFF1D9" filter="url(#f6myc4kbxpkqw)" height="96.8906" id="TxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="121" x="7" y="64" />
-            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="121" x="7" y="64" />
-            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="121" x="7" y="91" />
-            <rect codeLine="4" fill="none" height="96.8906" id="TxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="121" x="7" y="64" />
-            <ellipse cx="22" cy="80" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M24.9688,85.6406 Q24.3906,85.9375 23.75,86.0781 Q23.1094,86.2344 22.4063,86.2344 Q19.9063,86.2344 18.5781,84.5938 Q17.2656,82.9375 17.2656,79.8125 Q17.2656,76.6875 18.5781,75.0313 Q19.9063,73.375 22.4063,73.375 Q23.1094,73.375 23.75,73.5313 Q24.4063,73.6875 24.9688,73.9844 L24.9688,76.7031 Q24.3438,76.125 23.75,75.8594 Q23.1563,75.5781 22.5313,75.5781 Q21.1875,75.5781 20.5,76.6563 Q19.8125,77.7188 19.8125,79.8125 Q19.8125,81.9063 20.5,82.9844 Q21.1875,84.0469 22.5313,84.0469 Q23.1563,84.0469 23.75,83.7813 Q24.3438,83.5 24.9688,82.9219 L24.9688,85.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="36" y="84.8467">TxConnector</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="127" y1="96" y2="96" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="13" y="112.9951">...</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="13" y="129.292">url</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="13" y="145.5889">...</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="127" y1="152.8906" y2="152.8906" />
+            <rect codeLine="12" fill="#FFF1D9" filter="url(#f1bt50vab4kzct)" height="96.8906" id="TxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="121" x="7" y="189" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="121" x="7" y="189" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="121" x="7" y="216" />
+            <rect codeLine="12" fill="none" height="96.8906" id="TxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="121" x="7" y="189" />
+            <ellipse cx="22" cy="205" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M24.9688,210.6406 Q24.3906,210.9375 23.75,211.0781 Q23.1094,211.2344 22.4063,211.2344 Q19.9063,211.2344 18.5781,209.5938 Q17.2656,207.9375 17.2656,204.8125 Q17.2656,201.6875 18.5781,200.0313 Q19.9063,198.375 22.4063,198.375 Q23.1094,198.375 23.75,198.5313 Q24.4063,198.6875 24.9688,198.9844 L24.9688,201.7031 Q24.3438,201.125 23.75,200.8594 Q23.1563,200.5781 22.5313,200.5781 Q21.1875,200.5781 20.5,201.6563 Q19.8125,202.7188 19.8125,204.8125 Q19.8125,206.9063 20.5,207.9844 Q21.1875,209.0469 22.5313,209.0469 Q23.1563,209.0469 23.75,208.7813 Q24.3438,208.5 24.9688,207.9219 L24.9688,210.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="89" x="36" y="209.8467">TxConnector</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="127" y1="221" y2="221" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="13" y="237.9951">...</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="13" y="254.292">url</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="13" y="270.5889">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="8" x2="127" y1="277.8906" y2="277.8906" />
         </g>
         <!--MD5=[9a4e82909ed2a34282a01ef45d4a08d6]
 class SoftwareConnection-->
         <g id="elem_SoftwareConnection">
-            <rect codeLine="10" fill="#FFF1D9" filter="url(#f6myc4kbxpkqw)" height="210.9688" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="226" x="318.5" y="7" />
-            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="226" x="318.5" y="7" />
-            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="226" x="318.5" y="34" />
-            <rect codeLine="10" fill="none" height="210.9688" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="226" x="318.5" y="7" />
-            <ellipse cx="357.8" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M360.7688,28.6406 Q360.1906,28.9375 359.55,29.0781 Q358.9094,29.2344 358.2063,29.2344 Q355.7063,29.2344 354.3781,27.5938 Q353.0656,25.9375 353.0656,22.8125 Q353.0656,19.6875 354.3781,18.0313 Q355.7063,16.375 358.2063,16.375 Q358.9094,16.375 359.55,16.5313 Q360.2063,16.6875 360.7688,16.9844 L360.7688,19.7031 Q360.1438,19.125 359.55,18.8594 Q358.9563,18.5781 358.3313,18.5781 Q356.9875,18.5781 356.3,19.6563 Q355.6125,20.7188 355.6125,22.8125 Q355.6125,24.9063 356.3,25.9844 Q356.9875,27.0469 358.3313,27.0469 Q358.9563,27.0469 359.55,26.7813 Q360.1438,26.5 360.7688,25.9219 L360.7688,28.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="377.2" y="27.8467">SoftwareConnection</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="319.5" x2="543.5" y1="39" y2="39" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="324.5" y="55.9951">location_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="324.5" y="72.292">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="324.5" y="88.5889">source_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="324.5" y="104.8857">source_url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="324.5" y="121.1826">destination_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="324.5" y="137.4795">destination_url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="214" x="324.5" y="153.7764">channel_ids: integer, array:true</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="324.5" y="170.0732">ignore: boolean</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="147" x="324.5" y="186.3701">ignore_reason: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="324.5" y="202.667">description: «actiontext»</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="319.5" x2="543.5" y1="209.9688" y2="209.9688" />
+            <rect codeLine="18" fill="#FFF1D9" filter="url(#f1bt50vab4kzct)" height="210.9688" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="226" x="318.5" y="132" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="226" x="318.5" y="132" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="226" x="318.5" y="159" />
+            <rect codeLine="18" fill="none" height="210.9688" id="SoftwareConnection" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="226" x="318.5" y="132" />
+            <ellipse cx="357.8" cy="148" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M360.7688,153.6406 Q360.1906,153.9375 359.55,154.0781 Q358.9094,154.2344 358.2063,154.2344 Q355.7063,154.2344 354.3781,152.5938 Q353.0656,150.9375 353.0656,147.8125 Q353.0656,144.6875 354.3781,143.0313 Q355.7063,141.375 358.2063,141.375 Q358.9094,141.375 359.55,141.5313 Q360.2063,141.6875 360.7688,141.9844 L360.7688,144.7031 Q360.1438,144.125 359.55,143.8594 Q358.9563,143.5781 358.3313,143.5781 Q356.9875,143.5781 356.3,144.6563 Q355.6125,145.7188 355.6125,147.8125 Q355.6125,149.9063 356.3,150.9844 Q356.9875,152.0469 358.3313,152.0469 Q358.9563,152.0469 359.55,151.7813 Q360.1438,151.5 360.7688,150.9219 L360.7688,153.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="377.2" y="152.8467">SoftwareConnection</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="319.5" x2="543.5" y1="164" y2="164" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="324.5" y="180.9951">location_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="324.5" y="197.292">server_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="324.5" y="213.5889">source_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="120" x="324.5" y="229.8857">source_url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="324.5" y="246.1826">destination_connector_id</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="324.5" y="262.4795">destination_url: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="214" x="324.5" y="278.7764">channel_ids: integer, array:true</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="324.5" y="295.0732">ignore: boolean</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="147" x="324.5" y="311.3701">ignore_reason: string</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="324.5" y="327.667">description: «actiontext»</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="319.5" x2="543.5" y1="334.9688" y2="334.9688" />
         </g>
         <!--MD5=[d7b6ff5267d107a1a486d6ceb278dda1]
 class RxConnector-->
         <g id="elem_RxConnector">
-            <rect codeLine="23" fill="#FFF1D9" filter="url(#f6myc4kbxpkqw)" height="96.8906" id="RxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="122" x="763.5" y="64" />
-            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="122" x="763.5" y="64" />
-            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="122" x="763.5" y="91" />
-            <rect codeLine="23" fill="none" height="96.8906" id="RxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="122" x="763.5" y="64" />
-            <ellipse cx="778.5" cy="80" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M781.4688,85.6406 Q780.8906,85.9375 780.25,86.0781 Q779.6094,86.2344 778.9063,86.2344 Q776.4063,86.2344 775.0781,84.5938 Q773.7656,82.9375 773.7656,79.8125 Q773.7656,76.6875 775.0781,75.0313 Q776.4063,73.375 778.9063,73.375 Q779.6094,73.375 780.25,73.5313 Q780.9063,73.6875 781.4688,73.9844 L781.4688,76.7031 Q780.8438,76.125 780.25,75.8594 Q779.6563,75.5781 779.0313,75.5781 Q777.6875,75.5781 777,76.6563 Q776.3125,77.7188 776.3125,79.8125 Q776.3125,81.9063 777,82.9844 Q777.6875,84.0469 779.0313,84.0469 Q779.6563,84.0469 780.25,83.7813 Q780.8438,83.5 781.4688,82.9219 L781.4688,85.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="792.5" y="84.8467">RxConnector</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="764.5" x2="884.5" y1="96" y2="96" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="769.5" y="112.9951">...</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="769.5" y="129.292">url</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="769.5" y="145.5889">...</text>
-            <line style="stroke:#181818;stroke-width:0.5;" x1="764.5" x2="884.5" y1="152.8906" y2="152.8906" />
+            <rect codeLine="31" fill="#FFF1D9" filter="url(#f1bt50vab4kzct)" height="96.8906" id="RxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="122" x="763.5" y="189" />
+            <rect fill="#FFD080" height="32" rx="5" ry="5" style="stroke:#FFD080;stroke-width:0.5;" width="122" x="763.5" y="189" />
+            <rect fill="#FFD080" height="5" style="stroke:#FFD080;stroke-width:0.5;" width="122" x="763.5" y="216" />
+            <rect codeLine="31" fill="none" height="96.8906" id="RxConnector" rx="5" ry="5" style="stroke:#181818;stroke-width:0.5;" width="122" x="763.5" y="189" />
+            <ellipse cx="778.5" cy="205" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M781.4688,210.6406 Q780.8906,210.9375 780.25,211.0781 Q779.6094,211.2344 778.9063,211.2344 Q776.4063,211.2344 775.0781,209.5938 Q773.7656,207.9375 773.7656,204.8125 Q773.7656,201.6875 775.0781,200.0313 Q776.4063,198.375 778.9063,198.375 Q779.6094,198.375 780.25,198.5313 Q780.9063,198.6875 781.4688,198.9844 L781.4688,201.7031 Q780.8438,201.125 780.25,200.8594 Q779.6563,200.5781 779.0313,200.5781 Q777.6875,200.5781 777,201.6563 Q776.3125,202.7188 776.3125,204.8125 Q776.3125,206.9063 777,207.9844 Q777.6875,209.0469 779.0313,209.0469 Q779.6563,209.0469 780.25,208.7813 Q780.8438,208.5 781.4688,207.9219 L781.4688,210.6406 Z " fill="#000000" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="792.5" y="209.8467">RxConnector</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="764.5" x2="884.5" y1="221" y2="221" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="769.5" y="237.9951">...</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="17" x="769.5" y="254.292">url</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="769.5" y="270.5889">...</text>
+            <line style="stroke:#181818;stroke-width:0.5;" x1="764.5" x2="884.5" y1="277.8906" y2="277.8906" />
+        </g>
+        <!--MD5=[ab11edb71a83fe031c17aad7343fe314]
+link Location to SoftwareConnection-->
+        <g id="link_Location_SoftwareConnection">
+            <path codeLine="37" d="M381.85,71.14 C386.89,87.91 393.42,109.68 400.09,131.89 " fill="none" id="Location-SoftwareConnection" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="374.9534" y="91.3657">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="390.6354" y="121.0096">*</text>
+        </g>
+        <!--MD5=[6582f1147a0bf13b4710cfa5209f92e7]
+link Server to SoftwareConnection-->
+        <g id="link_Server_SoftwareConnection">
+            <path codeLine="38" d="M481.15,71.14 C476.11,87.91 469.58,109.68 462.91,131.89 " fill="none" id="Server-SoftwareConnection" style="stroke:#181818;stroke-width:1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="470.3966" y="91.3657">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="457.8724" y="121.0096">*</text>
         </g>
         <!--MD5=[bdee03b500e7c2bfdfa982dadde1250d]
 link TxConnector to SoftwareConnection-->
         <g id="link_TxConnector_SoftwareConnection">
-            <path codeLine="29" d="M128.02,112.5 C178.25,112.5 251.22,112.5 313.02,112.5 " fill="none" id="TxConnector-to-SoftwareConnection" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="318.2,112.5,309.2,108.5,313.2,112.5,309.2,116.5,318.2,112.5" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M150.25,65.5 L150.25,95.5 A5,5 0 0 0 155.25,100.5 L287.25,100.5 A5,5 0 0 0 292.25,95.5 L292.25,70.5 L282.25,60.5 L155.25,60.5 A5,5 0 0 0 150.25,65.5 " fill="#FEFFDD" filter="url(#f6myc4kbxpkqw)" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M282.25,60.5 L282.25,68 A2.5,2.5 0 0 0 284.75,70.5 L292.25,70.5 L282.25,60.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="55" x="193.75" y="77.5669">Source:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="165.25" y="92.6997">url == source_url</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="135.8834" y="108.6676">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="303.3525" y="109.0685">*</text>
+            <path codeLine="40" d="M128.02,237.5 C178.25,237.5 251.22,237.5 313.02,237.5 " fill="none" id="TxConnector-to-SoftwareConnection" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="318.2,237.5,309.2,233.5,313.2,237.5,309.2,241.5,318.2,237.5" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M150.25,190.5 L150.25,220.5 A5,5 0 0 0 155.25,225.5 L287.25,225.5 A5,5 0 0 0 292.25,220.5 L292.25,195.5 L282.25,185.5 L155.25,185.5 A5,5 0 0 0 150.25,190.5 " fill="#FEFFDD" filter="url(#f1bt50vab4kzct)" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M282.25,185.5 L282.25,193 A2.5,2.5 0 0 0 284.75,195.5 L292.25,195.5 L282.25,185.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="55" x="193.75" y="202.5669">Source:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="112" x="165.25" y="217.6997">url == source_url</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="135.8834" y="233.6676">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="303.3525" y="234.0685">*</text>
         </g>
         <!--MD5=[4e78b3e3fbbc4f6ecf68ee0de0754eef]
 link SoftwareConnection to RxConnector-->
         <g id="link_SoftwareConnection_RxConnector">
-            <path codeLine="34" d="M544.64,112.5 C613.76,112.5 699.77,112.5 758.06,112.5 " fill="none" id="SoftwareConnection-to-RxConnector" style="stroke:#181818;stroke-width:1.0;" />
-            <polygon fill="#181818" points="763.26,112.5,754.26,108.5,758.26,112.5,754.26,116.5,763.26,112.5" style="stroke:#181818;stroke-width:1.0;" />
-            <path d="M567,65.5 L567,95.5 A5,5 0 0 0 572,100.5 L732,100.5 A5,5 0 0 0 737,95.5 L737,70.5 L727,60.5 L572,60.5 A5,5 0 0 0 567,65.5 " fill="#FEFFDD" filter="url(#f6myc4kbxpkqw)" style="stroke:#181818;stroke-width:0.5;" />
-            <path d="M727,60.5 L727,68 A2.5,2.5 0 0 0 729.5,70.5 L737,70.5 L727,60.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89" x="607.5" y="77.5669">Destination:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="140" x="582" y="92.6997">destination_url == url</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="552.4768" y="109.0685">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="747.3089" y="108.6676">1</text>
+            <path codeLine="45" d="M544.64,237.5 C613.76,237.5 699.77,237.5 758.06,237.5 " fill="none" id="SoftwareConnection-to-RxConnector" style="stroke:#181818;stroke-width:1.0;" />
+            <polygon fill="#181818" points="763.26,237.5,754.26,233.5,758.26,237.5,754.26,241.5,763.26,237.5" style="stroke:#181818;stroke-width:1.0;" />
+            <path d="M567,190.5 L567,220.5 A5,5 0 0 0 572,225.5 L732,225.5 A5,5 0 0 0 737,220.5 L737,195.5 L727,185.5 L572,185.5 A5,5 0 0 0 567,190.5 " fill="#FEFFDD" filter="url(#f1bt50vab4kzct)" style="stroke:#181818;stroke-width:0.5;" />
+            <path d="M727,185.5 L727,193 A2.5,2.5 0 0 0 729.5,195.5 L737,195.5 L727,185.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="89" x="607.5" y="202.5669">Destination:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="140" x="582" y="217.6997">destination_url == url</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="552.4768" y="234.0685">*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="747.3089" y="233.6676">1</text>
         </g>
-        <!--MD5=[43b870ea96c9512f21d26f895ab856b8]
+        <!--MD5=[73e4cec961a69a81cacbb9ec1294d7b1]
 @startuml
 
 !theme mirco from .
+
+class Location {
+  ...
+}
+
+class Server {
+  ...
+}
 
 class TxConnector {
   ...
@@ -89,6 +131,9 @@ class RxConnector {
   url
   ...
 }
+
+Location "1" - - "*" SoftwareConnection
+Server "1" - - "*" SoftwareConnection
 
 TxConnector "1" -> "*" SoftwareConnection
 note on link
@@ -133,6 +178,14 @@ skinparam class {
 	HeaderBackgroundColor  #FFD080
 }
 
+class Location {
+  ...
+}
+
+class Server {
+  ...
+}
+
 class TxConnector {
   ...
   url
@@ -157,6 +210,9 @@ class RxConnector {
   url
   ...
 }
+
+Location "1" - - "*" SoftwareConnection
+Server "1" - - "*" SoftwareConnection
 
 TxConnector "1" -> "*" SoftwareConnection
 note on link

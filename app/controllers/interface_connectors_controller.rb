@@ -36,19 +36,19 @@ class InterfaceConnectorsController < ApplicationController
     @interface_connector = InterfaceConnector.new(interface_connector_params)
 
     @interface_connector.save
-    respond_with(@interface_connector)
+    respond_with(@interface_connector, location: location)
   end
 
   # PATCH/PUT /interface_connectors/1
   def update
     @interface_connector.update(interface_connector_params)
-    respond_with(@interface_connector)
+    respond_with(@interface_connector, location: location)
   end
 
   # DELETE /interface_connectors/1
   def destroy
     @interface_connector.destroy
-    respond_with(@interface_connector)
+    respond_with(@interface_connector, location: location)
   end
 
   private
@@ -61,5 +61,8 @@ class InterfaceConnectorsController < ApplicationController
     def interface_connector_params
       params.require(:interface_connector)
             .permit(:software_interface_id, :type, :url, :description, :name)
+    end
+    def location
+      polymorphic_path(@interface_connector || :interface_connectors)
     end
 end

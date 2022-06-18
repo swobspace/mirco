@@ -18,9 +18,17 @@ class Host {
   name: string
   ipadress: inet
   description: <<actiontext>>
-  server_id: optional
+}
+
+class Server {
+  ...
+}
+class SoftwareInterface {
+  ...
 }
 
 Location "1" --> "*" Host
 SoftwareGroup "1" --> "*" Host
+Host "1" -- "*" Server
+Host "1" -- "*" SoftwareInterface
 @enduml

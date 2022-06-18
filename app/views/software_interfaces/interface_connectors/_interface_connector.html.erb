@@ -3,17 +3,22 @@
     <div class="row">
       <div class="col">
         <div class="fw-bold">
+          <% if (interface_connector.direction == 'out') %>
+            <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+          <% else %>
+            <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+          <% end %>
           <%= link_to interface_connector.name, interface_connector %>
         </div>
-        <div class="ps-3">
+        <div class="ps-4">
           <%= interface_connector.description %>
         </div>
       </div>
       <div class="col-3">
-        <div class="text-muted ps-3">
+        <div class="text-muted ps-4">
           <%= interface_connector.type %> 
         </div>
-        <div class="text-muted ps-3">
+        <div class="text-muted ps-4">
           <%= interface_connector.url %>
         </div>
       </div>

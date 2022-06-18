@@ -5,6 +5,23 @@ shared_context "connection variables" do
   let!(:paris) { FactoryBot.create(:location, lid: 'PAR', name: 'Paris') }
   let!(:ber) { FactoryBot.create(:location, lid: 'BER', name: 'Berlin') }
 
+  let!(:sg1) { FactoryBot.create(:software_group, name: "SW Group One") }
+  let!(:sg2) { FactoryBot.create(:software_group, name: "SW Group Two") }
+
+  let!(:host1) do
+    FactoryBot.create(:host, 
+      location_id: bnd.id,
+      hostname: 'BNDIM4HC03',
+      ipaddress: '192.0.2.11'
+    )
+  end
+  let!(:host2) do
+    FactoryBot.create(:host, 
+      location_id: bnd.id,
+      hostname: 'BNDICM01',
+      ipaddress: '192.0.2.30'
+    )
+  end
   # -- software
   let!(:imedone) do
     FactoryBot.create(:software, location: bnd, vendor: 'Telekom')
@@ -21,8 +38,7 @@ shared_context "connection variables" do
     FactoryBot.create(:software_interface, 
       software: imedone, 
       name: 'IM4HC',
-      hostname: 'BNDIM4HC03',
-      ipaddress: '192.0.2.11'
+      host: host1,
     )
   end
   
@@ -30,8 +46,6 @@ shared_context "connection variables" do
     FactoryBot.create(:software_interface, 
       software: icm, 
       name: 'ICM SST',
-      hostname: 'BNDICM01',
-      ipaddress: '192.0.2.30'
     )
   end
 

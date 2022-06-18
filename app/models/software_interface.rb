@@ -1,6 +1,7 @@
 class SoftwareInterface < ApplicationRecord
   # -- associations
   belongs_to :software
+  belongs_to :host
   has_many :interface_connectors, dependent: :restrict_with_error
 
   # -- configuration
@@ -9,7 +10,8 @@ class SoftwareInterface < ApplicationRecord
   # -- validations and callbacks
   validates :name, :software_id, presence: true
 
-  delegate :location, to: :software
+  delegate :location, :hostname, :ipaddress, to: :host, allow_nil: :true
+  delegate :lid, to: :location, allow_nil: true
 
   def to_s
     "#{name} (#{hostname})"

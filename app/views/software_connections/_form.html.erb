@@ -1,8 +1,15 @@
 <%= simple_form_for(@software_connection) do |form| %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
+  <div class="alert alert-warning">
+    <%= t('mirco.create_manual_software_connections_warning') %>
+  </div>
+
   <div class="form-input">
     <%= form.association :location, wrapper: :horizontal_select,
+          label_method: :to_s
+       %>
+    <%= form.association :server, wrapper: :horizontal_select,
           label_method: :to_s
        %>
     <%= form.association :source_connector, wrapper: :horizontal_select,

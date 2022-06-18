@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :hosts do
+    resources :software_interfaces, module: :hosts
+  end
+  resources :software_groups do
+    resources :hosts, module: :software_groups
+  end
   resources :software_connections
   resources :interface_connectors do
     resources :software_connections, only: %i[index update], module: :interface_connectors
@@ -11,7 +17,9 @@ Rails.application.routes.draw do
   resources :software do
     resources :software_interfaces, module: :software
   end
-  resources :locations
+  resources :locations do
+    resources :hosts, module: :locations
+  end
   resources :alerts, only: %i[index show]
   resources :channel_counters, only: [:index]
   resources :channel_statistics, only: %i[show index] do

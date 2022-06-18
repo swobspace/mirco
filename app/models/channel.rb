@@ -26,7 +26,7 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
 
-  delegate :location, :host, to: :server
+  delegate :location, :ipaddress, to: :server
 
   def to_s
     name.to_s

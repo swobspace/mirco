@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "software/index", type: :view do
   let(:location) { FactoryBot.create(:location, lid: "L1") }
+  let(:software_group) { FactoryBot.create(:software_group, name: "Radiology") }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -12,11 +13,13 @@ RSpec.describe "software/index", type: :view do
     assign(:software, [
       Software.create!(
         location: location,
+        software_group: software_group,
         name: "Name",
         vendor: "ACME small"
       ),
       Software.create!(
         location: location,
+        software_group: software_group,
         name: "Name",
         vendor: "ACME small"
       )
@@ -29,5 +32,6 @@ RSpec.describe "software/index", type: :view do
     assert_select cell_selector, text: Regexp.new("L1".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("ACME small".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Radiology".to_s), count: 2
   end
 end

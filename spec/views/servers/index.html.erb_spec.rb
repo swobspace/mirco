@@ -4,6 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'servers/index', type: :view do
   let(:location) { FactoryBot.create(:location, lid: 'LLX', name: 'Koka') }
+  let(:host) do
+    FactoryBot.create(:host, 
+      name: 'BND03x', 
+      ipaddress: '4.5.6.7', 
+      location: location
+    )
+  end
   let(:time_now) { Time.current }
   before(:each) do
     @ability = Object.new
@@ -20,7 +27,7 @@ RSpec.describe 'servers/index', type: :view do
              Server.create!(
                name: 'MyServer1',
                uid: '0abac8b3-c096-485c-914f-ee8199d55db1',
-               location_id: location.id,
+               host_id: host.id,
                description: 'MyText',
                api_url: 'Api Url',
                api_user: 'Api User',
@@ -33,7 +40,7 @@ RSpec.describe 'servers/index', type: :view do
              Server.create!(
                name: 'MyServer2',
                uid: '9568b611-63b1-4870-8ee2-c309c16376ae',
-               location_id: location.id,
+               host_id: host.id,
                description: 'MyText',
                api_url: 'Api Url',
                api_user: 'Api User',
@@ -53,6 +60,7 @@ RSpec.describe 'servers/index', type: :view do
     assert_select 'tr>td', text: '9568b611-63b1-4870-8ee2-c309c16376ae'.to_s, count: 1
     assert_select 'tr>td', text: '0abac8b3-c096-485c-914f-ee8199d55db1'.to_s, count: 1
     assert_select 'tr>td', text: 'LLX: Koka'.to_s, count: 2
+    assert_select 'tr>td', text: 'BND03x (4.5.6.7)'.to_s, count: 2
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
     assert_select 'tr>td', text: 'Api Url'.to_s, count: 2
     assert_select 'tr>td', text: 'Api User'.to_s, count: 2

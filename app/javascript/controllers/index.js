@@ -27,3 +27,11 @@ application.register("toast", ToastController)
 
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
+
+import SelectController from "@swobspace/stimulus-slim-select"
+application.register("select", SelectController)
+
+// -- polymorphic for wobauth
+import PolymorphicSelectController from "@swobspace/stimulus-polymorphic-select"
+application.register("polymorphic-select", PolymorphicSelectController)
+

@@ -19,6 +19,7 @@ RSpec.describe "software/edit", type: :view do
       assert_select "select[name=?]", "software[location_id]"
       assert_select "input[name=?]", "software[name]"
       assert_select "input[name=?]", "software[vendor]"
+      assert_select "select[name=?]", "software[software_group_id]"
     end
   end
 end

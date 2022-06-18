@@ -4,8 +4,10 @@ require 'uri'
 class Server < ApplicationRecord
   include ServerConcerns
   # -- associations
-  belongs_to :location, optional: true
+  # belongs_to :location
+  belongs_to :host
   has_many :alerts, dependent: :destroy
+  has_many :software_connections, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error
@@ -13,7 +15,7 @@ class Server < ApplicationRecord
   has_many :channel_counters, dependent: :destroy
   has_many :server_configurations, dependent: :restrict_with_error
   # -- configuration
-  encrypts :api_password
+  has_encrypted :api_password
   store_accessor :properties, :server_uid
   store_accessor :properties, :server_jvm
   store_accessor :properties, :server_version
@@ -27,10 +29,14 @@ class Server < ApplicationRecord
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :host, to: :uri
+  delegate :location, :ipaddress, to: :host, allow_nil: true
 
   def uri
     URI(api_url)
+  end
+
+  def to_label
+    "#{name} / #{host.name} (#{host.ipaddress}) / #{location.lid}"
   end
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex

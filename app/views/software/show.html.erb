@@ -35,6 +35,11 @@
         </tr>
 
         <tr>
+          <th class="w-10 pe-3"><%= t('attributes.software_group')%>:</th>
+          <td><%= link_to @software.software_group, @software.software_group %></td>
+        </tr>
+
+        <tr>
           <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
           <td><%= @software.description %></td>
         </tr>
@@ -53,6 +58,10 @@
           <h4><%= t('controller.software_interfaces') %></h4>
         </div>
         <div role="toolbar" class="pt-0">
+          <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                software_software_interfaces_path(@software),
+                class: 'btn btn-secondary'
+           %>
           <%= new_link([@software, SoftwareInterface]) %>
         </div>
       </div>

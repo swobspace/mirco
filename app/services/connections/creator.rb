@@ -5,6 +5,7 @@ module Connections
   # using source_url and destination_url as endpoint
   #
   class Creator
+    FIND_ATTRIBUTES = %w[location_id source_url destination_url]
     attr_reader :connection_attributes
 
     def initialize(channel:)
@@ -17,12 +18,16 @@ module Connections
     def save
       build_connection_attributes(source_channel, [source_channel.id])
       connection_attributes.each do |attributes|
+        find_attributes = attributes.slice(*FIND_ATTRIBUTES)
+        create_with_attributes = attributes.except(*FIND_ATTRIBUTES)
         software_connection = SoftwareConnection
-                              .create_with(channel_ids: attributes['channel_ids'])
-                              .find_or_create_by(attributes.except('channel_ids'))
+                              .create_with(attributes)
+                              .find_or_create_by(find_attributes)
         Mirco::ConnectionDiagram.new(software_connection).delete
-        unless software_connection.channel_ids == attributes['channel_ids']
-          software_connection.update(channel_ids: attributes['channel_ids'])
+        attributes.each_pair do |key,value|
+          unless software_connection.send(key) == value
+            software_connection.update(key => value)
+          end
         end
       end
     end
@@ -45,6 +50,7 @@ module Connections
         if dst.url.present?
           @connection_attributes << { 'location_id' => location.id,
                                       'source_url' => source_url,
+                                      'server_id' => channel.server_id,
                                       'channel_ids'=> channel_ids,
                                       'destination_url' => dst.url }
         elsif dst.destination_channel_id.present?
@@ -56,8 +62,8 @@ module Connections
 
     def true_source_url(url)
       uri = URI(url)
-      if uri.host == '0.0.0.0'
-        uri.host = source_channel.host
+      if (uri.host == '0.0.0.0' || uri.host == 'localhost' || uri.host == '127.0.0.1') and source_channel.ipaddress.present?
+          uri.host = source_channel.ipaddress.to_s
       end
       uri.to_s
     end

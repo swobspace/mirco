@@ -1,0 +1,90 @@
+<div class="container-xxl">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <span class="subtitle">
+            <%= t('activerecord.models.host') %>:
+            #<%= @host.id %>
+          </span>
+          <h4 class="title"><%= @host %></h4>
+        </div>
+        <div role="toolbar" class="pt-3">
+          <%= edit_link(@host) %>
+          <%= delete_link(@host) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-sm table-borderless">
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
+          <td><%= link_to @host.location, @host.location %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.software_group')%>:</th>
+          <td><%= link_to @host.software_group, @host.software_group %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+          <td><%= @host.name %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.ipaddress')%>:</th>
+          <td><%= @host.ipaddress %></td>
+        </tr>
+
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+          <td><%= @host.description %></td>
+        </tr>
+
+
+        <% if @host.servers.any? %>
+        <tr>
+          <th class="w-10 pe-3"><%= t('attributes.server')%>:</th>
+          <td>
+            <% @host.servers.each do |server| %>
+            <%= render 'hosts/server', server: server %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+
+
+      </table>
+    </div>
+  </div>
+
+  <%= back_link %>
+  <%= new_link Host %>
+
+
+  <div class="card my-3">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <h4><%= t('controller.software_interfaces') %></h4>
+        </div>
+        <div role="toolbar" class="pt-0">
+          <%= link_to raw(%Q[<i class="fas fa-table"></i>]),
+                host_software_interfaces_path(@host),
+                class: 'btn btn-secondary'
+           %>
+          <%= new_link([@host, SoftwareInterface]) %>
+        </div>
+      </div>
+    </div>
+    <div id="software_interface">
+      <% @host.software_interfaces.each do |software_interface| %>
+        <%= render 'hosts/software_interface', software_interface: software_interface %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
