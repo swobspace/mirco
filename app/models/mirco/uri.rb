@@ -7,6 +7,14 @@ module Mirco
       parse_url
     end
 
+    def to_s
+      if port.nil?
+        "#{scheme}://#{host}#{path}"
+      else
+        "#{scheme}://#{host}:#{port}#{path}"
+      end
+    end
+
     private
 
     def parse_url

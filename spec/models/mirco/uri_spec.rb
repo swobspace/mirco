@@ -127,6 +127,19 @@ RSpec.describe Mirco::Uri, type: :model do
     it { expect(subject.path).to eq("/Mirth Connect/transfer/HL7_MDM_OPUSL_OUT/${filename}") }
   end
 
+  describe "set uri components" do
+    it "#to_s delivers url with port" do
+      uri = Mirco::Uri.new("tcp://0.0.0.0:1234")
+      uri.host = '2.3.4.5'
+      expect(uri.to_s).to eq('tcp://2.3.4.5:1234')
+    end
+
+    it "#to_s delivers url without port" do
+      uri = Mirco::Uri.new("file://0.0.0.0/mypath")
+      uri.host = '2.3.4.5'
+      expect(uri.to_s).to eq('file://2.3.4.5/mypath')
+    end
+  end
 
 
 end
