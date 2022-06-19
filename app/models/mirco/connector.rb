@@ -97,6 +97,7 @@ module Mirco
       {
         type: connector_type.puml_type,
         text: connector_type.puml_text,
+        host: connector_type.puml_host,
         destination_channel_id: destination_channel_id
       }
     end

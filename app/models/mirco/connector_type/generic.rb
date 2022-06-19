@@ -28,6 +28,10 @@ module Mirco
         'unknown'
       end
 
+      def puml_host
+        nil
+      end
+
       def destination_channel_id
         nil
       end
