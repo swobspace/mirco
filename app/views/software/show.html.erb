@@ -22,6 +22,12 @@
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
           <td><%= link_to @software.location, @software.location %></td>
+          <th class="w-25 pe-3"><%= t('controller.hosts')%> via <%=t('attributes.software_group')%>:</th>
+          <td>
+            <% @software.software_group.hosts.where(location_id: @software.location_id).each do |host| %>
+              <%= link_to host, host %>
+            <% end %>
+          </td>
         </tr>
 
         <tr>
