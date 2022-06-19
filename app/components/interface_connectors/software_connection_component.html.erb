@@ -5,8 +5,13 @@
         <div class="fw-bold">
           <%= link_to software_connection.to_s, software_connection %>
         </div>
-        <div>
-          <%= software_connection.source_url %> == <%= software_connection.destination_url %>
+        <div class="ps-4">
+          <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+          <%= software_connection.source_url %>
+        </div>
+        <div class="ps-4">
+          <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+          <%= software_connection.destination_url %>
         </div>
       </div>
       <div class="col text-center">

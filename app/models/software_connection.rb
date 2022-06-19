@@ -15,7 +15,7 @@ class SoftwareConnection < ApplicationRecord
   validates :source_url, uniqueness: { scope: [:location_id, :destination_url] }
 
   def to_s
-    "#{location&.lid}: #{source_connector} -> #{destination_connector}"
+    "#{location&.lid}: #{source_connector} \u27A1 #{destination_connector}"
   end
 
   def channel_ids

@@ -43,7 +43,14 @@
 
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
-          <td><%= @interface_connector.type %></td>
+          <td>
+            <% if (@interface_connector.direction == 'out') %>
+              <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+            <% else %>
+              <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+            <% end %>
+            <%= @interface_connector.type %>
+          </td>
         </tr>
 
         <tr>
