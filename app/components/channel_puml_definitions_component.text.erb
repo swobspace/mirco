@@ -9,11 +9,9 @@ url of <%= ch_alias %> is [[<%= channel_path(channel) %>]]
 
     <%= dest.puml[:type] %> <%= ch_alias %>_dst_<%= dest.meta_data_id %> as "<%= dest.puml[:text] %>"
     <% unless dest.puml[:host].nil? %>
-      note bottom of <%= ch_alias %>_dst_<%= dest.meta_data_id %>
-        <%= dest.puml[:host].name %> (<%= dest.puml[:host].location&.lid %>)
-        <%= dest.puml[:host].software_group %>
-      end note
-      url of <%= ch_alias %>_dst_<%= dest.meta_data_id %> is [[<%= host_path(dest.puml[:host]) %>]]
+      card <%= ch_alias %>_<%= dest.puml[:host].name %> as "<%= dest.puml[:host].name %> (<%= dest.puml[:host].location&.lid %>)\n<%= dest.puml[:host].software_group %>"
+      <%= ch_alias %>_dst_<%= dest.meta_data_id %> -[dotted]- <%= ch_alias %>_<%= dest.puml[:host].name %>
+      url of <%= ch_alias %>_<%= dest.puml[:host].name %> is [[<%= host_path(dest.puml[:host]) %>]]
     <% end %>
   <% end %>
 <% end %>
