@@ -4,7 +4,11 @@ class SoftwareController < ApplicationController
 
   # GET /software
   def index
-    @software = Software.all
+    if @softwareable
+      @software = @softwareable.software
+    else
+      @software = Software.all
+    end
     respond_with(@software)
   end
 
@@ -15,7 +19,11 @@ class SoftwareController < ApplicationController
 
   # GET /software/new
   def new
-    @software = Software.new
+    if @softwareable
+      @software = @softwareable.software.build
+    else
+      @software = Software.new
+    end
     respond_with(@software)
   end
 
@@ -25,22 +33,26 @@ class SoftwareController < ApplicationController
 
   # POST /software
   def create
-    @software = Software.new(software_params)
+    if @softwareable
+      @software = @softwareable.software.build(software_params)
+    else
+      @software = Software.new(software_params)
+    end
 
     @software.save
-    respond_with(@software)
+    respond_with(@software, location: location)
   end
 
   # PATCH/PUT /software/1
   def update
     @software.update(software_params)
-    respond_with(@software)
+    respond_with(@software, location: location)
   end
 
   # DELETE /software/1
   def destroy
     @software.destroy
-    respond_with(@software)
+    respond_with(@software, location: location)
   end
 
   private
@@ -53,5 +65,9 @@ class SoftwareController < ApplicationController
     def software_params
       params.require(:software).permit(:location_id, :name, :description, :vendor,
                                        :software_group_id)
+    end
+
+    def location
+      polymorphic_path(@software || :software)
     end
 end

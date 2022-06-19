@@ -178,6 +178,7 @@ de:
     software_connections: Verbindungen
     software_groups: Software-Gruppen
     software_groups/hosts: Hosts
+    software_groups/software: Software
     software_interfaces: Software Interfaces
     software_interfaces/interface_connectors: Connectors
     users: Benutzer
