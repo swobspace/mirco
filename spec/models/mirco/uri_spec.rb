@@ -10,7 +10,7 @@ RSpec.describe Mirco::Uri, type: :model do
 
     it { expect(subject.scheme).to eq("tcp") }
     it { expect(subject.host).to eq("0.0.0.0") }
-    it { expect(subject.port).to eq("12345") }
+    it { expect(subject.port).to eq(12345) }
     it { expect(subject.path).to eq("") }
   end
 
@@ -18,7 +18,7 @@ RSpec.describe Mirco::Uri, type: :model do
     let(:url) { "tcp://11.22.33.44:5555" }
     it { expect(subject.scheme).to eq("tcp") }
     it { expect(subject.host).to eq("11.22.33.44") }
-    it { expect(subject.port).to eq("5555") }
+    it { expect(subject.port).to eq(5555) }
     it { expect(subject.path).to eq("") }
   end
 
@@ -26,7 +26,7 @@ RSpec.describe Mirco::Uri, type: :model do
     let(:url) { "tcp://11.22.33.44:5555/whatever/mypath" }
     it { expect(subject.scheme).to eq("tcp") }
     it { expect(subject.host).to eq("11.22.33.44") }
-    it { expect(subject.port).to eq("5555") }
+    it { expect(subject.port).to eq(5555) }
     it { expect(subject.path).to eq("/whatever/mypath") }
   end
 

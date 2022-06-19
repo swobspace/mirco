@@ -23,7 +23,7 @@ module Mirco
       if !m.nil?
         @scheme = m[1].to_s.downcase
         @host = m[2]
-        @port = m[4]
+        @port = m[4]&.to_i
         @path = m[5]
       end
     end
