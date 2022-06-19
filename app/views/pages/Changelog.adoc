@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.9.4 / 2022-06-19
+
+----
+* subrouting Software through SoftwareGroup
+* fix URI parsing (mirth urls may contains variables, etc.)
+----
+
 === 0.9.3 / 2022-06-18
 
 ----
