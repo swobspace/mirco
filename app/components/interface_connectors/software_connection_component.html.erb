@@ -16,7 +16,7 @@
          %>
       </div>
       <div class="col text-end">
-        <%= button_to addremove_text, software_connection_path(software_connection),
+        <%= button_to addremove_text, interface_connector_software_connection_path(interface_connector, software_connection),
               method: :patch,
               params: addremove_params,
               class: btn_class

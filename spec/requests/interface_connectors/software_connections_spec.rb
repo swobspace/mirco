@@ -57,7 +57,7 @@ module InterfaceConnectors
           software_connection = SoftwareConnection.create! valid_attributes
           patch interface_connector_software_connection_url(srcconn, software_connection), params: { software_connection: new_attributes }
           software_connection.reload
-          expect(response).to redirect_to(software_connection_url(software_connection))
+          expect(response).to redirect_to(interface_connector_path(srcconn))
         end
       end
 

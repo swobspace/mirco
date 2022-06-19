@@ -43,19 +43,19 @@ class SoftwareConnectionsController < ApplicationController
     @software_connection = SoftwareConnection.new(software_connection_params)
 
     @software_connection.save
-    respond_with(@software_connection)
+    respond_with(@software_connection, location: location)
   end
 
   # PATCH/PUT /software_connections/1
   def update
     @software_connection.update(software_connection_params)
-    respond_with(@software_connection)
+    respond_with(@software_connection, location: location)
   end
 
   # DELETE /software_connections/1
   def destroy
     @software_connection.destroy
-    respond_with(@software_connection)
+    respond_with(@software_connection, location: location)
   end
 
   private
@@ -73,4 +73,8 @@ class SoftwareConnectionsController < ApplicationController
         :ignore, :ignore_reason, :description
       )
     end
+
+  def location
+    polymorphic_path(@software_connection || :software_connections)
+  end
 end
