@@ -11,6 +11,7 @@ url of <%= ch_alias %> is [[<%= channel_path(channel) %>]]
     <% unless dest.puml[:host].nil? %>
       note bottom of <%= ch_alias %>_dst_<%= dest.meta_data_id %>
         <%= dest.puml[:host].name %> (<%= dest.puml[:host].location&.lid %>)
+        <%= dest.puml[:host].software_group %>
       end note
       url of <%= ch_alias %>_dst_<%= dest.meta_data_id %> is [[<%= host_path(dest.puml[:host]) %>]]
     <% end %>
