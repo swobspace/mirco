@@ -90,4 +90,18 @@
     </div>
   <% end %>
 
+  <% if @interface_connector.nonlocal_possible_connections.present? %>
+    <div class="card my-3">
+      <div class="card-header">
+        <h4><%= t('mirco.nonlocal_possible_connections') %></h4>
+      </div>
+      <div id="software_connections">
+        <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                     @interface_connector.nonlocal_possible_connections,
+                     interface_connector: @interface_connector)
+         %>
+      </div>
+    </div>
+  <% end %>
+
 </div>
