@@ -45,13 +45,13 @@ class InterfaceConnector < ApplicationRecord
   end
 
   def uri
-    URI(url)
+    Mirco::Uri.new(url)
   end
 
   private
 
   def check_url_host
-    uri = URI(url)
+    uri = Mirco::Uri.new(url)
     case uri.host.to_s
     when '127.0.0.1', 'localhost', '0.0.0.0'
       if software_interface.present? and software_interface.ipaddress.present?
