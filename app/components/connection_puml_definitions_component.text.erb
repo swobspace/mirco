@@ -1,6 +1,7 @@
 ' Connection <%= connection.to_s %>
 ' Definitions
 rectangle <%= src_identifier %> as "<%= src_text %>" <%= src_color %> 
+url of <%= src_identifier %> is [[<%= src_url %>]]
 circle if_<%= src_identifier %> as "<%= connection.source_url %>"
 
 rectangle mirth as "MIRTH\n<%=connection.location%>" {
@@ -10,5 +11,6 @@ rectangle mirth as "MIRTH\n<%=connection.location%>" {
   <% end %>
 }
 rectangle <%= dst_identifier %> as "<%= dst_text %>" <%= dst_color %> 
+url of <%= dst_identifier %> is [[<%= dst_url %>]]
 
 circle if_<%= dst_identifier %> as "<%= connection.destination_url %>"

@@ -35,6 +35,14 @@ class ConnectionPumlComponent < ViewComponent::Base
     end
   end
 
+  def src_url
+    if src
+      software_connection_path(src)
+    else
+      '#'
+    end
+  end
+
   def src_color
     unless src
       "#AAAAAA"
@@ -60,6 +68,14 @@ class ConnectionPumlComponent < ViewComponent::Base
           "<color:grey>#{dst.hostname} (#{dst.ipaddress})</color>")
     else
       "not configured"
+    end
+  end
+
+  def dst_url
+    if dst
+      software_connection_path(dst)
+    else
+      '#'
     end
   end
 
