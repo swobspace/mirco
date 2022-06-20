@@ -7,11 +7,11 @@
         </div>
         <div class="ps-4">
           <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
-          <%= software_connection.source_url %>
+          <%= software_connection.source_url %> (<%= software_connection.src_url_host&.name%>)
         </div>
         <div class="ps-4">
           <i class="far fa-arrow-alt-circle-left fa-lg"></i>
-          <%= software_connection.destination_url %>
+          <%= software_connection.destination_url %> (<%= software_connection.dst_url_host&.name%>)
         </div>
       </div>
       <div class="col-2 text-center">
