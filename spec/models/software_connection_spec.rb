@@ -31,7 +31,7 @@ RSpec.describe SoftwareConnection, type: :model do
   end
 
   describe "#to_s" do
-    it { expect(software_connection.to_s).to match("#{location.lid}: #{srcconn} \u27A1 #{dstconn}") }
+    it { expect(software_connection.to_s).to match("#{location.lid}: #{srcconn} \u27A0 #{dstconn}") }
   end
 
   describe "#channel_ids" do
