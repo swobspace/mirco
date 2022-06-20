@@ -29,7 +29,12 @@ module Mirco
       end
 
       def puml_host
-        nil
+        uri = Mirco::Uri.new(url)
+        if uri.host =~ /\A[0-9]{0,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\z/
+          Host.where(ipaddress: uri.host).first
+        else
+          nil
+        end
       end
 
       def destination_channel_id

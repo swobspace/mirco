@@ -22,10 +22,6 @@ module Mirco
         url
       end
 
-      def puml_host
-        Host.where(ipaddress: remote_address).first
-      end
-
       private
 
       def remote_address
