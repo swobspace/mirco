@@ -1,4 +1,5 @@
 class SoftwareConnection < ApplicationRecord
+  include SoftwareConnectionConcerns
   # -- associations
   belongs_to :location
   belongs_to :server
