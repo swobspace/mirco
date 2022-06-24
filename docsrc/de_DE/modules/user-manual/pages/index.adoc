@@ -1,0 +1,54 @@
+= Mirco
+:imagesdir: ../images
+
+Mirco - der xref:about.adoc[Mirth Companion] - deckt zwei recht
+unterschiedliche Bereiche im xref:mirth.adoc[Mirth]-Umfeld ab:
+
+* das Monitoring von Mirth Channels und
+* die Dokumentation von KIS-Schnittstellen mit Mirth-Beteiligung.
+
+Die beiden Themen haben auf den ersten Blick nicht direkt etwas mit einander
+zu tun. Für die Überwachung der Mirth-Channels holt sich Mirco von jedem
+konfigurierten Mirth-Server auch die Konfiguration aller Channels mit allen
+Eingangs- und Ausgangspunkten. Dieses Wissen über den Weg einer Nachricht
+durch den Mirth und dessen Ziel (Destination) kann man manuell ergänzen mit
+dem Wissen über vorhandene Systeme (Hosts) und Schnittstellen und erhält
+dadurch ein recht vollständiges Bild des Kommunikationsflusses.
+
+Mirco kann man auch gut ohne den manuellen Anteil der Dokumentation betreiben.
+Die Konfiguration je Mirth-System ist minimal, das Monitoring läuft im
+Wesentlichen automatisch ab.
+
+
+== Monitoring
+
+Zentrales Element eines Mirth-Kommunikation ist der Channel. Ein Channel
+empfängt Nachrichten über einen Source-Connector und sendet diese -
+unverändert, oder verändert, ggf. auch gefiltert - an eine oder mehrere
+Destinations weiter. Dabei kann man zählen, wieviele Nachrichten empfangen,
+weitergeleitet, gefiltert oder auf einen Fehler gelaufen sind. Kann eine
+Nachricht nicht zugestellt werden, verbleibt diese (abhängig von der konkreten
+Konfiguration des Channels) in einer Queue.
+
+Ein klares Anzeichen für eine Störung des Nachrichtenflusses sind empfangene
+Nachrichten, die seit einiger Zeit auf eine Weiterleitung warten, aber nicht
+versendet werden (queued > Schwellwert, send = 0, bezogen auf ein festes
+Zeitintervall). Das von Mirco betrachtete Zeitintervall beträgt fest 30
+Minuten, die Schwellwerte sind einstellbar.
+
+Für eine solche Überwachung benötigt Mirco regelmäßig statistische Daten des
+Mirth-Systems. Mirco nutzt dazu das REST-API von Mirth Connect und fragt die
+statistischen Daten aller Channels mit einer einzigen Abfrage ab und speichert
+diese in einer Zeitreihe je Channel und Destination ab. Ergänzt werden die
+Informationen mit der Channelkonfiguration, die man als Sammelabfrage nach
+Konfigurationsänderungen per Knopfdruck oder auch periodisch (z.B. 1x pro
+Woche) automatisiert ausführen lassen kann.
+
+Aktive Channels zeigt Mirco in einer Übersicht wie der folgenden an:
+
+image::mirco-home-channel-current.png[]
+
+Dabei werden nur Channels aufgeführt, die tatsächlich Nachrichten in einer Queue enthalten. Schwellwertüberschreitungen werden farblich markiert, bleiben Nachrichten länger liegen, erfolgt eine violette Markierung (violett = Problem). Die Anzeige wird bei jeder Systemabfrage automatisch aktualisiert.
+
+
+== Dokumentation von KIS-Schnittstellen

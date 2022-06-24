@@ -1,6 +1,6 @@
 site:
   title: Mirco Dokumentation
-  start_page: mirco::index.adoc
+  start_page: mirco:user-manual:index.adoc
 content:
   sources:
   - url: ../..
