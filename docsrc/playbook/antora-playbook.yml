@@ -13,6 +13,7 @@ content:
     start_path: docsrc/devnotes
 output:
   dir: ../../docs
+  clean: true
 ui:
   bundle:
     url: ./ui-bundle/ui-bundle.zip

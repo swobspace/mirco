@@ -2,7 +2,7 @@ name: mirco
 title: Mirco
 version: master
 nav:
-- modules/ROOT/nav.adoc
+- modules/user-manual/nav.adoc
 - modules/admin-manual/nav.adoc
 - modules/installation-guide/nav.adoc
 
