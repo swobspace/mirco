@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Konfiguration :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.0">
+    <title>Datenbankverschlüsselung :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -63,7 +63,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="setup.html">Setup</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="encryption.html">Datenbankverschlüsselung</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -81,7 +81,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="configuration.html">Konfiguration</a>
   </li>
 </ul>
@@ -124,7 +124,7 @@
   <ul>
     <li><a href="../index.html">Mirco</a></li>
     <li>Installation Guide</li>
-    <li><a href="configuration.html">Konfiguration</a></li>
+    <li><a href="encryption.html">Datenbankverschlüsselung</a></li>
   </ul>
 </nav>
 </div>
@@ -133,68 +133,51 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Konfiguration</h1>
-<div class="sect1">
-<h2 id="_zentrale_konfigurationdatei_mirco_yml"><a class="anchor" href="#_zentrale_konfigurationdatei_mirco_yml"></a>Zentrale Konfigurationdatei <code>mirco.yml</code></h2>
-<div class="sectionbody">
+<h1 class="page">Datenbankverschlüsselung</h1>
 <div class="paragraph">
-<p>Die Konfigurationsdatei <code>mirco.yml</code> ist reserviert für eine spätere
-Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
-leer sein.</p>
+<p>Secret für Sessions, Cookies und Co generieren:</p>
 </div>
-<div id="mirco.yml" class="listingblock">
-<div class="title">mirco.yml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/mirco.yml
-cron_expression: '*/5 * * * *' <i class="conum" data-value="1"></i><b>(1)</b>
-warn_threshold: 10 <i class="conum" data-value="2"></i><b>(2)</b>
-use_ssl: true <i class="conum" data-value="3"></i><b>(3)</b>
-action_cable_allowed_request_origins: <i class="conum" data-value="4"></i><b>(4)</b>
-  - http://mirco.example.com
-  - https://mirco.example.com</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Cron-Ausdruck für das Scheduling der Checks; voreingestellt sind alle 5 min.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Warnschwelle in Minuten; bei Überschreitung wird die Zeitangabe farblich markiert.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>http:// und https:// Site-Urls für den Websocket</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_deploy_config_yml"><a class="anchor" href="#_deploy_config_yml"></a>deploy-config.yml</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
-# copy me to deploy-config.yml and edit
-#
-hosts:
-  web: myserver
-  app: myserver
-  db: myserver
-repo_url: https://github.com/swobspace/mirco.git
-user: deploy
-deploy_to: /var/www/apps/mirco
-relative_url_root: /
-ruby_path: "/opt/ruby/2.7/bin:$PATH"</code></pre>
+<pre>bin/rake secret
+0c187ca505a516dd471c60db89b1f7d....</pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">Initialize encrypted credentials</div>
+<div class="content">
+<pre>EDITOR="vim" rails credentials:edit --environment &lt;env&gt;</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">secret_key_base und Dummy Key für Lockbox einfügen</div>
+<div class="content">
+<pre>secret_key_base: 0c187ca505a516dd471c60db89b1f7d....
+lockbox:
+  master_key: 0000000000000000000000000000000000000000000000000000000000000000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>und Editor wieder beenden.</p>
+</div>
+<div class="listingblock">
+<div class="title">Rails Console: bin/rails console -e &lt;environment&gt;</div>
+<div class="content">
+<pre>Lockbox.generate_key</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Den Dummy Key jetzt mit <code>rails credentials:edit</code> durch den generierten Key
+ersetzen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Konfiguration prüfen</div>
+<div class="content">
+<pre>bin/rails console
+Rails.application.credentials.config
+
+=&gt; {:secret_key_base=&gt;"0c187ca505a....",
+ :lockbox=&gt;{:master_key=&gt;"913b75b......"}}</pre>
 </div>
 </div>
 </article>

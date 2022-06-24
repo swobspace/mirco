@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Software interfaces :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.0">
+    <title>Software connections :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -48,10 +48,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="hosts.html">Hosts</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="software-connections.html">Software connections</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -99,7 +99,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">DevNotes</a></li>
-    <li><a href="software-interfaces.html">Software interfaces</a></li>
+    <li><a href="software-connections.html">Software connections</a></li>
   </ul>
 </nav>
 </div>
@@ -108,48 +108,43 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Software interfaces</h1>
+<h1 class="page">Software connections</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using Mirth comes with other application software having its own software
-interfaces. Software interfaces in mirco is primarily for documentation
-purposes to get the full picture of data flows in one application.</p>
+<p>Imagine a software application with sends data to a Mirth server over tcp. Within Mirth following the path from the source connector through some channel to a final destination connector which sends the data over tcp to another software application.</p>
+</div>
+<div class="paragraph">
+<p>The endpoints in mirth from source connector to destination connector can be mapped to the model SoftwareConnection. The concrete path within Mirth doesn&#8217;t matter, only the endpoints are neccessary.</p>
+</div>
+<div class="paragraph">
+<p>The idea is to create the instances of SoftwareConnection automatically from the available Mirth channels. Since there may be filters and some data may not reach the destination, you can manually flag a software connection to be ignored. Don&#8217;t delete it, otherwise rerun the automatic mapping from mirth channels will recreate this connection.</p>
+</div>
+<div class="paragraph">
+<p>You can create a software connection manually too, but be careful specifying the correct source and destination url. Each connection is unique on <code>(location, source_url, destination_url)</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_overall_picture"><a class="anchor" href="#_overall_picture"></a>Overall Picture</h2>
+<h2 id="_model_softwareconnection"><a class="anchor" href="#_model_softwareconnection"></a>Model SoftwareConnection</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="_images/software-interfaces.svg" alt="software interfaces">
+<img src="_images/software-connections.svg" alt="software connections">
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_location"><a class="anchor" href="#_model_location"></a>model Location</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Location \
-  lid:string:index name:string \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_software"><a class="anchor" href="#_model_software"></a>model Software</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Software \
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareConnection \
   location:belongs_to \
-  software_group:belongs_to \
-  name:string \
-  vendor: string \
+  server:belongs_to \
+  source_connector:belongs_to \
+  source_url:string \
+  channel_ids:integer (array:true) \
+  destination_connector:belongs_to \
+  destination_url:string \
+  ignore:boolean \
+  ignore_reason:string \
   description:rich_text \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
@@ -157,62 +152,29 @@ purposes to get the full picture of data flows in one application.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_model_softwareinterface"><a class="anchor" href="#_model_softwareinterface"></a>model SoftwareInterface</h2>
+<h2 id="_autogenerate_software_connections"><a class="anchor" href="#_autogenerate_software_connections"></a>Autogenerate software connections</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold SoftwareInterface \
-  software:belongs_to \
-  host:belongs_to \
-  name:string \
-  hostname:string \
-  ipaddress:inet \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Iterate over all channels with an external source (tcp_receiver, file_receiver) and search for external destinations (may be through other channels)</p>
+</li>
+<li>
+<p>Create software connection entries without source and destination connector if software_connection does not always exist</p>
+</li>
+<li>
+<p>For each software connection without assigned source or destination connector search for an interface connector with matching url (real url)</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_model_interfaceconnector"><a class="anchor" href="#_model_interfaceconnector"></a>model InterfaceConnector</h2>
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
 <div class="sectionbody">
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold InterfaceConnector \
-  software_interface:belongs_to \
-  name:string \
-  type:string:index \
-  url:string \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_hl7event"><a class="anchor" href="#_model_hl7event"></a>model HL7Event</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold HL7Event \
-  interface_connector:belongs_to \
-  message_type:string:index trigger_event:string \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_model_hl7segment"><a class="anchor" href="#_model_hl7segment"></a>model HL7Segment</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold HL7Segment \
-  hl7_event:belongs_to \
-  name:string:index \
-  description:rich_text \
-  --no-stylesheets --no-javascripts --no-helper</code></pre>
+<img src="_images/software-connection-example.svg" alt="software connection example">
 </div>
 </div>
 </div>

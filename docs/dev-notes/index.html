@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mirth API :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.0">
+    <title>Developer Notes :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -39,7 +39,7 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="api-memo.html">Mirth API</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -99,7 +99,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">DevNotes</a></li>
-    <li><a href="api-memo.html">Mirth API</a></li>
+    <li><a href="index.html">Developer Notes</a></li>
   </ul>
 </nav>
 </div>
@@ -108,60 +108,8 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Mirth API</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>class Server &lt; ApplicationRecord
-  # properties: jsonb
-  # self[:uid] = properties['server_uid']
+<h1 class="page">Developer Notes</h1>
 
-  store_accessors :properties, :server_uid
-  store_accessors :properties, :server_jvm
-  store_accessors :properties, :server_version
-  store_accessors :properties, :server_settings
-  store_accessors :properties, :system_info
-end</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_server"><a class="anchor" href="#_server"></a>Server</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/api-server.svg" alt="api server">
-</div>
-<div class="title">Abbildung 1. Information from /server tree</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/api-system.svg" alt="api system">
-</div>
-<div class="title">Abbildung 2. Information from /system tree</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_channel"><a class="anchor" href="#_channel"></a>Channel</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>class Channel &lt; ApplicationRecord
-  # properties: jsonb
-  # self[:uid] = properties['id']
-
-  store_accessors :properties, :channel_uid
-  store_accessors :properties, :name
-  store_accessors :properties, :description
-  store_accessors :properties, :revision
-end</pre>
-</div>
-</div>
-</div>
-</div>
 </article>
   </div>
 </main>

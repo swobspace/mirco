@@ -6,13 +6,13 @@ content:
   - url: ../..
     branches: HEAD
     edit_url: ~
-    start_path: doc/de_DE
+    start_path: docsrc/de_DE
   - url: ../..
     branches: HEAD
     edit_url: ~
-    start_path: doc/dev-notes
+    start_path: docsrc/devnotes
 output:
-  dir: ../../public/docs
+  dir: ../../docs
 ui:
   bundle:
     url: ./ui-bundle/ui-bundle.zip
