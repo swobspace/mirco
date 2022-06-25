@@ -1,0 +1,89 @@
+= Mirco - der Mirth Companion
+:imagesdir: ../images
+
+Mirco ist primär für zwei Anwendungsbereiche im xref:mirth.adoc[Mirth]-Umfeld
+gedacht:
+
+* das Monitoring von Mirth Channels und
+* die Dokumentation von KIS-Schnittstellen mit Mirth-Beteiligung.
+
+Für das Monitoring holt sich Mirco die Channelkonfiguration
+vom Mirth-System. Die Channelkonfiguration liefert gleichzeitig auch eine gute
+Grundlage für die Dokumentation von KIS-Schnittstellen. Warum also nicht
+beides miteinander verbinden?
+
+Die Dokumentation zu KIS-Schnittstellen ist optional. Mirth kann man auch gut
+als reines Monitoring-System betreiben. Die Konfiguration je Mirth-System ist
+hierfür minimal, das Monitoring läuft im Wesentlichen automatisch ab.
+
+== Monitoring
+
+Zentrales Element einer Mirth-Kommunikation ist der Channel. Ein Channel
+empfängt Nachrichten über einen Source-Connector und sendet diese -
+unverändert, verändert, oder ggf. auch gefiltert - an eine oder mehrere
+Destinations weiter. Dabei kann man zählen, wie viele Nachrichten empfangen,
+weitergeleitet und gefiltert wurden - oder ob ein Fehler aufgetreten ist. Kann
+eine Nachricht nicht zugestellt werden, verbleibt diese in einer Queue
+(abhängig von der konkreten Konfiguration des Channels).
+
+Ein klares Anzeichen für eine Störung des Nachrichtenflusses sind empfangene
+Nachrichten, die seit einiger Zeit auf eine Weiterleitung warten, aber nicht
+versendet werden (queued > Schwellwert, send = 0, bezogen auf ein festes
+Zeitintervall). Das von Mirco betrachtete Zeitintervall beträgt fest 30
+Minuten, die Schwellwerte sind einstellbar.
+
+Für eine solche Überwachung benötigt Mirco regelmäßig statistische Daten des
+Mirth-Systems. Mirco nutzt dazu das REST-API von Mirth Connect und fragt die
+statistischen Daten aller Channels mit einer einzigen Abfrage ab und speichert
+diese in einer Zeitreihe je Channel und Destination ab. Ergänzt werden die
+Informationen mit der Channelkonfiguration, die man als Sammelabfrage nach
+Konfigurationsänderungen per Knopfdruck oder auch periodisch (z.B. 1x pro
+Woche) automatisiert ausführen lassen kann.
+
+Gerade aktive Channels - Channels mit noch nicht ausgelieferten Nachrichten -
+zeigt Mirco auf der Startseite an:
+
+image::mirco-home-channel-current.png[]
+
+Dabei werden nur Channels aufgeführt, die tatsächlich Nachrichten in einer
+Queue enthalten. Schwellwertüberschreitungen werden farblich markiert, bleiben
+Nachrichten länger liegen, erfolgt eine violette Markierung (violett =
+Problem). Die Anzeige wird bei jeder Systemabfrage automatisch aktualisiert.
+
+Die verfügbaren statistischen Werte werden je Connector graphisch dargestellt:
+
+image::mirco-channel-statistics-queued-per-week.png[]
+
+In der wöchentlichen Übersicht nicht ausgelieferter ADT-Nachrichten zu einem
+Subsystem erkennt man, dass es regelmäßig nachts Unterbrechungen gibt, am
+Donnerstag morgen aber eine Störung vorlag, da die Zustellung der Nachrichten
+bis mittags gestört war.
+
+Über die Darstellung auf der Webseite hinaus generiert Mirco im Störungsfalle
+einen Alert, d.h. das Ereignis wird zum Channel und Connector gesondert
+dokumentiert und darüber hinaus eine E-Mail versandt. Bei Wiederherstellung
+notiert Mirco das Recovery ebenfalls zu Channel und Connector und versendet
+wiederum eine E-Mail.
+
+
+== Dokumentation von KIS-Schnittstellen
+
+Mirco verwendet die ohnehin vorhandenen Informationen zur Channelkonfiguration
+und erstellt daraus eine Übersicht der Transportwege von Nachrichten durch ein
+Mirth-System vom Source-Connector bis hin zu den einzelnen Destinations:
+
+image::server-channel-diagram.svg[]
+
+Der Datenfluss oben beginnt mit den Source-Connectoren, hier im Beispiel 2
+TCP-Receiver. Die Channels sind in blau dargestellt. Leitet ein Channel die
+Nachrichten an einen anderen Channel weiter, werden beide in der Graphik
+verknüpft. Am Ende folgen in gelb die Destination-Connectoren.
+
+Der Anfang für eine Dokumentation von KIS-Schnittstellen ist gemacht, und das
+ohne jeden zusätzlichen Aufwand. Fügt man manuell weitere Information hinzu
+wie die Server der Subsysteme, die Software, Software-Schnittstellen und
+Interfaces, erhält man dadurch ein recht vollständiges Bild des
+Kommunikationsflusses.
+
+Wie bereits erwähnt ist die manuelle Dokumentation optional und für den
+Betrieb des Monitorings nicht notwendig.

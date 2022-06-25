@@ -5,6 +5,7 @@ nav:
 - modules/user-manual/nav.adoc
 - modules/admin-manual/nav.adoc
 - modules/installation-guide/nav.adoc
+- modules/ROOT/nav.adoc
 
 asciidoc:
   attributes:
