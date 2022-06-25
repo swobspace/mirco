@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mirco :: Mirco Dokumentation</title>
+    <title>Benutzer-Handbuch :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -23,7 +23,7 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-           <a class="navbar-item" href="../../dev-notes/index.html">DevNotes</a>
+           <a class="navbar-item" href="../../devnotes/index.html">DevNotes</a>
           <div class="navbar-item dark">Mirco</div>
       </div>
     </div>
@@ -40,16 +40,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Mirco</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="mirth.html">Mirth</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="about.html">Über Mirco</a>
-  </li>
-</ul>
+    <a class="nav-link" href="index.html">Benutzer-Handbuch</a>
   </li>
 </ul>
   </li>
@@ -95,6 +86,16 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </nav>
 </div>
@@ -105,10 +106,10 @@
   </div>
   <ul class="components">
     <li class="component">
-      <a class="title" href="../../dev-notes/index.html">DevNotes</a>
+      <a class="title" href="../../devnotes/index.html">DevNotes</a>
       <ul class="versions">
         <li class="version is-latest">
-          <a href="../../dev-notes/index.html">master</a>
+          <a href="../../devnotes/index.html">master</a>
         </li>
       </ul>
     </li>
@@ -128,10 +129,11 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="../index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">Mirco</a></li>
+    <li><a href="../index.html">Mirco</a></li>
+    <li><a href="index.html">Benutzer-Handbuch</a></li>
   </ul>
 </nav>
 </div>
@@ -140,92 +142,16 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Mirco</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Benutzer-Handbuch</h1>
 <div class="paragraph">
-<p>Mirco - der <a href="about.html" class="xref page">Mirth Companion</a> - deckt zwei recht
-unterschiedliche Bereiche im <a href="mirth.html" class="xref page">Mirth</a>-Umfeld ab:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>das Monitoring von Mirth Channels und</p>
-</li>
-<li>
-<p>die Dokumentation von KIS-Schnittstellen mit Mirth-Beteiligung.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Die beiden Themen haben auf den ersten Blick nicht direkt etwas mit einander
-zu tun. Für die Überwachung der Mirth-Channels holt sich Mirco von jedem
-konfigurierten Mirth-Server auch die Konfiguration aller Channels mit allen
-Eingangs- und Ausgangspunkten. Dieses Wissen über den Weg einer Nachricht
-durch den Mirth und dessen Ziel (Destination) kann man manuell ergänzen mit
-dem Wissen über vorhandene Systeme (Hosts) und Schnittstellen und erhält
-dadurch ein recht vollständiges Bild des Kommunikationsflusses.</p>
-</div>
-<div class="paragraph">
-<p>Mirco kann man auch gut ohne den manuellen Anteil der Dokumentation betreiben.
-Die Konfiguration je Mirth-System ist minimal, das Monitoring läuft im
-Wesentlichen automatisch ab.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_monitoring"><a class="anchor" href="#_monitoring"></a>Monitoring</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Zentrales Element eines Mirth-Kommunikation ist der Channel. Ein Channel
-empfängt Nachrichten über einen Source-Connector und sendet diese -
-unverändert, oder verändert, ggf. auch gefiltert - an eine oder mehrere
-Destinations weiter. Dabei kann man zählen, wieviele Nachrichten empfangen,
-weitergeleitet, gefiltert oder auf einen Fehler gelaufen sind. Kann eine
-Nachricht nicht zugestellt werden, verbleibt diese (abhängig von der konkreten
-Konfiguration des Channels) in einer Queue.</p>
-</div>
-<div class="paragraph">
-<p>Ein klares Anzeichen für eine Störung des Nachrichtenflusses sind empfangene
-Nachrichten, die seit einiger Zeit auf eine Weiterleitung warten, aber nicht
-versendet werden (queued &gt; Schwellwert, send = 0, bezogen auf ein festes
-Zeitintervall). Das von Mirco betrachtete Zeitintervall beträgt fest 30
-Minuten, die Schwellwerte sind einstellbar.</p>
-</div>
-<div class="paragraph">
-<p>Für eine solche Überwachung benötigt Mirco regelmäßig statistische Daten des
-Mirth-Systems. Mirco nutzt dazu das REST-API von Mirth Connect und fragt die
-statistischen Daten aller Channels mit einer einzigen Abfrage ab und speichert
-diese in einer Zeitreihe je Channel und Destination ab. Ergänzt werden die
-Informationen mit der Channelkonfiguration, die man als Sammelabfrage nach
-Konfigurationsänderungen per Knopfdruck oder auch periodisch (z.B. 1x pro
-Woche) automatisiert ausführen lassen kann.</p>
-</div>
-<div class="paragraph">
-<p>Aktive Channels zeigt Mirco in einer Übersicht wie der folgenden an:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/mirco-home-channel-current.png" alt="mirco home channel current">
-</div>
-</div>
-<div class="paragraph">
-<p>Dabei werden nur Channels aufgeführt, die tatsächlich Nachrichten in einer Queue enthalten. Schwellwertüberschreitungen werden farblich markiert, bleiben Nachrichten länger liegen, erfolgt eine violette Markierung (violett = Problem). Die Anzeige wird bei jeder Systemabfrage automatisch aktualisiert.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_dokumentation_von_kis_schnittstellen"><a class="anchor" href="#_dokumentation_von_kis_schnittstellen"></a>Dokumentation von KIS-Schnittstellen</h2>
-<div class="sectionbody">
-
-</div>
+<p><mark>TBD</mark></p>
 </div>
 </article>
   </div>
 </main>
 </div>
 <footer class="footer">
-  <span>Wolfgang Barth (C) 2021</span>
+  <span>Wolfgang Barth (C) 2021-2022</span>
 </footer>
 <script src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>

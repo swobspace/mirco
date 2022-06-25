@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="481px" preserveAspectRatio="none" style="width:714px;height:481px;background:#FFFFFF;" version="1.1" viewBox="0 0 714 481" width="714px" zoomAndPan="magnify"><defs><filter height="300%" id="fbevx4gv2v6u9" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[95481ece4d6ae52fc9b99fd17f0213ea]
+entity ch_245--><g id="elem_ch_245"><a href="/channels/245" target="_top" title="/channels/245" xlink:actuate="onRequest" xlink:href="/channels/245" xlink:show="new" xlink:title="/channels/245" xlink:type="simple"><path d="M387.5,104 L587.5,104 C592.5,104 592.5,117.1484 592.5,117.1484 C592.5,117.1484 592.5,130.2969 587.5,130.2969 L387.5,130.2969 C382.5,130.2969 382.5,117.1484 382.5,117.1484 C382.5,117.1484 382.5,104 387.5,104 " fill="#C7FCF6" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M587.5,104 C582.5,104 582.5,117.1484 582.5,117.1484 C582.5,130.2969 587.5,130.2969 587.5,130.2969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="190" x="387.5" y="121.9951">Rx_ADT_from_SOMEWHERE</text></a></g><!--MD5=[639b9a81c7ae0e60a9dec85c0d22e169]
+entity ch_245_src--><g id="elem_ch_245_src"><ellipse cx="487.5" cy="14" fill="#F1F1F1" filter="url(#fbevx4gv2v6u9)" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135" x="420" y="43.9951">tcp://0.0.0.0:10001</text></g><!--MD5=[5f83cd8b2494126363409055e5a3f931]
+entity ch_245_dst_3--><g id="elem_ch_245_dst_3"><path d="M464.5,223 L510.5,223 C515.5,223 515.5,236.1484 515.5,236.1484 C515.5,236.1484 515.5,249.2969 510.5,249.2969 L464.5,249.2969 C459.5,249.2969 459.5,236.1484 459.5,236.1484 C459.5,236.1484 459.5,223 464.5,223 " fill="#C7FCF6" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M510.5,223 C505.5,223 505.5,236.1484 505.5,236.1484 C505.5,249.2969 510.5,249.2969 510.5,249.2969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="36" x="464.5" y="240.9951">none</text></g><!--MD5=[be01d1c81c03de28b6e8de89a4f34357]
+entity ch_246--><g id="elem_ch_246"><a href="/channels/246" target="_top" title="/channels/246" xlink:actuate="onRequest" xlink:href="/channels/246" xlink:show="new" xlink:title="/channels/246" xlink:type="simple"><path d="M131.5,104 L335.5,104 C340.5,104 340.5,117.1484 340.5,117.1484 C340.5,117.1484 340.5,130.2969 335.5,130.2969 L131.5,130.2969 C126.5,130.2969 126.5,117.1484 126.5,117.1484 C126.5,117.1484 126.5,104 131.5,104 " fill="#C7FCF6" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M335.5,104 C330.5,104 330.5,117.1484 330.5,117.1484 C330.5,130.2969 335.5,130.2969 335.5,130.2969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="131.5" y="121.9951">Rx_ORM_from_SOMEWHERE</text></a></g><!--MD5=[33e08f1f932edabeb441a992014e5de5]
+entity ch_246_src--><g id="elem_ch_246_src"><ellipse cx="233.5" cy="14" fill="#F1F1F1" filter="url(#fbevx4gv2v6u9)" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="135" x="166" y="43.9951">tcp://0.0.0.0:10002</text></g><!--MD5=[09ef1c4b9e25293fac871e2d1baf8542]
+entity ch_247--><g id="elem_ch_247"><a href="/channels/247" target="_top" title="/channels/247" xlink:actuate="onRequest" xlink:href="/channels/247" xlink:show="new" xlink:title="/channels/247" xlink:type="simple"><path d="M540,326 L687,326 C692,326 692,339.1484 692,339.1484 C692,339.1484 692,352.2969 687,352.2969 L540,352.2969 C535,352.2969 535,339.1484 535,339.1484 C535,339.1484 535,326 540,326 " fill="#C7FCF6" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M687,326 C682,326 682,339.1484 682,339.1484 C682,352.2969 687,352.2969 687,352.2969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="540" y="343.9951">Tx_to_Subsystem_A</text></a></g><!--MD5=[9cf7a0b8a72db566739e5d19ac202cc9]
+entity ch_247_src--><g id="elem_ch_247_src"><ellipse cx="613.5" cy="236" fill="#F1F1F1" filter="url(#fbevx4gv2v6u9)" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="558" y="265.9951">Channel Reader</text></g><!--MD5=[2977dfebc08a88c77431cf76ede1569f]
+entity ch_247_dst_1--><g id="elem_ch_247_dst_1"><rect fill="#FFD700" filter="url(#fbevx4gv2v6u9)" height="36.2969" rx="7.5" ry="7.5" style="stroke:#181818;stroke-width:0.5;" width="173" x="527" y="429"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="537" y="451.9951">tcp://192.0.2.81:6660</text></g><!--MD5=[c9943da7f04d9746568280e6b84625c9]
+entity ch_248--><g id="elem_ch_248"><a href="/channels/248" target="_top" title="/channels/248" xlink:actuate="onRequest" xlink:href="/channels/248" xlink:show="new" xlink:title="/channels/248" xlink:type="simple"><path d="M169.5,326 L317.5,326 C322.5,326 322.5,339.1484 322.5,339.1484 C322.5,339.1484 322.5,352.2969 317.5,352.2969 L169.5,352.2969 C164.5,352.2969 164.5,339.1484 164.5,339.1484 C164.5,339.1484 164.5,326 169.5,326 " fill="#C7FCF6" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M317.5,326 C312.5,326 312.5,339.1484 312.5,339.1484 C312.5,352.2969 317.5,352.2969 317.5,352.2969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="138" x="169.5" y="343.9951">Tx_to_Subsystem_B</text></a></g><!--MD5=[13e216a82055de21fda751b5982c786f]
+entity ch_248_src--><g id="elem_ch_248_src"><ellipse cx="243.5" cy="236" fill="#F1F1F1" filter="url(#fbevx4gv2v6u9)" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="111" x="188" y="265.9951">Channel Reader</text></g><!--MD5=[24719e7b0950408331ff4611ce545481]
+entity ch_248_dst_1--><g id="elem_ch_248_dst_1"><path d="M6,436.5 L6,457.7969 A7.5,7.5 0 0 0 13.5,465.2969 L473.5,465.2969 A7.5,7.5 0 0 0 481,457.7969 L481,439 L471,429 L13.5,429 A7.5,7.5 0 0 0 6,436.5 " fill="#FFD700" filter="url(#fbevx4gv2v6u9)" style="stroke:#181818;stroke-width:0.5;"/><path d="M471,429 L471,431.5 A7.5,7.5 0 0 0 478.5,439 L481,439 " fill="#FFD700" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="455" x="16" y="451.9951">SMB://192.0.2.33/HL7/ADT/incoming/${message.messageId}.hl7</text></g><!--MD5=[778e9fa88a061da1dddb7781ac44a23b]
+link ch_245_src to ch_245--><g id="link_ch_245_src_ch_245"><path d="M487.5,23.27 C487.5,39.68 487.5,76.71 487.5,98.69 " fill="none" id="ch_245_src-to-ch_245" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="487.5,103.93,491.5,94.93,487.5,98.93,483.5,94.93,487.5,103.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[e2258c26aed6e850586c948bd90a682d]
+link ch_245 to ch_247_src--><g id="link_ch_245_ch_247_src"><path d="M508.72,130.05 C521.47,137.79 537.67,148.52 550.5,160 C572.51,179.7 593.65,207.19 604.97,222.83 " fill="none" id="ch_245-to-ch_247_src" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="607.9,226.91,605.9142,217.2634,604.9898,222.8442,599.409,221.9198,607.9,226.91" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="568.5" y="173.0669">Subsystem A</text></g><!--MD5=[6d847edffcf6efb2da4d0e523199541c]
+link ch_245 to ch_248_src--><g id="link_ch_245_ch_248_src"><path d="M459.06,130.13 C440.1,138.33 414.68,149.53 392.5,160 C342.21,183.75 283.52,214.08 257.34,227.74 " fill="none" id="ch_245-to-ch_248_src" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="252.83,230.1,262.6575,229.4519,257.2555,227.773,258.9344,222.371,252.83,230.1" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="393.5" y="173.0669">Subsystem B</text></g><!--MD5=[54d0d35ab9dc52b99faf020b7f2e8ceb]
+link ch_245 to ch_245_dst_3--><g id="link_ch_245_ch_245_dst_3"><path d="M487.5,130.08 C487.5,150.92 487.5,193.71 487.5,217.71 " fill="none" id="ch_245-to-ch_245_dst_3" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="487.5,222.81,491.5,213.81,487.5,217.81,483.5,213.81,487.5,222.81" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="488.5" y="173.0669">/dev/null</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="477.975" y="211.9576">3</text></g><!--MD5=[89aed05b6a85367e1d7393563fbd8ea2]
+link ch_246_src to ch_246--><g id="link_ch_246_src_ch_246"><path d="M233.5,23.27 C233.5,39.68 233.5,76.71 233.5,98.69 " fill="none" id="ch_246_src-to-ch_246" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="233.5,103.93,237.5,94.93,233.5,98.93,229.5,94.93,233.5,103.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[1a9f6223dd4bb3b81bd2c3b1774ee824]
+link ch_246 to ch_248_src--><g id="link_ch_246_ch_248_src"><path d="M232.4,130.12 C231.7,138.5 230.86,149.92 230.5,160 C230.23,167.55 229.67,169.49 230.5,177 C232.23,192.65 236.52,210.26 239.7,221.92 " fill="none" id="ch_246-to-ch_248_src" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="241.07,226.84,242.5048,217.0962,239.7266,222.0238,234.799,219.2456,241.07,226.84" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="231.5" y="173.0669">Subsystem B</text></g><!--MD5=[0e1c49167d665014ebf1ecaa32f92fd5]
+link ch_247_src to ch_247--><g id="link_ch_247_src_ch_247"><path d="M613.5,245.27 C613.5,261.68 613.5,298.71 613.5,320.69 " fill="none" id="ch_247_src-to-ch_247" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="613.5,325.93,617.5,316.93,613.5,320.93,609.5,316.93,613.5,325.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[31b29151669b158d30d8b296ecad84ce]
+link ch_247 to ch_247_dst_1--><g id="link_ch_247_ch_247_dst_1"><path d="M613.5,352.16 C613.5,369.58 613.5,401.93 613.5,423.72 " fill="none" id="ch_247-to-ch_247_dst_1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="613.5,428.74,617.5,419.74,613.5,423.74,609.5,419.74,613.5,428.74" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="614.5" y="395.0669">Subsystem A</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="604.275" y="417.8928">1</text></g><!--MD5=[a16b583f0b6953666ca8e7f0d9bfcbf6]
+link ch_248_src to ch_248--><g id="link_ch_248_src_ch_248"><path d="M243.5,245.27 C243.5,261.68 243.5,298.71 243.5,320.69 " fill="none" id="ch_248_src-to-ch_248" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="243.5,325.93,247.5,316.93,243.5,320.93,239.5,316.93,243.5,325.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ca9d9f09c349c7b618657a35b700eb12]
+link ch_248 to ch_248_dst_1--><g id="link_ch_248_ch_248_dst_1"><path d="M243.5,352.16 C243.5,369.58 243.5,401.93 243.5,423.72 " fill="none" id="ch_248-to-ch_248_dst_1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="243.5,428.74,247.5,419.74,243.5,423.74,239.5,419.74,243.5,428.74" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="244.5" y="395.0669">Subsystem B</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="234.275" y="417.8928">1</text></g><!--MD5=[bd22a9953105c334bc7d1e0fc34d580c]
+@startuml
+!theme mirco from /home/wob/doc/Projects/github/mirco/config
+
+' Channel Rx_ADT_from_SOMEWHERE
+' Definitions
+queue ch_245 as "Rx_ADT_from_SOMEWHERE"
+url of ch_245 is [[/channels/245]]
+interface ch_245_src as "tcp://0.0.0.0:10001"
+
+
+    queue ch_245_dst_3 as "none"
+
+
+' Channel Rx_ORM_from_SOMEWHERE
+' Definitions
+queue ch_246 as "Rx_ORM_from_SOMEWHERE"
+url of ch_246 is [[/channels/246]]
+interface ch_246_src as "tcp://0.0.0.0:10002"
+
+
+
+' Channel Tx_to_Subsystem_A
+' Definitions
+queue ch_247 as "Tx_to_Subsystem_A"
+url of ch_247 is [[/channels/247]]
+interface ch_247_src as "Channel Reader"
+
+
+    rectangle ch_247_dst_1 as "tcp://192.0.2.81:6660"
+
+
+' Channel Tx_to_Subsystem_B
+' Definitions
+queue ch_248 as "Tx_to_Subsystem_B"
+url of ch_248 is [[/channels/248]]
+interface ch_248_src as "Channel Reader"
+
+
+    file ch_248_dst_1 as "SMB://192.0.2.33/HL7/ADT/incoming/${message.messageId}.hl7"
+
+
+
+
+' Channel Rx_ADT_from_SOMEWHERE
+' Graphs
+
+ch_245_src - -> ch_245
+  ch_245 - -> ch_247_src : Subsystem A
+  ch_245 - -> ch_248_src : Subsystem B
+  ch_245 - -> "3" ch_245_dst_3 : /dev/null
+
+' Channel Rx_ORM_from_SOMEWHERE
+' Graphs
+
+ch_246_src - -> ch_246
+  ch_246 - -> ch_248_src : Subsystem B
+
+' Channel Tx_to_Subsystem_A
+' Graphs
+
+ch_247_src - -> ch_247
+  ch_247 - -> "1" ch_247_dst_1 : Subsystem A
+
+' Channel Tx_to_Subsystem_B
+' Graphs
+
+ch_248_src - -> ch_248
+  ch_248 - -> "1" ch_248_dst_1 : Subsystem B
+
+
+@enduml
+
+@startuml
+
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+skinparam roundCorner 15
+skinparam shadowing 4.0
+<style>
+  circle {
+    BackGroundColor #aaaaaaa
+  }
+  rectangle {
+    BackGroundColor Gold
+  }
+  file {
+    BackGroundColor Gold
+  }
+  queue {
+    BackgroundColor #C7FCF6
+    padding 10
+  }
+  document {
+    BackGroundColor white
+  }
+</style>
+
+
+queue ch_245 as "Rx_ADT_from_SOMEWHERE"
+url of ch_245 is [[/channels/245]]
+interface ch_245_src as "tcp://0.0.0.0:10001"
+
+
+    queue ch_245_dst_3 as "none"
+
+
+queue ch_246 as "Rx_ORM_from_SOMEWHERE"
+url of ch_246 is [[/channels/246]]
+interface ch_246_src as "tcp://0.0.0.0:10002"
+
+
+
+queue ch_247 as "Tx_to_Subsystem_A"
+url of ch_247 is [[/channels/247]]
+interface ch_247_src as "Channel Reader"
+
+
+    rectangle ch_247_dst_1 as "tcp://192.0.2.81:6660"
+
+
+queue ch_248 as "Tx_to_Subsystem_B"
+url of ch_248 is [[/channels/248]]
+interface ch_248_src as "Channel Reader"
+
+
+    file ch_248_dst_1 as "SMB://192.0.2.33/HL7/ADT/incoming/${message.messageId}.hl7"
+
+
+
+
+
+ch_245_src - -> ch_245
+  ch_245 - -> ch_247_src : Subsystem A
+  ch_245 - -> ch_248_src : Subsystem B
+  ch_245 - -> "3" ch_245_dst_3 : /dev/null
+
+
+ch_246_src - -> ch_246
+  ch_246 - -> ch_248_src : Subsystem B
+
+
+ch_247_src - -> ch_247
+  ch_247 - -> "1" ch_247_dst_1 : Subsystem A
+
+
+ch_248_src - -> ch_248
+  ch_248 - -> "1" ch_248_dst_1 : Subsystem B
+
+
+@enduml
+
+PlantUML version 1.2022.5(Sat Apr 30 12:55:52 CEST 2022)
+(LGPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: de
+Country: DE
+--></g></svg>

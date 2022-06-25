@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mirco - der Mirth Companion :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <script>var uiRootPath = '../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="admin-manual/scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="admin-manual/timescale.html">TimescaleDB</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation-guide/setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation-guide/encryption.html">Datenbankverschlüsselung</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Database Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation-guide/database-postgresql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation-guide/database-timescale.html">Installation Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation-guide/database-rails.html">Rails Datenbank-Konfiguration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="installation-guide/configuration.html">Konfiguration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../devnotes/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Mirco</a></li>
+    <li><a href="index.html">Mirco - der Mirth Companion</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Mirco - der Mirth Companion</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mirco ist primär für zwei Anwendungsbereiche im <a href="mirth.html" class="xref page">Mirth</a>-Umfeld
+gedacht:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>das Monitoring von Mirth Channels und</p>
+</li>
+<li>
+<p>die Dokumentation von KIS-Schnittstellen mit Mirth-Beteiligung.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Für das Monitoring holt sich Mirco die Channelkonfiguration
+vom Mirth-System. Die Channelkonfiguration liefert gleichzeitig auch eine gute
+Grundlage für die Dokumentation von KIS-Schnittstellen. Warum also nicht
+beides miteinander verbinden?</p>
+</div>
+<div class="paragraph">
+<p>Die Dokumentation zu KIS-Schnittstellen ist optional. Mirth kann man auch gut
+als reines Monitoring-System betreiben. Die Konfiguration je Mirth-System ist
+hierfür minimal, das Monitoring läuft im Wesentlichen automatisch ab.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monitoring"><a class="anchor" href="#_monitoring"></a>Monitoring</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Zentrales Element einer Mirth-Kommunikation ist der Channel. Ein Channel
+empfängt Nachrichten über einen Source-Connector und sendet diese -
+unverändert, verändert, oder ggf. auch gefiltert - an eine oder mehrere
+Destinations weiter. Dabei kann man zählen, wie viele Nachrichten empfangen,
+weitergeleitet und gefiltert wurden - oder ob ein Fehler aufgetreten ist. Kann
+eine Nachricht nicht zugestellt werden, verbleibt diese in einer Queue
+(abhängig von der konkreten Konfiguration des Channels).</p>
+</div>
+<div class="paragraph">
+<p>Ein klares Anzeichen für eine Störung des Nachrichtenflusses sind empfangene
+Nachrichten, die seit einiger Zeit auf eine Weiterleitung warten, aber nicht
+versendet werden (queued &gt; Schwellwert, send = 0, bezogen auf ein festes
+Zeitintervall). Das von Mirco betrachtete Zeitintervall beträgt fest 30
+Minuten, die Schwellwerte sind einstellbar.</p>
+</div>
+<div class="paragraph">
+<p>Für eine solche Überwachung benötigt Mirco regelmäßig statistische Daten des
+Mirth-Systems. Mirco nutzt dazu das REST-API von Mirth Connect und fragt die
+statistischen Daten aller Channels mit einer einzigen Abfrage ab und speichert
+diese in einer Zeitreihe je Channel und Destination ab. Ergänzt werden die
+Informationen mit der Channelkonfiguration, die man als Sammelabfrage nach
+Konfigurationsänderungen per Knopfdruck oder auch periodisch (z.B. 1x pro
+Woche) automatisiert ausführen lassen kann.</p>
+</div>
+<div class="paragraph">
+<p>Gerade aktive Channels - Channels mit noch nicht ausgelieferten Nachrichten -
+zeigt Mirco auf der Startseite an:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mirco-home-channel-current.png" alt="mirco home channel current">
+</div>
+</div>
+<div class="paragraph">
+<p>Dabei werden nur Channels aufgeführt, die tatsächlich Nachrichten in einer
+Queue enthalten. Schwellwertüberschreitungen werden farblich markiert, bleiben
+Nachrichten länger liegen, erfolgt eine violette Markierung (violett =
+Problem). Die Anzeige wird bei jeder Systemabfrage automatisch aktualisiert.</p>
+</div>
+<div class="paragraph">
+<p>Die verfügbaren statistischen Werte werden je Connector graphisch dargestellt:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/mirco-channel-statistics-queued-per-week.png" alt="mirco channel statistics queued per week">
+</div>
+</div>
+<div class="paragraph">
+<p>In der wöchentlichen Übersicht nicht ausgelieferter ADT-Nachrichten zu einem
+Subsystem erkennt man, dass es regelmäßig nachts Unterbrechungen gibt, am
+Donnerstag morgen aber eine Störung vorlag, da die Zustellung der Nachrichten
+bis mittags gestört war.</p>
+</div>
+<div class="paragraph">
+<p>Über die Darstellung auf der Webseite hinaus generiert Mirco im Störungsfalle
+einen Alert, d.h. das Ereignis wird zum Channel und Connector gesondert
+dokumentiert und darüber hinaus eine E-Mail versandt. Bei Wiederherstellung
+notiert Mirco das Recovery ebenfalls zu Channel und Connector und versendet
+wiederum eine E-Mail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dokumentation_von_kis_schnittstellen"><a class="anchor" href="#_dokumentation_von_kis_schnittstellen"></a>Dokumentation von KIS-Schnittstellen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mirco verwendet die ohnehin vorhandenen Informationen zur Channelkonfiguration
+und erstellt daraus eine Übersicht der Transportwege von Nachrichten durch ein
+Mirth-System vom Source-Connector bis hin zu den einzelnen Destinations:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/server-channel-diagram.svg" alt="server channel diagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Der Datenfluss oben beginnt mit den Source-Connectoren, hier im Beispiel 2
+TCP-Receiver. Die Channels sind in blau dargestellt. Leitet ein Channel die
+Nachrichten an einen anderen Channel weiter, werden beide in der Graphik
+verknüpft. Am Ende folgen in gelb die Destination-Connectoren.</p>
+</div>
+<div class="paragraph">
+<p>Der Anfang für eine Dokumentation von KIS-Schnittstellen ist gemacht, und das
+ohne jeden zusätzlichen Aufwand. Fügt man manuell weitere Information hinzu
+wie die Server der Subsysteme, die Software, Software-Schnittstellen und
+Interfaces, erhält man dadurch ein recht vollständiges Bild des
+Kommunikationsflusses.</p>
+</div>
+<div class="paragraph">
+<p>Wie bereits erwähnt ist die manuelle Dokumentation optional und für den
+Betrieb des Monitorings nicht notwendig.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2022</span>
+</footer>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>
