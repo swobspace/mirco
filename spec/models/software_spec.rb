@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Software, type: :model do
-  let(:software) { FactoryBot.create(:software, name: 'MySoft') }
+  let(:location) { FactoryBot.create(:location, lid: 'BER') }
+  let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
   it { is_expected.to have_many(:software_interfaces).dependent(:restrict_with_error) }
   it { is_expected.to belong_to(:location) }
   it { is_expected.to belong_to(:software_group) }
@@ -17,7 +18,7 @@ RSpec.describe Software, type: :model do
   end
 
   describe "#to_s" do
-    it { expect(software.to_s).to match('MySoft') }
+    it { expect(software.to_s).to match('MySoft (BER)') }
   end
 
 end

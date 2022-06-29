@@ -11,7 +11,7 @@ class Software < ApplicationRecord
   validates :name, :location_id, presence: true
 
   def to_s
-    "#{name}"
+    "#{name} (#{location&.lid})"
   end
 
 end
