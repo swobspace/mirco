@@ -29,7 +29,7 @@ module InterfaceConnectorConcerns
   end
 
   def possible_connections
-    connections = SoftwareConnection.where(location_id: location.id)
+    connections = SoftwareConnection.where(location_id: location.id, ignore: false)
     case type
     when 'TxConnector'
       connections = connections.where(source_connector_id: nil, source_url: url)
@@ -42,6 +42,7 @@ module InterfaceConnectorConcerns
 
   def nonlocal_possible_connections
     connections = SoftwareConnection.where('location_id != ?', location.id)
+                                    .where(ignore: false)
     case type
     when 'TxConnector'
       connections = connections.where(source_connector_id: nil, source_url: url)
