@@ -35,9 +35,9 @@
     <tbody>
       <% @hosts.each do |host| %>
         <%= content_tag(:tr, id: dom_id(host), class: dom_class(host)) do %>
-                <td><%= host.location&.lid %></td>
-                <td><%= host.software_group %></td>
-                <td><%= host.name %></td>
+                <td><%= link_to host.location&.lid, host.location %></td>
+                <td><%= link_to host.software_group, host.software_group %></td>
+                <td><%= link_to host.name, host %></td>
                 <td><%= host.ipaddress %></td>
                 <td><%= host.description %></td>
                 <td class="text-nowrap">
