@@ -52,9 +52,18 @@
             </div>
           </div>
         </div>
-        <div id="hosts">
-          <% @software_group.hosts.each do |host| %>
-            <%= render 'software_groups/host', host: host %>
+        <div id="locations">
+          <% @software_group.hosts.map(&:location).uniq.sort_by{|l| l.lid}.each do |location| %>
+            <div class="card-body py-2 border-bottom border-bottom-1">
+              <div>
+                <span class="fw-bold"><%= link_to location.lid, location %></span>
+              </div>
+              <div id="hosts">
+                <% @software_group.hosts.where(location_id: location.id).each do |host| %>
+                  <%= render 'software_groups/host', host: host %>
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>
