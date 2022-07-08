@@ -54,6 +54,7 @@ class ServersController < ApplicationController
       @server.update(properties: result.params)
     else
       @server.errors.add(:base, :invalid)
+      @server.errors.add(:base, result.error_messages.join("; "))
     end
     respond_with(@server, action: :show)
   end

@@ -92,6 +92,7 @@ de:
     home: Home
     host: Host
     hostname: Hostname
+    hosts: Hosts
     ignore: Ignorieren
     ignore_reason: Grund für das Ignorieren
     interface_connector: Connector
