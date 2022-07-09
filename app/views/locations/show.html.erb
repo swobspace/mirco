@@ -82,5 +82,16 @@
       </div>
     </div>
   </div>
-</div>
 
+  <div class="card my-3">
+    <div class="card-header">
+      <h4><%= t('mirco.unassigned_connections') %></h4>
+    </div>
+    <div id="software_connections">
+      <%= render partial: 'interface_connectors/software_connections/software_connection',
+                 collection: Connections::Query.new(@location.software_connections,
+                 source_connector_id: nil, destination_connector_id: nil).all
+       %>
+    </div>
+  </div>
+</div>

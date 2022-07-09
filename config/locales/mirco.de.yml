@@ -23,6 +23,7 @@ de:
     overview: Überblick
     update_properties: Aktualisiere Eigenschaften
     assigned_connections: Zugewiesene Verbindungen
+    unassigned_connections: offene, nicht zugewiesene Verbindungen
     nonlocal_possible_connections: "Weitere mögliche Verbindungen (ACHTUNG: nicht am gleichen Standort!)"
     possible_connections: Mögliche Verbindungen
     add_connection: Verbindung zuweisen
