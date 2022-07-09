@@ -86,5 +86,25 @@ shared_context "connection variables" do
     )
   end
 
+  let(:c3) do
+    FactoryBot.create(:software_connection,
+      location_id: ber.id,
+      source_connector: icmbarout,
+      source_url: 'tcp://192.0.2.1:3005',
+      destination_url: 'tcp://5.6.7.8:9999',
+      channel_ids: [815]
+    )
+  end
+
+  let(:c4) do
+    FactoryBot.create(:software_connection,
+      location_id: ber.id,
+      source_url: 'tcp://1.2.3.4:5555',
+      destination_connector: icmbarin,
+      destination_url: 'tcp://92.0.2.11:13005',
+      channel_ids: [815]
+    )
+  end
+
   
 end
