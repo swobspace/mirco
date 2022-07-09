@@ -21,11 +21,13 @@
          %>
       </div>
       <div class="col-2 text-end">
-        <%= button_to addremove_text, interface_connector_software_connection_path(interface_connector, software_connection),
-              method: :patch,
-              params: addremove_params,
-              class: btn_class
-         %>
+        <% if interface_connector.present? %>
+          <%= button_to addremove_text, interface_connector_software_connection_path(interface_connector, software_connection),
+                method: :patch,
+                params: addremove_params,
+                class: btn_class
+           %>
+        <% end %>
       </div>
     </div>
   </div>

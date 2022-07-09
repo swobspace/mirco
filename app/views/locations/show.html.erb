@@ -88,9 +88,11 @@
       <h4><%= t('mirco.unassigned_connections') %></h4>
     </div>
     <div id="software_connections">
-      <%= render partial: 'interface_connectors/software_connections/software_connection',
-                 collection: Connections::Query.new(@location.software_connections,
-                 source_connector_id: nil, destination_connector_id: nil).all
+      <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
+                   Connections::Query.new(@location.software_connections,
+                                          source_connector_id: nil, 
+                                          destination_connector_id: nil).all,
+                   interface_connector: nil)
        %>
     </div>
   </div>
