@@ -90,7 +90,8 @@
     <div id="software_connections">
       <%= render InterfaceConnectors::SoftwareConnectionComponent.with_collection(
                    Connections::Query.new(@location.software_connections,
-                                          missing_connector: :any).all,
+                                          missing_connector: :any,
+                                          ignore: false).all,
                    interface_connector: nil)
        %>
     </div>
