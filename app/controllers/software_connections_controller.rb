@@ -1,6 +1,6 @@
 class SoftwareConnectionsController < ApplicationController
   before_action :set_software_connection, only: [:show, :edit, :update, :destroy]
-  before_action :add_breadcrumb_show, only: [:show]
+  # before_action :add_breadcrumb_show, only: [:show]
 
   # GET /software_connections
   def index
@@ -15,6 +15,9 @@ class SoftwareConnectionsController < ApplicationController
   # GET /software_connections/1
   def show
     respond_with(@software_connection) do |format|
+      format.html do
+        add_breadcrumb_show
+      end
       format.puml do
         render format: :puml, layout: false
       end
