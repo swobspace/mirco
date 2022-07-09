@@ -4,6 +4,7 @@ RSpec.describe Software, type: :model do
   let(:location) { FactoryBot.create(:location, lid: 'BER') }
   let(:software) { FactoryBot.create(:software, name: 'MySoft', location: location) }
   it { is_expected.to have_many(:software_interfaces).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:interface_connectors).through(:software_interfaces) }
   it { is_expected.to belong_to(:location) }
   it { is_expected.to belong_to(:software_group) }
   it { is_expected.to validate_presence_of(:name) }

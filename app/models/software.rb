@@ -3,6 +3,7 @@ class Software < ApplicationRecord
   belongs_to :location
   belongs_to :software_group
   has_many :software_interfaces, dependent: :restrict_with_error
+  has_many :interface_connectors, through: :software_interfaces
 
   # -- configuration
   has_rich_text :description
