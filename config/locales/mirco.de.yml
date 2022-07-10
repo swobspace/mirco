@@ -10,7 +10,7 @@ de:
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
     for: für
-    interfaces: Schnittstellen
+    interfaces: Software & Schnittstellen
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
@@ -23,6 +23,8 @@ de:
     overview: Überblick
     update_properties: Aktualisiere Eigenschaften
     assigned_connections: Zugewiesene Verbindungen
+    unassigned_connections: offene, nicht zugewiesene Verbindungen
+    nonlocal_possible_connections: "Weitere mögliche Verbindungen (ACHTUNG: nicht am gleichen Standort!)"
     possible_connections: Mögliche Verbindungen
     add_connection: Verbindung zuweisen
     remove_connection: Verbindung entfernen
@@ -91,6 +93,7 @@ de:
     home: Home
     host: Host
     hostname: Hostname
+    hosts: Hosts
     ignore: Ignorieren
     ignore_reason: Grund für das Ignorieren
     interface_connector: Connector

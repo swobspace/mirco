@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Timescale :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <script>var uiRootPath = '../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../mirco/index.html">Mirco</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="devnotes" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">DevNotes</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-memo.html">Mirth API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="hosts.html">Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-connections.html">Software connections</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DevNotes</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../mirco/index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../mirco/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../mirco/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DevNotes</a></li>
+    <li><a href="timescale.html">Timescale</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Timescale</h1>
+<div class="sect1">
+<h2 id="_add_extension"><a class="anchor" href="#_add_extension"></a>Add Extension</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails generate migration add_timescale</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class AddTimescale &lt; ActiveRecord::Migration[5.2]
+  def change
+    enable_extension("timescaledb") unless extensions.include? "timescaledb"
+  end
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails db:migrate</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Die Migration setzt voraus, dass die Shared Libriaries von TimescaleDB in postgresql.conf eingetragen sind und PostgreSQL neu gestartet wurde. Siehe auch <a href="../mirco/installation-guide/database-timescale.html" class="xref page">Installation Timescale</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Check extension</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "\dx" | rails dbconsole</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generate_channelcounter_model"><a class="anchor" href="#_generate_channelcounter_model"></a>Generate ChannelCounter Model</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Generate model ChannelCounter</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">rails generate model ChannelCounter \
+  channel:belongs_to \
+  server:belongs_to \
+  channel_statistic:belongs_to \
+  meta_data_id:integer \
+  received:integer sent:integer error:integer filtered:integer \
+  queued:integer \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ChannelCounter migration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class CreateChannelCounters &lt; ActiveRecord::Migration[6.1]
+  def change
+    create_table :channel_counters, id: false do |t|
+      t.belongs_to :channel, null: false
+      t.belongs_to :server, null: false
+      t.integer :meta_data_id
+      t.integer :received
+      t.integer :sent
+      t.integer :error
+      t.integer :filtered
+      t.integer :queued
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Use <strong>id: false</strong> to avoid a PRIMARY KEY generation.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_activate_hypertable_on_channelcounter"><a class="anchor" href="#_activate_hypertable_on_channelcounter"></a>Activate Hypertable on Channelcounter</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Generate basic migration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">bin/rails generate migration add_channel_counters_hypertable</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Execute create_hypertable</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">class AddChannelCounterHypertable &lt; ActiveRecord::Migration[6.1]
+  def change
+    execute "SELECT create_hypertable('channel_counters', 'created_at');"
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2022</span>
+</footer>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

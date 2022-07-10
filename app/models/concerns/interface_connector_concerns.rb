@@ -29,7 +29,20 @@ module InterfaceConnectorConcerns
   end
 
   def possible_connections
-    connections = SoftwareConnection.where(location_id: location.id)
+    connections = SoftwareConnection.where(location_id: location.id, ignore: false)
+    case type
+    when 'TxConnector'
+      connections = connections.where(source_connector_id: nil, source_url: url)
+    when 'RxConnector'
+      connections = connections.where(destination_connector_id: nil, destination_url: url)
+    else
+      raise RuntimeError, "type #{type} not yet implemented"
+    end
+  end
+
+  def nonlocal_possible_connections
+    connections = SoftwareConnection.where('location_id != ?', location.id)
+                                    .where(ignore: false)
     case type
     when 'TxConnector'
       connections = connections.where(source_connector_id: nil, source_url: url)

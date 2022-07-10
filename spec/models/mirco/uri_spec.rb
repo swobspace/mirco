@@ -142,4 +142,13 @@ RSpec.describe Mirco::Uri, type: :model do
   end
 
 
+  describe "with url = nil" do
+    let(:url) { nil }
+
+    it { expect(subject.scheme).to be_nil }
+    it { expect(subject.host).to be_nil }
+    it { expect(subject.port).to be_nil }
+    it { expect(subject.path).to be_nil }
+  end
+
 end

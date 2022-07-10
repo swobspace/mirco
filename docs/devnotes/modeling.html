@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Modeling mirco :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.0.1">
+    <link rel="stylesheet" href="../_/css/site.css">
+    <script>var uiRootPath = '../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../mirco/index.html">Mirco</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="devnotes" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">DevNotes</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="api-memo.html">Mirth API</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="hosts.html">Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-interfaces.html">Software interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="software-connections.html">Software connections</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="timescale.html">Timescale</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DevNotes</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../mirco/index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../mirco/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../mirco/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">DevNotes</a></li>
+    <li><a href="modeling.html">Modeling mirco</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Modeling mirco</h1>
+<div class="sect1">
+<h2 id="_overall_picture"><a class="anchor" href="#_overall_picture"></a>Overall Picture</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/models.svg" alt="models">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_home_controller"><a class="anchor" href="#_home_controller"></a>Home controller</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller Home index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_server"><a class="anchor" href="#_model_server"></a>model Server</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Server \
+  location:belongs_to \
+  host:belongs_to \
+  name:string uid:string:index description:text \
+  api_url:string api_user:string api_password_ciphertext:text \
+  api_user_has_full_access:boolean \
+  api_verify_ssl:boolean \
+  properties:jsonb \
+  last_channel_update:timestamp \
+  last_check:timestamp last_check_ok:timestamp \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_channel"><a class="anchor" href="#_model_channel"></a>model Channel</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Channel \
+  server:belongs_to \
+  uid:string:index \
+  properties:jsonb \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_channelstatistic"><a class="anchor" href="#_model_channelstatistic"></a>Model ChannelStatistic</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold ChannelStatistic \
+  server:belongs_to \
+  channel:belongs_to \
+  meta_data_id:integer \
+  server_uid:string:index \
+  channel_uid:string:index \
+  name:string state:string status_type:string \
+  received:integer \
+  sent:integer \
+  error:integer \
+  filtered:integer \
+  queued:integer \
+  condition:string:index \
+  last_condition_change:timestamp \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_channelcounter"><a class="anchor" href="#_model_channelcounter"></a>Model ChannelCounter</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Generate model ChannelCounter</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">rails generate model ChannelCounter \
+  channel:belongs_to \
+  server:belongs_to \
+  channel_statistic:belongs_to \
+  meta_data_id:integer \
+  received:integer sent:integer error:integer filtered:integer \
+  queued:integer \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ChannelCounter migration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class CreateChannelCounters &lt; ActiveRecord::Migration[6.1]
+  def change
+    create_table :channel_counters, id: false do |t|
+      t.belongs_to :channel, null: false
+      t.belongs_to :server, null: false
+      t.integer :meta_data_id
+      t.integer :received
+      t.integer :sent
+      t.integer :error
+      t.integer :filtered
+      t.integer :queued
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>see also: <a href="timescale.html" class="xref page">Timescale</a></p>
+</div>
+<div class="listingblock">
+<div class="title">Generate Controller with action :index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller channel_counters index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_alert"><a class="anchor" href="#_model_alert"></a>Model Alert</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Alert \
+  server:belongs_to \
+  channel:belongs_to \
+  channel_statistic:belongs_to \
+  type:string:index \
+  message:text \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>alert</code>, <code>recovery</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_note"><a class="anchor" href="#_model_note"></a>Model Note</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Note \
+  server:belongs_to \
+  channel:belongs_to \
+  channel_statistic:belongs_to \
+  user:belongs_to \
+  type:string:index \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>acknowledge</code>, <code>mail</code>, <code>note</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">Install ActionText</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails action_text:install</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">app/models/note.rb</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Note &lt; ApplicationRecord
+  has_rich_text :message
+end</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_serverconfiguration"><a class="anchor" href="#_model_serverconfiguration"></a>Model ServerConfiguration</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g model ServerConfiguration \
+  server:belongs_to \
+  comment:string
+
+bin/rails g controller ServerConfiguration index show</code></pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2022</span>
+</footer>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+<script src="../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

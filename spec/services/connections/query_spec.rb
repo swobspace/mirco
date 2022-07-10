@@ -61,7 +61,7 @@ module Connections
       subject { Query.new(connections, {id: c1.to_param}) }
       before(:each) do
         @matching = [c1]
-        @nonmatching = [c2]
+        @nonmatching = [c2, c3, c4]
       end
       it_behaves_like "a connections query"
     end # :id
@@ -69,8 +69,8 @@ module Connections
     context "with :source_connector_id" do
       subject { Query.new(connections, {source_connector_id: icmbarout.to_param}) }
       before(:each) do
-        @matching = [c1]
-        @nonmatching = [c2]
+        @matching = [c1, c3]
+        @nonmatching = [c2, c4]
       end
       it_behaves_like "a connections query"
     end # :id
@@ -78,17 +78,71 @@ module Connections
     context "with :destination_connector_id" do
       subject { Query.new(connections, {destination_connector_id: icmbarin.to_param}) }
       before(:each) do
-        @matching = [c1]
-        @nonmatching = [c2]
+        @matching = [c1, c4]
+        @nonmatching = [c2, c3]
       end
       it_behaves_like "a connections query"
     end # :id
 
+    context "with :location_id" do
+      subject { Query.new(connections, {location_id: ber.to_param}) }
+      before(:each) do
+        @matching = [c2, c3, c4]
+        @nonmatching = [c1]
+      end
+      it_behaves_like "a connections query"
+    end # :id
+
+    context "with :missing_connector" do
+      subject { Query.new(connections, {missing_connector: :none}) }
+      before(:each) do
+        @matching = [c1]
+        @nonmatching = [c2, c3, c4]
+      end
+      it_behaves_like "a connections query"
+    end # :missing_connector
+
+    context "with :missing_connector" do
+      subject { Query.new(connections, {missing_connector: :any}) }
+      before(:each) do
+        @matching = [c2, c3, c4]
+        @nonmatching = [c1]
+      end
+      it_behaves_like "a connections query"
+    end # :missing_connector
+
+    context "with :missing_connector" do
+      subject { Query.new(connections, {missing_connector: :source}) }
+      before(:each) do
+        @matching = [c2, c4]
+        @nonmatching = [c1, c3]
+      end
+      it_behaves_like "a connections query"
+    end # :missing_connector
+
+    context "with :missing_connector" do
+      subject { Query.new(connections, {missing_connector: :destination}) }
+      before(:each) do
+        @matching = [c2, c3]
+        @nonmatching = [c1, c4]
+      end
+      it_behaves_like "a connections query"
+    end # :missing_connector
+
+    context "with :missing_connector" do
+      subject { Query.new(connections, {missing_connector: :both}) }
+      before(:each) do
+        @matching = [c2]
+        @nonmatching = [c1, c3, c4]
+      end
+      it_behaves_like "a connections query"
+    end # :missing_connector
+
     context "with :source_url" do
       subject { Query.new(connections, {source_url: '192.0.2.1:3005'}) }
       before(:each) do
-        @matching = [c1]
-        @nonmatching = [c2]
+        @matching = [c1, c3]
+        @nonmatching = [c2, c4]
       end
       it_behaves_like "a connections query"
     end # :id
@@ -96,8 +150,8 @@ module Connections
     context "with :destination_url" do
       subject { Query.new(connections, {destination_url: '9999'}) }
       before(:each) do
-        @matching = [c2]
-        @nonmatching = [c1]
+        @matching = [c2, c3]
+        @nonmatching = [c1, c4]
       end
       it_behaves_like "a connections query"
     end # :id
@@ -105,8 +159,8 @@ module Connections
     context "with :channel_id" do
       subject { Query.new(connections, {channel_id: '815'}) }
       before(:each) do
-        @matching = [c1, c2]
-        @nonmatching = []
+        @matching = [c1, c2, c3]
+        @nonmatching = [c4]
       end
       it_behaves_like "a connections query"
     end # :id

@@ -1,0 +1,21 @@
+= Über Mirco
+
+Mirco ist eine Abkürzung für Mirth(TM) Companion. Die Kernziele von Mirco sind
+das Monitoring mehrerer Mirth Connect-Systeme und die Dokumentation von
+Schnittstellen im Krankenhaus-Umfeld. Die Minimum-Version von Mirth Connect
+ist 3.8.
+
+Mirth(TM) und NextGen(TM) sind eingetragene Warenzeichen von NXGN Management,
+LLC. Der Autor und Mirco sind in keiner Weise mit NXGN Management, LLC
+verbunden. Benutzen Sie Mirco auf Ihr eigenes Risiko.
+
+===
+
+mirco is an abbreviation for Mirth(TM) Companion. The main goals of this
+application is monitoring multiple mirth connect installations, i.e.
+installations and size of queued messages in all active channels. The minimum
+version of mirth connect (or now named nextgen connect) is 3.8.
+
+Mirth(TM) and NextGen(TM) are registered trademarks of NXGN Management, LLC.
+The author and mirco are not connected with NXGN Management, LLC. Use this
+software at your own risk.

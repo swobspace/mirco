@@ -8,11 +8,23 @@
     <div class="ps-4">
       <%= software.description %>
     </div>
-    <% if software.software_interfaces.any? %>
-      <div class="fw-bold pt-2"><%= t('controller.software_interfaces') %></div>
-      <ul>
-        <% software.software_interfaces.each do |software_interface| %>
-          <li><%= link_to software_interface, software_interface_path(software_interface) %></li>
+    <% if software.interface_connectors.any? %>
+      <div class="fw-bold pt-2 ms-3"><%= t('mirco.interfaces') %></div>
+      <ul class="list-group">
+        <% software.interface_connectors.each do |interface_connector| %>
+          <li class="list-group-item ms-3">
+            <div class="fw-bold">
+              <% if (interface_connector.direction == 'out') %>
+                <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+              <% else %>
+                <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+              <% end %>
+              <%= link_to interface_connector.name, interface_connector %>
+            </div>
+            <div class="ps-4">
+              <%= interface_connector.description %>
+            </div>
+          </li>
         <% end %>
       </ul>
     <% end %>

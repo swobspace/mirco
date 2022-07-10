@@ -2,18 +2,9 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-      <%= t('mirco.configuration') %>
+      <%= t('controller.locations') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
-      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.software_groups')), 
-                  main_app.software_groups_path, class: "dropdown-item" %>
-      <% if can? :create, Software %>
-        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
-                         t('mirco.new_software_group')), 
-                    main_app.new_software_group_path, class: "dropdown-item" %>
-      <% end %>
-      <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.locations')), 
                   main_app.locations_path, class: "dropdown-item" %>

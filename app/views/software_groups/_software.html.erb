@@ -9,5 +9,13 @@
     <div class="ps-4">
       <%= software.description %>
     </div>
+    <% if software.software_interfaces.any? %>
+      <div class="fw-bold pt-2"><%= t('controller.software_interfaces') %></div>
+      <ul>
+        <% software.software_interfaces.each do |software_interface| %>
+          <li><%= link_to software_interface, software_interface_path(software_interface) %></li> 
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>

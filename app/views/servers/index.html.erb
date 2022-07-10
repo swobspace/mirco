@@ -51,9 +51,9 @@
     <tbody>
       <% @servers.each do |server| %>
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
-                <td><%= server.name %></td>
+                <td><%= link_to server.name, server %></td>
                 <td><%= server.uid %></td>
-                <td><%= server.location %></td>
+                <td><%= link_to server.location, server.location %></td>
                 <td><%= server.host %></td>
                 <td><%= server.description %></td>
                 <td><%= server.api_url %></td>

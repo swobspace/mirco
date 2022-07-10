@@ -1,0 +1,30 @@
+= Mirth Connect / Nextgen Connect
+:navtitle: Mirth
+
+Die NextGen Connect Integration Engine - eher bekannt unter dem Namen Mirth
+Connect oder einfach nur Mirth - ist eine Integrationsplattform mit dem
+Schwerpunkt Gesundheitswesen. Im Gesundheitswesen wird eine
+Integrationsplattform wie Mirth Connect als allgemein als Kommunikationsserver
+bezeichnet.
+
+Wer sich im Gesundheitwesen mit Mirth Connect beschäftigt bekommt unweigerlich
+den Eindruck, Mirth Connect sei ein Kommunikationsserver für HL7. Damit wird
+man dem Werkzeug aber nicht ganz gerecht: es beherrscht HL7 in der
+verbreiteten Variante v2 sehr gut, kann aber auch z.B. abgelegte PDF-Dateien
+aufnehmen und per E-Mail verschicken (ganz ohne HL7 oder XML), oder eine
+Datenbank abfragen und daraus Nachrichten generieren. Und das nicht nur in XML
+oder HL7, sondern auch PDF-Dateien erstellen über eine HTML-Template-Engine.
+Das ermöglicht Einsatzbereiche auch außerhalb der HL7-Welt. Mirth Connect
+beherrscht auch den Nachfolger von HL7, FHIR. Dafür ist aber ab der Version 4
+eine kommerzielle Lizenz erforderlich.
+
+Als Einstiegspunkt für die Open Source Variante von Nextgen Connect benutzt
+man am besten die Github-Seite des Projektes:
+https://github.com/nextgenhealthcare/connect. Dort findet man auch reichtlich
+Hinweise zur Dokumentation und Links zum Handbuch, das über 400 Seiten
+umfasst.
+
+Die Begriffe Mirth und Mirth Connect werden gleichwertig genutzt und beziehen
+sich auf die Nextgen Connect Open Source Variante in den Versionen 3 und 4.
+Für die eingetragenen Warenzeichen sei auf den Abschnitt xref:about.adoc[]
+verwiesen.

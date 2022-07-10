@@ -1,5 +1,12 @@
 = Changelog
 
+=== 0.9.5 / 2022-07-10
+
+----
+* redesign documentation for github pages
+* working on connections and locations views
+----
+
 === 0.9.4 / 2022-06-19
 
 ----

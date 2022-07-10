@@ -16,6 +16,7 @@ module Connections
     # * :ignore_reason - string
     # * :description - string
     # * :channel_id - integer
+    # * :missing_connector - :any,:source,:destination,:both
     # * :id - integer
     # * :limit - limit result (integer)
     #
@@ -66,6 +67,21 @@ module Connections
           query = query.where(":cid = ANY(software_connections.channel_ids)", cid: value.to_i)
         when :ignore
           query = query.where(ignore: to_boolean(value))
+        when :missing_connector
+          case value.to_sym
+          when :none
+              query = query.where('source_connector_id IS NOT NULL AND destination_connector_id is NOT NULL')
+          when :any
+              query = query.where('source_connector_id IS NULL or destination_connector_id is NULL')
+          when :source
+              query = query.where(source_connector_id: nil)
+          when :destination
+              query = query.where(destination_connector_id: nil)
+          when :both
+              query = query.where(source_connector_id: nil, destination_connector_id: nil)
+           else
+            raise ArgumentError, "unknown value #{value} for option #{key}"
+          end
         when :limit
           @limit = value.to_i
         when :search
@@ -94,7 +110,7 @@ module Connections
     end
 
     def id_fields
-      [:source_connector_id, :destination_connector_id, :id]
+      [:source_connector_id, :destination_connector_id, :id, :location_id]
     end
 
     def to_boolean(value)

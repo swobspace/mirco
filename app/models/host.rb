@@ -17,4 +17,8 @@ class Host < ApplicationRecord
     "#{name} (#{ipaddress})"
   end
 
+  def pumlify
+    name.downcase.gsub(/-/, '_')
+  end
+
 end

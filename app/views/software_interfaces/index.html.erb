@@ -38,7 +38,7 @@
       <% @software_interfaces.each do |software_interface| %>
         <%= content_tag(:tr, id: dom_id(software_interface), class: dom_class(software_interface)) do %>
                 <td><%= link_to software_interface.lid, software_interface.location %></td>
-                <td><%= link_to software_interface.software.to_s, software_interface.software %></td>
+                <td><%= link_to software_interface.software&.name, software_interface.software %></td>
                 <td><%= link_to software_interface.name, software_interface %></td>
                 <td><%= software_interface.hostname %></td>
                 <td><%= software_interface.ipaddress %></td>
