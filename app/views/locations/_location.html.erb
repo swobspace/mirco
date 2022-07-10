@@ -1,9 +1,49 @@
 <div class="col-3">
-  <div class="card">
+  <div class="card mb-3">
     <div class="card-header">
-      <h4 class="card-title"><%= location %> </h4>
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <h4 class="card-title"><%= location.lid %> </h4>
+        </div>
+        <div role="toolbar" class="pt-0">
+          <%= show_link(location, class: 'btn btn-sm btn-outline-secondary') %>
+          <%= edit_link(location, class: 'btn btn-sm btn-outline-secondary') %>
+          <%= delete_link(location, class: 'btn btn-sm btn-outline-danger') %>
+        </div>
+      </div>
     </div>
+
     <div class="card-body">
+      <div class="fw-bold"><%= location.name %> </div>
+      <div class="ps-3">
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to t('controller.hosts'), location_hosts_path(location) %> 
+              </td>
+              <td class="text-end"><%=location.hosts.count%></td>
+            </tr>
+            <tr>
+              <td><%= t('controller.software') %> </td>
+              <td class="text-end"><%=location.software.count%></td>
+            </tr>
+            <tr>
+              <td><%= t('controller.software_connections') %> </td>
+              <td class="text-end"><%=location.software_connections.count%></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= render Connections::ButtonComponent.new(
+                   filter: { location_id: location.id,
+                             ignore: false,
+                             missing_connector: :any },
+                   alert: 'sm btn-outline-secondary',
+                   label: t('mirco.unassigned_connections'))
+
+       %>
+
     </div>
   </div>
 </div>
