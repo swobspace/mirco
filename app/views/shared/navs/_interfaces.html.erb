@@ -6,6 +6,15 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarSoftwareDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.software_groups')), 
+                  main_app.software_groups_path, class: "dropdown-item" %>
+      <% if can? :create, Software %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_software_group')), 
+                    main_app.new_software_group_path, class: "dropdown-item" %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software')), 
                   main_app.software_index_path, class: "dropdown-item" %>
       <% if can? :create, Software %>
