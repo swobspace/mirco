@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "/software_connections", type: :request do
+
   let(:server) { FactoryBot.create(:server) }
   let(:location) { FactoryBot.create(:location) }
   let(:srcconn) { FactoryBot.create(:interface_connector) }
@@ -22,10 +23,17 @@ RSpec.describe "/software_connections", type: :request do
   end
 
   describe "GET /index" do
+    include_context "connection variables"
+
     it "renders a successful response" do
       SoftwareConnection.create! valid_attributes
       get software_connections_url
       expect(response).to be_successful
+    end
+
+    it "filters software connections" do
+      get software_connections_url(missing_connector: :any)
+      expect(assigns(:software_connections)).to contain_exactly(c2, c3, c4)
     end
   end
 

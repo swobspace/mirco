@@ -9,6 +9,9 @@ class SoftwareConnectionsController < ApplicationController
     else
       @software_connections = SoftwareConnection.all
     end
+    if search_params.any?
+      @software_connections = Connections::Query.new(@software_connections, search_params).all
+    end
     respond_with(@software_connections)
   end
 
@@ -77,7 +80,26 @@ class SoftwareConnectionsController < ApplicationController
       )
     end
 
-  def location
-    polymorphic_path(@software_connection || :software_connections)
-  end
+    def search_params
+      searchparms = params.permit(*submit_parms, *non_search_params,
+        :source_url, :destination_url, :source_connector_id, :destination_connector_id,
+        :location_id, :ignore, :ignore_reason, :description, :channel_id,
+        :id, :limit, :missing_connector).to_h
+      searchparms.reject do |k, v|
+        v.blank? || submit_parms.include?(k) || non_search_params.include?(k)
+      end
+   end
+
+    def location
+      polymorphic_path(@software_connection || :software_connections)
+    end
+
+    def submit_parms
+      [ "utf8", "authenticity_token", "commit", "format", "view" ]
+    end
+
+    def non_search_params
+      [ "interface_connector_id" ]
+    end
+
 end
