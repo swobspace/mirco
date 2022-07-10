@@ -69,6 +69,8 @@ module Connections
           query = query.where(ignore: to_boolean(value))
         when :missing_connector
           case value.to_sym
+          when :none
+              query = query.where('source_connector_id IS NOT NULL AND destination_connector_id is NOT NULL')
           when :any
               query = query.where('source_connector_id IS NULL or destination_connector_id is NULL')
           when :source
@@ -108,7 +110,7 @@ module Connections
     end
 
     def id_fields
-      [:source_connector_id, :destination_connector_id, :id]
+      [:source_connector_id, :destination_connector_id, :id, :location_id]
     end
 
     def to_boolean(value)

@@ -67,7 +67,7 @@ shared_context "connection variables" do
     )
   end
 
-  let(:c1) do
+  let!(:c1) do
     FactoryBot.create(:software_connection,
       location_id: bnd.id,
       source_connector: icmbarout,
@@ -77,7 +77,7 @@ shared_context "connection variables" do
       channel_ids: [4711, 815]
     )
   end
-  let(:c2) do
+  let!(:c2) do
     FactoryBot.create(:software_connection,
       location_id: ber.id,
       source_url: 'tcp://1.2.3.4:5555',
@@ -86,7 +86,7 @@ shared_context "connection variables" do
     )
   end
 
-  let(:c3) do
+  let!(:c3) do
     FactoryBot.create(:software_connection,
       location_id: ber.id,
       source_connector: icmbarout,
@@ -96,13 +96,13 @@ shared_context "connection variables" do
     )
   end
 
-  let(:c4) do
+  let!(:c4) do
     FactoryBot.create(:software_connection,
       location_id: ber.id,
       source_url: 'tcp://1.2.3.4:5555',
       destination_connector: icmbarin,
       destination_url: 'tcp://92.0.2.11:13005',
-      channel_ids: [815]
+      channel_ids: [816]
     )
   end
 
