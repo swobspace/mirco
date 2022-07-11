@@ -10,7 +10,8 @@ de:
     fetch_channels: Aktualisiere Channels
     fetch_statistics: Statistiken aktualisieren
     for: für
-    interfaces: Software & Schnittstellen
+    sw_and_ifaces: Software & Schnittstellen
+    interfaces: Schnittstellen
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
