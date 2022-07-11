@@ -1,7 +1,7 @@
 <div class="container-xxl">
   <div class="card mb-3">
     <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
+      <div class="d-flex w-250 justify-content-between">
         <div>
           <span class="subtitle">
             <%= t('activerecord.models.software_interface') %>: 
@@ -20,32 +20,37 @@
       <table class="table table-sm table-borderless">
       
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.location')%>:</th>
           <td><%= link_to @software_interface.location, @software_interface.location %></td>
         </tr>
 
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.software')%>:</th>
           <td><%= link_to @software_interface.software, @software_interface.software %></td>
         </tr>
 
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.software_group')%>:</th>
+          <td><%= link_to @software_interface.software.software_group, @software_interface.software.software_group %></td>
+        </tr>
+
+        <tr>
+          <th class="w-25 pe-3"><%= t('attributes.name')%>:</th>
           <td><%= @software_interface.name %></td>
         </tr>
 
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.hostname')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.hostname')%>:</th>
           <td><%= link_to @software_interface.hostname, @software_interface.host %></td>
         </tr>
 
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.ipaddress')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.ipaddress')%>:</th>
           <td><%= @software_interface.ipaddress %></td>
         </tr>
 
         <tr>
-          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+          <th class="w-25 pe-3"><%= t('attributes.description')%>:</th>
           <td><%= @software_interface.description %></td>
         </tr>
       </table>
@@ -57,7 +62,7 @@
 
   <div class="card my-3">
     <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
+      <div class="d-flex w-250 justify-content-between">
         <div>
           <h4><%= t('controller.interface_connectors') %></h4>
         </div>
