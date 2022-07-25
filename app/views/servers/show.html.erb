@@ -188,7 +188,7 @@
     </div>
     <div class="card-body">
       <div id="ts_channels">
-        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels } %>
+        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels.active } %>
       </div>
     </div>
   </div>

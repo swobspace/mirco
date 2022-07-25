@@ -1,12 +1,12 @@
 @startuml
 !theme mirco from <%= Rails.root.join('config') %>
 
-<% @server.channels.each do |channel| %>
+<% @server.channels.active.each do |channel| %>
 <%= render ChannelPumlDefinitionsComponent.new(channel: channel, scope: :server ) %>
 <% end %>
 
 
-<% @server.channels.each do |channel| %>
+<% @server.channels.active.each do |channel| %>
 <%= render ChannelPumlGraphsComponent.new(channel: channel, scope: :server ) %>
 <% end %>
 
