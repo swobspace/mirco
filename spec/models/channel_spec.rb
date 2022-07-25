@@ -27,4 +27,53 @@ RSpec.describe Channel, type: :model do
   describe "#fullname" do
     it { expect(channel.fullname).to match("#{channel.server.to_s} > special channel") }
   end
+
+  describe "enabled" do
+    let!(:ch1) do
+      FactoryBot.create(:channel, enabled: true, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "true" } } }
+      )
+    end
+    let!(:ch2) do
+      FactoryBot.create(:channel, enabled: false, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "false" } } }
+      )
+    end
+
+    describe "scope #active" do
+      it { expect(Channel.active).to contain_exactly(ch1) }
+    end
+
+    describe "#enabled?" do
+      it { expect(ch1.enabled?).to be_truthy }
+      it { expect(ch2.enabled?).to be_falsey }
+    end
+
+    describe "#disabled?" do
+      it { expect(ch1.disabled?).to be_falsey }
+      it { expect(ch2.disabled?).to be_truthy }
+    end
+
+    describe "#save" do
+      it "changes enabled to disabled" do
+        ch1.properties = { "exportData" => { "metadata" => { "enabled" => "false" } } }
+        ch1.save; ch1.reload
+        expect(ch1.enabled?).to be_falsey
+      end
+
+      it "changes disabled to enabled" do
+        ch2.properties = { "exportData" => { "metadata" => { "enabled" => "true" } } }
+        ch2.save; ch2.reload
+        expect(ch2.enabled?).to be_truthy
+      end
+
+      it "sets enabled if exportData is not available" do
+        ch2.properties = nil
+        ch2.save; ch2.reload
+        expect(ch2.enabled?).to be_truthy
+      end
+
+    end
+  end
+
 end
