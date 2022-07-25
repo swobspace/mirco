@@ -32,6 +32,7 @@ class Server  {
 class Channel {
   uid: string
   properties: jsonb
+  enabled: boolean
 }
 
 class ChannelStatistic {

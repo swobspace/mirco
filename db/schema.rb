@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_17_085603) do
+ActiveRecord::Schema.define(version: 2022_07_25_150717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_085603) do
     t.jsonb "properties"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "enabled", default: true
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["uid"], name: "index_channels_on_uid"
   end

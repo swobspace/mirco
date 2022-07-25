@@ -47,6 +47,7 @@ bin/rails g scaffold Channel \
   server:belongs_to \
   uid:string:index \
   properties:jsonb \
+  enabled:boolean \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
