@@ -148,6 +148,10 @@ table.connector.table.table-sm > :not(caption) > * > * {
   background-color: #B800FF !important;
 }
 
+.bg-disabled {
+  background-color: #FBA1A1 !important;
+}
+
 // ------------------------------------------------------------------------
 // button_to: behaving just like a normal bootstrap button
 // ------------------------------------------------------------------------
