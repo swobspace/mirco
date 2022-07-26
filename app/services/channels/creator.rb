@@ -54,7 +54,7 @@ module Channels
     # create connections only for channels with receiving data from extern
     #
     def create_connections(channel)
-      if channel.source_connector.url.present?
+      if channel.enabled? && channel.source_connector.url.present?
         creator = Connections::Creator.new(channel: channel)
         creator.save
       end
