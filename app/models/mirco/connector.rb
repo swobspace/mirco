@@ -162,6 +162,8 @@ module Mirco
         Mirco::ConnectorType::VmDispatcher
       when 'com.mirth.connect.connectors.js.JavaScriptDispatcherProperties'
         Mirco::ConnectorType::JavascriptDispatcher
+      when 'de.osm.mirth.connect.connectors.hcm.HcmReceiverProperties'
+        Mirco::ConnectorType::HcmReceiver
       else
         Mirco::ConnectorType::Generic
       end
