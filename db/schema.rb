@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_25_150717) do
+ActiveRecord::Schema.define(version: 2022_07_29_151550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,6 +207,7 @@ ActiveRecord::Schema.define(version: 2022_07_25_150717) do
     t.datetime "last_check"
     t.datetime "last_check_ok"
     t.bigint "host_id"
+    t.boolean "manual_update", default: false
     t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["uid"], name: "index_servers_on_uid"
   end

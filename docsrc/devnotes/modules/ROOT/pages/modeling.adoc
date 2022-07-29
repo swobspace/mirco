@@ -27,6 +27,7 @@ bin/rails g scaffold Server \
   properties:jsonb \
   last_channel_update:timestamp \
   last_check:timestamp last_check_ok:timestamp \
+  manual_update:boolean \
   --no-stylesheets --no-javascripts --no-helper
 
 ----

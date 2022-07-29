@@ -27,6 +27,7 @@ class Server  {
   last_channel_update: timestamp
   last_check: timestamp
   last_check_ok: timestamp
+  manual_update: boolean
 }
 
 class Channel {
