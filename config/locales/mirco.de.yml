@@ -105,6 +105,7 @@ de:
     last_condition_change: letzte Zustandsänderung
     lid: StandortID
     location: Standort
+    manual_update: Manuelles Update von Channels & Statistiken
     message: Nachricht
     message_type: Nachrichtentyp
     meta_data_id: ConnNr.

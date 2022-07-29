@@ -64,7 +64,7 @@ RSpec.describe 'servers/index', type: :view do
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
     assert_select 'tr>td', text: 'Api Url'.to_s, count: 2
     assert_select 'tr>td', text: 'Api User'.to_s, count: 2
-    assert_select 'tr>td', text: false.to_s, count: 2
+    assert_select 'tr>td', text: false.to_s, count: 4
     assert_select 'tr>td', text: time_now.to_s, count: 4
   end
 end
