@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_29_151550) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_07_30_093828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "timescaledb"
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -31,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -43,8 +42,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -59,8 +58,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.bigint "channel_id"
     t.string "type"
     t.text "message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "channel_statistic_id"
     t.index ["channel_id"], name: "index_alerts_on_channel_id"
     t.index ["channel_statistic_id"], name: "index_alerts_on_channel_statistic_id"
@@ -76,8 +75,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.integer "error"
     t.integer "filtered"
     t.integer "queued"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "meta_data_id"
     t.bigint "channel_statistic_id", null: false
     t.index ["channel_id"], name: "index_channel_counters_on_channel_id"
@@ -96,14 +95,14 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.integer "error", default: 0
     t.integer "filtered", default: 0
     t.integer "queued", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "meta_data_id"
     t.string "name", default: ""
     t.string "state", default: ""
     t.string "status_type", default: ""
     t.string "condition", default: ""
-    t.datetime "last_condition_change"
+    t.datetime "last_condition_change", precision: nil
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
@@ -115,8 +114,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.bigint "server_id", null: false
     t.string "uid", null: false
     t.jsonb "properties"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "enabled", default: true
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["uid"], name: "index_channels_on_uid"
@@ -127,13 +126,13 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.integer "attempts", default: 0, null: false
     t.text "handler", null: false
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
     t.string "queue"
-    t.datetime "created_at", precision: 6
-    t.datetime "updated_at", precision: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
@@ -143,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.bigint "software_group_id", null: false
     t.string "name", default: ""
     t.inet "ipaddress"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_hosts_on_location_id"
     t.index ["software_group_id"], name: "index_hosts_on_software_group_id"
   end
@@ -154,8 +153,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.string "name", default: ""
     t.string "type", default: ""
     t.string "url", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["software_interface_id"], name: "index_interface_connectors_on_software_interface_id"
     t.index ["type"], name: "index_interface_connectors_on_type"
   end
@@ -163,8 +162,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
   create_table "locations", force: :cascade do |t|
     t.string "lid", null: false
     t.string "name", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["lid"], name: "index_locations_on_lid"
   end
 
@@ -173,8 +172,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.bigint "channel_id"
     t.bigint "user_id", null: false
     t.string "type", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "channel_statistic_id"
     t.index ["channel_id"], name: "index_notes_on_channel_id"
     t.index ["channel_statistic_id"], name: "index_notes_on_channel_statistic_id"
@@ -186,8 +185,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
   create_table "server_configurations", force: :cascade do |t|
     t.bigint "server_id", null: false
     t.string "comment", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_server_configurations_on_server_id"
   end
 
@@ -200,12 +199,12 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.text "api_password_ciphertext"
     t.boolean "api_user_has_full_access", default: true
     t.jsonb "properties"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "api_verify_ssl", default: false
-    t.datetime "last_channel_update"
-    t.datetime "last_check"
-    t.datetime "last_check_ok"
+    t.datetime "last_channel_update", precision: nil
+    t.datetime "last_check", precision: nil
+    t.datetime "last_check_ok", precision: nil
     t.bigint "host_id"
     t.boolean "manual_update", default: false
     t.index ["host_id"], name: "index_servers_on_host_id"
@@ -215,8 +214,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
   create_table "software", force: :cascade do |t|
     t.bigint "location_id", null: false
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "vendor", default: ""
     t.bigint "software_group_id"
     t.index ["location_id"], name: "index_software_on_location_id"
@@ -231,8 +230,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.string "destination_url", default: ""
     t.boolean "ignore", default: false
     t.string "ignore_reason", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "channel_ids", array: true
     t.bigint "server_id"
     t.index ["destination_connector_id"], name: "index_software_connections_on_destination_connector_id"
@@ -245,16 +244,16 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
   create_table "software_groups", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", default: ""
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["name"], name: "index_software_groups_on_name", unique: true
   end
 
   create_table "software_interfaces", force: :cascade do |t|
     t.bigint "software_id", null: false
     t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "host_id"
     t.index ["host_id"], name: "index_software_interfaces_on_host_id"
     t.index ["software_id"], name: "index_software_interfaces_on_software_id"
@@ -268,8 +267,8 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.string "authorized_for_type"
     t.date "valid_from"
     t.date "valid_until"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["authorizable_id"], name: "index_wobauth_authorities_on_authorizable_id"
     t.index ["authorized_for_id"], name: "index_wobauth_authorities_on_authorized_for_id"
     t.index ["role_id"], name: "index_wobauth_authorities_on_role_id"
@@ -278,24 +277,24 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
   create_table "wobauth_groups", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "wobauth_memberships", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
     t.boolean "auto", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["group_id"], name: "index_wobauth_memberships_on_group_id"
     t.index ["user_id"], name: "index_wobauth_memberships_on_user_id"
   end
 
   create_table "wobauth_roles", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "wobauth_users", force: :cascade do |t|
@@ -310,15 +309,15 @@ ActiveRecord::Schema.define(version: 2022_07_29_151550) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "title", default: ""
     t.string "position", default: ""
     t.string "department", default: ""
