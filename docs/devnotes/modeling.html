@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Modeling mirco :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.1">
+    <meta name="generator" content="Antora 3.0.3">
     <link rel="stylesheet" href="../_/css/site.css">
     <script>var uiRootPath = '../_'</script>
   </head>
@@ -145,6 +145,7 @@
   properties:jsonb \
   last_channel_update:timestamp \
   last_check:timestamp last_check_ok:timestamp \
+  manual_update:boolean \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -159,6 +160,7 @@
   server:belongs_to \
   uid:string:index \
   properties:jsonb \
+  enabled:boolean \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>

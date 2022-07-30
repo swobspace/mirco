@@ -30,11 +30,14 @@
 <div class="tab-content" id="myTabContent">
  <div class="tab-pane fade show active" id="channel" role="tabpanel" aria-labelledby="channel-tab">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header <%= "bg-disabled" if @channel.disabled? %>">
       <div class="d-flex w-100 justify-content-between">
-        <h4 class="title">
+        <h4 class="title pt-1">
           <%= t('activerecord.models.channel') %>
         </h4>
+        <% if @channel.disabled? %>
+          <span class="fw-bold text-danger pt-2">DISABLED</span>
+        <% end %>
         <div role="toolbar">
           <%= back_link %>
           <%= link_to(

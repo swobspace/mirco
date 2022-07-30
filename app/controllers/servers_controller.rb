@@ -77,7 +77,8 @@ class ServersController < ApplicationController
     params.require(:server).permit(
       :name, :uid, :location_id, :description, :host_id,
       :api_url, :api_user, :api_password,
-      :api_user_has_full_access, :api_verify_ssl
+      :api_user_has_full_access, :api_verify_ssl, 
+      :manual_update
     )
           .reject { |k, v| k == 'api_password' && v.blank? }
   end

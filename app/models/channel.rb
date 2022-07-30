@@ -25,8 +25,11 @@ class Channel < ApplicationRecord
 
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
+  before_save :check_enabled
 
   delegate :location, :ipaddress, to: :server
+
+  scope :active, -> { where(enabled: true) }
 
   def to_s
     name.to_s
@@ -59,5 +62,19 @@ class Channel < ApplicationRecord
       text: name.to_s
     }
   end
+
+  def disabled?
+    !enabled
+  end
+
+  private
+  def check_enabled
+    if exportData.present? && exportData['metadata'].present? && exportData['metadata']['enabled'] == 'false'
+      self[:enabled] = false
+    else
+      self[:enabled] = true
+    end
+  end
+  
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex, Rails/InverseOf

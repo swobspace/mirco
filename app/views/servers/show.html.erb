@@ -121,6 +121,11 @@
           <th><%= t('attributes.last_check_ok')%>:</th>
           <td><%= @server.last_check_ok %></td>
         </tr>
+
+        <tr>
+          <th><%= t('attributes.manual_update')%>:</th>
+          <td><%= @server.manual_update %></td>
+        </tr>
       </table>
     </div>
   </div>
@@ -188,7 +193,7 @@
     </div>
     <div class="card-body">
       <div id="ts_channels">
-        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels } %>
+        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels.active } %>
       </div>
     </div>
   </div>

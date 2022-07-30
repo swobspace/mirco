@@ -1,5 +1,16 @@
 = Changelog
 
+=== 0.9.7 / 2022-07-30
+
+----
+* disabled channels: no display in #index; mark red in #show; don't render it in puml
+* add HCM Receiver to connector types
+* servers#manual_update: 
+  - mark a server for manual update
+  - don't flag expired data
+  - don't fetch statistic or channel configuration
+----
+
 === 0.9.6 / 2022-07-10
 
 ----

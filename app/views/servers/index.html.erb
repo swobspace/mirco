@@ -27,6 +27,7 @@
             <th class="notvisible"><%= t('attributes.last_channel_update') %></th>
             <th><%= t('attributes.last_check') %></th>
             <th><%= t('attributes.last_check_ok') %></th>
+            <th class="notvisible"><%= t('attributes.manual_update') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
@@ -41,6 +42,7 @@
             <% if current_user.is_admin? %>
               <th></th>
             <% end %>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -64,6 +66,7 @@
                 <td><%= server.last_channel_update %></td>
                 <td><%= server.last_check %></td>
                 <td><%= server.last_check_ok %></td>
+                <td><%= server.manual_update %></td>
                 <td class="text-nowrap">
             <%= show_link server %>
             <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :svg), class: 'btn btn-secondary me-1') %>
