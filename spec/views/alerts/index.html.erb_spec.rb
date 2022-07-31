@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'alerts/index', type: :view do
+  let(:yesterday) { 1.day.before(Time.current) }
+  let(:last_hour) { 1.hour.before(Time.current) }
   before(:each) do
     @ability = Object.new
     @ability.extend(CanCan::Ability)
@@ -22,7 +24,7 @@ RSpec.describe 'alerts/index', type: :view do
                channel_statistic_id: cs.id,
                type: 'alert',
                message: 'MyText',
-               created_at: 1.day.before(Time.current)
+               created_at: yesterday
              ),
              Alert.create!(
                server_id: server.id,
@@ -30,7 +32,7 @@ RSpec.describe 'alerts/index', type: :view do
                channel_statistic_id: cs.id,
                type: 'recovery',
                message: 'MyText',
-               created_at: 1.hour.before(Time.current)
+               created_at: last_hour
              )
            ])
   end
@@ -43,7 +45,7 @@ RSpec.describe 'alerts/index', type: :view do
     assert_select 'tr>td', text: 'alert'.to_s, count: 1
     assert_select 'tr>td', text: 'recovery'.to_s, count: 1
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
-    assert_select 'tr>td', text: 1.day.before(Time.current).localtime.to_formatted_s(:db).to_s, count: 1
-    assert_select 'tr>td', text: 1.hour.before(Time.current).localtime.to_formatted_s(:db).to_s, count: 1
+    assert_select 'tr>td', text: yesterday.localtime.to_formatted_s(:db).to_s, count: 1
+    assert_select 'tr>td', text: last_hour.localtime.to_formatted_s(:db).to_s, count: 1
   end
 end

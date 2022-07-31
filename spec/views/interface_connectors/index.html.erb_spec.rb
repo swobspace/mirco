@@ -38,7 +38,8 @@ RSpec.describe "interface_connectors/index", type: :view do
 
   it "renders a list of interface_connectors" do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    # cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new("LLX".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("MySoft".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("IM4HC".to_s), count: 2

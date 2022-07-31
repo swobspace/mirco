@@ -30,7 +30,8 @@ RSpec.describe "hosts/index", type: :view do
 
   it "renders a list of hosts" do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    # cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new("LXC".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Gamma Y".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2

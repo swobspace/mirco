@@ -22,8 +22,8 @@ RSpec.describe "locations/index", type: :view do
 
   it "renders a list of locations" do
     render
-    assert_select "tr>td", text: "Lid1".to_s, count: 1
-    assert_select "tr>td", text: "Lid2".to_s, count: 1
-    assert_select "tr>td", text: "Name".to_s, count: 2
+    assert_select "h4", text: 'Lid1'.to_s, count: 1
+    assert_select "h4", text: 'Lid2'.to_s, count: 1
+    assert_select "div", text: 'Name'.to_s, count: 2
   end
 end

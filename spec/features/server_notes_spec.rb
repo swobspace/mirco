@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Server/notes", type: :feature do
-  fixtures 'wobauth/roles'
-
   let(:server) { FactoryBot.create(:server, name: "aaamirth") }
 
   describe "show server notes", js: true do
