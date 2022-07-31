@@ -4,34 +4,29 @@
 
 import { application } from "./application"
 
-import BstabsController from "./bstabs_controller.js"
+import BstabsController from "./bstabs_controller"
 application.register("bstabs", BstabsController)
 
-import DatatablesController from "./datatables_controller.js"
+import DatatablesController from "./datatables_controller"
 application.register("datatables", DatatablesController)
 
-import HelloController from "./hello_controller.js"
+import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import ImagezoomController from "./imagezoom_controller.js"
+import ImagezoomController from "./imagezoom_controller"
 application.register("imagezoom", ImagezoomController)
 
-import ModalController from "./modal_controller.js"
+import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
-import NestedFormController from "./nested_form_controller.js"
+import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
-import ToastController from "./toast_controller.js"
-application.register("toast", ToastController)
-
-import ToggleController from "./toggle_controller.js"
-application.register("toggle", ToggleController)
-
-import SelectController from "@swobspace/stimulus-slim-select"
+import SelectController from "./ts/select_controller"
 application.register("select", SelectController)
 
-// -- polymorphic for wobauth
-import PolymorphicSelectController from "@swobspace/stimulus-polymorphic-select"
-application.register("polymorphic-select", PolymorphicSelectController)
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)
 
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)
