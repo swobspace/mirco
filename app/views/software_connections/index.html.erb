@@ -20,18 +20,24 @@
             <th><%= t('attributes.software_interface') %> (SRC)</th>
             <th><%= t('attributes.source_connector') %></th>
             <th><%= t('attributes.source_url') %></th>
+            <th class="notvisible"><%= t('attributes.host') %></th>
+            <th class="notvisible"><%= t('controller.channels') %></th>
             <th><%= t('attributes.software') %> (DST)</th>
             <th><%= t('attributes.software_interface') %> (DST)</th>
             <th><%= t('attributes.destination_connector') %></th>
             <th><%= t('attributes.destination_url') %></th>
+            <th class="notvisible"><%= t('attributes.host') %></th>
             <th><%= t('attributes.ignore') %></th>
-            <th><%= t('attributes.ignore_reason') %></th>
+            <th class="notvisible"><%= t('attributes.ignore_reason') %></th>
             <th><%= t('attributes.description') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -57,10 +63,15 @@
                 <td><%= software_connection.source_connector&.if_name %></td>
                 <td><%= software_connection.source_connector %></td>
                 <td><%= software_connection.source_url %></td>
+                <td><%= software_connection.src_url_host %></td>
+                <td><%= Channel.where(id: software_connection.channel_ids)
+                               .map(&:name).join('<br/>').html_safe
+                     %></td>
                 <td><%= software_connection.destination_connector&.sw_name %></td>
                 <td><%= software_connection.destination_connector&.if_name %></td>
                 <td><%= software_connection.destination_connector %></td>
                 <td><%= software_connection.destination_url %></td>
+                <td><%= software_connection.dst_url_host %></td>
                 <td><%= software_connection.ignore %></td>
                 <td><%= software_connection.ignore_reason %></td>
                 <td><%= software_connection.description %></td>
