@@ -22,7 +22,8 @@ RSpec.describe "software_groups/index", type: :view do
 
   it "renders a list of software_groups" do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    # cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
+    cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new("Name1704".to_s), count: 1
     assert_select cell_selector, text: Regexp.new("Name0815".to_s), count: 1
     assert_select cell_selector, text: Regexp.new("Description".to_s), count: 2
