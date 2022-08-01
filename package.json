@@ -10,7 +10,6 @@
     "@rails/actiontext": "^6.1.4-1",
     "@rails/activestorage": "^6.0.0",
     "@swobspace/stimulus-polymorphic-select": "https://github.com/swobspace/stimulus-polymorphic-select.git",
-    "@swobspace/stimulus-slim-select": "https://github.com/swobspace/stimulus-slim-select.git",
     "bootstrap": "5",
     "chart.js": "^3.5.1",
     "chartkick": "^4.0.5",
@@ -22,6 +21,7 @@
     "medium-zoom": "^1.0.6",
     "pdfmake": "^0.2.4",
     "sass": "^1.43.5",
+    "tom-select": "^2.1.0",
     "trix": "^1.2.0"
   },
   "version": "0.1.0",

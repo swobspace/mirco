@@ -7,7 +7,7 @@ ruby '>=2.7.3'
 
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 7.0.0'
 gem "sprockets-rails"
 # gem 'sassc-rails', require: false
 gem 'redis', '~> 4.0'
@@ -23,7 +23,7 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'rails-i18n', '~> 6.0.0'
+gem 'rails-i18n', '~> 7.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'hotwire-rails'
 gem 'view_component'
