@@ -6,6 +6,10 @@ RSpec.describe SoftwareConnectionsController, type: :routing do
       expect(get: "/software_connections").to route_to("software_connections#index")
     end
 
+    it "routes to #search" do
+      expect(get: "/software_connections/search").to route_to("software_connections#search")
+    end
+
     it "routes to #new" do
       expect(get: "/software_connections/new").to route_to("software_connections#new")
     end

@@ -15,6 +15,9 @@ class SoftwareConnectionsController < ApplicationController
     respond_with(@software_connections)
   end
 
+  def search
+  end
+
   # GET /software_connections/1
   def show
     respond_with(@software_connection) do |format|

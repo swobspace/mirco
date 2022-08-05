@@ -29,7 +29,11 @@
               <td class="text-end"><%=location.software.count%></td>
             </tr>
             <tr>
-              <td><%= t('controller.software_connections') %> </td>
+              <td><%= link_to(t('controller.software_connections'),
+                        software_connections_path(location_id: location.id,
+                                                  ignore: false))
+                   %> 
+              </td>
               <td class="text-end"><%=location.software_connections.count%></td>
             </tr>
           </tbody>
