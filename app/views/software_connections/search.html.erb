@@ -50,7 +50,7 @@
 	<%= label_tag :channel_id, t('attributes.channel'), class: "col-sm-2 col-form-label" %>
 	<div class="col-sm-10">
           <%= select_tag "channel_id",
-                options_from_collection_for_select(Channel.accessible_by(current_ability, :read), 'id', 'to_s'),
+                options_from_collection_for_select(Channel.accessible_by(current_ability, :read), 'id', 'fullname'),
                 include_blank: true,
                 data: { controller: :select }
             %>
