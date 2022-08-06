@@ -1,0 +1,6 @@
+@startuml
+!theme mirco from <%= Rails.root.join('config') %>
+
+<%= render Puml::MultipleConnectionsComponent.new(connections: @software_connections) %>
+
+@enduml
