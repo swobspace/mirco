@@ -29,7 +29,7 @@ class Server < ApplicationRecord
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :location, :ipaddress, to: :host, allow_nil: true
+  delegate :location, :hostname, :ipaddress, to: :host, allow_nil: true
 
   def uri
     URI(api_url)
