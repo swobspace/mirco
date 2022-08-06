@@ -1,8 +1,9 @@
 # used in puml graphs
 class NullInterfaceConnector
   attr_reader :name, :type, :url
+  alias_attribute :id, :object_id
 
-  def initialize(options: {})
+  def initialize(options = {})
     @options = options.symbolize_keys
     @name = @options.fetch(:name) { "Unknown" }
     @type = @options.fetch(:type)
