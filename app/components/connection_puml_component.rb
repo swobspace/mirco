@@ -9,10 +9,6 @@ class ConnectionPumlComponent < ViewComponent::Base
 
   attr_reader :connection
 
-  def ch_alias
-   connection.to_s
-  end
-
   def src
     connection.source_connector
   end
