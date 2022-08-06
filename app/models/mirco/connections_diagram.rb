@@ -6,6 +6,8 @@ module Mirco
       @connections = connections
       if !oldest_filedate.nil? && oldest_filedate < updated_at(connections)
         delete
+      elsif Rails.env.development?
+        delete
       end
     end
 
