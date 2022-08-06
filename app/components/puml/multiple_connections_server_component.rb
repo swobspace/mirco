@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Puml::MultipleConnectionsServerComponent < ViewComponent::Base
+  with_collection_parameter :server
+
   def initialize(server:)
     @server = server
   end

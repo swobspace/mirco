@@ -6,11 +6,10 @@ class Puml::MultipleConnectionsComponent < ViewComponent::Base
   end
 
   def call
-    servers.each do |server| 
-      Puml::MultipleConnectionsServerComponent.new(server: server).render_in(view_context)
-    end
+    Puml::MultipleConnectionsServerComponent.with_collection(servers).render_in(view_context)
   end
 
+  private
   attr_reader :connections, :servers, :connectors
 
   def servers
