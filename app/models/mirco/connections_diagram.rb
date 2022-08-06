@@ -13,7 +13,7 @@ module Mirco
 
     def render_puml
       ApplicationController.render(
-        assigns: { software_connection: connections },
+        assigns: { software_connections: connections },
         template: 'software_connections/index',
         formats: [:puml],
         layout: false
