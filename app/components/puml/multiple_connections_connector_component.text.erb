@@ -1,1 +1,15 @@
-<div>Add Puml::MultipleConnectionsConnector template here</div>
+' Connector <%= connector.to_s %>
+
+rectangle <%= conn_identifier %> as "<%= conn_text %>" <%= conn_color %> 
+url of <%= conn_identifier %> is [[<%= conn_url %>]]
+circle if_<%= conn_identifier %> as "<%= connector.url %>"
+
+<% if connector.type == 'TxConnector' %>
+  <%= conn_identifier %> --> if_<%= conn_identifier %>
+  if_<%= conn_identifier %> --> <%= server_identifier %>
+<% else %>
+  <%= server_identifier %> --> if_<%= conn_identifier %> 
+  if_<%= conn_identifier %> --> <%= conn_identifier %>
+<% end %>
+
+
