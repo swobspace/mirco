@@ -22,6 +22,16 @@ RSpec.describe "/software_connections", type: :request do
     login_admin
   end
 
+  describe "GET /search" do
+    include_context "connection variables"
+
+    it "renders a successful response" do
+      SoftwareConnection.create! valid_attributes
+      get search_software_connections_url
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /index" do
     include_context "connection variables"
 

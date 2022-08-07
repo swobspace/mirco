@@ -30,6 +30,8 @@ de:
     add_connection: Verbindung zuweisen
     remove_connection: Verbindung entfernen
     create_manual_software_connections_warning: "Achtung: Verbindungen auf einem Mirth-System werden automatisch erstellt. Manuell sollten nur Verbindungen angelegt werden, die dem Mirth-System nicht bekannt sind!"
+    search_software_connections: Suche Verbindungen
+    ignored_connections: Ignorierte Verbindungen
 
   activerecord:
     models:
@@ -104,11 +106,13 @@ de:
     last_check_ok: Last OK
     last_condition_change: letzte Zustandsänderung
     lid: StandortID
+    limit: Limit
     location: Standort
     manual_update: Manuelles Update von Channels & Statistiken
     message: Nachricht
     message_type: Nachrichtentyp
     meta_data_id: ConnNr.
+    missing_connector: Fehlende Connectoren
     name: Name
     note: Notiz
     postprocessingScript: Postprocessing Script

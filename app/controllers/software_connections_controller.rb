@@ -12,7 +12,24 @@ class SoftwareConnectionsController < ApplicationController
     if search_params.any?
       @software_connections = Connections::Query.new(@software_connections, search_params).all
     end
-    respond_with(@software_connections)
+    respond_with(@software_connections) do |format|
+      format.html do
+        add_breadcrumb_index
+      end
+      format.puml do
+        render format: :puml, layout: false
+      end
+      format.svg do
+        diagram = Mirco::ConnectionsDiagram.new(@software_connections)
+        send_file diagram.image(:svg), filename: "connections.svg",
+                                       disposition: 'inline',
+                                       type: 'image/svg+xml'
+      end
+
+    end
+  end
+
+  def search
   end
 
   # GET /software_connections/1

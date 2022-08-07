@@ -40,7 +40,19 @@
           </tr>
           <tr class="border-bottom">
             <th class="w-25 pe-3"><%= t('attributes.source_url')%>:</th>
-            <td><%= @software_connection.source_url %></td>
+            <td><%= @software_connection.source_url %> <br/>
+                <%= @software_connection.src_url_host %>
+            </td>
+          </tr>
+
+          <tr class="border-bottom">
+            <th>
+              Channels
+            </th>
+            <td>
+              <%= Channel.where(id: @software_connection.channel_ids).map(&:name).join('<br/>').html_safe
+               %>
+            </td>
           </tr>
 
           <tr>
@@ -54,7 +66,9 @@
 
           <tr class="border-bottom">
             <th class="w-25 pe-3"><%= t('attributes.destination_url')%>:</th>
-            <td><%= @software_connection.destination_url %></td>
+            <td><%= @software_connection.destination_url %> <br/>
+                <%= @software_connection.dst_url_host %>
+            </td>
           </tr>
 
           <tr>

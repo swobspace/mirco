@@ -44,6 +44,9 @@
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software_connections')), 
                   main_app.software_connections_path, class: "dropdown-item" %>
+      <%= link_to raw( '<span class="fas fa-fw fa-search" aria-hidden="true"></span> ' +
+                       t('mirco.search_software_connections')), 
+                  main_app.search_software_connections_path, class: "dropdown-item" %>
       <% if can? :create, SoftwareConnection %>
         <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                          t('mirco.new_software_connection')), 
