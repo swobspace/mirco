@@ -31,6 +31,7 @@ de:
     remove_connection: Verbindung entfernen
     create_manual_software_connections_warning: "Achtung: Verbindungen auf einem Mirth-System werden automatisch erstellt. Manuell sollten nur Verbindungen angelegt werden, die dem Mirth-System nicht bekannt sind!"
     search_software_connections: Suche Verbindungen
+    ignored_connections: Ignorierte Verbindungen
 
   activerecord:
     models:

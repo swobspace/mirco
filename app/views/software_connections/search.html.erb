@@ -46,11 +46,29 @@
       </div>
 
 
-      <div class="mb-3 row channel_id">
-	<%= label_tag :channel_id, t('attributes.channel'), class: "col-sm-2 col-form-label" %>
+      <div class="mb-3 row">
+	<%= label_tag :source_connector_id, t('attributes.source_connector'), class: "col-sm-2 col-form-label" %>
 	<div class="col-sm-10">
-          <%= select_tag "channel_id",
-                options_from_collection_for_select(Channel.accessible_by(current_ability, :read), 'id', 'fullname'),
+          <%= select_tag "source_connector_id",
+                options_from_collection_for_select(
+                  InterfaceConnector.accessible_by(current_ability, :read)
+                                    .where(type: 'TxConnector'),
+                  'id', 'to_label'),
+                include_blank: true,
+                data: { controller: :select }
+            %>
+          </select>
+	</div>
+      </div>
+
+      <div class="mb-3 row">
+	<%= label_tag :destination_connector_id, t('attributes.destination_connector'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-10">
+          <%= select_tag "destination_connector_id",
+                options_from_collection_for_select(
+                  InterfaceConnector.accessible_by(current_ability, :read)
+                                    .where(type: 'RxConnector'),
+                  'id', 'to_label'),
                 include_blank: true,
                 data: { controller: :select }
             %>
@@ -70,6 +88,18 @@
 	</div>
       </div>
 
+      <div class="mb-3 row channel_id">
+	<%= label_tag :channel_id, t('attributes.channel'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-10">
+          <%= select_tag "channel_id",
+                options_from_collection_for_select(Channel.accessible_by(current_ability, :read), 'id', 'fullname'),
+                include_blank: true,
+                data: { controller: :select }
+            %>
+          </select>
+	</div>
+      </div>
+
 
       <div class="mb-3 row limit">
 	<%= label_tag :limit, t('attributes.limit'), class: "col-sm-2 col-form-label" %>
@@ -79,10 +109,22 @@
       </div>
 
       <div class="mb-3 row">
+	<%= label_tag :ignore, t('mirco.ignored_connections'), class: "col-sm-2 col-form-label" %>
+	<div class="col-sm-3">
+          <%= select_tag "ignore",
+                options_for_select([:no, :yes], :no),
+                include_blank: true,
+                data: { controller: :select }
+            %>
+          </select>
+	</div>
+      </div>
+
+      <div class="mb-3 row">
 	<div class="col-sm-10 offset-sm-2">
 	  <%= submit_tag(t('mirco.search_software_connections'),
                 class: 'btn btn-primary') %>
-          <%= button_tag(name: nil, method: :get, 
+          <%= button_tag(name: nil, method: :get,
                          class: "btn btn-secondary",
                          formaction: software_connections_path(format: :svg)) do %>
             <i class="fas fa-fw fa-project-diagram"></i>
