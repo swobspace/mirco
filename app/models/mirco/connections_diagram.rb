@@ -21,7 +21,7 @@ module Mirco
     end
 
     def basename
-      "connections_#{connections.map(&:id).sort.join("-")}"
+      "connections_" + Digest::SHA2.hexdigest(connections.map(&:id).sort.join("-"))
     end
 
     def type
