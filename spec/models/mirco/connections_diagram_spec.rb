@@ -29,6 +29,8 @@ RSpec.describe Mirco::ConnectionsDiagram, type: :model do
       updated_at: Time.now
     )
   end
+  let(:connections) { [connection, connection2] }
+  let(:checksum) { Digest::SHA2.hexdigest(connections.map(&:id).sort.join("-")) }
 
   it "test" do 
     skip "just for debugging" 
@@ -38,19 +40,19 @@ RSpec.describe Mirco::ConnectionsDiagram, type: :model do
     puts connection.destination_connector.to_s 
   end
 
-  subject { Mirco::ConnectionsDiagram.new([connection, connection2]) }
+  subject { Mirco::ConnectionsDiagram.new(connections) }
 
   it {
     expect(subject.path).to eq(
-      Rails.root.to_s + "/tmp/cache/connections/connections_#{connection.id}-#{connection2.id}"
+      Rails.root.to_s + "/tmp/cache/connections/connections_#{checksum}"
     )
   }
   it {
     expect(subject.filename(:puml)).to eq(
-      Rails.root.to_s + "/tmp/cache/connections/connections_#{connection.id}-#{connection2.id}.puml"
+      Rails.root.to_s + "/tmp/cache/connections/connections_#{checksum}.puml"
     )
   }
-  it { expect(subject.basename).to eq("connections_#{connection.id}-#{connection2.id}") }
+  it { expect(subject.basename).to eq("connections_#{checksum}") }
 
   describe '#mk_cachedir' do
     it 'creates cache directory' do
@@ -73,7 +75,7 @@ RSpec.describe Mirco::ConnectionsDiagram, type: :model do
     end
 
     it "new initialisation won't delete files" do
-      diag1 = Mirco::ConnectionsDiagram.new([connection, connection2])
+      diag1 = Mirco::ConnectionsDiagram.new(connections)
       expect(File.exist?(diag1.filename(:puml))).to be_truthy
       expect(File.exist?(diag1.filename(:svg))).to be_truthy
     end
@@ -81,7 +83,7 @@ RSpec.describe Mirco::ConnectionsDiagram, type: :model do
     it "new initialisation after connection change does delete existing files" do
       sleep 1
       connection.touch
-      newdiag = Mirco::ConnectionsDiagram.new([connection, connection2])
+      newdiag = Mirco::ConnectionsDiagram.new(connections)
       expect(File.exist?(newdiag.filename(:puml))).to be_falsey
       expect(File.exist?(newdiag.filename(:svg))).to be_falsey
     end
