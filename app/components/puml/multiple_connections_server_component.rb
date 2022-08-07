@@ -15,8 +15,12 @@ class Puml::MultipleConnectionsServerComponent < ViewComponent::Base
   end
 
   def srv_text
-    raw("<size:16><b>#{server.name}</b></size>" + '\n' +
-        "<color:grey>#{server.hostname} (#{server.ipaddress})</color>")
+    raw("<size:16><b>#{server.name}</b></size>" + '\n' + "#{server.ipaddress}")
+  end
+
+  def srv_color
+    # "#FFD080"
+    "#FFD18C"
   end
 
 end

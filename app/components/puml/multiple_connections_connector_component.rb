@@ -21,8 +21,7 @@ class Puml::MultipleConnectionsConnectorComponent < ViewComponent::Base
   def conn_text
     if connector.kind_of?(ExtendedInterfaceConnector)
       raw("<size:16><b>#{connector.name}</b></size>" + '\n' +
-          "<color:black>#{connector.sw_name} / #{connector.if_name}</color>" + '\n' +
-          "<color:grey>#{connector.hostname} (#{connector.ipaddress})</color>")
+          "#{connector.sw_name}" + '\n' + "#{connector.if_name}")
     else
       "not configured"
     end
@@ -40,6 +39,23 @@ class Puml::MultipleConnectionsConnectorComponent < ViewComponent::Base
     unless connector.kind_of?(ExtendedInterfaceConnector)
       "#AAAAAA"
     end
+  end
+
+  def host_identifier
+    if connector.ipaddress.present?
+      "host_#{connector.ipaddress.to_s.gsub(/\./, '_')}"
+    else
+      nil
+    end
+   
+  end
+
+  def host_text
+    raw("#{connector.hostname}" + '\n' + "#{connector.ipaddress}")
+  end
+
+  def host_color
+    "#7EFFEB"
   end
 
 end
