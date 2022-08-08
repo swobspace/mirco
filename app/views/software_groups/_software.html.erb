@@ -24,13 +24,20 @@
       <ul class="list-group">
         <% software.interface_connectors.each do |interface_connector| %>
           <li class="list-group-item ms-3">
-            <div class="fw-bold">
-              <% if (interface_connector.direction == 'out') %>
-                <i class="far fa-arrow-alt-circle-left fa-lg"></i>
-              <% else %>
-                <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
-              <% end %>
-              <%= link_to interface_connector.name, interface_connector %>
+            <div class="d-flex justify-content-between">
+              <div class="fw-bold">
+                <% if (interface_connector.direction == 'out') %>
+                  <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+                <% else %>
+                  <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+                <% end %>
+                <%= link_to interface_connector.name, interface_connector %>
+              </div>
+              <div>
+                <%= render Connector::DiagramButtonComponent.new(
+                           connector: interface_connector, 
+                           cssclass: 'text-secondary' ) %>
+              </div>
             </div>
             <div class="ps-4">
               <%= interface_connector.description %>
