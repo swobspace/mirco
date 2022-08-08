@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Connector::DiagramButtonComponent < ViewComponent::Base
-  def initialize(connector:)
+  def initialize(connector:, cssclass: "btn btn-secondary me-1")
     @connector = connector
+    @cssclass = cssclass
   end
 
   private 
-  attr_reader :connector
+  attr_reader :connector, :cssclass
 
   def filter
     if connector.type == 'RxConnector'
