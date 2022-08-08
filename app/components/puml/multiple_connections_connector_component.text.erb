@@ -16,7 +16,9 @@ circle if_<%= conn_identifier %> as "<%= connector.url %>"
 <% else %>
   <%= server_identifier %> --> if_<%= conn_identifier %> 
   if_<%= conn_identifier %> --> <%= conn_identifier %>
-  <%= conn_identifier %>  --> <%= host_identifier %>
+  <% if host_identifier.present? %>
+    <%= conn_identifier %>  --> <%= host_identifier %>
+  <% end %>
 <% end %>
 
 
