@@ -62,8 +62,7 @@ module Statistics
                                           attributes: stat.attributes,
                                           create_channel: create_channel)
         unless creator.save
-          errs = creator.errors.full_messages.join('; ')
-          errmsgs << "ERROR:: #{server} could not create statistics for #{stat.attributes}: #{errs}"
+          errmsgs << "ERROR:: #{server} could not create statistics for #{stat.attributes}"
           success = false
         end
       end
