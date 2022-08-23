@@ -27,6 +27,7 @@ module Statistics
       return false if channel.nil?
 
       if @channel_statistic.nil?
+        Rails.logger.debug("DEBUG:: create new channel statistic")
         @channel_statistic = ChannelStatistic.new(
           server_id: server.id,
           channel_id: channel.id,
