@@ -1,3 +1,6 @@
 .Admin Manual
 * xref:scheduling.adoc[]
 * xref:timescale.adoc[]
+* xref:postgresql/index.adoc[]
+** xref:postgresql/backuprestore.adoc[]
+** xref:postgresql/upgrade.adoc[]

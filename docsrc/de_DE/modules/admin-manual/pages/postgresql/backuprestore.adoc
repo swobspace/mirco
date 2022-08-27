@@ -1,0 +1,31 @@
+= Backup & Restore PostgreSQL with timescaledb
+:navtitle: Backup & Restore with timescaledb
+
+== pg_basebackup
+
+Das Backup nutzt die Replikation, daher müssen die für Replikation benötigten Rechte explizit aktiviert werden. Im Standard sind diese auskommentiert.
+
+.Replikationseintrag in `pg_hba.conf` muss explizit aktiviert werden
+----
+# TYPE  DATABASE        USER       ADDRESS         METHOD
+local   replication     postgres                   peer
+----
+
+.(postgres) Sicherung mit pg_basebackup in das Verzeichnis <backupdir>
+----
+pg_basebackup -D <backupdir> -Ft -z -P <!--1-->
+----
+<1> `-Ft` = tar-Format; `-z` = gzip; `-P` = show progress
+
+
+== pg_dumpall
+
+.(postgres) Full Dump
+----
+pg_dumpall | gzip > <backupfile>.gz
+----
+
+.(postgres) Restor
+----
+gunzip <backupfile>.gz | psql postgres
+----
