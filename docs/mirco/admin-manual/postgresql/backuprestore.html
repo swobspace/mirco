@@ -56,13 +56,13 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">PostgreSQL Maintenance</a>
+    <span class="nav-text">PostgreSQL Maintenance</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="backuprestore.html">Backup &amp; Restore with timescaledb</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="upgrade.html">Upgrade with timescaledb</a>
+    <a class="nav-link" href="upgrade.html">Upgrade mit Timescale</a>
   </li>
 </ul>
   </li>
@@ -146,7 +146,7 @@
   <ul>
     <li><a href="../../index.html">Mirco</a></li>
     <li>Admin Manual</li>
-    <li><a href="index.html">PostgreSQL Maintenance</a></li>
+    <li>PostgreSQL Maintenance</li>
     <li><a href="backuprestore.html">Backup &amp; Restore with timescaledb</a></li>
   </ul>
 </nav>
@@ -157,6 +157,92 @@
 </aside>
 <article class="doc">
 <h1 class="page">Backup &amp; Restore PostgreSQL with timescaledb</h1>
+<div class="sect1">
+<h2 id="_pg_dump_pg_restore_nur_mirco"><a class="anchor" href="#_pg_dump_pg_restore_nur_mirco"></a>pg_dump &amp; pg_restore (nur Mirco)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Entnommen aus: <a href="https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/pg-dump-and-restore/#restore-your-entire-database-from-backup">Logical backups with <code>pg_dump</code> and <code>pg_restore</code></a></p>
+</div>
+<div class="listingblock">
+<div class="title">(postgres) Dump im Custom Format (ist bereits komprimiert)</div>
+<div class="content">
+<pre>pg_dump -Fc -f mirco_production.dmp mirco_production</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restore"><a class="anchor" href="#_restore"></a>Restore</h3>
+<div class="listingblock">
+<div class="title">(postgres) Neuanlage der Datenbank <code>mirco_production</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE DATABASE mirco_production;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(postgres) Connect zur DB; Add Extension; Pre-Restore Task</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">\c mirco_production
+CREATE EXTENSION IF NOT EXISTS timescaledb;
+SELECT timescaledb_pre_restore();</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(postgres) Restore aus der Datenbank heraus</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">\! pg_restore -Fc -d mirco_production mirco_production.dmp</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>pg_restore</code> kann alternativ auch von der Kommandozeile aus als User <code>postgres</code> durchgeführt werden.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">(postgres) Post-Restore Task</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT timescaledb_post_restore();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pg_dumpall"><a class="anchor" href="#_pg_dumpall"></a>pg_dumpall</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">(postgres) Full Dump</div>
+<div class="content">
+<pre>pg_dumpall | gzip &gt; &lt;backupfile&gt;.gz</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(postgres) Restore</div>
+<div class="content">
+<pre>initdb -D &lt;datadir&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+gunzip &lt;backupfile&gt;.gz | psql postgres</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Das Verzeichnis <code>&lt;datadir&gt;</code> muss leer sein:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ubuntu: <code>/var/lib/postgresql/&lt;version&gt;/main/</code></p>
+</li>
+<li>
+<p>Fedora: <code>/var/lib/pgsql/data</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_pg_basebackup"><a class="anchor" href="#_pg_basebackup"></a>pg_basebackup</h2>
 <div class="sectionbody">
@@ -183,23 +269,6 @@ local   replication     postgres                   peer</pre>
 <td><code>-Ft</code> = tar-Format; <code>-z</code> = gzip; <code>-P</code> = show progress</td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_pg_dumpall"><a class="anchor" href="#_pg_dumpall"></a>pg_dumpall</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="title">(postgres) Full Dump</div>
-<div class="content">
-<pre>pg_dumpall | gzip &gt; &lt;backupfile&gt;.gz</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">(postgres) Restor</div>
-<div class="content">
-<pre>gunzip &lt;backupfile&gt;.gz | psql postgres</pre>
-</div>
 </div>
 </div>
 </div>

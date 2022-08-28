@@ -1,6 +1,64 @@
 = Backup & Restore PostgreSQL with timescaledb
 :navtitle: Backup & Restore with timescaledb
 
+
+== pg_dump & pg_restore (nur Mirco)
+
+Entnommen aus: https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/pg-dump-and-restore/#restore-your-entire-database-from-backup[Logical backups with `pg_dump` and `pg_restore`]
+
+
+.(postgres) Dump im Custom Format (ist bereits komprimiert)
+----
+pg_dump -Fc -f mirco_production.dmp mirco_production
+----
+
+=== Restore
+.(postgres) Neuanlage der Datenbank `mirco_production`
+[source,sql]
+----
+CREATE DATABASE mirco_production;
+----
+
+.(postgres) Connect zur DB; Add Extension; Pre-Restore Task
+[source,sql]
+----
+\c mirco_production
+CREATE EXTENSION IF NOT EXISTS timescaledb;
+SELECT timescaledb_pre_restore();
+----
+
+.(postgres) Restore aus der Datenbank heraus
+[source,sql]
+----
+\! pg_restore -Fc -d mirco_production mirco_production.dmp
+----
+
+NOTE: `pg_restore` kann alternativ auch von der Kommandozeile aus als User `postgres` durchgeführt werden.
+
+.(postgres) Post-Restore Task
+[source,sql]
+----
+SELECT timescaledb_post_restore();
+----
+
+== pg_dumpall
+
+.(postgres) Full Dump
+----
+pg_dumpall | gzip > <backupfile>.gz
+----
+
+.(postgres) Restore
+----
+initdb -D <datadir> <!--1-->
+gunzip <backupfile>.gz | psql postgres
+----
+
+Das Verzeichnis `<datadir>` muss leer sein:
+
+* Ubuntu: `/var/lib/postgresql/<version>/main/`
+* Fedora: `/var/lib/pgsql/data`
+
 == pg_basebackup
 
 Das Backup nutzt die Replikation, daher müssen die für Replikation benötigten Rechte explizit aktiviert werden. Im Standard sind diese auskommentiert.
@@ -16,16 +74,3 @@ local   replication     postgres                   peer
 pg_basebackup -D <backupdir> -Ft -z -P <!--1-->
 ----
 <1> `-Ft` = tar-Format; `-z` = gzip; `-P` = show progress
-
-
-== pg_dumpall
-
-.(postgres) Full Dump
-----
-pg_dumpall | gzip > <backupfile>.gz
-----
-
-.(postgres) Restor
-----
-gunzip <backupfile>.gz | psql postgres
-----
