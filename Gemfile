@@ -30,7 +30,6 @@ gem 'view_component'
 
 group :development do
   gem 'capistrano', require: false
-  gem 'capistrano3-delayed-job'
   gem 'capistrano-passenger'
   gem 'capistrano-rails', require: false
   gem 'capistrano-yarn'
@@ -73,8 +72,6 @@ gem 'wobaduser'
 # gem 'sidekiq'
 # gem 'sidekiq-scheduler'
 gem 'daemons'
-gem 'delayed_cron_job'
-gem 'delayed_job_active_record'
 
 # workaround for faraday-net_http
 gem 'net-http'
@@ -94,3 +91,9 @@ gem "rails-controller-testing", "~> 1.0"
 gem "devise-remote-user", "~> 1.1"
 
 gem "faker", "~> 2.21"
+
+gem "good_job", "~> 3.6"
+
+# for deployment
+gem "ed25519"
+gem "bcrypt_pbkdf"

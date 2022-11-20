@@ -11,7 +11,7 @@ apt install autoconf binutils bison build-essential flex gettext ncurses-dev
 
 # database
 apt install postgresql postgresql-client postgresql-client-common \
-           postgresql-common postgresql-server-dev-all
+           postgresql-common postgresql-contrib postgresql-server-dev-all
 
 # webserver
 apt install apache2 apache2-bin apache2-data apache2-utils

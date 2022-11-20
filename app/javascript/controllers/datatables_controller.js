@@ -9,10 +9,6 @@ export default class extends Controller {
   }
 
   initialize() {
-    var myTable = $.fn.dataTable;
-    $.extend( true, myTable.Buttons.defaults, {
-      "dom": { "button": { "className": 'btn btn-outline-secondary btn-sm' } }
-    })
   }
 
   connect() {
@@ -80,15 +76,23 @@ export default class extends Controller {
     options.dom = "<'row'<'col'l><'col'B><'col'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col'i><'col'p>>"
-    options.buttons = [ { "extend": 'excel',
-	                  "exportOptions": { "search": ':applied' } },
-                        { "extend": 'pdf',
-	                  "orientation": 'landscape',
-	                  "pageSize": 'A4',
-	                  "exportOptions": { "columns": ':visible',
-	                                     "search": ':applied' } },
-                        { "extend": 'print'},
-                        { "extend": 'colvis', "columns": ':gt(0)' } ]
+    options.buttons = {
+      dom: {
+        button: {
+          tag: 'button',
+          className: 'btn btn-outline-secondary btn-sm'
+        }
+      },
+      buttons: [ { "extend": 'excel',
+	           "exportOptions": { "search": ':applied' } },
+                 { "extend": 'pdf',
+	           "orientation": 'landscape',
+	           "pageSize": 'A4',
+	           "exportOptions": { "columns": ':visible',
+	                              "search": ':applied' } },
+                 { "extend": 'print'},
+                 { "extend": 'colvis', "columns": ':gt(0)' } ]
+    }
   }
 
   remoteOptions(options) {

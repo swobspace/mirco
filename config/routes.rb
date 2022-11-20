@@ -68,4 +68,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   mount Wobauth::Engine, at: '/auth'
+  authenticate :user, ->(user) { user.is_admin? } do
+    mount GoodJob::Engine => "good_job"
+  end
+
 end
