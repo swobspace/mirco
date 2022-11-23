@@ -18,7 +18,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: mirco_production <!--1-->
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5).to_i + ENV.fetch("GOOD_JOB_MAX_THREADS", 4).to_i %>
   username: ###PLEASE_EDIT###  <!--2-->
   password: ###PLEASE_EDIT###  <!--3-->
   min_messages: WARNING <!--4-->
