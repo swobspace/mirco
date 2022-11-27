@@ -3,7 +3,10 @@
 module Mirco
   class ConnectionsDiagram < Diagram
     def initialize(connections, _options = {})
-      @connections = connections
+      @connections = Array(connections)
+      if @connections.empty?
+        raise RuntimeError, "ERROR:: ConnectionsDiagram.new: no connections present!"
+      end
       if !oldest_filedate.nil? && oldest_filedate < updated_at(connections)
         delete
       elsif Rails.env.development?

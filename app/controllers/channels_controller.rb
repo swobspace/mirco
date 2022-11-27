@@ -39,7 +39,7 @@ class ChannelsController < ApplicationController
     unless result.success?
       @server.errors.add(:base, :invalid)
       flash[:error] = "WARN:: fetch channels failed, server: #{@server}" \
-                      '<br/>' + result.error_messages.join('<br/>')
+                      '<br/>' + result.error_messages.join('<br/>').truncate(300)
       Rails.logger.warn(flash[:error])
     end
     respond_with(@server, render: 'servers/show')

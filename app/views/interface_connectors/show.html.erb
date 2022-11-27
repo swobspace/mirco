@@ -10,8 +10,12 @@
           <h4 class="title"><%= @interface_connector %></h4>
         </div>
         <div role="toolbar" class="pt-3">
+          <%= render Connector::DiagramButtonComponent.new(
+                       connector: @interface_connector )
+           %>
           <%= edit_link(@interface_connector) %>
           <%= delete_link(@interface_connector) %>
+
         </div>
       </div>
     </div>

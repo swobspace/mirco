@@ -62,7 +62,7 @@ module Statistics
                                           attributes: stat.attributes,
                                           create_channel: create_channel)
         unless creator.save
-          errmsgs << "ERROR:: could not create statistics for #{stat.statistics}"
+          errmsgs << "ERROR:: #{server} could not create statistics for #{stat.attributes}"
           success = false
         end
       end

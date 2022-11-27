@@ -9,14 +9,16 @@ circle if_<%= conn_identifier %> as "<%= connector.url %>"
 
 <% if connector.type == 'TxConnector' %>
   <% if host_identifier.present? %>
-    <%= host_identifier %> --> <%= conn_identifier %> 
+    <%= host_identifier %> #--# <%= conn_identifier %> 
   <% end %>
   <%= conn_identifier %> --> if_<%= conn_identifier %>
   if_<%= conn_identifier %> --> <%= server_identifier %>
 <% else %>
   <%= server_identifier %> --> if_<%= conn_identifier %> 
   if_<%= conn_identifier %> --> <%= conn_identifier %>
-  <%= conn_identifier %>  --> <%= host_identifier %>
+  <% if host_identifier.present? %>
+    <%= conn_identifier %>  #--# <%= host_identifier %>
+  <% end %>
 <% end %>
 
 

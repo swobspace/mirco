@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Upgrade PostgreSQL mit Timescale :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.2">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="upgrade.html">Upgrade mit Timescale</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Installation Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/setup.html">Setup</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/encryption.html">Datenbankverschlüsselung</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Database Setup</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/database-postgresql.html">PostgreSQL Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/database-timescale.html">Installation Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/database-rails.html">Rails Datenbank-Konfiguration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../installation-guide/configuration.html">Konfiguration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Mirco</a></li>
+    <li>Admin Manual</li>
+    <li>PostgreSQL Maintenance</li>
+    <li><a href="upgrade.html">Upgrade mit Timescale</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Upgrade PostgreSQL mit Timescale</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ein Upgrade von PostgreSQL nach einem Upgrade der Linux-Distribution führt man
+in der Regel mit Boardmitteln der Distribution durch. In Fedora mit
+<code>postgresql-upgrade</code>, unter Ubuntu mit <code>pg_upgradecluster</code>. Beide führen
+das PostgreSQL-Standardprogramm <code>pg_upgrade</code> aus. <code>pg_upgrade</code> benötigt die
+alte Datenbank und eine neue, leere Datenbank parallel für die Migration. Das
+Umkopieren der alten Datenbank, die Initialisierung mit <code>initdb</code> und den
+Aufruf von <code>pg_upgrade</code> übernehmen die distributionsabhängigen Skripte.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Die Anpassungen in <code>postgresql.conf</code> wie z.B. der Eintrag der
+Timescale-Extension oder die Anpassungen der <code>pg_hba.conf</code> werden nicht von
+den Upgradeskripten übertragen. Diese müssen per Hand nachgezogen werden.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vor_dem_upgrade"><a class="anchor" href="#_vor_dem_upgrade"></a>Vor dem Upgrade</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Zuerst stellt man fest, von welcher PostgreSQL-Version auf welche Version
+aktualisiert werden soll. Die installierte Timescale-Version muss von beiden
+PostgreSQL-Versionen unterstützt werden. Die Version prüft man mit</p>
+</div>
+<div class="listingblock">
+<div class="title">(postgresql) Prüfung der Extensions</div>
+<div class="content">
+<pre>psql mirco_production
+\dx</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Liste der installierten Erweiterungen
+Name     | Version |   Schema      | Beschreibung
+------------+---------+------------+-----------------------------------------
+plpgsql     | 1.0     | pg_catalog | PL/pgSQL procedural language
+timescaledb | 2.5.2   | public     | Enables scalable inserts and complex queries for time-series data
+(2 Zeilen)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Welche Timescale-Version mit welcher PostgreSQL-Version läuft beschreibt die
+Seite
+<a href="https://docs.timescale.com/timescaledb/latest/how-to-guides/upgrades/upgrade-pg/">Upgrade
+PostgreSQL</a> der TimescaleDocs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Wenn die neue PostgreSQL-Version die vorhandene Timescale-Version nicht mehr unterstützt, muss zuerst die Timescale-Version aktualisiert werden (siehe <a href="../../installation-guide/database-timescale.html" class="xref page">Installation Timescale</a>).
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Vor dem Upgrade des Betriebssystems sollte man immer zuerst ein Backup der Datenbank mit <code>pg_dumpall</code> durchführen (siehe <a href="backuprestore.html" class="xref page">Backup &amp; Restore PostgreSQL with timescaledb</a>).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrade"><a class="anchor" href="#_upgrade"></a>Upgrade</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Zuerst aktualisiert man das Betriebssystem. Jetzt sind alte und neue PostgreSQL-Version parallel installiert. Vor dem Upgrade mit den Distributionsskripten müssen 2 Dinge sichergestellt sein:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Die Extension <code>timescaledb</code> ist in der gleichen Version auch für die neue Datenbankversion installiert (neu kompilieren, andernfalls fehlen ggf. Bibliotheken, die die neue Distribution durch eine andere Version ersetzt hat).</p>
+</li>
+<li>
+<p>Die Extension <code>timescaledb</code> ist in <code>postgresql.conf</code> eingetragen und die aktuelle Version der Datenbank neu gestartet.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Danach kann man das Upgrade mit dem Distributionsskript ausführen. Falls etwas schief geht und sich das Upgrade nicht durchführen lässt, spielt man die Datenbank vom Backup wieder ein (<a href="backuprestore.html" class="xref page">Backup &amp; Restore PostgreSQL with timescaledb</a>)</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2022</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

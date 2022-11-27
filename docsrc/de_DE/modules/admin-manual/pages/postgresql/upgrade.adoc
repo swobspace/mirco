@@ -1,0 +1,53 @@
+= Upgrade PostgreSQL mit Timescale
+:navtitle: Upgrade mit Timescale
+
+Ein Upgrade von PostgreSQL nach einem Upgrade der Linux-Distribution führt man
+in der Regel mit Boardmitteln der Distribution durch. In Fedora mit
+`postgresql-upgrade`, unter Ubuntu mit `pg_upgradecluster`. Beide führen
+das PostgreSQL-Standardprogramm `pg_upgrade` aus. `pg_upgrade` benötigt die
+alte Datenbank und eine neue, leere Datenbank parallel für die Migration. Das
+Umkopieren der alten Datenbank, die Initialisierung mit `initdb` und den
+Aufruf von `pg_upgrade` übernehmen die distributionsabhängigen Skripte.
+
+NOTE: Die Anpassungen in `postgresql.conf` wie z.B. der Eintrag der
+Timescale-Extension oder die Anpassungen der `pg_hba.conf` werden nicht von
+den Upgradeskripten übertragen. Diese müssen per Hand nachgezogen werden.
+
+== Vor dem Upgrade
+
+Zuerst stellt man fest, von welcher PostgreSQL-Version auf welche Version
+aktualisiert werden soll. Die installierte Timescale-Version muss von beiden
+PostgreSQL-Versionen unterstützt werden. Die Version prüft man mit
+
+.(postgresql) Prüfung der Extensions
+----
+psql mirco_production
+\dx
+----
+
+----
+Liste der installierten Erweiterungen
+Name     | Version |   Schema      | Beschreibung
+------------+---------+------------+-----------------------------------------
+plpgsql     | 1.0     | pg_catalog | PL/pgSQL procedural language
+timescaledb | 2.5.2   | public     | Enables scalable inserts and complex queries for time-series data
+(2 Zeilen)
+----
+
+Welche Timescale-Version mit welcher PostgreSQL-Version läuft beschreibt die
+Seite
+https://docs.timescale.com/timescaledb/latest/how-to-guides/upgrades/upgrade-pg/[Upgrade
+PostgreSQL] der TimescaleDocs.
+
+NOTE: Wenn die neue PostgreSQL-Version die vorhandene Timescale-Version nicht mehr unterstützt, muss zuerst die Timescale-Version aktualisiert werden (siehe xref:installation-guide:database-timescale.adoc[]).
+
+NOTE: Vor dem Upgrade des Betriebssystems sollte man immer zuerst ein Backup der Datenbank mit `pg_dumpall` durchführen (siehe xref:postgresql/backuprestore.adoc[]).
+
+== Upgrade
+
+Zuerst aktualisiert man das Betriebssystem. Jetzt sind alte und neue PostgreSQL-Version parallel installiert. Vor dem Upgrade mit den Distributionsskripten müssen 2 Dinge sichergestellt sein:
+
+* Die Extension `timescaledb` ist in der gleichen Version auch für die neue Datenbankversion installiert (neu kompilieren, andernfalls fehlen ggf. Bibliotheken, die die neue Distribution durch eine andere Version ersetzt hat).
+* Die Extension `timescaledb` ist in `postgresql.conf` eingetragen und die aktuelle Version der Datenbank neu gestartet.
+
+Danach kann man das Upgrade mit dem Distributionsskript ausführen. Falls etwas schief geht und sich das Upgrade nicht durchführen lässt, spielt man die Datenbank vom Backup wieder ein (xref:postgresql/backuprestore.adoc[])

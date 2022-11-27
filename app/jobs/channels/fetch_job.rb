@@ -2,9 +2,9 @@
 
 module Channels
   # fetch statistics data from all channels at once
-  class FetchJob < CronJob
+  class FetchJob < ApplicationJob
     queue_as :default
-    self.cron_expression = '0 1 * * 6'
+    # self.cron_expression = '0 1 * * 6'
 
     # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     def perform(options = {})

@@ -1,5 +1,11 @@
 = Changelog
 
+=== 1.0.2 / 2022-11-27
+
+----
+* job processing now with good_job
+----
+
 === 1.0.1 / 2022-08-07
 
 ----

@@ -48,6 +48,9 @@
                 <td><%= interface_connector.description.to_plain_text.truncate(300) %></td>
                 <td class="text-nowrap">
             <%= show_link interface_connector %>
+            <%= render Connector::DiagramButtonComponent.new(
+                         connector: interface_connector )
+             %>
             <%= edit_link interface_connector %>
             <%= delete_link interface_connector %>
           </td>

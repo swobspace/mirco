@@ -6,7 +6,26 @@ class ChannelStatisticProcessor
   end
 
   def process
-    channel_statistic.save && channel_statistic.touch && channel_counter.save && update_condition
+    unless channel_statistic.save
+      errs = channel_statistic&.errors&.full_messages&.join("; ")
+      Rails.logger.warn("WARN:: channel_statistic  #{channel_statistic.id} could not be saved: #{errs}")
+      return false
+    end
+    unless channel_statistic.touch
+      errs = channel_statistic&.errors&.full_messages&.join("; ")
+      Rails.logger.warn("WARN:: channel_statistic #{channel_statistic.id} could not be touched: #{errs}")
+      return false
+    end
+    unless channel_counter.save
+      errs = channel_counter&.errors&.full_messages&.join("; ")
+      Rails.logger.warn("WARN:: channel_counter #{channel_counter.id} could not be saved: #{errs}")
+      return false
+    end
+    unless update_condition
+      Rails.logger.warn("WARN:: condition of channel_statistic #{channel_statistic.id} could not be updated")
+      return false
+    end
+    return true
   end
 
   private
@@ -51,7 +70,7 @@ class ChannelStatisticProcessor
 
   def current_condition
     if channel_statistic.sent_last_30min.zero? && channel_statistic.queued > Mirco.queued_warning_level
-      'alert' 
+      'alert'
     else
       'ok'
     end
@@ -63,12 +82,12 @@ class ChannelStatisticProcessor
 
     if channel_statistic.condition == 'ok'
       alert = channel_statistic.alerts.create(
-                type: 'recovery', 
+                type: 'recovery',
                 message: "#{channel_statistic} has recovered"
               )
     else
       alert = channel_statistic.alerts.create(
-                type: 'alert', 
+                type: 'alert',
                 message: "#{channel_statistic.queued} messages," +
                          " but no messages sent in the last 30 minutes"
               )

@@ -1,0 +1,38 @@
+---
+de:
+  good_job:
+    shared:
+      footer:
+        last_update_html: Last updated <time id="page-updated-at" datetime="%{time}">%{time}</time>
+        wording: Remember, you're doing a Good Job too!
+      navbar:
+        cron_schedules: Cron
+        jobs: Jobs
+        live_poll: Live Poll
+        name: "GoodJob 👍"
+        processes: Processes
+    status:
+      discarded: Discarded
+      queued: Queued
+      retried: Retried
+      running: Running
+      scheduled: Scheduled
+      succeeded: Succeeded
+  number:
+    format:
+      delimiter: ","
+      separator: "."
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
+      format:
+        delimiter: ","
+        precision: 3
+        separator: "."

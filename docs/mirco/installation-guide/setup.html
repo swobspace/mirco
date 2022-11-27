@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Setup :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.0.3">
+    <meta name="generator" content="Antora 3.1.2">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -53,6 +53,18 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../admin-manual/timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -155,7 +167,7 @@ apt install autoconf binutils bison build-essential flex gettext ncurses-dev
 
 # database
 apt install postgresql postgresql-client postgresql-client-common \
-           postgresql-common postgresql-server-dev-all
+           postgresql-common postgresql-contrib postgresql-server-dev-all
 
 # webserver
 apt install apache2 apache2-bin apache2-data apache2-utils</code></pre>

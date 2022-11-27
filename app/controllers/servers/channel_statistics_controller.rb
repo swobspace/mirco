@@ -9,7 +9,7 @@ module Servers
       unless result.success?
         @server.errors.add(:base, :invalid)
         flash[:error] = "WARN:: fetch channel statistics failed, server: #{@server}" \
-                        '<br/>' + result.error_messages.join('<br/>')
+                        '<br/>' + result.error_messages.join('<br/>').truncate(500)
         Rails.logger.warn(flash[:error])
       end
       respond_with(@server, location: location, render: 'servers/show')
