@@ -52,6 +52,9 @@ class ChannelStatistic {
   queued: integer
   condition: string
   last_condition_change: timestamp
+  last_message_received_at: timestamp
+  last_message_sent_at: timestamp
+  last_message_error_at: timestamp
 }
 
 class ChannelCounter {
