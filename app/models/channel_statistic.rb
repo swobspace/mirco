@@ -29,10 +29,25 @@ class ChannelStatistic < ApplicationRecord
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :condition, inclusion: CONDITIONS, allow_blank: true
 
+  before_update :update_last_at
+
   alias_attribute :to_s, :name
 
   def fullname
     "#{server.to_s} > #{channel.to_s} > #{name}"
+  end
+
+private
+  def update_last_at
+    if will_save_change_to_attribute?(:received) && received > 0
+      touch(:last_message_received_at) 
+    end
+    if will_save_change_to_attribute?(:sent) && sent > 0
+      touch(:last_message_sent_at) 
+    end
+    if will_save_change_to_attribute?(:error) && error > 0
+      touch(:last_message_error_at) 
+    end
   end
 
 end

@@ -81,7 +81,7 @@ bin/rails g scaffold ChannelStatistic \
 // bin/rails g migration AddConditionToChannelStatistic \
 //   condition:string:index last_condition_change:timestamp
 // bin/rails g migration AddLastMessageAtToChannelStatistic \
-//   last_message_receive_at:timestamp last_message_sent_at:timestamp \
+//   last_message_received_at:timestamp last_message_sent_at:timestamp \
 //   last_message_error_at:timestamp
 
 == Model ChannelCounter

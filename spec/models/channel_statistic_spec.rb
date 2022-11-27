@@ -34,4 +34,33 @@ RSpec.describe ChannelStatistic, type: :model do
     it { expect(cs.fullname).to match("#{cs.server.to_s} > #{cs.channel.to_s} > Some Statistics") }
   end
 
+  describe "#save" do
+    let!(:cs) { FactoryBot.create(:channel_statistic, received: 100, sent: 50, error: 1) }
+    let!(:ts) { DateTime.current + 20.minutes }
+    it { expect(cs.last_message_received_at).to be_nil }
+    it { expect(cs.last_message_sent_at).to be_nil }
+    it { expect(cs.last_message_error_at).to be_nil }
+    describe "updates #last_message_*" do
+      before(:each) do
+        travel_to ts
+      end
+      after(:each) do
+        travel_back
+      end
+
+      it "received_at changed" do
+        cs.update(received: 101)
+        expect(cs.last_message_received_at.to_i).to eq(ts.to_i)
+      end
+      it "sent_at changed" do
+        cs.update(sent: 51)
+        expect(cs.last_message_sent_at.to_i).to eq(ts.to_i)
+      end
+      it "error_at changed" do
+        cs.update(error: 3)
+        expect(cs.last_message_error_at.to_i).to eq(ts.to_i)
+      end
+    end
+  end
+
 end
