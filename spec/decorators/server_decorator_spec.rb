@@ -13,9 +13,9 @@ RSpec.describe ServerDecorator do
                         last_check: time_now,
                         last_check_ok: time_now)
     end
-    it { expect(srv.last_channel_update).to eq(server.last_channel_update.localtime.to_formatted_s(:db)) }
-    it { expect(srv.last_check).to eq(server.last_check.localtime.to_formatted_s(:db)) }
-    it { expect(srv.last_check_ok).to eq(server.last_check_ok.localtime.to_formatted_s(:db)) }
+    it { expect(srv.last_channel_update).to eq(server.last_channel_update.localtime.to_fs(:local)) }
+    it { expect(srv.last_check).to eq(server.last_check.localtime.to_fs(:local)) }
+    it { expect(srv.last_check_ok).to eq(server.last_check_ok.localtime.to_fs(:local)) }
   end
 
   describe 'with empty timestamps' do

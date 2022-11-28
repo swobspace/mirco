@@ -26,7 +26,7 @@ RSpec.describe Note, type: :model do
 
   it '#to_s renders string' do
     f = FactoryBot.create(:note, type: 'acknowledge', message: '<p>some other text<p>')
-    expect(f.to_s).to eq("#{f.created_at.localtime.to_formatted_s(:db)} #{f.server}::#{f.channel} ACKNOWLEDGE - some other text")
+    expect(f.to_s).to eq("#{f.created_at.localtime.to_fs(:local)} #{f.server}::#{f.channel} ACKNOWLEDGE - some other text")
   end
 
   it 'sets server_id from channel if missing' do

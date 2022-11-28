@@ -88,17 +88,27 @@
             <td><%= @channel_statistic.status_type %>
                 (<%= (@channel_statistic.meta_data_id || "-" )%>)
             </td>
-            <th><%= t('attributes.updated_at')%>:</th>
-              <%= render TdExpirationComponent.new(
-                           tstamp: @channel_statistic.updated_at,
-                           expiration_time: 5.minutes,
-                           cssclass: 'text-left' ) %>
+            <th><%= t('attributes.last_message_received_at')%>:</th>
+            <td><%= @channel_statistic.last_message_received_at&.to_fs(:local) %></td>
           </tr>
           <tr>
             <th><%= t('attributes.condition')%>:</th>
             <td class="bg-<%= @channel_statistic.condition %>"><%= @channel_statistic.condition %></td>
+            <th><%= t('attributes.last_message_sent_at')%>:</th>
+            <td><%= @channel_statistic.last_message_sent_at&.to_fs(:local) %></td>
+          </tr>
+
+          <tr>
+            <th><%= t('attributes.updated_at')%>:</th>
+            <%= render TdExpirationComponent.new(tstamp: @channel_statistic.updated_at,
+                                                 expiration_time: 5.minutes,
+                                                 cssclass: 'text-left') %>
+            <th><%= t('attributes.last_message_error_at')%>:</th>
+            <td><%= @channel_statistic.last_message_error_at&.to_fs(:local) %></td>
+          </tr>
+          <tr>
             <th><%= t('attributes.last_condition_change')%>:</th>
-            <td><%= @channel_statistic.last_condition_change&.to_formatted_s(:db) %></td>
+            <td><%= @channel_statistic.last_condition_change&.to_fs(:local) %></td>
           </tr>
         </table>
 

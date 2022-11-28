@@ -23,7 +23,7 @@ RSpec.describe 'notes/show', type: :view do
 
   it 'renders attributes in <p>' do
     render
-    expect(rendered).to match(/#{time.localtime.to_formatted_s(:db)}/)
+    expect(rendered).to match(/#{time.localtime.to_fs(:local)}/)
     expect(rendered).to match(/xyzmirth/)
     expect(rendered).to match(//)
     expect(rendered).to match(/#{user}/)

@@ -32,6 +32,6 @@ RSpec.describe 'alerts/show', type: :view do
     expect(rendered).to match(/Some Statistics/)
     expect(rendered).to match(/alert/)
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/#{1.hour.before(Time.current).localtime.to_formatted_s(:db)}/)
+    expect(rendered).to match(/#{1.hour.before(Time.current).localtime.to_fs(:local)}/)
   end
 end
