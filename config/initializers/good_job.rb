@@ -3,8 +3,19 @@
 $stdout.sync = true
 
 Rails.application.configure do
+  if Rails.env == 'development'
+    if ENV['GOOD_JOB_EXECUTION_MODE']
+      config.good_job.execution_mode = ENV['GOOD_JOB_EXECUTION_MODE'].to_sym
+    elsif Rails.const_defined?("Server")
+      config.good_job.execution_mode = :async_server
+    elsif Rails.const_defined?("Console")
+      config.good_job.execution_mode = :external
+    end
+  else
+    config.good_job.execution_mode = :async_server
+  end
+
   config.good_job = {
-    execution_mode: :async,
     enable_cron: true,
     max_threads: 4,
     poll_interval: 30,
