@@ -105,6 +105,9 @@ de:
     last_check: Letzter Check
     last_check_ok: Last OK
     last_condition_change: letzte Zustandsänderung
+    last_message_error_at: Letzter Fehler
+    last_message_received_at: Letzte empfangene Nachricht
+    last_message_sent_at: Letzte versandte Nachricht
     lid: StandortID
     limit: Limit
     location: Standort

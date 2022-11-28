@@ -4,7 +4,7 @@
         class: "table table-bordered",
         style: 'width: 100%;',
         data: {
-          order: [[0, 'desc']].to_json
+          order: [[0, 'asc']].to_json
         } do %>
     <thead>
       <tr>
@@ -13,11 +13,14 @@
         <% end %>
         <th><%= t('attributes.channel') %></th>
         <th><%= t('attributes.destination') %></th>
-        <th class="notvisible"><%= t('attributes.state') %></th>
-        <th class="notvisible"><%= t('attributes.status_type') %></th>
+        <th><%= t('attributes.state') %></th>
+        <th><%= t('attributes.status_type') %></th>
         <th><%= t('attributes.received') %></th>
+        <th><%= t('attributes.last_message_received_at') %></th>
         <th><%= t('attributes.sent') %></th>
+        <th><%= t('attributes.last_message_sent_at') %></th>
         <th><%= t('attributes.error') %></th>
+        <th><%= t('attributes.last_message_error_at') %></th>
         <th><%= t('attributes.filtered') %></th>
         <th><%= t('attributes.queued') %></th>
         <th><%= t('attributes.condition') %></th>
@@ -31,6 +34,9 @@
         <% unless server.present? %>
           <th></th>
         <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -68,8 +74,11 @@
           <td><%= channel_statistic.state %></td>
           <td><%= channel_statistic.status_type %></td>
           <td><%= channel_statistic.received %></td>
+          <td><%= channel_statistic.last_message_received_at&.to_formatted_s(:db) %></td>
           <td><%= channel_statistic.sent %></td>
+          <td><%= channel_statistic.last_message_sent_at&.to_formatted_s(:db) %></td>
           <td><%= channel_statistic.error %></td>
+          <td><%= channel_statistic.last_message_error_at&.to_formatted_s(:db) %></td>
           <td><%= channel_statistic.filtered %></td>
           <td><%= channel_statistic.queued %></td>
           <td><%= channel_statistic.condition %></td>
