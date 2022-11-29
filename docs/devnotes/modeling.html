@@ -335,13 +335,13 @@ bin/rails g controller ServerConfiguration index show</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g model EscalationLevel \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold EscalationLevel \
   escalatable:references{polymorphic} \
-  attribute:string:index \
+  attrib:string:index \
   min_critical:integer \
-  min_warning: integer \
-  max_warning: integer \
-  max_critical: integer \
+  min_warning:integer \
+  max_warning:integer \
+  max_critical:integer \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>

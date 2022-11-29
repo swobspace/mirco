@@ -93,7 +93,7 @@ class ServerConfiguration {
 
 class EscalationLevel {
   escalatable: polymorphic
-  attribute: string
+  attrib: string
   min_critical: integer
   min_warning: integer
   max_warning: integer
