@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :escalation_levels
   resources :hosts do
     resources :software_interfaces, module: :hosts
   end

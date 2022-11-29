@@ -7,7 +7,7 @@ image::models.svg[]
 
 == Home controller
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g controller Home index \
   --no-stylesheets --no-javascripts --no-helper
@@ -15,7 +15,7 @@ bin/rails g controller Home index \
 
 == model Server
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g scaffold Server \
   location:belongs_to \
@@ -42,7 +42,7 @@ bin/rails g scaffold Server \
 
 == model Channel
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g scaffold Channel \
   server:belongs_to \
@@ -54,7 +54,7 @@ bin/rails g scaffold Channel \
 
 == Model ChannelStatistic
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
@@ -91,7 +91,7 @@ include::partial$scaffold-channel_counter.adoc[]
 see also: xref:timescale.adoc[]
 
 .Generate Controller with action :index
-[source,ruby]
+[source,sh]
 ----
 bin/rails g controller channel_counters index \
   --no-stylesheets --no-javascripts --no-helper
@@ -99,7 +99,7 @@ bin/rails g controller channel_counters index \
 
 == Model Alert
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g scaffold Alert \
   server:belongs_to \
@@ -120,7 +120,7 @@ a|`alert`, `recovery`
 
 == Model Note
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g scaffold Note \
   server:belongs_to \
@@ -140,13 +140,13 @@ a|`acknowledge`, `mail`, `note`
 |===
 
 .Install ActionText
-[source,ruby]
+[source,sh]
 ----
 bin/rails action_text:install
 ----
 
 .app/models/note.rb
-[source,ruby]
+[source,sh]
 ----
 class Note < ApplicationRecord
   has_rich_text :message
@@ -155,11 +155,24 @@ end
 
 == Model ServerConfiguration
 
-[source,ruby]
+[source,sh]
 ----
 bin/rails g model ServerConfiguration \
   server:belongs_to \
   comment:string
 
 bin/rails g controller ServerConfiguration index show
+----
+
+== Model EscalationLevel
+[source,sh]
+----
+bin/rails g scaffold EscalationLevel \
+  escalatable:references{polymorphic} \
+  attrib:string:index \
+  min_critical:integer \
+  min_warning:integer \
+  max_warning:integer \
+  max_critical:integer \
+  --no-stylesheets --no-javascripts --no-helper
 ----

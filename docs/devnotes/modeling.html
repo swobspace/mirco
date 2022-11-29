@@ -124,7 +124,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller Home index \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g controller Home index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -135,7 +135,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Server \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Server \
   location:belongs_to \
   host:belongs_to \
   name:string uid:string:index description:text \
@@ -156,7 +156,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Channel \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Channel \
   server:belongs_to \
   uid:string:index \
   properties:jsonb \
@@ -171,7 +171,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold ChannelStatistic \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold ChannelStatistic \
   server:belongs_to \
   channel:belongs_to \
   meta_data_id:integer \
@@ -236,7 +236,7 @@ end</code></pre>
 <div class="listingblock">
 <div class="title">Generate Controller with action :index</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g controller channel_counters index \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g controller channel_counters index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
@@ -247,7 +247,7 @@ end</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Alert \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Alert \
   server:belongs_to \
   channel:belongs_to \
   channel_statistic:belongs_to \
@@ -277,7 +277,7 @@ end</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g scaffold Note \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Note \
   server:belongs_to \
   channel:belongs_to \
   channel_statistic:belongs_to \
@@ -303,13 +303,13 @@ end</code></pre>
 <div class="listingblock">
 <div class="title">Install ActionText</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails action_text:install</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails action_text:install</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">app/models/note.rb</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">class Note &lt; ApplicationRecord
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">class Note &lt; ApplicationRecord
   has_rich_text :message
 end</code></pre>
 </div>
@@ -321,11 +321,28 @@ end</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">bin/rails g model ServerConfiguration \
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g model ServerConfiguration \
   server:belongs_to \
   comment:string
 
 bin/rails g controller ServerConfiguration index show</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_escalationlevel"><a class="anchor" href="#_model_escalationlevel"></a>Model EscalationLevel</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g model EscalationLevel \
+  escalatable:references{polymorphic} \
+  attribute:string:index \
+  min_critical:integer \
+  min_warning: integer \
+  max_warning: integer \
+  max_critical: integer \
+  --no-stylesheets --no-javascripts --no-helper</code></pre>
 </div>
 </div>
 </div>
