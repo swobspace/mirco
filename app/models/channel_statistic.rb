@@ -9,6 +9,7 @@ class ChannelStatistic < ApplicationRecord
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
+  has_many :escalation_levels, as: :escalatable
 
   # has_many :channel_counters, ->(cs) {
   #   unscope(:where).where(
