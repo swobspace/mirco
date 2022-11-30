@@ -1,6 +1,7 @@
 class EscalationLevel < ApplicationRecord
   # -- associations
-  belongs_to :escalatable, polymorphic: true
+  # optional: true is neccessary for default values using escalatable_id: 0
+  belongs_to :escalatable, polymorphic: true, optional: true
 
   # -- configuration
   OK       = 0.freeze
