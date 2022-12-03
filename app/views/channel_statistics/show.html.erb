@@ -89,7 +89,13 @@
                 (<%= (@channel_statistic.meta_data_id || "-" )%>)
             </td>
             <th><%= t('attributes.last_message_received_at')%>:</th>
-            <td><%= @channel_statistic.last_message_received_at&.to_fs(:local) %></td>
+            <%= render TdEscalationComponent.new(
+                  escalatable: @channel_statistic,
+                  attrib: 'last_message_received_at',
+                  alert: false,
+                  css: 'text-end',
+                  manual_update: @channel_statistic.server.manual_update
+              ) %>
           </tr>
           <tr>
             <th><%= t('attributes.condition')%>:</th>
