@@ -37,13 +37,19 @@
     <tbody>
       <% @escalation_levels.each do |escalation_level| %>
         <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
-                <td><%= link_to(escalation_level.escalatable) %></td>
-                <td><%= escalation_level.attrib %></td>
-                <td><%= escalation_level.min_critical %></td>
-                <td><%= escalation_level.min_warning %></td>
-                <td><%= escalation_level.max_warning %></td>
-                <td><%= escalation_level.max_critical %></td>
-                <td class="text-nowrap">
+          <td>
+            <% if escalation_level.escalatable_id > 0 %>
+              <%= link_to(escalation_level.escalatable) %>
+            <% else %>
+              <%= t(escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
+            <% end %>
+          </td>
+          <td><%= escalation_level.attrib %></td>
+          <td><%= escalation_level.min_critical %></td>
+          <td><%= escalation_level.min_warning %></td>
+          <td><%= escalation_level.max_warning %></td>
+          <td><%= escalation_level.max_critical %></td>
+          <td class="text-nowrap">
             <%= show_link [@escalatable, escalation_level] %>
             <%= edit_link [@escalatable, escalation_level] %>
             <%= delete_link [@escalatable, escalation_level] %>
