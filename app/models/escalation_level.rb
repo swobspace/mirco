@@ -17,6 +17,10 @@ class EscalationLevel < ApplicationRecord
   validates :attrib, presence: true, 
                      uniqueness: { scope: %i[escalatable_id escalatable_type] }
 
+  def to_s
+    "#{escalatable} / #{attrib}"
+  end
+
   # EscalationLevel.check_for_escalation(escalatable, attribute)
   # return Nagios style values:
   #   0: OK

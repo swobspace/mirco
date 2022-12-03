@@ -16,6 +16,16 @@ RSpec.describe EscalationLevel, type: :model do
     is_expected.to validate_uniqueness_of(:escalatable_id).scoped_to(%i[escalatable_type attrib])
   end
 
+  describe "#to_s" do
+    let(:el) do
+      FactoryBot.create(:escalation_level, 
+        attrib: 'last_message_received_at', 
+        escalatable: cs
+      )
+    end
+    it { expect(el.to_s).to eq("Some Statistics / last_message_received_at") }
+  end
+
   describe "::check_for_escalation" do
     let!(:ts) { Time.current }
 
