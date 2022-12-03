@@ -18,7 +18,11 @@ class EscalationLevel < ApplicationRecord
                      uniqueness: { scope: %i[escalatable_id escalatable_type] }
 
   def to_s
-    "#{escalatable} / #{attrib}"
+    if escalatable_id > 0
+      "#{escalatable} / #{attrib}"
+    else
+      "#{escalatable_type} (default) / #{attrib}"
+    end
   end
 
   # EscalationLevel.check_for_escalation(escalatable, attribute)
