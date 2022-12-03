@@ -5,7 +5,7 @@ class EscalationLevelsController < ApplicationController
   # GET /escalation_levels
   def index
     if @escalatable
-      @escalatable.escalation_levels
+      @escalation_levels = @escalatable.escalation_levels
     else
       @escalation_levels = EscalationLevel.all
     end
