@@ -57,6 +57,6 @@
 <br />
 
 <%= back_link %>
-<% if @escalatable %>
+<% if @escalatable.present? %>
   <%= new_link([@escalatable, EscalationLevel]) %>
 <% end %>
