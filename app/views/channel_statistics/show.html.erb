@@ -81,7 +81,11 @@
             <th><%= t('attributes.state')%>:</th>
             <td><%= @channel_statistic.state %></td>
             <th><%= t('attributes.queued')%>:</th>
-            <td><%= @channel_statistic.queued %></td>
+            <%= render TdEscalationComponent.new(
+                  escalatable: @channel_statistic,
+                  attrib: 'queued',
+                  manual_update: @channel_statistic.server.manual_update
+              ) %>
           </tr>
           <tr>
             <th><%= t('attributes.status_type')%>:</th>
@@ -92,8 +96,6 @@
             <%= render TdEscalationComponent.new(
                   escalatable: @channel_statistic,
                   attrib: 'last_message_received_at',
-                  alert: false,
-                  css: 'text-end',
                   manual_update: @channel_statistic.server.manual_update
               ) %>
           </tr>
@@ -101,16 +103,26 @@
             <th><%= t('attributes.condition')%>:</th>
             <td class="bg-<%= @channel_statistic.condition %>"><%= @channel_statistic.condition %></td>
             <th><%= t('attributes.last_message_sent_at')%>:</th>
-            <td><%= @channel_statistic.last_message_sent_at&.to_fs(:local) %></td>
+            <%= render TdEscalationComponent.new(
+                  escalatable: @channel_statistic,
+                  attrib: 'last_message_sent_at',
+                  manual_update: @channel_statistic.server.manual_update
+              ) %>
           </tr>
 
           <tr>
             <th><%= t('attributes.updated_at')%>:</th>
-            <%= render TdExpirationComponent.new(tstamp: @channel_statistic.updated_at,
-                                                 expiration_time: 5.minutes,
-                                                 cssclass: 'text-left') %>
+            <%= render TdEscalationComponent.new(
+                  escalatable: @channel_statistic,
+                  attrib: 'updated_at',
+                  manual_update: @channel_statistic.server.manual_update
+              ) %>
             <th><%= t('attributes.last_message_error_at')%>:</th>
-            <td><%= @channel_statistic.last_message_error_at&.to_fs(:local) %></td>
+            <%= render TdEscalationComponent.new(
+                  escalatable: @channel_statistic,
+                  attrib: 'last_message_error_at',
+                  manual_update: @channel_statistic.server.manual_update
+              ) %>
           </tr>
           <tr>
             <th><%= t('attributes.last_condition_change')%>:</th>
