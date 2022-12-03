@@ -7,11 +7,11 @@ module ChannelStatistics
     private
 
     def set_escalatable
-      @escalatable = ChannelStatistic.find(params[:channel_statistic_id])
+      @escalatable ||= ChannelStatistic.find(params[:channel_statistic_id])
     end
 
     def add_breadcrumb_show
-      add_breadcrumb_for([@escalatable, @channel_statistic])
+      add_breadcrumb_for([set_escalatable, @escalation_level])
     end
   end
 end

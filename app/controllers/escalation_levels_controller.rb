@@ -59,6 +59,6 @@ class EscalationLevelsController < ApplicationController
     end
 
     def location
-      polymorphic_path(@escalation_level || :escalation_levels)
+      polymorphic_path(@escalatable || @escalation_level)
     end
 end

@@ -77,7 +77,7 @@ module ChannelStatistics
 
         it "redirects to the created escalation_level" do
           post channel_statistic_escalation_levels_url(cs), params: { escalation_level: valid_attributes }
-          expect(response).to redirect_to(channel_statistic_escalation_level_url(cs, EscalationLevel.last))
+          expect(response).to redirect_to(channel_statistic_url(cs))
         end
       end
 
@@ -90,7 +90,7 @@ module ChannelStatistics
 
       
         it "renders a response with 422 status (i.e. to display the 'new' template)" do
-          post escalation_levels_url, params: { escalation_level: invalid_attributes }
+          post channel_statistic_escalation_levels_url(cs), params: { escalation_level: invalid_attributes }
           expect(response).to have_http_status(:unprocessable_entity)
         end
       
@@ -105,16 +105,19 @@ module ChannelStatistics
 
         it "updates the requested escalation_level" do
           escalation_level = EscalationLevel.create! valid_attributes
-          patch escalation_level_url(escalation_level), params: { escalation_level: new_attributes }
+          patch channel_statistic_escalation_level_url(cs, escalation_level), params: { escalation_level: new_attributes }
           escalation_level.reload
-          skip("Add assertions for updated state")
+          expect(escalation_level.min_warning).to eq(-10)
+          expect(escalation_level.min_critical).to eq(-20)
+          expect(escalation_level.max_warning).to eq(5)
+          expect(escalation_level.max_critical).to eq(10)
         end
 
         it "redirects to the escalation_level" do
           escalation_level = EscalationLevel.create! valid_attributes
-          patch escalation_level_url(escalation_level), params: { escalation_level: new_attributes }
+          patch channel_statistic_escalation_level_url(cs,escalation_level), params: { escalation_level: new_attributes }
           escalation_level.reload
-          expect(response).to redirect_to(escalation_level_url(escalation_level))
+          expect(response).to redirect_to(channel_statistic_url(cs))
         end
       end
 
@@ -122,7 +125,7 @@ module ChannelStatistics
       
         it "renders a response with 422 status (i.e. to display the 'edit' template)" do
           escalation_level = EscalationLevel.create! valid_attributes
-          patch escalation_level_url(escalation_level), params: { escalation_level: invalid_attributes }
+          patch channel_statistic_escalation_level_url(cs,escalation_level), params: { escalation_level: invalid_attributes }
           expect(response).to have_http_status(:unprocessable_entity)
         end
       
@@ -133,14 +136,14 @@ module ChannelStatistics
       it "destroys the requested escalation_level" do
         escalation_level = EscalationLevel.create! valid_attributes
         expect {
-          delete escalation_level_url(escalation_level)
+          delete channel_statistic_escalation_level_url(cs,escalation_level)
         }.to change(EscalationLevel, :count).by(-1)
       end
 
       it "redirects to the escalation_levels list" do
         escalation_level = EscalationLevel.create! valid_attributes
-        delete escalation_level_url(escalation_level)
-        expect(response).to redirect_to(escalation_levels_url)
+        delete channel_statistic_escalation_level_url(cs,escalation_level)
+        expect(response).to redirect_to(channel_statistic_url(cs))
       end
     end
   end
