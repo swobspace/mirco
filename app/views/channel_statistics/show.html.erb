@@ -109,6 +109,11 @@
           <tr>
             <th><%= t('attributes.last_condition_change')%>:</th>
             <td><%= @channel_statistic.last_condition_change&.to_fs(:local) %></td>
+            <td></td>
+            <td><%= link_to raw(t('controller.escalation_levels') +
+                                %Q[ <span class="badge bg-secondary">#{@channel_statistic.escalation_levels.count}</span>]),
+                            channel_statistic_escalation_levels_path(@channel_statistic),
+                            class: 'btn btn-outline-secondary'%></td>
           </tr>
         </table>
 
