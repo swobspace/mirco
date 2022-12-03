@@ -37,7 +37,7 @@
     <tbody>
       <% @escalation_levels.each do |escalation_level| %>
         <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
-                <td><%= escalation_level.escalatable %></td>
+                <td><%= link_to(escalation_level.escalatable) %></td>
                 <td><%= escalation_level.attrib %></td>
                 <td><%= escalation_level.min_critical %></td>
                 <td><%= escalation_level.min_warning %></td>
