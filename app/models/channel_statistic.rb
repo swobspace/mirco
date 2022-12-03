@@ -38,6 +38,11 @@ class ChannelStatistic < ApplicationRecord
     "#{server.to_s} > #{channel.to_s} > #{name}"
   end
 
+  def escalatable_attributes
+    %w[ queued updated_at last_message_received_at 
+        last_message_sent_at last_message_error_at ]
+  end
+
 private
   def update_last_at
     if will_save_change_to_attribute?(:received) && received > 0
