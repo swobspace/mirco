@@ -4,7 +4,11 @@ class EscalationLevelsController < ApplicationController
 
   # GET /escalation_levels
   def index
-    @escalation_levels = EscalationLevel.all
+    if @escalatable
+      @escalatable.escalation_levels
+    else
+      @escalation_levels = EscalationLevel.all
+    end
     respond_with(@escalation_levels)
   end
 
@@ -15,7 +19,7 @@ class EscalationLevelsController < ApplicationController
 
   # GET /escalation_levels/new
   def new
-    @escalation_level = EscalationLevel.new
+    @escalation_level = @escalatable.escalation_levels.build
     respond_with(@escalation_level)
   end
 
@@ -25,22 +29,22 @@ class EscalationLevelsController < ApplicationController
 
   # POST /escalation_levels
   def create
-    @escalation_level = EscalationLevel.new(escalation_level_params)
+    @escalation_level = @escalatable.escalation_levels.build(escalation_level_params)
 
     @escalation_level.save
-    respond_with(@escalation_level)
+    respond_with(@escalation_level, location: location)
   end
 
   # PATCH/PUT /escalation_levels/1
   def update
     @escalation_level.update(escalation_level_params)
-    respond_with(@escalation_level)
+    respond_with(@escalation_level, location: location)
   end
 
   # DELETE /escalation_levels/1
   def destroy
     @escalation_level.destroy
-    respond_with(@escalation_level)
+    respond_with(@escalation_level, location: location)
   end
 
   private
@@ -52,5 +56,9 @@ class EscalationLevelsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def escalation_level_params
       params.require(:escalation_level).permit(:escalatable_id, :escalatable_type, :attrib, :min_critical, :min_warning, :max_warning, :max_critical)
+    end
+
+    def location
+      polymorphic_path(@escalation_level || :escalation_levels)
     end
 end

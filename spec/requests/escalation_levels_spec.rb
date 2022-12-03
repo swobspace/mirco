@@ -13,17 +13,23 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/escalation_levels", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # EscalationLevel. As you add validations to EscalationLevel, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:cs) { FactoryBot.create(:channel_statistic) } 
+ 
+  let(:valid_attributes) do
+    FactoryBot.attributes_for(:escalation_level, 
+      escalatable_id: cs.id, 
+      escalatable_type: 'ChannelStatistic',
+      attrib: 'last_message_received_at'
+    )
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    { attrib: nil }
+  end
+
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -41,13 +47,6 @@ RSpec.describe "/escalation_levels", type: :request do
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_escalation_level_url
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /edit" do
     it "renders a successful response" do
       escalation_level = EscalationLevel.create! valid_attributes
@@ -56,47 +55,20 @@ RSpec.describe "/escalation_levels", type: :request do
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new EscalationLevel" do
-        expect {
-          post escalation_levels_url, params: { escalation_level: valid_attributes }
-        }.to change(EscalationLevel, :count).by(1)
-      end
-
-      it "redirects to the created escalation_level" do
-        post escalation_levels_url, params: { escalation_level: valid_attributes }
-        expect(response).to redirect_to(escalation_level_url(EscalationLevel.last))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "does not create a new EscalationLevel" do
-        expect {
-          post escalation_levels_url, params: { escalation_level: invalid_attributes }
-        }.to change(EscalationLevel, :count).by(0)
-      end
-
-    
-      it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post escalation_levels_url, params: { escalation_level: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    
-    end
-  end
-
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { max_warning: 5, max_critical: 10, min_warning: -10, min_critical: -20 }
       }
 
       it "updates the requested escalation_level" do
         escalation_level = EscalationLevel.create! valid_attributes
         patch escalation_level_url(escalation_level), params: { escalation_level: new_attributes }
         escalation_level.reload
-        skip("Add assertions for updated state")
+        expect(escalation_level.min_warning).to eq(-10)
+        expect(escalation_level.min_critical).to eq(-20)
+        expect(escalation_level.max_warning).to eq(5)
+        expect(escalation_level.max_critical).to eq(10)
       end
 
       it "redirects to the escalation_level" do
