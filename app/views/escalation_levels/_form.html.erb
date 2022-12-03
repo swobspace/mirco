@@ -1,11 +1,12 @@
-<%= simple_form_for(@escalation_level) do |form| %>
+<%= simple_form_for([@escalatable, @escalation_level]) do |form| %>
 <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
   <div class="form-input">
-    <%= form.association :escalatable
-       %>
-    <%= form.input :attrib
-       %>
+    <% if @escalatable.respond_to?(:escalatable_attributes) %>
+      <%= form.input :attrib, collection: @escalatable.escalatable_attributes %>
+    <% else %>
+      <%= form.input :attrib %>
+    <% end %>
     <%= form.input :min_critical
        %>
     <%= form.input :min_warning

@@ -44,9 +44,9 @@
                 <td><%= escalation_level.max_warning %></td>
                 <td><%= escalation_level.max_critical %></td>
                 <td class="text-nowrap">
-            <%= show_link escalation_level %>
-            <%= edit_link escalation_level %>
-            <%= delete_link escalation_level %>
+            <%= show_link [@escalatable, escalation_level] %>
+            <%= edit_link [@escalatable, escalation_level] %>
+            <%= delete_link [@escalatable, escalation_level] %>
           </td>
         <% end %>
       <% end %>
@@ -57,4 +57,3 @@
 <br />
 
 <%= back_link %>
-<%= new_link EscalationLevel %>
