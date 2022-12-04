@@ -27,6 +27,7 @@ RSpec.describe Server, type: :model do
   it { is_expected.to have_many(:channel_statistics).dependent(:restrict_with_error) }
   it { is_expected.to have_many(:channel_counters).dependent(:destroy) }
   it { is_expected.to have_many(:server_configurations).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:escalation_levels) }
   it { is_expected.to validate_presence_of(:name) }
 
   it 'should get plain factory working' do

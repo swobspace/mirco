@@ -18,15 +18,15 @@
                     server_path(server), 
                     class: "primary-link") %></td>
           <td><%= server.location %></td>
-         <%= render TdExpirationComponent.new(
-                       tstamp: server.last_check,
-                       expiration_time: Mirco.warning_period.minutes,
+         <%= render TdEscalationComponent.new(
+                       escalatable: server,
+                       attrib: 'last_check',
                        manual_update: server.manual_update
                     )
           %>
-         <%= render TdExpirationComponent.new(
-                       tstamp: server.last_check_ok,
-                       expiration_time: Mirco.warning_period.minutes,
+         <%= render TdEscalationComponent.new(
+                       escalatable: server,
+                       attrib: 'last_check_ok',
                        manual_update: server.manual_update
                     )
           %>
