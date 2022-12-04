@@ -8,8 +8,6 @@
         <th class="text-start"><%= t('attributes.destination') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received_last_30min') %></th>
         <th class="text-start"><%= t('attributes.last_message_received_at') %></th>
-        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.error_last_30min') %></th>
-        <th class="text-end d-none d-lg-table-cell"><%= t('attributes.filtered_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.sent_last_30min') %></th>
         <th class="text-start"><%= t('attributes.last_message_sent_at') %></th>
         <th class="text-end"><%= t('attributes.queued') %></th>
@@ -36,8 +34,6 @@
                 manual_update: channel_statistic.server.manual_update
             ) %>
 
-          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.error_last_30min %></td>
-          <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.filtered_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.sent_last_30min %></td>
           <%= render TdEscalationComponent.new(
                 escalatable: channel_statistic,
