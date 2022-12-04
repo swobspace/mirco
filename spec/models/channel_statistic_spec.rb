@@ -64,4 +64,27 @@ RSpec.describe ChannelStatistic, type: :model do
     end
   end
 
+  describe "enabled" do
+    let!(:ch1) do
+      FactoryBot.create(:channel, enabled: true, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "true" } } }
+      )
+    end
+    let!(:ch2) do
+      FactoryBot.create(:channel, enabled: false, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "false" } } }
+      )
+    end
+    let!(:cs1) do 
+      FactoryBot.create(:channel_statistic, channel: ch1)
+    end
+    let!(:cs2) do 
+      FactoryBot.create(:channel_statistic, channel: ch2)
+    end
+
+    describe "scope #active" do
+      it { expect(ChannelStatistic.active).to contain_exactly(cs1) }
+    end
+  end
+
 end

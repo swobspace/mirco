@@ -22,6 +22,7 @@ class ChannelStatistic < ApplicationRecord
 
   # -- configuration
   CONDITIONS = %w[alert acknowledged ok].freeze
+  alias_attribute :to_s, :name
 
   # -- validations and callbacks
   validates :server_id, :server_uid, presence: true
@@ -29,11 +30,12 @@ class ChannelStatistic < ApplicationRecord
   validates :channel_uid, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :condition, inclusion: CONDITIONS, allow_blank: true
-
   before_update :update_last_at
 
-  alias_attribute :to_s, :name
+  # --
+  scope :active, -> { joins(:channel).where("channels.enabled = true") }
 
+  # --
   def fullname
     "#{server.to_s} > #{channel.to_s} > #{name}"
   end
