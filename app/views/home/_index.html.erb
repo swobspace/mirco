@@ -7,9 +7,11 @@
         <th class="text-start"><%= t('attributes.channel') %></th>
         <th class="text-start"><%= t('attributes.destination') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received_last_30min') %></th>
+        <th class="text-start"><%= t('attributes.last_message_received_at') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.error_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.filtered_last_30min') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.sent_last_30min') %></th>
+        <th class="text-start"><%= t('attributes.last_message_sent_at') %></th>
         <th class="text-end"><%= t('attributes.queued') %></th>
         <th class="text-center"><%= t('attributes.updated_at') %></th>
         <th class="nosort text-center"><%= t('mirco.action') %></th>
@@ -28,23 +30,33 @@
           </td>
           <td class="text-start"><%= channel_statistic.name %></td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.received_last_30min %></td>
+          <%= render TdEscalationComponent.new(
+                escalatable: channel_statistic,
+                attrib: 'last_message_received_at',
+                manual_update: channel_statistic.server.manual_update
+            ) %>
+
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.error_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.filtered_last_30min %></td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.sent_last_30min %></td>
-          <%= render TdThresholdComponent.new(
-                value: channel_statistic.queued,
-                warning: Mirco.queued_warning_level, 
-                critical: Mirco.queued_critical_level,
+          <%= render TdEscalationComponent.new(
+                escalatable: channel_statistic,
+                attrib: 'last_message_sent_at',
+                manual_update: channel_statistic.server.manual_update
+            ) %>
+
+          <%= render TdEscalationComponent.new(
+                escalatable: channel_statistic,
+                attrib: 'queued',
                 alert: (channel_statistic.sent_last_30min < 1),
                 css: 'text-end',
                 manual_update: channel_statistic.server.manual_update
               ) %>
-          <%= render TdExpirationComponent.new(
-                       tstamp: channel_statistic.updated_at,
-                       expiration_time: Mirco.warning_period.minutes,
-                       manual_update: channel_statistic.server.manual_update
-                    ) 
-           %>
+          <%= render TdEscalationComponent.new(
+                escalatable: channel_statistic,
+                attrib: 'updated_at',
+                manual_update: channel_statistic.server.manual_update
+              ) %>
           <td class="text-nowrap text-center">
             <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
 
