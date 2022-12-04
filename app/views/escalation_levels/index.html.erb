@@ -39,7 +39,11 @@
         <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
           <td>
             <% if escalation_level.escalatable_id > 0 %>
-              <%= link_to(escalation_level.escalatable) %>
+              <% if escalation_level.escalatable.respond_to?(:fullname) %>
+                <%= link_to(escalation_level.escalatable.fullname, escalation_level.escalatable) %>
+              <% else %>
+                <%= link_to(escalation_level.escalatable) %>
+              <% end %>
             <% else %>
               <%= t(escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
             <% end %>
