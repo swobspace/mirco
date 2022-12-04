@@ -4,6 +4,7 @@ class EscalationLevel < ApplicationRecord
   belongs_to :escalatable, polymorphic: true, optional: true
 
   # -- configuration
+  NOTHING  = -1.freeze
   OK       = 0.freeze
   WARNING  = 1.freeze
   CRITICAL = 2.freeze
@@ -27,6 +28,7 @@ class EscalationLevel < ApplicationRecord
 
   # EscalationLevel.check_for_escalation(escalatable, attribute)
   # return Nagios style values:
+  #  -1: NOTHING means no escalation_level nor default present
   #   0: OK
   #   1: WARNING
   #   2: CRITICAL
@@ -35,8 +37,9 @@ class EscalationLevel < ApplicationRecord
   def self.check_for_escalation(escalatable, attrib)
     return UNKNOWN unless escalatable.respond_to?(attrib)
     value = fetch_value(escalatable, attrib)
-    return OK if value.nil?
+    return NOTHING if value.nil?
     level = fetch_escalation_level(escalatable, attrib)
+    return NOTHING if level.nil?
     if level.min_critical.present? && (value < level.min_critical)
       return CRITICAL
     elsif level.min_warning.present? && (value < level.min_warning)
@@ -67,7 +70,6 @@ private
   def self.fetch_escalation_level(escalatable, attrib)
     escalatable.escalation_levels.where(attrib: attrib).first ||
     EscalationLevel.where(escalatable_type: escalatable.class.name.to_s, 
-                          escalatable_id: 0, attrib: attrib).first ||
-    NullEscalationLevel.new(escalatable, attrib)
+                          escalatable_id: 0, attrib: attrib).first
   end
 end

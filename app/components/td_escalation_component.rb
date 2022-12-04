@@ -24,14 +24,16 @@ class TdEscalationComponent < ViewComponent::Base
     else
       result = EscalationLevel.check_for_escalation(escalatable, attrib)
       case result
-      when 3
+      when EscalationLevel::UNKNOWN
         'bg-UNKNOWN'
-      when 0
+      when EscalationLevel::OK
         'bg-OK'
-      when 1
+      when EscalationLevel::WARNING
         alert ? 'bg-ALERT' : 'bg-WARN'
-      when 2
+      when EscalationLevel::CRITICAL
         alert ? 'bg-ALERT' : 'bg-CRITICAL'
+      else
+        ''
       end
     end
   end
