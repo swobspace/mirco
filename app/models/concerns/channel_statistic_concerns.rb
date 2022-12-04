@@ -5,13 +5,15 @@ module ChannelStatisticConcerns
 
   included do
     def self.escalated
-      channel_statistics = []
-      EscalationLevel.where(escalatable_type: 'ChannelStatistik')
-                     .where("escalatable_id > 0") do |el|
+      results = []
+      EscalationLevel.where(escalatable_type: 'ChannelStatistic')
+                     .where("escalatable_id > 0").each do |el|
         state = EscalationLevel.check_for_escalation(el.escalatable, el.attrib)
-        channel_statistics << el.escalatable if state > 0
+        if state > 0
+          results << el.escalatable 
+        end
       end
-      channel_statistics
+      results
     end
   end
 
