@@ -91,6 +91,15 @@ class ServerConfiguration {
   # has_one_attached :file
 }
 
+class EscalationLevel {
+  escalatable: polymorphic
+  attrib: string
+  min_critical: integer
+  min_warning: integer
+  max_warning: integer
+  max_critical: integer
+}
+
 Location "1" -- "*" Host
 Host "1" -- "*" Server
 SoftwareConnection "*" -- "1" "Server"
@@ -107,5 +116,6 @@ ChannelStatistic "0..1" -- "*" Alert
 Server "1" -- "*" Note
 Channel "0..1" -- "*" Note
 ChannelStatistic "0..1" -- "*" Note
+ChannelStatistic "0..1" -- "*" EscalationLevel
 
 @enduml

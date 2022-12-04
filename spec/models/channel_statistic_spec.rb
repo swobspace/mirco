@@ -9,6 +9,7 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to have_many(:channel_counters).dependent(:delete_all) }
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
+  it { is_expected.to have_many(:escalation_levels) }
   it { is_expected.to validate_presence_of(:server_id) }
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
@@ -60,6 +61,29 @@ RSpec.describe ChannelStatistic, type: :model do
         cs.update(error: 3)
         expect(cs.last_message_error_at.to_i).to eq(ts.to_i)
       end
+    end
+  end
+
+  describe "enabled" do
+    let!(:ch1) do
+      FactoryBot.create(:channel, enabled: true, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "true" } } }
+      )
+    end
+    let!(:ch2) do
+      FactoryBot.create(:channel, enabled: false, 
+        properties: { "exportData" => { "metadata" => { "enabled" => "false" } } }
+      )
+    end
+    let!(:cs1) do 
+      FactoryBot.create(:channel_statistic, channel: ch1)
+    end
+    let!(:cs2) do 
+      FactoryBot.create(:channel_statistic, channel: ch2)
+    end
+
+    describe "scope #active" do
+      it { expect(ChannelStatistic.active).to contain_exactly(cs1) }
     end
   end
 

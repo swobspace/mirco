@@ -4,7 +4,7 @@
 
 <h1> <%= t('controller.channel_statistics') %> <%= @server %> </h1>
 
-<%= render partial: 'index', locals: {server: @server, channel_statistics: @channel_statistics} %>
+<%= render partial: 'index', locals: {server: @server, channel_statistics: @channel_statistics.active} %>
 
 <br />
 

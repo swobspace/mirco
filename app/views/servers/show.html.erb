@@ -213,7 +213,7 @@
     </div>
     <div class="card-body">
       <div id="ts_channel_statistics">
-        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics } %>
+        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics.active } %>
       </div>
     </div>
   </div>

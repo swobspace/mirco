@@ -440,7 +440,8 @@ SimpleForm.setup do |config|
     file: :horizontal_file,
     radio_buttons: :horizontal_collection,
     range: :horizontal_range,
-    time: :horizontal_multi_select
+    time: :horizontal_multi_select,
+    select: :horizontal_select
   }
 
   # enable custom form wrappers

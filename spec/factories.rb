@@ -42,6 +42,10 @@ FactoryBot.define do
     condition { 'ok' }
   end
 
+  factory :escalation_level do
+    association :escalatable, factory: :channel_statistic
+  end
+
   factory :host do
     association :location
     association :software_group

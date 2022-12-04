@@ -14,7 +14,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-module Channels
+module ChannelStatstics
   RSpec.describe 'Notes', type: :request do
     let!(:server) { FactoryBot.create(:server, name: 'MyServer') }
     let!(:channel) { FactoryBot.create(:channel, server: server, name: 'MyChannel') }

@@ -1,0 +1,10 @@
+@startuml
+concise "Last message received (minutes)" as LM
+LM is "minium critical"
+@LM
+-1440 is "minimum warning"
+-240 is "ok"
+240 is "maximum warning"
+1440 is "maximum critical"
+
+@enduml

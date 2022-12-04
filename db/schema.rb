@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_27_101043) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -139,6 +139,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_101043) do
     t.datetime "updated_at"
     t.string "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "escalation_levels", force: :cascade do |t|
+    t.string "escalatable_type", null: false
+    t.bigint "escalatable_id", null: false
+    t.string "attrib", null: false
+    t.integer "min_critical"
+    t.integer "min_warning"
+    t.integer "max_warning"
+    t.integer "max_critical"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attrib"], name: "index_escalation_levels_on_attrib"
+    t.index ["escalatable_type", "escalatable_id"], name: "index_escalation_levels_on_escalatable"
   end
 
   create_table "good_job_processes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
