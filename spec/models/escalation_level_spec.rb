@@ -40,7 +40,7 @@ RSpec.describe EscalationLevel, type: :model do
       subject {EscalationLevel.check_for_escalation(cs, 'last_message_received_at')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(0) }
+        it { expect(subject).to eq(-1) }
       end
 
       describe "with default escalation levels" do
@@ -124,7 +124,7 @@ RSpec.describe EscalationLevel, type: :model do
       subject {EscalationLevel.check_for_escalation(cs, 'queued')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(0) }
+        it { expect(subject).to eq(-1) }
       end
 
       describe "with default escalation levels" do
