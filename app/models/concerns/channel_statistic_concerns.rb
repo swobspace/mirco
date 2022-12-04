@@ -4,6 +4,15 @@ module ChannelStatisticConcerns
   extend ActiveSupport::Concern
 
   included do
+    def self.escalated
+      channel_statistics = []
+      EscalationLevel.where(escalatable_type: 'ChannelStatistik')
+                     .where("escalatable_id > 0") do |el|
+        state = EscalationLevel.check_for_escalation(el.escalatable, el.attrib)
+        channel_statistics << el.escalatable if state > 0
+      end
+      channel_statistics
+    end
   end
 
   def sent_last_30min
@@ -29,4 +38,5 @@ module ChannelStatisticConcerns
                     .increase(value: 'filtered')
                     .map(&:delta).map(&:to_i).reduce(0, :+)
   end
+
 end
