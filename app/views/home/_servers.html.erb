@@ -21,12 +21,14 @@
          <%= render TdEscalationComponent.new(
                        escalatable: server,
                        attrib: 'last_check',
+                       css: 'text-center',
                        manual_update: server.manual_update
                     )
           %>
          <%= render TdEscalationComponent.new(
                        escalatable: server,
                        attrib: 'last_check_ok',
+                       css: 'text-center',
                        manual_update: server.manual_update
                     )
           %>
