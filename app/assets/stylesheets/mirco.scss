@@ -149,8 +149,9 @@ table.connector.table.table-sm > :not(caption) > * > * {
   display: none !important;
 }
 
-.bg-alert {
+.bg-alert, .bg-ALERT {
   background-color: #B800FF !important;
+  color: white;
 }
 
 .bg-disabled {
