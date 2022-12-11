@@ -40,7 +40,7 @@
     <tbody>
       <% notes.each do |note| %>
         <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
-          <td><%= note.created_at.localtime.to_formatted_s(:db) %></td>
+          <td><%= note.created_at.localtime.to_fs(:local) %></td>
           <% if notable.kind_of? Server %>
             <td><%= note.channel %></td>
             <td><%= note.channel_statistic %></td>

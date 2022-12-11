@@ -24,6 +24,16 @@ Rails.application.configure do
       }
     }
   }
+
+  if Rails.env == 'development'
+    if ENV['GOOD_JOB_EXECUTION_MODE']
+      config.good_job[:execution_mode] = ENV['GOOD_JOB_EXECUTION_MODE'].to_sym
+    elsif Rails.const_defined?("Console")
+      config.good_job[:execution_mode] = :external
+    elsif Rails.const_defined?("Server")
+      config.good_job[:execution_mode] = :async_server
+    end
+  end
 end
 
 if defined? PhusionPassenger

@@ -10,6 +10,6 @@ class ServerConfiguration < ApplicationRecord
   # -- validations and callbacks
 
   def to_s
-    "server-config-#{server.to_s}-#{created_at.localtime.to_formatted_s(:db).tr(' ', '_')}"
+    "server-config-#{server.to_s}-#{created_at.localtime.to_fs(:local).tr(' ', '_')}"
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :escalation_levels, except: [:new, :create]
   resources :hosts do
     resources :software_interfaces, module: :hosts
   end
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
     end
     resources :alerts, only: %i[index show], module: :channel_statistics
     resources :notes, module: :channel_statistics
+    resources :escalation_levels, module: :channel_statistics
   end
   resources :channels, only: %i[index show destroy] do
     resources :alerts, only: %i[index show], module: :channels

@@ -42,6 +42,10 @@ module Channels
                                                          target: :server_status,
                                                          partial: 'home/servers',
                                                          locals: { servers: Server.order(:name).all.to_a })
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+                                                         target: :problems,
+                                                         partial: 'home/problems',
+                                                         locals: { problems: ChannelStatistic.active.escalated.to_a })
         # rubocop:enable Layout/ArgumentAlignment
       end
     end

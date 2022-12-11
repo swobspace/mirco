@@ -8,6 +8,24 @@
       <%= render 'index', queued_messages: @queued_messages %>
     </div>
   </div>
+
+  <div class="card mt-3">
+    <div class="card-header">
+      <div class="d-flex w-100 justify-content-between">
+        <h4>Potential Message Problems</h4>
+        <div role="toolbar">
+          <% if current_user&.is_admin? %>
+            <%= link_to icon_edit, escalation_levels_path, class: 'btn btn-outline-secondary' %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+    <div>
+      <%= render 'problems', problems: @problems %>
+    </div>
+  </div>
+
   <div class="card mt-3">
     <div class="card-header">
       <h4>Server Status</h4>

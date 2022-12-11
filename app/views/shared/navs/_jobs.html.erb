@@ -1,4 +1,4 @@
-<% if current_user.is_admin? %>
+<% if current_user&.is_admin? %>
   <li class="nav-item">
     <%= link_to "Jobs", main_app.good_job_path, class: "nav-link", target: :_blank %>
   </li>

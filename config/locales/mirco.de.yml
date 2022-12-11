@@ -45,6 +45,7 @@ de:
       channel_statistic: Channel Statistik
       channel_statistic/alert: Alarm
       channel_statistic/note: Notiz
+      escalation_level: Eskalationslevel
       hl7_event: HL7-Typ
       hl7_segment: HL7-Segment
       host: Host
@@ -69,6 +70,7 @@ de:
     api_password: API Passwort
     api_user_has_full_access: Vollzugriff
     api_verify_ssl: SSL-Prüfung
+    attrib: Attribut
     channel: Channel
     channel_counters: Channel Counter
     channel_detail: Channel Connector
@@ -87,6 +89,10 @@ de:
     displayname: Anzeigename
     error: error
     error_last_30min: error (30min)
+    escalatable: eskalierbar
+    escalatable_id: eskalierbar
+    escalatable_type: Typ
+    escalation_level: Eskalationslevel
     exportData: exportData
     filtered: filtered
     filtered_last_30min: filtered (30min)
@@ -105,13 +111,20 @@ de:
     last_check: Letzter Check
     last_check_ok: Last OK
     last_condition_change: letzte Zustandsänderung
+    last_message_error_at: Letzter Fehler
+    last_message_received_at: Letzte empfangene Nachricht
+    last_message_sent_at: Letzte versandte Nachricht
     lid: StandortID
     limit: Limit
     location: Standort
     manual_update: Manuelles Update von Channels & Statistiken
+    max_warning: max_warning
+    max_critical: max_critical
     message: Nachricht
     message_type: Nachrichtentyp
     meta_data_id: ConnNr.
+    min_warning: min_warning
+    min_critical: min_critical
     missing_connector: Fehlende Connectoren
     name: Name
     note: Notiz
@@ -162,8 +175,10 @@ de:
     channel_statistics: Channel Statistiken
     channel_statistics/alerts: Alarme
     channel_statistics/channel_counters: Channel Counters
+    channel_statistics/escalation_levels: Eskalationslevels
     channel_statistics/notes: Notizen
     channel_counters: Channel Counters
+    escalation_levels: Eskalationslevels
     hl7_events: HL7 Events
     hl7_segments: HL7 Segmente
     home: Home

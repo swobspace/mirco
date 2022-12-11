@@ -1,0 +1,60 @@
+<div class="card mb-2">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle">
+          <%= t('activerecord.models.escalation_level') %>: 
+          #<%= @escalation_level.id %>
+        </span>
+        <h4 class="title"><%= @escalation_level %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link([@escalatable, @escalation_level]) %>
+        <%= delete_link([@escalatable, @escalation_level]) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-borderless">
+    
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.escalatable')%>:</th>
+        <td>
+          <% if @escalation_level.escalatable_id > 0 %>
+            <%= link_to(@escalation_level.escalatable) %>
+          <% else %>
+            <%= t(@escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.attrib')%>:</th>
+        <td><%= @escalation_level.attrib %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.min_critical')%>:</th>
+        <td><%= @escalation_level.min_critical %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.min_warning')%>:</th>
+        <td><%= @escalation_level.min_warning %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.max_warning')%>:</th>
+        <td><%= @escalation_level.max_warning %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.max_critical')%>:</th>
+        <td><%= @escalation_level.max_critical %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%= back_link %>

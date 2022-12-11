@@ -66,6 +66,9 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../admin-manual/escalation-levels.html">Escalation Levels</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -175,7 +178,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: mirco_production <i class="conum" data-value="1"></i><b>(1)</b>
-  pool: 5
+  pool: &lt;%= ENV.fetch("RAILS_MAX_THREADS", 5).to_i + ENV.fetch("GOOD_JOB_MAX_THREADS", 4).to_i %&gt;
   username: ###PLEASE_EDIT###  <i class="conum" data-value="2"></i><b>(2)</b>
   password: ###PLEASE_EDIT###  <i class="conum" data-value="3"></i><b>(3)</b>
   min_messages: WARNING <i class="conum" data-value="4"></i><b>(4)</b>

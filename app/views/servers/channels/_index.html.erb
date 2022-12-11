@@ -30,7 +30,7 @@
           <td><%= channel.name %></td>
           <td><%= format(channel.description) %></td>
           <td><%= channel.uid %></td>
-          <td><%= channel.updated_at.localtime.to_formatted_s(:db) %></td>
+          <td><%= channel.updated_at.localtime.to_fs(:local) %></td>
           <td class="text-owrap">
             <%= show_link channel %>
             <%= link_to(

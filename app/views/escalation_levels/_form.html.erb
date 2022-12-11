@@ -1,0 +1,22 @@
+<%= simple_form_for([@escalatable, @escalation_level]) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <% if @escalatable.respond_to?(:escalatable_attributes) %>
+      <%= form.input :attrib, collection: @escalatable.escalatable_attributes %>
+    <% else %>
+      <%= form.input :attrib %>
+    <% end %>
+    <%= form.input :min_critical
+       %>
+    <%= form.input :min_warning
+       %>
+    <%= form.input :max_warning
+       %>
+    <%= form.input :max_critical
+       %>
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>

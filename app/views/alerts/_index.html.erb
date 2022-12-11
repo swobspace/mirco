@@ -31,7 +31,7 @@
     <tbody>
       <% alerts.each do |alert| %>
         <%= content_tag(:tr, id: dom_id(alert), class: dom_class(alert)) do %>
-                <td><%= alert.created_at.localtime.to_formatted_s(:db) %></td>
+                <td><%= alert.created_at.localtime.to_fs(:local) %></td>
                 <td><%= alert.type %></td>
                 <td><%= alert.server %></td>
                 <td><%= alert.channel %></td>

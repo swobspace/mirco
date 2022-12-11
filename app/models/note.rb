@@ -24,7 +24,7 @@ class Note < ApplicationRecord
   validate :note_message_present
 
   def to_s
-    "#{created_at.localtime.to_formatted_s(:db)} #{server}::#{channel} #{type.upcase} - #{message.to_plain_text}"
+    "#{created_at.localtime.to_fs(:local)} #{server}::#{channel} #{type.upcase} - #{message.to_plain_text}"
   end
 
   private

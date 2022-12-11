@@ -8,5 +8,6 @@ class HomeController < ApplicationController
                        .where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
                        .order('queued desc')
     @servers = Server.order(:name).all
+    @problems = ChannelStatistic.active.escalated
   end
 end

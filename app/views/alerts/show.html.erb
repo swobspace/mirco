@@ -32,7 +32,7 @@
 
       <tr>
         <th><%= t('attributes.timestamp')%>:</th>
-        <td><%= @alert.created_at.localtime.to_formatted_s(:db) %></td>
+        <td><%= @alert.created_at.localtime.to_fs(:local) %></td>
       </tr>
         </table>
 

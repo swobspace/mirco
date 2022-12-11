@@ -45,7 +45,7 @@ RSpec.describe 'alerts/index', type: :view do
     assert_select 'tr>td', text: 'alert'.to_s, count: 1
     assert_select 'tr>td', text: 'recovery'.to_s, count: 1
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
-    assert_select 'tr>td', text: yesterday.localtime.to_formatted_s(:db).to_s, count: 1
-    assert_select 'tr>td', text: last_hour.localtime.to_formatted_s(:db).to_s, count: 1
+    assert_select 'tr>td', text: yesterday.localtime.to_fs(:local).to_s, count: 1
+    assert_select 'tr>td', text: last_hour.localtime.to_fs(:local).to_s, count: 1
   end
 end

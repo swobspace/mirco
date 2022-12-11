@@ -23,7 +23,7 @@
     <tbody>
       <% server_configurations.each do |sconf| %>
         <%= content_tag(:tr, id: dom_id(sconf), class: dom_class(sconf)) do %>
-          <td><%= sconf.created_at.localtime.to_formatted_s(:db) %></td>
+          <td><%= sconf.created_at.localtime.to_fs(:local) %></td>
           <td><%= sconf.comment %></td>
           <td class="text-nowrap">
           <%= show_link [server, sconf] %>
