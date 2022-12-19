@@ -11,7 +11,10 @@ class Host < ApplicationRecord
   has_rich_text :description
 
   # -- validations and callbacks
-  validates :name, :location_id, :software_group_id, presence: true
+  validates :location_id, :software_group_id, presence: true
+  validates :name, presence: true,
+            format: { with: /\A[a-z][a-z0-9._-]{2,}\z/i }
+
 
   def to_s
     "#{name} (#{ipaddress})"

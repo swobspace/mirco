@@ -10,6 +10,12 @@ RSpec.describe Host, type: :model do
   it { is_expected.to validate_presence_of(:location_id) }
   it { is_expected.to validate_presence_of(:software_group_id) }
   it { is_expected.to have_rich_text(:description) }
+  it { is_expected.to allow_value('someHost', 'some-123.fafa.li', 'V-MIR-0002.m.de',
+                                  'MI2', 'abc_34'
+                                 ).for(:name) }
+  it { is_expected.not_to allow_values('s. host', 'o(host)', 'myhost#', '123host',
+                                       'aa', 'Z'
+                                      ).for(:name) }
 
   it 'should get plain factory working' do
     f = FactoryBot.create(:host)
