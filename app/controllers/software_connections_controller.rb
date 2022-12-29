@@ -1,6 +1,6 @@
 class SoftwareConnectionsController < ApplicationController
   before_action :set_software_connection, only: [:show, :edit, :update, :destroy]
-  # before_action :add_breadcrumb_show, only: [:show]
+  skip_before_action :add_breadcrumb_index
 
   # GET /software_connections
   def index
