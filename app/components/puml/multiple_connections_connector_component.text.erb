@@ -10,6 +10,7 @@ circle if_<%= conn_identifier %> as "<%= connector.url %>"
 <% if connector.type == 'TxConnector' %>
   <% if host_identifier.present? %>
     <%= host_identifier %> #--# <%= conn_identifier %> 
+    url of <%= host_identifier %> is [[<%= host_url %>]]
   <% end %>
   <%= conn_identifier %> --> if_<%= conn_identifier %>
   if_<%= conn_identifier %> --> <%= server_identifier %>
@@ -17,6 +18,7 @@ circle if_<%= conn_identifier %> as "<%= connector.url %>"
   <%= server_identifier %> --> if_<%= conn_identifier %> 
   if_<%= conn_identifier %> --> <%= conn_identifier %>
   <% if host_identifier.present? %>
+    url of <%= host_identifier %> is [[<%= host_url %>]]
     <%= conn_identifier %>  #--# <%= host_identifier %>
   <% end %>
 <% end %>
