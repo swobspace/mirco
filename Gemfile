@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '>=2.7.3'
 
 gem 'pg', '~> 1.1'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 gem 'rails', '~> 7.0.0'
 gem "sprockets-rails"
 # gem 'sassc-rails', require: false
-gem 'redis', '~> 4.0'
+gem 'redis', '~> 5.0'
 
 gem 'bootsnap', require: false
 
@@ -52,11 +52,12 @@ group :test, :development do
 end
 
 group :test do
-  gem 'apparition'
-  gem 'capybara'
-  gem 'factory_bot_rails'
-  gem 'launchy'
   gem 'shoulda-matchers', require: false
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdriver'
+  gem 'launchy'
 end
 
 gem 'asciidoctor'
@@ -79,7 +80,7 @@ gem 'net-http'
 gem 'chartkick', '~> 4.0'
 gem 'draper'
 gem 'kramdown'
-gem 'uri', '0.10.0'
+# gem 'uri', '0.10.0'
 
 gem 'responders', git: 'https://github.com/heartcombo/responders.git', branch: 'main', ref: '56d00ac8894b38de9eff177cb50dda110ff79440'
 
@@ -90,10 +91,15 @@ gem "rails-controller-testing", "~> 1.0"
 
 gem "devise-remote-user", "~> 1.1"
 
-gem "faker", "~> 2.21"
+gem "faker", "~> 3.1"
 
 gem "good_job", "~> 3.6"
 
 # for deployment
 gem "ed25519"
 gem "bcrypt_pbkdf"
+
+# workaround
+gem "mail", '< 2.8.0'
+# gem "mail", '>= 2.8.1'
+

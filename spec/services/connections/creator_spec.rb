@@ -20,7 +20,6 @@ RSpec.describe Connections::Creator, type: :model do
       allow(channel).to receive(:ipaddress).and_return('1.2.3.4')
       subject.save
     end
-    it { skip "debug"; puts subject.connection_attributes }
     it "sets connection_attributes[0]" do
       expect(subject.connection_attributes[0]).to include(
         'location_id'     => location.id, 

@@ -16,6 +16,10 @@ class NullInterfaceConnector
     host&.name
   end
 
+  def host_id
+    host&.id
+  end
+
   def ipaddress
     host&.ipaddress.to_s
   end

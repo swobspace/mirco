@@ -1,16 +1,24 @@
 <div id="<%= dom_id software_interface %>">
   <div class="card-body py-2 border-bottom border-bottom-1">
-    <div>
-      <div class="fw-bold">
-        <%= link_to software_interface.name, software_interface %>
-      </div> 
-      <div class="ps-4">
-        <em><%= software_interface.hostname %> (<%= software_interface.ipaddress %>)</em>
+
+    <div class="d-flex w-250 justify-content-between">
+      <div>
+        <div class="fw-bold">
+          <%= link_to software_interface.name, software_interface %>
+        </div>
+        <div class="ps-4">
+          <em><%= software_interface.hostname %> (<%= software_interface.ipaddress %>)</em>
+        </div>
+        <div class="ps-4">
+          <%= software_interface.description %>
+        </div>
+      </div>
+      <div>
+        <%= new_link([software_interface, InterfaceConnector], class: 'btn btn-outline-secondary btn-sm mt-3') %>
+
       </div>
     </div>
-    <div class="ps-4">
-      <%= software_interface.description %>
-    </div>
+
     <% if software_interface.interface_connectors.any? %>
       <div class="card my-2 ms-3">
         <div class="card-header">

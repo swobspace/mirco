@@ -40,7 +40,6 @@ RSpec.describe Mirco::ServerDiagram, type: :model do
     it 'creates puml file' do
       subject.create(:svg)
 
-      puts subject.filename(:puml)
       expect(File.exist?(subject.filename(:puml))).to be_truthy
       expect(File.exist?(subject.filename(:svg))).to be_truthy
     end

@@ -22,6 +22,9 @@ skinparam shadowing 4.0
     padding 10
     ''LineThickness 1.0
     ''LineColor Maroon
+    .disabled {
+      BackgroundColor #FCA3A2
+    }
   }
   document {
     BackGroundColor white

@@ -1,6 +1,15 @@
 = Changelog
 
 
+=== 1.1.2 / 2022-12-30
+
+----
+* colorize software_connection if ignore? or channels_disabled?
+* fix some minor bugs
+* update development stuff
+* bump gem and npm dependencies
+----
+
 === 1.1.1 / 2022-12-18
 
 ----

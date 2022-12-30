@@ -29,7 +29,7 @@ class Puml::MultipleConnectionsConnectorComponent < ViewComponent::Base
 
   def conn_url
     if connector.kind_of?(ExtendedInterfaceConnector)
-      interface_connector_path(connector)
+      interface_connector_path(connector.id)
     else
       "#"
     end
@@ -47,7 +47,10 @@ class Puml::MultipleConnectionsConnectorComponent < ViewComponent::Base
     else
       nil
     end
-   
+  end
+
+  def host_url
+    host_path(connector.host_id)
   end
 
   def host_text

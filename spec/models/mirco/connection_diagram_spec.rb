@@ -17,14 +17,6 @@ RSpec.describe Mirco::ConnectionDiagram, type: :model do
     )
   end
 
-  it "test" do 
-    skip "just for debugging" 
-    puts dst.inspect
-    puts connection.inspect
-    puts connection.source_connector.to_s
-    puts connection.destination_connector.to_s 
-  end
-
   subject { Mirco::ConnectionDiagram.new(connection) }
 
   it {

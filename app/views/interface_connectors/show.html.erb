@@ -21,52 +21,69 @@
     </div>
 
     <div class="card-body">
-      <table class="table table-sm table-borderless">
+      <div class="row">
+        <div class="col-6">
+          <table class="table table-sm table-borderless">
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
-          <td><%= link_to @interface_connector.location&.lid, @interface_connector.location %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
+              <td><%= link_to @interface_connector.location&.lid, @interface_connector.location %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
-          <td><%= link_to @interface_connector.sw_name,
-                          @interface_connector.software_interface.software %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
+              <td><%= link_to @interface_connector.sw_name,
+                              @interface_connector.software_interface.software %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
-          <td><%= link_to @interface_connector.if_name,
-                          @interface_connector.software_interface %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
+              <td><%= link_to @interface_connector.if_name,
+                              @interface_connector.software_interface %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
-          <td><%= @interface_connector.name %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+              <td><%= @interface_connector.name %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
-          <td>
-            <% if (@interface_connector.direction == 'out') %>
-              <i class="far fa-arrow-alt-circle-left fa-lg"></i>
-            <% else %>
-              <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
-            <% end %>
-            <%= @interface_connector.type %>
-          </td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.type')%>:</th>
+              <td>
+                <% if (@interface_connector.direction == 'out') %>
+                  <i class="far fa-arrow-alt-circle-left fa-lg"></i>
+                <% else %>
+                  <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
+                <% end %>
+                <%= @interface_connector.type %>
+              </td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.url')%>:</th>
-          <td><%= @interface_connector.url %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.url')%>:</th>
+              <td><%= @interface_connector.url %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
-          <td><%= @interface_connector.description %></td>
-        </tr>
-      </table>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+              <td><%= @interface_connector.description %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-6">
+          <% connector_id = (@interface_connector.type == 'TxConnector') ? 'source_connector_id' : 'destination_connector_id' %>
+          <%= link_to image_tag(software_connections_path(
+                                  @software_connection,
+                                  connector_id => @interface_connector.id,
+                                  format: :svg),
+                                style: 'max-width: 100%; max-height: 400px;'),
+                      software_connections_path(@software_connection,
+                                                connector_id => @interface_connector.id,
+                                                format: :svg),
+                      target: :_blank
+           %>
+        </div>
+      </div>
     </div>
   </div>
 
