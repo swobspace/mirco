@@ -65,4 +65,6 @@ Rails.application.configure do
   config.action_controller.action_on_unpermitted_parameters = :raise
 
   config.cache_store = :memory_store, { size: 32.megabytes }
+  config.active_job.queue_adapter = :test
+
 end
