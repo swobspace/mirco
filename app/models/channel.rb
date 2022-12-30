@@ -36,7 +36,7 @@ class Channel < ApplicationRecord
   end
 
   def fullname
-    "#{server.to_s} > #{name}"
+    "#{server.to_s} > #{name}  [#{id}]"
   end
 
   def source_connector
