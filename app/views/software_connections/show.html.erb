@@ -50,7 +50,14 @@
               Channels
             </th>
             <td>
-              <%= Channel.where(id: @software_connection.channel_ids).map(&:name).join('<br/>').html_safe
+              <%= @software_connection.channel_ids.map do |cid| 
+                    c = Channel.where(id: cid).first
+                    if c.disabled?
+                      %Q[<span class="bg-disabled">#{c.name}</span>]
+                    else
+                      %Q[<span class="">#{c.name}</span>]
+                    end
+                  end.join('<br/>').html_safe
                %>
             </td>
           </tr>
