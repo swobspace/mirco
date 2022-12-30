@@ -52,11 +52,12 @@ group :test, :development do
 end
 
 group :test do
-  gem 'apparition'
-  gem 'capybara'
-  gem 'factory_bot_rails'
-  gem 'launchy'
   gem 'shoulda-matchers', require: false
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'webdriver'
+  gem 'launchy'
 end
 
 gem 'asciidoctor'
@@ -97,3 +98,8 @@ gem "good_job", "~> 3.6"
 # for deployment
 gem "ed25519"
 gem "bcrypt_pbkdf"
+
+# workaround
+gem "mail", '< 2.8.0'
+# gem "mail", '>= 2.8.1'
+

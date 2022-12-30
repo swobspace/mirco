@@ -122,9 +122,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    apparition (0.6.0)
-      capybara (~> 3.13, < 4)
-      websocket-driver (>= 0.6.5)
     asciidoctor (2.0.18)
     ast (2.4.2)
     bcrypt (3.1.18)
@@ -261,11 +258,8 @@ GEM
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.2.8)
-    mail (2.8.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
-      net-imap
-      net-pop
-      net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
@@ -399,6 +393,11 @@ GEM
       rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
+    selenium-webdriver (4.7.1)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     shellany (0.0.1)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
@@ -438,7 +437,9 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdriver (0.19.0)
     webrick (1.7.0)
+    websocket (1.2.9)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -454,7 +455,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  apparition
   asciidoctor
   bcrypt_pbkdf
   bootsnap
@@ -485,6 +485,7 @@ DEPENDENCIES
   libnotify
   listen (~> 3.3)
   lockbox
+  mail (< 2.8.0)
   net-http
   pg (~> 1.1)
   pp
@@ -498,6 +499,7 @@ DEPENDENCIES
   rspec-rails (~> 6.0.0.rc1)
   rubocop
   rubocop-rails
+  selenium-webdriver
   shoulda-matchers
   simple_form
   sprockets-rails
@@ -505,6 +507,7 @@ DEPENDENCIES
   uri (= 0.10.0)
   view_component
   web-console (>= 4.1.0)
+  webdriver
   wobaduser
   wobapphelpers!
   wobauth!
