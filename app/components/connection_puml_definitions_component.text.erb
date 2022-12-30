@@ -6,7 +6,7 @@ circle if_<%= src_identifier %> as "<%= connection.source_url %>"
 
 rectangle mirth as "MIRTH\n<%=connection.location%>" {
   <% connection.channel_ids.each do |chid| %>
-    queue channel_<%= chid %> as "<%= Channel.find(chid).name %>"
+    queue channel_<%= chid %> as "<%= Channel.find(chid).name %>" <%= ("<<disabled>>".html_safe if Channel.find(chid).disabled?) %>
     url of channel_<%= chid %> is [[<%= channel_path(chid) %>]]
   <% end %>
 }
