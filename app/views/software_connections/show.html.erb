@@ -1,9 +1,14 @@
 <div class="card mb-2">
-  <div class="card-header">
+  <div class="card-header <%= if @software_connection.disabled_channels?
+                                "bg-disabled"
+                              elsif @software_connection.ignore
+                                "bg-warning"
+                              end
+   %>">
     <div class="d-flex w-250 justify-content-between">
       <div>
         <span class="subtitle">
-          <%= t('activerecord.models.software_connection') %>: 
+          <%= t('activerecord.models.software_connection') %>:
           #<%= @software_connection.id %>
         </span>
         <h4 class="title"><%= @software_connection %></h4>
@@ -19,7 +24,7 @@
     <div class="row">
       <div class="col-9">
         <table class="table table-borderless">
-        
+
           <tr class=border-bottom>
             <th class="w-25 pe-3"><%= t('attributes.location')%>:</th>
             <td><%= link_to @software_connection.location, @software_connection.location %></td>
@@ -50,7 +55,7 @@
               Channels
             </th>
             <td>
-              <%= @software_connection.channel_ids.map do |cid| 
+              <%= @software_connection.channel_ids.map do |cid|
                     c = Channel.where(id: cid).first
                     if c.disabled?
                       %Q[<span class="bg-disabled">#{c.name}</span>]
@@ -80,7 +85,12 @@
 
           <tr>
             <th class="w-25 pe-3"><%= t('attributes.ignore')%>:</th>
-            <td><%= @software_connection.ignore %></td>
+            <td><%= if @software_connection.ignore
+                      %Q[<span class="bg-warning">@software_connection.ignore</span>].html_safe
+                    else
+                      @software_connection.ignore
+                    end
+                 %></td>
           </tr>
 
           <tr>
