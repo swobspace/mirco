@@ -155,17 +155,13 @@ table.connector.table.table-sm > :not(caption) > * > * {
   font-weight: bold;
 }
 
-.bg-disabled {
-  background-color: #FBA1A1 !important;
-}
-
 .bg-OK {
   background-color: #E6FFE6 !important;
 }
-.bg-WARN {
+.bg-WARN, .bg-ignore {
   background-color:  #FFFF80 !important;
 }
-.bg-CRITICAL {
+.bg-CRITICAL, .bg-disabled {
   background-color: #FF8080 !important;
 }
 .bg-UNKNOWN {

@@ -56,7 +56,8 @@
     </tfoot>
     <tbody>
       <% @software_connections.each do |software_connection| %>
-        <%= content_tag(:tr, id: dom_id(software_connection), class: dom_class(software_connection)) do %>
+        <%= content_tag(:tr, id: dom_id(software_connection), 
+                             class: [dom_class(software_connection), sw_connection_class(software_connection)].join(" ")) do %>
                 <td><%= software_connection.location.lid %></td>
                 <td><%= software_connection.server %></td>
                 <td><%= software_connection.source_connector&.sw_name %></td>

@@ -15,7 +15,9 @@ module SoftwareConnectionConcerns
   end
 
   def disabled_channels?
-    channel_ids.map{|cid| Channel.find(cid).disabled?}.grep(true).size > 0
+    channel_ids.map do |cid| 
+      Channel.where(id: cid).first&.disabled?
+    end.grep(true).size > 0
   end
 
   private

@@ -1,10 +1,5 @@
 <div class="card mb-2">
-  <div class="card-header <%= if @software_connection.disabled_channels?
-                                "bg-disabled"
-                              elsif @software_connection.ignore
-                                "bg-warning"
-                              end
-   %>">
+  <div class="card-header <%= sw_connection_class(@software_connection)  %>">
     <div class="d-flex w-250 justify-content-between">
       <div>
         <span class="subtitle">
@@ -85,12 +80,11 @@
 
           <tr>
             <th class="w-25 pe-3"><%= t('attributes.ignore')%>:</th>
-            <td><%= if @software_connection.ignore
-                      %Q[<span class="bg-warning">@software_connection.ignore</span>].html_safe
-                    else
-                      @software_connection.ignore
-                    end
-                 %></td>
+            <td>
+              <span class="<%= sw_connection_class(@software_connection) %>">
+                <%= @software_connection.ignore %>
+              </span>
+           </td>
           </tr>
 
           <tr>
