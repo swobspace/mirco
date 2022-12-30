@@ -11,7 +11,7 @@ RSpec.describe "escalation_levels/index", type: :view do
         min_critical: -30,
         min_warning: -15,
         max_warning: 20,
-        max_critical: 50),
+        max_critical: 51),
       FactoryBot.create(:escalation_level,
         escalatable_id: 0,
         escalatable_type: 'ChannelStatistic',
@@ -19,7 +19,7 @@ RSpec.describe "escalation_levels/index", type: :view do
         min_critical: -30,
         min_warning: -15,
         max_warning: 20,
-        max_critical: 50)
+        max_critical: 52)
     ]
   end
 
@@ -41,6 +41,7 @@ RSpec.describe "escalation_levels/index", type: :view do
     assert_select cell_selector, text: Regexp.new(-30.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(-15.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(20.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(50.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(51.to_s), count: 1
+    assert_select cell_selector, text: Regexp.new(52.to_s), count: 1
   end
 end

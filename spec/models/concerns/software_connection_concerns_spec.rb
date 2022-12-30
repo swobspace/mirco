@@ -43,7 +43,6 @@ RSpec.describe SoftwareConnectionConcerns, type: :model do
         { exportData: { "metadata" => { "enabled" => "false" } } }
       end
       let!(:channel) { FactoryBot.create(:channel, properties: properties) }
-      it {puts channel.properties}
       it { expect(conn.disabled_channels?).to be_truthy }
     end
   end
