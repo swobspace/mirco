@@ -14,6 +14,10 @@ module SoftwareConnectionConcerns
     fetch_host(destination_url)
   end
 
+  def disabled_channels?
+    channel_ids.map{|cid| Channel.find(cid).disabled?}.grep(true).size > 0
+  end
+
   private
 
   def fetch_host(url)
