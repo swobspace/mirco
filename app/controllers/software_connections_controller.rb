@@ -108,6 +108,7 @@ class SoftwareConnectionsController < ApplicationController
       searchparms = params.permit(*submit_parms, *non_search_params,
         :source_url, :destination_url, :source_connector_id, :destination_connector_id,
         :location_id, :ignore, :ignore_reason, :description, :channel_id,
+        :disabled_channels,
         :id, :limit, :missing_connector).to_h
       searchparms.reject do |k, v|
         v.blank? || submit_parms.include?(k) || non_search_params.include?(k)

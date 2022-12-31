@@ -32,6 +32,7 @@ de:
     create_manual_software_connections_warning: "Achtung: Verbindungen auf einem Mirth-System werden automatisch erstellt. Manuell sollten nur Verbindungen angelegt werden, die dem Mirth-System nicht bekannt sind!"
     search_software_connections: Suche Verbindungen
     ignored_connections: Ignorierte Verbindungen
+    disabled_channels: Deaktivierte Channels
 
   activerecord:
     models:

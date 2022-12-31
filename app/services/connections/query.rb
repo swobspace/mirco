@@ -70,7 +70,7 @@ module Connections
           query = query.where(ignore: to_boolean(value))
         when :disabled_channels
           query = query.where("software_connections.channel_ids && ARRAY[?]::integer[]", 
-                               Channel.where(enabled: to_boolean(value)).ids)
+                               Channel.where(enabled: !to_boolean(value)).ids)
         when :missing_connector
           case value.to_sym
           when :none
