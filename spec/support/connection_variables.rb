@@ -5,6 +5,14 @@ shared_context "connection variables" do
   let!(:paris) { FactoryBot.create(:location, lid: 'PAR', name: 'Paris') }
   let!(:ber) { FactoryBot.create(:location, lid: 'BER', name: 'Berlin') }
 
+  let(:properties) do
+    { exportData: { "metadata" => { "enabled" => "false" } } }
+  end
+
+  let!(:ch1) { FactoryBot.create(:channel, id: 4711, properties: properties) }
+  let!(:ch2) { FactoryBot.create(:channel, id: 815) }
+  let!(:ch3) { FactoryBot.create(:channel, id: 816, properties: properties) }
+
   let!(:sg1) { FactoryBot.create(:software_group, name: "SW Group One") }
   let!(:sg2) { FactoryBot.create(:software_group, name: "SW Group Two") }
 
@@ -74,7 +82,7 @@ shared_context "connection variables" do
       source_url: 'tcp://192.0.2.1:3005',
       destination_connector: icmbarin,
       destination_url: 'tcp://92.0.2.11:13005',
-      channel_ids: [4711, 815]
+      channel_ids: [ch1.id, ch2.id]
     )
   end
   let!(:c2) do
@@ -82,7 +90,7 @@ shared_context "connection variables" do
       location_id: ber.id,
       source_url: 'tcp://1.2.3.4:5555',
       destination_url: 'tcp://5.6.7.8:9999',
-      channel_ids: [815]
+      channel_ids: [ch2.id]
     )
   end
 
@@ -92,7 +100,7 @@ shared_context "connection variables" do
       source_connector: icmbarout,
       source_url: 'tcp://192.0.2.1:3005',
       destination_url: 'tcp://5.6.7.8:9999',
-      channel_ids: [815]
+      channel_ids: [ch2.id]
     )
   end
 
@@ -102,7 +110,7 @@ shared_context "connection variables" do
       source_url: 'tcp://1.2.3.4:5555',
       destination_connector: icmbarin,
       destination_url: 'tcp://92.0.2.11:13005',
-      channel_ids: [816]
+      channel_ids: [ch3.id]
     )
   end
 

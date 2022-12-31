@@ -165,6 +165,26 @@ module Connections
       it_behaves_like "a connections query"
     end # :id
 
+    context "with :disabled_channels true" do
+      subject { Query.new(connections, {disabled_channels: true}) }
+      before(:each) do
+        @matching = [c1, c4]
+        @nonmatching = [c2, c3]
+      end
+      it_behaves_like "a connections query"
+    end # :id
+
+    context "with :disabled_channels false" do
+      subject { Query.new(connections, {disabled_channels: false}) }
+      before(:each) do
+        @matching = [c2, c3]
+        @nonmatching = [c1, c4]
+      end
+      it_behaves_like "a connections query"
+    end # :id
+
+
+
 
     describe "#all" do
       context "using :search'" do
