@@ -14,13 +14,18 @@
           <%= interface_connector.description %>
         </div>
       </div>
-      <div class="col-3">
+      <div class="col">
         <div class="text-muted ps-4">
           <%= interface_connector.type %> 
         </div>
         <div class="text-muted ps-4">
           <%= interface_connector.url %>
         </div>
+      </div>
+      <div class="col-auto">
+        <%= render Connector::DiagramButtonComponent.new(
+                     connector: interface_connector,
+                     cssclass: 'text-secondary' ) %>
       </div>
     </div>
   </div>

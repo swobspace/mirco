@@ -1,6 +1,4 @@
-<% content_for :head do %>
-  <meta name="turbo-cache-control" content="no-cache">
-<% end %>
+<%= render 'shared/turbo-cache-control' %>
 
 <div class="container">
   <%= form_tag(software_connections_path, method: :get, role: "form",
