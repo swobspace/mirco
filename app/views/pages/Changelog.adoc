@@ -1,6 +1,14 @@
 = Changelog
 
 
+=== 1.1.4 / 2023-01-15
+
+----
+* add software connections diagram button
+* update gems and npms
+* improve datatables experience (avoid double loading)
+----
+
 === 1.1.3 / 2022-12-31
 
 ----
