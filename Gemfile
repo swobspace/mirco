@@ -101,6 +101,5 @@ gem "ed25519"
 gem "bcrypt_pbkdf"
 
 # workaround
-gem "mail", '< 2.8.0'
-# gem "mail", '>= 2.8.1'
+gem "mail"
 
