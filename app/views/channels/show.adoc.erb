@@ -1,0 +1,12 @@
+= Channel <%= @channel %>
+
+// Source
+
+<%= render ConnectorAdocComponent.new(connector: @channel.source_connector) %>
+
+// Destinations
+
+<%= render ConnectorAdocComponent.with_collection(@channel.destination_connectors) %>
+
+
+

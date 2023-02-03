@@ -18,4 +18,11 @@ module ApplicationHelper
       text
     end
   end
+
+  def asciidoc_link(obj)
+    link_to raw(%Q[<i class="fas fa-fw fa-file-code"></i>]),
+            polymorphic_path(obj, format: :adoc),
+            class: 'btn btn-secondary me-1',
+            title: 'Asciidoc'
+  end
 end

@@ -1,0 +1,46 @@
+== <%= mc.meta_data_id %>: <%= mc.name %>
+* <%= t(mc.enabled, scope: 'enabled') %>
+* <%= mc.transportName %>
+
+<% if mc.descriptor.any? %>
+|===
+|key |value
+
+<% mc.descriptor.each do |k,v| %>
+| <%= k %>
+| <%= 
+    if v.kind_of? Array
+      v[1]
+    else
+      v
+    end
+  %>
+<% end %>
+|===
+<% end %>
+
+<% if mc.filters.any? %>
+=== Filters (<%= mc.filters.size %>)
+  <% mc.filters.each do |f| %>
+<%= f.step %>: <%= f.name %>::
+<%= f.short_type %> / <%= t(f.enabled, scope: 'enabled') %> / <%= f.operator %> 
+----
+<%= CGI.unescapeHTML(f.content).html_safe %>
+----
+
+  <% end %>
+<% end %>
+
+<% if mc.transformers.any? %>
+=== Transformers (<%= mc.transformers.size %>)
+  <% mc.transformers.each do |trf| %>
+<%= trf.step %>: <%= trf.name %>::
+<%= trf.short_type %> / <%= t(trf.enabled, scope: 'enabled') %>
+----
+<%= CGI.unescapeHTML(trf.content).html_safe %>
+----
+
+  <% end %>
+<% end %>
+
+
