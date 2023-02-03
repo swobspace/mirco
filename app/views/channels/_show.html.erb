@@ -28,6 +28,15 @@
   </tr>
 
   <tr>
+    <th><%= t('attributes.attachment_handler')%>:</th>
+    <td>
+      <pre>
+<%= render Channel::AttachmentHandlerComponent.new(channel: @channel) %>
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
     <th><%= t('attributes.sourceConnector')%>:</th>
     <td>
       <%= render ConnectorComponent.new(connector: @channel.source_connector) %>

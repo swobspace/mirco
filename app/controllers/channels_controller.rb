@@ -26,12 +26,12 @@ class ChannelsController < ApplicationController
         render format: :puml, layout: false
       end
       format.adoc do
+        # render format: :adoc, layout: false
         adoc = render_to_string format: :adoc, layout: false
         send_data adoc,
                   filename: "#{@channel.name}.adoc",
                   disposition: :attachment,
                   type: 'text/asciidoc'
-             
       end
       format.svg do
         diagram = Mirco::ChannelDiagram.new(@channel)
