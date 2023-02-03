@@ -27,6 +27,7 @@
     <td><%= ( @channel.exportData || "may be missing if version < 3.9") %></td>
   </tr>
 
+  <% if @channel.has_attachment_handler? %>
   <tr>
     <th><%= t('attributes.attachment_handler')%>:</th>
     <td>
@@ -35,6 +36,7 @@
       </pre>
     </td>
   </tr>
+  <% end %>
 
   <tr>
     <th><%= t('attributes.sourceConnector')%>:</th>

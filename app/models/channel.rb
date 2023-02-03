@@ -67,6 +67,14 @@ class Channel < ApplicationRecord
     !enabled
   end
 
+  def has_attachment_handler?
+    begin
+      !properties['properties']['attachmentProperties']['properties'].nil?
+    rescue
+      false
+    end
+  end
+
   private
   def check_enabled
     if exportData.present? && exportData['metadata'].present? && exportData['metadata']['enabled'] == 'false'
