@@ -1,11 +1,9 @@
 == <%= mc.meta_data_id %>: <%= mc.name %>
-* <%= t(mc.enabled, scope: 'enabled') %>
-* <%= mc.transportName %>
+=== <%= mc.transportName %> / <%= t(mc.enabled, scope: 'enabled') %>
 
 <% if mc.descriptor.any? %>
+[cols="1,3"]
 |===
-|key |value
-
 <% mc.descriptor.each do |k,v| %>
 | <%= k %>
 | <%= 
