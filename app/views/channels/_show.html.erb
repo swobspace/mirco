@@ -22,10 +22,14 @@
     <td><%= @channel.revision %></td>
   </tr>
 
+  <% unless @channel.exportData.nil? %>
   <tr>
     <th><%= t('attributes.exportData')%>:</th>
-    <td><%= ( @channel.exportData || "may be missing if version < 3.9") %></td>
+    <td>
+      <pre><%= render HashToYamlComponent.new(hash: @channel.exportData) %></pre>
+    </td>
   </tr>
+  <% end %>
 
   <% if @channel.has_attachment_handler? %>
   <tr>

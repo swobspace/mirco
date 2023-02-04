@@ -13,9 +13,13 @@
 <%= @channel.revision %>
 
 <%= t('attributes.exportData')%>::
-<%= ( @channel.exportData || "may be missing if version < 3.9") %>
+
+----
+<%= render HashToYamlComponent.new(hash: @channel.exportData) %>
+----
 
 <%= t('attributes.attachment_handler')%>::
+
 <%= render Channel::AttachmentHandlerComponent.new(channel: @channel) %>
 
 // Source

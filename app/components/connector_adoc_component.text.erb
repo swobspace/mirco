@@ -10,7 +10,7 @@
 | <%= k %>
 | <%= 
     if v.kind_of? Array
-      v[1]
+      "xref:./#{v[0]}.adoc[#{v[0]}]"
     else
       v
     end
