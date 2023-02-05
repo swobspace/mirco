@@ -3,7 +3,7 @@ class ServerZip
 
   def initialize(server, options = {})
     @server = server
-    @tmpfile = File.join(Rails.root, 'tmp', 'zip', SecureRandom.hex(32))
+    @tmpfile = File.join(Rails.root, 'tmp', 'zip', "server-#{server.id}.zip")
   end
 
   def pack
