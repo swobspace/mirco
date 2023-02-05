@@ -4,7 +4,7 @@ module Mirco
   class ChannelDiagram < Diagram
     def initialize(channel, _options = {})
       @channel = channel
-      @channels =_options.fetch(:channels, [@channel])
+      @channels =_options.fetch(:channels) { Array(@channel) + @channel.subchannels }
     end
 
     def render_puml
