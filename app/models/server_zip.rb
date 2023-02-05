@@ -5,15 +5,19 @@ class ServerZip
 
   def initialize(server, options = {})
     @server = server
-    @tmpfile = File.join(Rails.root, 'tmp', 'zip', "server-#{server.id}.zip")
+    @tmpfile = File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
+    if File.exists?(@tmpfile)
+      File.delete(@tmfile) 
+    end
   end
 
   def pack
     Zip::File.open(tmpfile, create: true) do |zfile|
       add_info(zfile, server)
+      add_server_diagram(zfile, server, 'images')
       server.channels.each do |channel|
-        adoc_dir = "pages"
-        add_adoc(zfile, channel, adoc_dir)
+        add_adoc(zfile, channel, 'pages')
+        add_channel_diagram(zfile, channel, 'images')
       end
     end
   end
@@ -38,12 +42,23 @@ private
     end
   end
 
+  def add_server_diagram(zip, server, dir)
+    name = [dir, "#{server.name}.svg"].join("/")
+    diagram = Mirco::ServerDiagram.new(server)
+    zip.add(name, diagram.image(:svg))
+  end
+
+  def add_channel_diagram(zip, channel, dir)
+    name = [dir, "#{channel.name}.svg"].join("/")
+    diagram = Mirco::ChannelDiagram.new(channel)
+    zip.add(name, diagram.image(:svg))
+  end
+
   def add_info(zip, server)
     name = "#{server.name}"
     zip.get_output_stream(name) do |f|
       f.puts "#{server.to_yaml}"
       f.close(false)
     end
-
   end
 end
