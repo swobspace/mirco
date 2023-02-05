@@ -56,6 +56,19 @@ class Channel < ApplicationRecord
                                 end.map { |c| Mirco::Connector.new(c, channel: self) }
   end
 
+  def subchannels(channel = self)
+    channels = []
+    channel.destination_connectors.map do |conn|
+      if conn.destination_channel_id
+        ch = Channel.find(conn.destination_channel_id)
+        next if ch.disabled?
+        channels << ch.subchannels
+        channels << ch
+      end
+    end
+    channels.compact.flatten
+  end
+
   def puml
     {
       alias: "ch_#{id}",

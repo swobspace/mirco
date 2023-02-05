@@ -4,11 +4,12 @@ module Mirco
   class ChannelDiagram < Diagram
     def initialize(channel, _options = {})
       @channel = channel
+      @channels =_options.fetch(:channels, [@channel])
     end
 
     def render_puml
       ApplicationController.render(
-        assigns: { channel: channel },
+        assigns: { channels: channels },
         template: 'channels/show',
         formats: [:puml],
         layout: false
@@ -25,6 +26,6 @@ module Mirco
 
     private
 
-    attr_reader :channel
+    attr_reader :channel, :channels
   end
 end
