@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ServersController < ApplicationController
-  before_action :set_server, only: %i[show edit update update_properties destroy]
+  before_action :set_server, only: %i[show edit update update_properties destroy doku]
   before_action :add_breadcrumb_show, only: [:show]
 
   # GET /servers
@@ -24,6 +24,15 @@ class ServersController < ApplicationController
                                        type: 'image/svg+xml'
       end
     end
+  end
+
+  def doku
+    zfile = ServerZip.new(@server)
+    zfile.pack
+    send_file zfile.tmpfile,
+      filename: "#{@server.name}.zip",
+      disposition: 'attachment',
+      type: 'application/zip'
   end
 
   # GET /servers/new

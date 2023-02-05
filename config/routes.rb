@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
   resources :servers do
     member do
+      get :doku
       post :update_properties
     end
     resources :server_configurations, only: %i[index show new create destroy]

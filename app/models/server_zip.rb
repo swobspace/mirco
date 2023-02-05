@@ -1,3 +1,5 @@
+require 'zip'
+
 class ServerZip
   attr_reader :server, :tmpfile
 

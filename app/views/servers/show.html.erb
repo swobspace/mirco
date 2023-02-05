@@ -48,6 +48,7 @@
         <h4 class="title"><%= t('activerecord.models.server') %></h4>
         <div role="toolbar">
           <%= back_link %>
+          <%= doku_link(@server) %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary me-1') %>
 
           <%= edit_link(@server) %>

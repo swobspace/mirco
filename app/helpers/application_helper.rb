@@ -20,9 +20,20 @@ module ApplicationHelper
   end
 
   def asciidoc_link(obj)
-    link_to raw(%Q[<i class="fas fa-fw fa-file-code"></i>]),
-            polymorphic_path(obj, format: :adoc),
-            class: 'btn btn-secondary me-1',
-            title: 'Asciidoc'
+    if can? :read, obj
+      link_to raw(%Q[<i class="fas fa-fw fa-file-code"></i>]),
+              polymorphic_path(obj, format: :adoc),
+              class: 'btn btn-secondary me-1',
+              title: 'Asciidoc'
+    end
+  end
+
+  def doku_link(obj)
+    if can? :doku, obj
+      link_to raw(%Q[<i class="fas fa-fw fa-file-code"></i>]),
+              polymorphic_path([:doku, obj]),
+              class: 'btn btn-secondary me-1',
+              title: 'Documentation'
+    end
   end
 end
