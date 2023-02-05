@@ -40,6 +40,7 @@
         <% end %>
         <div role="toolbar">
           <%= back_link %>
+          <%= asciidoc_link(@channel) %>
           <%= link_to(
                 raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
                 channel_statistic_path(@channel.channel_statistic),

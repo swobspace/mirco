@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe '/channels', type: :request do
+  let(:properties) do
+    YAML.load_file(
+      Rails.root.join('spec', 'fixtures', 'files', 'channel_11.yaml')
+    )
+  end
+  let(:channel) { FactoryBot.create(:channel, properties: properties) }
+
   let!(:server) do
     FactoryBot.create(:server,
                       api_url: ENV['API_URL'],
@@ -30,6 +37,27 @@ RSpec.describe '/channels', type: :request do
     it 'renders a successful response' do
       channel = Channel.create! valid_attributes
       get channel_url(channel)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /show.adoc' do
+    it 'renders a successful response' do
+      get channel_url(channel, format: :adoc)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /show.puml' do
+    it 'renders a successful response' do
+      get channel_url(channel, format: :puml)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /show.svg' do
+    it 'renders a successful response' do
+      get channel_url(channel, format: :svg)
       expect(response).to be_successful
     end
   end

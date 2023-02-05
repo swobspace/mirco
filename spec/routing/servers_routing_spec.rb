@@ -16,6 +16,10 @@ RSpec.describe ServersController, type: :routing do
       expect(get: '/servers/1').to route_to('servers#show', id: '1')
     end
 
+    it 'routes to #doku' do
+      expect(get: '/servers/1/doku').to route_to('servers#doku', id: '1')
+    end
+
     it 'routes to #edit' do
       expect(get: '/servers/1/edit').to route_to('servers#edit', id: '1')
     end

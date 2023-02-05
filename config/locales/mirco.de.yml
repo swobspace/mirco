@@ -71,6 +71,7 @@ de:
     api_password: API Passwort
     api_user_has_full_access: Vollzugriff
     api_verify_ssl: SSL-Prüfung
+    attachment_handler: AttachmentHandler
     attrib: Attribut
     channel: Channel
     channel_counters: Channel Counter

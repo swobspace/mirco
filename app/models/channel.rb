@@ -56,6 +56,19 @@ class Channel < ApplicationRecord
                                 end.map { |c| Mirco::Connector.new(c, channel: self) }
   end
 
+  def subchannels(channel = self)
+    channels = []
+    channel.destination_connectors.map do |conn|
+      if conn.destination_channel_id
+        ch = Channel.find(conn.destination_channel_id)
+        next if ch.disabled?
+        channels << ch.subchannels
+        channels << ch
+      end
+    end
+    channels.compact.flatten
+  end
+
   def puml
     {
       alias: "ch_#{id}",
@@ -65,6 +78,14 @@ class Channel < ApplicationRecord
 
   def disabled?
     !enabled
+  end
+
+  def has_attachment_handler?
+    begin
+      !properties['properties']['attachmentProperties']['properties'].nil?
+    rescue
+      false
+    end
   end
 
   private

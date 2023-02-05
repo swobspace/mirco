@@ -1,0 +1,7 @@
+<%= type %> / <%= version %> / <%= classname %>
+----
+<% entries.each do |e| %>
+>>> <%= e['string'][0]&.html_safe %> <<<
+  <%= e['string'][1]&.html_safe %>
+<% end %>
+----

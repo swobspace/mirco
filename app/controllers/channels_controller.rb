@@ -23,10 +23,24 @@ class ChannelsController < ApplicationController
   def show
     respond_with(@channel) do |format|
       format.puml do
+        # add subchannels for chart
+        @channels = [@channel]
+        @channels += @channel.subchannels
         render format: :puml, layout: false
       end
+      format.adoc do
+        # render format: :adoc, layout: false
+        adoc = render_to_string format: :adoc, layout: false
+        send_data adoc,
+                  filename: "#{@channel.name}.adoc",
+                  disposition: :attachment,
+                  type: 'text/asciidoc'
+      end
       format.svg do
-        diagram = Mirco::ChannelDiagram.new(@channel)
+        # add subchannels for chart
+        @channels = [@channel]
+        @channels += @channel.subchannels
+        diagram = Mirco::ChannelDiagram.new(@channel, channels: @channels)
         send_file diagram.image(:svg), filename: "#{@channel.server.name}-#{@channel.name}.svg",
                                        disposition: 'inline',
                                        type: 'image/svg+xml'

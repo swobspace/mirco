@@ -1,0 +1,34 @@
+= Channel <%= @channel %>
+
+<%= t('attributes.description')%>::
+<%= @channel.description %>
+
+<%= t('attributes.uid')%>::
+<%= @channel.uid %>
+
+<%= t('attributes.version')%>::
+<%= @channel.version %>
+
+<%= t('attributes.revision')%>::
+<%= @channel.revision %>
+
+<%= t('attributes.exportData')%>::
+
+----
+<%= render HashToYamlComponent.new(hash: @channel.exportData) %>
+----
+
+<%= t('attributes.attachment_handler')%>::
+
+<%= render Channel::AttachmentHandlerComponent.new(channel: @channel) %>
+
+// Source
+
+<%= render ConnectorAdocComponent.new(connector: @channel.source_connector) %>
+
+// Destinations
+
+<%= render ConnectorAdocComponent.with_collection(@channel.destination_connectors) %>
+
+
+
