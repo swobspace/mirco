@@ -101,5 +101,8 @@ gem "ed25519"
 gem "bcrypt_pbkdf"
 
 # workaround
-gem "mail"
+#gem "mail"
+
+# gem 'rubyzip', '~> 3.0'
+gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
