@@ -6,6 +6,8 @@
 ----
 * Channel diagramm: subchannels now included
 * Create channel asciidoc page for documentation
+* Zip server diagram, channel diagrams and channel asciidoc pages 
+  into on documentation archive
 ----
 
 === 1.1.4 / 2023-01-15
