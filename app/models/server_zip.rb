@@ -7,7 +7,7 @@ class ServerZip
     @server = server
     @tmpfile = File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
     if File.exists?(@tmpfile)
-      File.delete(@tmfile) 
+      File.delete(@tmpfile)
     end
   end
 
@@ -29,7 +29,7 @@ class ServerZip
 private
 
   def add_adoc(zip, channel, dir)
-    name = [dir, "#{channel.name}.adoc"].join("/")
+    name = [dir, "#{channel.name}.adoc"].compact.join("/")
     zip.get_output_stream(name) do |f|
       rendered = ApplicationController.render(
                    assigns: {channel: channel},
@@ -43,13 +43,13 @@ private
   end
 
   def add_server_diagram(zip, server, dir)
-    name = [dir, "#{server.name}.svg"].join("/")
+    name = [dir, "#{server.name}.svg"].compact.join("/")
     diagram = Mirco::ServerDiagram.new(server)
     zip.add(name, diagram.image(:svg))
   end
 
   def add_channel_diagram(zip, channel, dir)
-    name = [dir, "#{channel.name}.svg"].join("/")
+    name = [dir, "#{channel.name}.svg"].compact.join("/")
     diagram = Mirco::ChannelDiagram.new(channel)
     zip.add(name, diagram.image(:svg))
   end
