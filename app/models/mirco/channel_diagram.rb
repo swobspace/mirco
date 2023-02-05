@@ -9,7 +9,7 @@ module Mirco
 
     def render_puml
       ApplicationController.render(
-        assigns: { channels: channels },
+        assigns: { channel: channel, channels: channels },
         template: 'channels/show',
         formats: [:puml],
         layout: false
