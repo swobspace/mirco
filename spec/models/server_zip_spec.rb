@@ -10,8 +10,8 @@ RSpec.describe ServerZip, type: :model do
   end
   let(:server)  { FactoryBot.create(:server) }
   let!(:channel) do
-    FactoryBot.create(:channel, 
-      properties: properties, 
+    FactoryBot.create(:channel,
+      properties: properties,
       server: server
     )
   end
@@ -32,11 +32,13 @@ RSpec.describe ServerZip, type: :model do
       expect(mimetype).to match(/application\/zip; charset=binary/)
     end
 
-    it { expect(zipfile_list).to contain_exactly( 
+    it { expect(zipfile_list).to contain_exactly(
                                    server.name,
-                                   "pages/#{channel.name}.adoc"
-         ) 
-       } 
+                                   "images/#{server.name}.svg",
+                                   "pages/#{channel.name}.adoc",
+                                   "images/#{channel.name}.svg",
+         )
+       }
     # it { puts zipfile_list }
     # it { puts zipfile.tmpfile.to_s }
     # it { puts server.channels.size }
