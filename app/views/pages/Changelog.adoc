@@ -1,6 +1,13 @@
 = Changelog
 
 
+=== 1.1.5-dev / 2023-02-05
+
+----
+* Channel diagramm: subchannels now included
+* Create channel asciidoc page for documentation
+----
+
 === 1.1.4 / 2023-01-15
 
 ----
