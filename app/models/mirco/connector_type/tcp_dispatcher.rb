@@ -10,7 +10,8 @@ module Mirco
           "localAddress": properties['localAddress'],
           "sendTimeout": properties['sendTimeout'],
           "responseTimeout": properties['responseTimeout'],
-          "keepConnectionOpen": properties['keepConnectionOpen']
+          "keepConnectionOpen": properties['keepConnectionOpen'],
+          "charsetEncoding": properties['charsetEncoding']
         }
       end
 

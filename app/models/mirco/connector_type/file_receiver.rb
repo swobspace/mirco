@@ -10,7 +10,8 @@ module Mirco
           "regex": properties['regex'],
           "binary": properties['binary'],
           "afterProcessingAction": properties['afterProcessingAction'],
-          "fileFilter": file_filter
+          "fileFilter": file_filter,
+          "charsetEncoding": properties['charsetEncoding']
         }
       end
 
