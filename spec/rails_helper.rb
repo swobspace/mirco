@@ -22,7 +22,7 @@ Capybara.register_driver :mychrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    capabilities: [options]
+    options: options
   )
 end
 
