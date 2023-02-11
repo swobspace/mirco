@@ -1,7 +1,7 @@
 = Changelog
 
 
-=== 1.1.6-dev / 2023-02-11
+=== 1.1.6 / 2023-02-11
 
 ----
 * Channels#show: display charsetEncoding if available
