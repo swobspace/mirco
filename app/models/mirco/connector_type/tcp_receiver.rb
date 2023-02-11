@@ -9,7 +9,8 @@ module Mirco
           "reconnectInterval": properties['reconnectInterval'],
           "keepConnectionOpen": properties['keepConnectionOpen'],
           "listenerIP": listener_ip,
-          "listenerPort": listener_port
+          "listenerPort": listener_port,
+          "charsetEncoding": properties['charsetEncoding']
         }
       end
 

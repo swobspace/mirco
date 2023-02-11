@@ -1,4 +1,4 @@
-= Channel <%= @channel %>
+= Channel <%= @channel %> <%= "(DISABLED)" if @channel.disabled? %>
 
 <%= t('attributes.description')%>::
 <%= @channel.description %>

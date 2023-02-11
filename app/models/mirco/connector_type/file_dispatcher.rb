@@ -7,7 +7,8 @@ module Mirco
         {
           "host": properties['host'],
           "scheme": properties['scheme'],
-          "outputPattern": properties['outputPattern']
+          "outputPattern": properties['outputPattern'],
+          "charsetEncoding": properties['charsetEncoding']
         }
       end
 
