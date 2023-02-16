@@ -31,7 +31,7 @@ Rails.application.configure do
     elsif Rails.const_defined?("Console")
       config.good_job[:execution_mode] = :external
     elsif Rails.const_defined?("Server")
-      config.good_job[:execution_mode] = :async_server
+      config.good_job[:execution_mode] = :external
     end
   end
 end
