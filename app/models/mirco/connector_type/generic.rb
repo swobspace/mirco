@@ -7,8 +7,6 @@ module Mirco
 
       def initialize(properties:, channel:)
         @properties = properties || {}
-        raise ArgumentError, 'needs properties hash from source or destination connector' if properties['class'].empty?
-
         @channel = channel
       end
 
