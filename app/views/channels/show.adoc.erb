@@ -18,6 +18,21 @@
 <%= render HashToYamlComponent.new(hash: @channel.exportData) %>
 ----
 
+<%= t('attributes.preprocessingScript')%>::
+
+[source,javascript]
+----
+<%= @channel.properties['preprocessingScript'] %>
+----
+
+<%= t('attributes.postprocessingScript')%>::
+
+[source,javascript]
+----
+<%= @channel.properties['postprocessingScript'] %>
+----
+
+
 <%= t('attributes.attachment_handler')%>::
 
 <%= render Channel::AttachmentHandlerComponent.new(channel: @channel) %>

@@ -31,6 +31,24 @@
   </tr>
   <% end %>
 
+  <% unless @channel.properties['preprocessingScript'].nil? %>
+  <tr>
+    <th><%= t('attributes.preprocessingScript')%>:</th>
+    <td>
+      <pre><%= @channel.properties['preprocessingScript'] %></pre>
+    </td>
+  </tr>
+  <% end %>
+
+  <% unless @channel.properties['postprocessingScript'].nil? %>
+  <tr>
+    <th><%= t('attributes.postprocessingScript')%>:</th>
+    <td>
+      <pre><%= @channel.properties['postprocessingScript'] %></pre>
+    </td>
+  </tr>
+  <% end %>
+
   <% if @channel.has_attachment_handler? %>
   <tr>
     <th><%= t('attributes.attachment_handler')%>:</th>
