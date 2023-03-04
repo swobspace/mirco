@@ -75,3 +75,5 @@ config/deploy-config.yml
 !/app/assets/builds/.keep
 
 /config/credentials/production.key
+
+rspec.log
