@@ -1,4 +1,5 @@
 class Host < ApplicationRecord
+  include HostConcerns
   # -- associations
   belongs_to :location
   belongs_to :software_group

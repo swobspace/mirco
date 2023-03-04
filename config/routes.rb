@@ -3,6 +3,9 @@
 Rails.application.routes.draw do
   resources :escalation_levels, except: [:new, :create]
   resources :hosts do
+    member do
+      get :ping
+    end
     resources :software_interfaces, module: :hosts
   end
   resources :software_groups do

@@ -1,5 +1,9 @@
 <%= render 'shared/turbo-cache-control' %>
 
+<div class="row mt-2">
+<%= turbo_frame_tag "host_#{@server.host.id}_ping", src: ping_host_path(@server.host) %>
+</div>
+
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
@@ -81,7 +85,8 @@
 
         <tr>
           <th><%= t('attributes.host')%>:</th>
-          <td><%= link_to @server.host, host_path(@server.host) %></td>
+          <td><%= link_to @server.host, host_path(@server.host) %>
+          </td>
         </tr>
 
         <tr>
@@ -322,10 +327,8 @@
     </div>
   </div>
  </div>
-
-
-
 </div>
+
 <div class="row mt-2">
   <div role="toolbar">
     <%= new_link Server %>

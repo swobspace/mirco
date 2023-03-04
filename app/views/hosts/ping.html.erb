@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "host_#{@host.id}_ping" do %>
+  <%= render HostPingComponent.new(host: @host) %>
+<% end %>

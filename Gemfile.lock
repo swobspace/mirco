@@ -273,6 +273,7 @@ GEM
       date
       net-protocol
     net-ldap (0.17.1)
+    net-ping (2.0.8)
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.1)
@@ -487,6 +488,7 @@ DEPENDENCIES
   listen (~> 3.3)
   lockbox
   net-http
+  net-ping
   pg (~> 1.1)
   pp
   puma (~> 6.0)

@@ -1,9 +1,12 @@
 = Changelog
 
 
-=== 1.1.7-dev / 2023-02-11
+=== 1.2.0 / 2023-03-04
 
 ----
+* Channel statistics: add filter recent errors
+* Server: show connector urls (new tab)
+* add preprocessing/postprocessing Scripts to channels#show
 ----
 
 === 1.1.6 / 2023-02-11

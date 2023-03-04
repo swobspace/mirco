@@ -14,6 +14,10 @@ RSpec.describe HostsController, type: :routing do
       expect(get: "/hosts/1").to route_to("hosts#show", id: "1")
     end
 
+    it "routes to #ping" do
+      expect(get: "/hosts/1/ping").to route_to("hosts#ping", id: "1")
+    end
+
     it "routes to #edit" do
       expect(get: "/hosts/1/edit").to route_to("hosts#edit", id: "1")
     end
