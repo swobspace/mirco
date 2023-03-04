@@ -33,6 +33,8 @@ de:
     search_software_connections: Suche Verbindungen
     ignored_connections: Ignorierte Verbindungen
     disabled_channels: Deaktivierte Channels
+    sourceConnectors: Source Connectors
+    destinationConnectors: Destination Connectors
 
   activerecord:
     models:
@@ -81,6 +83,7 @@ de:
     comment: Kommentar
     condition: Zustand
     connector: Connector
+    connectors: Connectoren
     created_at: angelegt am
     deployScript: Deploy Script
     description: Beschreibung
