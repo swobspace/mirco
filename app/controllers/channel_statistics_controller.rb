@@ -9,7 +9,8 @@ class ChannelStatisticsController < ApplicationController
     if @server
       @channel_statistics = @server.channel_statistics
     elsif params['recent_errors'].present?
-      @channel_statistics = ChannelStatistic.where("last_message_error_at > ?", 
+      @channel_statistics = ChannelStatistic.where('error > 0')
+                                            .where("last_message_error_at > ?", 
                                                    7.days.before(Date.current))
     else
       @channel_statistics = ChannelStatistic.all
