@@ -1,5 +1,9 @@
 <%= render 'shared/turbo-cache-control' %>
 
+<div class="row mt-2">
+<%= turbo_frame_tag "host_#{@server.host.id}_ping", src: ping_host_path(@server.host) %>
+</div>
+
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
@@ -22,6 +26,11 @@
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab" aria-controls="statistics" aria-selected="false">
       <%= t('controller.channel_statistics') %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="connectors-tab" data-bs-toggle="tab" data-bs-target="#connectors" type="button" role="tab" aria-controls="connectors" aria-selected="false">
+      <%= t('attributes.connectors') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
@@ -76,7 +85,8 @@
 
         <tr>
           <th><%= t('attributes.host')%>:</th>
-          <td><%= link_to @server.host, host_path(@server.host) %></td>
+          <td><%= link_to @server.host, host_path(@server.host) %>
+          </td>
         </tr>
 
         <tr>
@@ -218,6 +228,36 @@
   </div>
  </div>
 
+ <div class="tab-pane fade" id="connectors" role="tabpanel" aria-labelledby="properties-tab">
+  <div class="card mt-2">
+    <div class="card-header">
+      <h4 class="title"><%= t('mirco.sourceConnectors') %></h4>
+    </div>
+    <div class="card-body">
+      <%= render 'connectors', 
+                 connectors: @server.channels
+                                    .map{|c| c.source_connector}
+                                    .reject{|conn| conn.url.nil?}
+      %>
+    </div>
+  </div>
+
+  <div class="card mt-2">
+    <div class="card-header">
+      <h4 class="title"><%= t('mirco.destinationConnectors') %></h4>
+    </div>
+    <div class="card-body">
+      <%= render 'connectors', 
+                 connectors: @server.channels
+                                    .map{|c| c.destination_connectors}
+                                    .flatten
+                                    .reject{|conn| conn.url.nil?}
+      %>
+
+    </div>
+  </div>
+ </div>
+
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
   <div class="card mt-2">
     <div class="card-header">
@@ -287,10 +327,8 @@
     </div>
   </div>
  </div>
-
-
-
 </div>
+
 <div class="row mt-2">
   <div role="toolbar">
     <%= new_link Server %>

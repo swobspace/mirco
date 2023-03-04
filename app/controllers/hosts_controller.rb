@@ -17,6 +17,11 @@ class HostsController < ApplicationController
     respond_with(@host)
   end
 
+  def ping
+    respond_with(@host) do |format|
+    end
+  end
+
   # GET /hosts/new
   def new
     if @hostable

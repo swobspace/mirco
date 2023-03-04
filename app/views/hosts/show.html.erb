@@ -17,48 +17,56 @@
     </div>
 
     <div class="card-body">
-      <table class="table table-sm table-borderless">
+      <div class="row">
+        <div class="col-sm-6">
+          <table class="table table-sm table-borderless">
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
-          <td><%= link_to @host.location, @host.location %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
+              <td><%= link_to @host.location, @host.location %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.software_group')%>:</th>
-          <td><%= link_to @host.software_group, @host.software_group %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.software_group')%>:</th>
+              <td><%= link_to @host.software_group, @host.software_group %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
-          <td><%= @host.name %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
+              <td><%= @host.name %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.ipaddress')%>:</th>
-          <td><%= @host.ipaddress %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.ipaddress')%>:</th>
+              <td><%= @host.ipaddress %></td>
+            </tr>
 
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
-          <td><%= @host.description %></td>
-        </tr>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.description')%>:</th>
+              <td><%= @host.description %></td>
+            </tr>
 
 
-        <% if @host.servers.any? %>
-        <tr>
-          <th class="w-10 pe-3"><%= t('attributes.server')%>:</th>
-          <td>
-            <% @host.servers.each do |server| %>
-            <%= render 'hosts/server', server: server %>
+            <% if @host.servers.any? %>
+            <tr>
+              <th class="w-10 pe-3"><%= t('attributes.server')%>:</th>
+              <td>
+                <% @host.servers.each do |server| %>
+                <%= render 'hosts/server', server: server %>
+                <% end %>
+              </td>
+            </tr>
             <% end %>
-          </td>
-        </tr>
-        <% end %>
-
-
-      </table>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <%= turbo_frame_tag "host_#{@host.id}_ping", src: ping_host_path(@host) do %>
+            <%= image_tag 'process-working.png' %>
+          <% end %>
+        </div>
+      </div>
     </div>
+
   </div>
 
   <%= back_link %>

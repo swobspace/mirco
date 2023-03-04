@@ -1,0 +1,11 @@
+<div class="alert <%= alert_class %>" role="alert">
+  <div class="d-flex justify-content-between">
+    <span>
+      <%= link_to ping_host_path(host) do %>
+        <i class="fas fa-lg fa-fw fa-redo-alt"></i>
+      <% end %>
+      <%= alert_text %>
+    </span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
