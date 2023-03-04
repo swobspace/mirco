@@ -6,11 +6,14 @@ class ChannelStatisticsController < ApplicationController
 
   # GET /channel_statistics
   def index
-    @channel_statistics = if @server
-                            @server.channel_statistics
-                          else
-                            ChannelStatistic.all
-                          end
+    if @server
+      @channel_statistics = @server.channel_statistics
+    elsif params['recent_errors'].present?
+      @channel_statistics = ChannelStatistic.where("last_message_error_at > ?", 
+                                                   7.days.before(Date.current))
+    else
+      @channel_statistics = ChannelStatistic.all
+    end
     respond_with(@channel_statistics)
   end
 

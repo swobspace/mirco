@@ -35,6 +35,7 @@ de:
     disabled_channels: Deaktivierte Channels
     sourceConnectors: Source Connectors
     destinationConnectors: Destination Connectors
+    recent_errors: Letzte Fehler
 
   activerecord:
     models:
