@@ -17,10 +17,10 @@ class ServerZip
 
   def pack
     Zip::File.open(tmpfile, create: true) do |zfile|
-      add_info(zfile, server, examplesdir)
+      add_server_adoc(zfile, server, pagesdir)
       add_server_diagram(zfile, server, imagesdir)
       server.channels.each do |channel|
-        add_adoc(zfile, channel, pagesdir)
+        add_channel_adoc(zfile, channel, pagesdir)
         add_channel_diagram(zfile, channel, imagesdir)
       end
     end
@@ -45,7 +45,21 @@ private
     options.fetch(:examplesdir) {"examples/#{hostname}"}
   end
 
-  def add_adoc(zip, channel, dir)
+  def add_server_adoc(zip, server, dir)
+    name = [dir, "#{server.name}.adoc"].compact.join("/")
+    zip.get_output_stream(name) do |f|
+      rendered = ApplicationController.render(
+                   assigns: {server: server},
+                   template: 'servers/show',
+                   formats: [:adoc],
+                   layout: false
+                 )
+      f.write rendered
+      f.close(false)
+    end
+  end
+
+  def add_channel_adoc(zip, channel, dir)
     name = [dir, "#{channel.name}.adoc"].compact.join("/")
     zip.get_output_stream(name) do |f|
       rendered = ApplicationController.render(
@@ -71,11 +85,4 @@ private
     zip.add(name, diagram.image(:svg))
   end
 
-  def add_info(zip, server, dir)
-    name = [dir, "#{server.name}.yml"].compact.join("/")
-    zip.get_output_stream(name) do |f|
-      f.puts "#{server.to_yaml}"
-      f.close(false)
-    end
-  end
 end
