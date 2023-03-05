@@ -237,7 +237,7 @@
       <%= render 'connectors', 
                  connectors: @server.channels
                                     .map{|c| c.source_connector}
-                                    .reject{|conn| conn.url.nil?}
+                                    .reject{|conn| conn&.url.nil?}
       %>
     </div>
   </div>
@@ -251,7 +251,7 @@
                  connectors: @server.channels
                                     .map{|c| c.destination_connectors}
                                     .flatten
-                                    .reject{|conn| conn.url.nil?}
+                                    .reject{|conn| conn&.url.nil?}
       %>
 
     </div>

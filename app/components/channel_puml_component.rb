@@ -21,4 +21,8 @@ class ChannelPumlComponent < ViewComponent::Base
   def destinations
     @channel.destination_connectors.reject { |c| c.enabled == 'false' }
   end
+
+  def render?
+    channel.present? && source.present? && destinations.any?
+  end
 end
