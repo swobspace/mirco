@@ -1,23 +1,27 @@
 require 'zip'
 
 class ServerZip
-  attr_reader :server, :tmpfile
+  attr_reader :server, :tmpfile, :hostname
 
   def initialize(server, options = {})
+    @options = options.symbolize_keys
     @server = server
-    @tmpfile = File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
+    @tmpfile = options.fetch(:outfile) {
+                 File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
+               }
     if File.exists?(@tmpfile)
       File.delete(@tmpfile)
     end
+    @hostname = (@server.hostname || @server.name).gsub(/[^A-Za-z.0-9_-]/, '')
   end
 
   def pack
     Zip::File.open(tmpfile, create: true) do |zfile|
-      add_info(zfile, server)
-      add_server_diagram(zfile, server, 'images')
+      add_info(zfile, server, examplesdir)
+      add_server_diagram(zfile, server, imagesdir)
       server.channels.each do |channel|
-        add_adoc(zfile, channel, 'pages')
-        add_channel_diagram(zfile, channel, 'images')
+        add_adoc(zfile, channel, pagesdir)
+        add_channel_diagram(zfile, channel, imagesdir)
       end
     end
   end
@@ -27,6 +31,19 @@ class ServerZip
   end
 
 private
+  attr_reader :options
+
+  def imagesdir
+    options.fetch(:imagesdir) {"images/#{hostname}"}
+  end
+
+  def pagesdir
+    options.fetch(:pagesdir) {"pages/#{hostname}"}
+  end
+
+  def examplesdir
+    options.fetch(:examplesdir) {"examples/#{hostname}"}
+  end
 
   def add_adoc(zip, channel, dir)
     name = [dir, "#{channel.name}.adoc"].compact.join("/")
@@ -54,8 +71,8 @@ private
     zip.add(name, diagram.image(:svg))
   end
 
-  def add_info(zip, server)
-    name = "#{server.name}"
+  def add_info(zip, server, dir)
+    name = [dir, "#{server.name}.yml"].compact.join("/")
     zip.get_output_stream(name) do |f|
       f.puts "#{server.to_yaml}"
       f.close(false)
