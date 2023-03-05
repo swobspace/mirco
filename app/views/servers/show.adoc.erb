@@ -13,3 +13,25 @@ image::<%= @server.hostname %>/<%= @server.name %>.svg[link={imagesdir}/<%= @ser
 * xref:<%= @server.hostname %>/<%= ch.name %>.adoc[]
   (link:{imagesdir}/<%= @server.hostname %>/<%= ch.name %>.svg[Diagramm])
 <% end %>
+
+== Connectoren
+
+=== Source Connectors
+
+<%= render 'servers/connectors',
+           connectors: @server.channels
+                              .map{|c| c.source_connector}
+                              .reject{|conn| conn&.url.nil?}
+ %>
+
+
+
+=== Destination Connectors
+
+<%= render 'servers/connectors',
+           connectors: @server.channels
+                              .map{|c| c.destination_connectors}
+                              .flatten
+                              .reject{|conn| conn&.url.nil?}
+ %>
+
