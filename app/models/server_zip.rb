@@ -48,7 +48,7 @@ private
   def add_server_adoc(zip, server, dir)
     name = [dir, "#{server.name}.adoc"].compact.join("/")
     zip.get_output_stream(name) do |f|
-      rendered = ApplicationController.render(
+      rendered = myrenderer.render(
                    assigns: {server: server},
                    template: 'servers/show',
                    formats: [:adoc],
@@ -62,7 +62,7 @@ private
   def add_channel_adoc(zip, channel, dir)
     name = [dir, "#{channel.name}.adoc"].compact.join("/")
     zip.get_output_stream(name) do |f|
-      rendered = ApplicationController.render(
+      rendered = myrenderer.render(
                    assigns: {channel: channel},
                    template: 'channels/show',
                    formats: [:adoc],
@@ -85,4 +85,11 @@ private
     zip.add(name, diagram.image(:svg))
   end
 
+  def myrenderer
+    ApplicationController.renderer.with_defaults(
+      http_host: Mirco.host,
+      script_name: Mirco.script_name,
+      https: true
+    )
+  end
 end
