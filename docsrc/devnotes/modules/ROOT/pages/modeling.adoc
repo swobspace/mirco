@@ -176,3 +176,14 @@ bin/rails g scaffold EscalationLevel \
   max_critical:integer \
   --no-stylesheets --no-javascripts --no-helper
 ----
+
+== Model EscalationTime
+[source,sh]
+----
+bin/rails g scaffold EscalationTime \
+  escalation_level:belongs_to \
+  start_time:time \
+  end_time:time \
+  weekdays:integer \
+  --no-stylesheets --no-javascripts --no-helper
+----

@@ -3,6 +3,10 @@ top to bottom direction
 
 !theme mirco from .
 
+class User {
+  ...
+}
+
 class Location {
   ...
 }
@@ -98,6 +102,19 @@ class EscalationLevel {
   min_warning: integer
   max_warning: integer
   max_critical: integer
+  show_on_dashboard: boolean
+  notification_group_id
+}
+
+class EscalationTime {
+  escalation_level_id
+  start_time: time
+  end_time: time
+  weekdays: integer
+}
+
+class NotificationGroup {
+  name: string
 }
 
 Location "1" -- "*" Host
@@ -117,5 +134,8 @@ Server "1" -- "*" Note
 Channel "0..1" -- "*" Note
 ChannelStatistic "0..1" -- "*" Note
 ChannelStatistic "0..1" -- "*" EscalationLevel
+NotificationGroup "0..1" -- "*" EscalationLevel
+EscalationLevel "0..1" -- "*" EscalationTime
+User "*" -- "*" NotificationGroup
 
 @enduml
