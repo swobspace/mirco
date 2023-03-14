@@ -110,7 +110,7 @@ class EscalationTime {
   escalation_level_id
   start_time: time
   end_time: time
-  weekdays: integer
+  weekdays: integer, array:true
 }
 
 class NotificationGroup {
