@@ -1,0 +1,23 @@
+@startuml
+!theme mirco
+start
+:update channel statistic;
+if (attrib.valid?) then (no)
+  stop
+endif
+if (value.nil?) then (yes)
+  stop
+endif
+if (levels.empty?) then (yes)
+  stop
+endif
+if (escalation_times.present?) then (yes)
+  if (escalation_times.current?) then (no)
+    stop
+  endif
+else (no)
+endif
+:process thresholds;
+stop
+
+@enduml
