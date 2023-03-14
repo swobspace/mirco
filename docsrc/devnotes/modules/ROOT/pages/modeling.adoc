@@ -187,7 +187,7 @@ bin/rails g scaffold EscalationTime \
   start_time:time \
   end_time:time \
   weekdays:integer{array} \
-  --no-stylesheets --no-javascripts --no-helper
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
 ----
 
 == Model NotificationGroup
@@ -195,7 +195,7 @@ bin/rails g scaffold EscalationTime \
 ----
 bin/rails g scaffold NotificationGroup \
   name:string:index \
-  --no-stylesheets --no-javascripts --no-helper
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
 ----
 
 [source,sh]
