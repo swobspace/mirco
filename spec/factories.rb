@@ -44,6 +44,14 @@ FactoryBot.define do
 
   factory :escalation_level do
     association :escalatable, factory: :channel_statistic
+    association :notification_group
+  end
+
+  factory :escalation_time do
+    association :escalation_level
+    start_time { "00:00".to_time }
+    end_time { "24:00".to_time }
+    weekdays {[1,2,3,4,5]}
   end
 
   factory :host do
@@ -70,6 +78,10 @@ FactoryBot.define do
     association :user
     type { 'acknowledge' }
     message { 'some text' }
+  end
+
+  factory :notification_group do
+    name { generate(:aname) }
   end
 
   factory :server do

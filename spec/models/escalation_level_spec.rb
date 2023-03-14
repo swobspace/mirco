@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe EscalationLevel, type: :model do
+  let(:ng) { FactoryBot.create(:notification_group) }
   let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
 
   it { is_expected.to belong_to(:escalatable).optional }
+  it { is_expected.to belong_to(:notification_group) }
   it { is_expected.to validate_presence_of(:escalatable_id) }
   it { is_expected.to validate_presence_of(:escalatable_type) }
   it { is_expected.to validate_presence_of(:attrib) }
@@ -48,6 +50,7 @@ RSpec.describe EscalationLevel, type: :model do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
+            notification_group_id: ng.id,
             attrib: 'last_message_received_at',
             min_critical: -1440,
             min_warning: -240,
@@ -86,6 +89,7 @@ RSpec.describe EscalationLevel, type: :model do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
+             notification_group_id: ng.id,
               attrib: 'last_message_received_at',
               min_warning: -480,
             )
@@ -132,6 +136,7 @@ RSpec.describe EscalationLevel, type: :model do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
+            notification_group_id: ng.id,
             attrib: 'queued',
             max_warning: 10,
             max_critical: 50 
@@ -158,6 +163,7 @@ RSpec.describe EscalationLevel, type: :model do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
+              notification_group_id: ng.id,
               attrib: 'queued',
               max_warning: 5
             )
