@@ -49,8 +49,6 @@ FactoryBot.define do
 
   factory :escalation_time do
     association :escalation_level
-    start_time { "00:00".to_time }
-    end_time { "24:00".to_time }
     weekdays {[1,2,3,4,5]}
   end
 
