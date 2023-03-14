@@ -208,8 +208,8 @@ bin/rails g migration CreateJoinTableNotificationGroupWobauthUser \
 ----
 def change
   create_join_table :notification_group, :wobauth_user do |t|
-    t.index [:notification_group_id, :wobauth_user_id], name: 'notificationgroup_user'
-    t.index [:wobauth_user_id, :notification_group_id], name: 'user_notificationgroup'
+    t.index [:notification_group_id, :wobauth_user_id], name: 'idx_notificationgroup_user'
+    t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
   end
 end
 

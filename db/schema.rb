@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_113511) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_121259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -259,6 +259,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_113511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_notification_groups_on_name"
+  end
+
+  create_table "notification_groups_wobauth_users", id: false, force: :cascade do |t|
+    t.bigint "notification_group_id", null: false
+    t.bigint "wobauth_user_id", null: false
+    t.index ["notification_group_id", "wobauth_user_id"], name: "idx_notificationgroup_user"
+    t.index ["wobauth_user_id", "notification_group_id"], name: "idx_user_notificationgroup"
   end
 
   create_table "server_configurations", force: :cascade do |t|
