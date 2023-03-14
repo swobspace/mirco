@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_113511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -151,8 +151,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.integer "max_critical"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "notification_group_id", null: false
+    t.boolean "show_on_dashboard", default: false
     t.index ["attrib"], name: "index_escalation_levels_on_attrib"
     t.index ["escalatable_type", "escalatable_id"], name: "index_escalation_levels_on_escalatable"
+    t.index ["notification_group_id"], name: "index_escalation_levels_on_notification_group_id"
+    t.index ["show_on_dashboard"], name: "index_escalation_levels_on_show_on_dashboard"
+  end
+
+  create_table "escalation_times", force: :cascade do |t|
+    t.bigint "escalation_level_id", null: false
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "weekdays", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["escalation_level_id"], name: "index_escalation_times_on_escalation_level_id"
   end
 
   create_table "good_job_processes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -238,6 +252,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.index ["server_id"], name: "index_notes_on_server_id"
     t.index ["type"], name: "index_notes_on_type"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "notification_groups", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_notification_groups_on_name"
   end
 
   create_table "server_configurations", force: :cascade do |t|
@@ -390,6 +411,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
   add_foreign_key "channel_statistics", "channels"
   add_foreign_key "channel_statistics", "servers"
   add_foreign_key "channels", "servers"
+  add_foreign_key "escalation_levels", "notification_groups"
+  add_foreign_key "escalation_times", "escalation_levels"
   add_foreign_key "hosts", "locations"
   add_foreign_key "hosts", "software_groups"
   add_foreign_key "interface_connectors", "software_interfaces"
