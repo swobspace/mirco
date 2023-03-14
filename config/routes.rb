@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :escalation_times
   resources :notification_groups
   resources :escalation_levels, except: [:new, :create]
   resources :hosts do

@@ -1,0 +1,17 @@
+<%= simple_form_for(@escalation_time) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <%= form.association :escalation_level
+       %>
+    <%= form.input :start_time
+       %>
+    <%= form.input :end_time
+       %>
+    <%= form.input :weekdays
+       %>
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>

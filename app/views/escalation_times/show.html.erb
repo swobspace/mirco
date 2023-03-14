@@ -1,0 +1,45 @@
+<div class="card mb-2">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <span class="subtitle">
+          <%= t('activerecord.models.escalation_time') %>: 
+          #<%= @escalation_time.id %>
+        </span>
+        <h4 class="title"><%= @escalation_time %></h4>
+      </div>
+      <div role="toolbar" class="pt-3">
+        <%= edit_link(@escalation_time) %>
+        <%= delete_link(@escalation_time) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-sm table-borderless">
+    
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.escalation_level')%>:</th>
+        <td><%= @escalation_time.escalation_level %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.start_time')%>:</th>
+        <td><%= @escalation_time.start_time %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.end_time')%>:</th>
+        <td><%= @escalation_time.end_time %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.weekdays')%>:</th>
+        <td><%= @escalation_time.weekdays %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<%= back_link %>
+<%= new_link EscalationTime %>
