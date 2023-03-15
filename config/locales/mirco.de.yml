@@ -135,6 +135,7 @@ de:
     missing_connector: Fehlende Connectoren
     name: Name
     note: Notiz
+    notification_group: Benachrichtigungsgruppe
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script
     properties: Eigenschaften
@@ -150,6 +151,7 @@ de:
     server_uid: Mirth Server UUID
     server_jvm: Mirth Server JVM
     server_version: Server Version
+    show_on_dashboard: auf dem Dashboard anzeigen
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL

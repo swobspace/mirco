@@ -55,7 +55,10 @@ class EscalationLevelsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def escalation_level_params
-      params.require(:escalation_level).permit(:escalatable_id, :escalatable_type, :attrib, :min_critical, :min_warning, :max_warning, :max_critical)
+      params.require(:escalation_level).permit(
+        :escalatable_id, :escalatable_type, :attrib, 
+        :min_critical, :min_warning, :max_warning, :max_critical,
+        :show_on_dashboard, :notification_group_id)
     end
 
     def location

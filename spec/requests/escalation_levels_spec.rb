@@ -14,12 +14,14 @@ require 'rails_helper'
 
 RSpec.describe "/escalation_levels", type: :request do
   let(:cs) { FactoryBot.create(:channel_statistic) } 
+  let(:ng) { FactoryBot.create(:notification_group) }
  
   let(:valid_attributes) do
     FactoryBot.attributes_for(:escalation_level, 
       escalatable_id: cs.id, 
       escalatable_type: 'ChannelStatistic',
-      attrib: 'last_message_received_at'
+      attrib: 'last_message_received_at',
+      notification_group_id: ng.id
     )
   end
 
@@ -57,9 +59,10 @@ RSpec.describe "/escalation_levels", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        { max_warning: 5, max_critical: 10, min_warning: -10, min_critical: -20 }
-      }
+      let(:new_attributes) do
+        { max_warning: 5, max_critical: 10, min_warning: -10, min_critical: -20,
+          show_on_dashboard: true, notification_group_id: ng.to_param }
+      end
 
       it "updates the requested escalation_level" do
         escalation_level = EscalationLevel.create! valid_attributes
