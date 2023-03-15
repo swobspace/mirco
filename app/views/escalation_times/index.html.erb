@@ -38,9 +38,9 @@
                 <td><%= escalation_time.end_time %></td>
                 <td><%= escalation_time.weekdays %></td>
                 <td class="text-nowrap">
-            <%= show_link escalation_time %>
-            <%= edit_link escalation_time %>
-            <%= delete_link escalation_time %>
+            <%= show_link([@escalation_level, escalation_time]) %>
+            <%= edit_link([@escalation_level, escalation_time]) %>
+            <%= delete_link([@escalation_level, escalation_time]) %>
           </td>
         <% end %>
       <% end %>
@@ -51,4 +51,3 @@
 <br />
 
 <%= back_link %>
-<%= new_link EscalationTime %>

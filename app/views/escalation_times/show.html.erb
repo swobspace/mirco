@@ -9,8 +9,8 @@
         <h4 class="title"><%= @escalation_time %></h4>
       </div>
       <div role="toolbar" class="pt-3">
-        <%= edit_link(@escalation_time) %>
-        <%= delete_link(@escalation_time) %>
+        <%= edit_link([@escalation_level, @escalation_time]) %>
+        <%= delete_link([@escalation_level, @escalation_time]) %>
       </div>
     </div>
   </div>
@@ -42,4 +42,3 @@
 </div>
 
 <%= back_link %>
-<%= new_link EscalationTime %>

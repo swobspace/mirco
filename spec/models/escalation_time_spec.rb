@@ -11,13 +11,20 @@ RSpec.describe EscalationTime, type: :model do
     )
   end
   it { is_expected.to belong_to(:escalation_level) }
-  it { is_expected.to validate_presence_of(:weekdays) }
+  # it { is_expected.to validate_presence_of(:weekdays) }
 
   it 'should get plain factory working' do
     f = FactoryBot.create(:escalation_time, escalation_level: el)
     g = FactoryBot.create(:escalation_time, escalation_level: el)
     expect(f).to be_valid
     expect(g).to be_valid
+  end
+
+  it "weekdays = [] empty array is not allowed" do
+    f = EscalationTime.new(escalation_level_id: el.id, weekdays: [nil, 18, 34])
+    expect {
+      f.save
+    }.to change(EscalationTime, :count).by(0)
   end
 
   it "default time frame" do

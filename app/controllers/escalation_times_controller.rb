@@ -4,7 +4,7 @@ class EscalationTimesController < ApplicationController
 
   # GET /escalation_times
   def index
-    @escalation_times = EscalationTime.all
+    @escalation_times = @escalation_level.escalation_times
     respond_with(@escalation_times)
   end
 
@@ -15,7 +15,7 @@ class EscalationTimesController < ApplicationController
 
   # GET /escalation_times/new
   def new
-    @escalation_time = EscalationTime.new
+    @escalation_time = @escalation_level.escalation_times.build
     respond_with(@escalation_time)
   end
 
@@ -25,22 +25,30 @@ class EscalationTimesController < ApplicationController
 
   # POST /escalation_times
   def create
-    @escalation_time = EscalationTime.new(escalation_time_params)
-
-    @escalation_time.save
-    respond_with(@escalation_time)
+    @escalation_time = @escalation_level.escalation_times.build(escalation_time_params)
+    respond_with(@escalation_time, location: location) do |format|
+      if @escalation_time.save
+        format.turbo_stream
+      end
+    end
   end
 
   # PATCH/PUT /escalation_times/1
   def update
-    @escalation_time.update(escalation_time_params)
-    respond_with(@escalation_time)
+    respond_with(@escalation_time, location: location) do |format|
+      if @escalation_time.update(escalation_time_params)
+        format.turbo_stream
+      end
+    end
   end
 
   # DELETE /escalation_times/1
   def destroy
-    @escalation_time.destroy
-    respond_with(@escalation_time)
+    respond_with(@escalation_time, location: location) do |format|
+      if @escalation_time.destroy
+        format.turbo_stream
+      end
+    end
   end
 
   private
@@ -51,6 +59,12 @@ class EscalationTimesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def escalation_time_params
-      params.require(:escalation_time).permit(:escalation_level_id, :start_time, :end_time, :weekdays)
+      params.require(:escalation_time).permit(
+        :escalation_level_id, :start_time, :end_time, weekdays: [],
+      )
     end
+
+  def location
+    polymorphic_path(@escalation_level)
+  end
 end

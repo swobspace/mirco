@@ -4,6 +4,7 @@ class EscalationTime < ApplicationRecord
 
   # -- configuration
   # -- validations and callbacks
+  before_validation :check_weekdays
   validates :weekdays, presence: true
 
   before_save :set_default_time_frame
@@ -28,5 +29,9 @@ class EscalationTime < ApplicationRecord
   def set_default_time_frame
     self[:start_time] = '00:00:00' if start_time.nil?
     self[:end_time]   = '23:59:59' if end_time.nil?
+  end
+
+  def check_weekdays
+    self[:weekdays] = weekdays & Array(1..7)
   end
 end

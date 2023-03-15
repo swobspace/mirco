@@ -6,6 +6,7 @@ RSpec.describe EscalationLevel, type: :model do
 
   it { is_expected.to belong_to(:escalatable).optional }
   it { is_expected.to belong_to(:notification_group) }
+  it { is_expected.to have_many(:escalation_times).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:escalatable_id) }
   it { is_expected.to validate_presence_of(:escalatable_type) }
   it { is_expected.to validate_presence_of(:attrib) }
