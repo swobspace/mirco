@@ -15,6 +15,7 @@ de:
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
+    new_notification_group: Neue Benachrichtungsgruppe
     new_server: Neues Mirth-System
     new_software: Neue Software
     new_software_connection: Neue Verbindung
