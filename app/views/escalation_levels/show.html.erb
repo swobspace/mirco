@@ -53,6 +53,16 @@
         <th class="w-10 pe-3"><%= t('attributes.max_critical')%>:</th>
         <td><%= @escalation_level.max_critical %></td>
       </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.notification_group')%>:</th>
+        <td><%= @escalation_level.notification_group %></td>
+      </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('attributes.show_on_dashboard')%>:</th>
+        <td><%= @escalation_level.show_on_dashboard %></td>
+      </tr>
     </table>
   </div>
 </div>

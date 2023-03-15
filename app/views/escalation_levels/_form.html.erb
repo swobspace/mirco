@@ -15,6 +15,11 @@
        %>
     <%= form.input :max_critical
        %>
+    <%= form.association :notification_group
+       %>
+    <%= form.input :show_on_dashboard
+       %>
+
 
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= cancel_button %>

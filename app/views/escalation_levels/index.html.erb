@@ -18,11 +18,15 @@
             <th><%= t('attributes.min_warning') %></th>
             <th><%= t('attributes.max_warning') %></th>
             <th><%= t('attributes.max_critical') %></th>
+            <th><%= t('attributes.notification_group') %></th>
+            <th><%= t('attributes.show_on_dashboard') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -51,6 +55,8 @@
           <td><%= escalation_level.min_warning %></td>
           <td><%= escalation_level.max_warning %></td>
           <td><%= escalation_level.max_critical %></td>
+          <td><%= escalation_level.notification_group %></td>
+          <td><%= escalation_level.show_on_dashboard %></td>
           <td class="text-nowrap">
             <%= show_link [@escalatable, escalation_level] %>
             <%= edit_link [@escalatable, escalation_level] %>
