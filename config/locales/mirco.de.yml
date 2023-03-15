@@ -55,6 +55,7 @@ de:
       host: Host
       interface_connector: Connector
       note: Notizen
+      notification_group: Benachrichtigungsgruppe
       server: Mirth-System
       server_configuration: Sicherung der Konfiguration
       servers/alert: Alarm
@@ -195,6 +196,7 @@ de:
     locations: Standorte
     locations/hosts: Hosts
     notes: Notizen
+    notification_groups: Benachrichtigungsgruppen
     pages: Seiten
     servers: Mirth-Systeme
     server_configurations: Sicherungen der Konfiguration
