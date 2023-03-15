@@ -62,6 +62,10 @@ class EscalationLevelsController < ApplicationController
     end
 
     def location
-      polymorphic_path(@escalatable || @escalation_level)
+      if action_name == 'destroy'
+        polymorphic_path(@escalatable)
+      else
+        polymorphic_path([@escalatable, @escalation_level])
+      end
     end
 end
