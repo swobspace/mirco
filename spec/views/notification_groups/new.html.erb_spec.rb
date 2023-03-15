@@ -1,10 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "notification_groups/new", type: :view do
+  let(:notification_group) { FactoryBot.build(:notification_group) }
+
   before(:each) do
-    assign(:notification_group, NotificationGroup.new(
-      name: "MyString"
-    ))
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @ability }
+    allow(controller).to receive(:controller_name) { 'notification_group' }
+    allow(controller).to receive(:action_name) { 'new' }
+    assign(:notification_group, notification_group)
   end
 
   it "renders new notification_group form" do
