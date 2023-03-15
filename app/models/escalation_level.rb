@@ -3,6 +3,7 @@ class EscalationLevel < ApplicationRecord
   # optional: true is neccessary for default values using escalatable_id: 0
   belongs_to :escalatable, polymorphic: true, optional: true
   belongs_to :notification_group
+  has_many :escalation_times, dependent: :destroy
 
   # -- configuration
   NOTHING  = -1.freeze
