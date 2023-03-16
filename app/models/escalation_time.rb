@@ -12,8 +12,9 @@ class EscalationTime < ApplicationRecord
   # CURRENT_TIME: time of day
   # CURRENT_DATE: date
   # ISODOW: 1 = monday, ..., 7 = sunday
-  scope :current, ->{ 
-          where('start_time <= LOCALTIME::character varying(8) and end_time >= LOCALTIME::character varying(8)')
+  scope :current, ->{
+          where('start_time <= :current and end_time >= :current',
+                 current: Time.current.to_fs(:time))
           .where('weekdays @> Array[(SELECT EXTRACT(ISODOW FROM CURRENT_DATE))]::integer[]')
         }
 

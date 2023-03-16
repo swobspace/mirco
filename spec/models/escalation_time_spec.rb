@@ -71,7 +71,6 @@ RSpec.describe EscalationTime, type: :model do
       )
     end
     it "finds 1 matching escalation time" do
-      puts matching.to_yaml
       expect(EscalationTime.current).to contain_exactly(matching, allday)
     end
   end
