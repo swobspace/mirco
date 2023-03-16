@@ -20,11 +20,13 @@
             <th><%= t('attributes.max_critical') %></th>
             <th><%= t('attributes.notification_group') %></th>
             <th><%= t('attributes.show_on_dashboard') %></th>
+            <th><%= t('controller.escalation_times') %></th>
             <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+            <th></th>
             <th></th>
             <th></th>
             <th></th>
@@ -57,6 +59,7 @@
           <td><%= escalation_level.max_critical %></td>
           <td><%= escalation_level.notification_group %></td>
           <td><%= escalation_level.show_on_dashboard %></td>
+          <td><pre><%= escalation_level.escalation_times.map(&:to_s).join("\n") %></pre></td>
           <td class="text-nowrap">
             <%= show_link [@escalatable, escalation_level] %>
             <%= edit_link [@escalatable, escalation_level] %>

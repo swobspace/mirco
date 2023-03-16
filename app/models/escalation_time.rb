@@ -20,8 +20,8 @@ class EscalationTime < ApplicationRecord
         }
 
   def to_s
-    weekdays.map{|d| I18n.t('date.abbr_day_names')[d%7]}.join(",") + " " +
-    start_time.to_fs(:time) + "-" + end_time.to_fs(:time)
+    start_time.to_fs(:time) + "-" + end_time.to_fs(:time) + " " +
+    weekdays.map{|d| I18n.t('date.abbr_day_names')[d%7]}.join(",")
   end
 
   private

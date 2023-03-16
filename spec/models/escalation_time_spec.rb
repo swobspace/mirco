@@ -34,7 +34,7 @@ RSpec.describe EscalationTime, type: :model do
   end
 
   describe "#to_s" do
-    it { expect(escalation_time.to_s).to match('Mo,Di,Mi,Fr 08:00-16:00') }
+    it { expect(escalation_time.to_s).to match('08:00-16:00 Mo,Di,Mi,Fr') }
   end
 
   describe "#current" do

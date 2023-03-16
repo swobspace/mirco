@@ -63,6 +63,15 @@
         <th class="w-10 pe-3"><%= t('attributes.show_on_dashboard')%>:</th>
         <td><%= @escalation_level.show_on_dashboard %></td>
       </tr>
+
+      <tr>
+        <th class="w-10 pe-3"><%= t('controller.escalation_times')%>:</th>
+        <td>
+          <pre>
+<%= @escalation_level.escalation_times.map(&:to_s).join("\n") %>
+          </pre>
+        </td>
+      </tr>
     </table>
   </div>
 </div>
