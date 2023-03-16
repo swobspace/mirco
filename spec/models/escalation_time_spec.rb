@@ -29,8 +29,8 @@ RSpec.describe EscalationTime, type: :model do
 
   it "default time frame" do
     f = FactoryBot.create(:escalation_time, escalation_level: el)
-    expect(f.start_time.to_fs(:time)).to eq '00:00'
-    expect(f.end_time.to_fs(:time)).to eq '23:59'
+    expect(f.start_time).to eq '00:00:00'
+    expect(f.end_time).to eq '23:59:59'
   end
 
   describe "#to_s" do
@@ -71,6 +71,7 @@ RSpec.describe EscalationTime, type: :model do
       )
     end
     it "finds 1 matching escalation time" do
+      puts matching.to_yaml
       expect(EscalationTime.current).to contain_exactly(matching, allday)
     end
   end
