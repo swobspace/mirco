@@ -2,9 +2,7 @@
 
 Rails.application.routes.draw do
   resources :notification_groups
-  resources :escalation_levels, except: [:new, :create] do
-    resources :escalation_times, module: :escalation_levels
-  end
+  resources :escalation_levels, except: [:new, :create]
   resources :hosts do
     member do
       get :ping

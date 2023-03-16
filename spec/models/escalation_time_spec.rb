@@ -10,7 +10,7 @@ RSpec.describe EscalationTime, type: :model do
       weekdays: [1,2,3,5]
     )
   end
-  it { is_expected.to belong_to(:escalation_level) }
+  it { is_expected.to belong_to(:escalation_level).optional }
   # it { is_expected.to validate_presence_of(:weekdays) }
 
   it 'should get plain factory working' do
