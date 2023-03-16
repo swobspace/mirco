@@ -96,7 +96,7 @@ RSpec.describe EscalationLevel, type: :model do
             )
           end
 
-          it "CRITICAL if 2 days old" do
+          it "WARNING if 2 days old" do
             cs.update(last_message_received_at: 2.days.before(ts))
             expect(subject).to eq(1)
           end
@@ -111,21 +111,39 @@ RSpec.describe EscalationLevel, type: :model do
             expect(subject).to eq(0)
           end
 
-          it "WARNING 5h newer" do
+          it "OK 5h newer" do
             cs.update(last_message_received_at: 5.hours.after(ts))
             expect(subject).to eq(0)
           end
 
-          it "CRITICAL 2d newer" do
+          it "OK 2d newer" do
             cs.update(last_message_received_at: 2.days.after(ts))
             expect(subject).to eq(0)
           end
-        end
 
+          describe "with escalation times" do
+            context "current" do
+              let!(:et) do
+                FactoryBot.create(:escalation_time,  
+                  escalation_level: el_specific,
+                  weekdays: [Date.current.cwday]
+                )
+              end
+              it "WARNING if 2 days old" do
+                el_specific.reload
+                puts et.inspect
+                expect(EscalationTime.count).to eq(1)
+                expect(EscalationTime.current.count).to eq(1)
+                cs.update(last_message_received_at: 2.days.before(ts))
+                expect(subject).to eq(1)
+              end
+            end
+          end
+        end
       end
     end
 
-    describe "attrib = last_message_received_at" do
+    describe "attrib = queued" do
       subject {EscalationLevel.check_for_escalation(cs, 'queued')}
 
       describe "with no escalation levels" do

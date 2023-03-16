@@ -41,11 +41,18 @@ class EscalationLevel < ApplicationRecord
   #   3: UNKNOWN
   #
   def self.check_for_escalation(escalatable, attrib)
+    # attrib.valid?
     return UNKNOWN unless escalatable.respond_to?(attrib)
     value = fetch_value(escalatable, attrib)
+    # value.nil?
     return NOTHING if value.nil?
     level = fetch_escalation_level(escalatable, attrib)
+    # levels.empty?
     return NOTHING if level.nil?
+    # escalation_times.any?
+    if level.escalation_times.any?
+      return NOTHING unless level.escalation_times.current.any?
+    end
     if level.min_critical.present? && (value < level.min_critical)
       return CRITICAL
     elsif level.min_warning.present? && (value < level.min_warning)
