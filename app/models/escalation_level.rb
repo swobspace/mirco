@@ -12,12 +12,16 @@ class EscalationLevel < ApplicationRecord
   CRITICAL = 2.freeze
   UNKNOWN  = 3.freeze
 
+  accepts_nested_attributes_for :escalation_times,
+    allow_destroy: true,
+    reject_if: proc { |att| att['weekdays'].compact.blank? }
+
   # -- validations and callbacks
-  validates :escalatable_id, presence: true, 
+  validates :escalatable_id, presence: true,
                              uniqueness: { scope: %i[escalatable_type attrib] }
-  validates :escalatable_type, presence: true, 
+  validates :escalatable_type, presence: true,
                                uniqueness: { scope: %i[escalatable_id attrib] }
-  validates :attrib, presence: true, 
+  validates :attrib, presence: true,
                      uniqueness: { scope: %i[escalatable_id escalatable_type] }
 
   def to_s
@@ -71,7 +75,7 @@ private
 
   def self.fetch_escalation_level(escalatable, attrib)
     escalatable.escalation_levels.where(attrib: attrib).first ||
-    EscalationLevel.where(escalatable_type: escalatable.class.name.to_s, 
+    EscalationLevel.where(escalatable_type: escalatable.class.name.to_s,
                           escalatable_id: 0, attrib: attrib).first
   end
 end

@@ -1,6 +1,6 @@
 class EscalationTime < ApplicationRecord
   # -- associations
-  belongs_to :escalation_level
+  belongs_to :escalation_level, optional: true
 
   # -- configuration
   # -- validations and callbacks

@@ -20,6 +20,7 @@
     <%= form.input :show_on_dashboard
        %>
 
+    <%= render 'nested_escalation_times_form', f: form %>
 
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= cancel_button %>

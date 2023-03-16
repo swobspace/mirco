@@ -13,13 +13,13 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/escalation_levels", type: :request do
-  let(:cs) { FactoryBot.create(:channel_statistic) } 
+  let(:cs) { FactoryBot.create(:channel_statistic) }
   let(:ng) { FactoryBot.create(:notification_group) }
- 
+
   let(:valid_attributes) do
-    FactoryBot.attributes_for(:escalation_level, 
-      escalatable_id: cs.id, 
-      escalatable_type: 'ChannelStatistic',
+    FactoryBot.attributes_for(:escalation_level,
+      escalatable_id: cs.id,
+      escalatable_type: cs.class.name.to_s,
       attrib: 'last_message_received_at',
       notification_group_id: ng.id
     )
@@ -60,8 +60,19 @@ RSpec.describe "/escalation_levels", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        { max_warning: 5, max_critical: 10, min_warning: -10, min_critical: -20,
-          show_on_dashboard: true, notification_group_id: ng.to_param }
+        {
+          max_warning: 5,
+          max_critical: 10,
+          min_warning: -10,
+          min_critical: -20,
+          show_on_dashboard: true,
+          notification_group_id: ng.to_param,
+          escalation_times_attributes: [
+            start_time: '01:20',
+            end_time: '08:40',
+            weekdays: [3,4,7]
+          ]
+        }
       end
 
       it "updates the requested escalation_level" do
@@ -72,6 +83,11 @@ RSpec.describe "/escalation_levels", type: :request do
         expect(escalation_level.min_critical).to eq(-20)
         expect(escalation_level.max_warning).to eq(5)
         expect(escalation_level.max_critical).to eq(10)
+        escalation_times = escalation_level.escalation_times
+        expect(escalation_times.count).to eq(1)
+        expect(escalation_times.first.start_time.to_fs(:time)).to eq('01:20')
+        expect(escalation_times.first.end_time.to_fs(:time)).to eq('08:40')
+        expect(escalation_times.first.weekdays).to contain_exactly(3,4,7)
       end
 
       it "redirects to the escalation_level" do
@@ -83,19 +99,21 @@ RSpec.describe "/escalation_levels", type: :request do
     end
 
     context "with invalid parameters" do
-    
+
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         escalation_level = EscalationLevel.create! valid_attributes
         patch escalation_level_url(escalation_level), params: { escalation_level: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
+
     end
   end
 
   describe "DELETE /destroy" do
     it "destroys the requested escalation_level" do
       escalation_level = EscalationLevel.create! valid_attributes
+      puts escalation_level, cs
+
       expect {
         delete escalation_level_url(escalation_level)
       }.to change(EscalationLevel, :count).by(-1)

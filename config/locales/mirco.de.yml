@@ -230,3 +230,6 @@ de:
       update_properties:
         notice: "Server-Eigenschaften aktualisiert"
         alert: "Server-Eigenschaften konnten nicht aktualisiert werden!"
+
+  escalation_times:
+    add: Eskalationszeitraum hinzufügen
