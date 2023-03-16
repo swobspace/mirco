@@ -50,7 +50,7 @@ RSpec.describe EscalationTime, type: :model do
       FactoryBot.create(:escalation_time,
         escalation_level: el,
         start_time: 1.hour.after(Time.now).to_fs(:time),
-        end_time: 1.hour.after(Time.now).to_fs(:time),
+        end_time: 2.hours.after(Time.now).to_fs(:time),
         weekdays: [Date.current.cwday]
       )
     end
@@ -62,8 +62,14 @@ RSpec.describe EscalationTime, type: :model do
         weekdays: [Date.current.cwday]
       )
     end
+    let!(:allday) do
+      FactoryBot.create(:escalation_time,
+        escalation_level: el,
+        weekdays: [Date.current.cwday]
+      )
+    end
     it "finds 1 matching escalation time" do
-      expect(EscalationTime.current.all).to contain_exactly(matching)
+      expect(EscalationTime.current.all).to contain_exactly(matching, allday)
     end
   end
 end
