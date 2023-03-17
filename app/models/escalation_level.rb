@@ -2,7 +2,7 @@ class EscalationLevel < ApplicationRecord
   # -- associations
   # optional: true is neccessary for default values using escalatable_id: 0
   belongs_to :escalatable, polymorphic: true, optional: true
-  belongs_to :notification_group
+  belongs_to :notification_group, optional: true
   has_many :escalation_times, dependent: :destroy
 
   # -- configuration

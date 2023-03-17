@@ -5,7 +5,7 @@ RSpec.describe EscalationLevel, type: :model do
   let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
 
   it { is_expected.to belong_to(:escalatable).optional }
-  it { is_expected.to belong_to(:notification_group) }
+  it { is_expected.to belong_to(:notification_group).optional }
   it { is_expected.to have_many(:escalation_times).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:escalatable_id) }
   it { is_expected.to validate_presence_of(:escalatable_type) }
@@ -131,7 +131,6 @@ RSpec.describe EscalationLevel, type: :model do
               end
               it "WARNING if 2 days old" do
                 el_specific.reload
-                puts et.inspect
                 expect(EscalationTime.count).to eq(1)
                 expect(EscalationTime.current.count).to eq(1)
                 cs.update(last_message_received_at: 2.days.before(ts))
