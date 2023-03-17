@@ -41,4 +41,19 @@ module ChannelStatisticConcerns
                     .map(&:delta).map(&:to_i).reduce(0, :+)
   end
 
+  def escalation_status(attribs = [])
+    attribs = Array(attribs)
+    unless attribs.any?
+      attribs = escalatable_attributes
+    end
+    state = EscalationLevel::NOTHING
+    attribs.each do |attr|
+      lstate = EscalationLevel.check_for_escalation(self, attr)
+      if lstate > state
+        state = lstate
+      end
+    end
+    state
+  end
+
 end

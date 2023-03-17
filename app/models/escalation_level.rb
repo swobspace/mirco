@@ -94,7 +94,7 @@ private
                           escalatable_id: 0, attrib: attrib).first
   end
 
-  def fetch_queued(escalatable)
+  def self.fetch_queued(escalatable)
     if escalatable.respond_to?('queued')
       escalatable.queued
     else
