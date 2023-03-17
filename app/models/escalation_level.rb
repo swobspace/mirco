@@ -44,11 +44,19 @@ class EscalationLevel < ApplicationRecord
     # attrib.valid?
     return UNKNOWN unless escalatable.respond_to?(attrib)
     value = fetch_value(escalatable, attrib)
+
     # value.nil?
     return NOTHING if value.nil?
-    level = fetch_escalation_level(escalatable, attrib)
+
+    # last sent only relevant if queued > 0
+    if attrib == 'last_message_sent_at'
+      return NOTHING unless fetch_queued(escalatable) > 0
+    end
+
     # levels.empty?
+    level = fetch_escalation_level(escalatable, attrib)
     return NOTHING if level.nil?
+
     # escalation_times.any?
     if level.escalation_times.any?
       return NOTHING unless level.escalation_times.current.any?
@@ -84,5 +92,13 @@ private
     escalatable.escalation_levels.where(attrib: attrib).first ||
     EscalationLevel.where(escalatable_type: escalatable.class.name.to_s,
                           escalatable_id: 0, attrib: attrib).first
+  end
+
+  def fetch_queued(escalatable)
+    if escalatable.respond_to?('queued')
+      escalatable.queued
+    else
+      0
+    end
   end
 end
