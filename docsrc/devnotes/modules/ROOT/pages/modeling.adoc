@@ -184,8 +184,8 @@ bin/rails g scaffold EscalationLevel \
 ----
 bin/rails g scaffold EscalationTime \
   escalation_level:belongs_to \
-  start_time:time \
-  end_time:time \
+  start_time:string{limit:5} \
+  end_time:string{limit:5} \
   weekdays:integer{array} \
   --no-stylesheets --no-javascripts --no-helper --no-decorator
 ----

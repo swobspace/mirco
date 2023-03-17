@@ -108,8 +108,8 @@ class EscalationLevel {
 
 class EscalationTime {
   escalation_level_id
-  start_time: time
-  end_time: time
+  start_time: string, limit: 5
+  end_time: string, limit: 5
   weekdays: integer, array:true
 }
 
