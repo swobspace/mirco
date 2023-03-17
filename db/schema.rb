@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_16_164755) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_124238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -151,7 +151,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_164755) do
     t.integer "max_critical"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "notification_group_id", null: false
+    t.bigint "notification_group_id"
     t.boolean "show_on_dashboard", default: false
     t.index ["attrib"], name: "index_escalation_levels_on_attrib"
     t.index ["escalatable_type", "escalatable_id"], name: "index_escalation_levels_on_escalatable"
@@ -161,8 +161,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_164755) do
 
   create_table "escalation_times", force: :cascade do |t|
     t.bigint "escalation_level_id", null: false
-    t.string "start_time", limit: 8, default: "00:00:00"
-    t.string "end_time", limit: 8, default: "23:59:59"
+    t.string "start_time", limit: 5, default: "00:00"
+    t.string "end_time", limit: 5, default: "23:59"
     t.integer "weekdays", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -418,7 +418,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_164755) do
   add_foreign_key "channel_statistics", "channels"
   add_foreign_key "channel_statistics", "servers"
   add_foreign_key "channels", "servers"
-  add_foreign_key "escalation_levels", "notification_groups"
   add_foreign_key "escalation_times", "escalation_levels"
   add_foreign_key "hosts", "locations"
   add_foreign_key "hosts", "software_groups"
