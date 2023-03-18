@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "EscalationLevel", type: :feature do
   let(:cs) { FactoryBot.create(:channel_statistic) }
   let(:el) { FactoryBot.create(:escalation_level, attrib: 'last_message_received_at') }
+  let!(:ng) { FactoryBot.create(:notification_group, name: 'Default')}
 
   describe "show escalation level", js: true do
     it "visit show page" do

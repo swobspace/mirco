@@ -113,8 +113,8 @@ module ChannelStatistics
           expect(escalation_level.max_critical).to eq(10)
           escalation_times = escalation_level.escalation_times
           expect(escalation_times.count).to eq(1)
-          expect(escalation_times.first.start_time.to_fs(:time)).to eq('01:20')
-          expect(escalation_times.first.end_time.to_fs(:time)).to eq('08:40')
+          expect(escalation_times.first.start_time).to eq('01:20')
+          expect(escalation_times.first.end_time).to eq('08:40')
           expect(escalation_times.first.weekdays).to contain_exactly(3,4,7)
         end
 
