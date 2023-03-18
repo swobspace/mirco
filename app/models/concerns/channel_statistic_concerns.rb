@@ -4,11 +4,13 @@ module ChannelStatisticConcerns
   extend ActiveSupport::Concern
 
   included do
+    EscalationResult = ImmutableStruct.new(:state, :escalation_level)
+
     def self.escalated
       results = []
       EscalationLevel.where(escalatable_type: 'ChannelStatistic')
                      .where("escalatable_id > 0").each do |el|
-        state = EscalationLevel.check_for_escalation(el.escalatable, el.attrib)
+        state = EscalationLevel.check_for_escalation(el.escalatable, el.attrib).state
         if state > 0
           results << el.escalatable 
         end
@@ -47,13 +49,15 @@ module ChannelStatisticConcerns
       attribs = escalatable_attributes
     end
     state = EscalationLevel::NOTHING
+    escalation_level = nil
     attribs.each do |attr|
-      lstate = EscalationLevel.check_for_escalation(self, attr)
-      if lstate > state
-        state = lstate
+      result = EscalationLevel.check_for_escalation(self, attr)
+      if result.state > state
+        state = result.state
+        escalation_level = result.escalation_level
       end
     end
-    state
+    return EscalationResult.new(state: state, escalation_level: escalation_level)
   end
 
 end

@@ -36,14 +36,14 @@ RSpec.describe EscalationLevel, type: :model do
     let!(:ts) { Time.current }
 
     describe "with unknown attribute" do
-      it { expect(EscalationLevel.check_for_escalation(cs, 'notexistent')).to eq(3) }
+      it { expect(EscalationLevel.check_for_escalation(cs, 'notexistent').state).to eq(3) }
     end
 
     describe "attrib = last_message_received_at" do
       subject {EscalationLevel.check_for_escalation(cs, 'last_message_received_at')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(-1) }
+        it { expect(subject.state).to eq(-1) }
       end
 
       describe "with default escalation levels" do
@@ -62,27 +62,27 @@ RSpec.describe EscalationLevel, type: :model do
 
         it "CRITICAL if 2 days old" do
           cs.update(last_message_received_at: 2.days.before(ts))
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         it "WARNING less than 1 day old" do
           cs.update(last_message_received_at: 23.hours.before(ts))
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "OK less than 1h old" do
           cs.update(last_message_received_at: 50.minutes.before(ts))
-          expect(subject).to eq(0)
+          expect(subject.state).to eq(0)
         end
 
         it "WARNING 5h newer" do
           cs.update(last_message_received_at: 5.hours.after(ts))
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "CRITICAL 2d newer" do
           cs.update(last_message_received_at: 2.days.after(ts))
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         describe "and specific escalation levels" do
@@ -98,27 +98,27 @@ RSpec.describe EscalationLevel, type: :model do
 
           it "WARNING if 2 days old" do
             cs.update(last_message_received_at: 2.days.before(ts))
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "WARNING less than 1 day old" do
             cs.update(last_message_received_at: 23.hours.before(ts))
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "OK less than 1h old" do
             cs.update(last_message_received_at: 50.minutes.before(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
           it "OK 5h newer" do
             cs.update(last_message_received_at: 5.hours.after(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
           it "OK 2d newer" do
             cs.update(last_message_received_at: 2.days.after(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
           describe "with escalation times" do
@@ -134,7 +134,7 @@ RSpec.describe EscalationLevel, type: :model do
                 expect(EscalationTime.count).to eq(1)
                 expect(EscalationTime.current.count).to eq(1)
                 cs.update(last_message_received_at: 2.days.before(ts))
-                expect(subject).to eq(1)
+                expect(subject.state).to eq(1)
               end
             end
           end
@@ -146,7 +146,7 @@ RSpec.describe EscalationLevel, type: :model do
       subject {EscalationLevel.check_for_escalation(cs, 'queued')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(-1) }
+        it { expect(subject.state).to eq(-1) }
       end
 
       describe "with default escalation levels" do
@@ -163,17 +163,17 @@ RSpec.describe EscalationLevel, type: :model do
 
         it "OK if < 10 " do
           cs.update(queued: 5)
-          expect(subject).to eq(0)
+          expect(subject.state).to eq(0)
         end
 
         it "WARNING if < 50" do
           cs.update(queued: 25)
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "CRITICAL if > 50" do
           cs.update(queued: 81)
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         describe "and specific escalation levels" do
@@ -189,17 +189,17 @@ RSpec.describe EscalationLevel, type: :model do
 
           it "OK if < 5 " do
             cs.update(queued: 2)
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
           it "WARNING if = 30 " do
             cs.update(queued: 30)
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "WARNING if =81 " do
             cs.update(queued: 81)
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
         end
       end

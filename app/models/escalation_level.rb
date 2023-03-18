@@ -1,4 +1,5 @@
 class EscalationLevel < ApplicationRecord
+  Result = ImmutableStruct.new(:state, :escalation_level)
   # -- associations
   # optional: true is neccessary for default values using escalatable_id: 0
   belongs_to :escalatable, polymorphic: true, optional: true
@@ -42,35 +43,41 @@ class EscalationLevel < ApplicationRecord
   #
   def self.check_for_escalation(escalatable, attrib)
     # attrib.valid?
-    return UNKNOWN unless escalatable.respond_to?(attrib)
-    value = fetch_value(escalatable, attrib)
+    unless escalatable.respond_to?(attrib)
+      return Result.new(state: UNKNOWN, escalation_level: nil)
+    end
 
     # value.nil?
-    return NOTHING if value.nil?
+    value = fetch_value(escalatable, attrib)
+    if value.nil?
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
 
     # last sent only relevant if queued > 0
-    if attrib == 'last_message_sent_at'
-      return NOTHING unless fetch_queued(escalatable) > 0
+    if attrib == 'last_message_sent_at' && fetch_queued(escalatable) > 0
+      return Result.new(state: NOTHING, escalation_level: nil)
     end
 
     # levels.empty?
     level = fetch_escalation_level(escalatable, attrib)
-    return NOTHING if level.nil?
+    if level.nil?
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
 
     # escalation_times.any?
-    if level.escalation_times.any?
-      return NOTHING unless level.escalation_times.current.any?
+    if level.escalation_times.any? && level.escalation_times.current.empty?
+      return Result.new(state: NOTHING, escalation_level: nil)
     end
     if level.min_critical.present? && (value < level.min_critical)
-      return CRITICAL
+      return Result.new(state: CRITICAL, escalation_level: level)
     elsif level.min_warning.present? && (value < level.min_warning)
-      return WARNING
+      return Result.new(state: WARNING, escalation_level: level)
     elsif level.max_critical.present? && (value >= level.max_critical)
-      return CRITICAL
+      return Result.new(state: CRITICAL, escalation_level: level)
     elsif level.max_warning.present? && (value >= level.max_warning)
-      return WARNING
+      return Result.new(state: WARNING, escalation_level: level)
     else
-      return OK
+      return Result.new(state: OK, escalation_level: level)
     end
   end
 
