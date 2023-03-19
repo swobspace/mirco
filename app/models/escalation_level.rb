@@ -54,7 +54,7 @@ class EscalationLevel < ApplicationRecord
     end
 
     # last sent only relevant if queued > 0
-    if attrib == 'last_message_sent_at' && fetch_queued(escalatable) > 0
+    if attrib == 'last_message_sent_at' && fetch_queued(escalatable) == 0
       return Result.new(state: NOTHING, escalation_level: nil)
     end
 
