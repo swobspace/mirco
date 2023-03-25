@@ -29,7 +29,7 @@ module Channels
         # rubocop:disable Layout/ArgumentAlignment
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :queued_messages,
-          partial: 'home/index',
+          partial: 'home/queues',
           locals: {
             queued_messages: ChannelStatistic
                              .where('channel_statistics.meta_data_id > 0')
