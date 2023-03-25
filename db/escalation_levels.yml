@@ -3,8 +3,16 @@
   attrib: queued
   min_critical:
   min_warning:
-  max_warning: 1
-  max_critical: 10
+  max_warning: 20
+  max_critical: 100
+
+- escalatable_type: ChannelStatistic
+  escalatable_id: 0
+  attrib: last_message_sent_at
+  min_critical: -20
+  min_warning: -10
+  max_warning:
+  max_critical:
  
 - escalatable_type: ChannelStatistic
   escalatable_id: 0

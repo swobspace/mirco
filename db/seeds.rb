@@ -36,7 +36,7 @@ config.each do |el|
   EscalationLevel.find_or_create_by!(
     escalatable_type: el.fetch("escalatable_type"),
     escalatable_id: el.fetch("escalatable_id"),
-    attrib: el.fetch("attrib")) do |cr|
+    attrib: el.fetch("attrib")) do |c|
       c.min_critical = el.fetch("min_critical", nil)
       c.min_warning  = el.fetch("min_warning", nil)
       c.max_critical = el.fetch("max_critical", nil)
