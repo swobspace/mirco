@@ -32,28 +32,25 @@ class ChannelStatistic < ApplicationRecord
   before_update :update_last_at
 
   # --
-  scope :active, -> { joins(:channel).where("channels.enabled = true") }
-
-  # --
   def fullname
     "#{server.to_s} > #{channel.to_s} > #{name}"
   end
 
   def escalatable_attributes
-    %w[ queued updated_at last_message_received_at 
+    %w[ queued updated_at last_message_received_at
         last_message_sent_at last_message_error_at ]
   end
 
 private
   def update_last_at
     if will_save_change_to_attribute?(:received) && received > 0
-      touch(:last_message_received_at) 
+      touch(:last_message_received_at)
     end
     if will_save_change_to_attribute?(:sent) && sent > 0
-      touch(:last_message_sent_at) 
+      touch(:last_message_sent_at)
     end
     if will_save_change_to_attribute?(:error) && error > 0
-      touch(:last_message_error_at) 
+      touch(:last_message_error_at)
     end
   end
 

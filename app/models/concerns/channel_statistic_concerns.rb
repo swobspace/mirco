@@ -6,17 +6,26 @@ module ChannelStatisticConcerns
   included do
     EscalationResult = ImmutableStruct.new(:state, :escalation_level)
 
-    def self.escalated
-      results = []
-      EscalationLevel.where(escalatable_type: 'ChannelStatistic')
-                     .where("escalatable_id > 0").each do |el|
-        state = EscalationLevel.check_for_escalation(el.escalatable, el.attrib).state
-        if state > 0
-          results << el.escalatable 
-        end
-      end
-      results
+    # filter enabled channels
+    scope :active, -> do
+      joins(:channel).where("channels.enabled = true")
     end
+
+    # filter older statistics
+    scope :current, -> do
+      where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
+    end
+
+    scope :escalated, -> do
+      where('meta_data_id > 0')
+      .where("channel_statistics.condition > ?", EscalationLevel::OK)
+    end
+
+    scope :queued, -> do
+      where('meta_data_id > 0')
+      .where("channel_statistics.queued > 0")
+    end
+
   end
 
   def sent_last_30min
