@@ -13,6 +13,8 @@ class EscalationLevel < ApplicationRecord
   CRITICAL = 2.freeze
   UNKNOWN  = 3.freeze
 
+  STATES = NOTHING..UNKNOWN
+
   accepts_nested_attributes_for :escalation_times,
     allow_destroy: true,
     reject_if: proc { |att| att['weekdays'].compact.blank? }

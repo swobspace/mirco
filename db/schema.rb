@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_121259) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_25_103616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -102,14 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_121259) do
     t.string "name", default: ""
     t.string "state", default: ""
     t.string "status_type", default: ""
-    t.string "condition", default: ""
+    t.string "oldcondition", default: ""
     t.datetime "last_condition_change", precision: nil
     t.datetime "last_message_received_at", precision: nil
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
+    t.integer "condition", default: -1
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
+    t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
   end

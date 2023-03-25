@@ -68,7 +68,7 @@ bin/rails g scaffold ChannelStatistic \
   error:integer \
   filtered:integer \
   queued:integer \
-  condition:string:index \
+  condition:integer:index \
   last_condition_change:timestamp \
   last_message_received_at:timestamp \
   last_message_sent_at:timestamp \

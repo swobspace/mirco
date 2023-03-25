@@ -39,7 +39,7 @@ FactoryBot.define do
     association :channel
     server_uid { `uuid -v 4` }
     channel_uid { `uuid -v 4` }
-    condition { 'ok' }
+    condition { 0 }
   end
 
   factory :escalation_level do

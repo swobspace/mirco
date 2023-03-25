@@ -37,6 +37,12 @@ de:
     sourceConnectors: Source Connectors
     destinationConnectors: Destination Connectors
     recent_errors: Letzte Fehler
+    condition:
+      -1: '-'
+      0: OK
+      1: WARNING
+      2: CRITICAL
+      3: UNKNOWN
 
   activerecord:
     models:

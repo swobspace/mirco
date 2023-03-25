@@ -45,35 +45,16 @@ class ChannelStatisticProcessor
 
   def update_condition
     return true unless condition_changed?
-    toggle_condition && create_alert_entry
+    channel_statistic.update(condition: current_condition) && create_alert_entry
     # process some notification
   end
 
-  # if condition.blank? always assume a change (first try)
-  # else process alert same as acknowledge
   def condition_changed?
-    # ok -> alert || alert, acknowledged -> ok
-    (current_condition == 'ok' and channel_statistic.condition != 'ok') ||
-    (current_condition != 'ok' and channel_statistic.condition == 'ok') ||
-    channel_statistic.condition.blank?
-  end
-
-  def toggle_condition
-    if ( channel_statistic.condition == 'ok' )
-      channel_statistic.update(condition: 'alert')
-      channel_statistic.touch(:last_condition_change)
-    else
-      channel_statistic.update(condition: 'ok')
-      channel_statistic.touch(:last_condition_change)
-    end
+    current_condition != channel_statistic.condition
   end
 
   def current_condition
-    if channel_statistic.sent_last_30min.zero? && channel_statistic.queued > Mirco.queued_warning_level
-      'alert'
-    else
-      'ok'
-    end
+    channel_statistic.escalation_status.state
   end
 
   def create_alert_entry
