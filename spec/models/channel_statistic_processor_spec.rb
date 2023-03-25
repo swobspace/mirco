@@ -273,8 +273,5 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         end
       }.not_to change(ActionMailer::Base.deliveries, :count)
     end
-
-    it { puts channel_statistic.condition.class.name }
   end
-
 end

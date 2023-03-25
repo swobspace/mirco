@@ -112,8 +112,6 @@ RSpec.describe "/escalation_levels", type: :request do
   describe "DELETE /destroy" do
     it "destroys the requested escalation_level" do
       escalation_level = EscalationLevel.create! valid_attributes
-      puts escalation_level, cs
-
       expect {
         delete escalation_level_url(escalation_level)
       }.to change(EscalationLevel, :count).by(-1)

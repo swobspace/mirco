@@ -201,7 +201,6 @@ RSpec.describe ChannelStatisticConcerns, type: :model do
 
       # maximum escalation level set by last_message_sent_at
       it { expect(cs.escalation_status.state).to eq(EscalationLevel::CRITICAL) }
-      it { puts cs.escalation_status.escalation_level.inspect }
       # take specific escalation level, not default escalation level
       it { expect(cs.escalation_status('queued').state).to eq(EscalationLevel::WARNING) }
       # use default escalation level for updated_at
@@ -209,6 +208,5 @@ RSpec.describe ChannelStatisticConcerns, type: :model do
       it { expect(cs.escalation_status('last_message_sent_at').state).to eq(EscalationLevel::CRITICAL) }
       # no escalation level set for last_message_error_at
       it { expect(cs.escalation_status('last_message_error_at').state).to eq(EscalationLevel::NOTHING) }
-      it { puts cs.inspect }
   end
 end
