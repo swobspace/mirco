@@ -38,7 +38,8 @@ module Channels
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :server_status,
           partial: 'home/servers',
-          locals: { servers: Server.order(:name).all.to_a
+          locals: {
+            servers: Server.order(:name).where(manual_update: false).to_a
         })
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :problems,
