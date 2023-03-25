@@ -2,7 +2,14 @@ require 'rails_helper'
 
 RSpec.describe EscalationLevel, type: :model do
   let(:ng) { FactoryBot.create(:notification_group) }
-  let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
+  let(:cs) do
+    FactoryBot.create(:channel_statistic,
+      name: 'Some Statistics',
+      error: 1,
+      received: 123456,
+      sent: 123450
+    )
+  end
 
   it { is_expected.to belong_to(:escalatable).optional }
   it { is_expected.to belong_to(:notification_group).optional }
@@ -21,11 +28,11 @@ RSpec.describe EscalationLevel, type: :model do
 
   describe "#to_s" do
     let(:el) do
-      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at', 
+      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
                                            escalatable: cs)
     end
     let(:el2) do
-      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at', 
+      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
                                            escalatable_type: 'ChannelStatistic',
                                            escalatable_id: 0)
     end
@@ -47,7 +54,7 @@ RSpec.describe EscalationLevel, type: :model do
       end
 
       describe "with default escalation levels" do
-        let!(:el_default) do 
+        let!(:el_default) do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
@@ -86,7 +93,7 @@ RSpec.describe EscalationLevel, type: :model do
         end
 
         describe "and specific escalation levels" do
-          let!(:el_specific) do 
+          let!(:el_specific) do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
@@ -124,7 +131,7 @@ RSpec.describe EscalationLevel, type: :model do
           describe "with escalation times" do
             context "current" do
               let!(:et) do
-                FactoryBot.create(:escalation_time,  
+                FactoryBot.create(:escalation_time,
                   escalation_level: el_specific,
                   weekdays: [Date.current.cwday]
                 )
@@ -150,14 +157,14 @@ RSpec.describe EscalationLevel, type: :model do
       end
 
       describe "with default escalation levels" do
-        let!(:el_default) do 
+        let!(:el_default) do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
             notification_group_id: ng.id,
             attrib: 'queued',
             max_warning: 10,
-            max_critical: 50 
+            max_critical: 50
           )
         end
 
@@ -177,7 +184,7 @@ RSpec.describe EscalationLevel, type: :model do
         end
 
         describe "and specific escalation levels" do
-          let!(:el_specific) do 
+          let!(:el_specific) do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
