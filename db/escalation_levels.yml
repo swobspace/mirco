@@ -1,0 +1,39 @@
+- escalatable_type: ChannelStatistic
+  escalatable_id: 0
+  attrib: queued
+  min_critical:
+  min_warning:
+  max_warning: 1
+  max_critical: 10
+ 
+- escalatable_type: ChannelStatistic
+  escalatable_id: 0
+  attrib: last_message_error_at
+  min_critical:
+  min_warning:
+  max_warning: -11520
+  max_critical: -2880
+ 
+- escalatable_type: ChannelStatistic
+  escalatable_id: 0
+  attrib: updated_at
+  min_critical: -30
+  min_warning: -10
+  max_warning:
+  max_critical:
+ 
+- escalatable_type: Server
+  escalatable_id: 0
+  attrib: last_check
+  min_critical: -30
+  min_warning: -10
+  max_warning:
+  max_critical:
+ 
+- escalatable_type: Server
+  escalatable_id: 0
+  attrib: last_check_ok
+  min_critical: -30
+  min_warning: -10
+  max_warning:
+  max_critical:
