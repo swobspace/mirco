@@ -75,10 +75,11 @@ class ChannelStatisticProcessor
       end
     end
     send_alert(alert)
-    alert.persisted?
+    alert.nil? || alert.persisted?
   end
 
   def send_alert(alert)
+    return if alert.nil?
     # send mail is disabled unless mail_to is explicit configured
     return unless Mirco.mail_to.any?
 
