@@ -55,8 +55,18 @@ class EscalationLevel < ApplicationRecord
       return Result.new(state: NOTHING, escalation_level: nil)
     end
 
-    # last sent only relevant if queued > 0
-    if attrib == 'last_message_sent_at' && fetch_queued(escalatable) == 0
+    # last sent_at only relevant if queued > 0
+    if attrib == 'last_message_sent_at' && fetch_attrib(escalatable, 'queued') == 0
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # last error_at only relevant if error > 0
+    if attrib == 'last_message_error_at' && fetch_attrib(escalatable, 'error') == 0
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # last received_at only relevant if received > 0
+    if attrib == 'last_message_received_at' && fetch_attrib(escalatable, 'received') == 0
       return Result.new(state: NOTHING, escalation_level: nil)
     end
 
@@ -103,9 +113,9 @@ private
                           escalatable_id: 0, attrib: attrib).first
   end
 
-  def self.fetch_queued(escalatable)
-    if escalatable.respond_to?('queued')
-      escalatable.queued
+  def self.fetch_attrib(escalatable, attrib)
+    if escalatable.respond_to?(attrib)
+      escalatable.send(attrib)
     else
       0
     end
