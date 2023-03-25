@@ -12,8 +12,8 @@ module ChannelStatisticConcerns
     end
 
     # filter older statistics
-    scope :current, -> do
-      where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
+    scope :current, -> (interval = 1.day) do
+      where('channel_statistics.updated_at > ?', interval.before(Time.current))
     end
 
     scope :escalated, -> do
