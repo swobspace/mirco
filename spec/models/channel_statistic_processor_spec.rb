@@ -127,6 +127,17 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   end
 
   describe "unsent queued messages" do
+    let!(:escalation_level) do
+      FactoryBot.create(:escalation_level,
+        escalatable_type: 'ChannelStatistic',
+        escalatable_id: 0,
+        attrib: 'last_message_sent_at',
+        min_critical: -20,
+        min_warning: -10,
+        max_warning: nil,
+        max_critical: nil
+      )
+    end
     let!(:channel_statistic) do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
@@ -141,6 +152,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         filtered: '4',
         queued: '12',
         condition: 0,
+        last_message_sent_at: 1.day.before(Time.current),
         last_condition_change: 1.day.before(Time.current)
      )
     end
@@ -167,7 +179,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
     it { expect(processor.process).to be_truthy }
     it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
-    it { processor.process ; expect(channel_statistic.condition).to eq(-1) }
+    it { processor.process ; expect(channel_statistic.condition).to eq(2) }
     # it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
     it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("alert") }
 
