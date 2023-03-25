@@ -61,17 +61,18 @@ class ChannelStatisticProcessor
     # create only alerts for destinations
     return true if channel_statistic.status_type == 'CHANNEL'
 
-    if channel_statistic.condition == 'ok'
+    if channel_statistic.condition == EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'recovery',
                 message: "#{channel_statistic} has recovered"
               )
-    else
+    elsif channel_statistic.condition > EscalationLevel::OK
+      if channel_statistic.escalation_status('last_message_sent_at').state > EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'alert',
-                message: "#{channel_statistic.queued} messages," +
-                         " but no messages sent in the last 30 minutes"
+                message: "#{channel_statistic.queued} messages, but not sending"
               )
+      end
     end
     send_alert(alert)
     alert.persisted?
