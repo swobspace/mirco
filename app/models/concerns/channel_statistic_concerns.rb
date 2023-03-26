@@ -4,8 +4,6 @@ module ChannelStatisticConcerns
   extend ActiveSupport::Concern
 
   included do
-    EscalationResult = ImmutableStruct.new(:state, :escalation_level)
-
     # filter enabled channels
     scope :active, -> do
       joins(:channel).where("channels.enabled = true")
@@ -17,12 +15,12 @@ module ChannelStatisticConcerns
     end
 
     scope :escalated, -> do
-      where('meta_data_id > 0')
+      where('channel_statistics.meta_data_id > 0')
       .where("channel_statistics.condition > ?", EscalationLevel::OK)
     end
 
     scope :queued, -> do
-      where('meta_data_id > 0')
+      where('channel_statistics.meta_data_id > 0')
       .where("channel_statistics.queued > 0")
     end
 
@@ -50,23 +48,6 @@ module ChannelStatisticConcerns
     channel_counters.last_30min
                     .increase(value: 'filtered')
                     .map(&:delta).map(&:to_i).reduce(0, :+)
-  end
-
-  def escalation_status(attribs = [])
-    attribs = Array(attribs)
-    unless attribs.any?
-      attribs = escalatable_attributes
-    end
-    state = EscalationLevel::NOTHING
-    escalation_level = nil
-    attribs.each do |attr|
-      result = EscalationLevel.check_for_escalation(self, attr)
-      if result.state > state
-        state = result.state
-        escalation_level = result.escalation_level
-      end
-    end
-    return EscalationResult.new(state: state, escalation_level: escalation_level)
   end
 
 end
