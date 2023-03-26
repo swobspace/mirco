@@ -45,7 +45,9 @@ class ChannelStatisticProcessor
 
   def update_condition
     return true unless condition_changed?
-    channel_statistic.update(condition: current_condition) && create_alert_entry
+    channel_statistic.touch(:last_condition_change) &&
+      channel_statistic.update(condition: current_condition) &&
+      create_alert_entry
     # process some notification
   end
 
@@ -70,7 +72,7 @@ class ChannelStatisticProcessor
       if channel_statistic.escalation_status('last_message_sent_at').state > EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'alert',
-                message: I18n.t(channel_statistic.condition, scope: 'mirco.condition') + 
+                message: I18n.t(channel_statistic.condition, scope: 'mirco.condition') +
                          ": #{channel_statistic.queued} messages, but not sending"
               )
       end

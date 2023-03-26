@@ -180,7 +180,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
     it { expect(processor.process).to be_truthy }
     it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
     it { processor.process ; expect(channel_statistic.condition).to eq(2) }
-    # it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
+    it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
     it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("alert") }
 
     it "creates an alert entry" do
@@ -208,22 +208,15 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
     end
 
     it "recovers after error" do
-      FactoryBot.create(:channel_counter,
-        server_id: server.id,
-        channel_id: channel.id,
-        channel_statistic_id: channel_statistic.id,
-        meta_data_id: 13,
-        received: '1', sent: '8', error: '3', filtered: '4', queued: '5',
-        created_at: 2.minutes.before(Time.current)
-      )
       channel_statistic.update(condition: 2)
+      channel_statistic.reload
+      channel_statistic.sent = 10
       expect {
         processor.process
       }.to change(Alert, :count).by(1)
       expect(channel_statistic.sent_last_30min).to eq(8)
-      expect(channel_statistic.condition).to eq(-1)
-      # expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy
-      pending "not yet solved"
+      expect(channel_statistic.condition).to eq(0)
+      expect(channel_statistic.last_condition_change > 1.minute.before(Time.current)).to be_truthy
       expect(channel_statistic.alerts.last.type).to eq('recovery')
     end
   
@@ -233,7 +226,6 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
     let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
 
     it "queued: 0, sent_last_30min > 0" do
-      # expect(channel_statistic).to receive(:sent_last_30min).at_least(:once).and_return(0)
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
       processor.process
       expect(channel_statistic.condition).to eq(-1)
