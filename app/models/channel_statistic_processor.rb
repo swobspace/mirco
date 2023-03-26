@@ -64,13 +64,14 @@ class ChannelStatisticProcessor
     if channel_statistic.condition == EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'recovery',
-                message: "#{channel_statistic} has recovered"
+                message: "OK: #{channel_statistic} has recovered"
               )
     elsif channel_statistic.condition > EscalationLevel::OK
       if channel_statistic.escalation_status('last_message_sent_at').state > EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'alert',
-                message: "#{channel_statistic.queued} messages, but not sending"
+                message: I18n.t(channel_statistic.condition, scope: 'mirco.condition') + 
+                         ": #{channel_statistic.queued} messages, but not sending"
               )
       end
     end
