@@ -25,6 +25,12 @@ skinparam shadowing 4.0
   document {
     BackGroundColor white
   }
+  activity {
+    BackGroundColor #lightyellow
+  }
+  diamond {
+    BackGroundColor #gold
+  }
 </style>
 
 !startsub class

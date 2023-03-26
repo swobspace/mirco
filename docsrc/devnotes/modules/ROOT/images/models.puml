@@ -54,7 +54,7 @@ class ChannelStatistic {
   error: integer
   filtered: integer
   queued: integer
-  condition: string
+  condition: integer
   last_condition_change: timestamp
   last_message_received_at: timestamp
   last_message_sent_at: timestamp
@@ -108,9 +108,9 @@ class EscalationLevel {
 
 class EscalationTime {
   escalation_level_id
-  start_time: time
-  end_time: time
-  weekdays: integer
+  start_time: string, limit: 5
+  end_time: string, limit: 5
+  weekdays: integer, array:true
 }
 
 class NotificationGroup {

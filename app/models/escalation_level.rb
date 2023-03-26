@@ -1,7 +1,10 @@
 class EscalationLevel < ApplicationRecord
+  Result = ImmutableStruct.new(:state, :escalation_level)
   # -- associations
   # optional: true is neccessary for default values using escalatable_id: 0
   belongs_to :escalatable, polymorphic: true, optional: true
+  belongs_to :notification_group, optional: true
+  has_many :escalation_times, dependent: :destroy
 
   # -- configuration
   NOTHING  = -1.freeze
@@ -10,12 +13,18 @@ class EscalationLevel < ApplicationRecord
   CRITICAL = 2.freeze
   UNKNOWN  = 3.freeze
 
+  STATES = NOTHING..UNKNOWN
+
+  accepts_nested_attributes_for :escalation_times,
+    allow_destroy: true,
+    reject_if: proc { |att| att['weekdays'].compact.blank? }
+
   # -- validations and callbacks
-  validates :escalatable_id, presence: true, 
+  validates :escalatable_id, presence: true,
                              uniqueness: { scope: %i[escalatable_type attrib] }
-  validates :escalatable_type, presence: true, 
+  validates :escalatable_type, presence: true,
                                uniqueness: { scope: %i[escalatable_id attrib] }
-  validates :attrib, presence: true, 
+  validates :attrib, presence: true,
                      uniqueness: { scope: %i[escalatable_id escalatable_type] }
 
   def to_s
@@ -35,21 +44,52 @@ class EscalationLevel < ApplicationRecord
   #   3: UNKNOWN
   #
   def self.check_for_escalation(escalatable, attrib)
-    return UNKNOWN unless escalatable.respond_to?(attrib)
+    # attrib.valid?
+    unless escalatable.respond_to?(attrib)
+      return Result.new(state: UNKNOWN, escalation_level: nil)
+    end
+
+    # value.nil?
     value = fetch_value(escalatable, attrib)
-    return NOTHING if value.nil?
+    if value.nil?
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # last sent_at only relevant if queued > 0
+    if attrib == 'last_message_sent_at' && fetch_attrib(escalatable, 'queued') == 0
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # last error_at only relevant if error > 0
+    if attrib == 'last_message_error_at' && fetch_attrib(escalatable, 'error') == 0
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # last received_at only relevant if received > 0
+    if attrib == 'last_message_received_at' && fetch_attrib(escalatable, 'received') == 0
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # levels.empty?
     level = fetch_escalation_level(escalatable, attrib)
-    return NOTHING if level.nil?
+    if level.nil?
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
+
+    # escalation_times.any?
+    if level.escalation_times.any? && level.escalation_times.current.empty?
+      return Result.new(state: NOTHING, escalation_level: nil)
+    end
     if level.min_critical.present? && (value < level.min_critical)
-      return CRITICAL
+      return Result.new(state: CRITICAL, escalation_level: level)
     elsif level.min_warning.present? && (value < level.min_warning)
-      return WARNING
+      return Result.new(state: WARNING, escalation_level: level)
     elsif level.max_critical.present? && (value >= level.max_critical)
-      return CRITICAL
+      return Result.new(state: CRITICAL, escalation_level: level)
     elsif level.max_warning.present? && (value >= level.max_warning)
-      return WARNING
+      return Result.new(state: WARNING, escalation_level: level)
     else
-      return OK
+      return Result.new(state: OK, escalation_level: level)
     end
   end
 
@@ -69,7 +109,15 @@ private
 
   def self.fetch_escalation_level(escalatable, attrib)
     escalatable.escalation_levels.where(attrib: attrib).first ||
-    EscalationLevel.where(escalatable_type: escalatable.class.name.to_s, 
+    EscalationLevel.where(escalatable_type: escalatable.class.name.to_s,
                           escalatable_id: 0, attrib: attrib).first
+  end
+
+  def self.fetch_attrib(escalatable, attrib)
+    if escalatable.respond_to?(attrib)
+      escalatable.send(attrib)
+    else
+      0
+    end
   end
 end

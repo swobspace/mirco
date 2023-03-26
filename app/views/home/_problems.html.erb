@@ -33,7 +33,7 @@
             ) %>
           <%= render TdEscalationComponent.new(
                 escalatable: problem,
-                attrib: 'last_message_sent_at',
+                attrib: 'last_message_error_at',
                 manual_update: problem.server.manual_update
             ) %>
           <%= render TdEscalationComponent.new(

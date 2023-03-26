@@ -15,6 +15,7 @@ de:
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
+    new_notification_group: Neue Benachrichtungsgruppe
     new_server: Neues Mirth-System
     new_software: Neue Software
     new_software_connection: Neue Verbindung
@@ -36,6 +37,12 @@ de:
     sourceConnectors: Source Connectors
     destinationConnectors: Destination Connectors
     recent_errors: Letzte Fehler
+    condition:
+      -1: '-'
+      0: OK
+      1: WARNING
+      2: CRITICAL
+      3: UNKNOWN
 
   activerecord:
     models:
@@ -50,11 +57,13 @@ de:
       channel_statistic/alert: Alarm
       channel_statistic/note: Notiz
       escalation_level: Eskalationslevel
+      escalation_time: Eskalationszeitraum
       hl7_event: HL7-Typ
       hl7_segment: HL7-Segment
       host: Host
       interface_connector: Connector
       note: Notizen
+      notification_group: Benachrichtigungsgruppe
       server: Mirth-System
       server_configuration: Sicherung der Konfiguration
       servers/alert: Alarm
@@ -93,12 +102,14 @@ de:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Anzeigename
+    end_time: Ende
     error: error
     error_last_30min: error (30min)
     escalatable: eskalierbar
     escalatable_id: eskalierbar
     escalatable_type: Typ
     escalation_level: Eskalationslevel
+    escalation_time: Eskalationszeitraum
     exportData: exportData
     filtered: filtered
     filtered_last_30min: filtered (30min)
@@ -134,6 +145,7 @@ de:
     missing_connector: Fehlende Connectoren
     name: Name
     note: Notiz
+    notification_group: Benachrichtigungsgruppe
     postprocessingScript: Postprocessing Script
     preprocessingScript: Preprocessing Script
     properties: Eigenschaften
@@ -149,6 +161,7 @@ de:
     server_uid: Mirth Server UUID
     server_jvm: Mirth Server JVM
     server_version: Server Version
+    show_on_dashboard: auf dem Dashboard anzeigen
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
@@ -159,6 +172,7 @@ de:
     software_connection: Verbindung
     software_group: Software-Gruppe
     software_interface: Software Interface
+    start_time: Beginn
     state: Status
     status_type: Typ
     timestamp: Wann?
@@ -170,6 +184,7 @@ de:
     username: Username
     vendor: Hersteller
     version: Version
+    weekdays: Wochentage
 
   controller:
     alerts: Alarme
@@ -185,6 +200,8 @@ de:
     channel_statistics/notes: Notizen
     channel_counters: Channel Counters
     escalation_levels: Eskalationslevels
+    escalation_levels/escalation_times: Eskalationszeiten
+    escalation_times: Eskalationszeiten
     hl7_events: HL7 Events
     hl7_segments: HL7 Segmente
     home: Home
@@ -195,6 +212,7 @@ de:
     locations: Standorte
     locations/hosts: Hosts
     notes: Notizen
+    notification_groups: Benachrichtigungsgruppen
     pages: Seiten
     servers: Mirth-Systeme
     server_configurations: Sicherungen der Konfiguration
@@ -218,3 +236,6 @@ de:
       update_properties:
         notice: "Server-Eigenschaften aktualisiert"
         alert: "Server-Eigenschaften konnten nicht aktualisiert werden!"
+
+  escalation_times:
+    add: Eskalationszeitraum hinzufügen

@@ -29,23 +29,30 @@ module Channels
         # rubocop:disable Layout/ArgumentAlignment
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
           target: :queued_messages,
-          partial: 'home/index',
+          partial: 'home/queues',
           locals: {
             queued_messages: ChannelStatistic
-                             .where('channel_statistics.meta_data_id > 0')
-                             .where('channel_statistics.queued > 0')
-                             .where('channel_statistics.updated_at > ?', 1.day.before(Time.current))
-                             .order('queued desc')
+                             .active.current.queued.order('queued desc')
                              .to_a
-          })
+        })
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
-                                                         target: :server_status,
-                                                         partial: 'home/servers',
-                                                         locals: { servers: Server.order(:name).all.to_a })
+          target: :server_status,
+          partial: 'home/servers',
+          locals: {
+            servers: Server.order(:name).where(manual_update: false).to_a
+        })
         Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
-                                                         target: :problems,
-                                                         partial: 'home/problems',
-                                                         locals: { problems: ChannelStatistic.active.escalated.to_a })
+          target: :problems,
+          partial: 'home/problems',
+          locals: {
+            problems: ChannelStatistic
+                      .active.current.escalated.order('condition desc')
+                      .to_a -
+                      ChannelStatistic
+                      .active.current.queued.order('queued desc')
+                      .to_a
+
+        })
         # rubocop:enable Layout/ArgumentAlignment
       end
     end

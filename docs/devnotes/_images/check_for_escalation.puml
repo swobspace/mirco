@@ -1,0 +1,31 @@
+@startuml
+!theme mirco
+
+title Check for Escalation
+
+start
+if (attrib.valid?) then (no)
+  stop
+endif
+if (value.nil?) then (yes)
+  stop
+endif
+if (attrib == 'last_sent' && queued == 0) then (yes)
+  stop
+else (no)
+endif
+if (levels.empty?) then (yes)
+  stop
+else (no)
+endif
+if (escalation_times.present?) then (yes)
+  if (escalation_times.current?) then (no)
+    stop
+  else (yes)
+  endif
+else (no)
+endif
+:process thresholds;
+stop
+
+@enduml

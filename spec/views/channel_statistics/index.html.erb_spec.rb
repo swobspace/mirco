@@ -27,7 +27,7 @@ RSpec.describe 'channel_statistics/index', type: :view do
         error: 4,
         filtered: 5,
         queued: 6,
-        condition: 'alert',
+        condition: 2,
         last_condition_change: 1.day.before(Time.current)
       )
       ChannelStatistic.create!(
@@ -44,7 +44,7 @@ RSpec.describe 'channel_statistics/index', type: :view do
         error: 4,
         filtered: 5,
         queued: 6,
-        condition: 'alert',
+        condition: 2,
         last_condition_change: 1.day.before(Time.current)
       )
     end
@@ -64,6 +64,7 @@ RSpec.describe 'channel_statistics/index', type: :view do
     assert_select 'tr>td', text: 4.to_s, count: 2
     assert_select 'tr>td', text: 5.to_s, count: 2
     assert_select 'tr>td', text: 6.to_s, count: 2
+    assert_select 'tr>td', text: 'CRITICAL'.to_s, count: 2
     assert_select 'tr>td', text: 1.day.before(Time.current).to_fs(:local), count: 2
   end
 end

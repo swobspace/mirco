@@ -97,7 +97,7 @@
                   attrib: 'queued',
                   manual_update: channel_statistic.server.manual_update
               ) %>
-          <td><%= channel_statistic.condition %></td>
+          <td class="text-center"><%= t(channel_statistic.condition, scope: 'mirco.condition') %></td>
           <td><%= channel_statistic.last_condition_change&.to_fs(:local) %></td>
           <%= render TdEscalationComponent.new(
                   escalatable: channel_statistic,

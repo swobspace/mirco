@@ -39,11 +39,17 @@ FactoryBot.define do
     association :channel
     server_uid { `uuid -v 4` }
     channel_uid { `uuid -v 4` }
-    condition { 'ok' }
+    condition { 0 }
   end
 
   factory :escalation_level do
     association :escalatable, factory: :channel_statistic
+    association :notification_group
+  end
+
+  factory :escalation_time do
+    association :escalation_level
+    weekdays {[1,2,3,4,5]}
   end
 
   factory :host do
@@ -70,6 +76,10 @@ FactoryBot.define do
     association :user
     type { 'acknowledge' }
     message { 'some text' }
+  end
+
+  factory :notification_group do
+    name { generate(:aname) }
   end
 
   factory :server do

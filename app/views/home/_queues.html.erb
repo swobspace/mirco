@@ -38,6 +38,7 @@
           <%= render TdEscalationComponent.new(
                 escalatable: channel_statistic,
                 attrib: 'last_message_sent_at',
+                alert: (channel_statistic.escalation_status.state >= EscalationLevel::WARNING),
                 manual_update: channel_statistic.server.manual_update
             ) %>
 

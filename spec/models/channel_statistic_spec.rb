@@ -14,7 +14,7 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
   it { is_expected.to validate_presence_of(:channel_uid) }
-  it { is_expected.to validate_inclusion_of(:condition).in_array(ChannelStatistic::CONDITIONS).allow_blank }
+  it { is_expected.to validate_numericality_of(:condition).is_in(EscalationLevel::STATES).allow_nil }
 
 
   it 'should get plain factory working' do

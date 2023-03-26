@@ -58,6 +58,9 @@
     <a class="nav-link" href="state-diagrams.html">Zustandsdiagramme</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="escalations.html">Escalations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="timescale.html">Timescale</a>
   </li>
 </ul>
@@ -183,7 +186,7 @@
   error:integer \
   filtered:integer \
   queued:integer \
-  condition:string:index \
+  condition:integer:index \
   last_condition_change:timestamp \
   last_message_received_at:timestamp \
   last_message_sent_at:timestamp \
@@ -342,7 +345,52 @@ bin/rails g controller ServerConfiguration index show</code></pre>
   min_warning:integer \
   max_warning:integer \
   max_critical:integer \
+  notification_group:belongs_to \
+  show_on_dashboard:boolean:index \
   --no-stylesheets --no-javascripts --no-helper</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_escalationtime"><a class="anchor" href="#_model_escalationtime"></a>Model EscalationTime</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold EscalationTime \
+  escalation_level:belongs_to \
+  start_time:string{limit:5} \
+  end_time:string{limit:5} \
+  weekdays:integer{array} \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_model_notificationgroup"><a class="anchor" href="#_model_notificationgroup"></a>Model NotificationGroup</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold NotificationGroup \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g migration CreateJoinTableNotificationGroupWobauthUser \
+  notification_group wobauth_user</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def change
+  create_join_table :notification_group, :wobauth_user do |t|
+    t.index [:notification_group_id, :wobauth_user_id], name: 'idx_notificationgroup_user'
+    t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
+  end
+end</code></pre>
 </div>
 </div>
 </div>

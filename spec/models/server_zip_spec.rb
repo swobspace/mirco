@@ -36,7 +36,7 @@ RSpec.describe ServerZip, type: :model do
     end
 
     it { expect(zipfile_list).to contain_exactly(
-           "examples/#{server.hostname}/#{server.name}.yml",
+           "pages/#{server.hostname}/#{server.name}.adoc",
            "images/#{server.hostname}/#{server.name}.svg",
            "pages/#{server.hostname}/#{channel.name}.adoc",
            "images/#{server.hostname}/#{channel.name}.svg",

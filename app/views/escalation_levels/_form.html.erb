@@ -15,6 +15,13 @@
        %>
     <%= form.input :max_critical
        %>
+    <%= form.association :notification_group,
+          include_blank: true
+       %>
+    <%= form.input :show_on_dashboard
+       %>
+
+    <%= render 'nested_escalation_times_form', f: form %>
 
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= cancel_button %>

@@ -24,6 +24,8 @@ RSpec.describe "escalation_levels/new", type: :view do
       assert_select "input[name=?]", "escalation_level[min_warning]"
       assert_select "input[name=?]", "escalation_level[max_warning]"
       assert_select "input[name=?]", "escalation_level[max_critical]"
+      assert_select "select[name=?]", "escalation_level[notification_group_id]"
+      assert_select "input[name=?]", "escalation_level[show_on_dashboard]"
     end
   end
 end

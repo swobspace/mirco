@@ -45,63 +45,50 @@ class ChannelStatisticProcessor
 
   def update_condition
     return true unless condition_changed?
-    toggle_condition && create_alert_entry
+    channel_statistic.touch(:last_condition_change) &&
+      channel_statistic.update(condition: current_condition) &&
+      create_alert_entry
     # process some notification
   end
 
-  # if condition.blank? always assume a change (first try)
-  # else process alert same as acknowledge
   def condition_changed?
-    # ok -> alert || alert, acknowledged -> ok
-    (current_condition == 'ok' and channel_statistic.condition != 'ok') ||
-    (current_condition != 'ok' and channel_statistic.condition == 'ok') ||
-    channel_statistic.condition.blank?
-  end
-
-  def toggle_condition
-    if ( channel_statistic.condition == 'ok' )
-      channel_statistic.update(condition: 'alert')
-      channel_statistic.touch(:last_condition_change)
-    else
-      channel_statistic.update(condition: 'ok')
-      channel_statistic.touch(:last_condition_change)
-    end
+    current_condition != channel_statistic.condition
   end
 
   def current_condition
-    if channel_statistic.sent_last_30min.zero? && channel_statistic.queued > Mirco.queued_warning_level
-      'alert'
-    else
-      'ok'
-    end
+    channel_statistic.escalation_status.state
   end
 
   def create_alert_entry
     # create only alerts for destinations
     return true if channel_statistic.status_type == 'CHANNEL'
 
-    if channel_statistic.condition == 'ok'
+    if channel_statistic.condition == EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'recovery',
-                message: "#{channel_statistic} has recovered"
+                message: "OK: #{channel_statistic} has recovered"
               )
-    else
+    elsif channel_statistic.condition > EscalationLevel::OK
       alert = channel_statistic.alerts.create(
                 type: 'alert',
-                message: "#{channel_statistic.queued} messages," +
-                         " but no messages sent in the last 30 minutes"
+                message: channel_statistic.escalation_status.message
               )
     end
     send_alert(alert)
-    alert.persisted?
+    alert.nil? || alert.persisted?
   end
 
   def send_alert(alert)
+    return if alert.nil?
     # send mail is disabled unless mail_to is explicit configured
     return unless Mirco.mail_to.any?
 
     # avoid duplicate alerts, one for the destination and one for the channel itself
     return if alert.alertable&.status_type == 'CHANNEL'
+    if alert.type == 'alert' &&
+       alert.alertable.escalation_status('last_message_sent_at').state <= EscalationLevel::OK
+      return
+    end
 
     NotificationMailer.with(alert: alert).alert.deliver_later
   end

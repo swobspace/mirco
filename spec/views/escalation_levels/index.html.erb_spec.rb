@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "escalation_levels/index", type: :view do
   let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
+  let(:ng) { FactoryBot.create(:notification_group, name: 'Notifier') }
   let(:escalation_levels) do
     [ 
       FactoryBot.create(:escalation_level,
         escalatable_id: cs.id,
         escalatable_type: 'ChannelStatistic',
+        notification_group: ng,
+        show_on_dashboard: true,
         attrib: 'last_message_received_at',
         min_critical: -30,
         min_warning: -15,
@@ -15,6 +18,8 @@ RSpec.describe "escalation_levels/index", type: :view do
       FactoryBot.create(:escalation_level,
         escalatable_id: 0,
         escalatable_type: 'ChannelStatistic',
+        notification_group: ng,
+        show_on_dashboard: true,
         attrib: 'last_message_received_at',
         min_critical: -30,
         min_warning: -15,
@@ -38,6 +43,8 @@ RSpec.describe "escalation_levels/index", type: :view do
     cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new("Some Statistics".to_s), count: 1
     assert_select cell_selector, text: Regexp.new("last_message_received_at".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Notifier".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("true".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(-30.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(-15.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(20.to_s), count: 2

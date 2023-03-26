@@ -1,0 +1,20 @@
+<div id="escalation_times_list" data-controller="nested-form" class="offset-3">
+  <template data-nested-form-target='template'>
+    <%= f.simple_fields_for :escalation_times, EscalationTime.new,
+                             child_index: 'TEMPLATE_RECORD' do |builder| %>
+      <%= render 'escalation_time_fields', f: builder %>
+    <% end %>
+  </template>
+
+  <%= f.simple_fields_for :escalation_times do |builder| %>
+    <%= render 'escalation_time_fields', f: builder %>
+  <% end %>
+
+  <div data-nested-form-target="add_item">
+    <%= link_to t('escalation_times.add'), "#",
+              data: { action: "nested-form#add_association" },
+              class: 'btn btn-outline-secondary float-end'
+     %>
+  </div>
+
+</div>

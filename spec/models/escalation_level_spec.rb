@@ -1,9 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe EscalationLevel, type: :model do
-  let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
+  let(:ng) { FactoryBot.create(:notification_group) }
+  let(:cs) do
+    FactoryBot.create(:channel_statistic,
+      name: 'Some Statistics',
+      error: 1,
+      received: 123456,
+      sent: 123450
+    )
+  end
 
   it { is_expected.to belong_to(:escalatable).optional }
+  it { is_expected.to belong_to(:notification_group).optional }
+  it { is_expected.to have_many(:escalation_times).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:escalatable_id) }
   it { is_expected.to validate_presence_of(:escalatable_type) }
   it { is_expected.to validate_presence_of(:attrib) }
@@ -18,11 +28,11 @@ RSpec.describe EscalationLevel, type: :model do
 
   describe "#to_s" do
     let(:el) do
-      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at', 
+      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
                                            escalatable: cs)
     end
     let(:el2) do
-      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at', 
+      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
                                            escalatable_type: 'ChannelStatistic',
                                            escalatable_id: 0)
     end
@@ -33,21 +43,22 @@ RSpec.describe EscalationLevel, type: :model do
     let!(:ts) { Time.current }
 
     describe "with unknown attribute" do
-      it { expect(EscalationLevel.check_for_escalation(cs, 'notexistent')).to eq(3) }
+      it { expect(EscalationLevel.check_for_escalation(cs, 'notexistent').state).to eq(3) }
     end
 
     describe "attrib = last_message_received_at" do
       subject {EscalationLevel.check_for_escalation(cs, 'last_message_received_at')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(-1) }
+        it { expect(subject.state).to eq(-1) }
       end
 
       describe "with default escalation levels" do
-        let!(:el_default) do 
+        let!(:el_default) do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
+            notification_group_id: ng.id,
             attrib: 'last_message_received_at',
             min_critical: -1440,
             min_warning: -240,
@@ -58,106 +69,126 @@ RSpec.describe EscalationLevel, type: :model do
 
         it "CRITICAL if 2 days old" do
           cs.update(last_message_received_at: 2.days.before(ts))
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         it "WARNING less than 1 day old" do
           cs.update(last_message_received_at: 23.hours.before(ts))
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "OK less than 1h old" do
           cs.update(last_message_received_at: 50.minutes.before(ts))
-          expect(subject).to eq(0)
+          expect(subject.state).to eq(0)
         end
 
         it "WARNING 5h newer" do
           cs.update(last_message_received_at: 5.hours.after(ts))
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "CRITICAL 2d newer" do
           cs.update(last_message_received_at: 2.days.after(ts))
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         describe "and specific escalation levels" do
-          let!(:el_specific) do 
+          let!(:el_specific) do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
+             notification_group_id: ng.id,
               attrib: 'last_message_received_at',
               min_warning: -480,
             )
           end
 
-          it "CRITICAL if 2 days old" do
+          it "WARNING if 2 days old" do
             cs.update(last_message_received_at: 2.days.before(ts))
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "WARNING less than 1 day old" do
             cs.update(last_message_received_at: 23.hours.before(ts))
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "OK less than 1h old" do
             cs.update(last_message_received_at: 50.minutes.before(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
-          it "WARNING 5h newer" do
+          it "OK 5h newer" do
             cs.update(last_message_received_at: 5.hours.after(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
-          it "CRITICAL 2d newer" do
+          it "OK 2d newer" do
             cs.update(last_message_received_at: 2.days.after(ts))
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
+          end
+
+          describe "with escalation times" do
+            context "current" do
+              let!(:et) do
+                FactoryBot.create(:escalation_time,
+                  escalation_level: el_specific,
+                  weekdays: [Date.current.cwday]
+                )
+              end
+              it "WARNING if 2 days old" do
+                el_specific.reload
+                expect(EscalationTime.count).to eq(1)
+                expect(EscalationTime.current.count).to eq(1)
+                cs.update(last_message_received_at: 2.days.before(ts))
+                expect(subject.state).to eq(1)
+              end
+            end
           end
         end
-
       end
     end
 
-    describe "attrib = last_message_received_at" do
+    describe "attrib = queued" do
       subject {EscalationLevel.check_for_escalation(cs, 'queued')}
 
       describe "with no escalation levels" do
-        it { expect(subject).to eq(-1) }
+        it { expect(subject.state).to eq(-1) }
       end
 
       describe "with default escalation levels" do
-        let!(:el_default) do 
+        let!(:el_default) do
           EscalationLevel.create!(
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
+            notification_group_id: ng.id,
             attrib: 'queued',
             max_warning: 10,
-            max_critical: 50 
+            max_critical: 50
           )
         end
 
         it "OK if < 10 " do
           cs.update(queued: 5)
-          expect(subject).to eq(0)
+          expect(subject.state).to eq(0)
         end
 
         it "WARNING if < 50" do
           cs.update(queued: 25)
-          expect(subject).to eq(1)
+          expect(subject.state).to eq(1)
         end
 
         it "CRITICAL if > 50" do
           cs.update(queued: 81)
-          expect(subject).to eq(2)
+          expect(subject.state).to eq(2)
         end
 
         describe "and specific escalation levels" do
-          let!(:el_specific) do 
+          let!(:el_specific) do
             EscalationLevel.create!(
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
+              notification_group_id: ng.id,
               attrib: 'queued',
               max_warning: 5
             )
@@ -165,17 +196,17 @@ RSpec.describe EscalationLevel, type: :model do
 
           it "OK if < 5 " do
             cs.update(queued: 2)
-            expect(subject).to eq(0)
+            expect(subject.state).to eq(0)
           end
 
           it "WARNING if = 30 " do
             cs.update(queued: 30)
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
 
           it "WARNING if =81 " do
             cs.update(queued: 81)
-            expect(subject).to eq(1)
+            expect(subject.state).to eq(1)
           end
         end
       end
