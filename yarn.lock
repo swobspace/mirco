@@ -762,7 +762,7 @@ dash-ast@^2.0.1:
   resolved "https://registry.yarnpkg.com/dash-ast/-/dash-ast-2.0.1.tgz#8d0fd2e601c59bf874cc22877ee7dd889f54dee8"
   integrity sha512-5TXltWJGc+RdnabUGzhRae1TRq6m4gr+3K2wQX0is5/F2yS6MJXJvLyI3ErAnsAXuJoGqvfVD5icRgim07DrxQ==
 
-datatables.net-bs5@>=1.12.1, datatables.net-bs5@~1.13.1:
+datatables.net-bs5@>=1.12.1, datatables.net-bs5@~1.13.3:
   version "1.13.4"
   resolved "https://registry.yarnpkg.com/datatables.net-bs5/-/datatables.net-bs5-1.13.4.tgz#c73058782484cb84d9bc3ae9b8c0f1950b78bf2b"
   integrity sha512-+gtaiau4vJeuGvnsYWmQy9gqa5XQ15XmkdwpK5EjwYCMzZZEXMQ3wfu2FddBcX5tX9Ual8C+Tf1s2gmqLGNbKQ==
@@ -770,7 +770,7 @@ datatables.net-bs5@>=1.12.1, datatables.net-bs5@~1.13.1:
     datatables.net ">=1.12.1"
     jquery ">=1.7"
 
-datatables.net-buttons-bs5@^2.2.3:
+datatables.net-buttons-bs5@~2.3.5:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/datatables.net-buttons-bs5/-/datatables.net-buttons-bs5-2.3.6.tgz#c44796326fbe614ee7e47aebdfa284d0b14a5486"
   integrity sha512-rAeK04RvvtfV9Wm893t7jsIcqT/ew1uwLus37uCg2CL2gcXZcb4qR7/mLcL1I80Rz5g+8LeO5ANPAWUnfzaUqg==
@@ -779,7 +779,7 @@ datatables.net-buttons-bs5@^2.2.3:
     datatables.net-buttons ">=2.2.3"
     jquery ">=1.7"
 
-datatables.net-buttons@>=2.2.3, datatables.net-buttons@^2.2.3:
+datatables.net-buttons@>=2.2.3, datatables.net-buttons@~2.3.5:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/datatables.net-buttons/-/datatables.net-buttons-2.3.6.tgz#68d74ccfb282a558e4a9d525871b20e017f7fea3"
   integrity sha512-9eid5D2kbTNfGCOiEx5WBHlwfK38W1LMz0AiNZHoSqKAiO0aXGfzrH7L2eY6reHgVMaPvHPAnqeRAjvOul2V/Q==
@@ -787,7 +787,7 @@ datatables.net-buttons@>=2.2.3, datatables.net-buttons@^2.2.3:
     datatables.net ">=1.12.1"
     jquery ">=1.7"
 
-datatables.net@>=1.12.1, datatables.net@~1.13.1:
+datatables.net@>=1.12.1, datatables.net@~1.13.3:
   version "1.13.4"
   resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.13.4.tgz#9a809cee82eca0a884e10b4d47a3a3d6e65e9fe7"
   integrity sha512-yzhArTOB6tPO2QFKm1z3hA4vabtt2hRvgw8XLsT1xqEirinfGYqWDiWXlkTPTaJv2e7gG+Kf985sXkzBFlGrGQ==
