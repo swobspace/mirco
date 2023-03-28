@@ -54,9 +54,8 @@ module Statistics
 
       # create server channels if neccessary
       statuses.each do |stat|
-        # create statistics if meta_data_id == nil (channel itself)
-        # or if > 0 (all connectors except source)
-        next unless stat.meta_data_id.nil? || stat.meta_data_id.positive?
+        # create statistics unless meta_data_id.nil? (connectors only)
+        next if stat.meta_data_id.nil?
 
         creator = Statistics::Creator.new(server: server,
                                           attributes: stat.attributes,

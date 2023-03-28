@@ -162,6 +162,7 @@ de:
     server_jvm: Mirth Server JVM
     server_version: Server Version
     show_on_dashboard: auf dem Dashboard anzeigen
+    source: Source
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
