@@ -15,12 +15,12 @@ module ChannelStatisticConcerns
     end
 
     scope :escalated, -> do
-      where('channel_statistics.meta_data_id > 0')
+      where('channel_statistics.meta_data_id IS NOT NULL')
       .where("channel_statistics.condition > ?", EscalationLevel::OK)
     end
 
     scope :queued, -> do
-      where('channel_statistics.meta_data_id > 0')
+      where('channel_statistics.meta_data_id IS NOT NULL')
       .where("channel_statistics.queued > 0")
     end
 
