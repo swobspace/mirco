@@ -78,6 +78,8 @@ class ChannelStatisticProcessor
     alert.nil? || alert.persisted?
   end
 
+  # needs more grips :-)
+  # should be extracted to a configurable NotificationProcessor 
   def send_alert(alert)
     return if alert.nil?
     # send mail is disabled unless mail_to is explicit configured
@@ -85,8 +87,8 @@ class ChannelStatisticProcessor
 
     # avoid duplicate alerts, one for the destination and one for the channel itself
     return if alert.alertable&.status_type == 'CHANNEL'
-    if alert.type == 'alert' &&
-       alert.alertable.escalation_status('last_message_sent_at').state <= EscalationLevel::OK
+    return unless alert.type == 'alert'
+    if alert.alertable.escalation_status('last_message_sent_at').state <= EscalationLevel::OK
       return
     end
 
