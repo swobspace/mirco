@@ -8,6 +8,11 @@ RSpec.describe "channel_statistic_groups/edit", type: :view do
   }
 
   before(:each) do
+    @ability = Object.new
+    @ability.extend(CanCan::Ability)
+    allow(controller).to receive(:current_ability) { @ability }
+    allow(controller).to receive(:controller_name) { 'channel_statistic_groups' }
+    allow(controller).to receive(:action_name) { 'edit' }
     assign(:channel_statistic_group, channel_statistic_group)
   end
 
