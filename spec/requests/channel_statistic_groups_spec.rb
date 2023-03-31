@@ -18,12 +18,16 @@ RSpec.describe "/channel_statistic_groups", type: :request do
   # ChannelStatisticGroup. As you add validations to ChannelStatisticGroup, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:channel_statistic_group)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: nil }
   }
+
+  before(:each) do
+    login_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -89,14 +93,14 @@ RSpec.describe "/channel_statistic_groups", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: 'Fasel' }
       }
 
       it "updates the requested channel_statistic_group" do
         channel_statistic_group = ChannelStatisticGroup.create! valid_attributes
         patch channel_statistic_group_url(channel_statistic_group), params: { channel_statistic_group: new_attributes }
         channel_statistic_group.reload
-        skip("Add assertions for updated state")
+        expect(channel_statistic_group.name).to eq "Fasel"
       end
 
       it "redirects to the channel_statistic_group" do
