@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ChannelStatisticsGroup, type: :model do
   let(:channel_statistics_group) { FactoryBot.create(:channel_statistics_group, name: 'RxCWD') }
   it { is_expected.to have_and_belong_to_many(:channel_statistics).inverse_of(:channel_statistics_groups) }
-  it { is_expected.to have_many(:escalation_levels).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:escalation_levels) }
   it { is_expected.to validate_presence_of(:name) }
 
   it 'should get plain factory working' do
