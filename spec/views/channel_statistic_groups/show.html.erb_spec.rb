@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "channel_statistics_groups/show", type: :view do
+RSpec.describe "channel_statistic_groups/show", type: :view do
   before(:each) do
-    assign(:channel_statistics_group, ChannelStatisticsGroup.create!(
+    assign(:channel_statistic_group, ChannelStatisticGroup.create!(
       name: "Name"
     ))
   end

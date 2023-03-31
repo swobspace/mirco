@@ -54,7 +54,7 @@ de:
       channel_counter: Channel Counter
       channel_detail: Channel Connector
       channel_statistic: Channel Statistik
-      channel_statistics_group: Channel Statistik Gruppe
+      channel_statistic_group: Channel Statistik Gruppe
       channel_statistic/alert: Alarm
       channel_statistic/note: Notiz
       escalation_level: Eskalationslevel
@@ -196,8 +196,8 @@ de:
     channels/notes: Notizen
     channel_details: Channel Connectors
     channel_statistics: Channel Statistiken
-    channel_statistics_groups: Channel Statistik Gruppen
-    channel_statistics_groups/escalation_levels: Eskalationslevels
+    channel_statistic_groups: Channel Statistik Gruppen
+    channel_statistic_groups/escalation_levels: Eskalationslevels
     channel_statistics/alerts: Alarme
     channel_statistics/channel_counters: Channel Counters
     channel_statistics/escalation_levels: Eskalationslevels

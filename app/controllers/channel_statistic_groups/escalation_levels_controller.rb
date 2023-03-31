@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module ChannelStatisticsGroups
+module ChannelStatisticGroups
   class EscalationLevelsController < EscalationLevelsController
     before_action :set_escalatable
 
     private
 
     def set_escalatable
-      @escalatable ||= ChannelStatisticsGroup.find(params[:channel_statistics_group_id])
+      @escalatable ||= ChannelStatisticGroup.find(params[:channel_statistic_group_id])
     end
 
     def add_breadcrumb_show

@@ -86,6 +86,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_121106) do
     t.index ["server_id"], name: "index_channel_counters_on_server_id"
   end
 
+  create_table "channel_statistic_groups", force: :cascade do |t|
+    t.string "name", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "channel_statistic_groups_statistics", id: false, force: :cascade do |t|
+    t.bigint "channel_statistic_id", null: false
+    t.bigint "channel_statistic_group_id", null: false
+    t.index ["channel_statistic_group_id", "channel_statistic_id"], name: "idx_statisticsgroup_statistic"
+    t.index ["channel_statistic_id", "channel_statistic_group_id"], name: "idx_statistic_statisticsgroup"
+  end
+
   create_table "channel_statistics", force: :cascade do |t|
     t.bigint "server_id", null: false
     t.bigint "channel_id", null: false
@@ -114,19 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_121106) do
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
-  end
-
-  create_table "channel_statistics_groups", force: :cascade do |t|
-    t.string "name", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "channel_statistics_statistics_groups", id: false, force: :cascade do |t|
-    t.bigint "channel_statistic_id", null: false
-    t.bigint "channel_statistics_group_id", null: false
-    t.index ["channel_statistic_id", "channel_statistics_group_id"], name: "idx_statistic_statisticsgroup"
-    t.index ["channel_statistics_group_id", "channel_statistic_id"], name: "idx_statisticsgroup_statistic"
   end
 
   create_table "channels", force: :cascade do |t|

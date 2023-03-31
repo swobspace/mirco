@@ -2,11 +2,11 @@
   <meta name="turbolinks-cache-control" content="no-cache">
 <% end %>
 
-<h1><%= t('controller.channel_statistics_groups') %></h1>
+<h1><%= t('controller.channel_statistic_groups') %></h1>
 
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
-        id: "channel_statistics_groups_table",
+        id: "channel_statistic_groups_table",
         class: "table table-bordered table-responsive-xl",
         data: {
           'datatables-target': 'datatable',
@@ -25,13 +25,13 @@
       </tr>
     </tfoot>
     <tbody>
-      <% @channel_statistics_groups.each do |channel_statistics_group| %>
-        <%= content_tag(:tr, id: dom_id(channel_statistics_group), class: dom_class(channel_statistics_group)) do %>
-                <td><%= channel_statistics_group.name %></td>
+      <% @channel_statistic_groups.each do |channel_statistic_group| %>
+        <%= content_tag(:tr, id: dom_id(channel_statistic_group), class: dom_class(channel_statistic_group)) do %>
+                <td><%= channel_statistic_group.name %></td>
                 <td class="text-nowrap">
-            <%= show_link channel_statistics_group %>
-            <%= edit_link channel_statistics_group %>
-            <%= delete_link channel_statistics_group %>
+            <%= show_link channel_statistic_group %>
+            <%= edit_link channel_statistic_group %>
+            <%= delete_link channel_statistic_group %>
           </td>
         <% end %>
       <% end %>
@@ -42,4 +42,4 @@
 <br />
 
 <%= back_link %>
-<%= new_link ChannelStatisticsGroup %>
+<%= new_link ChannelStatisticGroup %>

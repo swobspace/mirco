@@ -42,7 +42,7 @@ FactoryBot.define do
     condition { 0 }
   end
 
-  factory :channel_statistics_group do
+  factory :channel_statistic_group do
     name { generate(:aname) }
   end
 

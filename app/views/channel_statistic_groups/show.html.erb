@@ -3,14 +3,14 @@
     <div class="d-flex w-100 justify-content-between">
       <div>
         <span class="subtitle">
-          <%= t('activerecord.models.channel_statistics_group') %>: 
-          #<%= @channel_statistics_group.id %>
+          <%= t('activerecord.models.channel_statistic_group') %>: 
+          #<%= @channel_statistic_group.id %>
         </span>
-        <h4 class="title"><%= @channel_statistics_group %></h4>
+        <h4 class="title"><%= @channel_statistic_group %></h4>
       </div>
       <div role="toolbar" class="pt-3">
-        <%= edit_link(@channel_statistics_group) %>
-        <%= delete_link(@channel_statistics_group) %>
+        <%= edit_link(@channel_statistic_group) %>
+        <%= delete_link(@channel_statistic_group) %>
       </div>
     </div>
   </div>
@@ -20,11 +20,11 @@
     
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.name')%>:</th>
-        <td><%= @channel_statistics_group.name %></td>
+        <td><%= @channel_statistic_group.name %></td>
       </tr>
     </table>
   </div>
 </div>
 
 <%= back_link %>
-<%= new_link ChannelStatisticsGroup %>
+<%= new_link ChannelStatisticGroup %>

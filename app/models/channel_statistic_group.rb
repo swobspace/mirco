@@ -1,6 +1,6 @@
-class ChannelStatisticsGroup < ApplicationRecord
+class ChannelStatisticGroup < ApplicationRecord
   # -- associations
-  has_and_belongs_to_many :channel_statistics, inverse_of: :channel_statistics_groups
+  has_and_belongs_to_many :channel_statistics, inverse_of: :channel_statistic_groups
   has_many :escalation_levels, as: :escalatable
 
   # -- configuration
