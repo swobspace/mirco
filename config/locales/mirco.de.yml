@@ -243,3 +243,5 @@ de:
 
   escalation_times:
     add: Eskalationszeitraum hinzufügen
+  channel_statistics:
+    add: Channel Statistik hinzufügen

@@ -51,6 +51,6 @@ class ChannelStatisticGroupsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def channel_statistic_group_params
-      params.require(:channel_statistic_group).permit(:name)
+      params.require(:channel_statistic_group).permit(:name, channel_statistic_ids: [])
     end
 end

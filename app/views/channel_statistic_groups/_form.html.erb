@@ -3,7 +3,11 @@
 
   <div class="form-input">
     <%= form.input :name
-       %>
+     %>
+
+    <%= form.association :channel_statistics, label_method: :fullname
+     %>
+
 
     <%= form.button :submit, class: 'btn btn-primary' %>
     <%= cancel_button %>
