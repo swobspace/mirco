@@ -38,9 +38,13 @@ class ChannelStatistic < ApplicationRecord
     "#{server.to_s} > #{channel.to_s} > #{name}"
   end
 
-  def escalatable_attributes
+  def self.escalatable_attributes
     %w[ queued updated_at last_message_received_at
         last_message_sent_at last_message_error_at ]
+  end
+
+  def escalatable_attributes
+    ChannelStatistic.escalatable_attributes
   end
 
 private

@@ -11,4 +11,8 @@ class ChannelStatisticsGroup < ApplicationRecord
     "#{name}"
   end
 
+  def escalatable_attributes
+    ChannelStatistic.escalatable_attributes
+  end
+
 end
