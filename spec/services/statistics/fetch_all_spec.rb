@@ -50,8 +50,8 @@ module Statistics
 
       it 'creates statistics for channel, source and destinations' do
         result
-        expect(ChannelStatistic.where(meta_data_id: nil).any?).to be_truthy
-        expect(ChannelStatistic.where(meta_data_id: 0).any?).to be_falsey
+        expect(ChannelStatistic.where(meta_data_id: nil).any?).to be_falsey
+        expect(ChannelStatistic.where(meta_data_id: 0).any?).to be_truthy
         expect(ChannelStatistic.where(meta_data_id: 1).any?).to be_truthy
       end
     end
