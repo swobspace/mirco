@@ -1,8 +1,7 @@
 class ChannelStatisticsGroup < ApplicationRecord
   # -- associations
   has_and_belongs_to_many :channel_statistics, inverse_of: :channel_statistics_groups
-
-  has_many :escalation_levels, dependent: :restrict_with_error
+  has_many :escalation_levels, as: :escalatable
 
   # -- configuration
   # -- validations and callbacks
