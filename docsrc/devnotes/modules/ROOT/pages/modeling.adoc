@@ -224,16 +224,16 @@ bin/rails g scaffold ChannelStatisticGroup \
 
 [source,sh]
 ----
-bin/rails g migration CreateJoinTable ChannelStatisticGroupEscalationLevel \
-  channel_statistic_group escalation_level
+bin/rails g migration CreateJoinTable ChannelStatisticChannelStatisticGroup \
+  channel_statistic channel_statistic_group
 ----
 
 [source,ruby]
 ----
 def change
-  create_join_table :channel_statistic_group, :escalation_level do |t|
-    t.index [:notification_group_id, :wobauth_user_id], name: 'idx_notificationgroup_user'
-    t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
+  create_join_table :channel_statistics, :channel_statistic_groups do |t|
+    t.index [:channel_statistic_group_id, :channel_statistic_id], name: 'idx_statisticsgroup_statistic'
+    t.index [:channel_statistic_id, :channel_statistic_group_id], name: 'idx_statistic_statisticsgroup'
   end
 end
 ----
