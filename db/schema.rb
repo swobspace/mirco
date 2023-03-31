@@ -116,17 +116,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_121106) do
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
   end
 
-  create_table "channel_statistics_group_escalation_level", id: false, force: :cascade do |t|
-    t.bigint "channel_statistics_group_id", null: false
-    t.bigint "escalation_level_id", null: false
-    t.index ["channel_statistics_group_id", "escalation_level_id"], name: "idx_statisticsgroup_escalation"
-    t.index ["escalation_level_id", "channel_statistics_group_id"], name: "idx_escalation_statisticsgroup"
-  end
-
   create_table "channel_statistics_groups", force: :cascade do |t|
     t.string "name", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "channel_statistics_statistics_groups", id: false, force: :cascade do |t|
+    t.bigint "channel_statistic_id", null: false
+    t.bigint "channel_statistics_group_id", null: false
+    t.index ["channel_statistic_id", "channel_statistics_group_id"], name: "idx_statistic_statisticsgroup"
+    t.index ["channel_statistics_group_id", "channel_statistic_id"], name: "idx_statisticsgroup_statistic"
   end
 
   create_table "channels", force: :cascade do |t|

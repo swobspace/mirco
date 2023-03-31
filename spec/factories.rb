@@ -42,6 +42,11 @@ FactoryBot.define do
     condition { 0 }
   end
 
+  factory :channel_statistics_group do
+    name { generate(:aname) }
+  end
+
+
   factory :escalation_level do
     association :escalatable, factory: :channel_statistic
     association :notification_group

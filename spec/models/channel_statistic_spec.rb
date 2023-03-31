@@ -10,6 +10,8 @@ RSpec.describe ChannelStatistic, type: :model do
   it { is_expected.to have_many(:notes).dependent(:destroy) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:escalation_levels) }
+  it { is_expected.to have_and_belong_to_many(:channel_statistics_groups).inverse_of(:channel_statistics) }
+
   it { is_expected.to validate_presence_of(:server_id) }
   it { is_expected.to validate_presence_of(:channel_id) }
   it { is_expected.to validate_presence_of(:server_uid) }
