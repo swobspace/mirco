@@ -61,6 +61,10 @@ class ChannelStatistic {
   last_message_error_at: timestamp
 }
 
+class ChannelStatisticsGroup {
+  name: string
+}
+
 class ChannelCounter {
   channel_id
   server_id
@@ -133,7 +137,9 @@ ChannelStatistic "0..1" -- "*" Alert
 Server "1" -- "*" Note
 Channel "0..1" -- "*" Note
 ChannelStatistic "0..1" -- "*" Note
+ChannelStatistic "*" - "*" ChannelStatisticsGroup
 ChannelStatistic "0..1" -- "*" EscalationLevel
+ChannelStatisticsGroup "0..1" -- "*" EscalationLevel
 NotificationGroup "0..1" -- "*" EscalationLevel
 EscalationLevel "0..1" -- "*" EscalationTime
 User "*" -- "*" NotificationGroup

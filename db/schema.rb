@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_25_160621) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_31_121106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -114,6 +114,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_25_160621) do
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
+  end
+
+  create_table "channel_statistics_group_escalation_level", id: false, force: :cascade do |t|
+    t.bigint "channel_statistics_group_id", null: false
+    t.bigint "escalation_level_id", null: false
+    t.index ["channel_statistics_group_id", "escalation_level_id"], name: "idx_statisticsgroup_escalation"
+    t.index ["escalation_level_id", "channel_statistics_group_id"], name: "idx_escalation_statisticsgroup"
+  end
+
+  create_table "channel_statistics_groups", force: :cascade do |t|
+    t.string "name", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "channels", force: :cascade do |t|

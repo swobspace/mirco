@@ -1,0 +1,2 @@
+class ChannelStatisticsGroup < ApplicationRecord
+end

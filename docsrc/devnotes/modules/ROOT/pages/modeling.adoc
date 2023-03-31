@@ -212,5 +212,28 @@ def change
     t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
   end
 end
+----
 
+== Model ChannelStatisticsGroup
+[source,sh]
+----
+bin/rails g scaffold ChannelStatisticsGroup \
+  name:string \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
+----
+
+[source,sh]
+----
+bin/rails g migration CreateJoinTable ChannelStatisticsGroupEscalationLevel \
+  channel_statistics_group escalation_level
+----
+
+[source,ruby]
+----
+def change
+  create_join_table :channel_statistics_group, :escalation_level do |t|
+    t.index [:notification_group_id, :wobauth_user_id], name: 'idx_notificationgroup_user'
+    t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
+  end
+end
 ----
