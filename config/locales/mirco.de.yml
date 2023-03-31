@@ -197,6 +197,7 @@ de:
     channel_details: Channel Connectors
     channel_statistics: Channel Statistiken
     channel_statistics_groups: Channel Statistik Gruppen
+    channel_statistics_groups/escalation_levels: Eskalationslevels
     channel_statistics/alerts: Alarme
     channel_statistics/channel_counters: Channel Counters
     channel_statistics/escalation_levels: Eskalationslevels
