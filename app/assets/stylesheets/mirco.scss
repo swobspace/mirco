@@ -175,32 +175,14 @@ form.button_to {
   display: inline-block;
 }
 
-// ------------------------------------------------------------------------
-// slim slelect
-// ------------------------------------------------------------------------
-// styling select box
-//
-//
-//.ss-main {
-//  color: #333;
-//  div.ss-single-selected,
-//  div.ss-multi-selected {
-//    border: 1px solid #ced4da;
-//    height: 38px;
-//  }
-//}
-//
-// temporary fix for slim-select and bootstrap v5.1 placeholder
-//.ss-main {
-//  .ss-single-selected {
-//    .placeholder {
-//      cursor: pointer;
-//      opacity: 1;
-//      background-color: transparent;
-//    }
-//  }
-//}
 
+// ------------------------------------------------------------------------
+// tom-select
+// ------------------------------------------------------------------------
+
+.ts-dropdown-content {
+  max-height: 400px;
+}
 // ------------------------------------------------------------------------
 // turbo progress bar
 // ------------------------------------------------------------------------
