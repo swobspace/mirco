@@ -5,7 +5,8 @@
     <%= form.input :name
      %>
 
-    <%= form.association :channel_statistics, label_method: :fullname
+    <%= form.association :channel_statistics, label_method: :fullname,
+          input_html: { 'data-select-plugins-value': ['checkbox_options'].to_json }
      %>
 
 
