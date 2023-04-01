@@ -15,6 +15,7 @@ export default class extends Controller {
     let options = {
       create: false,
       allowEmptyOption: true,
+      maxOptions: 100,
       sortField: {
         field: "text",
         direction: "asc"
