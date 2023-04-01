@@ -92,6 +92,47 @@ RSpec.describe EscalationLevel, type: :model do
           expect(subject.state).to eq(2)
         end
 
+        describe "and group escalation levels" do
+          let!(:csg) { FactoryBot.create(:channel_statistic_group) }
+          let!(:el_specific) do
+            EscalationLevel.create!(
+              escalatable_id: csg.id,
+              escalatable_type: 'ChannelStatisticGroup',
+             notification_group_id: ng.id,
+              attrib: 'last_message_received_at',
+              min_warning: -480,
+            )
+          end
+          before(:each) do
+            csg.channel_statistics << cs
+          end
+
+          it "WARNING if 2 days old" do
+            cs.update(last_message_received_at: 2.days.before(ts))
+            expect(subject.state).to eq(1)
+          end
+
+          it "WARNING less than 1 day old" do
+            cs.update(last_message_received_at: 23.hours.before(ts))
+            expect(subject.state).to eq(1)
+          end
+
+          it "OK less than 1h old" do
+            cs.update(last_message_received_at: 50.minutes.before(ts))
+            expect(subject.state).to eq(0)
+          end
+
+          it "OK 5h newer" do
+            cs.update(last_message_received_at: 5.hours.after(ts))
+            expect(subject.state).to eq(0)
+          end
+
+          it "OK 2d newer" do
+            cs.update(last_message_received_at: 2.days.after(ts))
+            expect(subject.state).to eq(0)
+          end
+        end
+
         describe "and specific escalation levels" do
           let!(:el_specific) do
             EscalationLevel.create!(

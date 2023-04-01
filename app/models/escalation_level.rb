@@ -71,26 +71,44 @@ class EscalationLevel < ApplicationRecord
     end
 
     # levels.empty?
-    level = fetch_escalation_level(escalatable, attrib)
-    if level.nil?
+    levels = fetch_escalation_levels(escalatable, attrib)
+    if levels.empty?
       return Result.new(state: NOTHING, escalation_level: nil)
     end
 
-    # escalation_times.any?
-    if level.escalation_times.any? && level.escalation_times.current.empty?
-      return Result.new(state: NOTHING, escalation_level: nil)
+    # loop over escalation_levels
+     
+    state = NOTHING
+    el    = nil
+
+    levels.each do |level| 
+      # escalation_times.any?
+      if level.escalation_times.any? && level.escalation_times.current.empty?
+        next
+      end
+      if level.min_critical.present? && (value < level.min_critical)
+        if state < CRITICAL
+          state = CRITICAL; el = level
+        end
+      elsif level.min_warning.present? && (value < level.min_warning)
+        if state < WARNING
+          state = WARNING; el = level
+        end
+      elsif level.max_critical.present? && (value >= level.max_critical)
+        if state < CRITICAL
+          state = CRITICAL; el = level
+        end
+      elsif level.max_warning.present? && (value >= level.max_warning)
+        if state < WARNING
+          state = WARNING; el = level
+        end
+      else
+        if state < OK
+          state = OK; el = level
+        end
+      end
     end
-    if level.min_critical.present? && (value < level.min_critical)
-      return Result.new(state: CRITICAL, escalation_level: level)
-    elsif level.min_warning.present? && (value < level.min_warning)
-      return Result.new(state: WARNING, escalation_level: level)
-    elsif level.max_critical.present? && (value >= level.max_critical)
-      return Result.new(state: CRITICAL, escalation_level: level)
-    elsif level.max_warning.present? && (value >= level.max_warning)
-      return Result.new(state: WARNING, escalation_level: level)
-    else
-      return Result.new(state: OK, escalation_level: level)
-    end
+    return Result.new(state: state, escalation_level: el)
   end
 
 private
@@ -103,14 +121,26 @@ private
     value
   end
 
-  # 1. check if matching escalation level exists in database
-  # 2. else check if matching default record exists (having escalatable_id: 0)
-  # 3. otherwise create an instance of NullEscalationLevel
+  # 1. check for direct assigned escalation levels
+  # 2. else check for escalation levels via channel_statistic_group
+  # 3. else check if matching default record exists (having escalatable_id: 0)
 
-  def self.fetch_escalation_level(escalatable, attrib)
-    escalatable.escalation_levels.where(attrib: attrib).first ||
-    EscalationLevel.where(escalatable_type: escalatable.class.name.to_s,
-                          escalatable_id: 0, attrib: attrib).first
+  def self.fetch_escalation_levels(escalatable, attrib)
+    if escalatable.escalation_levels.where(attrib: attrib).any?
+      escalatable.escalation_levels.where(attrib: attrib)
+    elsif fetch_escalations_from_group(escalatable, attrib).any?
+      fetch_escalations_from_group(escalatable, attrib)
+    else
+      EscalationLevel.where(escalatable_type: escalatable.class.name.to_s,
+                            escalatable_id: 0, attrib: attrib)
+    end
+  end
+
+  def self.fetch_escalations_from_group(escalatable, attrib)
+    return [] unless escalatable.kind_of? ChannelStatistic
+    escalatable.channel_statistic_groups.map do |g| 
+      g.escalation_levels.where(attrib: attrib)
+    end.flatten.compact
   end
 
   def self.fetch_attrib(escalatable, attrib)
