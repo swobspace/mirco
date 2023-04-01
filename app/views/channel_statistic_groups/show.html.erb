@@ -13,7 +13,7 @@
       <div role="toolbar" class="pt-3">
         <%= link_to raw(t('controller.escalation_levels') +
                            %Q[ <span class="badge bg-secondary">#{@channel_statistic_group.escalation_levels.count}</span>]),
-                        channel_statistic_escalation_levels_path(@channel_statistic_group),
+                        channel_statistic_group_escalation_levels_path(@channel_statistic_group),
                         class: 'btn btn-outline-secondary'%>
         <%= edit_link(@channel_statistic_group) %>
         <%= delete_link(@channel_statistic_group) %>
