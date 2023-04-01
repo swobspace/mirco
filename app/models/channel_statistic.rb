@@ -10,7 +10,7 @@ class ChannelStatistic < ApplicationRecord
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
-  has_many :escalation_levels, as: :escalatable
+  has_many :escalation_levels, as: :escalatable, dependent: :destroy
   has_and_belongs_to_many :channel_statistic_groups, inverse_of: :channel_statistics
 
   # has_many :channel_counters, ->(cs) {
