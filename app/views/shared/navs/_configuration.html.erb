@@ -14,6 +14,19 @@
                     main_app.new_location_path, class: "dropdown-item" %>
       <% end %>
       <div class="dropdown-divider"></div>
+        <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                         t('controller.channel_statistic_groups')), 
+                    main_app.channel_statistic_groups_path, class: "dropdown-item" %>
+      <% if can? :create, ChannelStatisticGroup %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_channel_statistic_group')), 
+                    main_app.new_channel_statistic_group_path, class: "dropdown-item" %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+        <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                         t('controller.escalation_levels')), 
+                    main_app.escalation_levels_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.notification_groups')), 
                   main_app.notification_groups_path, class: "dropdown-item" %>
