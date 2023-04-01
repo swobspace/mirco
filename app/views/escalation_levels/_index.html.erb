@@ -1,4 +1,4 @@
-<div data-controller="datatables">
+<div data-controller="datatables" data-datatables-simple-value="<%= simple %>">
   <%= content_tag :table, role: :datatable,
         id: "escalation_levels_table",
         class: "table table-bordered table-responsive-xl",
@@ -41,8 +41,8 @@
     <tbody>
       <% escalation_levels.each do |escalation_level| %>
         <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
-          <td>
-            <% unless escalatable.present? %>
+          <% unless escalatable.present? %>
+            <td>
               <% if escalation_level.escalatable_id > 0 %>
                 <% if escalation_level.escalatable.respond_to?(:fullname) %>
                   <%= link_to(escalation_level.escalatable.fullname, escalation_level.escalatable) %>
@@ -52,8 +52,8 @@
               <% else %>
                 <%= t(escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
               <% end %>
-            <% end %>
-          </td>
+            </td>
+          <% end %>
           <td><%= escalation_level.attrib %></td>
           <td><%= escalation_level.min_critical %></td>
           <td><%= escalation_level.min_warning %></td>

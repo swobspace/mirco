@@ -14,21 +14,24 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.name') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('controller.channel_statistics') %></th>
+        <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @channel_statistic_groups.each do |channel_statistic_group| %>
         <%= content_tag(:tr, id: dom_id(channel_statistic_group), class: dom_class(channel_statistic_group)) do %>
-                <td><%= channel_statistic_group.name %></td>
-                <td class="text-nowrap">
+          <td><%= channel_statistic_group.name %></td>
+          <td><%= channel_statistic_group.channel_statistics.map(&:fullname).join("<br />").html_safe %></td>
+          <td class="text-nowrap">
             <%= show_link channel_statistic_group %>
             <%= edit_link channel_statistic_group %>
             <%= delete_link channel_statistic_group %>

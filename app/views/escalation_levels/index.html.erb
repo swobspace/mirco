@@ -2,7 +2,9 @@
 
 <h1><%= t('controller.escalation_levels') %></h1>
 
-  <%= render 'index', escalatable: @escalatable, escalation_levels: @escalation_levels %>
+  <%= render 'index', escalatable: @escalatable, 
+                      escalation_levels: @escalation_levels,
+                      simple: false %>
 <br />
 
 <%= back_link %>

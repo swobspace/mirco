@@ -11,10 +11,6 @@
         <h4 class="title"><%= @channel_statistic_group %></h4>
       </div>
       <div role="toolbar" class="pt-3">
-        <%= link_to raw(t('controller.escalation_levels') +
-                           %Q[ <span class="badge bg-secondary">#{@channel_statistic_group.escalation_levels.count}</span>]),
-                        channel_statistic_group_escalation_levels_path(@channel_statistic_group),
-                        class: 'btn btn-outline-secondary'%>
         <%= edit_link(@channel_statistic_group) %>
         <%= delete_link(@channel_statistic_group) %>
       </div>
@@ -34,6 +30,29 @@
 
 <%= back_link %>
 <%= new_link ChannelStatisticGroup %>
+
+<div class="card my-3">
+  <div class="card-header">
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <h4 class="title">
+          <%= t('controller.escalation_levels') %>
+        <h4>
+      </div>
+      <div role="toolbar" class="">
+        <%= new_link([@channel_statistic_group, EscalationLevel], class: 'btn btn-sm btn-outline-secondary') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <%= render partial: 'escalation_levels/index', 
+               locals: { escalatable: @channel_statistic_group,
+                         escalation_levels: @channel_statistic_group.escalation_levels,
+                         simple: true }
+     %>
+  </div>
+</div>
 
 <div class="card my-3">
   <div class="card-header">
