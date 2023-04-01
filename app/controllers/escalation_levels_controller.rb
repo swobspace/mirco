@@ -55,10 +55,21 @@ class EscalationLevelsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def escalation_level_params
-      params.require(:escalation_level).permit(:escalatable_id, :escalatable_type, :attrib, :min_critical, :min_warning, :max_warning, :max_critical)
+      params.require(:escalation_level).permit(
+        :escalatable_id, :escalatable_type, :attrib,
+        :min_critical, :min_warning, :max_warning, :max_critical,
+        :show_on_dashboard, :notification_group_id,
+        escalation_times_attributes: [
+          :id, :start_time, :end_time, :_destroy, weekdays: []
+        ]
+      )
     end
 
     def location
-      polymorphic_path(@escalatable || @escalation_level)
+      if action_name == 'destroy'
+        polymorphic_path(@escalatable || :escalation_levels)
+      else
+        polymorphic_path([@escalatable, @escalation_level])
+      end
     end
 end

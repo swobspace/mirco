@@ -17,6 +17,14 @@ class ServersController < ApplicationController
       format.puml do
         render format: :puml, layout: false
       end
+      format.adoc do
+        # render format: :adoc, layout: false
+        adoc = render_to_string format: :adoc, layout: false
+        send_data adoc,
+                  filename: "#{@server.name}.adoc",
+                  disposition: :attachment,
+                  type: 'text/asciidoc'
+      end
       format.svg do
         diagram = Mirco::ServerDiagram.new(@server)
         send_file diagram.image(:svg), filename: "#{@server.name}.svg",

@@ -3,6 +3,7 @@ require 'uri'
 # rubocop:todo Rails/UniqueValidationWithoutIndex
 class Server < ApplicationRecord
   include ServerConcerns
+  include EscalationStatusConcerns
   # -- associations
   # belongs_to :location
   belongs_to :host
@@ -14,7 +15,7 @@ class Server < ApplicationRecord
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy
   has_many :server_configurations, dependent: :restrict_with_error
-  has_many :escalation_levels, as: :escalatable
+  has_many :escalation_levels, as: :escalatable, dependent: :destroy
 
   # -- configuration
   has_encrypted :api_password

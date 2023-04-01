@@ -20,6 +20,7 @@ vendor/* linguist-vendored
 /shared/images          export-ignore
 /shared/images/placeholder.png  !export-ignore
 /utils/*                export-ignore
+/utils/server_docs.rb   !export-ignore
 /shared/config/*.yml    export-ignore
 /config/deploy.rb       export-ignore
 /config/deploy/*        export-ignore

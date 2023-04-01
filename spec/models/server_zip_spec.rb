@@ -8,7 +8,8 @@ RSpec.describe ServerZip, type: :model do
       Rails.root.join('spec', 'fixtures', 'files', 'channel_11.yaml')
     )
   end
-  let(:server)  { FactoryBot.create(:server) }
+  let(:host)    { FactoryBot.create(:host, name: 'NIX-MIRTH') }
+  let(:server)  { FactoryBot.create(:server, name: 'V-NIX-MIR-0001', host: host) }
   let!(:channel) do
     FactoryBot.create(:channel,
       properties: properties,
@@ -25,6 +26,8 @@ RSpec.describe ServerZip, type: :model do
   describe "creating Zip from Server" do
     after(:each) { zipfile.destroy }
 
+    # it {puts server.name, server.hostname}
+
     it { expect(File.readable?(zipfile.tmpfile)).to be_truthy }
     it { expect(File.size(zipfile.tmpfile)).to be > 100 }
     it "should have mimetype application/zip with charset=binary" do
@@ -33,10 +36,10 @@ RSpec.describe ServerZip, type: :model do
     end
 
     it { expect(zipfile_list).to contain_exactly(
-                                   server.name,
-                                   "images/#{server.name}.svg",
-                                   "pages/#{channel.name}.adoc",
-                                   "images/#{channel.name}.svg",
+           "pages/#{server.hostname}/#{server.name}.adoc",
+           "images/#{server.hostname}/#{server.name}.svg",
+           "pages/#{server.hostname}/#{channel.name}.adoc",
+           "images/#{server.hostname}/#{channel.name}.svg",
          )
        }
     # it { puts zipfile_list }

@@ -7,22 +7,23 @@ class TdEscalationComponent < ViewComponent::Base
     @alert = alert
     @css = css
     @manual_update = manual_update
-    @background_color = background_color
     @value = escalatable.send(attrib)
     if escalatable.send(attrib).kind_of? Time
       @value = escalatable.send(attrib)&.to_fs(:local)
     end
+    @escalation_status = escalatable.escalation_status(attrib)
+    @background_color = background_color
   end
 
   private
 
-  attr_reader :escalatable, :attrib, :value, :alert, :css, :manual_update
+  attr_reader :escalatable, :attrib, :value, :alert, :css, :manual_update, :escalation_status
 
   def background_color
     if manual_update
       'bg-light'
     else
-      result = EscalationLevel.check_for_escalation(escalatable, attrib)
+      result = escalation_status.state
       case result
       when EscalationLevel::UNKNOWN
         'bg-UNKNOWN'

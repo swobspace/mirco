@@ -1,0 +1,62 @@
+<div data-controller="datatables" data-datatables-simple-value="true">
+  <%= content_tag :table, role: :datatable,
+        id: "channel_statistics_table",
+        class: "table table-bordered",
+        style: 'width: 100%;',
+        data: {
+          order: [[0, 'asc']].to_json
+        } do %>
+    <thead>
+      <tr>
+        <th><%= t('attributes.server') %></th>
+        <th><%= t('attributes.channel') %></th>
+        <th><%= t('attributes.connector') %></th>
+        <th><%= t('attributes.state') %></th>
+        <th><%= t('attributes.status_type') %></th>
+        <th><%= t('attributes.condition') %></th>
+        <th><%= t('attributes.last_condition_change') %></th>
+        <th><%= t('attributes.updated_at') %></th>
+        <th class="nosort"><%= t('mirco.action') %></th>
+      </tr>
+    </thead>
+    <tfoot class="search">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% channel_statistics.each do |channel_statistic| %>
+        <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
+          <td><%= channel_statistic.server %></td>
+          <td><%= link_to_if(can?(:read, channel_statistic.channel),
+                    channel_statistic.channel,
+                    channel_path(channel_statistic.channel),
+                    class: 'primary-link')
+              %>
+          </td>
+          <td> <%= channel_statistic.name %> </td>
+          <td><%= channel_statistic.state %></td>
+          <td><%= channel_statistic.status_type %></td>
+          <td class="text-center"><%= t(channel_statistic.condition, scope: 'mirco.condition') %></td>
+          <td><%= channel_statistic.last_condition_change&.to_fs(:local) %></td>
+          <%= render TdEscalationComponent.new(
+                  escalatable: channel_statistic,
+                  attrib: 'updated_at',
+                  manual_update: channel_statistic.server.manual_update
+              ) %>
+          <td class="text-nowrap">
+            <%= show_link channel_statistic %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+</div>

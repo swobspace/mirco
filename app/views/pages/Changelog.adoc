@@ -1,6 +1,21 @@
 = Changelog
 
 
+=== 1.3.0 / 2023-04-01
+
+----
+* full rewrite on escalations
+* ChannelStatisticGroup: collect more channel statistics in one place 
+  and add escalation levels to group
+----
+
+=== 1.2.1 / 2023-03-05
+
+----
+* Server: asciidoc server page
+* Server: refactor ServerZip
+----
+
 === 1.2.0 / 2023-03-04
 
 ----

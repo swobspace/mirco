@@ -4,7 +4,7 @@ class CreateHostsForPreexistingServer < ActiveRecord::Migration[6.1]
     Server.where(host_id: nil).each do |server|
       host = Host.create!(name: server.name,
                           software_group_id: sg.id,
-                          location_id: server.location&.id,
+                          location_id: server.location_id,
                           ipaddress: server.uri&.host)
                           
       server.update(host_id: host.id)

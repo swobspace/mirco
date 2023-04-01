@@ -3,11 +3,11 @@
 class Channel::AttachmentHandlerComponent < ViewComponent::Base
   def initialize(channel:)
     @channel = channel
-    @attachment_properties = @channel.properties['properties']['attachmentProperties']
+    @attachment_properties = (@channel.properties['properties'] || {})['attachmentProperties']
   end
 
   def render?
-    !properties.nil?
+    !attachment_properties.nil?  && !properties.nil? 
   end
 
   def type

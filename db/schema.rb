@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_31_121106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -86,6 +86,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.index ["server_id"], name: "index_channel_counters_on_server_id"
   end
 
+  create_table "channel_statistic_groups", force: :cascade do |t|
+    t.string "name", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "channel_statistic_groups_statistics", id: false, force: :cascade do |t|
+    t.bigint "channel_statistic_id", null: false
+    t.bigint "channel_statistic_group_id", null: false
+    t.index ["channel_statistic_group_id", "channel_statistic_id"], name: "idx_statisticsgroup_statistic"
+    t.index ["channel_statistic_id", "channel_statistic_group_id"], name: "idx_statistic_statisticsgroup"
+  end
+
   create_table "channel_statistics", force: :cascade do |t|
     t.bigint "server_id", null: false
     t.bigint "channel_id", null: false
@@ -102,14 +115,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.string "name", default: ""
     t.string "state", default: ""
     t.string "status_type", default: ""
-    t.string "condition", default: ""
+    t.string "oldcondition", default: ""
     t.datetime "last_condition_change", precision: nil
     t.datetime "last_message_received_at", precision: nil
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
+    t.integer "condition", default: -1
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
+    t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
   end
@@ -151,8 +166,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.integer "max_critical"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "notification_group_id"
+    t.boolean "show_on_dashboard", default: false
     t.index ["attrib"], name: "index_escalation_levels_on_attrib"
     t.index ["escalatable_type", "escalatable_id"], name: "index_escalation_levels_on_escalatable"
+    t.index ["notification_group_id"], name: "index_escalation_levels_on_notification_group_id"
+    t.index ["show_on_dashboard"], name: "index_escalation_levels_on_show_on_dashboard"
+  end
+
+  create_table "escalation_times", force: :cascade do |t|
+    t.bigint "escalation_level_id", null: false
+    t.string "start_time", limit: 5, default: "00:00"
+    t.string "end_time", limit: 5, default: "23:59"
+    t.integer "weekdays", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["escalation_level_id"], name: "index_escalation_times_on_escalation_level_id"
+  end
+
+  create_table "good_job_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
+    t.jsonb "serialized_properties"
+    t.text "on_finish"
+    t.text "on_success"
+    t.text "on_discard"
+    t.text "callback_queue_name"
+    t.integer "callback_priority"
+    t.datetime "enqueued_at"
+    t.datetime "discarded_at"
+    t.datetime "finished_at"
   end
 
   create_table "good_job_processes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -184,8 +228,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.text "cron_key"
     t.uuid "retried_good_job_id"
     t.datetime "cron_at"
+    t.uuid "batch_id"
+    t.uuid "batch_callback_id"
     t.index ["active_job_id", "created_at"], name: "index_good_jobs_on_active_job_id_and_created_at"
     t.index ["active_job_id"], name: "index_good_jobs_on_active_job_id"
+    t.index ["batch_callback_id"], name: "index_good_jobs_on_batch_callback_id", where: "(batch_callback_id IS NOT NULL)"
+    t.index ["batch_id"], name: "index_good_jobs_on_batch_id", where: "(batch_id IS NOT NULL)"
     t.index ["concurrency_key"], name: "index_good_jobs_on_concurrency_key_when_unfinished", where: "(finished_at IS NULL)"
     t.index ["cron_key", "created_at"], name: "index_good_jobs_on_cron_key_and_created_at"
     t.index ["cron_key", "cron_at"], name: "index_good_jobs_on_cron_key_and_cron_at", unique: true
@@ -238,6 +286,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
     t.index ["server_id"], name: "index_notes_on_server_id"
     t.index ["type"], name: "index_notes_on_type"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "notification_groups", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_notification_groups_on_name"
+  end
+
+  create_table "notification_groups_wobauth_users", id: false, force: :cascade do |t|
+    t.bigint "notification_group_id", null: false
+    t.bigint "wobauth_user_id", null: false
+    t.index ["notification_group_id", "wobauth_user_id"], name: "idx_notificationgroup_user"
+    t.index ["wobauth_user_id", "notification_group_id"], name: "idx_user_notificationgroup"
   end
 
   create_table "server_configurations", force: :cascade do |t|
@@ -390,6 +452,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_094447) do
   add_foreign_key "channel_statistics", "channels"
   add_foreign_key "channel_statistics", "servers"
   add_foreign_key "channels", "servers"
+  add_foreign_key "escalation_times", "escalation_levels"
   add_foreign_key "hosts", "locations"
   add_foreign_key "hosts", "software_groups"
   add_foreign_key "interface_connectors", "software_interfaces"

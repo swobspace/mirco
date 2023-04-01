@@ -68,7 +68,7 @@ bin/rails g scaffold ChannelStatistic \
   error:integer \
   filtered:integer \
   queued:integer \
-  condition:string:index \
+  condition:integer:index \
   last_condition_change:timestamp \
   last_message_received_at:timestamp \
   last_message_sent_at:timestamp \
@@ -174,5 +174,66 @@ bin/rails g scaffold EscalationLevel \
   min_warning:integer \
   max_warning:integer \
   max_critical:integer \
+  notification_group:belongs_to \
+  show_on_dashboard:boolean:index \
   --no-stylesheets --no-javascripts --no-helper
+----
+
+== Model EscalationTime
+[source,sh]
+----
+bin/rails g scaffold EscalationTime \
+  escalation_level:belongs_to \
+  start_time:string{limit:5} \
+  end_time:string{limit:5} \
+  weekdays:integer{array} \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
+----
+
+== Model NotificationGroup
+[source,sh]
+----
+bin/rails g scaffold NotificationGroup \
+  name:string:index \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
+----
+
+[source,sh]
+----
+bin/rails g migration CreateJoinTableNotificationGroupWobauthUser \
+  notification_group wobauth_user
+----
+
+[source,ruby]
+----
+def change
+  create_join_table :notification_group, :wobauth_user do |t|
+    t.index [:notification_group_id, :wobauth_user_id], name: 'idx_notificationgroup_user'
+    t.index [:wobauth_user_id, :notification_group_id], name: 'idx_user_notificationgroup'
+  end
+end
+----
+
+== Model ChannelStatisticGroup
+[source,sh]
+----
+bin/rails g scaffold ChannelStatisticGroup \
+  name:string \
+  --no-stylesheets --no-javascripts --no-helper --no-decorator
+----
+
+[source,sh]
+----
+bin/rails g migration CreateJoinTable ChannelStatisticChannelStatisticGroup \
+  channel_statistic channel_statistic_group
+----
+
+[source,ruby]
+----
+def change
+  create_join_table :channel_statistics, :channel_statistic_groups do |t|
+    t.index [:channel_statistic_group_id, :channel_statistic_id], name: 'idx_statisticsgroup_statistic'
+    t.index [:channel_statistic_id, :channel_statistic_group_id], name: 'idx_statistic_statisticsgroup'
+  end
+end
 ----

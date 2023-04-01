@@ -21,4 +21,5 @@ module ServerConcerns
       channels.where('channels.updated_at <= ?', 1.hour.before(last_channel_update))
     end
   end
+
 end

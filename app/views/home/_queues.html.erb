@@ -5,7 +5,7 @@
       <tr class="search">
         <th class="text-start"><%= t('attributes.server') %></th>
         <th class="text-start"><%= t('attributes.channel') %></th>
-        <th class="text-start"><%= t('attributes.destination') %></th>
+        <th class="text-start"><%= t('attributes.connector') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.received_last_30min') %></th>
         <th class="text-start"><%= t('attributes.last_message_received_at') %></th>
         <th class="text-end d-none d-lg-table-cell"><%= t('attributes.sent_last_30min') %></th>
@@ -38,6 +38,7 @@
           <%= render TdEscalationComponent.new(
                 escalatable: channel_statistic,
                 attrib: 'last_message_sent_at',
+                alert: (channel_statistic.escalation_status.state >= EscalationLevel::WARNING),
                 manual_update: channel_statistic.server.manual_update
             ) %>
 

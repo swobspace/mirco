@@ -1,0 +1,11 @@
+|===
+|Url | Channel | Connector
+
+<% connectors.sort_by {|c| c.url}.each do |conn| %>
+|<%= conn.url %>
+|<%= conn.channel.name %>
+|<%= conn.name %>
+
+<% end %>
+|===
+

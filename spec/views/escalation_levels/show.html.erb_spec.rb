@@ -2,10 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "escalation_levels/show", type: :view do
   let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics') }
+  let(:ng) { FactoryBot.create(:notification_group, name: 'Notifier') }
   let(:escalation_level) do
     FactoryBot.create(:escalation_level, 
       escalatable_id: cs.id,
       escalatable_type: 'ChannelStatistic',
+      notification_group: ng,
+      show_on_dashboard: true,
       attrib: 'last_message_received_at',
       min_critical: -30,
       min_warning: -15,
@@ -26,6 +29,8 @@ RSpec.describe "escalation_levels/show", type: :view do
     render
     expect(rendered).to match(/Some Statistics/)
     expect(rendered).to match(/last_message_received_at/)
+    expect(rendered).to match(/Notifier/)
+    expect(rendered).to match(/true/)
     expect(rendered).to match(/-30/)
     expect(rendered).to match(/-15/)
     expect(rendered).to match(/20/)

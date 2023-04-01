@@ -26,7 +26,7 @@ RSpec.describe 'channel_statistics/show', type: :view do
                                                       error: 4,
                                                       filtered: 5,
                                                       queued: 6,
-                                                      condition: 'alert',
+                                                      condition: 2,
                                                       last_condition_change: 1.day.before(Time.current)
                                                     ))
   end
@@ -46,7 +46,7 @@ RSpec.describe 'channel_statistics/show', type: :view do
     expect(rendered).to match(/4/)
     expect(rendered).to match(/5/)
     expect(rendered).to match(/6/)
-    expect(rendered).to match(/alert/)
+    expect(rendered).to match(/CRITICAL/)
     expect(rendered).to match(/#{1.day.before(Time.current).to_fs(:local)}/)
   end
 end

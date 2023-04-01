@@ -55,7 +55,7 @@
           </tr>
           <tr>
             <th><%= t('attributes.channel')%> /
-            <%= t('attributes.destination')%>:</th>
+            <%= t('attributes.connector')%>:</th>
 
             <td><%= link_to @channel_statistic.channel,
                             channel_path(@channel_statistic.channel),
@@ -101,7 +101,9 @@
           </tr>
           <tr>
             <th><%= t('attributes.condition')%>:</th>
-            <td class="bg-<%= @channel_statistic.condition %>"><%= @channel_statistic.condition %></td>
+            <td class="bg-<%= @channel_statistic.condition %>">
+              <%= t(@channel_statistic.condition, scope: 'mirco.condition') %>
+            </td>
             <th><%= t('attributes.last_message_sent_at')%>:</th>
             <%= render TdEscalationComponent.new(
                   escalatable: @channel_statistic,

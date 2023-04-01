@@ -4,4 +4,5 @@
 * xref:software-interfaces.adoc[]
 * xref:software-connections.adoc[]
 * xref:state-diagrams.adoc[]
+* xref:escalations.adoc[]
 * xref:timescale.adoc[]

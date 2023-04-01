@@ -3,7 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe ChannelStatisticConcerns, type: :model do
-  let(:cs) { FactoryBot.create(:channel_statistic, queued: 53) }
+  let!(:cs) do
+    FactoryBot.create(:channel_statistic,
+      queued: 53, 
+      last_message_received_at: 10.minutes.before(Time.now),
+      last_message_sent_at: 30.minutes.before(Time.now),
+      updated_at: 12.minutes.before(Time.now),
+      meta_data_id: 1
+    ) 
+  end
 
   describe 'without counters' do
     describe '#sent_last_30min' do
@@ -139,8 +147,14 @@ RSpec.describe ChannelStatisticConcerns, type: :model do
           max_critical: 50
         )
       end
+      before(:each) do
+        cs.update(condition: cs.escalation_status.state,
+                  updated_at: 12.minutes.before(Time.now))
+      end
+
+      it { expect(cs.meta_data_id).to eq(1) }
       it { expect(ChannelStatistic.escalated).to contain_exactly(cs) }
-      it { expect(EscalationLevel.check_for_escalation(cs, 'queued')).to eq(2) }
+      it { expect(EscalationLevel.check_for_escalation(cs, 'queued').state).to eq(2) }
     end
   end
 end

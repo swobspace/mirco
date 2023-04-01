@@ -2,7 +2,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-      <%= t('controller.locations') %>
+      <%= t('mirco.configuration') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
@@ -13,6 +13,29 @@
                          t('mirco.new_location')), 
                     main_app.new_location_path, class: "dropdown-item" %>
       <% end %>
+      <div class="dropdown-divider"></div>
+        <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                         t('controller.channel_statistic_groups')), 
+                    main_app.channel_statistic_groups_path, class: "dropdown-item" %>
+      <% if can? :create, ChannelStatisticGroup %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_channel_statistic_group')), 
+                    main_app.new_channel_statistic_group_path, class: "dropdown-item" %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+        <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                         t('controller.escalation_levels')), 
+                    main_app.escalation_levels_path, class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.notification_groups')), 
+                  main_app.notification_groups_path, class: "dropdown-item" %>
+      <% if can? :create, NotificationGroup %>
+        <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
+                         t('mirco.new_notification_group')), 
+                    main_app.new_notification_group_path, class: "dropdown-item" %>
+      <% end %>
+      
     </div>
   </li>
 <% end %>

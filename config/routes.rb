@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :channel_statistic_groups do
+    resources :escalation_levels, module: :channel_statistic_groups
+  end
+  resources :notification_groups
   resources :escalation_levels, except: [:new, :create]
   resources :hosts do
     member do

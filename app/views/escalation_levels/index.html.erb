@@ -2,66 +2,9 @@
 
 <h1><%= t('controller.escalation_levels') %></h1>
 
-<div data-controller="datatables">
-  <%= content_tag :table, role: :datatable,
-        id: "escalation_levels_table",
-        class: "table table-bordered table-responsive-xl",
-        data: {
-          'datatables-target': 'datatable',
-          order: [[0, 'asc']].to_json
-        } do %>
-    <thead>
-      <tr>
-            <th><%= t('attributes.escalatable') %></th>
-            <th><%= t('attributes.attrib') %></th>
-            <th><%= t('attributes.min_critical') %></th>
-            <th><%= t('attributes.min_warning') %></th>
-            <th><%= t('attributes.max_warning') %></th>
-            <th><%= t('attributes.max_critical') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
-      </tr>
-    </thead>
-    <tfoot class="search">
-      <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
-      </tr>
-    </tfoot>
-    <tbody>
-      <% @escalation_levels.each do |escalation_level| %>
-        <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
-          <td>
-            <% if escalation_level.escalatable_id > 0 %>
-              <% if escalation_level.escalatable.respond_to?(:fullname) %>
-                <%= link_to(escalation_level.escalatable.fullname, escalation_level.escalatable) %>
-              <% else %>
-                <%= link_to(escalation_level.escalatable) %>
-              <% end %>
-            <% else %>
-              <%= t(escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
-            <% end %>
-          </td>
-          <td><%= escalation_level.attrib %></td>
-          <td><%= escalation_level.min_critical %></td>
-          <td><%= escalation_level.min_warning %></td>
-          <td><%= escalation_level.max_warning %></td>
-          <td><%= escalation_level.max_critical %></td>
-          <td class="text-nowrap">
-            <%= show_link [@escalatable, escalation_level] %>
-            <%= edit_link [@escalatable, escalation_level] %>
-            <%= delete_link [@escalatable, escalation_level] %>
-          </td>
-        <% end %>
-      <% end %>
-    </tbody>
-  <% end %>
-</div>
-
+  <%= render 'index', escalatable: @escalatable, 
+                      escalation_levels: @escalation_levels,
+                      simple: false %>
 <br />
 
 <%= back_link %>

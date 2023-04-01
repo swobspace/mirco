@@ -1,0 +1,16 @@
+<%= simple_form_for(@channel_statistic_group) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-input">
+    <%= form.input :name
+     %>
+
+    <%= form.association :channel_statistics, label_method: :fullname,
+          input_html: { 'data-select-plugins-value': ['checkbox_options'].to_json }
+     %>
+
+
+    <%= form.button :submit, class: 'btn btn-primary' %>
+    <%= cancel_button %>
+  </div>
+<% end %>

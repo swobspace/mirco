@@ -1,0 +1,13 @@
+<%= f.input :start_time, as: :string, html5: true, input_html: {type: 'time'} %>
+<%= f.input :end_time, as: :string, html5: true, input_html: {type: 'time'} %>
+
+<div class="offset-3 col-sm-8 ps-2">
+  <%= f.collection_check_boxes(:weekdays, 
+        (1..7).map{|d| [d, I18n.t('date.abbr_day_names')[d%7]]}, :first, :last
+      ) do |b| %>
+    <div class="form-check form-check-inline">
+      <%= b.check_box class: 'form-check-input' %>
+      <%= b.label class: 'form-check-label' %>
+    </div>
+  <% end %>
+</div>
