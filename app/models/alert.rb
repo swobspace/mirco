@@ -7,7 +7,7 @@ class Alert < ApplicationRecord
   belongs_to :channel_statistic, optional: true
 
   # -- configuration
-  TYPES = %w[alert recovery].freeze
+  TYPES = %w[alert ok].freeze
   self.inheritance_column = nil
 
   # -- validations and callbacks

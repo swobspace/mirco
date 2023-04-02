@@ -26,8 +26,8 @@ RSpec.describe Alert, type: :model do
   end
 
   it '#to_s renders string' do
-    f = FactoryBot.create(:alert, type: 'recovery', message: 'some other text')
-    expect(f.to_s).to eq("#{f.server}::#{f.channel} RECOVERY - some other text")
+    f = FactoryBot.create(:alert, type: 'ok', message: 'some other text')
+    expect(f.to_s).to eq("#{f.server}::#{f.channel} OK - some other text")
   end
 
   it 'sets server_id from channel if missing' do

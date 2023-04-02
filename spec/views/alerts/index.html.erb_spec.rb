@@ -30,7 +30,7 @@ RSpec.describe 'alerts/index', type: :view do
                server_id: server.id,
                channel_id: channel.id,
                channel_statistic_id: cs.id,
-               type: 'recovery',
+               type: 'ok',
                message: 'MyText',
                created_at: last_hour
              )
@@ -43,7 +43,7 @@ RSpec.describe 'alerts/index', type: :view do
     assert_select 'tr>td', text: 'other_channel'.to_s, count: 2
     assert_select 'tr>td', text: 'Some Statistics'.to_s, count: 2
     assert_select 'tr>td', text: 'alert'.to_s, count: 1
-    assert_select 'tr>td', text: 'recovery'.to_s, count: 1
+    assert_select 'tr>td', text: 'ok'.to_s, count: 1
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
     assert_select 'tr>td', text: yesterday.localtime.to_fs(:local).to_s, count: 1
     assert_select 'tr>td', text: last_hour.localtime.to_fs(:local).to_s, count: 1
