@@ -43,15 +43,7 @@
         <%= content_tag(:tr, id: dom_id(escalation_level), class: dom_class(escalation_level)) do %>
           <% unless escalatable.present? %>
             <td>
-              <% if escalation_level.escalatable_id > 0 %>
-                <% if escalation_level.escalatable.respond_to?(:fullname) %>
-                  <%= link_to(escalation_level.escalatable.fullname, escalation_level.escalatable) %>
-                <% else %>
-                  <%= link_to(escalation_level.escalatable) %>
-                <% end %>
-              <% else %>
-                <%= t(escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
-              <% end %>
+              <%= render EscalationLevel::EscalatableComponent.new(escalation_level: escalation_level) %>
             </td>
           <% end %>
           <td><%= escalation_level.attrib %></td>
