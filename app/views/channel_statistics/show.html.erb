@@ -131,6 +131,15 @@
           <tr>
             <th><%= t('attributes.last_condition_change')%>:</th>
             <td><%= @channel_statistic.last_condition_change&.to_fs(:local) %></td>
+            <th></th>
+            <td></td>
+          </tr>
+          <tr>
+            <th><%= t('mirco.active_escalation_levels')%>:</th>
+            <td><%= render EscalationLevel::LinkComponent.with_collection(
+                      EscalationLevel.active_escalation_levels(@channel_statistic)) 
+                 %>
+            </td>
             <td></td>
             <td><%= link_to raw(t('controller.escalation_levels') +
                                 %Q[ <span class="badge bg-secondary">#{@channel_statistic.all_escalation_levels.count}</span>]),
