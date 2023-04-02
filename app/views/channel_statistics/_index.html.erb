@@ -56,7 +56,12 @@
       <% channel_statistics.each do |channel_statistic| %>
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
           <% unless server.present? %>
-            <td><%= channel_statistic.server %></td>
+            <td><%= link_to(
+                      channel_statistic.server, 
+                      channel_statistic.server,
+                      class: 'primary-link')
+                %>
+          </td>
           <% end %>
           <td><%= link_to_if(can?(:read, channel_statistic.channel),
                     channel_statistic.channel,
@@ -68,7 +73,8 @@
             <% if channel_statistic.meta_data_id.nil? %>
               -
             <% else %>
-              <%= channel_statistic.name %>
+              <%= link_to channel_statistic.name, channel_statistic, 
+                          class: 'primary-link' %>
             <% end %>
           </td>
           <td><%= channel_statistic.state %></td>
