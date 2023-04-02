@@ -12,6 +12,7 @@ class ChannelStatistic < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :escalation_levels, as: :escalatable, dependent: :destroy
   has_and_belongs_to_many :channel_statistic_groups, inverse_of: :channel_statistics
+  has_many :group_escalation_levels, through: :channel_statistic_groups, source: :escalation_levels
 
   # has_many :channel_counters, ->(cs) {
   #   unscope(:where).where(
@@ -45,6 +46,10 @@ class ChannelStatistic < ApplicationRecord
 
   def escalatable_attributes
     ChannelStatistic.escalatable_attributes
+  end
+
+  def all_escalation_levels
+    @all ||= (escalation_levels + group_escalation_levels)
   end
 
 private

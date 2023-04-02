@@ -1,3 +1,5 @@
+<%= render 'shared/turbo-cache-control' %>
+
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link fs-4 py-0 my-0 pe-0 me-0" type="button"
@@ -131,7 +133,7 @@
             <td><%= @channel_statistic.last_condition_change&.to_fs(:local) %></td>
             <td></td>
             <td><%= link_to raw(t('controller.escalation_levels') +
-                                %Q[ <span class="badge bg-secondary">#{@channel_statistic.escalation_levels.count}</span>]),
+                                %Q[ <span class="badge bg-secondary">#{@channel_statistic.all_escalation_levels.count}</span>]),
                             channel_statistic_escalation_levels_path(@channel_statistic),
                             class: 'btn btn-outline-secondary'%></td>
           </tr>
