@@ -20,4 +20,6 @@ Wobauth.setup do |config|
   # config.authorized_for_group_method = :arrange_as_array
   #
   config.ldap_config = File.join( Rails.root, 'config', 'mirco.yml')
+  #
+  config.custom_stream_actions = true
 end
