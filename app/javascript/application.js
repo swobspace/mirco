@@ -14,6 +14,7 @@ import "chartkick/chart.js"
 // ActiveStorage.start()
 
 import "./controllers"
+import "./turbo_streams"
 
 import "trix"
 import "@rails/actiontext"
