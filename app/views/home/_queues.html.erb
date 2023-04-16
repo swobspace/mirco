@@ -26,7 +26,13 @@
                   class: "primary-link")
             %>
           </td>
-          <td class="text-start"><%= channel_statistic.name %></td>
+          <td class="text-start">
+            <%= link_to(
+                  channel_statistic.name,
+                  channel_statistic_path(channel_statistic),
+                  class: "primary-link")
+            %>
+          </td>
           <td class="text-end d-none d-lg-table-cell"><%= channel_statistic.received_last_30min %></td>
           <%= render TdEscalationComponent.new(
                 escalatable: channel_statistic,

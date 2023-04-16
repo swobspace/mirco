@@ -13,14 +13,24 @@ Rails.application.configure do
 
     cron: {
       fetch_statistics: {
-        cron: Mirco.cron_expression,
+        cron: Mirco.cron_fetch_statistics,
         class: "Channels::FetchStatisticsJob",
         description: "Fetch current channel statistics from all servers"
       },
       fetch_channels: {
-        cron: '0 1 * * 6',
+        cron: Mirco.cron_fetch_channels,
         class: "Channels::FetchJob",
         description: "Update channel configurations from all servers"
+      },
+      fetch_configuration: {
+        cron: Mirco.cron_fetch_configuration,
+        class: "servers::FetchConfigurationJob",
+        description: "Fetch server configurations as backup"
+      },
+      purge_timescale: {
+        cron: Mirco.cron_purge_timescale,
+        class: "Mirco::PurgeTimescale",
+        description: "Purge Timescale Hypertables outdated data"
       }
     }
   }

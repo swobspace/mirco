@@ -5,7 +5,12 @@ class EscalationLevelsController < ApplicationController
   # GET /escalation_levels
   def index
     if @escalatable
-      @escalation_levels = @escalatable.escalation_levels
+      case @escalatable.class.name
+      when "ChannelStatistic"
+        @escalation_levels = @escalatable.all_escalation_levels
+      else
+        @escalation_levels = @escalatable.escalation_levels
+      end
     else
       @escalation_levels = EscalationLevel.all
     end

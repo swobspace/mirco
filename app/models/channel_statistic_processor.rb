@@ -47,7 +47,7 @@ class ChannelStatisticProcessor
     return true unless condition_changed?
     channel_statistic.touch(:last_condition_change) &&
       channel_statistic.update(condition: current_condition) &&
-      create_alert_entry
+      ChannelStatisticAlertProcessor.new(channel_statistic).process
     # process some notification
   end
 
@@ -59,39 +59,4 @@ class ChannelStatisticProcessor
     channel_statistic.escalation_status.state
   end
 
-  def create_alert_entry
-    # create only alerts for destinations
-    return true if channel_statistic.status_type == 'CHANNEL'
-
-    if channel_statistic.condition == EscalationLevel::OK
-      alert = channel_statistic.alerts.create(
-                type: 'recovery',
-                message: "OK: #{channel_statistic} has recovered"
-              )
-    elsif channel_statistic.condition > EscalationLevel::OK
-      alert = channel_statistic.alerts.create(
-                type: 'alert',
-                message: channel_statistic.escalation_status.message
-              )
-    end
-    send_alert(alert)
-    alert.nil? || alert.persisted?
-  end
-
-  # needs more grips :-)
-  # should be extracted to a configurable NotificationProcessor 
-  def send_alert(alert)
-    return if alert.nil?
-    # send mail is disabled unless mail_to is explicit configured
-    return unless Mirco.mail_to.any?
-
-    # avoid duplicate alerts, one for the destination and one for the channel itself
-    return if alert.alertable&.status_type == 'CHANNEL'
-    return unless alert.type == 'alert'
-    if alert.alertable.escalation_status('last_message_sent_at').state <= EscalationLevel::OK
-      return
-    end
-
-    NotificationMailer.with(alert: alert).alert.deliver_later
-  end
 end

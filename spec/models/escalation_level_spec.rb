@@ -253,4 +253,61 @@ RSpec.describe EscalationLevel, type: :model do
       end
     end
   end
+
+  describe "::active_escalation_levels" do
+    let!(:csg) do
+      FactoryBot.create(:channel_statistic_group,
+        channel_statistic_ids: [cs.id]
+      )
+    end
+    let!(:queued_specific) do
+      EscalationLevel.create!(
+        escalatable_id: cs.id,
+        escalatable_type: 'ChannelStatistic',
+        attrib: 'queued',
+      )
+    end
+    
+    let!(:queued_group) do
+      EscalationLevel.create!(
+        escalatable_id: cs.id,
+        escalatable_type: 'ChannelStatisticGroup',
+        attrib: 'queued',
+      )
+    end
+    let!(:sent_group) do
+      EscalationLevel.create!(
+        escalatable_id: csg.id,
+        escalatable_type: 'ChannelStatisticGroup',
+        attrib: 'last_message_sent_at',
+      )
+    end
+    let!(:sent_default) do
+      EscalationLevel.create!(
+        escalatable_id: 0,
+        escalatable_type: 'ChannelStatistic',
+        attrib: 'last_message_sent_at',
+      )
+    end
+    let!(:queued_default) do
+      EscalationLevel.create!(
+        escalatable_id: 0,
+        escalatable_type: 'ChannelStatistic',
+        attrib: 'queued',
+      )
+    end
+    let!(:received_default) do
+      EscalationLevel.create!(
+        escalatable_id: 0,
+        escalatable_type: 'ChannelStatistic',
+        attrib: 'last_message_received_at',
+      )
+    end
+    
+    it { expect(EscalationLevel.active_escalation_levels(cs)).to contain_exactly(
+                received_default, sent_group, queued_specific) }
+    
+    
+  end
+
 end

@@ -25,7 +25,13 @@
                   class: "primary-link")
             %>
           </td>
-          <td class="text-start"><%= problem.name %></td>
+          <td class="text-start">
+            <%= link_to(
+                  problem.name,
+                  polymorphic_path(problem),
+                  class: "primary-link")
+            %>
+          </td>
           <%= render TdEscalationComponent.new(
                 escalatable: problem,
                 attrib: 'last_message_received_at',

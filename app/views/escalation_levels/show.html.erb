@@ -21,11 +21,7 @@
       <tr>
         <th class="w-10 pe-3"><%= t('attributes.escalatable')%>:</th>
         <td>
-          <% if @escalation_level.escalatable_id > 0 %>
-            <%= link_to(@escalation_level.escalatable) %>
-          <% else %>
-            <%= t(@escalation_level.escalatable_type.underscore, scope: 'activerecord.models') %> (default)
-          <% end %>
+          <%= render EscalationLevel::EscalatableComponent.new(escalation_level: @escalation_level) %>
         </td>
       </tr>
 

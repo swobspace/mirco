@@ -5,6 +5,7 @@ de:
   mirco:
     action: Aktion
     add_note: Notiz erstellen
+    active_escalation_levels: Aktive Eskalationslevels
     backup_server_configuration: Mirth-Konfiguration sichern
     configuration: Konfiguration
     fetch_channels: Aktualisiere Channels

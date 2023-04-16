@@ -163,7 +163,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
         received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 10.minutes.before(Time.current)
+        created_at: 40.minutes.before(Time.current)
       )
     end
     let!(:counter2) do
@@ -173,7 +173,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
         received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 5.minutes.before(Time.current)
+        created_at: 20.minutes.before(Time.current)
       )
     end
 
@@ -217,7 +217,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       expect(channel_statistic.sent_last_30min).to eq(8)
       expect(channel_statistic.condition).to eq(0)
       expect(channel_statistic.last_condition_change > 1.minute.before(Time.current)).to be_truthy
-      expect(channel_statistic.alerts.last.type).to eq('recovery')
+      expect(channel_statistic.alerts.last.type).to eq('ok')
     end
   
   end

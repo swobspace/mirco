@@ -111,6 +111,17 @@ class EscalationLevel < ApplicationRecord
     return Result.new(state: state, escalation_level: el)
   end
 
+  def self.active_escalation_levels(escalatable, attribs = [])
+    levels = []
+    if attribs.empty?
+      attribs = escalatable.escalatable_attributes
+    end
+    attribs.each do |attrib|
+      levels += fetch_escalation_levels(escalatable, attrib)
+    end
+    levels
+  end
+
 private
 
   def self.fetch_value(escalatable, attrib)
