@@ -15,7 +15,10 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
-      allow(Mirco::CONFIG).to receive(:[]).with('cron_expression').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(nil)
@@ -42,7 +45,10 @@ RSpec.describe Mirco, type: :model do
         'http://localhost', 'https://localhost'
       )
     }
-    it { expect(Mirco.cron_expression).to eq('*/5 * * * *') }
+    it { expect(Mirco.cron_fetch_statistics).to eq('*/5 * * * *') }
+    it { expect(Mirco.cron_fetch_channels).to eq('0 1 * * 6') }
+    it { expect(Mirco.cron_fetch_configuration).to eq('15 1 * * 6') }
+    it { expect(Mirco.cron_purge_timescale).to eq('30 1 * * 6') }
     it { expect(Mirco.warning_period).to eq(10) }
     it { expect(Mirco.queued_warning_level).to eq(10) }
     it { expect(Mirco.queued_critical_level).to eq(50) }
@@ -60,7 +66,10 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return('OTHER_USER')
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(['http://otherwise'])
-      allow(Mirco::CONFIG).to receive(:[]).with('cron_expression').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(23)
       allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(47)
       allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(71)
@@ -78,7 +87,10 @@ RSpec.describe Mirco, type: :model do
         'http://otherwise'
       )
     }
-    it { expect(Mirco.cron_expression).to eq('* * nix') }
+    it { expect(Mirco.cron_fetch_statistics).to eq('* * nix') }
+    it { expect(Mirco.cron_fetch_channels).to eq('* * nix') }
+    it { expect(Mirco.cron_fetch_configuration).to eq('* * nix') }
+    it { expect(Mirco.cron_purge_timescale).to eq('* * nix') }
     it { expect(Mirco.warning_period).to eq(23) }
     it { expect(Mirco.queued_warning_level).to eq(47) }
     it { expect(Mirco.queued_critical_level).to eq(71) }

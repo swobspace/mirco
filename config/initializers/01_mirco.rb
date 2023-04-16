@@ -53,8 +53,20 @@ module Mirco
     fetch_config('remote_user', 'REMOTE_USER')
   end
 
-  def self.cron_expression
-    fetch_config('cron_expression', '*/5 * * * *')
+  def self.cron_fetch_statistics
+    fetch_config('cron_fetch_statistics', '*/5 * * * *')
+  end
+
+  def self.cron_fetch_channels
+    fetch_config('cron_fetch_channels', '0 1 * * 6')
+  end
+
+  def self.cron_fetch_configuration
+    fetch_config('cron_fetch_configuration', '15 1 * * 6')
+  end
+
+  def self.cron_purge_timescale
+    fetch_config('cron_purge_timescale', '30 1 * * 6')
   end
 
   # warning if last check is older than warning_period minutes
