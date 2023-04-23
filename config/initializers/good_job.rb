@@ -24,12 +24,12 @@ Rails.application.configure do
       },
       fetch_configuration: {
         cron: Mirco.cron_fetch_configuration,
-        class: "servers::FetchConfigurationJob",
+        class: "Servers::FetchConfigurationJob",
         description: "Fetch server configurations as backup"
       },
       purge_timescale: {
         cron: Mirco.cron_purge_timescale,
-        class: "Mirco::PurgeTimescale",
+        class: "Mirco::PurgeTimescaleJob",
         description: "Purge Timescale Hypertables outdated data"
       }
     }
