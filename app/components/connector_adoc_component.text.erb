@@ -22,6 +22,7 @@
   <% mc.filters.each do |f| %>
 <%= f.step %>: <%= f.name %>::
 <%= f.short_type %> / <%= t(f.enabled, scope: 'enabled') %> / <%= f.operator %> 
+[source,<%= f.short_type&.downcase %>]
 ----
 <%= CGI.unescapeHTML(f.content).html_safe %>
 ----
@@ -34,6 +35,7 @@
   <% mc.transformers.each do |trf| %>
 <%= trf.step %>: <%= trf.name %>::
 <%= trf.short_type %> / <%= t(trf.enabled, scope: 'enabled') %>
+[source,<%= trf.short_type&.downcase %>]
 ----
 <%= CGI.unescapeHTML(trf.content).html_safe %>
 ----
