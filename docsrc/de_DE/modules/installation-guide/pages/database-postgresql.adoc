@@ -11,7 +11,7 @@ createuser -D -E -S -R -W mirco
 .postgres> psql
 [source,sql]
 ----
-ALTER USER mirco WITH PASSWORD '******';'
+ALTER USER mirco WITH PASSWORD '******';
 ----
 == Datenbank anlegen
 
