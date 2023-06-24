@@ -16,7 +16,7 @@
     "datatables.net-bs5": "~1.13.3",
     "datatables.net-buttons": "~2.3.5",
     "datatables.net-buttons-bs5": "~2.3.5",
-    "esbuild": "^0.17.0",
+    "esbuild": "^0.18.0",
     "jquery": "3",
     "jszip": "^3.7.1",
     "medium-zoom": "^1.0.6",
