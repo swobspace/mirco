@@ -11,7 +11,7 @@ class ChannelCounter < ApplicationRecord
   # -- scopes
   scope :time_bucket, lambda { |time_dimension, value: 'max(queued)'|
     select(<<~SQL)
-      time_bucket_gapfill('#{time_dimension}', created_at) as time,
+      #{tm_bucket}('#{time_dimension}', created_at) as time,
       #{value} as value
     SQL
       .group('time').order('time')
@@ -52,4 +52,12 @@ class ChannelCounter < ApplicationRecord
 
   scope :yesterday, -> { where('DATE(created_at) = ?', 1.day.ago.to_date) }
   scope :today, -> { where('DATE(created_at) = ?', Date.current) }
+
+  def self.tm_bucket
+    if Mirco::timescale_license == 'apache'
+      "time_bucket"
+    else
+      "time_bucket_gapfill"
+    end
+  end
 end

@@ -101,6 +101,11 @@ module Mirco
     fetch_config('script_name', '/')
   end
 
+  def self.timescale_license
+    mylicense = "SHOW timescaledb.license;"
+    @@timescale_license ||= ActiveRecord::Base.connection.exec_query(mylicense).rows.flatten.first || "apache"
+  end
+
   ActionMailer::Base.default_url_options = {
     host: host,
     port: port,

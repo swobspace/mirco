@@ -2,7 +2,6 @@
 !theme mirco from <%= Rails.root.join('config') %>
 
 header <%= @channel.server.name %> &#8227; <%= @channel.name %>
-footer <%= Date.current.to_s %> / Mirco Version <%= Mirco::VERSION %>
 
 <% @channels.each do |channel| %>
 <%= render ChannelPumlDefinitionsComponent.new(channel: channel, scope: :server) %>

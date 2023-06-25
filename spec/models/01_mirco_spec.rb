@@ -160,4 +160,9 @@ RSpec.describe Mirco, type: :model do
              host: 'dev.local', port: 3001, script_name: '/')
     end
   end
+
+  describe "#timescale_license" do
+    it { expect(Mirco::timescale_license).to be_kind_of(String) }
+    it { expect(Mirco::timescale_license).to match(/apache|timescale/) }
+  end
 end
