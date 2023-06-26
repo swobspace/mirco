@@ -59,3 +59,19 @@ SELECT hypertable_name,
        hypertable_size(format('%I.%I', hypertable_schema, hypertable_name)::regclass) / 1024/1024 AS MBYTE
   FROM timescaledb_information.hypertables;
 ----
+
+== Troubleshooting
+
+=== Backup
+
+Fehlermeldung LOCK TABLE _timescaledb_internal.job_errors IN ACCESS SHARE MODE::
+
+Bug in PostgreSQL `pg_dump` mit `timescaledb` >= 2.10. 
+
+Workaround::
+
+.User postgresql
+----
+\c mirco_production
+GRANT SELECT ON TABLE _timescaledb_internal.job_errors TO mirco;
+----
