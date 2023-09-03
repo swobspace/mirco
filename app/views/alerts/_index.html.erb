@@ -1,12 +1,12 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "alerts_table",
-        class: "table table-bordered",
+        class: "table table-striped table-sm table-responsive-xl",
         style: 'width: 100%;',
         data: {
           order: [[0, 'desc']].to_json
         } do %>
-    <thead>
+    <thead class="table-primary">
       <tr>
             <th><%= t('attributes.timestamp') %></th>
             <th><%= t('attributes.type') %></th>
@@ -14,21 +14,9 @@
             <th class="<%= 'notvisible' if alertable.kind_of? Channel %>"><%= t('attributes.channel') %></th>
             <th><%= t('attributes.channel_detail') %></th>
             <th><%= t('attributes.message') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+            <th class="nosort text-end"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot class="search">
-      <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
-      </tr>
-    </tfoot>
-    <tbody>
       <% alerts.each do |alert| %>
         <%= content_tag(:tr, id: dom_id(alert), class: dom_class(alert)) do %>
                 <td><%= alert.created_at.localtime.to_fs(:local) %></td>
@@ -37,8 +25,8 @@
                 <td><%= alert.channel %></td>
                 <td><%= alert.channel_statistic %></td>
                 <td><%= alert.message %></td>
-                <td class="text-nowrap">
-            <%= show_link [alertable, alert] %>
+                <td class="text-nowrap text-end">
+            <%= show_link [alertable, alert], class: 'px-1' %>
           </td>
         <% end %>
       <% end %>

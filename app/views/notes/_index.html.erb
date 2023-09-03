@@ -1,12 +1,12 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "notes_table",
-        class: "table table-bordered",
+        class: "table table-striped table-sm table-responsive-xl",
         style: 'width: 100%;',
         data: {
           order: [[0, 'desc']].to_json
         } do %>
-    <thead>
+    <thead class="table-primary">
       <tr>
             <th><%= t('attributes.created_at') %></th>
             <% if notable.kind_of? Server %>
@@ -19,24 +19,9 @@
             <th><%= t('attributes.message') %></th>
             <th class="notvisible"><%= t('attributes.user') %></th>
             <th class="notvisible"><%= t('attributes.type') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+            <th class="nosort text-end"><%= t('mirco.action') %></th>
       </tr>
     </thead>
-    <tfoot class="search">
-      <tr>
-            <th></th>
-            <% if notable.kind_of? Server %>
-              <th></th>
-              <th></th>
-            <% elsif notable.kind_of? Channel %>
-              <th></th>
-            <% end %>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
-      </tr>
-    </tfoot>
     <tbody>
       <% notes.each do |note| %>
         <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
@@ -50,9 +35,10 @@
           <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
           <td><%= note.user %></td>
           <td><%= note.type %></td>
-          <td class="text-nowrap">
-          <%= show_link [notable, note] %>
+          <td class="text-nowrap text-end">
+          <%= show_link [notable, note], class: 'px-1' %>
           <%= edit_link [notable, note],
+                class: 'px-1',
                 data: {
                   controller: :modal,
                   'modal-modal-id-value': 'sharedModal',
@@ -60,7 +46,7 @@
                   'turbo-frame': "modal-body"
                }
            %>
-          <%= delete_button([notable, note]) %>
+          <%= delete_button([notable, note], class: 'no_button') %>
           </td>
         <% end %>
       <% end %>
