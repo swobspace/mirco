@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_125907) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_03_095351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -121,9 +121,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_125907) do
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
     t.integer "condition", default: -1
+    t.bigint "current_note_id_id"
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
+    t.index ["current_note_id_id"], name: "index_channel_statistics_on_current_note_id_id"
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"

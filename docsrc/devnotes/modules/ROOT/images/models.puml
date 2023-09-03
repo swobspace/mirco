@@ -59,6 +59,7 @@ class ChannelStatistic {
   last_message_received_at: timestamp
   last_message_sent_at: timestamp
   last_message_error_at: timestamp
+  current_note_id
 }
 
 class ChannelStatisticGroup {
