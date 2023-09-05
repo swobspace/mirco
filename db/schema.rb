@@ -121,11 +121,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_064616) do
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
     t.integer "condition", default: -1
-    t.bigint "current_note_id_id"
+    t.bigint "current_note_id"
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
-    t.index ["current_note_id_id"], name: "index_channel_statistics_on_current_note_id_id"
+    t.index ["current_note_id"], name: "index_channel_statistics_on_current_note_id"
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
