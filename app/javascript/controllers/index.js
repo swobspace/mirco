@@ -28,6 +28,9 @@ application.register("select", SelectController)
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
 
+import TooltipController from "./tooltip_controller"
+application.register("tooltip", TooltipController)
+
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
 
