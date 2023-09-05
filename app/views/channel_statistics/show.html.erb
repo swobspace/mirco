@@ -131,8 +131,8 @@
           <tr>
             <th><%= t('attributes.last_condition_change')%>:</th>
             <td><%= @channel_statistic.last_condition_change&.to_fs(:local) %></td>
-            <th></th>
-            <td></td>
+            <th><%= t('attributes.current_note') %>:</th>
+            <td><%= @channel_statistic.current_note %></td>
           </tr>
           <tr>
             <th><%= t('mirco.active_escalation_levels')%>:</th>
