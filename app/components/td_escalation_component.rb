@@ -63,6 +63,6 @@ class TdEscalationComponent < ViewComponent::Base
 
   def current_note
     note = escalatable.current_note
-    "#{note.created_at.localtime.to_fs(:local)}/#{note.type.upcase}: #{note.message.to_plain_text}"
+    "#{note.created_at.localtime.to_fs(:local)}/#{note.type}: #{note.message.to_plain_text}"
   end
 end
