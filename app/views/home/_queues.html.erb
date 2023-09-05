@@ -61,7 +61,19 @@
                 manual_update: channel_statistic.server.manual_update
               ) %>
           <td class="text-nowrap text-center">
-            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
+            <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
+            <% if channel_statistic.condition >= EscalationLevel::WARNING %>
+            <%= link_to raw(%Q[<i class="fas fa-fw fa-comment"></i>]),
+                        new_channel_statistic_note_path(channel_statistic, type: 'acknowledge'),
+                        data: {
+                          controller: :modal,
+                          'modal-modal-id-value': 'sharedModal',
+                          action: 'click->modal#open',
+                          'turbo-frame': "modal-body"
+                        },
+                        class: 'btn btn-secondary btn-sm my-0'
+             %>
+             <% end %>
 
           </td>
         <% end %>
