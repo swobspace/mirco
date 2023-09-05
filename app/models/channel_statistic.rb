@@ -7,6 +7,7 @@ class ChannelStatistic < ApplicationRecord
   # -- associations
   belongs_to :server
   belongs_to :channel
+  belongs_to :current_note, class_name: 'Note', optional: true
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
   has_many :notes, dependent: :destroy
