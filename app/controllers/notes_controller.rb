@@ -18,7 +18,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     Rails.logger.debug {"notable: #{@notable}"}
-    @note = Note.new
+    @note = @notable.notes.build(type: params[:type] || 'note')
     respond_with(@note)
   end
 
@@ -31,6 +31,7 @@ class NotesController < ApplicationController
     respond_with(@note, location: location) do |format|
       if @note.save
         format.turbo_stream
+        add_current_note
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -84,5 +85,10 @@ class NotesController < ApplicationController
   def location
     # polymorphic_path([@notable, :notes])
     polymorphic_path(@notable, anchor: 'notes')
+  end
+
+  def add_current_note
+    return unless @notable.respond_to?(:current_note_id)
+    @notable.update(current_note_id: @note.id)
   end
 end
