@@ -98,6 +98,7 @@ de:
     connector: Connector
     connectors: Connectoren
     created_at: angelegt am
+    current_note: Aktueller Hinweis
     deployScript: Deploy Script
     description: Beschreibung
     destination: Destination
