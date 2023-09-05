@@ -63,7 +63,7 @@
           <td class="text-nowrap text-center">
             <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
             <% if channel_statistic.condition >= EscalationLevel::WARNING %>
-            <%= link_to raw(%Q[<i class="fas fa-fw fa-comment"></i>]),
+            <%= link_to raw(%Q[<i class="fas fa-fw fa-comment" title="Acknowledge"></i>]),
                         new_channel_statistic_note_path(channel_statistic, type: 'acknowledge'),
                         data: {
                           controller: :modal,

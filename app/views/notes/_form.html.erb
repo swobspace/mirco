@@ -6,7 +6,7 @@
   <div class="modal-header bg-light">
    <div>
     <div class="text-muted">
-      <span><%= t('activerecord.models.note') %> <%= t('mirco.for') %></span>
+      <span><%= t(@note.type, scope: 'mirco.note_types') %> <%= t('mirco.for') %></span>
     </div>
     <h5 class="modal-title">
       <% if @notable.kind_of? ChannelStatistic %>
