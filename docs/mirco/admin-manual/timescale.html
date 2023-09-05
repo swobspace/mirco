@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>TimescaleDB Administration :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.1.2">
+    <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -245,6 +245,32 @@ Es werde nur Chunks gelöscht, wenn ALLE Datensätze im Chunk älter als 3 Monat
 <pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT hypertable_name,
        hypertable_size(format('%I.%I', hypertable_schema, hypertable_name)::regclass) / 1024/1024 AS MBYTE
   FROM timescaledb_information.hypertables;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_backup"><a class="anchor" href="#_backup"></a>Backup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Fehlermeldung LOCK TABLE _timescaledb_internal.job_errors IN ACCESS SHARE MODE</dt>
+<dd>
+<p>Bug in PostgreSQL <code>pg_dump</code> mit <code>timescaledb</code> &gt;= 2.10.</p>
+</dd>
+<dt class="hdlist1">Workaround</dt>
+<dd>
+<p>.User postgresql</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>\c mirco_production
+GRANT SELECT ON TABLE _timescaledb_internal.job_errors TO mirco;</pre>
+</div>
 </div>
 </div>
 </div>
