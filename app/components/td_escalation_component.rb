@@ -39,30 +39,4 @@ class TdEscalationComponent < ViewComponent::Base
     end
   end
 
-  def info_icon
-    return unless escalatable.respond_to?(:current_note)
-    return unless escalatable.current_note.present?
-    unless manual_update
-      result = escalation_status.state
-      case result
-      when EscalationLevel::WARNING, EscalationLevel::CRITICAL
-        msg = %Q[
-          <button type="button" class="btn btn-sm text-white"
-                  data-controller="tooltip"
-                  data-bs-toggle="tooltip" 
-                  data-bs-html="false" 
-                  data-bs-title="#{current_note}">
-            <i class="fas fa-info-circle"></i>
-          </button>
-        ].html_safe
-      else
-        ''
-      end
-    end
-  end
-
-  def current_note
-    note = escalatable.current_note
-    "#{note.created_at.localtime.to_fs(:local)}/#{note.type}: #{note.message.to_plain_text}"
-  end
 end
