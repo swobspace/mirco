@@ -209,13 +209,17 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
     it "recovers after error" do
       channel_statistic.update(condition: 2)
+      note = FactoryBot.create(:note, channel_statistic: channel_statistic)
+      channel_statistic.update(current_note: note)
       channel_statistic.reload
+      expect(channel_statistic.current_note).to be_present
       channel_statistic.sent = 10
       expect {
         processor.process
       }.to change(Alert, :count).by(1)
       expect(channel_statistic.sent_last_30min).to eq(8)
       expect(channel_statistic.condition).to eq(0)
+      expect(channel_statistic.current_note).not_to be_present
       expect(channel_statistic.last_condition_change > 1.minute.before(Time.current)).to be_truthy
       expect(channel_statistic.alerts.last.type).to eq('ok')
     end

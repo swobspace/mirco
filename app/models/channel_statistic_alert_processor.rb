@@ -17,6 +17,7 @@ class ChannelStatisticAlertProcessor
                 type: 'ok',
                 message: "OK: #{channel_statistic} has recovered"
               )
+      channel_statistic.update(current_note_id: nil)
     elsif (channel_statistic.condition > EscalationLevel::WARNING) &&
           (last_alert_state == 'ok' || last_alert_state.nil?)
       alert = channel_statistic.alerts.create(

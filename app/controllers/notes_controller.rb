@@ -18,7 +18,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     Rails.logger.debug {"notable: #{@notable}"}
-    @note = Note.new
+    @note = @notable.notes.build(type: params[:type] || 'note')
     respond_with(@note)
   end
 
@@ -27,10 +27,11 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = @notable.notes.build(note_params.merge(fix_note_params))
+    @note = @notable.notes.build(default_note_params.merge(note_params, force_note_params))
     respond_with(@note, location: location) do |format|
       if @note.save
         format.turbo_stream
+        add_current_note
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -69,9 +70,14 @@ class NotesController < ApplicationController
     params.require(:note).permit(:channel_id, :server_id, :channel_statistic_id, :message, :note, :type)
   end
 
-  def fix_note_params
+  def default_note_params
     {
-      type: 'note',
+      type: 'note'
+    }
+  end
+
+  def force_note_params
+    {
       user_id: @current_user.id
     }
   end
@@ -79,5 +85,10 @@ class NotesController < ApplicationController
   def location
     # polymorphic_path([@notable, :notes])
     polymorphic_path(@notable, anchor: 'notes')
+  end
+
+  def add_current_note
+    return unless @notable.respond_to?(:current_note_id)
+    @notable.update(current_note_id: @note.id)
   end
 end

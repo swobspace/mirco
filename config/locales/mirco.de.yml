@@ -45,6 +45,10 @@ de:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
+    note_types:
+      acknowledge: Acknowledge
+      note: Note
+      mail: Mail
 
   activerecord:
     models:
@@ -65,7 +69,7 @@ de:
       hl7_segment: HL7-Segment
       host: Host
       interface_connector: Connector
-      note: Notizen
+      note: Notiz
       notification_group: Benachrichtigungsgruppe
       server: Mirth-System
       server_configuration: Sicherung der Konfiguration
@@ -98,6 +102,7 @@ de:
     connector: Connector
     connectors: Connectoren
     created_at: angelegt am
+    current_note: Aktueller Hinweis
     deployScript: Deploy Script
     description: Beschreibung
     destination: Destination

@@ -93,6 +93,16 @@ module ChannelStatstics
           end.to change(Note, :count).by(1)
         end
 
+        it 'creates a new Note with type :note' do
+          post channel_notes_url(channel), params: { note: post_attributes }
+          expect(channel.notes.last.type).to eq('note')
+        end
+
+        it 'creates a new Note with type :acknowledge' do
+          post channel_notes_url(channel), params: { note: post_attributes.merge(type: 'acknowledge') }
+          expect(channel.notes.last.type).to eq('acknowledge')
+        end
+
         it 'redirects to the created note' do
           post channel_notes_url(channel), params: { note: post_attributes }
           expect(response).to redirect_to(channel_url(channel, anchor: 'notes'))

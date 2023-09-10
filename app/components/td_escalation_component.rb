@@ -39,5 +39,4 @@ class TdEscalationComponent < ViewComponent::Base
     end
   end
 
-
 end
