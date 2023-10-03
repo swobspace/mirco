@@ -7,17 +7,17 @@ class HostPingComponent < ViewComponent::Base
   end
 
   private
-  attr_reader :host, :up
+  attr_reader :host, :up, :level, :message
 
-  def alert_class
+  def level
     if up
-      "alert-success"
+      "info"
     else
-      "alert-danger"
+      "danger"
     end
   end
 
-  def alert_text
+  def message
     if up
       "Host is reachable."
     else
