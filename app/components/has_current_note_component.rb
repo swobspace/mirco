@@ -17,7 +17,7 @@ private
               data-bs-toggle="tooltip" 
               data-bs-html="false" 
               data-bs-title="#{current_note}">
-        <i class="fas fa-fw fa-exclamation-circle"></i>
+        <i class="fas fa-fw fa-tools"></i>
       </button>
     ].html_safe
   end
