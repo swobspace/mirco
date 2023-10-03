@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/swobspace/wobmire
-  revision: 890f492ccabe824f22df98bdf3c9416d9e48f155
+  revision: eef5081f99ce773d2bc4158349f561c06065d963
   branch: master
   specs:
     wobmire (0.1.0)
