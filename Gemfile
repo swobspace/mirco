@@ -7,7 +7,7 @@ ruby '>=2.7.3'
 
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
-gem 'rails', '~> 7.0.0'
+gem 'rails', '~> 7.1.0'
 gem "sprockets-rails"
 # gem 'sassc-rails', require: false
 gem 'redis', '~> 5.0'
