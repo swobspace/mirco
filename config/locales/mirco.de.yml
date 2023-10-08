@@ -51,6 +51,9 @@ de:
       mail: Mail
 
   activerecord:
+    errors:
+      messages:
+        in: in
     models:
       alert: Alarm
       location: Standort
