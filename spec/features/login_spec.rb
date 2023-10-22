@@ -41,5 +41,17 @@ describe "Login", type: :feature do
 #      end
     end
 
+    describe "DELETE /accounts/sign_out", :js => false do
+      it "logs user out" do
+        login_user(user: user)
+        visit root_path 
+        expect(page).to have_content("tester")
+        click_on("Account")
+        click_on("Logout")
+        expect(page).to have_content("Erfolgreich abgemeldet")
+        expect(page).to have_content("not logged in")
+      end
+    end
+
   end
 end
