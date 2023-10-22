@@ -107,3 +107,6 @@ gem "bcrypt_pbkdf"
 gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
+
+# bugfix for passenger < 6.0.19, will be fixed soon
+gem 'rack', '2.2.4'
