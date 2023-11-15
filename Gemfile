@@ -7,7 +7,7 @@ ruby '>=2.7.3'
 
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
-gem 'rails', '~> 7.0.0'
+gem 'rails', '~> 7.1.0'
 gem "sprockets-rails"
 # gem 'sassc-rails', require: false
 gem 'redis', '~> 5.0'
@@ -107,3 +107,6 @@ gem "bcrypt_pbkdf"
 gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
+
+# bugfix for passenger < 6.0.19, will be fixed soon
+gem 'rack', '2.2.4'
