@@ -49,7 +49,12 @@ group :test, :development do
   gem 'dotenv'
   gem 'guard-rspec', require: false
   gem 'railroady'
-  gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'rspec-rails', '>= 6.0.3'
+  # gem 'rspec-core', github: 'rspec/rspec-core', branch: 'main'
+  # gem 'rspec-mocks', github: 'rspec/rspec-mocks', branch: 'main'
+  # gem 'rspec-support', github: 'rspec/rspec-support', branch: 'main'
+  # gem 'rspec-expectations', github: 'rspec/rspec-expectations', branch: 'main'
+  # gem 'rspec-rails', github: 'rspec/rspec-rails', branch: 'main'
 end
 
 group :test do

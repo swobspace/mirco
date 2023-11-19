@@ -27,10 +27,10 @@ RSpec.describe EscalationLevel, type: :model do
   end
 
   describe "#to_s" do
-    let(:el) do
-      FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
-                                           escalatable: cs)
-    end
+    # let(:el) do
+    #   FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
+    #                                        escalatable: cs)
+    # end
     let(:el2) do
       FactoryBot.create(:escalation_level, attrib: 'last_message_received_at',
                                            escalatable_type: 'ChannelStatistic',
@@ -55,7 +55,7 @@ RSpec.describe EscalationLevel, type: :model do
 
       describe "with default escalation levels" do
         let!(:el_default) do
-          EscalationLevel.create!(
+          FactoryBot.create(:escalation_level,
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
             notification_group_id: ng.id,
@@ -95,7 +95,7 @@ RSpec.describe EscalationLevel, type: :model do
         describe "and group escalation levels" do
           let!(:csg) { FactoryBot.create(:channel_statistic_group) }
           let!(:el_specific) do
-            EscalationLevel.create!(
+            FactoryBot.create(:escalation_level,
               escalatable_id: csg.id,
               escalatable_type: 'ChannelStatisticGroup',
              notification_group_id: ng.id,
@@ -135,7 +135,7 @@ RSpec.describe EscalationLevel, type: :model do
 
         describe "and specific escalation levels" do
           let!(:el_specific) do
-            EscalationLevel.create!(
+            FactoryBot.create(:escalation_level,
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
              notification_group_id: ng.id,
@@ -199,7 +199,7 @@ RSpec.describe EscalationLevel, type: :model do
 
       describe "with default escalation levels" do
         let!(:el_default) do
-          EscalationLevel.create!(
+          FactoryBot.create(:escalation_level,
             escalatable_id: 0,
             escalatable_type: 'ChannelStatistic',
             notification_group_id: ng.id,
@@ -226,7 +226,7 @@ RSpec.describe EscalationLevel, type: :model do
 
         describe "and specific escalation levels" do
           let!(:el_specific) do
-            EscalationLevel.create!(
+            FactoryBot.create(:escalation_level,
               escalatable_id: cs.id,
               escalatable_type: 'ChannelStatistic',
               notification_group_id: ng.id,
@@ -261,7 +261,7 @@ RSpec.describe EscalationLevel, type: :model do
       )
     end
     let!(:queued_specific) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: cs.id,
         escalatable_type: 'ChannelStatistic',
         attrib: 'queued',
@@ -269,35 +269,35 @@ RSpec.describe EscalationLevel, type: :model do
     end
     
     let!(:queued_group) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: cs.id,
         escalatable_type: 'ChannelStatisticGroup',
         attrib: 'queued',
       )
     end
     let!(:sent_group) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: csg.id,
         escalatable_type: 'ChannelStatisticGroup',
         attrib: 'last_message_sent_at',
       )
     end
     let!(:sent_default) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: 0,
         escalatable_type: 'ChannelStatistic',
         attrib: 'last_message_sent_at',
       )
     end
     let!(:queued_default) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: 0,
         escalatable_type: 'ChannelStatistic',
         attrib: 'queued',
       )
     end
     let!(:received_default) do
-      EscalationLevel.create!(
+      FactoryBot.create(:escalation_level,
         escalatable_id: 0,
         escalatable_type: 'ChannelStatistic',
         attrib: 'last_message_received_at',

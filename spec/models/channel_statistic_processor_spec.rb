@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ChannelStatisticProcessor, type: :mailer do
+  it { puts EscalationLevel.all }
+
   let!(:server) do
     FactoryBot.create(:server,
                       name: 'testmirth',
