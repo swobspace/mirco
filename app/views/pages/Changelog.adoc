@@ -1,5 +1,11 @@
 = Changelog
 
+=== 1.4.1-dev / 2023-11-26
+
+----
+* Preparing for Docker/Podman
+----
+
 === 1.4.0 / 2023-11-25
 
 ----
