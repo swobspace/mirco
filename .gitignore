@@ -7,9 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-*
+# Ignore all environment files (except templates).
+/.env*
+!/.env*.erb
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -22,58 +22,33 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
-# Ignore uploaded files in development.
+# Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 /public/assets
-.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /shared/config/master.key
 /shared/config/credentials.yml.enc
 
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
-
-# -- misc stuff
-/vendor/bundle
-/db/data*yml
-/db/20*
-
-capybara-*.html
-.rspec
-/public/system
-/coverage/
-/spec/tmp
-**.orig
-rerun.txt
-pickle-email-*.html
-*.swp
-
-# ignore sensible information
-shared/config/*.yml
-config/initializers/secret_token.rb
-config/secrets.yml
-config/deploy-config.yml
-.env
-
-# Ignore application configuration
-/shared/config/application.yml
-
-
-/config/credentials/development.key
-/config/credentials/test.key
-/config/credentials/
-
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-/config/credentials/production.key
+/node_modules
 
+# other configs
+shared/config/*.yml
+config/deploy-config.yml
+
+# logfiles
 rspec.log
+yarn-error.log
+
+# tmpfiles
+.*.swp
+.*~
