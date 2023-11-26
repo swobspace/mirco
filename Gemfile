@@ -46,7 +46,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'dotenv'
+  gem 'dotenv-rails'
   gem 'guard-rspec', require: false
   gem 'railroady'
   gem 'rspec-rails', '>= 6.0.3'
