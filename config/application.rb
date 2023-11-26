@@ -15,6 +15,10 @@ module Mirco
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    if Rails.env == "development"
+      config.web_console.allowed_ips = %w(10.0.0.0/8 192.168.0.0/16)
+      config.web_console.permissions = %w(10.0.0.0/8 192.168.0.0/16)
+    end
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

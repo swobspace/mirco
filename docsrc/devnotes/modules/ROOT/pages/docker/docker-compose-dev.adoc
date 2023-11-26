@@ -1,0 +1,20 @@
+= docker-compose.dev.yml
+
+.docker-compose.dev.yml
+[source,yaml]
+----
+include::example$docker/docker-compose.dev.yml[]
+----
+
+.Some Hints
+[cols="2,3"]
+|===
+|Hint | Description
+
+|external DB + Redis
+|I'm using PostgreSQL und Redis on my docker host for now.
+
+m|--volume .:/app:Z,cached
+|Rootless containers on Fedora hosts don't have access to the local
+working directory if selinux is enabled. The option `Z` takes care of it.
+|===

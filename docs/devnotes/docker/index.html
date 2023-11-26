@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Migration to Docker :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.5">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item dark">DevNotes</div>
+           <a class="navbar-item" href="../../mirco/index.html">Mirco</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="devnotes" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">DevNotes</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../api-memo.html">Mirth API</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../modeling.html">Modeling mirco</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../hosts.html">Hosts</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../software-interfaces.html">Software interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../software-connections.html">Software connections</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../state-diagrams.html">Zustandsdiagramme</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../escalations.html">Escalations</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../timescale.html">Timescale</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Migration to Docker</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">DevNotes</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <a class="title" href="../../mirco/index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../mirco/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../mirco/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">DevNotes</a></li>
+    <li><a href="index.html">Migration to Docker</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Migration to Docker</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just a memo for todos and code snippets &#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_development"><a class="anchor" href="#_development"></a>Development</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Build</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml build
+podman compose -f docker-compose.dev.yml build --no-cache</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Run Application</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">rm -f tmp/pids/server.pid &amp;&amp; \
+      podman compose -f docker-compose.dev.yml up -d &amp;&amp; \
+      podman compose -f docker-compose.dev.yml logs -f</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Single Purpose</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml run --rm app
+podman compose -f docker-compose.dev.yml restart
+podman compose -f docker-compose.dev.yml stop
+podman compose -f docker-compose.dev.yml exec app</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Cleanup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml down --remove-orphans</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appconfig"><a class="anchor" href="#_appconfig"></a>app/config</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_master_key"><a class="anchor" href="#_master_key"></a>Master Key</h3>
+<div class="paragraph">
+<p><a href="https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications" class="bare">https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>podman run -it --rm -p 3000:3000 \
+          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
+          localhost/mirco</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_variables"><a class="anchor" href="#_variables"></a>Variables</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>app:
+  - RAILS_MASTER_KEY
+  - DATABASE_URL
+  - REDIS_URL
+  - RAILS_SERVE_STATIC_FILES: "enabled"
+  - RAILS_LOG_TO_STDOUT: "enabled"
+
+db:
+  - POSTGRES_USER
+  - POSTGRES_PASSWORD
+  - POSTGRES_DB
+  - TIMESCALEDB_TELEMETRY: "off"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_command_line_stuff"><a class="anchor" href="#_command_line_stuff"></a>Command Line Stuff</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2023</span>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>
