@@ -1,1 +1,21 @@
-../shared/config/database.yml
+# Mirco config/database.yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV["MIRCO_DB_USER"] %>
+  password: <%= ENV["MIRCO_DB_PASSWORD"] %>
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5).to_i + ENV.fetch("GOOD_JOB_MAX_THREADS", 4).to_i %>
+
+development: &development
+  <<: *default
+  database: mirco_development
+
+test:
+  <<: *default
+  database: mirco_test
+
+production:
+  <<: *default
+  url: <%= ENV.fetch('MIRCO_DATABASE_URL') { "postgres://postgres:postgres@localhost/mirco_production" } %>
