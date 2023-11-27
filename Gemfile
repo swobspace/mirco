@@ -9,7 +9,6 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
 gem 'rails', '~> 7.1.0'
 gem "sprockets-rails"
-# gem 'sassc-rails', require: false
 gem 'redis', '~> 5.0'
 
 gem 'bootsnap', require: false
@@ -17,9 +16,6 @@ gem 'bootsnap', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-end
-
-group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -30,14 +26,7 @@ gem 'stimulus-rails'
 gem 'view_component'
 
 group :development do
-  gem 'capistrano', require: false
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-yarn'
   gem 'guard'
-  # gem 'guard-bundler'
-  gem 'guard-livereload', require: false
-  # gem 'guard-puma'
   gem 'libnotify'
   gem 'listen', '~> 3.3'
   gem 'rubocop', require: false
@@ -76,8 +65,6 @@ gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'wobaduser'
 
-# gem 'sidekiq'
-# gem 'sidekiq-scheduler'
 gem 'daemons'
 
 # workaround for faraday-net_http
@@ -112,6 +99,3 @@ gem "bcrypt_pbkdf"
 gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
-
-# bugfix for passenger < 6.0.19, will be fixed soon
-gem 'rack', '2.2.4'
