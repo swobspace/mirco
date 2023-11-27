@@ -1,7 +1,4 @@
-version: "3.8"
-# include:
-#   - .docker/postgres.yml
-#   - .docker/redis.yml
+# docker-compose.dev.yml
 
 x-base: &base
   build:
@@ -9,18 +6,31 @@ x-base: &base
     dockerfile: .docker/Dockerfile.dev
   stdin_open: true
   tty: true
+  volumes:
+    - .:/app:z,cached
+  depends_on:
+    - redis
+#     - postgres
+  env_file:
+    - .env.development.local
 
 services:
   app:
     <<: *base
     command: bin/dev
     restart: on-failure
-    volumes:
-      - .:/app:Z,cached
     ports:
       - "3000:3000"
-#     depends_on:
-#       - postgres
-#       - redis
-    env_file:
-      - .env.development.local
+
+  worker:
+    <<: *base
+    command: good_job start
+    restart: on-failure
+
+  redis:
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
