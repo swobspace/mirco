@@ -46,7 +46,6 @@ podman compose -f docker-compose.dev.yml logs | less -r
 
 == Variables
 
-
 .env.development.local.example
 [source,cfg]
 ----
@@ -60,6 +59,14 @@ include::example$podman/env.development.local.example[]
 
 |===
 
+== Selinux
+
+.set selinux context
+[source,sh]
+----
+ls -lZ <filename>
+chcon -t container_file_t <filename>
+----
 
 
 

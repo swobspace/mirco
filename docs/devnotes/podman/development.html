@@ -247,6 +247,18 @@ TIMESCALEDB_TELEMETRY=off</code></pre>
 </table>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_selinux"><a class="anchor" href="#_selinux"></a>Selinux</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">set selinux context</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">ls -lZ &lt;filename&gt;
+chcon -t container_file_t &lt;filename&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>

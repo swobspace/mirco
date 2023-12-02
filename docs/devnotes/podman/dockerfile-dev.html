@@ -172,8 +172,8 @@ RUN apt update -qq &amp;&amp; \
   apt-key add /root/yarn-pubkey.gpg &amp;&amp; \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" &gt; /etc/apt/sources.list.d/yarn.list &amp;&amp; \
   apt update &amp;&amp; \
-  apt install -y --no-install-recommends nodejs yarn &amp;&amp; \
-  apt install -y --no-install-recommends iputils-ping uuid plantuml &amp;&amp; \
+  apt install -y --no-install-recommends nodejs yarn \
+    iputils-ping uuid openjdk-17-jre-headless graphviz &amp;&amp; \
   setcap cap_net_raw+p `which ping` &amp;&amp; \
   apt clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 
