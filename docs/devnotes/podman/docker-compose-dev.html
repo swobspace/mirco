@@ -65,13 +65,46 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Migration to Docker</a>
+    <a class="nav-link" href="index.html">Podman</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="development.html">Development</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="production.html">Production</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="dockerfile-prod.html">Dockerfile for Production</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-compose-prod.html">docker-compose.yml for production</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#podman/test.adoc">podman/test.adoc</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/dockerfile-test.adoc">podman/dockerfile-test.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/docker-compose-test.adoc">podman/docker-compose-test.adoc</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="network.html">Network</a>
   </li>
 </ul>
   </li>
@@ -114,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DevNotes</a></li>
-    <li><a href="index.html">Migration to Docker</a></li>
+    <li><a href="index.html">Podman</a></li>
+    <li><a href="development.html">Development</a></li>
     <li><a href="docker-compose-dev.html">docker-compose.dev.yml</a></li>
   </ul>
 </nav>
@@ -128,10 +162,7 @@
 <div class="listingblock">
 <div class="title">docker-compose.dev.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: "3.8"
-# include:
-#   - .docker/postgres.yml
-#   - .docker/redis.yml
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># docker-compose.dev.yml
 
 x-base: &amp;base
   build:
@@ -139,21 +170,57 @@ x-base: &amp;base
     dockerfile: .docker/Dockerfile.dev
   stdin_open: true
   tty: true
+  volumes:
+    - .:/app:z,cached
+  depends_on:
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
+  env_file:
+    - .env.development.local
+  depends_on:
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
 
 services:
   app:
     &lt;&lt;: *base
     command: bin/dev
     restart: on-failure
-    volumes:
-      - .:/app:Z,cached
     ports:
       - "3000:3000"
-#     depends_on:
-#       - postgres
-#       - redis
+
+  worker:
+    &lt;&lt;: *base
+    command: good_job start
+    restart: on-failure
+  redis:
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+
+  postgres:
+    # image: timescale/timescaledb-ha:pg16.1-ts2.13.0-all
+    image: timescale/timescaledb:latest-pg16
+    volumes:
+      # for timescaledb without ha
+      - postgres_data:/var/lib/postgresql/data
+      # for timescaledb-ha
+      # - postgres_data:/home/postgres/pgdata/data
     env_file:
-      - .env.development.local</code></pre>
+      - .env.development.local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+
+volumes:
+  redis_data:
+  postgres_data:</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

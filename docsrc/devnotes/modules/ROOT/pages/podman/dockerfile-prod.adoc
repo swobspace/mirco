@@ -1,9 +1,11 @@
-= Dockerfile.dev
+= Dockerfile for Production
 
-.Dockerfile.dev
+#FIXME#
+
+.Dockerfile
 [source,dockerfile]
 ----
-include::example$docker/Dockerfile.dev[]
+include::example$podman/Dockerfile.prod[]
 ----
 
 .Some Hints

@@ -1,0 +1,50 @@
+= Production
+
+Just a memo for todos and code snippets ...
+#FIXME#
+
+== Production Image
+
+.Build
+[source,sh]
+----
+podman build -t mirco .
+----
+
+.Inspect image
+[source,sh]
+----
+podman run --rm -it mirco /bin/bash
+----
+
+== app/config
+
+=== Master Key
+
+https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications
+
+----
+podman run -it --rm -p 3000:3000 \
+          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
+          localhost/mirco
+----
+
+
+== Variables
+
+.env.production.example
+[source,cfg]
+----
+include::example$podman/env.production.example[]
+----
+
+.Some Hints
+[cols="2,3"]
+|===
+|Hint | Description
+
+|===
+
+
+
+

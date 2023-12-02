@@ -1,8 +1,8 @@
-= Migration to Docker
+= Development
 
 Just a memo for todos and code snippets ...
 
-== Development
+== Command line
 
 .Build
 [source,sh]
@@ -43,49 +43,23 @@ podman compose -f docker-compose.dev.yml logs | less -r
 // podman compose -f docker-compose.dev.yml logs |\
 //  sed 's/\x1B\[[0-9;]*[JKmsu]//g' | less
 
-== Production Image
-
-.Build
-[source,sh]
-----
-podman build -t mirco .
-----
-
-.Inspect image
-[source,sh]
-----
-podman run --rm -it mirco /bin/bash
-----
-
-== app/config
-
-=== Master Key
-
-https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications
-
-----
-podman run -it --rm -p 3000:3000 \
-          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
-          localhost/mirco
-----
-
 
 == Variables
 
-----
-app:
-  - RAILS_MASTER_KEY
-  - DATABASE_URL
-  - REDIS_URL
-  - RAILS_SERVE_STATIC_FILES: "enabled"
-  - RAILS_LOG_TO_STDOUT: "enabled"
 
-db:
-  - POSTGRES_USER
-  - POSTGRES_PASSWORD
-  - POSTGRES_DB
-  - TIMESCALEDB_TELEMETRY: "off"
+.env.development.local.example
+[source,cfg]
+----
+include::example$podman/env.development.local.example[]
 ----
 
-== Command Line Stuff
+.Some Hints
+[cols="2,3"]
+|===
+|Hint | Description
+
+|===
+
+
+
 

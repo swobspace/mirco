@@ -3,7 +3,7 @@
 .docker-compose.dev.yml
 [source,yaml]
 ----
-include::example$docker/docker-compose.dev.yml[]
+include::example$podman/docker-compose.dev.yml[]
 ----
 
 .Some Hints

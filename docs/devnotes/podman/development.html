@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Migration to Docker :: Mirco Dokumentation</title>
+    <title>Development :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.5">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -63,15 +63,48 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../timescale.html">Timescale</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Migration to Docker</a>
+    <a class="nav-link" href="index.html">Podman</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="development.html">Development</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="production.html">Production</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="dockerfile-prod.html">Dockerfile for Production</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-compose-prod.html">docker-compose.yml for production</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#podman/test.adoc">podman/test.adoc</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/dockerfile-test.adoc">podman/dockerfile-test.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/docker-compose-test.adoc">podman/docker-compose-test.adoc</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="network.html">Network</a>
   </li>
 </ul>
   </li>
@@ -114,7 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DevNotes</a></li>
-    <li><a href="index.html">Migration to Docker</a></li>
+    <li><a href="index.html">Podman</a></li>
+    <li><a href="development.html">Development</a></li>
   </ul>
 </nav>
 </div>
@@ -123,7 +157,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Migration to Docker</h1>
+<h1 class="page">Development</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -132,7 +166,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_development"><a class="anchor" href="#_development"></a>Development</h2>
+<h2 id="_command_line"><a class="anchor" href="#_command_line"></a>Command line</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">Build</div>
@@ -164,22 +198,10 @@ podman compose -f docker-compose.dev.yml exec app</code></pre>
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml down --remove-orphans</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_appconfig"><a class="anchor" href="#_appconfig"></a>app/config</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_master_key"><a class="anchor" href="#_master_key"></a>Master Key</h3>
-<div class="paragraph">
-<p><a href="https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications" class="bare">https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications</a></p>
-</div>
 <div class="listingblock">
+<div class="title">Logging</div>
 <div class="content">
-<pre>podman run -it --rm -p 3000:3000 \
-          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
-          localhost/mirco</pre>
-</div>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml logs | less -r</code></pre>
 </div>
 </div>
 </div>
@@ -188,27 +210,41 @@ podman compose -f docker-compose.dev.yml exec app</code></pre>
 <h2 id="_variables"><a class="anchor" href="#_variables"></a>Variables</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">env.development.local.example</div>
 <div class="content">
-<pre>app:
-  - RAILS_MASTER_KEY
-  - DATABASE_URL
-  - REDIS_URL
-  - RAILS_SERVE_STATIC_FILES: "enabled"
-  - RAILS_LOG_TO_STDOUT: "enabled"
+<pre class="highlightjs highlight"><code class="language-cfg hljs" data-lang="cfg"># ~/.env.development.local.example
+# Timezone
+TZ=Europe/Berlin
+# Mirco
+LOCKBOX_MASTER_KEY=0000000000000000000000000000000000000000000000000000000000000000
+# generate key with bin/rails secret
+SECRET_KEY_BASE=**************
 
-db:
-  - POSTGRES_USER
-  - POSTGRES_PASSWORD
-  - POSTGRES_DB
-  - TIMESCALEDB_TELEMETRY: "off"</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_command_line_stuff"><a class="anchor" href="#_command_line_stuff"></a>Command Line Stuff</h2>
-<div class="sectionbody">
+# -- redis
+REDIS_URL=redis://redis:6379
 
+# -- postgres
+POSTGRES_USER=postgres
+POSTGRES_DB=mirco_development
+POSTGRES_PASSWORD=verystrongsecret
+POSTGRES_HOST=postgres
+# TIMESCALEDB
+TIMESCALEDB_TELEMETRY=off</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Some Hints</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Hint</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+</table>
 </div>
 </div>
 </article>

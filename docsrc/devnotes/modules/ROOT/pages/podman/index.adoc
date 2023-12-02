@@ -1,0 +1,28 @@
+= Podman
+
+Just a memo for todos and code snippets ...
+
+== Environments
+
+=== Development
+
+* xref:podman/development.adoc[]
+* xref:podman/docker-compose-dev.adoc[]
+* xref:podman/dockerfile-dev.adoc[]
+
+
+=== Test
+
+* xref:podman/test.adoc[]
+* xref:podman/docker-compose-test.adoc[]
+
+===  Production
+
+* xref:podman/production.adoc[]
+* xref:podman/docker-compose-prod.adoc[]
+* xref:podman/dockerfile-prod.adoc[]
+
+== Networking
+
+* xref:podman/networking.adoc[]
+

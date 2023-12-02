@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dockerfile.dev :: Mirco Dokumentation</title>
+    <title>Podman :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.5">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -63,15 +63,48 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../timescale.html">Timescale</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Migration to Docker</a>
+    <a class="nav-link" href="index.html">Podman</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="development.html">Development</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="production.html">Production</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="dockerfile-prod.html">Dockerfile for Production</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="docker-compose-prod.html">docker-compose.yml for production</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#podman/test.adoc">podman/test.adoc</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/dockerfile-test.adoc">podman/dockerfile-test.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#podman/docker-compose-test.adoc">podman/docker-compose-test.adoc</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="network.html">Network</a>
   </li>
 </ul>
   </li>
@@ -114,8 +147,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">DevNotes</a></li>
-    <li><a href="index.html">Migration to Docker</a></li>
-    <li><a href="dockerfile-dev.html">Dockerfile.dev</a></li>
+    <li><a href="index.html">Podman</a></li>
   </ul>
 </nav>
 </div>
@@ -124,59 +156,76 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Dockerfile.dev</h1>
-<div class="listingblock">
-<div class="title">Dockerfile.dev</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile">FROM ruby:3.2.2
-
-ENV RAILS_ENV=development
-
-RUN apt update -qq &amp;&amp; \
-  apt install -y --no-install-recommends build-essential libpq-dev curl &amp;&amp; \
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg &amp;&amp; \
-  apt-key add /root/yarn-pubkey.gpg &amp;&amp; \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" &gt; /etc/apt/sources.list.d/yarn.list &amp;&amp; \
-  apt update &amp;&amp; \
-  apt install -y --no-install-recommends nodejs yarn &amp;&amp; \
-  apt install -y iputils-ping &amp;&amp; \
-  setcap cap_net_raw+p `which ping` &amp;&amp; \
-  apt clean &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-WORKDIR /app
-
-COPY Gemfile* ./
-RUN bundle install -j $(nproc)
-
-COPY package.json yarn.lock ./
-RUN yarn install --ignore-scripts
-
-CMD ["rails", "server", "-b", "0.0.0.0"]</code></pre>
+<h1 class="page">Podman</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just a memo for todos and code snippets &#8230;&#8203;</p>
 </div>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Some Hints</caption>
-<colgroup>
-<col style="width: 40%;">
-<col style="width: 60%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Hint</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>apt install -y iputils-ping</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mirco uses <code>Net::Ping::External</code> which makes use of <code>/usr/bin/ping</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>setcap cap_net_raw+p <code>which ping</code></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ping always needs <code>CAP_RAW</code>. Using an Ubuntu image on a Fedora host with <code>podman</code> ping doesn&#8217;t work out of the box.</p></td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="sect1">
+<h2 id="_environments"><a class="anchor" href="#_environments"></a>Environments</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_development"><a class="anchor" href="#_development"></a>Development</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="development.html" class="xref page">Development</a></p>
+</li>
+<li>
+<p><a href="docker-compose-dev.html" class="xref page">docker-compose.dev.yml</a></p>
+</li>
+<li>
+<p><a href="dockerfile-dev.html" class="xref page">Dockerfile.dev</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test"><a class="anchor" href="#_test"></a>Test</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#podman/test.adoc" class="xref unresolved">podman/test.adoc</a></p>
+</li>
+<li>
+<p><a href="#podman/docker-compose-test.adoc" class="xref unresolved">podman/docker-compose-test.adoc</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_production"><a class="anchor" href="#_production"></a>Production</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="production.html" class="xref page">Production</a></p>
+</li>
+<li>
+<p><a href="docker-compose-prod.html" class="xref page">docker-compose.yml for production</a></p>
+</li>
+<li>
+<p><a href="dockerfile-prod.html" class="xref page">Dockerfile for Production</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_networking"><a class="anchor" href="#_networking"></a>Networking</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#podman/networking.adoc" class="xref unresolved">podman/networking.adoc</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>
