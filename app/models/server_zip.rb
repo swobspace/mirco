@@ -9,7 +9,7 @@ class ServerZip
     @tmpfile = options.fetch(:outfile) {
                  File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
                }
-    if File.exists?(@tmpfile)
+    if File.exist?(@tmpfile)
       File.delete(@tmpfile)
     end
     @hostname = (@server.hostname || @server.name).gsub(/[^A-Za-z.0-9_-]/, '')
