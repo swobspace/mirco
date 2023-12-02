@@ -9,10 +9,17 @@ x-base: &base
   volumes:
     - .:/app:z,cached
   depends_on:
-    - redis
-#     - postgres
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
   env_file:
     - .env.development.local
+  depends_on:
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
 
 services:
   app:
@@ -26,11 +33,27 @@ services:
     <<: *base
     command: good_job start
     restart: on-failure
-
   redis:
     image: redis:latest
     volumes:
       - redis_data:/data
 
+  postgres:
+    # image: timescale/timescaledb-ha:pg16.1-ts2.13.0-all
+    image: timescale/timescaledb:latest-pg16
+    volumes:
+      # for timescaledb without ha
+      - postgres_data:/var/lib/postgresql/data
+      # for timescaledb-ha
+      # - postgres_data:/home/postgres/pgdata/data
+    env_file:
+      - .env.development.local
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+
 volumes:
   redis_data:
+  postgres_data:
