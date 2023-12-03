@@ -164,8 +164,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_production_image"><a class="anchor" href="#_production_image"></a>Production Image</h2>
+<h2 id="_handling_images"><a class="anchor" href="#_handling_images"></a>Handling Images</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_build_image"><a class="anchor" href="#_build_image"></a>Build Image</h3>
 <div class="listingblock">
 <div class="title">Build</div>
 <div class="content">
@@ -179,21 +181,31 @@
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_appconfig"><a class="anchor" href="#_appconfig"></a>app/config</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_master_key"><a class="anchor" href="#_master_key"></a>Master Key</h3>
-<div class="paragraph">
-<p><a href="https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications" class="bare">https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications</a></p>
-</div>
+<h3 id="_tag_image"><a class="anchor" href="#_tag_image"></a>Tag Image</h3>
 <div class="listingblock">
+<div class="title">Inspect image</div>
 <div class="content">
-<pre>podman run -it --rm -p 3000:3000 \
-          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
-          localhost/mirco</pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman tag mirco ghcr.io/swobspace/mirco:0.1.0</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_push_image"><a class="anchor" href="#_push_image"></a>Push Image</h3>
+<div class="listingblock">
+<div class="title">Inspect image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+docker push ghcr.io/swobspace/mirco:0.1.0
+docker push ghcr.io/swobspace/mirco:latest</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ghcr_io"><a class="anchor" href="#_ghcr_io"></a>ghcr.io</h3>
+<div class="paragraph">
+<p><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry" class="bare">https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry</a></p>
 </div>
 </div>
 </div>

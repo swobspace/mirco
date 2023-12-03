@@ -3,7 +3,9 @@
 Just a memo for todos and code snippets ...
 #FIXME#
 
-== Production Image
+== Handling Images
+
+=== Build Image
 
 .Build
 [source,sh]
@@ -17,18 +19,28 @@ podman build -t mirco .
 podman run --rm -it mirco /bin/bash
 ----
 
-== app/config
+=== Tag Image
 
-=== Master Key
-
-https://guides.rubyonrails.org/7_1_release_notes.html#generate-dockerfiles-for-new-rails-applications
-
+.Inspect image
+[source,sh]
 ----
-podman run -it --rm -p 3000:3000 \
-          --env RAILS_MASTER_KEY=000000000000000000000000000000 \
-          localhost/mirco
+podman tag mirco ghcr.io/swobspace/mirco:0.1.0
 ----
 
+=== Push Image
+
+.Inspect image
+[source,sh]
+----
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+docker push ghcr.io/swobspace/mirco:0.1.0
+docker push ghcr.io/swobspace/mirco:latest
+----
+
+=== ghcr.io
+
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
 
 == Variables
 
