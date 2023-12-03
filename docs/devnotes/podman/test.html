@@ -161,9 +161,16 @@
 <div class="sect2">
 <h3 id="_command_line"><a class="anchor" href="#_command_line"></a>Command line</h3>
 <div class="listingblock">
+<div class="title">starting up environment and test interactively</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.test.yml up -d
 podman compose -f docker-compose.test.yml exec app /bin/bash</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">one shot test run</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.test.yml run app bin/rspec</code></pre>
 </div>
 </div>
 </div>

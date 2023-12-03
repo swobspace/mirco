@@ -4,10 +4,17 @@
 
 === Command line
 
+.starting up environment and test interactively
 [source,sh]
 ----
 podman compose -f docker-compose.test.yml up -d
 podman compose -f docker-compose.test.yml exec app /bin/bash
+----
+
+.one shot test run
+[source,sh]
+----
+podman compose -f docker-compose.test.yml run app bin/rspec
 ----
 
 === docker-compose file changes
