@@ -16,18 +16,16 @@ x-base: &base
       condition: service_healthy
   env_file:
     - .env.test.local
-  depends_on:
-    redis:
-      condition: service_started
-    postgres:
-      condition: service_healthy
 
 services:
   app:
     <<: *base
     container_name: mirco-app-test
+    ports:
+      - "3000:3000"
     environment:
       RAILS_ENV: test
+      SELENIUM_REMOTE_HOST: selenium
 
   redis:
     image: redis:latest
@@ -47,10 +45,20 @@ services:
     env_file:
       - .env.test.local
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
       timeout: 45s
       interval: 10s
       retries: 10
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+    environment:
+      START_XVFB: false
+    ports:
+      - "4444:4444"
+    depends_on:
+      - app
 
 volumes:
   postgres_data_test:
