@@ -93,13 +93,10 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#podman/test.adoc">podman/test.adoc</a>
+    <a class="nav-link" href="test.html">Test</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#podman/dockerfile-test.adoc">podman/dockerfile-test.adoc</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#podman/docker-compose-test.adoc">podman/docker-compose-test.adoc</a>
+    <a class="nav-link" href="docker-compose-test.html">docker-compose.yml for testing</a>
   </li>
 </ul>
   </li>
@@ -173,7 +170,7 @@ RUN apt update -qq &amp;&amp; \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" &gt; /etc/apt/sources.list.d/yarn.list &amp;&amp; \
   apt update &amp;&amp; \
   apt install -y --no-install-recommends nodejs yarn \
-    iputils-ping uuid openjdk-17-jre-headless graphviz &amp;&amp; \
+    iputils-ping uuid openjdk-17-jre-headless graphviz iproute2 &amp;&amp; \
   setcap cap_net_raw+p `which ping` &amp;&amp; \
   apt clean &amp;&amp; rm -rf /var/lib/apt/lists/*
 

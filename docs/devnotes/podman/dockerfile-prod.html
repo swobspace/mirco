@@ -93,13 +93,10 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#podman/test.adoc">podman/test.adoc</a>
+    <a class="nav-link" href="test.html">Test</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#podman/dockerfile-test.adoc">podman/dockerfile-test.adoc</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#podman/docker-compose-test.adoc">podman/docker-compose-test.adoc</a>
+    <a class="nav-link" href="docker-compose-test.html">docker-compose.yml for testing</a>
   </li>
 </ul>
   </li>
@@ -229,8 +226,9 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq &amp;&amp; \
-    apt-get install --no-install-recommends -y curl libvips postgresql-client \
-                                               iputils-ping uuid plantuml &amp;&amp; \
+    apt-get install --no-install-recommends -y \
+                    curl libvips postgresql-client \
+                    iputils-ping uuid openjdk-17-jre-headless graphviz &amp;&amp; \
     setcap cap_net_raw+p `which ping` &amp;&amp; \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 

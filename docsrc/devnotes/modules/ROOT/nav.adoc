@@ -14,7 +14,6 @@
 *** xref:podman/dockerfile-prod.adoc[]
 *** xref:podman/docker-compose-prod.adoc[]
 ** xref:podman/test.adoc[]
-*** xref:podman/dockerfile-test.adoc[]
 *** xref:podman/docker-compose-test.adoc[]
 ** xref:podman/network.adoc[]
 

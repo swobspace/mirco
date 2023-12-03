@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Podman :: Mirco Dokumentation</title>
+    <title>Test :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.5">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -63,7 +63,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../timescale.html">Timescale</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Podman</a>
 <ul class="nav-list">
@@ -91,7 +91,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="test.html">Test</a>
 <ul class="nav-list">
@@ -145,6 +145,7 @@
   <ul>
     <li><a href="../index.html">DevNotes</a></li>
     <li><a href="index.html">Podman</a></li>
+    <li><a href="test.html">Test</a></li>
   </ul>
 </nav>
 </div>
@@ -153,71 +154,128 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Podman</h1>
-<div id="preamble">
+<h1 class="page">Test</h1>
+<div class="sect1">
+<h2 id="_podman_compose"><a class="anchor" href="#_podman_compose"></a>podman compose</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Just a memo for todos and code snippets &#8230;&#8203;</p>
+<div class="sect2">
+<h3 id="_command_line"><a class="anchor" href="#_command_line"></a>Command line</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.test.yml up -d
+podman compose -f docker-compose.test.yml exec app /bin/bash</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_compose_file_changes"><a class="anchor" href="#_docker_compose_file_changes"></a>docker-compose file changes</h3>
+<div class="listingblock">
+<div class="title">docker-compose.test.yml changes from dev</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">services:
+  app:
+    ...
+    environment:
+      RAILS_ENV: test
+      SELENIUM_REMOTE_HOST: selenium
+
+[...]
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+    environment:
+      START_XVFB: false
+    ports:
+      - "4444:4444"
+    depends_on:
+      - app</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Some Hints</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Hint</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELENIUM_REMOTE_HOST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Variable used in <code>spec/rails_helper.rb</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">START_XVFB: false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headless chrome doesn&#8217;t need XVFB, so use less resources</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_environments"><a class="anchor" href="#_environments"></a>Environments</h2>
+<h2 id="_specrails_helper_rb"><a class="anchor" href="#_specrails_helper_rb"></a>spec/rails_helper.rb</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_development"><a class="anchor" href="#_development"></a>Development</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="development.html" class="xref page">Development</a></p>
-</li>
-<li>
-<p><a href="docker-compose-dev.html" class="xref page">docker-compose.dev.yml</a></p>
-</li>
-<li>
-<p><a href="dockerfile-dev.html" class="xref page">Dockerfile.dev</a></p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">Capybara.register_driver :chrome_headless do |app|
+  url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
+  options = Selenium::WebDriver::Chrome::Options.new
+
+  options.add_argument("--headless")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--window-size=1280x1280")
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :remote,
+    url: url,
+    options: options
+  )
+end
+
+Capybara.javascript_driver = :chrome_headless
+Capybara.disable_animation = true
+
+RSpec.configure do |config|
+  config.before :each, type: :feature, js: true do
+    Capybara.server_host = `/sbin/ip route|awk '/scope/ { print $9 }'`.strip
+    Capybara.server_port = "43447"
+    session_server       = Capybara.current_session.server
+    Capybara.app_host    = "http://#{session_server.host}:#{session_server.port}"
+  end
+
+  [...]
+end</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_test"><a class="anchor" href="#_test"></a>Test</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="test.html" class="xref page">Test</a></p>
-</li>
-<li>
-<p><a href="docker-compose-test.html" class="xref page">docker-compose.yml for testing</a></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_production"><a class="anchor" href="#_production"></a>Production</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="production.html" class="xref page">Production</a></p>
-</li>
-<li>
-<p><a href="docker-compose-prod.html" class="xref page">docker-compose.yml for production</a></p>
-</li>
-<li>
-<p><a href="dockerfile-prod.html" class="xref page">Dockerfile for Production</a></p>
-</li>
-</ul>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>/sbin/ip</code> needs package <code>iproute2</code>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_networking"><a class="anchor" href="#_networking"></a>Networking</h2>
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="network.html" class="xref page">Network</a></p>
+<p><a href="https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a" class="bare">https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a</a></p>
 </li>
 </ul>
 </div>
