@@ -39,3 +39,22 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 /public/assets
+
+# local stuff
+.env.*
+.rspec
+.rubocop.yml
+.ruby-version
+.docker/
+shared/images
+/utils/
+/db/demo/*
+/spec/
+/test/
+Guardfile
+Procfile.dev
+babel.config.js
+docker-compose.dev.yml
+docker-compose.test.yml
+rspec.log
+yarn-error.log
