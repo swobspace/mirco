@@ -21,7 +21,7 @@ podman run --rm -it mirco /bin/bash
 
 === Tag Image
 
-.Inspect image
+.Tag image
 [source,sh]
 ----
 podman tag mirco ghcr.io/swobspace/mirco:0.1.0
@@ -29,7 +29,7 @@ podman tag mirco ghcr.io/swobspace/mirco:0.1.0
 
 === Push Image
 
-.Inspect image
+.Push image
 [source,sh]
 ----
 export CR_PAT=YOUR_TOKEN
