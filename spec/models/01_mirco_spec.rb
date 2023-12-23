@@ -15,6 +15,7 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('action_cable_url').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return(nil)
@@ -45,6 +46,7 @@ RSpec.describe Mirco, type: :model do
         'http://localhost', 'https://localhost'
       )
     }
+    it { expect(Mirco.action_cable_url).to eq(nil) }
     it { expect(Mirco.cron_fetch_statistics).to eq('*/5 * * * *') }
     it { expect(Mirco.cron_fetch_channels).to eq('0 1 * * 6') }
     it { expect(Mirco.cron_fetch_configuration).to eq('15 1 * * 6') }
@@ -66,6 +68,7 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return('OTHER_USER')
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(['http://otherwise'])
+      allow(Mirco::CONFIG).to receive(:[]).with('action_cable_url').and_return(['http://otherwise/cable'])
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
@@ -87,6 +90,7 @@ RSpec.describe Mirco, type: :model do
         'http://otherwise'
       )
     }
+    it { expect(Mirco.action_cable_url).to eq('http://otherwise/cable') }
     it { expect(Mirco.cron_fetch_statistics).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_channels).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_configuration).to eq('* * nix') }
