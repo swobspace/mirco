@@ -1,0 +1,25 @@
+[Unit]
+Description=PostgreSQL for Mirco (production)
+
+[Container]
+Image=timescale/timescaledb:latest-pg16
+ContainerName=mirco-postgres
+Volume=mirco-postgres.volume:/var/lib/postgresql/data
+Network=mirco.network
+EnvironmentFile=mirco/env.production
+
+# healthcheck
+HealthCmd="/usr/local/bin/pg_isready -q -d postgres -U postgres"
+HealthInterval=10s
+HealthTimeout=45s
+HealthRetries=10
+
+[Service]
+Restart=always
+
+# pulling an image may exceed the default timeout
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
+

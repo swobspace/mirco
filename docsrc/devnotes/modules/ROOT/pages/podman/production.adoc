@@ -1,7 +1,6 @@
 = Production
 
 Just a memo for todos and code snippets ...
-#FIXME#
 
 == Handling Images
 

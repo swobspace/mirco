@@ -1,0 +1,29 @@
+[Unit]
+Description=Mirco - the mirth connect companion
+Requires=mirco-redis.service
+After=mirco-redis.service
+Requires=mirco-postgres.service
+After=mirco-postgres.service
+
+[Container]
+# Image=ghcr.io/swobspace/mirco:latest
+Image=localhost/mirco:latest
+ContainerName=mirco
+Volume=mirco-storage.volume:/rails/storage
+Volume=mirco-tmp.volume:/rails/tmp
+Volume=./mirco/mirco.yml:/rails/shared/config/mirco.yml:ro,z
+Network=mirco.network
+EnvironmentFile=mirco/env.production
+Environment=FORCE_SSL=false
+PublishPort=4001:4001
+AddCapability=CAP_NET_RAW
+
+[Service]
+Restart=always
+
+# pulling an image may exceed the default timeout
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target
+

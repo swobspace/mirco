@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>docker-compose.yml for production :: Mirco Dokumentation</title>
+    <title>Podman with systemd: Quadlets :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.5">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -67,6 +67,9 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">Podman</a>
 <ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="quadlets.html">Quadlets</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="development.html">Development</a>
@@ -85,9 +88,6 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-prod.html">Dockerfile for Production</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="docker-compose-prod.html">docker-compose.yml for production</a>
   </li>
 </ul>
   </li>
@@ -145,8 +145,7 @@
   <ul>
     <li><a href="../index.html">DevNotes</a></li>
     <li><a href="index.html">Podman</a></li>
-    <li><a href="production.html">Production</a></li>
-    <li><a href="docker-compose-prod.html">docker-compose.yml for production</a></li>
+    <li><a href="quadlets.html">Quadlets</a></li>
   </ul>
 </nav>
 </div>
@@ -155,40 +154,95 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">docker-compose.yml for production</h1>
+<h1 class="page">Podman with systemd: Quadlets</h1>
+<div class="sect1">
+<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>podman Version &gt;= 4.4, better 4.6 or higher.</p>
+</li>
+</ul>
+</div>
 <div class="paragraph">
-<p><mark>FIXME</mark></p>
-</div>
-<div class="listingblock">
-<div class="title">docker-compose.prod.yml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Unresolved include directive in modules/ROOT/pages/podman/docker-compose-prod.adoc - include::example$podman/docker-compose.prod.yml[]</code></pre>
-</div>
+<p>If something doesn&#8217;t work have a look at <a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a> and select your podman version (right bottom corner).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Some Hints</caption>
+<caption class="title">Table 1. Podman Version in some linux distributions</caption>
 <colgroup>
-<col style="width: 40%;">
-<col style="width: 60%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 42.8572%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Hint</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Distro</th>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">usable?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">external DB + Redis</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I&#8217;m using PostgreSQL und Redis on my docker host for now.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 38</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--volume .:/app:Z,cached</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rootless containers on Fedora hosts don&#8217;t have access to the local
-working directory if selinux is enabled. The option <code>Z</code> takes care of it.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 39</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 23.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doesn&#8217;t work</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 24.04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/podman/mirco-quadlets.svg" alt="mirco quadlets">
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Rootless setup: directories and files</div>
+<div class="content">
+<pre>/etc/containers/systemd/users/1000
+├── mirco
+│   ├── env.production
+│   └── mirco.yml
+├── <a href="../_attachments/podman/quadlet/mirco.container" class="xref attachment">mirco.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco.network" class="xref attachment">mirco.network</a>
+├── <a href="../_attachments/podman/quadlet/mirco-postgres.container" class="xref attachment">mirco-postgres.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco-postgres.volume" class="xref attachment">mirco-postgres.volume</a>
+├── <a href="../_attachments/podman/quadlet/mirco-redis.container" class="xref attachment">mirco-redis.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco-redis.volume" class="xref attachment">mirco-redis.volume</a>
+└── <a href="../_attachments/podman/quadlet/mirco-storage.volume" class="xref attachment">mirco-storage.volume</a></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.redhat.com/sysadmin/quadlet-podman" class="bare">https://www.redhat.com/sysadmin/quadlet-podman</a>
+<a href="https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet" class="bare">https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet</a>
+<a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a></p>
+</div>
+</div>
+</div>
 </article>
   </div>
 </main>

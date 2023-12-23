@@ -2,6 +2,8 @@
 
 Just a memo for todos and code snippets ...
 
+IMPORTANT: I'm migrating to podman pods (dev + test) and quadlets (production), so there will be no docker-compose.yml for production!
+
 == Environments
 
 === Development
@@ -19,7 +21,6 @@ Just a memo for todos and code snippets ...
 ===  Production
 
 * xref:podman/production.adoc[]
-* xref:podman/docker-compose-prod.adoc[]
 * xref:podman/dockerfile-prod.adoc[]
 
 == Networking
