@@ -1,0 +1,18 @@
+= Installation
+:revdate: 2023-12-24
+
+NOTE: I'm rewriting the documentation for installing `mirco` with container. It is much easier to install and a lot of fun. However, the documentation may not be complete yet. If you miss something or find a bug, please open an issue on github.
+
+== Podman
+
+I'm using `podman`, not `docker`. The installation instructions won't work with `docker` without modification. If you still want to use `docker`, create your own docker-compose file from the xref:attachment$quickstart/create-playground.sh[create script] provided with the quickstart.
+
+All installation instructions are for rootless containers.
+
+== xref:podman/quickstart.adoc[]
+
+The quick start guide uses `podman pod`. They're not intended for production use, but provide a quick way to get a simple setup for playing around with `mirco`.
+
+== xref:podman/podman-systemd.adoc[]
+
+Quadlets are the perfect integration for `podman` containers with `systemd`. You need at least `podman` 4.4. The quadlet way is described in this guide.

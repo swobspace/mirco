@@ -7,7 +7,6 @@
 * xref:escalations.adoc[]
 * xref:timescale.adoc[]
 * xref:podman/index.adoc[]
-** xref:podman/quadlets.adoc[]
 ** xref:podman/development.adoc[]
 *** xref:podman/dockerfile-dev.adoc[]
 *** xref:podman/docker-compose-dev.adoc[]

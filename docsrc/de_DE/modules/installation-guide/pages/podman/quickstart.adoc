@@ -1,0 +1,37 @@
+= Quick start
+:revdate: 2023-12-24
+:repo: https://github.com/swobspace/mirco
+
+== Installation and start
+
+Setup directory and configuration::
+Copy the content from {repo}/podman/playground to a local directory.
+
+Check configuration::
+Check the contents of the files in `./playground/mirco/.` For the first run you can use the files unchanged.
+
+Create the pod::
+----
+bash create-playground.sh
+----
+The script creates a pod with the name `play-mirco`.
+
+Start the pod::
+----
+podman pod start play-mirco
+----
+
+Access mirco via browser::
+* `http://localhost:3001`
+* login: `admin`
+* password: `admin9999`
+
+Don't forget to change your admin password.
+
+Connect to your first mirth connect system::
+See admin manual (coming soon).
+
+
+== Unsolved issues
+
+* You need to start the pod twice the first time. The postgresql setup takes too much time - so stop and start your pod a second time.
