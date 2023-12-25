@@ -1,0 +1,257 @@
+de:
+  enabled:
+    true: enabled
+    false: disabled
+  mirco:
+    action: Action
+    add_note: Add note
+    active_escalation_levels: Active escalation levels
+    backup_server_configuration: Save mirth configuration
+    configuration: Configuration
+    fetch_channels: Fetch channels
+    fetch_statistics: Fetch channel statistics
+    for: for
+    sw_and_ifaces: Software & Interfaces
+    interfaces: Interfaces
+    new_channel_statistic_group: New channel statistic group
+    new_interface_connector: New connector
+    new_location: New location
+    new_host: New host
+    new_notification_group: New notification group
+    new_server: New mirth system
+    new_software: New software
+    new_software_connection: New connection
+    new_software_group: New software group
+    new_software_interface: New software interface
+    obsolete_channels: Obsolete channels
+    overview: Overview
+    update_properties: Update properties
+    assigned_connections: Assigned Connections
+    unassigned_connections: Unassigned connections
+    nonlocal_possible_connections: "Other possible connections (WARNING: not local!)"
+    possible_connections: Possible connections
+    add_connection: Add connection
+    remove_connection: Remove connection
+    create_manual_software_connections_warning: "WARNING: Connections on a Mirth system are created automatically. Only connections that are not known to the Mirth system should be created manually!"
+    search_software_connections: Search connections
+    ignored_connections: Ignored connections
+    disabled_channels: Disabled channels
+    sourceConnectors: Source connectors
+    destinationConnectors: Destination connectors
+    recent_errors: Recent errors
+    condition:
+      -1: '-'
+      0: OK
+      1: WARNING
+      2: CRITICAL
+      3: UNKNOWN
+    note_types:
+      acknowledge: Acknowledge
+      note: Note
+      mail: Mail
+
+  activerecord:
+    errors:
+      messages:
+        in: in
+    models:
+      alert: Alert
+      location: Location
+      channel: Channel
+      channels/alert: Alert
+      channels/note: Note
+      channel_counter: Channel Counter
+      channel_detail: Channel Connector
+      channel_statistic: Channel statistic
+      channel_statistic_group: Group of channel statistics
+      channel_statistic/alert: Alert
+      channel_statistic/note: note
+      escalation_level: Escalation level
+      escalation_time: Escalation time
+      hl7_event: HL7 type
+      hl7_segment: HL7 segment
+      host: Host
+      interface_connector: Connector
+      note: Note
+      notification_group: Notification group
+      server: Mirth system
+      server_configuration: Configuration backup
+      servers/alert: Alert
+      servers/channel: Channel
+      servers/note: Notes
+      software: Software
+      software_connection: Connection
+      software_group: Software group
+      software_interface: Software interface
+      user: User
+
+  attributes:
+    action: Aktion
+    alert: Alert
+    api_url: API Url
+    api_user: API User
+    api_password: API Password
+    api_user_has_full_access: Full access
+    api_verify_ssl: Check SSL
+    attachment_handler: AttachmentHandler
+    attrib: Attribute
+    channel: Channel
+    channel_counters: Channel counter
+    channel_detail: Channel connector
+    channel_statistic: Channel statistic
+    channel_uid: Channel UUID
+    comment: Comment
+    condition: Condition
+    connector: Connector
+    connectors: Connectors
+    created_at: created_at
+    current_note: Current note
+    deployScript: Deploy script
+    description: Description
+    destination: Destination
+    destinationConnectors: Destination Connectors
+    destination_connector: Destination Connector
+    destination_url: Destination URL
+    displayname: Display name
+    end_time: End time
+    error: Error
+    error_last_30min: Error (30min)
+    escalatable: escalatable
+    escalatable_id: escalatable
+    escalatable_type: Type
+    escalation_level: Escalation level
+    escalation_time: Escalation time
+    exportData: exportData
+    filtered: filtered
+    filtered_last_30min: filtered (30min)
+    givenname: Givenname
+    hl7_event: HL7 event
+    hl7_segment: HL7 segment
+    home: Home
+    host: Host
+    hostname: Hostname
+    hosts: Hosts
+    ignore: ignore
+    ignore_reason: Reason for ignore record
+    interface_connector: Connector
+    ipaddress: IP address
+    last_channel_update: Last channel update
+    last_check: Last check
+    last_check_ok: Last OK
+    last_condition_change: Last condition change
+    last_message_error_at: Last error
+    last_message_received_at: Last message received at
+    last_message_sent_at: Last message send at
+    lid: Location ID
+    limit: Limit
+    location: Location 
+    manual_update: Manual update of channels and statistics
+    max_warning: max_warning
+    max_critical: max_critical
+    message: Message
+    message_type: Message type
+    meta_data_id: ConnNr.
+    min_warning: min_warning
+    min_critical: min_critical
+    missing_connector: Missing Connectors
+    name: Name
+    note: Note
+    notification_group: Notfication group
+    postprocessingScript: Postprocessing Script
+    preprocessingScript: Preprocessing Script
+    properties: Properties
+    queued: queued
+    received: received
+    received_last_30min: received (30min)
+    revision: Revision
+    sc_transport_name: transportName
+    sent: sent
+    sent_last_30min: sent (30min)
+    server: Mirth system
+    server_configuration: Server configuration backup
+    server_uid: Mirth system UUID
+    server_jvm: Mirth system JVM
+    server_version: Mirth system version
+    show_on_dashboard: show on dashboard
+    source: Source
+    sourceConnector: Source Connector
+    source_connector: Source Connector
+    source_url: Source URL
+    system_info: System info
+    server_settings: Mirth system settings
+    sn: Surname
+    software: Software
+    software_connection: Connection
+    software_group: Software group
+    software_interface: Software interface
+    start_time: Start time
+    state: State
+    status_type: Type
+    timestamp: When?
+    type: Type
+    uid: UID
+    undeployScript: Undeploy Script
+    updated_at: updated at
+    url: URL
+    username: Username
+    vendor: Vendor
+    version: Version
+    weekdays: Weekdays
+
+  controller:
+    alerts: Alerts
+    channels: Channels
+    channels/alerts: Alerts
+    channels/channel_counters: Channel Counters
+    channels/notes: Notes
+    channel_details: Channel Connectors
+    channel_statistics: Channel statistics
+    channel_statistic_groups: Channel statistic groups
+    channel_statistic_groups/escalation_levels: Escalation levels
+    channel_statistics/alerts: Alerts
+    channel_statistics/channel_counters: Channel Counters
+    channel_statistics/escalation_levels: Escalation levels
+    channel_statistics/notes: Notes
+    channel_counters: Channel Counters
+    escalation_levels: Escalation levels
+    escalation_levels/escalation_times: Escalation times
+    escalation_times: Escalation times
+    hl7_events: HL7 events
+    hl7_segments: HL7 segments
+    home: Home
+    hosts: Hosts
+    hosts/software_interfaces: Software interfaces
+    interface_connectors: Connectors
+    interface_connectors/software_connections: Connections
+    locations: Locations
+    locations/hosts: Hosts
+    notes: Notes
+    notification_groups: Notfication groups
+    pages: Pages
+    servers: Mirth systems
+    server_configurations: Configuration backups
+    servers/alerts: Alerts
+    servers/channel_details: Channel Connectors (server)
+    servers/channel_statistics: Channel statistics (server)
+    servers/channels: Channels
+    servers/notes: Notes
+    software: Software
+    software/software_interfaces: Software interfaces
+    software_connections: Connections
+    software_groups: Software groups
+    software_groups/hosts: Hosts
+    software_groups/software: Software
+    software_interfaces: Software interfaces
+    software_interfaces/interface_connectors: Connectors
+    users: User
+
+  flash:
+    servers:
+      update_properties:
+        notice: "Server properties updated"
+        alert: "Could not update server properties!"
+
+  escalation_times:
+    add: Add escalation time
+  channel_statistics:
+    add: add Channel statistic
