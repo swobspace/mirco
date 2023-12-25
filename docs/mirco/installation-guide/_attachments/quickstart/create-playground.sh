@@ -26,8 +26,15 @@ podman create --pod play-mirco --name play-mirco-app \
   --requires=play-mirco-redis,play-mirco-postgres \
   --env-file=./mirco/env.playground \
   --env="FORCE_SSL=false" \
-  --cap-add=CAP_NET_RAW \
+  --restart=on-failure \
   --volume=play-mirco-storage:/rails/storage \
-  ghcr.io/swobspace/mirco:0.1.1
+  ghcr.io/swobspace/mirco:latest
 
-  
+podman create --pod play-mirco --name play-mirco-worker \
+  --requires=play-mirco-redis,play-mirco-postgres \
+  --env-file=./mirco/env.playground \
+  --env="FORCE_SSL=false" \
+  --restart=on-failure \
+  --volume=play-mirco-storage:/rails/storage \
+  ghcr.io/swobspace/mirco:latest good_job start
+
