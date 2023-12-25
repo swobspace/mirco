@@ -41,10 +41,8 @@ Rails.application.configure do
     config.good_job[:execution_mode] = :external
   elsif Rails.const_defined?("Server")
     case Rails.env
-    when 'development'
+    when 'development', 'production'
       config.good_job[:execution_mode] = :external
-    when 'production'
-      config.good_job[:execution_mode] = :async_server
     when 'test'
       config.good_job[:execution_mode] = :inline
     else
