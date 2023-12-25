@@ -1,5 +1,5 @@
-= Podman with systemd: Quadlets
-:navtitle: Quadlets
+= Podman in production using systemd and quadlets
+:navtitle: production: systemd + quadlets
 :author: Wolfgang Barth
 :revdate: 2023-12-22
 :imagesdir: ../../images
@@ -46,6 +46,6 @@ image::podman/mirco-quadlets.svg[]
 
 == Resources
 
-https://www.redhat.com/sysadmin/quadlet-podman
-https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet
-https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html
+* https://www.redhat.com/sysadmin/quadlet-podman
+* https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet
+* https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html

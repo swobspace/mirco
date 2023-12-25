@@ -16,3 +16,9 @@ The quick start guide uses `podman pod`. They're not intended for production use
 == xref:podman/podman-systemd.adoc[]
 
 Quadlets are the perfect integration for `podman` containers with `systemd`. You need at least `podman` 4.4. The quadlet way is described in this guide.
+
+If you are using an older version of podman, you can use https://docs.podman.io/en/v3.4.1/markdown/podman-generate-systemd.1.html[podman generate systemd] (select your podman version in the bottom right hand corner to get the correct manpage). First create a `pod' (see xref:podman/quickstart.adoc[]) and then run `podman generate systemd'. There are a few more steps to get `mirco` running, please read the full manpage.
+
+== xref:podman/reverse-proxy.adoc[]
+
+Mirco containers are intended to run behind a reverse proxy. Choose a reverse proxy such as Apache, Nginx or Traefik and adapt the examples to your needs.

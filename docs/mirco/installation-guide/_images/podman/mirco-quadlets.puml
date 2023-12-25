@@ -1,6 +1,6 @@
 @startuml
 top to bottom direction
-!theme mirco from ..
+!theme mirco from ../../../../..
 
 rectangle network #lightgreen [ 
   Network

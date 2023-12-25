@@ -23,7 +23,7 @@ end
 bin/rails db:migrate
 ----
 
-NOTE: Die Migration setzt voraus, dass die Shared Libriaries von TimescaleDB in postgresql.conf eingetragen sind und PostgreSQL neu gestartet wurde. Siehe auch xref:mirco:installation-guide:database-timescale.adoc[].
+NOTE: Die Migration setzt voraus, dass die Shared Libriaries von TimescaleDB in postgresql.conf eingetragen sind und PostgreSQL neu gestartet wurde. Siehe auch xref:mirco:installation-guide:old/database-timescale.adoc[].
 
 
 .Check extension

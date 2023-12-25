@@ -81,10 +81,13 @@
     <a class="nav-link" href="podman/quickstart.html">Quick start</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="podman/podman-systemd.html">Quadlets</a>
+    <a class="nav-link" href="podman/podman-systemd.html">systemd + quadlets</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="configuration.html">Konfiguration</a>
+    <a class="nav-link" href="podman/reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="configuration.html">Configuration</a>
   </li>
 </ul>
   </li>
@@ -187,6 +190,17 @@ I&#8217;m rewriting the documentation for installing <code>mirco</code> with con
 <div class="sectionbody">
 <div class="paragraph">
 <p>Quadlets are the perfect integration for <code>podman</code> containers with <code>systemd</code>. You need at least <code>podman</code> 4.4. The quadlet way is described in this guide.</p>
+</div>
+<div class="paragraph">
+<p>If you are using an older version of podman, you can use <a href="https://docs.podman.io/en/v3.4.1/markdown/podman-generate-systemd.1.html">podman generate systemd</a> (select your podman version in the bottom right hand corner to get the correct manpage). First create a <code>pod' (see <a href="podman/quickstart.html" class="xref page">Quick start</a>) and then run `podman generate systemd'. There are a few more steps to get `mirco</code> running, please read the full manpage.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_a_reverse_proxy_to_secure_mirco"><a class="anchor" href="#_using_a_reverse_proxy_to_secure_mirco"></a><a href="podman/reverse-proxy.html" class="xref page">Using a reverse proxy to secure Mirco</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mirco containers are intended to run behind a reverse proxy. Choose a reverse proxy such as Apache, Nginx or Traefik and adapt the examples to your needs.</p>
 </div>
 </div>
 </div>

@@ -32,6 +32,6 @@ Connect to your first mirth connect system::
 See admin manual (coming soon).
 
 
-== Unsolved issues
+== Unresolved issues
 
 * You need to start the pod twice the first time. The postgresql setup takes too much time - so stop and start your pod a second time.

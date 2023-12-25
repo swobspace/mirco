@@ -1,0 +1,20 @@
+@startuml
+!theme mirco from ../../../../..
+
+agent client [
+  Client  
+]
+
+rectangle proxy [
+    Reverse Proxy
+]
+
+rectangle mirco #lightgreen [
+  Mirco
+]
+
+client --> "https://myhost.example.com\nwss://myhost.example.com" proxy
+
+proxy --> "http://localhost:4001\nws://localhost:4001/cable" mirco
+
+@enduml
