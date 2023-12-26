@@ -6,8 +6,7 @@ Requires=mirco-postgres.service
 After=mirco-postgres.service
 
 [Container]
-# Image=ghcr.io/swobspace/mirco:latest
-Image=localhost/mirco:latest
+Image=ghcr.io/swobspace/mirco:latest
 ContainerName=mirco
 Volume=mirco-storage.volume:/rails/storage
 Volume=mirco-tmp.volume:/rails/tmp

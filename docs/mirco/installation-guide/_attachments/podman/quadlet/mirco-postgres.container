@@ -9,8 +9,8 @@ Network=mirco.network
 EnvironmentFile=mirco/env.production
 
 # healthcheck
-HealthCmd="/usr/local/bin/pg_isready -q -d postgres -U postgres"
-HealthInterval=10s
+HealthCmd=/usr/local/bin/pg_isready -q -d postgres -U postgres
+HealthInterval=120s
 HealthTimeout=45s
 HealthRetries=10
 
@@ -22,4 +22,3 @@ TimeoutStartSec=900
 
 [Install]
 WantedBy=multi-user.target default.target
-

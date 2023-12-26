@@ -40,7 +40,9 @@ image::podman/mirco-quadlets.svg[]
 ├── xref:attachment$podman/quadlet/mirco-postgres.volume[mirco-postgres.volume]
 ├── xref:attachment$podman/quadlet/mirco-redis.container[mirco-redis.container]
 ├── xref:attachment$podman/quadlet/mirco-redis.volume[mirco-redis.volume]
-└── xref:attachment$podman/quadlet/mirco-storage.volume[mirco-storage.volume]
+├── xref:attachment$podman/quadlet/mirco-storage.volume[mirco-storage.volume]
+├── xref:attachment$podman/quadlet/mirco-tmp.volume[mirco-tmp.volume]
+└── xref:attachment$podman/quadlet/mirco-worker-container[mirco-worker.container]
 ----
 
 

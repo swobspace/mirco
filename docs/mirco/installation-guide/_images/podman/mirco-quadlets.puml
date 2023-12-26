@@ -12,6 +12,11 @@ rectangle mirco [
   <i>mirco.container</i>
 ]
 
+rectangle worker [
+  <b>mirco-worker</b>
+  <i>mirco-worker.container</i>
+]
+
 rectangle postgres [
   <b>mirco-postgres</b>
   <i>mirco-postgres.container</i>
@@ -54,10 +59,13 @@ network #-- mirco
 network #-- postgres
 network #-- redis
 
-mirco_yml #- mirco
-env #-- mirco
+
+mirco_yml #-- mirco
 mirco --# v_storage
 mirco --# v_tmp
+
+mirco_yml #-- worker
+worker --# v_storage
 
 postgres --# v_postgres
 redis --# v_redis
