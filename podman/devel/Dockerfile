@@ -23,4 +23,7 @@ RUN bundle install -j $(nproc)
 COPY package.json yarn.lock ./
 RUN yarn install --ignore-scripts
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Entrypoint prepares the database.
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
+
+CMD ["./bin/rails", "server"]
