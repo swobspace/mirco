@@ -30,13 +30,13 @@ podman create --pod mirco-dev --name mirco-dev-postgres \
 
 podman create --pod mirco-dev --name mirco-dev-app \
   --requires=mirco-dev-redis,mirco-dev-postgres \
+  --tmpfs=/app/tmp/pids:rw,size=1024k \
   --env-file=.env.development.local \
-  --tty=true --interactive \
+  --tty --interactive \
   localhost/mirco-dev bin/dev
 
 podman create --pod mirco-dev --name mirco-dev-worker \
   --requires=mirco-dev-redis,mirco-dev-postgres \
   --env-file=.env.development.local \
-  --tty=true --interactive \
   localhost/mirco-dev good_job start
 
