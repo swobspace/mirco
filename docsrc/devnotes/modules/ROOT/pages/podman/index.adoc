@@ -1,0 +1,29 @@
+= Podman
+
+Just a memo for todos and code snippets ...
+
+IMPORTANT: I'm migrating to podman pods (dev + test) and quadlets (production), so there will be no docker-compose.yml for production!
+
+== Environments
+
+=== Development
+
+* xref:podman/development.adoc[]
+* xref:podman/docker-compose-dev.adoc[]
+* xref:podman/dockerfile-dev.adoc[]
+
+
+=== Test
+
+* xref:podman/test.adoc[]
+* xref:podman/docker-compose-test.adoc[]
+
+===  Production
+
+* xref:podman/production.adoc[]
+* xref:podman/dockerfile-prod.adoc[]
+
+== Networking
+
+* xref:podman/network.adoc[]
+

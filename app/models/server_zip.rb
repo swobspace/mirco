@@ -6,10 +6,14 @@ class ServerZip
   def initialize(server, options = {})
     @options = options.symbolize_keys
     @server = server
+    zip_path = File.join(Rails.root, 'tmp', 'zip')
+    unless Dir.exist?(zip_path)
+      Dir.mkdir(zip_path)
+    end
     @tmpfile = options.fetch(:outfile) {
-                 File.join(Rails.root, 'tmp', 'zip', "server-#{@server.id}.zip")
+                 File.join(zip_path, "server-#{@server.id}.zip")
                }
-    if File.exists?(@tmpfile)
+    if File.exist?(@tmpfile)
       File.delete(@tmpfile)
     end
     @hostname = (@server.hostname || @server.name).gsub(/[^A-Za-z.0-9_-]/, '')

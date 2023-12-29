@@ -46,7 +46,7 @@ group :development do
 end
 
 group :test, :development do
-  gem 'dotenv'
+  gem 'dotenv-rails'
   gem 'guard-rspec', require: false
   gem 'railroady'
   gem 'rspec-rails', '>= 6.0.3'
@@ -112,6 +112,3 @@ gem "bcrypt_pbkdf"
 gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
-
-# bugfix for passenger < 6.0.19, will be fixed soon
-gem 'rack', '2.2.4'

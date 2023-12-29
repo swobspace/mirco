@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installation Timescale :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.5">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/escalation-levels.html">Escalation Levels</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/quickstart.html">Quick start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/podman-systemd.html">production: systemd + quadlets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Mirco</a></li>
+    <li><a href="database-timescale.html">Installation Timescale</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Installation Timescale</h1>
+<div class="sect1">
+<h2 id="_fedora"><a class="anchor" href="#_fedora"></a>Fedora</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_fedora_default_distribution"><a class="anchor" href="#_fedora_default_distribution"></a>Fedora default distribution</h3>
+<div class="listingblock">
+<div class="title">Install from Fedora repository (license: apache = without retention policies)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">dnf install timescaledb</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quellen_selbst_übersetzen"><a class="anchor" href="#_quellen_selbst_übersetzen"></a>Quellen selbst übersetzen</h3>
+<div class="listingblock">
+<div class="title">Git clonen, übersetzen, installieren</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd /usr/local/src ; mkdir timescaledb ; cd timescaledb
+git clone https://github.com/timescale/timescaledb.git
+cd timescaledb
+git checkout &lt;branch&gt;  # 2.4.x
+
+./bootstrap
+
+cd ./build &amp;&amp; make -j 4 &amp;&amp; make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ubuntu"><a class="anchor" href="#_ubuntu"></a>Ubuntu</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mindestversion ist Ubuntu 18.04, dort ist aber nur PostgreSQL bis Version 10
+enthalten. Timescale benötigt aber mindestens PostgreSQL 12, was in Ubuntu
+20.04 enthalten ist. Ubuntu 21.04. bringt bereits PostgreSQL 13 mit.</p>
+</div>
+<div class="sect2">
+<h3 id="_pakete_von_packagecloud"><a class="anchor" href="#_pakete_von_packagecloud"></a>Pakete von Packagecloud</h3>
+<div class="paragraph">
+<p>Von Ubuntu gibt es kein Paket in der Distribution selbst, die Installation
+erfolgt über das Timescale-Repository (Lizenz: Community-Version). Pakete gibt es <strong>nur</strong> für die LTS-Versionen (18.04, 20.04, 22.04, &#8230;&#8203;).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>curl -s https://packagecloud.io/install/repositories/timescale/timescaledb/script.deb.sh | sudo bash
+apt-get update
+apt install timescaledb-2-postgresql-13</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quellen_selbst_übersetzen_2"><a class="anchor" href="#_quellen_selbst_übersetzen_2"></a>Quellen selbst übersetzen</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>pg_config</code> muss vorhanden sein und zur installierten PostgreSQL-Version passen.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Benötigte Pakete</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apt-get install build-essential cmake \
+        postgresql-contrib-13 postgresql-server-dev-all</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Git clonen, übersetzen, installieren</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">cd /usr/local/src ; mkdir timescaledb ; cd timescaledb
+git clone https://github.com/timescale/timescaledb.git
+cd timescaledb
+git checkout &lt;branch&gt;  # 2.4.x
+
+./bootstrap
+
+cd ./build &amp;&amp; make -j 4 &amp;&amp; make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minimal_setup"><a class="anchor" href="#_minimal_setup"></a>Minimal Setup</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Zeige PostgreSQL-Konfigurationsfile</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">su postgres -c 'psql -d postgres -c "SHOW config_file;"'
+
+  /var/lib/pgsql/data/postgresql.conf      # Fedora
+  /etc/postgresql/13/main/postgresql.conf  # Ubuntu 21.04</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Preload Shared Libraries in postgresql.conf ergänzen</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">timescaledb-tune # oder
+
+echo "shared_preload_libraries = 'timescaledb'" &gt;&gt; &lt;PostgreSQL-Config&gt;
+
+systemctl restart postgresql</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Die Extension timescaledb wird per Migration aktiviert, eine manuelle
+Aktivierung per SQL ist nicht erforderlich.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrade_timescaledb_extension"><a class="anchor" href="#_upgrade_timescaledb_extension"></a>Upgrade timescaledb Extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bei einem Upgrade z.B. von 2.3.1 auf 2.4.1 muss in der Datenbank ebenfalls die Version aktualisiert werden:</p>
+</div>
+<div class="listingblock">
+<div class="title">User postgres: ALTER EXTENSION</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ALTER EXTENSION timescaledb UPDATE;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Befehl <code>\dx</code> sollte jetzt die installierte Version anzeigen.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2023</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

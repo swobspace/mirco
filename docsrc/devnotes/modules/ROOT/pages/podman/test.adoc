@@ -1,0 +1,99 @@
+= Test
+
+== Podman pod
+
+.Build
+[source,sh]
+----
+podman build -f podman/devel/Dockerfile -t mirco-dev .
+----
+
+.Create Pod
+[source,sh]
+----
+bash ./podman/test/create-test-pod.sh
+----
+
+.Run Application
+[source,sh]
+----
+podman pod start mirco-test
+----
+
+.Single Purpose
+[source,sh]
+----
+podman exec -it mirco-test-app /bin/bash
+podman exec -it mirco-test-app bin/rspec
+----
+
+.Cleanup
+[source,sh]
+----
+podman pod stop mirco-test
+podman pod rm mirco-test
+----
+
+.Logging
+[source,sh]
+----
+podman pod logs mirco-test -f
+----
+
+.Some Hints
+[cols="2m,3"]
+|===
+|Hint | Description
+
+|SELENIUM_REMOTE_HOST=localhost
+|Variable used in `spec/rails_helper.rb`
+
+|START_XVFB=false
+|headless chrome doesn't need XVFB, so use less resources
+|===
+
+== spec/rails_helper.rb
+
+[source,ruby]
+----
+Capybara.register_driver :chrome_headless do |app|
+  url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
+  options = Selenium::WebDriver::Chrome::Options.new
+
+  options.add_argument("--headless")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--window-size=1280x1280")
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :remote,
+    url: url,
+    options: options
+  )
+end
+
+Capybara.javascript_driver = :chrome_headless
+Capybara.disable_animation = true
+
+RSpec.configure do |config|
+  config.before :each, type: :feature, js: true do
+    Capybara.server_host = `/sbin/ip route|awk '/scope/ { print $9 }'`.strip
+    Capybara.server_port = "43447"
+    session_server       = Capybara.current_session.server
+    Capybara.app_host    = "http://#{session_server.host}:#{session_server.port}"
+  end
+  
+  [...]
+end
+----
+
+NOTE: `/sbin/ip` needs package `iproute2`.
+
+== References
+
+* https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a
+
+== Current Bugs
+
+* `selenium/standalone-chrome` 4.16 and 4.16.1 is buggy and don't work.

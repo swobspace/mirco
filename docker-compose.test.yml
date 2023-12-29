@@ -1,0 +1,65 @@
+# docker-compose.test.yml
+
+x-base: &base
+  image: localhost/mirco
+  build:
+    context: .
+    dockerfile: .docker/Dockerfile.dev
+  volumes:
+    - .:/app:z,cached
+  stdin_open: true
+  tty: true
+  depends_on:
+    redis:
+      condition: service_started
+    postgres:
+      condition: service_healthy
+  env_file:
+    - .env.test.local
+
+services:
+  app:
+    <<: *base
+    container_name: mirco-app-test
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: test
+      SELENIUM_REMOTE_HOST: selenium
+
+  redis:
+    image: redis:latest
+    container_name: mirco-redis-test
+    # volumes:
+    #  - redis_data:/data
+
+  postgres:
+    # image: timescale/timescaledb-ha:pg16.1-ts2.13.0-all
+    image: timescale/timescaledb:latest-pg16
+    container_name: mirco-postgres-test
+    volumes:
+      # for timescaledb without ha
+      - postgres_data_test:/var/lib/postgresql/data
+      # for timescaledb-ha
+      # - postgres_data:/home/postgres/pgdata/data
+    env_file:
+      - .env.test.local
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    shm_size: 2gb
+    environment:
+      START_XVFB: false
+    ports:
+      - "4444:4444"
+    depends_on:
+      - app
+
+volumes:
+  postgres_data_test:
+#   redis_data:

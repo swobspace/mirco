@@ -1,8 +1,5 @@
-.Installation Guide
-* xref:setup.adoc[]
-* xref:encryption.adoc[]
-* Database Setup
-** xref:database-postgresql.adoc[]
-** xref:database-timescale.adoc[]
-** xref:database-rails.adoc[]
-* xref:configuration.adoc[]
+* xref:index.adoc[]
+** xref:podman/quickstart.adoc[]
+** xref:podman/podman-systemd.adoc[]
+** xref:podman/reverse-proxy.adoc[]
+** xref:configuration.adoc[]

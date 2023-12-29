@@ -1,0 +1,53 @@
+= Podman in production using systemd and quadlets
+:navtitle: production: systemd + quadlets
+:author: Wolfgang Barth
+:revdate: 2023-12-22
+:imagesdir: ../../images
+
+#WORK IN PROGRESS#
+
+== Requirements
+
+* podman Version >= 4.4, better 4.6 or higher.
+
+If something doesn't work have a look at https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html and select your podman version (right bottom corner).
+
+.Podman Version in some linux distributions
+[cols="2,2,3"]
+|===
+|Distro | Version | usable?
+
+|Fedora 38    |4.7.2 |ok
+|Fedora 39    |4.8.1 |ok
+|Ubuntu 23.10 |4.3.1 |doesn't work
+|Ubuntu 24.04 |4.7.2 |ok
+|===
+
+== Overview
+
+image::podman/mirco-quadlets.svg[]
+
+.Rootless setup: directories and files
+[subs="+macros"]
+----
+/etc/containers/systemd/users/1000
+├── mirco
+│   ├── env.production
+│   └── mirco.yml
+├── xref:attachment$podman/quadlet/mirco.container[mirco.container]
+├── xref:attachment$podman/quadlet/mirco.network[mirco.network]
+├── xref:attachment$podman/quadlet/mirco-postgres.container[mirco-postgres.container]
+├── xref:attachment$podman/quadlet/mirco-postgres.volume[mirco-postgres.volume]
+├── xref:attachment$podman/quadlet/mirco-redis.container[mirco-redis.container]
+├── xref:attachment$podman/quadlet/mirco-redis.volume[mirco-redis.volume]
+├── xref:attachment$podman/quadlet/mirco-storage.volume[mirco-storage.volume]
+├── xref:attachment$podman/quadlet/mirco-tmp.volume[mirco-tmp.volume]
+└── xref:attachment$podman/quadlet/mirco-worker-container[mirco-worker.container]
+----
+
+
+== Resources
+
+* https://www.redhat.com/sysadmin/quadlet-podman
+* https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet
+* https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html

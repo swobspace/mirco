@@ -39,7 +39,7 @@ Seite
 https://docs.timescale.com/timescaledb/latest/how-to-guides/upgrades/upgrade-pg/[Upgrade
 PostgreSQL] der TimescaleDocs.
 
-NOTE: Wenn die neue PostgreSQL-Version die vorhandene Timescale-Version nicht mehr unterstützt, muss zuerst die Timescale-Version aktualisiert werden (siehe xref:installation-guide:database-timescale.adoc[]).
+NOTE: Wenn die neue PostgreSQL-Version die vorhandene Timescale-Version nicht mehr unterstützt, muss zuerst die Timescale-Version aktualisiert werden (siehe xref:installation-guide:old/database-timescale.adoc[]).
 
 NOTE: Vor dem Upgrade des Betriebssystems sollte man immer zuerst ein Backup der Datenbank mit `pg_dumpall` durchführen (siehe xref:postgresql/backuprestore.adoc[]).
 

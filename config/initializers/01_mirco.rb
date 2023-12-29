@@ -89,6 +89,10 @@ module Mirco
                  ['http://localhost', 'https://localhost'])
   end
 
+  def self.action_cable_url
+    fetch_config('action_cable_url', nil)
+  end
+
   def self.host
     fetch_config('host', 'localhost')
   end
