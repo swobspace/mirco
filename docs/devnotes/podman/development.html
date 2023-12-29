@@ -165,37 +165,39 @@
 <div class="listingblock">
 <div class="title">Build</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml build
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -f podman/devel/Dockerfile -t mirco-dev .
 podman compose -f docker-compose.dev.yml build --no-cache</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create Pod</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bash ./podman/devel/create-devel-pod.sh</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Run Application</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">rm -f tmp/pids/server.pid &amp;&amp; \
-      podman compose -f docker-compose.dev.yml up -d &amp;&amp; \
-      podman compose -f docker-compose.dev.yml logs -f</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod start mirco-dev</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Single Purpose</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml run --rm app
-podman compose -f docker-compose.dev.yml restart
-podman compose -f docker-compose.dev.yml stop
-podman compose -f docker-compose.dev.yml exec app</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman exec -it mirco-dev-app /bin/bash</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Cleanup</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml down --remove-orphans</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod stop mirco-dev
+podman pod rm mirco-dev</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Logging</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.dev.yml logs | less -r</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod logs mirco-dev -f</code></pre>
 </div>
 </div>
 </div>

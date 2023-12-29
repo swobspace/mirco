@@ -7,6 +7,46 @@ Just a memo for todos and code snippets ...
 .Build
 [source,sh]
 ----
+podman build -f podman/devel/Dockerfile -t mirco-dev .
+podman compose -f docker-compose.dev.yml build --no-cache
+----
+
+.Create Pod
+[source,sh]
+----
+bash ./podman/devel/create-devel-pod.sh
+----
+
+.Run Application
+[source,sh]
+----
+podman pod start mirco-dev
+----
+
+.Single Purpose
+[source,sh]
+----
+podman exec -it mirco-dev-app /bin/bash
+----
+
+.Cleanup
+[source,sh]
+----
+podman pod stop mirco-dev
+podman pod rm mirco-dev
+----
+
+.Logging
+[source,sh]
+----
+podman pod logs mirco-dev -f
+----
+
+
+////
+.Build
+[source,sh]
+----
 podman compose -f docker-compose.dev.yml build
 podman compose -f docker-compose.dev.yml build --no-cache
 ----
@@ -39,7 +79,7 @@ podman compose -f docker-compose.dev.yml down --remove-orphans
 ----
 podman compose -f docker-compose.dev.yml logs | less -r
 ----
-
+////
 // podman compose -f docker-compose.dev.yml logs |\
 //  sed 's/\x1B\[[0-9;]*[JKmsu]//g' | less
 
