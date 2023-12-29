@@ -9,11 +9,9 @@
 * xref:podman/index.adoc[]
 ** xref:podman/development.adoc[]
 *** xref:podman/dockerfile-dev.adoc[]
-*** xref:podman/docker-compose-dev.adoc[]
 ** xref:podman/production.adoc[]
 *** xref:podman/dockerfile-prod.adoc[]
 ** xref:podman/test.adoc[]
-*** xref:podman/docker-compose-test.adoc[]
 ** xref:podman/network.adoc[]
 
 

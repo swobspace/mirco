@@ -1,57 +1,54 @@
 = Test
 
-== podman compose
+== Podman pod
 
-=== Command line
-
-.starting up environment and test interactively
+.Build
 [source,sh]
 ----
-podman compose -f docker-compose.test.yml up -d
-podman compose -f docker-compose.test.yml exec app /bin/bash
+podman build -f podman/devel/Dockerfile -t mirco-dev .
 ----
 
-.one shot test run
+.Create Pod
 [source,sh]
 ----
-podman compose -f docker-compose.test.yml run app bin/rspec
+bash ./podman/test/create-test-pod.sh
 ----
 
-=== docker-compose file changes
-
-.docker-compose.test.yml changes from dev
-[source,yml]
+.Run Application
+[source,sh]
 ----
-services:
-  app:    
-    ...
-    environment:
-      RAILS_ENV: test
-      SELENIUM_REMOTE_HOST: selenium
-
-[...]
-
-  selenium:
-    image: selenium/standalone-chrome:latest
-    shm_size: 2gb
-    environment:
-      START_XVFB: false
-    ports:
-      - "4444:4444"
-    depends_on:
-      - app
+podman pod start mirco-test
 ----
 
+.Single Purpose
+[source,sh]
+----
+podman exec -it mirco-test-app /bin/bash
+podman exec -it mirco-test-app bin/rspec
+----
+
+.Cleanup
+[source,sh]
+----
+podman pod stop mirco-test
+podman pod rm mirco-test
+----
+
+.Logging
+[source,sh]
+----
+podman pod logs mirco-test -f
+----
 
 .Some Hints
-[cols="2,3"]
+[cols="2m,3"]
 |===
 |Hint | Description
 
-|SELENIUM_REMOTE_HOST
+|SELENIUM_REMOTE_HOST=localhost
 |Variable used in `spec/rails_helper.rb`
 
-|START_XVFB: false
+|START_XVFB=false
 |headless chrome doesn't need XVFB, so use less resources
 |===
 
@@ -96,3 +93,7 @@ NOTE: `/sbin/ip` needs package `iproute2`.
 == References
 
 * https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a
+
+== Current Bugs
+
+* `selenium/standalone-chrome` 4.16 and 4.16.1 is buggy and don't work.

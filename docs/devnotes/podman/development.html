@@ -74,9 +74,6 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -89,13 +86,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="test.html">Test</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-compose-test.html">docker-compose.yml for testing</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="network.html">Network</a>
@@ -165,8 +156,7 @@
 <div class="listingblock">
 <div class="title">Build</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -f podman/devel/Dockerfile -t mirco-dev .
-podman compose -f docker-compose.dev.yml build --no-cache</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -f podman/devel/Dockerfile -t mirco-dev .</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -211,19 +201,20 @@ podman pod rm mirco-dev</code></pre>
 <pre class="highlightjs highlight"><code class="language-cfg hljs" data-lang="cfg"># ~/.env.development.local.example
 # Timezone
 TZ=Europe/Berlin
+LOCALE=en
 # Mirco
 LOCKBOX_MASTER_KEY=0000000000000000000000000000000000000000000000000000000000000000
 # generate key with bin/rails secret
 SECRET_KEY_BASE=**************
 
 # -- redis
-REDIS_URL=redis://redis:6379
+REDIS_URL=redis://localhost:6379
 
 # -- postgres
 POSTGRES_USER=postgres
 POSTGRES_DB=mirco_development
 POSTGRES_PASSWORD=verystrongsecret
-POSTGRES_HOST=postgres
+POSTGRES_HOST=localhost
 # TIMESCALEDB
 TIMESCALEDB_TELEMETRY=off</code></pre>
 </div>

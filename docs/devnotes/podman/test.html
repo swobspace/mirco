@@ -74,9 +74,6 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="dockerfile-dev.html">Dockerfile.dev</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-compose-dev.html">docker-compose.dev.yml</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -89,13 +86,7 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="test.html">Test</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="docker-compose-test.html">docker-compose.yml for testing</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="network.html">Network</a>
@@ -153,47 +144,44 @@
 <article class="doc">
 <h1 class="page">Test</h1>
 <div class="sect1">
-<h2 id="_podman_compose"><a class="anchor" href="#_podman_compose"></a>podman compose</h2>
+<h2 id="_podman_pod"><a class="anchor" href="#_podman_pod"></a>Podman pod</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_command_line"><a class="anchor" href="#_command_line"></a>Command line</h3>
 <div class="listingblock">
-<div class="title">starting up environment and test interactively</div>
+<div class="title">Build</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.test.yml up -d
-podman compose -f docker-compose.test.yml exec app /bin/bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -f podman/devel/Dockerfile -t mirco-dev .</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">one shot test run</div>
+<div class="title">Create Pod</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman compose -f docker-compose.test.yml run app bin/rspec</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bash ./podman/test/create-test-pod.sh</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_docker_compose_file_changes"><a class="anchor" href="#_docker_compose_file_changes"></a>docker-compose file changes</h3>
 <div class="listingblock">
-<div class="title">docker-compose.test.yml changes from dev</div>
+<div class="title">Run Application</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">services:
-  app:
-    ...
-    environment:
-      RAILS_ENV: test
-      SELENIUM_REMOTE_HOST: selenium
-
-[...]
-
-  selenium:
-    image: selenium/standalone-chrome:latest
-    shm_size: 2gb
-    environment:
-      START_XVFB: false
-    ports:
-      - "4444:4444"
-    depends_on:
-      - app</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod start mirco-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Single Purpose</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman exec -it mirco-test-app /bin/bash
+podman exec -it mirco-test-app bin/rspec</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Cleanup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod stop mirco-test
+podman pod rm mirco-test</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Logging</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod logs mirco-test -f</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -210,16 +198,15 @@ podman compose -f docker-compose.test.yml exec app /bin/bash</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SELENIUM_REMOTE_HOST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELENIUM_REMOTE_HOST=localhost</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Variable used in <code>spec/rails_helper.rb</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">START_XVFB: false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>START_XVFB=false</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">headless chrome doesn&#8217;t need XVFB, so use less resources</p></td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -280,6 +267,18 @@ end</code></pre>
 <ul>
 <li>
 <p><a href="https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a" class="bare">https://dev.to/amree/ruby-on-rails-and-docker-for-testing-4n8a</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_current_bugs"><a class="anchor" href="#_current_bugs"></a>Current Bugs</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>selenium/standalone-chrome</code> 4.16 and 4.16.1 is buggy and don&#8217;t work.</p>
 </li>
 </ul>
 </div>

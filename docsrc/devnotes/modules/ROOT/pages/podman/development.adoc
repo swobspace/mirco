@@ -8,7 +8,6 @@ Just a memo for todos and code snippets ...
 [source,sh]
 ----
 podman build -f podman/devel/Dockerfile -t mirco-dev .
-podman compose -f docker-compose.dev.yml build --no-cache
 ----
 
 .Create Pod
