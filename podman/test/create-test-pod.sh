@@ -40,5 +40,6 @@ podman create --pod mirco-test --name mirco-test-selenium \
   --env-file=.env.test.local \
   --env='START_XVFB=false' \
   --shm-size=2gb \
-  docker.io/selenium/standalone-chrome:latest
+  docker.io/selenium/standalone-chrome:4.15
+  # docker.io/selenium/standalone-chrome:latest
 
