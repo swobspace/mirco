@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_064616) do
+ActiveRecord::Schema[7.1].define(version: 2023_09_05_064616) do
+  # don't include timescale stuff in schema
+  # create_schema "_timescaledb_cache"
+  # create_schema "_timescaledb_catalog"
+  # create_schema "_timescaledb_config"
+  # create_schema "_timescaledb_functions"
+  # create_schema "_timescaledb_internal"
+  # create_schema "timescaledb_experimental"
+  # create_schema "timescaledb_information"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
