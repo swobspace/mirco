@@ -68,7 +68,7 @@ RSpec.describe Mirco, type: :model do
 
       allow(Mirco::CONFIG).to receive(:[]).with('remote_user').and_return('OTHER_USER')
       allow(Mirco::CONFIG).to receive(:[]).with('action_cable_allowed_request_origins').and_return(['http://otherwise'])
-      allow(Mirco::CONFIG).to receive(:[]).with('action_cable_url').and_return(['http://otherwise/cable'])
+      allow(Mirco::CONFIG).to receive(:[]).with('action_cable_url').and_return('http://otherwise/cable')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
