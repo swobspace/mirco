@@ -1,0 +1,12 @@
+{
+  "address": "127.0.0.1",
+  "environment": "production",
+  "daemonize": false,
+  "port": "4001",
+  "user": "deploy",
+  "pool_idle_time": 0,
+  "min_instances": 1,
+  "envvars": {
+   }
+}
+
