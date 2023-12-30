@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Production :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.1.5">
+    <meta name="generator" content="Antora 3.1.6">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -208,6 +208,7 @@ docker push ghcr.io/swobspace/mirco:latest</code></pre>
 # Timezone
 TZ=Europe/Berlin
 LOCALE=en
+
 # Mirco
 LOCKBOX_MASTER_KEY=0000000000000000000000000000000000000000000000000000000000000000
 # generate key with bin/rails secret
@@ -218,7 +219,7 @@ REDIS_URL=redis://redis:6379
 
 # -- postgres
 POSTGRES_USER=postgres
-POSTGRES_DB=mirco_development
+POSTGRES_DB=mirco_production
 POSTGRES_PASSWORD=verystrongsecret
 POSTGRES_HOST=postgres
 # TIMESCALEDB

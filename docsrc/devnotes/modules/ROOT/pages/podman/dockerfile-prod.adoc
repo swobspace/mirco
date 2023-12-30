@@ -1,7 +1,5 @@
 = Dockerfile for Production
 
-#FIXME#
-
 .Dockerfile
 [source,dockerfile]
 ----

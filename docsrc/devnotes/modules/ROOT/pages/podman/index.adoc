@@ -9,14 +9,12 @@ IMPORTANT: I'm migrating to podman pods (dev + test) and quadlets (production), 
 === Development
 
 * xref:podman/development.adoc[]
-* xref:podman/docker-compose-dev.adoc[]
 * xref:podman/dockerfile-dev.adoc[]
 
 
 === Test
 
 * xref:podman/test.adoc[]
-* xref:podman/docker-compose-test.adoc[]
 
 ===  Production
 

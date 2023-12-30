@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Test :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.1.5">
+    <meta name="generator" content="Antora 3.1.6">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -146,42 +146,15 @@
 <div class="sect1">
 <h2 id="_podman_pod"><a class="anchor" href="#_podman_pod"></a>Podman pod</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="title">Build</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman build -f podman/devel/Dockerfile -t mirco-dev .</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Create Pod</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bash ./podman/test/create-test-pod.sh</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Run Application</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod start mirco-test</code></pre>
-</div>
+<div class="paragraph">
+<p>Use pod <code>mirco-dev</code> from development. <code>mirco-dev</code> contains selenium/standalone-chrome.</p>
 </div>
 <div class="listingblock">
 <div class="title">Single Purpose</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman exec -it mirco-test-app /bin/bash
-podman exec -it mirco-test-app bin/rspec</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Cleanup</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod stop mirco-test
-podman pod rm mirco-test</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Logging</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pod logs mirco-test -f</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman exec -it mirco-dev-app /bin/bash
+export RAILS_ENV=test
+bin/rspec</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

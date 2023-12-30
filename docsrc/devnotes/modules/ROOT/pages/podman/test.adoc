@@ -2,42 +2,14 @@
 
 == Podman pod
 
-.Build
-[source,sh]
-----
-podman build -f podman/devel/Dockerfile -t mirco-dev .
-----
-
-.Create Pod
-[source,sh]
-----
-bash ./podman/test/create-test-pod.sh
-----
-
-.Run Application
-[source,sh]
-----
-podman pod start mirco-test
-----
+Use pod `mirco-dev` from development. `mirco-dev` contains selenium/standalone-chrome.
 
 .Single Purpose
 [source,sh]
 ----
-podman exec -it mirco-test-app /bin/bash
-podman exec -it mirco-test-app bin/rspec
-----
-
-.Cleanup
-[source,sh]
-----
-podman pod stop mirco-test
-podman pod rm mirco-test
-----
-
-.Logging
-[source,sh]
-----
-podman pod logs mirco-test -f
+podman exec -it mirco-dev-app /bin/bash
+export RAILS_ENV=test
+bin/rspec
 ----
 
 .Some Hints
