@@ -559,7 +559,7 @@ DEPENDENCIES
   wobmire!
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 3.2.2p53
 
 BUNDLED WITH
-   2.3.26
+   2.5.3
