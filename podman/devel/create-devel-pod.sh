@@ -40,3 +40,9 @@ podman create --pod mirco-dev --name mirco-dev-worker \
   --env-file=.env.development.local \
   localhost/mirco-dev good_job start
 
+podman create --pod mirco-dev --name mirco-dev-selenium \
+  --requires=mirco-dev-app \
+  --env='START_XVFB=false' \
+  --shm-size=2gb \
+  docker.io/selenium/standalone-chrome:4.15
+  # docker.io/selenium/standalone-chrome:latest
