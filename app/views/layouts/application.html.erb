@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="600" />
     <title>Mirco</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,7 +17,7 @@
     <% end %>
   </head>
 
-  <body>
+  <body data-updated-at="<%= Time.current.to_s %>">
     <%= render 'shared/modal' %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" role="navigation">
       <div class="container-fluid">

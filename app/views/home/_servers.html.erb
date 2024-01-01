@@ -1,4 +1,5 @@
-<div id="server_status">
+<div id="failed_servers">
+ <% if servers.size > 0 %>
   <%= content_tag :table,
         id: "servers_table",
         class: "table table-bordered mb-0" do %>
@@ -36,4 +37,5 @@
       <% end %>
     </tbody>
   <% end %>
+ <% end %>
 </div>

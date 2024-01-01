@@ -1,0 +1,22 @@
+<div id="server_states">
+  <% if Server.ok.any? %>
+    <button type="button" class="btn btn-success">
+      <i class="fas fa-lg fa-fw fa-check-circle"></i>
+      <span class="badge text-bg-white"><%= Server.ok.count %></span>
+    </button>
+  <% end %>
+
+  <% if Server.warning.any? %>
+    <button type="button" class="btn btn-warning">
+      <i class="fas fa-lg fa-fw fa-exclamation-triangle text-white"></i>
+      <span class="badge text-bg-white"><%= Server.warning.count %></span>
+    </button>
+  <% end %>
+
+  <% if Server.critical.any? %>
+    <button type="button" class="btn btn-danger">
+      <i class="fas fa-lg fa-fw fa-exclamation-circle text-white"></i>
+      <span class="badge text-bg-white"><%= Server.critical.count %></span>
+    </button>
+  <% end %>
+</div>

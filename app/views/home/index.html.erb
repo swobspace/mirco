@@ -2,7 +2,7 @@
 <div class="container-xl">
   <div class="card">
     <div class="card-header">
-      <h4>Queued Messages</h4>
+      <h4 class="pt-1">Queued Messages</h4>
     </div>
     <div>
       <%= render 'queues', queued_messages: @queued_messages %>
@@ -12,7 +12,7 @@
   <div class="card mt-3">
     <div class="card-header">
       <div class="d-flex w-100 justify-content-between">
-        <h4>Potential Message Problems</h4>
+        <h4 class="pt-1">Potential Message Problems</h4>
         <div role="toolbar">
           <% if current_user&.is_admin? %>
             <%= link_to icon_edit, escalation_levels_path, class: 'btn btn-outline-secondary' %>
@@ -28,7 +28,10 @@
 
   <div class="card mt-3">
     <div class="card-header">
-      <h4>Server Status</h4>
+      <div class="d-flex">
+        <h4 class="me-4 pt-1">Server Status</h4>
+        <%= render 'server_states' %>
+      </div>
     </div>
     <div>
       <%= render 'servers', servers: @servers %>
