@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_09_05_064616) do
-  # don't include timescale stuff in schema
+ActiveRecord::Schema[7.1].define(version: 2024_01_01_094954) do
   # create_schema "_timescaledb_cache"
   # create_schema "_timescaledb_catalog"
   # create_schema "_timescaledb_config"
@@ -356,6 +355,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_09_05_064616) do
     t.datetime "last_check_ok", precision: nil
     t.bigint "host_id"
     t.boolean "manual_update", default: false
+    t.integer "condition", default: 0
+    t.index ["condition"], name: "index_servers_on_condition"
     t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["uid"], name: "index_servers_on_uid"
   end
