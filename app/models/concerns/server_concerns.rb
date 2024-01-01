@@ -4,6 +4,10 @@ module ServerConcerns
   extend ActiveSupport::Concern
 
   included do
+    scope :ok, -> { where(condition: EscalationLevel::OK) }
+    scope :warning, -> { where(condition: EscalationLevel::WARNING) }
+    scope :critical, -> { where(condition: EscalationLevel::CRITICAL) }
+    scope :failed, -> { where("servers.condition > ?", EscalationLevel::OK) }
   end
 
   def active_channels
