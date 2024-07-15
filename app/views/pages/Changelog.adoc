@@ -1,9 +1,11 @@
 = Changelog
 
-=== 1.5.0-dev / 2023-12-30
+=== 1.5.0 / 2024-07-15
 
 ----
-* Preparing for Docker/Podman
+* Switching deployment from capistrano to podman containers
+* bump gem and npm dependencies
+* update and improve datatables controller
 ----
 
 === 1.4.0 / 2023-11-25
