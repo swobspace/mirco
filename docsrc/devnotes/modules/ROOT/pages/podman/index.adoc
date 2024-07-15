@@ -5,7 +5,7 @@ Just a memo for todos and code snippets ...
 IMPORTANT: I'm migrating to podman pods (dev + test) and quadlets (production), so there will be no docker-compose.yml for production!
 
 == Environments
-
+////
 === Development
 
 * xref:podman/development.adoc[]
@@ -15,6 +15,8 @@ IMPORTANT: I'm migrating to podman pods (dev + test) and quadlets (production), 
 === Test
 
 * xref:podman/test.adoc[]
+
+////
 
 ===  Production
 

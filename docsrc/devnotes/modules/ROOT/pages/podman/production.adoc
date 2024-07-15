@@ -33,9 +33,9 @@ podman tag mirco ghcr.io/swobspace/mirco:latest
 [source,sh]
 ----
 export CR_PAT=YOUR_TOKEN
-echo $CR_PAT | docker login ghcr.io -u swobspace --password-stdin
-docker push ghcr.io/swobspace/mirco:0.1.0
-docker push ghcr.io/swobspace/mirco:latest
+echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
+podman push ghcr.io/swobspace/mirco:0.1.0
+podman push ghcr.io/swobspace/mirco:latest
 ----
 
 === ghcr.io
