@@ -1,13 +1,13 @@
 # syntax = docker/dockerfile:1
 
 # Github Containers
-LABEL "org.opencontainers.image.source"="https://github.com/swobspace/mirco"
-LABEL "org.opencontainers.image.description"="Mirco"
-LABEL "org.opencontainers.image.licenses"="MIT"
-LABEL "org.opencontainers.image.documentation"="https://swobspace.github.io/mirco/mirco/index.html"
+LABEL org.opencontainers.image.source=https://github.com/swobspace/mirco
+LABEL org.opencontainers.image.description="Mirco"
+LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.documentation="https://swobspace.github.io/mirco/mirco/index.html"
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.2.4
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
@@ -17,7 +17,6 @@ WORKDIR /rails
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_BIN="/usr/local/bundle/bin" \
     BUNDLE_WITHOUT="development"
 
 # Master Key for lockbox
@@ -31,8 +30,8 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips node-gyp pkg-config python-is-python3
 
 # Install JavaScript dependencies
-ARG NODE_VERSION=16.17.0
-ARG YARN_VERSION=1.22.19
+ARG NODE_VERSION=20.10.0
+ARG YARN_VERSION=latest
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
@@ -65,9 +64,9 @@ FROM base
 # Install packages needed for deployment
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-                    curl libvips postgresql-client \
-                    iputils-ping uuid openjdk-17-jre-headless graphviz && \
-    setcap cap_net_raw+p `which ping` && \
+                      curl libvips postgresql-client iputils-ping uuid \
+                      openjdk-17-jre-headless graphviz && \
+    setcap cap_net_raw+ep `which ping` && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
