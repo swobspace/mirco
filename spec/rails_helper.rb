@@ -13,7 +13,7 @@ require 'view_component/test_helpers'
 require 'capybara/rspec'
 
 Capybara.register_driver :chrome_headless do |app|
-  url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
+  # url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
   options = Selenium::WebDriver::Chrome::Options.new
 
   options.add_argument("--headless")
@@ -24,8 +24,8 @@ Capybara.register_driver :chrome_headless do |app|
 
   Capybara::Selenium::Driver.new(
     app,
-    browser: :remote,
-    url: url,
+    browser: :chrome,
+    # url: url,
     options: options
   )
 end
