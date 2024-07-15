@@ -64,6 +64,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="upgrade.html">Upgrade mit Timescale</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="migration-to-podman.html">Migrate database to podman containers</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -161,7 +164,12 @@
 <div class="listingblock">
 <div class="title">(postgres) Dump im Custom Format (ist bereits komprimiert)</div>
 <div class="content">
-<pre>pg_dump -Fc -f mirco_production.dmp mirco_production</pre>
+<pre>pg_dump --format=plain --quote-all-identifiers \
+        --no-tablespaces --no-owner --no-privileges \
+        --clean --if-exists --create --no-acl -U postgres \
+        --file=postgres-mirco-2024-07-15.sql \
+        mirco_production
+pg_dump -Fc -f mirco_production.dmp mirco_production</pre>
 </div>
 </div>
 <div class="sect2">

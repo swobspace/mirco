@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PostgreSQL Setup :: Mirco Dokumentation</title>
+    <title>Migrate existing database to podman containers :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -49,28 +49,28 @@
     <span class="nav-text">Admin Manual</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../admin-manual/scheduling.html">Job Scheduling</a>
+    <a class="nav-link" href="../scheduling.html">Job Scheduling</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../admin-manual/timescale.html">TimescaleDB</a>
+    <a class="nav-link" href="../timescale.html">TimescaleDB</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">PostgreSQL Maintenance</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+    <a class="nav-link" href="backuprestore.html">Backup &amp; Restore with timescaledb</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+    <a class="nav-link" href="upgrade.html">Upgrade mit Timescale</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../admin-manual/postgresql/migration-to-podman.html">Migrate database to podman containers</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="migration-to-podman.html">Migrate database to podman containers</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../admin-manual/escalation-levels.html">Escalation Levels</a>
+    <a class="nav-link" href="../escalation-levels.html">Escalation Levels</a>
   </li>
 </ul>
   </li>
@@ -78,19 +78,19 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../index.html">Installation</a>
+    <a class="nav-link" href="../../installation-guide/index.html">Installation</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../podman/quickstart.html">Quick start</a>
+    <a class="nav-link" href="../../installation-guide/podman/quickstart.html">Quick start</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../podman/podman-systemd.html">production: systemd + quadlets</a>
+    <a class="nav-link" href="../../installation-guide/podman/podman-systemd.html">production: systemd + quadlets</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../podman/reverse-proxy.html">Reverse Proxy</a>
+    <a class="nav-link" href="../../installation-guide/podman/reverse-proxy.html">Reverse Proxy</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuration.html">Configuration</a>
+    <a class="nav-link" href="../../installation-guide/configuration.html">Configuration</a>
   </li>
 </ul>
   </li>
@@ -143,7 +143,9 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../index.html">Mirco</a></li>
-    <li><a href="database-postgresql.html">PostgreSQL Setup</a></li>
+    <li>Admin Manual</li>
+    <li>PostgreSQL Maintenance</li>
+    <li><a href="migration-to-podman.html">Migrate database to podman containers</a></li>
   </ul>
 </nav>
 </div>
@@ -152,46 +154,42 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PostgreSQL Setup</h1>
+<h1 class="page">Migrate existing database to podman containers</h1>
 <div class="sect1">
-<h2 id="_useranlage"><a class="anchor" href="#_useranlage"></a>Useranlage</h2>
+<h2 id="_backup"><a class="anchor" href="#_backup"></a>Backup</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Bash, user postgres</div>
+<div class="title">(postgres) dump without owner and privileges</div>
 <div class="content">
-<pre>createuser -D -E -S -R -W mirco</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">postgres&gt; psql</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER USER mirco WITH PASSWORD '******';</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">pg_dump --format=plain --quote-all-identifiers \
+        --no-tablespaces --no-owner --no-privileges \
+        --clean --if-exists --create --no-acl -U postgres \
+        --file=postgres-mirco-2024-07-15.sql \
+        mirco_production</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_datenbank_anlegen"><a class="anchor" href="#_datenbank_anlegen"></a>Datenbank anlegen</h2>
+<h2 id="_copy"><a class="anchor" href="#_copy"></a>Copy</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Bash, user postgres</div>
+<div class="title">(poddy) Copy as user <code>poddy</code></div>
 <div class="content">
-<pre>createdb -O mirco mirco_development
-createdb -O mirco mirco_test</pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman cp postgres-mirco-2024-07-15.sql \
+          mirco-postgres:/tmp/.</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_zugriffsberechtigungen"><a class="anchor" href="#_zugriffsberechtigungen"></a>Zugriffsberechtigungen</h2>
+<h2 id="_import"><a class="anchor" href="#_import"></a>Import</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">/var/lib/pgsql/data/pg_hba.conf</div>
 <div class="content">
-<pre>local   mirco_test      mirco                             trust
-local   all             all                               peer
-host    all             all       127.0.0.1/32            md5
-host    all             all       ::1/128                 md5</pre>
+<pre>podman exec -it mirco-postgres /bin/bash
+cd /tmp
+psql -U postgres mirco_production &lt; postgres-mirco-2024-07-15.sql</pre>
 </div>
 </div>
 </div>
