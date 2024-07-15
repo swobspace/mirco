@@ -4,13 +4,15 @@ $stdout.sync = true
 
 Rails.application.configure do
   config.good_job = {
-    execution_mode: :async_server,
+    execution_mode: :external,
     enable_cron: true,
     max_threads: 4,
     poll_interval: 30,
     retry_on_unhandled_error: false,
-    preserve_job_records: false,
-
+    preserve_job_records: true,
+    # cleanup_interval_jobs: 100,
+    cleanup_interval_seconds: 3600,
+    cleanup_preserved_jobs_before_seconds_ago: 172800,
     cron: {
       fetch_statistics: {
         cron: Mirco.cron_fetch_statistics,
@@ -34,18 +36,4 @@ Rails.application.configure do
       }
     }
   }
-
-  if ENV['GOOD_JOB_EXECUTION_MODE']
-    config.good_job[:execution_mode] = ENV['GOOD_JOB_EXECUTION_MODE'].to_sym
-  elsif Rails.const_defined?("Console")
-    config.good_job[:execution_mode] = :external
-  elsif Rails.const_defined?("Server")
-    case Rails.env
-    when 'development', 'production'
-      config.good_job[:execution_mode] = :external
-    when 'test'
-      config.good_job[:execution_mode] = :inline
-    else
-    end
-  end
 end
