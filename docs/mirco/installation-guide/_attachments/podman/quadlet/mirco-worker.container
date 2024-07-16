@@ -9,11 +9,13 @@ After=mirco-postgres.service
 Image=ghcr.io/swobspace/mirco:latest
 ContainerName=mirco-worker
 Volume=mirco-storage.volume:/rails/storage
-Volume=./mirco/mirco.yml:/rails/shared/config/mirco.yml:ro,z
+Volume=./mirco.yml:/rails/shared/config/mirco.yml:ro,z
 Network=mirco.network
-EnvironmentFile=mirco/env.production
+EnvironmentFile=env.production
 Environment=FORCE_SSL=false
-Exec=good_job start
+Exec=bundle exec good_job start --max-threads=4
+AddCapability=CAP_NET_RAW
+Label=traefik.enable=false
 
 [Service]
 Restart=always

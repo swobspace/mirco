@@ -170,8 +170,51 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_traefik"><a class="anchor" href="#_traefik"></a>Traefik</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Traefik: directory and files</div>
+<div class="content">
+<pre>/etc/containers/systemd/users/1001/traefik
+├── <a href="../_attachments/podman/quadlet/traefik.yaml" class="xref attachment">traefik.yml</a>
+├── <a href="../_attachments/podman/quadlet/traefik.container" class="xref attachment">traefik.container</a>
+├── <a href="../_attachments/podman/quadlet/traefik.network" class="xref attachment">traefik.network</a></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Traefik opens port 8443. To redirect http(s) requests to Mirco, simply add a few lines to <code>mirco.container</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-toml hljs" data-lang="toml">Network=traefik.network
+Label=traefik.enable=true
+Label=traefik.http.routers.mirco.rule=Host(`mirco.example.com`)
+Label=traefik.http.routers.mirco.entrypoints=websecure
+Label=traefik.http.routers.mirco.tls=true
+Label=traefik.http.routers.mirco.service=svc-mirco
+Label=traefik.http.services.svc-mirco.loadbalancer.server.port=3001</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The entries starting with <code>Label</code> are configuring traefik. The entry <code>Network</code> makes Mirco accessible from traefik. Only the Mirco container itself needs to be connected to traefik.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_apache_2_4"><a class="anchor" href="#_apache_2_4"></a>Apache 2.4</h2>
 <div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+I don&#8217;t use this setup anymore, so it may or may not work.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-apache hljs" data-lang="apache">&lt;VirtualHost *:443&gt;

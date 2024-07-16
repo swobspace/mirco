@@ -2,11 +2,12 @@
 Description=PostgreSQL for Mirco (production)
 
 [Container]
-Image=timescale/timescaledb:latest-pg16
+Image=docker.io/timescale/timescaledb:latest-pg16
 ContainerName=mirco-postgres
 Volume=mirco-postgres.volume:/var/lib/postgresql/data
 Network=mirco.network
-EnvironmentFile=mirco/env.production
+EnvironmentFile=env.production
+Label=traefik.enable=false
 
 # healthcheck
 HealthCmd=/usr/local/bin/pg_isready -q -d postgres -U postgres

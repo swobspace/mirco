@@ -10,12 +10,19 @@ Image=ghcr.io/swobspace/mirco:latest
 ContainerName=mirco
 Volume=mirco-storage.volume:/rails/storage
 Volume=mirco-tmp.volume:/rails/tmp
-Volume=./mirco/mirco.yml:/rails/shared/config/mirco.yml:ro,z
+Volume=./mirco.yml:/rails/shared/config/mirco.yml:ro,z
 Network=mirco.network
-EnvironmentFile=mirco/env.production
+# Network=traefik.network
+PublishPort=3001:3001
+EnvironmentFile=env.production
 Environment=FORCE_SSL=false
-PublishPort=4001:4001
 AddCapability=CAP_NET_RAW
+# Label=traefik.enable=true
+# Label=traefik.http.routers.mirco.rule=Host(`mirco.example.com`)
+# Label=traefik.http.routers.mirco.entrypoints=websecure
+# Label=traefik.http.routers.mirco.tls=true
+# Label=traefik.http.routers.mirco.service=svc-mirco
+# Label=traefik.http.services.svc-mirco.loadbalancer.server.port=3001
 
 [Service]
 Restart=always

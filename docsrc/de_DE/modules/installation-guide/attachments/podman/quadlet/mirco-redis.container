@@ -6,6 +6,7 @@ Image=docker.io/library/redis:latest
 ContainerName=mirco-redis
 Volume=mirco-redis.volume:/data
 Network=mirco.network
+Label=traefik.enable=false
 
 [Service]
 Restart=always

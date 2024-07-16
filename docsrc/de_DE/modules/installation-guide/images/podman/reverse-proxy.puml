@@ -13,8 +13,8 @@ rectangle mirco #lightgreen [
   Mirco
 ]
 
-client --> "https://myhost.example.com\nwss://myhost.example.com" proxy
+client --> "https://myhost.example.com\nwss://myhost.example.com/cable" proxy
 
-proxy --> "http://localhost:4001\nws://localhost:4001/cable" mirco
+proxy --> "http://localhost:3001\nws://localhost:3001/cable" mirco
 
 @enduml

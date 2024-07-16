@@ -154,13 +154,6 @@
 </aside>
 <article class="doc">
 <h1 class="page">Podman in production using systemd and quadlets</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p><mark>WORK IN PROGRESS</mark></p>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
 <div class="sectionbody">
@@ -200,6 +193,11 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 40</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 23.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4.3.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">doesn&#8217;t work</p></td>
@@ -221,13 +219,25 @@
 <img src="../_images/podman/mirco-quadlets.svg" alt="mirco quadlets">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To run rootless containers, first create a special user. Say our user is
+<code>poddy</code> and has uid 1001.
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">Rootless setup: directories and files</div>
 <div class="content">
-<pre>/etc/containers/systemd/users/1000
-├── mirco
-│   ├── env.production
-│   └── mirco.yml
+<pre>/etc/containers/systemd/users/1001/mirco
+├── <a href="../_attachments/podman/quadlet/env.production" class="xref attachment">env.production</a>
+├── <a href="../_attachments/podman/quadlet/mirco.yml" class="xref attachment">mirco.yml</a>
 ├── <a href="../_attachments/podman/quadlet/mirco.container" class="xref attachment">mirco.container</a>
 ├── <a href="../_attachments/podman/quadlet/mirco.network" class="xref attachment">mirco.network</a>
 ├── <a href="../_attachments/podman/quadlet/mirco-postgres.container" class="xref attachment">mirco-postgres.container</a>
@@ -237,6 +247,79 @@
 ├── <a href="../_attachments/podman/quadlet/mirco-storage.volume" class="xref attachment">mirco-storage.volume</a>
 ├── <a href="../_attachments/podman/quadlet/mirco-tmp.volume" class="xref attachment">mirco-tmp.volume</a>
 └── <a href="#attachment$podman/quadlet/mirco-worker-container">mirco-worker.container</a></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_run_rootless_containers_with_podman"><a class="anchor" href="#_how_to_run_rootless_containers_with_podman"></a>How to run rootless containers with podman</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need to enable linger, otherwise your containers will stop running after you log out.</p>
+</div>
+<div class="listingblock">
+<div class="title">Enable linger for poddy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">loginctl enable-linger poddy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use sudo or su to become poddy, two environment variables should be
+checked/set after becoming <code>poddy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Set environment variables</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export XDG_RUNTIME_DIR="/run/user/1001"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create the neccessary systemd directory</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir -p /etc/containers/systemd/users/1001/mirco
+chown -R poddy:poddy /etc/containers/systemd/users/1001
+chmod 700 -R /etc/containers/systemd/users/1001</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now copy all the files from above to
+<code>/etc/containers/systemd/users/1001/mirco</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Now is a good time to create your own credentials and update env.production!
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Reload systemd</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user daemon-reload</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Start postgresql first - wait - start the rest</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user start mirco-postgres
+...
+systemctl --user start mirco</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Check logs</div>
+<div class="content">
+<pre># complete output
+journalctl --user -f
+...
+# specific to one container
+journalctl --user -u mirco -f</pre>
 </div>
 </div>
 </div>
@@ -254,6 +337,9 @@
 </li>
 <li>
 <p><a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a></p>
+</li>
+<li>
+<p><a href="https://github.com/swobspace/ansible-role-podman" class="bare">https://github.com/swobspace/ansible-role-podman</a></p>
 </li>
 </ul>
 </div>
