@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Podman in production using systemd and quadlets :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/migration-to-podman.html">Migrate database to podman containers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/escalation-levels.html">Escalation Levels</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstart.html">Quick start</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="podman-systemd.html">production: systemd + quadlets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Mirco</a></li>
+    <li><a href="../index.html">Installation</a></li>
+    <li><a href="podman-systemd.html">production: systemd + quadlets</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Podman in production using systemd and quadlets</h1>
+<div class="sect1">
+<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>podman Version &gt;= 4.4, better 4.6 or higher.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If something doesn&#8217;t work have a look at <a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a> and select your podman version (right bottom corner).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Podman Version in some linux distributions</caption>
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Distro</th>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">usable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 38</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 39</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.8.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fedora 40</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 23.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">doesn&#8217;t work</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 24.04</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.7.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ok</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../_images/podman/mirco-quadlets.svg" alt="mirco quadlets">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To run rootless containers, first create a special user. Say our user is
+<code>poddy</code> and has uid 1001.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Rootless setup: directories and files</div>
+<div class="content">
+<pre>/etc/containers/systemd/users/1001/mirco
+├── <a href="../_attachments/podman/quadlet/env.production" class="xref attachment">env.production</a>
+├── <a href="../_attachments/podman/quadlet/mirco.yml" class="xref attachment">mirco.yml</a>
+├── <a href="../_attachments/podman/quadlet/mirco.container" class="xref attachment">mirco.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco.network" class="xref attachment">mirco.network</a>
+├── <a href="../_attachments/podman/quadlet/mirco-postgres.container" class="xref attachment">mirco-postgres.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco-postgres.volume" class="xref attachment">mirco-postgres.volume</a>
+├── <a href="../_attachments/podman/quadlet/mirco-redis.container" class="xref attachment">mirco-redis.container</a>
+├── <a href="../_attachments/podman/quadlet/mirco-redis.volume" class="xref attachment">mirco-redis.volume</a>
+├── <a href="../_attachments/podman/quadlet/mirco-storage.volume" class="xref attachment">mirco-storage.volume</a>
+├── <a href="../_attachments/podman/quadlet/mirco-tmp.volume" class="xref attachment">mirco-tmp.volume</a>
+└── <a href="#attachment$podman/quadlet/mirco-worker-container">mirco-worker.container</a></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_run_rootless_containers_with_podman"><a class="anchor" href="#_how_to_run_rootless_containers_with_podman"></a>How to run rootless containers with podman</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need to enable linger, otherwise your containers will stop running after you log out.</p>
+</div>
+<div class="listingblock">
+<div class="title">Enable linger for poddy</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">loginctl enable-linger poddy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use sudo or su to become poddy, two environment variables should be
+checked/set after becoming <code>poddy</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Set environment variables</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export XDG_RUNTIME_DIR="/run/user/1001"
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create the neccessary systemd directory</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir -p /etc/containers/systemd/users/1001/mirco
+chown -R poddy:poddy /etc/containers/systemd/users/1001
+chmod 700 -R /etc/containers/systemd/users/1001</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now copy all the files from above to
+<code>/etc/containers/systemd/users/1001/mirco</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Now is a good time to create your own credentials and update env.production!
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Reload systemd</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user daemon-reload</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Start postgresql first - wait - start the rest</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">systemctl --user start mirco-postgres
+...
+systemctl --user start mirco</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">(user poddy) Check logs</div>
+<div class="content">
+<pre># complete output
+journalctl --user -f
+...
+# specific to one container
+journalctl --user -u mirco -f</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resources"><a class="anchor" href="#_resources"></a>Resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.redhat.com/sysadmin/quadlet-podman" class="bare">https://www.redhat.com/sysadmin/quadlet-podman</a></p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet" class="bare">https://www.redhat.com/sysadmin/multi-container-application-podman-quadlet</a></p>
+</li>
+<li>
+<p><a href="https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html" class="bare">https://docs.podman.io/en/stable/markdown/podman-systemd.unit.5.html</a></p>
+</li>
+<li>
+<p><a href="https://github.com/swobspace/ansible-role-podman" class="bare">https://github.com/swobspace/ansible-role-podman</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2024</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

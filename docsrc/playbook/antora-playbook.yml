@@ -5,12 +5,8 @@ content:
   sources:
   - url: ../..
     branches: HEAD
+    start_paths: [docsrc/de_DE, docsrc/devnotes]
     edit_url: ~
-    start_path: docsrc/de_DE
-  - url: ../..
-    branches: HEAD
-    edit_url: ~
-    start_path: docsrc/devnotes
 output:
   dir: ../../docs
   clean: true

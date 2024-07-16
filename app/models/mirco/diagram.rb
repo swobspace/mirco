@@ -14,7 +14,7 @@ module Mirco
     def create(format)
       mk_cachedir
       File.write(filename(:puml), render_puml)
-      `/usr/bin/plantuml -t#{format} #{filename(:puml)}`
+      `/usr/bin/java -jar #{jarfile} -t#{format} #{filename(:puml)}`
     end
 
     def delete
@@ -39,6 +39,10 @@ module Mirco
 
     def cachedir
       Rails.root.join('tmp', 'cache', type.pluralize)
+    end
+
+    def jarfile
+      Rails.root.join('shared', 'plantuml.jar')
     end
 
     protected

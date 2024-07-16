@@ -14,9 +14,3 @@ import 'datatables.net-buttons-bs5';
 import 'datatables.net-buttons/js/buttons.colVis.mjs';
 import 'datatables.net-buttons/js/buttons.html5.mjs';
 import 'datatables.net-buttons/js/buttons.print.mjs';
-
-// require('datatables.net-bs5')();
-// require('datatables.net-buttons-bs5')();
-// require('datatables.net-buttons/js/buttons.colVis.js' )();
-// require('datatables.net-buttons/js/buttons.html5.js' )();
-// require('datatables.net-buttons/js/buttons.print.js' )();

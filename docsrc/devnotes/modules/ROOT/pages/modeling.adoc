@@ -28,17 +28,10 @@ bin/rails g scaffold Server \
   last_channel_update:timestamp \
   last_check:timestamp last_check_ok:timestamp \
   manual_update:boolean \
+  condition:integer:index \
   --no-stylesheets --no-javascripts --no-helper
 
 ----
-// bin/rails g migration AddVerifySslToServer api_verify_ssl:boolean
-// bin/rails g migration AddLastChannelUpdateToServer \
-//  last_channel_update:timestamp
-// bin/rails g migration AddLastCheckToServer \
-//  last_check:timestamp last_check_ok:timestamp
-// bin/rails g migration AddLocationToServer location:belongs_to
-// bin/rails g migration RemoveLocationFromServer
-
 
 == model Channel
 

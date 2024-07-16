@@ -1,0 +1,28 @@
+---
+# -- check interval
+cron_fetch_statistics: '*/2 * * * *'
+# cron_fetch_channels: '0 1 * * 6'
+# cron_fetch_configuration: '15 1 * * 6'
+# cron_purge_timescale:  '30 1 * * 6'
+
+# -- warning stuff
+# warning_period: 10
+# queued_warning_level: 10
+# queued_critical_level: 50
+
+# -- SSL
+use_ssl: false
+
+# -- action cable request origins
+action_cable_allowed_request_origins:
+  - http://localhost:3001
+  - https://localhost:3001
+
+# -- action mailer settings
+host: localhost
+port: 3001
+# script_name: /
+# mail_from: do-not-reply@from-some-domain
+# mail_to:
+#  - jane.doe@example.org
+

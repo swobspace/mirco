@@ -1,0 +1,73 @@
+@startuml
+top to bottom direction
+!theme mirco from ../../../../..
+
+rectangle network #lightgreen [ 
+  Network
+  <i>mirco.network</i>
+]
+
+rectangle mirco [
+  <b>mirco</b>
+  <i>mirco.container</i>
+]
+
+rectangle worker [
+  <b>mirco-worker</b>
+  <i>mirco-worker.container</i>
+]
+
+rectangle postgres [
+  <b>mirco-postgres</b>
+  <i>mirco-postgres.container</i>
+]
+
+rectangle redis [
+  <b>mirco-redis</b>
+  <i>mirco-redis.container</i>
+]
+
+storage v_postgres [
+  <b>mirco-postgres</b>
+  <i>mirco-postgres.volume</i>  
+]
+
+storage v_redis [
+  <b>mirco-redis</b>
+  <i>mirco-redis.volume</i>  
+]
+
+storage v_storage [
+  <b>mirco-storage</b>
+  <i>mirco-storage.volume</i>  
+]
+
+storage v_tmp [
+  <b>mirco-tmp</b>
+  <i>mirco-tmp.volume</i>  
+]
+
+storage mirco_yml [
+  ./mirco/mirco.yml
+]
+
+file env #lightblue [
+  ./mirco/env.production
+]
+
+network #-- mirco
+network #-- postgres
+network #-- redis
+
+
+mirco_yml #-- mirco
+mirco --# v_storage
+mirco --# v_tmp
+
+mirco_yml #-- worker
+worker --# v_storage
+
+postgres --# v_postgres
+redis --# v_redis
+
+@enduml

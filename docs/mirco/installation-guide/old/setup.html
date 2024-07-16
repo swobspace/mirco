@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Setup :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../admin-manual/postgresql/migration-to-podman.html">Migrate database to podman containers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../admin-manual/escalation-levels.html">Escalation Levels</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../index.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/quickstart.html">Quick start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/podman-systemd.html">production: systemd + quadlets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../podman/reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuration.html">Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Mirco</a></li>
+    <li><a href="setup.html">Setup</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Setup</h1>
+<div class="sect1">
+<h2 id="_installation_benötigter_pakete"><a class="anchor" href="#_installation_benötigter_pakete"></a>Installation benötigter Pakete</h2>
+<div class="sectionbody">
+<div id="packages-debian" class="listingblock">
+<div class="title">Pakete für Debian/Ubuntu</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"># development
+apt install autoconf binutils bison build-essential flex gettext ncurses-dev
+
+# database
+apt install postgresql postgresql-client postgresql-client-common \
+           postgresql-common postgresql-contrib postgresql-server-dev-all
+
+# webserver
+apt install apache2 apache2-bin apache2-data apache2-utils</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Apache Authentifikation</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apt install libapache2-mode-auth-cas</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ruby"><a class="anchor" href="#_ruby"></a>Ruby</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Manuelle Installation (root)</div>
+<div class="content">
+<pre>mkdir -p /usr/local/src/ruby
+cd /usr/local/src/ruby
+tar xvzf ruby-2.7.4.tar.gz</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">do_configure</div>
+<div class="content">
+<pre>#!/bin/bash
+make distclean
+
+DEB_HOST_GNU_TYPE=$(dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE=$(dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+./configure --host=$DEB_HOST_GNU_TYPE \
+            --build=$DEB_BUILD_GNU_TYPE \
+            --prefix=/opt/ruby/2.7 \
+            --enable-shared \
+            --disable-install-doc</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Compilieren</div>
+<div class="content">
+<pre>./do_configure &amp;&amp; make -j 4 &amp;&amp; make install</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_yarn_für_das_deployment_von_javascript"><a class="anchor" href="#_yarn_für_das_deployment_von_javascript"></a>Yarn für das Deployment von Javascript</h2>
+<div class="sectionbody">
+<div id="yarn-packages-debian" class="listingblock">
+<div class="title">Pakete für Debian/Ubuntu</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update &amp;&amp; sudo apt-get install yarn</code></pre>
+</div>
+</div>
+<div id="yarn-packages-fedora" class="listingblock">
+<div class="title">Pakete für Fedora</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">sudo wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash -
+dnf install -y yarn</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_user_deploy"><a class="anchor" href="#_user_deploy"></a>User <code>deploy</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die Installation der Anwendung erfolgt unter dem User <code>deploy</code>. Bei der
+Installation und bei Updates werden Pakete aus dem Internet gezogen. In
+durch einen Proxy geschützten Netzwerken setzt man die Variablen
+<code>http_proxy</code> und <code>https_proxy</code> (<code>.bashrc</code>). Git greift nicht auf
+die Shellvariablen zu, sondern benötigt eine eigene Konfiguration.</p>
+</div>
+<div id="bashrc-deploy" class="listingblock">
+<div class="title">bashrc: Proxy-Einstellungen</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">export http_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/
+export https_proxy=http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
+</div>
+</div>
+<div id="git-config" class="listingblock">
+<div class="title">Git-Konfiguration User <code>deploy</code> für Updates der Anwendung</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git config --global http.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/
+git config --global https.proxy http://&lt;proxy&gt;:&lt;proxyport&gt;/</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verzeichnisse_für_mirco"><a class="anchor" href="#_verzeichnisse_für_mirco"></a>Verzeichnisse für Mirco</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vor dem ersten Deploy legt man die im Listing <a href="#deployment-directories">Verzeichnisse für Mirco</a>
+angegebenen Verzeichnisse an. Die Verzeichnisse müssen alle
+dem User <code>deploy</code> gehören.</p>
+</div>
+<div id="deployment-directories" class="listingblock">
+<div class="title">Verzeichnisse für Mirco</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">export BASE=/var/srv/www/mirco
+mkdir -p ${BASE}/mirco/releases
+mkdir -p ${BASE}/mirco/shared/config
+mkdir -p ${BASE}/mirco/shared/log
+mkdir -p ${BASE}/mirco/shared/files
+mkdir -p ${BASE}/mirco/shared/public/images
+mkdir -p ${BASE}/mirco/shared/Backup/models
+mkdir -p ${BASE}/mirco/shared/pids
+chown deploy:deploy -R ${BASE}/mirco</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>./releases/</code>
+</td>
+<td class="hdlist2">
+<p>Verzeichnis für die Installation des Codes. Normalerweise befinden
+sich hier die 5 letzten Updates, um bei Bedarf einen Rollback durchführen
+zu können. Ältere Versionen werden beim Deployment automatisch gelöscht.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./current/</code>
+</td>
+<td class="hdlist2">
+<p>Ein Symlink auf das jeweils aktuelle Release.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/</code>
+</td>
+<td class="hdlist2">
+<p>Zentrales Verzeichnis für die statische Konfiguration und alle Dateien,
+die bei Updates der Anwendung unverändert bleiben.</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/config/</code>
+</td>
+<td class="hdlist2">
+<p>Konfigurationsdateien <code>application.yml</code>, <code>database.yml</code> und <code>secrets.yml</code> <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/log/</code>
+</td>
+<td class="hdlist2">
+<p>Logdateien</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/files/</code>
+</td>
+<td class="hdlist2">
+<p>Dateiablage für Anlagen</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/images/</code>
+</td>
+<td class="hdlist2">
+<p>Dateiablage für Logos zu den OUs</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/Backup/</code>
+</td>
+<td class="hdlist2">
+<p>Konfigurationdateien für die Anwendungssicherung</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>./shared/pids/</code>
+</td>
+<td class="hdlist2">
+<p>wird von <code>delayed_job</code> für die Hintergrund-Jobs benötigt</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. secrets.yml ab ab Rails 4.2
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2024</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

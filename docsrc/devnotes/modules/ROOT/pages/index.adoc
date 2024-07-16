@@ -1,1 +1,4 @@
 = Developer Notes
+
+Mostly notes collected during development, not for production use. 
+Feel free to browse and make your own decisions.

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Migrate existing database to podman containers :: Mirco Dokumentation</title>
+    <meta name="generator" content="Antora 3.1.9">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Mirco Dokumentation</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="abstand">
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+           <a class="navbar-item" href="../../../devnotes/index.html">DevNotes</a>
+          <div class="navbar-item dark">Mirco</div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="mirco" data-version="">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../../index.html">Mirco</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../user-manual/index.html">Benutzer-Handbuch</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Admin Manual</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../scheduling.html">Job Scheduling</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../timescale.html">TimescaleDB</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL Maintenance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="backuprestore.html">Backup &amp; Restore with timescaledb</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="upgrade.html">Upgrade mit Timescale</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="migration-to-podman.html">Migrate database to podman containers</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../escalation-levels.html">Escalation Levels</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../installation-guide/index.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/podman/quickstart.html">Quick start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/podman/podman-systemd.html">production: systemd + quadlets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/podman/reverse-proxy.html">Reverse Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../installation-guide/configuration.html">Configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../mirth.html">Mirth</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../about.html">Über Mirco</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Mirco</span>
+    <span class="version">default</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <a class="title" href="../../../devnotes/index.html">DevNotes</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../devnotes/index.html">default</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <a class="title" href="../../index.html">Mirco</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../../index.html">default</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../index.html">Mirco</a></li>
+    <li>Admin Manual</li>
+    <li>PostgreSQL Maintenance</li>
+    <li><a href="migration-to-podman.html">Migrate database to podman containers</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Migrate existing database to podman containers</h1>
+<div class="sect1">
+<h2 id="_backup"><a class="anchor" href="#_backup"></a>Backup</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">(postgres) dump without owner and privileges</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">pg_dump --format=plain --quote-all-identifiers \
+        --no-tablespaces --no-owner --no-privileges \
+        --clean --if-exists --create --no-acl -U postgres \
+        --file=postgres-mirco-2024-07-15.sql \
+        mirco_production</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_copy"><a class="anchor" href="#_copy"></a>Copy</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">(poddy) Copy as user <code>poddy</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman cp postgres-mirco-2024-07-15.sql \
+          mirco-postgres:/tmp/.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_import"><a class="anchor" href="#_import"></a>Import</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>podman exec -it mirco-postgres /bin/bash
+cd /tmp
+psql -U postgres mirco_production &lt; postgres-mirco-2024-07-15.sql</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <span>Wolfgang Barth (C) 2021-2024</span>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/medium-zoom.min.js"></script>
+<script>mediumZoom('img:not(.copy-icon');</script>
+  </body>
+</html>

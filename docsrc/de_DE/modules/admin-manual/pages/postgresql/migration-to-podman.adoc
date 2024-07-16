@@ -1,0 +1,32 @@
+= Migrate existing database to podman containers
+:navtitle: Migrate database to podman containers
+:author: Wolfgang Barth
+
+== Backup
+
+.(postgres) dump without owner and privileges
+[source,sh]
+----
+pg_dump --format=plain --quote-all-identifiers \
+        --no-tablespaces --no-owner --no-privileges \
+        --clean --if-exists --create --no-acl -U postgres \
+        --file=postgres-mirco-2024-07-15.sql \
+        mirco_production
+----   
+
+== Copy
+
+.(poddy) Copy as user `poddy`
+[source,sh]
+----
+podman cp postgres-mirco-2024-07-15.sql \
+          mirco-postgres:/tmp/.
+----
+
+== Import
+
+----
+podman exec -it mirco-postgres /bin/bash
+cd /tmp
+psql -U postgres mirco_production < postgres-mirco-2024-07-15.sql
+----

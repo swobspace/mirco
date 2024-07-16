@@ -4,13 +4,15 @@ $stdout.sync = true
 
 Rails.application.configure do
   config.good_job = {
-    execution_mode: :async_server,
+    execution_mode: :external,
     enable_cron: true,
     max_threads: 4,
     poll_interval: 30,
     retry_on_unhandled_error: false,
-    preserve_job_records: false,
-
+    preserve_job_records: true,
+    # cleanup_interval_jobs: 100,
+    cleanup_interval_seconds: 3600,
+    cleanup_preserved_jobs_before_seconds_ago: 172800,
     cron: {
       fetch_statistics: {
         cron: Mirco.cron_fetch_statistics,
@@ -34,46 +36,4 @@ Rails.application.configure do
       }
     }
   }
-
-  if ENV['GOOD_JOB_EXECUTION_MODE']
-    config.good_job[:execution_mode] = ENV['GOOD_JOB_EXECUTION_MODE'].to_sym
-  elsif Rails.const_defined?("Console")
-    config.good_job[:execution_mode] = :external
-  elsif Rails.const_defined?("Server")
-    case Rails.env
-    when 'development'
-      config.good_job[:execution_mode] = :external
-    when 'production'
-      config.good_job[:execution_mode] = :async_server
-    when 'test'
-      config.good_job[:execution_mode] = :inline
-    else
-    end
-  end
-end
-
-if defined? PhusionPassenger
-  PhusionPassenger.on_event :starting_worker_process do |forked|
-    # If `forked` is true, we're in smart spawning mode.
-    # https://www.phusionpassenger.com/docs/advanced_guides/in_depth/ruby/spawn_methods.html#smart-spawning-hooks
-    if forked
-      GoodJob.logger.info { 'Starting Passenger worker process.' }
-      GoodJob.restart
-    end
-  end
-
-  PhusionPassenger.on_event :stopping_worker_process do
-    GoodJob.logger.info { 'Stopping Passenger worker process.' }
-    GoodJob.shutdown
-  end
-end
-
-# GoodJob also starts in the Passenger preloader process. This one does not
-# trigger the above events, thus we catch it with `Kernel#at_exit`.
-PRELOADER_PID = Process.pid
-at_exit do
-  if Process.pid == PRELOADER_PID
-    GoodJob.logger.info { 'Passenger AppPreloader shutting down.' }
-    GoodJob.shutdown
-  end
 end

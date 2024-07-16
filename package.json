@@ -4,23 +4,27 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "^7.1.0",
+    "@hotwired/turbo-rails": "^8.0.4",
     "@popperjs/core": "^2.9.2",
     "@rails/actiontext": "^7.0.0",
     "@rails/activestorage": "^7.0.0",
     "@swobspace/stimulus-polymorphic-select": "https://github.com/swobspace/stimulus-polymorphic-select.git",
+    "autoprefixer": "^10.4.16",
     "bootstrap": "5",
     "chart.js": "^4.2.0",
     "chartkick": "^5.0.1",
-    "datatables.net": "~1.13.3",
-    "datatables.net-bs5": "~1.13.3",
-    "datatables.net-buttons": "~2.4.0",
-    "datatables.net-buttons-bs5": "~2.4.0",
-    "esbuild": "^0.19.0",
+    "datatables.net": "~2.0.8",
+    "datatables.net-bs5": "~2.0.8",
+    "datatables.net-buttons": "~3.0.2",
+    "datatables.net-buttons-bs5": "~3.0.2",
+    "esbuild": "^0.23.0",
     "jquery": "3",
     "jszip": "^3.7.1",
     "medium-zoom": "^1.0.6",
+    "nodemon": "^3.0.1",
     "pdfmake": "^0.2.4",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^11.0.0",
     "sass": "^1.43.5",
     "tom-select": "^2.1.0",
     "trix": "^2.0.4"
@@ -32,6 +36,9 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
   }
 }

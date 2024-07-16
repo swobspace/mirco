@@ -1,6 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -12,25 +12,28 @@ require 'factory_bot_rails'
 require 'view_component/test_helpers'
 require 'capybara/rspec'
 
-Capybara.register_driver :mychrome do |app|
+Capybara.register_driver :chrome_headless do |app|
+  # url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
   options = Selenium::WebDriver::Chrome::Options.new
 
-  options.add_argument("headless")
-  options.add_argument("window-size=1280x1280")
+  options.add_argument("--headless")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--window-size=1280x1280")
   # options.add_argument("disable-gpu")
 
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
+    # url: url,
     options: options
   )
 end
 
 # Capybara.javascript_driver = :selenium_chrome
 # Capybara.javascript_driver = :selenium_chrome_headless
-Capybara.javascript_driver = :mychrome
+Capybara.javascript_driver = :chrome_headless
 Capybara.disable_animation = true
-
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -76,6 +79,14 @@ RSpec.configure do |config|
   config.include RequestMacros, type: :feature
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
+
+  config.before :each, type: :feature, js: true do
+    Capybara.server_host = `/sbin/ip route|awk '/scope/ { print $9 }'`.strip
+    Capybara.server_port = "43447"
+    session_server       = Capybara.current_session.server
+    Capybara.app_host    = "http://#{session_server.host}:#{session_server.port}"
+  end
+
 
   config.after(:suite) do
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)

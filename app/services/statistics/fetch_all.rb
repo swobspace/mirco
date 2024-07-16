@@ -70,6 +70,7 @@ module Statistics
       else
         server.touch(:last_check)
       end
+      server.update(condition: server.escalation_status().state)
 
       Result.new(success: success, error_messages: errmsgs)
     end

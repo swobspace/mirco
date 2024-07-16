@@ -1,27 +1,80 @@
 en:
+  wobauth:
+    action: Action
+    configuration: Configuration
+    change_columns: Change columns
+    show_all: show all
+    restore: reset
+    search: search
+    sort_helper: sort helper
+    applied_filter: applied filter
+    new_user_from_ad: create new user from ldap
+
   activerecord:
     models:
+      wobauth/user: User
+      wobauth/ad_user: Ldap user
       wobauth/authority: Authority
       wobauth/group: Group
-      wobauth/membership: Member
-      wobauth/role: Role
+      wobauth/membership: Membership
+      wobauth/role: Rolle
+      wobauth/users/authority: Authority
+      wobauth/users/membership: Membership
+      wobauth/groups/authority: Authority
+      wobauth/groups/membership: Membership
+      wobauth/registration: User profile
+      wobauth/session: Login
 
-    attributes:
-      name: Name
-    authorizable: authorizable
-    authorizable_type: authorizable type
-    authorized_for: authorized for
-    authorized_for_type: authorized for type
+
+  attributes:
+    active_directory_guid: Active Directory GUID
+    authorizable: Authorizable
+    authorizable_id: Authorizable
+    authorizable_type: Authorizable/Type
+    authorized_for: Authorized for
+    authorized_for_id: Authorized for
+    authorized_for_type: Authorized for/Type
     auto: auto
-    group: gruppe
-    membership: membership
-    role: role
+    care_of: c/o
+    company: company
+    current_sign_in_at: current sign in at
+    current_sign_in_ip: current sign in ip
+    department: Department
+    description: Description
+    displayname: Displayname
+    email: Mail
+    facsimiletelephonenumber: Facsimile telephone number
+    group: Group
+    gruppen: Groups (auto-assigned)
+    last_sign_in_at: last sign in at
+    last_sign_in_ip: last sign in ip
+    location: Location
+    mail: Mail
+    members: Members
+    membership: Membership
+    mobile: Mobile
+    name: Name
+    ort: City
+    plz: Zip code
+    position: Position
+    postfach: Post box
+    postfachplz: Post box zip code
+    role: Role
+    sign_in_count: Count logins
+    streetaddress: Street address
+    telephone: Telephone
+    telephonenumber: Telephone
+    title: Title
+    user: User
+    username: Username
+    userprincipalname: Userprincipalname
     valid_from: valid from
     valid_until: valid until
 
   controller:
+    wobauth/users: Users
+    wobauth/ad_users: Ldap Users
     wobauth/authorities: Authorities
     wobauth/groups: Groups
     wobauth/memberships: Memberships
     wobauth/roles: Roles
-

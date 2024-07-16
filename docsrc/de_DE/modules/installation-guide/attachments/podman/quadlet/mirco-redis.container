@@ -1,0 +1,18 @@
+[Unit]
+Description=Redis for Mirco (production)
+
+[Container]
+Image=docker.io/library/redis:latest
+ContainerName=mirco-redis
+Volume=mirco-redis.volume:/data
+Network=mirco.network
+Label=traefik.enable=false
+
+[Service]
+Restart=always
+
+# pulling an image may exceed the default timeout
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

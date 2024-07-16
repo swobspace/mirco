@@ -1,10 +1,8 @@
-= Konfiguration
+= Configuration
 
-== Zentrale Konfigurationdatei `mirco.yml`
+== `mirco.yml`
 
-Die Konfigurationsdatei `mirco.yml` ist reserviert für eine spätere
-Konfiguration via Datei. Die Datei muss existieren, kann aber auch zunächst
-leer sein.
+The main configuration file is `mirco.yml`.
 
 [[mirco.yml]]
 .mirco.yml
@@ -12,17 +10,19 @@ leer sein.
 ----
 # config/mirco.yml
 cron_expression: '*/5 * * * *' <!--1-->
-warn_threshold: 10 <!--2-->
-use_ssl: true <!--3-->
+# check health
+warning_period: 10 <!--2-->
+use_ssl: false <!--3-->
 action_cable_allowed_request_origins: <!--4-->
   - http://mirco.example.com
   - https://mirco.example.com
 ----
-<1> Cron-Ausdruck für das Scheduling der Checks; voreingestellt sind alle 5 min.
-<2> Warnschwelle in Minuten; bei Überschreitung wird die Zeitangabe farblich markiert.
-<3> Erzwinge SSL; empfohlene Einstellung, sofern Apache2 für SSL konfiguriert ist
-<4> http:// und https:// Site-Urls für den Websocket
+<1> How often should Mirco retrieve channel statistics from your Mirth Connect servers?
+<2> Warn if the last successful check is more than 10 minutes old.
+<3> should be false if you are running mirco behind a reverse proxy.
+<4> http:// and https:// site Urls accessing Mirco from outside
 
+////
 == deploy-config.yml
 
 [source,yaml]
@@ -40,3 +40,4 @@ deploy_to: /var/www/apps/mirco
 relative_url_root: /
 ruby_path: "/opt/ruby/2.7/bin:$PATH"
 ----
+////

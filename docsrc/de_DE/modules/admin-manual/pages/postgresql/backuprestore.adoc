@@ -1,6 +1,6 @@
 = Backup & Restore PostgreSQL with timescaledb
 :navtitle: Backup & Restore with timescaledb
-
+:author: Wolfgang Barth
 
 == pg_dump & pg_restore (nur Mirco)
 
@@ -9,6 +9,11 @@ Entnommen aus: https://docs.timescale.com/timescaledb/latest/how-to-guides/backu
 
 .(postgres) Dump im Custom Format (ist bereits komprimiert)
 ----
+pg_dump --format=plain --quote-all-identifiers \
+        --no-tablespaces --no-owner --no-privileges \
+        --clean --if-exists --create --no-acl -U postgres \
+        --file=postgres-mirco-2024-07-15.sql \
+        mirco_production
 pg_dump -Fc -f mirco_production.dmp mirco_production
 ----
 
