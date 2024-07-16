@@ -15,8 +15,7 @@ module Mirco
 
 
   def self.devise_modules
-    CONFIG['devise_modules'].presence || %i[remote_user_authenticatable
-                                            database_authenticatable
+    CONFIG['devise_modules'].presence || %i[database_authenticatable
                                             registerable
                                             recoverable
                                             rememberable
