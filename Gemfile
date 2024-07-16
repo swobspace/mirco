@@ -19,9 +19,6 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
-group :development do
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'rails-i18n', '~> 7.0.0'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -30,10 +27,6 @@ gem 'stimulus-rails'
 gem 'view_component'
 
 group :development do
-  gem 'capistrano', require: false
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-yarn'
   gem 'guard'
   # gem 'guard-bundler'
   gem 'guard-livereload', require: false
