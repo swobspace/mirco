@@ -1,26 +1,17 @@
 ---
-# -- check interval
+# -- job scheduling
 # cron_fetch_statistics: '*/5 * * * *'
 # cron_fetch_channels: '0 1 * * 6'
 # cron_fetch_configuration: '15 1 * * 6'
 # cron_purge_timescale:  '30 1 * * 6'
 
-# -- warning stuff
-# warning_period: 10
-# queued_warning_level: 10
-# queued_critical_level: 50
-
 # -- authentication modules
 # devise_modules:
-#   - remote_user_authenticatable
 #   - database_authenticatable
 #   - registerable
 #   - recoverable
 #   - rememberable
 #   - trackable
-
-# -- remote user variable for single sign on
-# remote_user: REMOTE_USER
 
 # -- SSL
 # use_ssl: false

@@ -73,21 +73,6 @@ module Mirco
     fetch_config('cron_purge_timescale', '30 1 * * 6')
   end
 
-  # warning if last check is older than warning_period minutes
-  def self.warning_period
-    fetch_config('warning_period', 10)
-  end
-
-  # warning if queued_messages > queued_warning_level
-  def self.queued_warning_level
-    fetch_config('queued_warning_level', 10)
-  end
-
-  # critical if queued_messages > queued_critical_level
-  def self.queued_critical_level
-    fetch_config('queued_critical_level', 50)
-  end
-
   def self.action_cable_allowed_request_origins
     fetch_config('action_cable_allowed_request_origins', 
                  ['http://localhost', 'https://localhost'])
