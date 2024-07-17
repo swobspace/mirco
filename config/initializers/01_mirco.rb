@@ -35,6 +35,11 @@ module Mirco
     end
   end
 
+  def self.enable_ldap_authentication
+    return false unless self.ldap_options.present?
+    fetch_config('enable_ldap_authentication', false)
+  end
+
   def self.mail_from
     fetch_config('mail_from', 'root')
   end

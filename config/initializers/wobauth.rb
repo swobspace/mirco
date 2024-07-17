@@ -23,5 +23,5 @@ Wobauth.setup do |config|
   #
   config.custom_stream_actions = true
 
-  config.enable_ldap_authenticatable = true
+  config.enable_ldap_authenticatable = Mirco.enable_ldap_authentication
 end

@@ -26,7 +26,6 @@ RSpec.describe Mirco, type: :model do
     end
     it {
       expect(Mirco.devise_modules).to contain_exactly(
-        :remote_user_authenticatable,
         :database_authenticatable,
         :registerable,
         :recoverable,
@@ -106,6 +105,7 @@ RSpec.describe Mirco, type: :model do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options').and_return(nil)
       end
       it { expect(Mirco.ldap_options).to be_nil }
+      it { expect(Mirco.enable_ldap_authentication).to be_falsey }
     end
 
     context ' with existing Settings' do
@@ -145,15 +145,26 @@ RSpec.describe Mirco, type: :model do
           }
         }]
       end
+
       it 'returns symbolized keys from Hash' do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
                                             .and_return(ldap_options)
         expect(Mirco.ldap_options).to eq(ldap_options_sym)
       end
+
       it 'returns symbolized keys from Array of Hashes' do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
                                             .and_return(ldap_options_ary)
         expect(Mirco.ldap_options).to eq(ldap_options_sym)
+      end
+
+      it { expect(Mirco.enable_ldap_authentication).to be_falsey }
+      it "set enable ldap auth to true" do
+        allow(Mirco::CONFIG).to receive(:[]).with('enable_ldap_authentication')
+                                            .and_return(true)
+        allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
+                                            .and_return(ldap_options)
+        expect(Mirco.enable_ldap_authentication).to be_truthy
       end
     end
   end
