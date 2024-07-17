@@ -8,36 +8,52 @@ The main configuration file is `mirco.yml`.
 .mirco.yml
 [source,yaml]
 ----
+#
 # config/mirco.yml
-cron_expression: '*/5 * * * *' <!--1-->
-# check health
-warning_period: 10 <!--2-->
-use_ssl: false <!--3-->
-action_cable_allowed_request_origins: <!--4-->
+#
+# -- job scheduling
+cron_fetch_statistics: '*/5 * * * *' <!--1-->
+cron_fetch_channels: '0 1 * * 6' <!--2-->
+cron_fetch_configuration: '15 1 * * 6' <!--3-->
+cron_purge_timescale:  '30 1 * * 6' <!--4-->
+
+# -- SSL
+use_ssl: false <!--5-->
+
+# -- action cable request origins
+action_cable_allowed_request_origins: <!--6-->
   - http://mirco.example.com
   - https://mirco.example.com
 ----
 <1> How often should Mirco retrieve channel statistics from your Mirth Connect servers?
-<2> Warn if the last successful check is more than 10 minutes old.
-<3> should be false if you are running mirco behind a reverse proxy.
-<4> http:// and https:// site Urls accessing Mirco from outside
+<2> Update channel configuration once per week
+<3> Backup mirth configuration (XML only) once per week
+<4> Purge old timescaledb data once per week
+<5> Should be false if you are running Mirco behind a reverse proxy.
+<6> http:// and https:// site Urls accessing Mirco from outside
 
-////
-== deploy-config.yml
+=== LDAP settings
 
-[source,yaml]
+You can use LDAP to create new users and for authentication.
+In most cases you will use both or neither. LDAP is completely 
+optional, so you can choose not to use it. `ldap_options` 
+goes directly to Net::LDAP, see the following page for configuration:
+https://www.rubydoc.info/gems/ruby-net-ldap/Net/LDAP
+
+The LDAP attribute `userPrincipalName` is mapped to `username`. LDAP authentication works best with Active Directory. If you are using another directory service, you are on your own.
+
+.Example 
+[source,yml]
 ----
-#
-# copy me to deploy-config.yml and edit
-#
-hosts:
-  web: myserver
-  app: myserver
-  db: myserver
-repo_url: https://github.com/swobspace/mirco.git
-user: deploy
-deploy_to: /var/www/apps/mirco
-relative_url_root: /
-ruby_path: "/opt/ruby/2.7/bin:$PATH"
+enable_ldap_authentication: true
+ldap_options:
+  hosts:
+    - [ dc1.example.com, 3269 ]
+    - [ dc2.example.com, 3269 ]
+  base: dc=example,dc=de
+  encryption: :simple_tls
+  auth:
+    method: :simple
+    username: readonlyuser@example.com
+    password: averystrongsecret
 ----
-////
