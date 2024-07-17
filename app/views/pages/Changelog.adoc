@@ -1,8 +1,9 @@
 = Changelog
 
-=== 1.5.1-dev / 2024-07-16
+=== 1.5.1-dev / 2024-07-17
 
 ----
+* add ldap authentication as devise strategy
 ----
 
 === 1.5.0 / 2024-07-16
