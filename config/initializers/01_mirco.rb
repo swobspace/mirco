@@ -6,8 +6,26 @@ module Mirco
   CONFIG = config || {}
 
   CONFIGURATION_CONTROLLER = [
-    'servers'
+    'locations',
+    'channel_statistic_groups',
+    'escalation_levels',
+    'notification_groups',
   ].freeze
+
+  SOFTWARE_CONTROLLER = [
+    'software_groups',
+    'software',
+    'software_interfaces',
+    'interface_connectors',
+    'software_connections',
+  ].freeze
+
+  SERVERS_CONTROLLER = [
+    'servers',
+    'alerts',
+    'channels',
+    'channel_statistics',
+  ]
 
   def self.fetch_config(attribute, default_value)
     CONFIG[attribute.to_s].presence || default_value
