@@ -113,7 +113,7 @@ module Mirco
   end
 
   def self.smtp_settings
-    fetch_config('smtp_settings', nil)
+    fetch_config('smtp_settings', nil)&.symbolize_keys
   end
 
   def self.timescale_license

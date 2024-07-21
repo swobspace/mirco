@@ -53,7 +53,7 @@ RSpec.describe Mirco, type: :model do
 
   context ' with existing Settings' do
     let(:smtp_settings) do
-      { address: 'somehost', port: 25 }
+      { 'address' => 'somehost', 'port' => 25 }
     end
 
     before(:each) do
