@@ -97,12 +97,6 @@ Rails.application.configure do
 
   # --- wob
   config.colorize_logging = false
-  if Mirco.smtp_settings.nil?
-    config.action_mailer.delivery_method = :file
-  else
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = Mirco.smtp_settings
-  end
   config.force_ssl = ActiveModel::Type::Boolean.new.cast(ENV.fetch("FORCE_SSL", false))
   config.assume_ssl = ActiveModel::Type::Boolean.new.cast(ENV.fetch("ASSUME_SSL", false))
 end
