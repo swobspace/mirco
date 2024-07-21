@@ -20,6 +20,7 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(nil)
     end
     it {
       expect(Mirco.devise_modules).to contain_exactly(
@@ -47,9 +48,14 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_channels).to eq('0 1 * * 6') }
     it { expect(Mirco.cron_fetch_configuration).to eq('15 1 * * 6') }
     it { expect(Mirco.cron_purge_timescale).to eq('30 1 * * 6') }
+    it { expect(Mirco.smtp_settings).to eq(nil) }
   end
 
   context ' with existing Settings' do
+    let(:smtp_settings) do
+      { address: 'somehost', port: 25 }
+    end
+
     before(:each) do
       allow(Mirco::CONFIG).to receive(:[]).with('devise_modules').and_return([:brabbel])
       allow(Mirco::CONFIG).to receive(:[]).with('mail_from').and_return('from@example.org')
@@ -66,6 +72,7 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(smtp_settings)
     end
     it { expect(Mirco.devise_modules).to contain_exactly(:brabbel) }
     it { expect(Mirco.host).to eq('myhost') }
@@ -85,6 +92,7 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_channels).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_configuration).to eq('* * nix') }
     it { expect(Mirco.cron_purge_timescale).to eq('* * nix') }
+    it { expect(Mirco.smtp_settings).to include(address: 'somehost', port: 25) }
   end
 
   describe '::ldap_options' do

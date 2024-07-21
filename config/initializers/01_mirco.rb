@@ -112,6 +112,10 @@ module Mirco
     fetch_config('script_name', '/')
   end
 
+  def self.smtp_settings
+    fetch_config('smtp_settings', nil)
+  end
+
   def self.timescale_license
     mylicense = "SHOW timescaledb.license;"
     @@timescale_license ||= ActiveRecord::Base.connection.exec_query(mylicense).rows.flatten.first || "apache"
