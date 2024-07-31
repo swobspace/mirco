@@ -1,9 +1,10 @@
 = Changelog
 
-=== 1.5.1-dev / 2024-07-17
+=== 1.5.1-dev / 2024-07-31
 
 ----
 * add ldap authentication as devise strategy
+* bugfix: avoid duplicate connections in some diagrams
 ----
 
 === 1.5.0 / 2024-07-16
