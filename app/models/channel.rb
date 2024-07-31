@@ -66,7 +66,7 @@ class Channel < ApplicationRecord
         channels << ch
       end
     end
-    channels.compact.flatten
+    channels.compact.flatten.uniq
   end
 
   def puml
