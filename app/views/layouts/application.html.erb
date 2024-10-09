@@ -2,15 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="600" />
     <title>Mirco</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true, type: "module" %>
+
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
     <% if content_for?(:head) %>
       <%= yield(:head) %>
@@ -34,9 +34,18 @@
     </nav>
 
     <div class="container-fluid">
-       <% unless controller.action_name =~ /(new|edit)/ %>
-         <%= render_breadcrumbs %>
-       <% end %>
+      <% unless controller.action_name =~ /(new|edit)/ %>
+        <div class="d-flex justify-content-between">
+          <%= render_breadcrumbs %>
+          <div class="p-2" style="color: #999;">
+            <%= Time.now.strftime("%Y-%m-%d %H:%M") %>
+          </div>
+        </div>
+      <% end %>
+      <div id="toaster" class="toast-container position-fixed top-0 end-0"
+                        style="padding-top: 60px;"
+                        data-turbo-permanent>
+      </div>
       <div id="flash">
         <%= show_flash %>
       </div>
@@ -48,6 +57,7 @@
         <div class="col-sm-9">
           <%= render :partial => 'shared/footer' %>
         </div>
+
         <div class="col-sm-3">
           <%= render :partial => 'shared/version' %>
         </div>
