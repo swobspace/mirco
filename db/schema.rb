@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_10_162104) do
+  create_schema "_timescaledb_cache"
+  create_schema "_timescaledb_catalog"
+  create_schema "_timescaledb_config"
+  create_schema "_timescaledb_debug"
+  create_schema "_timescaledb_functions"
+  create_schema "_timescaledb_internal"
+  create_schema "timescaledb_experimental"
+  create_schema "timescaledb_information"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -359,6 +368,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.bigint "host_id"
     t.boolean "manual_update", default: false
     t.integer "condition", default: 0
+    t.bigint "acknowledge_id"
+    t.string "condition_message", default: ""
     t.index ["condition"], name: "index_servers_on_condition"
     t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["uid"], name: "index_servers_on_uid"

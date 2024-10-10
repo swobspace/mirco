@@ -29,6 +29,8 @@ bin/rails g scaffold Server \
   last_check:timestamp last_check_ok:timestamp \
   manual_update:boolean \
   condition:integer:index \
+  condition_message:string \
+  acknowledge_id:bigint \
   --no-stylesheets --no-javascripts --no-helper
 
 ----

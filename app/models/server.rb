@@ -4,6 +4,8 @@ require 'uri'
 class Server < ApplicationRecord
   include ServerConcerns
   include EscalationStatusConcerns
+  include NotableConcerns
+
   # -- associations
   # belongs_to :location
   belongs_to :host

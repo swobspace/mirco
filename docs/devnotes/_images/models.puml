@@ -32,7 +32,9 @@ class Server  {
   last_check: timestamp
   last_check_ok: timestamp
   condition: integer
+  condition_message: string
   manual_update: boolean
+  acknowledge_id: bigint
 }
 
 class Channel {
