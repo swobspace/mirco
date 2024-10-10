@@ -10,6 +10,18 @@ class ServersController < ApplicationController
     respond_with(@servers)
   end
 
+  def sindex
+    if params[:condition]
+      @servers = Server.condition(params[:condition]).not_acknowledged.decorate
+    elsif params[:acknowledged]
+      @servers = Server.acknowledged.decorate
+    else
+      @servers = Server.failed.not_acknowledged.decorate
+    end
+    @pagy, @servers = pagy(@servers)
+    respond_with(@servers)
+  end
+
   # GET /servers/1
   def show
     @server = @server.decorate

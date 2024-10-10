@@ -55,4 +55,48 @@ RSpec.describe Server, type: :model do
     it { expect(server.ipaddress).to eq('11.22.33.55') }
   end
 
+  describe "with notes" do
+    let!(:note) { FactoryBot.create(:note, notable: server, type: 'note') }
+    let!(:ack) { FactoryBot.create(:note, notable: server, type: 'acknowledge') }
+    let!(:oldnote) do  
+      FactoryBot.create(:note,
+        notable: server,
+        type: 'note',
+        valid_until: Date.yesterday
+      )
+    end
+    let!(:oldack) do
+      FactoryBot.create(:note,
+        notable: server,
+        type: 'acknowledge',
+        valid_until: Date.yesterday
+      )
+    end
+
+    it { expect(server.acknowledges).to contain_exactly(ack, oldack) }
+    it { expect(server.current_acknowledge).to eq(ack) }
+    it { expect(server.acknowledges.active).to contain_exactly(ack) }
+    it { expect(server.acknowledges.count).to eq(2) }
+    it { expect(server.current_note).to eq(note) }
+    it { expect(server.notes.active).to contain_exactly(note, ack) }
+    it { expect(server.notes.count).to eq(4) }
+    it { expect(server.plain_notes).to contain_exactly(note, oldnote) }
+    it { expect(server.plain_notes.active).to contain_exactly(note) }
+    it { expect(server.plain_notes.count).to eq(2) }
+
+    describe "#close_acknowledge" do
+      before(:each) do
+        server.update(acknowledge_id: ack.id)
+        server.reload
+      end
+
+      it "terminates current ack" do
+        expect(server.acknowledge).to eq(ack)
+        expect {
+          server.close_acknowledge
+        }.to change(server, :acknowledge_id).to(nil)
+      end
+    end
+  end
+
 end

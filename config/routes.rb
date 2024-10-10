@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     resources :notes, module: :channels
   end
   resources :servers do
+    collection do
+      get :sindex
+    end
     member do
       get :doku
       post :update_properties
