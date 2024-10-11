@@ -119,6 +119,7 @@ a|`alert`, `recovery`
 [source,sh]
 ----
 bin/rails g scaffold Note \
+  'notable:belongs_to{polymorphic}' \
   server:belongs_to \
   channel:belongs_to \
   channel_statistic:belongs_to \

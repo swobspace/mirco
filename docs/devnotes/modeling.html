@@ -297,6 +297,7 @@ end</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">bin/rails g scaffold Note \
+  'notable:belongs_to{polymorphic}' \
   server:belongs_to \
   channel:belongs_to \
   channel_statistic:belongs_to \

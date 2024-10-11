@@ -90,6 +90,7 @@ class Alert {
 }
 
 class Note {
+  notable: polymorpic
   channel_id
   server_id
   channel_statistic_id
