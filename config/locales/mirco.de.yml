@@ -101,6 +101,7 @@ de:
     channel_uid: Channel UUID
     comment: Kommentar
     condition: Zustand
+    condition_message: Zustandsinfo
     connector: Connector
     connectors: Connectoren
     created_at: angelegt am
