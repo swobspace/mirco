@@ -6,6 +6,12 @@
 
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @server, as_text: false) %>
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
   </li>
   <li class="nav-item" role="presentation">
@@ -85,12 +91,14 @@
 
         <tr>
           <th><%= t('attributes.location')%>:</th>
-          <td><%= link_to @server.location, location_path(@server.location) %></td>
+          <td><%= link_to @server.location, location_path(@server.location),
+                          class: 'primary-link' %></td>
         </tr>
 
         <tr>
           <th><%= t('attributes.host')%>:</th>
-          <td><%= link_to @server.host, host_path(@server.host) %>
+          <td><%= link_to @server.host, host_path(@server.host),
+                          class: 'primary-link' %></td>
           </td>
         </tr>
 
@@ -239,7 +247,7 @@
       <h4 class="title"><%= t('mirco.sourceConnectors') %></h4>
     </div>
     <div class="card-body">
-      <%= render 'connectors', 
+      <%= render 'connectors',
                  connectors: @server.channels
                                     .map{|c| c.source_connector}
                                     .reject{|conn| conn&.url.nil?}
@@ -252,7 +260,7 @@
       <h4 class="title"><%= t('mirco.destinationConnectors') %></h4>
     </div>
     <div class="card-body">
-      <%= render 'connectors', 
+      <%= render 'connectors',
                  connectors: @server.channels
                                     .map{|c| c.destination_connectors}
                                     .flatten
@@ -264,7 +272,7 @@
  </div>
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-   <%= turbo_frame_tag("notes", 
+   <%= turbo_frame_tag("notes",
                         src: polymorphic_path([@server, :notes], active: 1),
                         loading: "lazy",
                         refresh: "morph") %>
