@@ -22,8 +22,8 @@
         <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
           <td class="text-center"><%= note.created_at.localtime.to_fs(:local) %></td>
           <td><%= t(note.type, scope: 'mirco.note_types') %></td>
-          <td><%= note.notable %></td>
-          <td class="w-25"><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
+          <td><%= note.notable&.fullname %></td>
+          <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
           <td><%= note.valid_until&.localtime&.to_s %></td>
 
           <td><%= note.user %></td>
