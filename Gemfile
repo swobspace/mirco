@@ -105,3 +105,5 @@ gem "bcrypt_pbkdf"
 gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
+gem "pagy", "~> 9.0"
+

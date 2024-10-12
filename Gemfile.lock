@@ -294,6 +294,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pagy (9.1.0)
     parallel (1.26.3)
     parser (3.3.5.0)
       ast (~> 2.4.1)
@@ -504,6 +505,7 @@ DEPENDENCIES
   lockbox
   net-http
   net-ping
+  pagy (~> 9.0)
   pg (~> 1.1)
   pp
   puma (~> 6.0)
