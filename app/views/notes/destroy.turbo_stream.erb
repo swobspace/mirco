@@ -1,2 +1,2 @@
 <%= turbo_stream.update("ts_notes", partial: 'notes/index',
-                        locals: {notable: @notable, notes: @notable.server_notes }) %>
+                        locals: {notable: @notable, notes: @notable.all_notes }) %>

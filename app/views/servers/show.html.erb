@@ -278,7 +278,7 @@
     </div>
     <div class="card-body">
       <div id='ts_notes'>
-        <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.server_notes } %>
+        <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.all_notes } %>
       </div>
     </div>
   </div>
