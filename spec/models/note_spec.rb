@@ -64,4 +64,22 @@ RSpec.describe Note, type: :model do
       f.save
     end.to change(Note, :count).by(0)
   end
+
+  describe "#active" do
+    let(:log) { FactoryBot.create(:server) }
+
+    let!(:note) { FactoryBot.create(:note, notable: server, type: 'note') }
+    let!(:ack) { FactoryBot.create(:note, notable: server, type: 'acknowledge') }
+    let!(:oldack) do
+      FactoryBot.create(:note,
+        notable: server,
+        type: 'acknowledge',
+        valid_until: Date.yesterday
+      )
+    end
+
+    it {expect(Note.active).to contain_exactly(note, ack) }
+
+  end
+
 end

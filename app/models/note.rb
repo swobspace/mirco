@@ -29,6 +29,14 @@ class Note < ApplicationRecord
     "#{created_at.localtime.to_fs(:local)} #{server}::#{channel} #{type.upcase} - #{message.to_plain_text}"
   end
 
+  scope :active, -> do
+    where("notes.valid_until >= ? or notes.valid_until IS NULL", Time.current)
+  end
+
+  def is_active
+    valid_until.nil? || valid_until >= Time.current
+  end
+
   private
 
   def set_server_and_channel_id
