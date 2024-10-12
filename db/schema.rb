@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_12_080748) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_12_100529) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
