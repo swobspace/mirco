@@ -1,3 +1,5 @@
-<%= turbo_frame_tag 'modal-body' do %>
-  <%= render 'form' %>
+<%= render ModalComponent.new(title: t('wobapphelpers.actions.edit',
+                                        model: t(@note.type, scope: :notes))) do %>
+  <%= render 'form', note: @note, notable: @notable  %>
+
 <% end %>

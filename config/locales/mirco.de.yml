@@ -46,10 +46,6 @@ de:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    note_types:
-      acknowledge: Acknowledge
-      note: Notiz
-      mail: Mail
     all_notes: Alle Notizen
     current_notes: Aktuelle Notizen
 
@@ -260,3 +256,7 @@ de:
     add: Eskalationszeitraum hinzufügen
   channel_statistics:
     add: Channelstatistik hinzufügen
+  notes:
+    acknowledge: Acknowledge
+    note: Notiz
+    mail: Mail
