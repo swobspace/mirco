@@ -11,7 +11,7 @@ class Server < ApplicationRecord
   belongs_to :host, optional: true
   has_many :alerts, dependent: :destroy
   has_many :software_connections, dependent: :destroy
-  has_many :server_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy
