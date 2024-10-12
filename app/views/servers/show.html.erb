@@ -60,6 +60,11 @@
           <%= doku_link(@server) %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary me-1') %>
 
+          <%= render AcknowledgeButtonComponent.new(
+                       notable: @server, small: false,
+                       readonly: cannot?(:manage, @server)
+                     )
+           %>
           <%= edit_link(@server) %>
           <%= delete_button(@server) %>
         </div>
@@ -260,7 +265,7 @@
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
    <%= turbo_frame_tag("notes", 
-                        src: polymorphic_path([@server, :notes], active: 1, all: 1),
+                        src: polymorphic_path([@server, :notes], active: 1),
                         loading: "lazy",
                         refresh: "morph") %>
 

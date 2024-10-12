@@ -30,18 +30,18 @@
     <div data-controller="datatables" class="p-2">
       <%= content_tag :table, role: :datatable,
             id: "notes_table",
-            class: "table table-striped table-sm table-responsive-xl",
+            class: "table table-sm table-responsive-xl",
             # style: 'width: 100%;',
             data: {
               order: [[0, 'desc']].to_json
             } do %>
         <thead class="table-primary">
           <tr>
-            <th><%= t('attributes.since') %></th>
+            <th class="text-center"><%= t('attributes.since') %></th>
             <th><%= t('attributes.type') %></th>
             <th><%= t('mirco.for') %></th>
             <th><%= t('attributes.message') %></th>
-            <th><%= t('attributes.valid_until') %></th>
+            <th class="text-center"><%= t('attributes.valid_until') %></th>
             <th><%= t('attributes.creator') %></th>
             <th class="nosort text-end"><%= t('mirco.action') %></th>
           </tr>

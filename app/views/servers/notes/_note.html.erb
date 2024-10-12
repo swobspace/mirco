@@ -4,7 +4,7 @@
   <td><%= t(note.type, scope: 'notes') %></td>
   <td><%= note.notable&.fullname %></td>
   <td><%= truncate(note.message.to_plain_text, length: 200) %></td>
-  <td <%= note.valid_until&.localtime&.to_s %></td>
+  <td class="text-center"><%= note.valid_until&.localtime&.to_fs(:local) %></td>
   <td><%= note.user %></td>
   <td class="text-end text-nowrap">
     <%= show_link [note.notable, note], class: 'px-1', data: { "turbo-frame" => "modal" } %>
