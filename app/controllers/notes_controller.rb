@@ -6,7 +6,11 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = @notable.notes
+    if params[:all]
+      @notes = @notable.all_notes
+    else
+      @notes = @notable.notes
+    end
     respond_with(@notes)
   end
 
