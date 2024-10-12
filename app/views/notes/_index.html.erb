@@ -17,6 +17,7 @@
             <% end %>
 
             <th><%= t('attributes.message') %></th>
+            <th><%= t('attributes.valid_until') %></th>
             <th class="notvisible"><%= t('attributes.user') %></th>
             <th class="notvisible"><%= t('attributes.type') %></th>
             <th class="nosort text-end"><%= t('mirco.action') %></th>
@@ -33,6 +34,8 @@
             <td><%= note.channel_statistic %></td>
           <% end %>
           <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
+          <td><%= note.valid_until&.localtime&.to_s %></td>
+
           <td><%= note.user %></td>
           <td><%= note.type %></td>
           <td class="text-nowrap text-end">

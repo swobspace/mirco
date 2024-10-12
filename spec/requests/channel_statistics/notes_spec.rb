@@ -26,9 +26,8 @@ module ChannelStatstics
 
     let(:valid_attributes) do
       {
-        server_id: server.id,
-        channel_id: channel.id,
-        channel_statistic_id: channel_statistic.id,
+        notable_type: 'ChannelStatistic',
+        notable_id: channel_statistic.id,
         type: 'acknowledge',
         message: 'some special stuff',
         user_id: user.id
@@ -37,9 +36,8 @@ module ChannelStatstics
 
     let(:post_attributes) do
       {
-        server_id: server.id,
-        channel_id: channel.id,
-        channel_statistic_id: channel_statistic.id,
+        notable_type: 'ChannelStatistic',
+        notable_id: channel_statistic.id,
         message: 'some special stuff'
       }
     end
@@ -127,7 +125,9 @@ module ChannelStatstics
       context 'with valid parameters' do
         let(:new_attributes) do
           {
-            message: 'some other text'
+            message: 'some other text',
+            valid_until: 1.day.after(Time.current)
+
           }
         end
 
@@ -136,6 +136,7 @@ module ChannelStatstics
           patch channel_statistic_note_url(channel_statistic, note), params: { note: new_attributes }
           note.reload
           expect(note.message.to_plain_text).to eq('some other text')
+          expect(note.valid_until.to_date.to_s).to eq(1.day.after(Date.current).to_s)
         end
 
         it 'redirects to the note' do

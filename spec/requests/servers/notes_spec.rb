@@ -21,7 +21,8 @@ module Servers
 
     let(:valid_attributes) do
       {
-        server_id: server.id,
+        notable_id: server.id,
+        notable_type: 'Server',
         type: 'acknowledge',
         message: 'some special stuff',
         user_id: user.id
@@ -109,7 +110,8 @@ module Servers
       context 'with valid parameters' do
         let(:new_attributes) do
           {
-            message: 'some other text'
+            message: 'some other text',
+            valid_until: 1.day.after(Time.current)
           }
         end
 
@@ -118,6 +120,7 @@ module Servers
           patch server_note_url(server, note), params: { note: new_attributes }
           note.reload
           expect(note.message.to_plain_text).to eq('some other text')
+          expect(note.valid_until.to_date.to_s).to eq(1.day.after(Date.current).to_s)
         end
 
         it 'redirects to the note' do

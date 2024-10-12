@@ -29,6 +29,8 @@
     <%= f.input :message, as: :rich_text_area,
                 wrapper: :vertical_form
      %>
+    <%= f.input :valid_until, html5: true, wrapper: :horizontal_datetime
+       %>
 
     <%= f.button :submit, class: 'btn btn-primary' %>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

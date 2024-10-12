@@ -22,8 +22,8 @@ module Channels
 
     let(:valid_attributes) do
       {
-        server_id: server.id,
-        channel_id: channel.id,
+        notable_type: 'Channel',
+        notable_id: channel.id,
         type: 'acknowledge',
         message: 'some special stuff',
         user_id: user.id
@@ -32,8 +32,8 @@ module Channels
 
     let(:post_attributes) do
       {
-        server_id: server.id,
-        channel_id: channel.id,
+        notable_type: 'Channel',
+        notable_id: channel.id,
         message: 'some special stuff'
       }
     end
@@ -111,7 +111,8 @@ module Channels
       context 'with valid parameters' do
         let(:new_attributes) do
           {
-            message: 'some other text'
+            message: 'some other text',
+            valid_until: 1.day.after(Time.current)
           }
         end
 
@@ -120,6 +121,7 @@ module Channels
           patch channel_note_url(channel, note), params: { note: new_attributes }
           note.reload
           expect(note.message.to_plain_text).to eq('some other text')
+          expect(note.valid_until.to_date.to_s).to eq(1.day.after(Date.current).to_s)
         end
 
         it 'redirects to the note' do

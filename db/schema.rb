@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_11_160055) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_12_080748) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
@@ -323,6 +323,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_160055) do
     t.bigint "channel_statistic_id"
     t.string "notable_type"
     t.bigint "notable_id"
+    t.datetime "valid_until"
     t.index ["channel_id"], name: "index_notes_on_channel_id"
     t.index ["channel_statistic_id"], name: "index_notes_on_channel_statistic_id"
     t.index ["notable_type", "notable_id"], name: "index_notes_on_notable"

@@ -125,6 +125,7 @@ bin/rails g scaffold Note \
   channel_statistic:belongs_to \
   user:belongs_to \
   type:string:index \
+  valid_until:datetime \
   --no-stylesheets --no-javascripts --no-helper
 ----
 // bin/rails g migration AddChannelStatisticIdToNote \

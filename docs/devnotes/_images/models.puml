@@ -91,11 +91,13 @@ class Alert {
 
 class Note {
   notable: polymorpic
+  message: rich_text
+  valid_until: datetime
   channel_id
   server_id
   channel_statistic_id
   user_id
-  type: string : ack, mail
+  type: string
 }
 
 class ServerConfiguration {

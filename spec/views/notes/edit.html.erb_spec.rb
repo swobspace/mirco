@@ -11,7 +11,7 @@ RSpec.describe 'notes/edit', type: :view do
     allow(controller).to receive(:action_name) { 'edit' }
     @notable = FactoryBot.create(:server, name: 'xyzmirth')
 
-    @note = assign(:note, FactoryBot.create(:note, server_id: @notable.id))
+    @note = assign(:note, FactoryBot.create(:note, notable: @notable))
   end
 
   it 'renders the edit note form' do
@@ -19,6 +19,7 @@ RSpec.describe 'notes/edit', type: :view do
 
     assert_select 'form[action=?][method=?]', server_note_path(@notable, @note), 'post' do
       assert_select 'input[name=?]', 'note[message]'
+      assert_select 'input[name=?]', 'note[valid_until]'
     end
   end
 end
