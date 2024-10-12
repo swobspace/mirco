@@ -3,7 +3,7 @@
 class Note < ApplicationRecord
   # -- associations
   belongs_to :notable, polymorphic: true
-  belongs_to :server
+  belongs_to :server, optional: true
   belongs_to :channel, optional: true
   belongs_to :channel_statistic, optional: true
   belongs_to :user, class_name: 'Wobauth::User'
@@ -32,9 +32,6 @@ class Note < ApplicationRecord
   private
 
   def set_server_and_channel_id
-    # self[:channel_id] = channel_statistic.channel_id if channel_id.blank? && channel_statistic_id.present?
-    # self[:server_id] = channel.server_id if server_id.blank? && channel_id.present?
-    # true
     case self[:notable_type]
     when 'Server'
       self[:server_id] = notable.id
