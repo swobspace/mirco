@@ -47,7 +47,7 @@ de:
       3: UNKNOWN
     note_types:
       acknowledge: Acknowledge
-      note: Note
+      note: Notiz
       mail: Mail
 
   activerecord:
