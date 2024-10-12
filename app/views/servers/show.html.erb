@@ -259,29 +259,11 @@
  </div>
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.notes') %></h4>
-        <div role="toolbar">
-            <%= link_to(t('mirco.add_note'),
-                        new_server_note_path(@server),
-                        class: "btn btn-warning",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        }) if can? :create, Note %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_notes'>
-        <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.all_notes } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("notes", 
+                        src: polymorphic_path([@server, :notes], active: 1, all: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
+
  </div>
 
 
@@ -312,10 +294,7 @@
                         new_server_server_configuration_path(@server),
                         class: "btn btn-warning",
                         data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
+                          'turbo-frame': "modal"
                         }) if can? :create, ServerConfiguration %>
         </div>
       </div>

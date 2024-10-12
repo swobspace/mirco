@@ -2,7 +2,7 @@
 
 class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy]
-  before_action :add_breadcrumb_show, only: [:show]
+  # before_action :add_breadcrumb_show, only: [:show]
 
   # GET /notes
   def index
@@ -11,6 +11,7 @@ class NotesController < ApplicationController
     else
       @notes = @notable.notes
     end
+    @notes = @notes.active if params[:active].present?
     respond_with(@notes)
   end
 
@@ -97,4 +98,9 @@ class NotesController < ApplicationController
     return unless @notable.respond_to?(:current_note_id)
     @notable.update(current_note_id: @note.id)
   end
+
+  def add_breadcrumb_index
+    # skip
+  end
+
 end

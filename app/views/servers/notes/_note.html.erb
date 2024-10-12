@@ -1,0 +1,15 @@
+<%= tag.tr id: dom_id(note), class: "#{'invalid' unless note.is_active}" do %>
+  <td class="text-center"><%= note.created_at.localtime.to_fs(:local) %></td>
+
+  <td><%= t(note.type, scope: 'mirco.note_types') %></td>
+  <td><%= note.notable&.fullname %></td>
+  <td><%= truncate(note.message.to_plain_text, length: 200) %></td>
+  <td <%= note.valid_until&.localtime&.to_s %></td>
+  <td><%= note.user %></td>
+  <td class="text-end text-nowrap">
+    <%= show_link [note.notable, note], class: 'px-1', data: { "turbo-frame" => "modal" } %>
+    <%= edit_link [note.notable, note], class: 'px-1', data: { "turbo-frame" => "modal" } %>
+    <%= delete_button([note.notable, note], class: 'no_button') %>
+  </td>
+<% end %>
+
