@@ -17,6 +17,7 @@ de:
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
+    new_note: Neue Notiz
     new_notification_group: Neue Benachrichtungsgruppe
     new_server: Neues Mirth-System
     new_software: Neue Software
@@ -49,6 +50,8 @@ de:
       acknowledge: Acknowledge
       note: Notiz
       mail: Mail
+    all_notes: Alle Notizen
+    current_notes: Aktuelle Notizen
 
   activerecord:
     errors:
@@ -105,6 +108,7 @@ de:
     connector: Connector
     connectors: Connectoren
     created_at: angelegt am
+    creator: Ersteller
     current_note: Aktueller Hinweis
     deployScript: Deploy Script
     description: Beschreibung
@@ -172,14 +176,14 @@ de:
     server_uid: Mirth Server UUID
     server_jvm: Mirth Server JVM
     server_version: Server Version
+    server_settings: Mirth Server-Einstellungen
     show_on_dashboard: auf dem Dashboard anzeigen
+    since: seit
+    sn: Nachname
     source: Source
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
-    system_info: Systeminfo
-    server_settings: Mirth Server-Einstellungen
-    sn: Nachname
     software: Software
     software_connection: Verbindung
     software_group: Software-Gruppe
@@ -187,6 +191,7 @@ de:
     start_time: Beginn
     state: Status
     status_type: Typ
+    system_info: Systeminfo
     timestamp: Wann?
     type: Typ
     uid: UID

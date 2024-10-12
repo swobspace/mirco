@@ -116,6 +116,10 @@ module Mirco
     fetch_config('smtp_settings', nil)&.symbolize_keys
   end
 
+  def self.grace_period
+    fetch_config('grace_period', 15.minutes)
+  end
+
   def self.timescale_license
     mylicense = "SHOW timescaledb.license;"
     @@timescale_license ||= ActiveRecord::Base.connection.exec_query(mylicense).rows.flatten.first || "apache"
