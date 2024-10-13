@@ -6,7 +6,6 @@ module ServerConcerns
   included do
     scope :condition, -> (state) do
       where('servers.condition = ?', state)
-      .where(manual_update: false)
     end
 
     scope :ok, -> { condition(Mirco::States::OK) }
