@@ -3,23 +3,31 @@
  <% if @servers.size > 0 %>
   <%= content_tag :table,
         id: "servers_table",
-        class: "table table-bordered mb-0" do %>
+        class: "table mb-0" do %>
     <thead>
       <tr class="">
+        <th class="text-center"><%= t('attributes.condition') %></th>
         <th><%= t('attributes.name') %></th>
         <th><%= t('attributes.location') %></th>
+        <th><%= t('attributes.condition_message') %></th>
         <th class="text-center"><%= t('attributes.last_check') %></th>
         <th class="text-center"><%= t('attributes.last_check_ok') %></th>
       </tr>
     </thead>
     <tbody>
       <% @servers.each do |server| %>
+
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
+          <td class="text-center">
+            <%= render ConditionIconComponent.new( item: server, 
+                                                   small: true, as_text: false) %>
+          </td>
           <td><%= link_to(
                     server.name, 
                     server_path(server), 
                     class: "primary-link") %></td>
-          <td><%= server.location %></td>
+          <td><%= server.location&.lid %></td>
+          <td><%= server.condition_message %></td>
          <%= render TdEscalationComponent.new(
                        escalatable: server,
                        attrib: 'last_check',
