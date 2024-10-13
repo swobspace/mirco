@@ -276,25 +276,14 @@
                         src: polymorphic_path([@server, :notes], active: 1),
                         loading: "lazy",
                         refresh: "morph") %>
-
  </div>
 
 
  <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.alerts') %></h4>
-        <div role="toolbar">
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_alerts'>
-        <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("alerts",
+                        src: polymorphic_path([@server, :alerts]),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="configurations" role="tabpanel" aria-labelledby="configurations-tab">
