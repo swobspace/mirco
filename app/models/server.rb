@@ -52,13 +52,16 @@ class Server < ApplicationRecord
   def update_condition
     if manual_update
       set_condition(Mirco::States::NOTHING,
-                    "Manual update enabled")
+                    I18n.t(Mirco::States::NOTHING, scope: 'mirco.condition') +
+                    " Manual update enabled")
     elsif host.present? and !up?
-      set_condition(Mirco::States::CRITICAL, 
-                    "Server unreachable, ping failed")
+      set_condition(Mirco::States::CRITICAL,
+                    I18n.t(Mirco::States::CRITICAL, scope: 'mirco.condition') +
+                    " Server unreachable, ping failed")
     else
       if escalation_status.state <= Mirco::States::OK
-        set_condition(Mirco::States::OK, 'Ok')
+        set_condition(Mirco::States::OK,
+                      I18n.t(Mirco::States::OK, scope: 'mirco.condition'))
       else
         set_condition(escalation_status.state,
                       escalation_status.message)
