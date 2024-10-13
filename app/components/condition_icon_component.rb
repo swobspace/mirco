@@ -24,19 +24,19 @@ class ConditionIconComponent < ViewComponent::Base
     end
 
     case item.condition
-      when EscalationLevel::CRITICAL
+      when Mirco::States::CRITICAL
         @color = "danger"
         @icon = "fa-solid fa-circle-exclamation"
         @text = "CRITICAL"
-      when EscalationLevel::UNKNOWN
+      when Mirco::States::UNKNOWN
         @color = "info"
         @icon = "fa-solid fa-circle-question #{textcolor}"
         @text = "UNKNOWN"
-      when EscalationLevel::WARNING
+      when Mirco::States::WARNING
         @color = "warning"
         @icon = "fa-solid fa-triangle-exclamation #{textcolor}"
         @text = "WARNING"
-      when EscalationLevel::OK
+      when Mirco::States::OK
         @color = "success"
         @icon = "fa-solid fa-circle-check"
         @text = "OK"

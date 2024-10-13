@@ -9,6 +9,6 @@
 
 <% if outdated? %>
   <span title="Data may be outdated, no recent updates">
-    <%= "\u26A0" %>
+    <%= Mirco::States.flag(Mirco::States::WARNING) %>
   </span>
 <% end %>

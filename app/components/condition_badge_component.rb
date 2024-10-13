@@ -28,16 +28,16 @@ class ConditionBadgeComponent < ViewComponent::Base
     end
 
     case state
-     when EscalationLevel::CRITICAL
+     when Mirco::States::CRITICAL
         @button_class = "#{size} #{btn}-danger"
         @icon  = "fa-solid fa-circle-exclamation"
-      when EscalationLevel::UNKNOWN
+      when Mirco::States::UNKNOWN
         @button_class = "#{size} #{btn}-info"
         @icon  = "fa-solid fa-circle-question #{textcolor}"
-      when EscalationLevel::WARNING
+      when Mirco::States::WARNING
         @button_class = "#{size} #{btn}-warning"
         @icon  = "fa-solid fa-triangle-exclamation #{textcolor}"
-      when EscalationLevel::OK
+      when Mirco::States::OK
         @button_class = "#{size} #{btn}-success"
         @icon  = "fa-solid fa-circle-check"
       else

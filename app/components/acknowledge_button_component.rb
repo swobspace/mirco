@@ -42,7 +42,7 @@ class AcknowledgeButtonComponent < ViewComponent::Base
   attr_reader :notable, :type, :readonly, :current, :small
 
   def error_state
-    notable.condition >= EscalationLevel::WARNING
+    notable.condition >= Mirco::States::WARNING
   end
 
 end
