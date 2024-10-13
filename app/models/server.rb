@@ -52,8 +52,7 @@ class Server < ApplicationRecord
   def update_condition
     if manual_update
       set_condition(Mirco::States::NOTHING,
-                    I18n.t(Mirco::States::NOTHING, scope: 'mirco.condition') +
-                    " Manual update enabled")
+                    "Manual update enabled")
     elsif host.present? and !up?
       set_condition(Mirco::States::CRITICAL,
                     I18n.t(Mirco::States::CRITICAL, scope: 'mirco.condition') +
