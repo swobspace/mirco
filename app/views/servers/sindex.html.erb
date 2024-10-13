@@ -29,20 +29,30 @@
                     class: "primary-link") %></td>
           <td><%= server.location&.lid %></td>
           <td><%= server.condition_message %></td>
-         <%= render TdEscalationComponent.new(
+          <%= render TdEscalationComponent.new(
                        escalatable: server,
                        attrib: 'last_check',
                        css: 'text-center',
                        manual_update: server.manual_update
-                    )
-          %>
-         <%= render TdEscalationComponent.new(
+                     )
+           %>
+          <%= render TdEscalationComponent.new(
                        escalatable: server,
                        attrib: 'last_check_ok',
                        css: 'text-center',
                        manual_update: server.manual_update
-                    )
-          %>
+                     )
+           %>
+          <td class="text-end text-nowrap">
+              <%= show_link server,
+                            class: 'btn btn-sm btn-outline-secondary me-1',
+                            data: { "turbo" => false } %>
+              <%= render AcknowledgeButtonComponent.new(
+                           notable: server,
+                           readonly: cannot?(:manage, server)
+                         )
+               %>
+          </td>
         <% end %>
       <% end %>
     </tbody>
