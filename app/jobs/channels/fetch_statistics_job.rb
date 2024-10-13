@@ -27,7 +27,7 @@ module Channels
           Rails.logger.warn(msg)
         end
         # rubocop:disable Layout/ArgumentAlignment
-        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home,
           target: :queued_messages,
           partial: 'home/queues',
           locals: {
@@ -35,17 +35,17 @@ module Channels
                              .active.current.queued.order('queued desc')
                              .to_a
         })
-        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home,
           target: :failed_servers,
           partial: 'home/servers',
           locals: {
             servers: Server.failed.order(:name).where(manual_update: false).to_a
         })
-        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home,
           target: :server_states,
           partial: 'home/server_states',
         )
-        Turbo::StreamsChannel.broadcast_replace_later_to(:home_index,
+        Turbo::StreamsChannel.broadcast_replace_later_to(:home,
           target: :problems,
           partial: 'home/problems',
           locals: {
