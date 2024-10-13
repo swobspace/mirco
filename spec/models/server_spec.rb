@@ -114,9 +114,9 @@ RSpec.describe Server, type: :model do
 
     describe "with manual check enabled" do
       it "-> NOTHING" do
-        expect(server).to receive(:manual_update).and_return(false)
+        expect(server).to receive(:manual_update).and_return(true)
         expect {
-          server.update_condition; server.save
+          server.update_condition
         }.to change(server, :condition).to(Mirco::States::NOTHING)
       end
     end
