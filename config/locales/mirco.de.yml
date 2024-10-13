@@ -41,7 +41,7 @@ de:
     destinationConnectors: Destination Connectors
     recent_errors: Letzte Fehler
     condition:
-      -1: '-'
+      -1: NOTHING
       0: OK
       1: WARNING
       2: CRITICAL
