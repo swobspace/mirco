@@ -25,6 +25,7 @@
           <td><%= link_to(
                     server.name, 
                     server_path(server), 
+                    data: { "turbo-frame" => "_top" },
                     class: "primary-link") %></td>
           <td><%= server.location&.lid %></td>
           <td><%= server.condition_message %></td>
