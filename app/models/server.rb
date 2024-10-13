@@ -5,6 +5,7 @@ class Server < ApplicationRecord
   include ServerConcerns
   include EscalationStatusConcerns
   include NotableConcerns
+  include Mirco::Condition
 
   # -- associations
   # belongs_to :location
@@ -29,11 +30,12 @@ class Server < ApplicationRecord
   # -- validations and callbacks
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
+  before_save :update_condition
 
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :location, :hostname, :ipaddress, to: :host, allow_nil: true
+  delegate :location, :hostname, :ipaddress, :up?, to: :host, allow_nil: true
 
   def uri
     URI(api_url)
@@ -45,6 +47,23 @@ class Server < ApplicationRecord
 
  def escalatable_attributes
     %w[ last_check last_check_ok ]
+  end
+
+  def update_condition
+    if manual_update
+      set_condition(Mirco::States::NOTHING,
+                    "Manual update enabled")
+    elsif host.present? and !up?
+      set_condition(Mirco::States::CRITICAL, 
+                    "Server unreachable, ping failed")
+    else
+      if escalation_status.state <= Mirco::States::OK
+        set_condition(Mirco::States::OK, 'Ok')
+      else
+        set_condition(escalation_status.state,
+                      escalation_status.message)
+      end
+    end
   end
 
 end
