@@ -34,7 +34,7 @@
       </div>
     </div>
     <div>
-      <%= render 'servers', servers: @servers %>
+      <%= turbo_frame_tag("servers", src: sindex_servers_path, refresh: "morph") %>
     </div>
   </div>
 </div>

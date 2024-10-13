@@ -1,22 +1,46 @@
-<div id="server_states">
-  <% if Server.ok.any? %>
-    <button type="button" class="btn btn-success">
-      <i class="fas fa-lg fa-fw fa-check-circle"></i>
-      <span class="badge text-bg-white"><%= Server.ok.count %></span>
-    </button>
-  <% end %>
-
-  <% if Server.warning.any? %>
-    <button type="button" class="btn btn-warning">
-      <i class="fas fa-lg fa-fw fa-exclamation-triangle text-white"></i>
-      <span class="badge text-bg-white"><%= Server.warning.count %></span>
-    </button>
-  <% end %>
-
-  <% if Server.critical.any? %>
-    <button type="button" class="btn btn-danger">
-      <i class="fas fa-lg fa-fw fa-exclamation-circle text-white"></i>
-      <span class="badge text-bg-white"><%= Server.critical.count %></span>
-    </button>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::OK,
+                  count: Server.ok.count,
+                  link:  sindex_servers_path(condition: Mirco::States::OK),
+                  myframe: 'servers') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::WARNING,
+                  count: Server.warning.count,
+                  link:  sindex_servers_path(condition: Mirco::States::WARNING),
+                  myframe: 'servers') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::CRITICAL,
+                  count: Server.critical.count,
+                  link:  sindex_servers_path(condition: Mirco::States::CRITICAL),
+                  myframe: 'servers') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::UNKNOWN,
+                  count: Server.unknown.count,
+                  link:  sindex_servers_path(condition: Mirco::States::UNKNOWN),
+                  myframe: 'servers') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::NOTHING,
+                  count: Server.nothing.count,
+                  link:  sindex_servers_path(condition: Mirco::States::NOTHING),
+                  myframe: 'servers') %>
+</div>
+<div class="me-2">
+  <%= link_to sindex_servers_path(acknowledged: 'true'),
+              class: 'btn btn-outline-secondary',
+              "data-turbo-frame": 'servers' do %>
+    <i class="fa-solid fa-person-digging"></i>
+    <span class="badge text-bg-secondary">
+      <%= Server.acknowledged.count %>
+    </span>
   <% end %>
 </div>
+

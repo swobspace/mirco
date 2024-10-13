@@ -126,7 +126,7 @@ require 'pagy/extras/bootstrap'
 # Pagy extra: Add the pagy styled versions of the javascript-powered navs
 # and a few other components to the Pagy::Frontend module.
 # See https://ddnexus.github.io/pagy/docs/extras/pagy
-# require 'pagy/extras/pagy'
+require 'pagy/extras/pagy'
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/docs/extras/pagy#steps
@@ -197,10 +197,10 @@ require 'pagy/extras/bootstrap'
 #
 # load the "de", "en" and "es" built-in locales:
 # (the first passed :locale will be used also as the default_locale)
-# Pagy::I18n.load({ locale: 'de' },
-#                 { locale: 'en' },
-#                 { locale: 'es' })
-#
+ Pagy::I18n.load({ locale: 'de' },
+                 { locale: 'en' },
+                 { locale: 'es' })
+
 # load the "en" built-in locale, a custom "es" locale,
 # and a totally custom locale complete with a custom :pluralize proc:
 # (the first passed :locale will be used also as the default_locale)

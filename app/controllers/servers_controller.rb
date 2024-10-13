@@ -12,13 +12,15 @@ class ServersController < ApplicationController
 
   def sindex
     if params[:condition]
-      @servers = Server.condition(params[:condition]).not_acknowledged.decorate
+      @servers = Server.condition(params[:condition]).decorate
     elsif params[:acknowledged]
       @servers = Server.acknowledged.decorate
     else
       @servers = Server.failed.not_acknowledged.decorate
     end
-    @pagy, @servers = pagy(@servers)
+    ordered = @servers.order('name asc')
+    @count = ordered.count
+    @servers_pagy, @servers = pagy(ordered, count: ordered.count)
     respond_with(@servers)
   end
 
