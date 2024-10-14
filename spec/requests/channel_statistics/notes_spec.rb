@@ -44,7 +44,7 @@ module ChannelStatstics
 
     let(:invalid_attributes) do
       {
-        type: 'very wrong type'
+        message: nil
       }
     end
 
