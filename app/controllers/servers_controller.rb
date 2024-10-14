@@ -6,17 +6,17 @@ class ServersController < ApplicationController
 
   # GET /servers
   def index
-    @servers = Server.all.decorate
+    @servers = Server.all
     respond_with(@servers)
   end
 
   def sindex
     if params[:condition]
-      @servers = Server.condition(params[:condition]).decorate
+      @servers = Server.condition(params[:condition])
     elsif params[:acknowledged]
-      @servers = Server.acknowledged.decorate
+      @servers = Server.acknowledged
     else
-      @servers = Server.failed.not_acknowledged.decorate
+      @servers = Server.failed.not_acknowledged
     end
     ordered = @servers.order('name asc')
     @count = ordered.count
@@ -26,7 +26,7 @@ class ServersController < ApplicationController
 
   # GET /servers/1
   def show
-    @server = @server.decorate
+    @server = @server
     respond_with(@server) do |format|
       format.puml do
         render format: :puml, layout: false

@@ -28,13 +28,8 @@ gem 'view_component'
 
 group :development do
   gem 'guard'
-  # gem 'guard-bundler'
-  gem 'guard-livereload', require: false
-  # gem 'guard-puma'
   gem 'libnotify'
   gem 'listen', '~> 3.3'
-  gem 'rubocop', require: false
-  gem 'rubocop-rails', require: false
   gem 'web-console', '>= 4.1.0'
 end
 
@@ -43,11 +38,6 @@ group :test, :development do
   gem 'guard-rspec', require: false
   gem 'railroady'
   gem 'rspec-rails', '>= 6.0.3'
-  # gem 'rspec-core', github: 'rspec/rspec-core', branch: 'main'
-  # gem 'rspec-mocks', github: 'rspec/rspec-mocks', branch: 'main'
-  # gem 'rspec-support', github: 'rspec/rspec-support', branch: 'main'
-  # gem 'rspec-expectations', github: 'rspec/rspec-expectations', branch: 'main'
-  # gem 'rspec-rails', github: 'rspec/rspec-rails', branch: 'main'
 end
 
 group :test do
@@ -69,17 +59,13 @@ gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'wobaduser'
 
-# gem 'sidekiq'
-# gem 'sidekiq-scheduler'
 gem 'daemons'
 
 # workaround for faraday-net_http
 gem 'net-http'
 
 gem 'chartkick', '~> 5.0'
-gem 'draper'
 gem 'kramdown'
-# gem 'uri', '0.10.0'
 
 gem 'responders'
 
