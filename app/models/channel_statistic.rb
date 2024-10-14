@@ -4,13 +4,16 @@
 class ChannelStatistic < ApplicationRecord
   include ChannelStatisticConcerns
   include EscalationStatusConcerns
+  include NotableConcerns
+  include Mirco::Condition
+
   # -- associations
   belongs_to :server
   belongs_to :channel
   belongs_to :current_note, class_name: 'Note', optional: true
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
-  has_many :notes, dependent: :destroy
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :escalation_levels, as: :escalatable, dependent: :destroy
   has_and_belongs_to_many :channel_statistic_groups, inverse_of: :channel_statistics
   has_many :group_escalation_levels, through: :channel_statistic_groups, source: :escalation_levels
@@ -34,6 +37,7 @@ class ChannelStatistic < ApplicationRecord
   validates :channel_id, presence: true, uniqueness: { scope: %i[server_id meta_data_id] }
   validates :condition, numericality: { in: EscalationLevel::STATES }, allow_nil: true
   before_update :update_last_at
+  before_save :update_condition
 
   # --
   def fullname
@@ -51,6 +55,29 @@ class ChannelStatistic < ApplicationRecord
 
   def all_escalation_levels
     @all ||= (escalation_levels + group_escalation_levels)
+  end
+
+  def started?
+    state == "STARTED"
+  end
+
+  def update_condition
+    if !(channel&.enabled?)
+      set_condition(Mirco::States::NOTHING,
+                    "Channel is disabled")
+    elsif !started?
+      set_condition(Mirco::States::WARNING,
+                    I18n.t(Mirco::States::WARNING, scope: 'mirco.condition') +
+                    " Connector is stopped")
+    else
+      if escalation_status.state <= Mirco::States::OK
+        set_condition(Mirco::States::OK,
+                      I18n.t(Mirco::States::OK, scope: 'mirco.condition'))
+      else
+        set_condition(escalation_status.state,
+                      escalation_status.message)
+      end
+    end
   end
 
 private

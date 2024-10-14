@@ -2,13 +2,16 @@
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex, Rails/InverseOf
 class Channel < ApplicationRecord
+  include NotableConcerns
+  include Mirco::Condition
+
   # -- associations
   belongs_to :server
   has_one :channel_statistic, -> { where(meta_data_id: nil) }
   has_many :channel_statistics, dependent: :destroy
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
-  has_many :notes, dependent: :destroy
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
 
   # -- configuration
   store_accessor :properties, :name

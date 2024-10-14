@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_12_100529) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_14_152707) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
@@ -130,11 +130,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_12_100529) do
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
     t.integer "condition", default: -1
-    t.bigint "current_note_id"
+    t.bigint "old_current_note_id"
+    t.string "condition_message", default: ""
+    t.bigint "acknowledge_id"
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
-    t.index ["current_note_id"], name: "index_channel_statistics_on_current_note_id"
+    t.index ["old_current_note_id"], name: "index_channel_statistics_on_old_current_note_id"
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
@@ -147,6 +149,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_12_100529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "enabled", default: true
+    t.integer "condition", default: 0
+    t.string "condition_message", default: ""
+    t.bigint "acknowledge_id"
+    t.index ["condition"], name: "index_channels_on_condition"
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["uid"], name: "index_channels_on_uid"
   end
