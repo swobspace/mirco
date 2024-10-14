@@ -131,7 +131,9 @@
 
         <tr>
           <th><%= t('attributes.last_channel_update')%>:</th>
-          <td><%= @server.last_channel_update %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: @server, attr: :last_channel_update) %>
+          </td>
         </tr>
 
         <tr>
@@ -139,7 +141,6 @@
           <td>
             <%= render IsCurrentComponent.new(item: @server, attr: :last_check) %>
           </td>
-
         </tr>
 
         <tr>

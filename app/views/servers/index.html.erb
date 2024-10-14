@@ -69,9 +69,15 @@
             <td><%= server.api_user %></td>
           <% end %>
           <td><%= server.api_user_has_full_access %></td>
-          <td><%= server.last_channel_update %></td>
-          <td><%= server.last_check %></td>
-          <td><%= server.last_check_ok %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_channel_update) %>
+          </td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_check) %>
+          </td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_check_ok) %>
+          </td>
           <td><%= server.manual_update %></td>
           <td class="text-nowrap">
             <%= show_link server %>
