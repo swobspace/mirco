@@ -13,6 +13,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   let!(:channel) do
     FactoryBot.create(:channel,
                       server: server,
+                      enabled: true,
                       uid: '445cda00-c847-4198-a9be-eb0dc6b5946d')
   end
   let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
@@ -178,6 +179,9 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         created_at: 20.minutes.before(Time.current)
       )
     end
+    before(:each) do
+      allow(channel_statistic).to receive(:started?).and_return(true)
+    end
 
     it { expect(processor.process).to be_truthy }
     it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
@@ -211,17 +215,17 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
     it "recovers after error" do
       channel_statistic.update(condition: 2)
-      note = FactoryBot.create(:note, channel_statistic: channel_statistic)
-      channel_statistic.update(current_note: note)
+      note = FactoryBot.create(:note, notable: channel_statistic)
+      channel_statistic.update(acknowledge: note)
       channel_statistic.reload
-      expect(channel_statistic.current_note).to be_present
+      expect(channel_statistic.acknowledge).to be_present
       channel_statistic.sent = 10
       expect {
         processor.process
       }.to change(Alert, :count).by(1)
       expect(channel_statistic.sent_last_30min).to eq(8)
       expect(channel_statistic.condition).to eq(0)
-      expect(channel_statistic.current_note).not_to be_present
+      expect(channel_statistic.acknowledge).not_to be_present
       expect(channel_statistic.last_condition_change > 1.minute.before(Time.current)).to be_truthy
       expect(channel_statistic.alerts.last.type).to eq('ok')
     end
@@ -230,29 +234,32 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
   describe "threshold checks" do
     let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
+    before(:each) do
+      allow(channel_statistic).to receive(:started?).and_return(true)
+    end
 
     it "queued: 0, sent_last_30min > 0" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 12, sent_last_30min > 0" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 0, sent_last_30min > 10" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 12, sent_last_30min > 10" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
   end
 
@@ -275,7 +282,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
      )
     end
 
-    it { processor.process ; expect(channel_statistic.condition).to eq(-1) }
+    it { processor.process ; expect(channel_statistic.condition).to eq(0) }
     it "does not send a notification mail" do
       expect {
         perform_enqueued_jobs do

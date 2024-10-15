@@ -9,7 +9,8 @@ RSpec.describe ChannelStatisticConcerns, type: :model do
       last_message_received_at: 10.minutes.before(Time.now),
       last_message_sent_at: 30.minutes.before(Time.now),
       updated_at: 12.minutes.before(Time.now),
-      meta_data_id: 1
+      meta_data_id: 1,
+      state: "STARTED"
     ) 
   end
 
