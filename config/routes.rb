@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get :sindex
     end
     member do
+      get :ping
       get :doku
       post :update_properties
     end

@@ -24,6 +24,11 @@ class ServersController < ApplicationController
     respond_with(@servers)
   end
 
+  def ping
+    respond_with(@host) do |format|
+    end
+  end
+
   # GET /servers/1
   def show
     @server = @server

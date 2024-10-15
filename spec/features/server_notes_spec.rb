@@ -8,7 +8,8 @@ RSpec.describe "Server/notes", type: :feature do
       login_user(role: 'Manager')
       visit server_path(server, anchor: 'notes-tab')
       expect(page).to have_content("aaamirth")
-      expect(find("h4.title")).to have_content("Notizen")
+      click_button("Notizen")
+      expect(find("h4")).to have_content("Notizen")
     end
   end
 

@@ -12,6 +12,10 @@ RSpec.describe ServersController, type: :routing do
       expect(get: '/servers/sindex').to route_to('servers#sindex')
     end
 
+    it "routes to #ping" do
+      expect(get: "/servers/1/ping").to route_to("servers#ping", id: "1")
+    end
+
     it 'routes to #new' do
       expect(get: '/servers/new').to route_to('servers#new')
     end

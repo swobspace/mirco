@@ -1,7 +1,7 @@
 <%= render 'shared/turbo-cache-control' %>
 
 <div class="row mt-2">
-<%= turbo_frame_tag "host_#{@server.host.id}_ping", src: ping_host_path(@server.host) %>
+<%= turbo_frame_tag "server_#{@server.id}_ping", src: ping_server_path(@server) %>
 </div>
 
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
@@ -91,14 +91,16 @@
 
         <tr>
           <th><%= t('attributes.location')%>:</th>
-          <td><%= link_to @server.location, location_path(@server.location),
-                          class: 'primary-link' %></td>
+          <td><%= link_to(@server.location, location_path(@server.location),
+                          class: 'primary-link') if @server.location.present?
+               %></td>
         </tr>
 
         <tr>
           <th><%= t('attributes.host')%>:</th>
-          <td><%= link_to @server.host, host_path(@server.host),
-                          class: 'primary-link' %></td>
+          <td><%= link_to(@server.host, host_path(@server.host),
+                          class: 'primary-link') if @server.host.present?
+               %></td>
           </td>
         </tr>
 

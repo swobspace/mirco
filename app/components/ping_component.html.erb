@@ -5,7 +5,7 @@
        data-controller="toast">
     <div class="d-flex">
       <div class="toast-body">
-        <%= link_to ping_host_path(host) do %>
+        <%= link_to polymorphic_path([:ping, pingable]) do %>
           <i class="fas fa-lg fa-fw fa-redo-alt"></i>
         <% end %>
         <%= message %>
