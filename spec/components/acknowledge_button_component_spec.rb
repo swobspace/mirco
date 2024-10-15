@@ -10,14 +10,20 @@ RSpec.describe AcknowledgeButtonComponent, type: :component do
     let!(:server) { FactoryBot.create(:server) }
 
     describe "with acknowledge" do
-      let!(:ack) { server.acknowledges.create!(user_id: user.id, message: "An acknowledge") }
+      let!(:ack) do
+        FactoryBot.create(:note, 
+          notable: server,
+          type: 'acknowledge',
+          message: "An Acknowledge"
+        )
+      end
+
       before(:each) do
         expect(server).to receive(:condition).at_least(:once).and_return(Mirco::States::WARNING)
-        server.update(acknowledge_id: ack.id)
-        server.reload
       end
 
       it "shows read button" do
+        expect(server).to receive(:acknowledge).and_return(ack)
         render_inline(described_class.new(notable: server, readonly: true))
         expect(page).to have_css('a[class="btn btn-sm btn-outline-secondary"]')
         expect(page).to have_css(%Q[a[href="#{server_note_path(server, ack)}"]])

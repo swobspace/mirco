@@ -6,7 +6,7 @@ class AcknowledgeButtonComponent < ViewComponent::Base
     @notable = notable
     @readonly = readonly
     @type = 'acknowledge'
-    @current = notable.current_acknowledge
+    @acknowledge = notable.acknowledge
     @small = small
   end
 
@@ -19,7 +19,7 @@ class AcknowledgeButtonComponent < ViewComponent::Base
   end
 
   def button_css
-    if @current.nil?
+    if @acknowledge.nil?
       "btn #{btn_size} btn-warning"
     else
       "btn #{btn_size} btn-outline-secondary"
@@ -27,19 +27,19 @@ class AcknowledgeButtonComponent < ViewComponent::Base
   end
 
   def button_action
-    if @current.nil?
+    if @acknowledge.nil?
       new_polymorphic_path([notable, :note], type: type)
     else
-      polymorphic_path([notable, current])
+      polymorphic_path([notable, acknowledge])
     end
   end
 
   def render?
-    (!!current || !readonly) && error_state
+    (!!acknowledge || !readonly) && error_state
   end
 
   private
-  attr_reader :notable, :type, :readonly, :current, :small
+  attr_reader :notable, :type, :readonly, :acknowledge, :small
 
   def error_state
     notable.condition >= Mirco::States::WARNING
