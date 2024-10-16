@@ -25,7 +25,7 @@ class ServersController < ApplicationController
   end
 
   def ping
-    respond_with(@host) do |format|
+    respond_with(@server) do |format|
     end
   end
 
