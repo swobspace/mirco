@@ -1,10 +1,38 @@
-<%= render 'shared/turbo-cache-control' %>
-
-<h1><%= t('controller.server_configurations') %></h1>
-
-<%= render 'index', server: @server, server_configurations: @server_configurations %>
-
-<br />
-
-<%= back_link %>
-<%= new_link [@server, ServerConfiguration] %>
+<%= turbo_frame_tag('server_configurations') do %>
+  <div class="card mt-3">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-xs-5 col-md-4 col-ml-3">
+          <h4 class="me-4 pt-1"><%= t('controller.server_configurations')%></h4>
+        </div>
+        <div class="d-flex col-xs-7 col-md-8 col-ml-9">
+          <div class="ms-auto">
+            <%= link_to t('mirco.new_server_configuration'), new_polymorphic_path([@server, :server_configuration]),
+                        class: 'btn btn-outline-secondary',
+                        data: {"turbo-frame" => "modal"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-controller="datatables" class="p-2">
+      <%= content_tag :table, role: :datatable,
+            id: "server_configurations_table",
+            class: "table table-sm table-responsive-xl",
+            # style: 'width: 100%;',
+            data: {
+              order: [[0, 'desc']].to_json
+            } do %>
+        <thead class="table-primary">
+          <tr>
+            <th><%= t('attributes.created_at') %></th>
+            <th class="w-75"><%= t('attributes.comment') %></th>
+            <th class="nosort text-end"><%= t('mirco.action') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @server_configurations %>
+        </tbody>
+      <% end %>
+    </div>
+  </div>
+<% end %>

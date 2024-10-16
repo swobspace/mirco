@@ -1,5 +1,5 @@
 <%= render ModalComponent.new(
-  title: t('wobapphelpers.actions.new',
+  title: t('wobapphelpers.actions.edit',
             model: t('activerecord.models.server_configuration'))) do %>
   <%= render 'form', server: @server, server_configuration: @server_configuration %>
 <% end %>

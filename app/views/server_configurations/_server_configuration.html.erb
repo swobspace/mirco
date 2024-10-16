@@ -1,0 +1,10 @@
+<%= tag.tr id: dom_id(server_configuration), class: dom_class(server_configuration) do %>
+  <td><%= server_configuration.created_at.localtime.to_fs(:local) %></td>
+  <td><%= server_configuration.comment %></td>
+  <td class="text-end text-nowrap">
+    <%= show_link [server_configuration.server, server_configuration], 
+                  class: 'px-1', data: { "turbo-frame" => "_top" } %>
+    <%= delete_button([server_configuration.server, server_configuration], 
+                      class: 'no_button') %>
+  </td>
+<% end %>
