@@ -11,7 +11,7 @@ class Channel < ApplicationRecord
   has_many :channel_statistics, dependent: :destroy
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
-  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :channel
 
   # -- configuration
   store_accessor :properties, :name

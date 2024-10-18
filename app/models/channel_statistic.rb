@@ -13,7 +13,7 @@ class ChannelStatistic < ApplicationRecord
   belongs_to :current_note, class_name: 'Note', optional: true
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
-  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :channel_statistic
   has_many :escalation_levels, as: :escalatable, dependent: :destroy
   has_and_belongs_to_many :channel_statistic_groups, inverse_of: :channel_statistics
   has_many :group_escalation_levels, through: :channel_statistic_groups, source: :escalation_levels
