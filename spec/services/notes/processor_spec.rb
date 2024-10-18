@@ -4,7 +4,7 @@ require 'rails_helper'
 module Notes
   RSpec.describe Processor do
     let!(:ts)   { Time.current }
-    let(:server) { FactoryBot.create(:server) }
+    let(:server) { FactoryBot.create(:server, manual_update: true) }
     let(:note) do 
       FactoryBot.create(:note, 
         notable: server,

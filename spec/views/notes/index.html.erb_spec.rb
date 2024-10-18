@@ -37,9 +37,9 @@ module Servers
     it 'renders a list of notes' do
       render
       assert_select 'tr>td', text: time.localtime.to_fs(:local), count: 2
-      assert_select 'tr>td', text: nil.to_s, count: 7
+      assert_select 'tr>td', text: nil.to_s, count: 3
       assert_select 'tr>td', text: user.to_s, count: 2
-      assert_select 'tr>td', text: 'note'.to_s, count: 2
+      assert_select 'tr>td', text: 'Notiz'.to_s, count: 2
       assert_select 'tr>td', text: 'some text'.to_s, count: 2
       assert_select 'tr>td', text: Regexp.new('2024-01-01'.to_s), count: 1
 

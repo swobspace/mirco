@@ -29,6 +29,7 @@ RSpec.describe 'channel_statistics/show', type: :view do
                                                       condition: 2,
                                                       last_condition_change: 1.day.before(Time.current)
                                                     ))
+    allow(@channel_statistic).to receive(:condition).and_return(2)
   end
 
   it 'renders attributes in <p>' do

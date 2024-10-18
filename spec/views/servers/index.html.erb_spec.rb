@@ -26,6 +26,7 @@ RSpec.describe 'servers/index', type: :view do
     assign(:servers, [
              Server.create!(
                name: 'MyServer1',
+               manual_update: true,
                uid: '0abac8b3-c096-485c-914f-ee8199d55db1',
                host_id: host.id,
                description: 'MyText',
@@ -39,6 +40,7 @@ RSpec.describe 'servers/index', type: :view do
              ),
              Server.create!(
                name: 'MyServer2',
+               manual_update: true,
                uid: '9568b611-63b1-4870-8ee2-c309c16376ae',
                host_id: host.id,
                description: 'MyText',
@@ -55,6 +57,7 @@ RSpec.describe 'servers/index', type: :view do
 
   it 'renders a list of servers' do
     render
+    puts rendered
     assert_select 'tr>td', text: 'MyServer1'.to_s, count: 1
     assert_select 'tr>td', text: 'MyServer2'.to_s, count: 1
     assert_select 'tr>td', text: '9568b611-63b1-4870-8ee2-c309c16376ae'.to_s, count: 1
@@ -64,7 +67,7 @@ RSpec.describe 'servers/index', type: :view do
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2
     assert_select 'tr>td', text: 'Api Url'.to_s, count: 2
     assert_select 'tr>td', text: 'Api User'.to_s, count: 2
-    assert_select 'tr>td', text: false.to_s, count: 4
-    assert_select 'tr>td', text: time_now.to_s, count: 4
+    assert_select 'tr>td', text: false.to_s, count: 2
+    assert_select 'tr>td', text: ('✅ ' + time_now.to_s), count: 4
   end
 end

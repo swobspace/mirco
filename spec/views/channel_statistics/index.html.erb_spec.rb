@@ -9,7 +9,7 @@ RSpec.describe 'channel_statistics/index', type: :view do
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { 'channel_statistics' }
     allow(controller).to receive(:action_name) { 'index' }
-    @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth')
+    @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth', manual_update: true)
     channel1 = FactoryBot.create(:channel, server: @server)
     channel2 = FactoryBot.create(:channel, server: @server)
     travel_to Time.now do
@@ -27,7 +27,6 @@ RSpec.describe 'channel_statistics/index', type: :view do
         error: 4,
         filtered: 5,
         queued: 6,
-        condition: 2,
         last_condition_change: 1.day.before(Time.current)
       )
       ChannelStatistic.create!(
@@ -44,11 +43,11 @@ RSpec.describe 'channel_statistics/index', type: :view do
         error: 4,
         filtered: 5,
         queued: 6,
-        condition: 2,
         last_condition_change: 1.day.before(Time.current)
       )
     end
     assign(:channel_statistics, ChannelStatistic.all)
+    allow_any_instance_of(ChannelStatistic).to receive(:condition).and_return(2)
   end
 
   it 'renders a list of channel_statistics' do

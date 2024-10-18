@@ -96,7 +96,7 @@ RSpec.describe Server, type: :model do
 
     describe "#close_acknowledge" do
       before(:each) do
-        server.update(acknowledge_id: ack.id)
+        server.update(acknowledge_id: ack.id, manual_update: true)
         server.reload
       end
 
