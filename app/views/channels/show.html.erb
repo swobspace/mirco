@@ -60,46 +60,18 @@
  </div>
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.notes') %></h4>
-        <div role="toolbar">
-            <%= link_to 'Add Note',
-                        new_channel_note_path(@channel),
-                        class: "btn btn-secondary",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        } %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_notes'>
-        <%= render partial: 'notes/index', locals: {notable: @channel, notes: @channel.notes } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("notes", 
+                        src: polymorphic_path([@channel, :notes], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.alerts') %></h4>
-        <div role="toolbar">
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_alerts">
-        <%= render partial: 'alerts/index', locals: {alertable: @channel, alerts: @channel.alerts } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("alerts",
+                        src: polymorphic_path([@channel, :alerts]),
+                        loading: "lazy",
+                        refresh: "morph") %>
+
  </div>
 
 </div>
