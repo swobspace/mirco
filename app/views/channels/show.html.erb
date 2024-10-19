@@ -11,6 +11,13 @@
        &#8227; <%= @channel.name %>
     </button>
   </li>
+  <li class="nav-item me-2" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @channel, as_text: false,
+                                            period: 8.days ) %>
+    </button>
+  </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="channel-tab" data-bs-toggle="tab" data-bs-target="#channel" type="button" role="tab" aria-controls="channel" aria-selected="false">
       <%= t('attributes.channel') %>
@@ -36,7 +43,14 @@
           <%= t('activerecord.models.channel') %>
         </h4>
         <% if @channel.disabled? %>
-          <span class="fw-bold text-danger pt-2">DISABLED</span>
+          <div class="mt-2">
+            <%= Mirco::States.flag(Mirco::States::CRITICAL) %>
+            <span class="fw-bold text-danger pt-2">DISABLED</span>
+          </div>
+        <% else %>
+          <div class="mt-2">
+            <span class="pt-2">enabled</span>
+          </div>
         <% end %>
         <div role="toolbar">
           <%= back_link %>
