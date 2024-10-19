@@ -1,7 +1,7 @@
 de:
   enabled:
-    true: enabled
-    false: disabled
+    true: aktiv
+    false: deaktiviert
   mirco:
     action: Aktion
     add_note: Notiz erstellen
@@ -49,6 +49,8 @@ de:
       3: UNKNOWN
     all_notes: Alle Notizen
     current_notes: Aktuelle Notizen
+    all_channels: Alle Channels
+    current_channels: Aktive Channels
 
   activerecord:
     errors:
@@ -115,6 +117,7 @@ de:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Anzeigename
+    enabled: aktiviert
     end_time: Ende
     error: error
     error_last_30min: error (30min)

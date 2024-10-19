@@ -214,24 +214,10 @@
  </div>
 
  <div class="tab-pane fade" id="channels" role="tabpanel" aria-labelledby="channels-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.channels') %></h4>
-        <div role="toolbar">
-          <%= render Servers::ObsoleteChannelsButtonComponent.new(server: @server) %>
-          <%= button_to(t('mirco.fetch_channels'),
-                      fetch_all_server_channels_path(@server),
-                      class: 'btn btn-warning') if can? :manage, @server %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_channels">
-        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels.active } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("channels",
+                        src: polymorphic_path([@server, :channels], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
