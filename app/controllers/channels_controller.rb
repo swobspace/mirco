@@ -16,6 +16,9 @@ class ChannelsController < ApplicationController
     else
       @channels = Channel.all
     end
+    if params[:active]
+      @channels = @channels.active
+    end
     respond_with(@channels)
   end
 
