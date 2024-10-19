@@ -6,13 +6,13 @@
 
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
+  </li>
+  <li class="nav-item me-2" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button"
             tabindex="-1" aria-disabled="true">
       <%= render ConditionIconComponent.new(item: @server, as_text: false) %>
     </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">
