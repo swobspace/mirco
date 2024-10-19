@@ -2,6 +2,7 @@
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex, Rails/InverseOf
 class Channel < ApplicationRecord
+  include EscalationStatusConcerns
   include NotableConcerns
   include Mirco::Condition
 
@@ -12,6 +13,7 @@ class Channel < ApplicationRecord
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
   has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :channel
+  has_many :escalation_levels, as: :escalatable, dependent: :destroy
 
   # -- configuration
   store_accessor :properties, :name
@@ -29,6 +31,7 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
   before_save :check_enabled
+  before_save :update_condition
 
   delegate :location, :ipaddress, to: :server
 
@@ -90,6 +93,26 @@ class Channel < ApplicationRecord
       false
     end
   end
+
+  def escalatable_attributes
+    %w[ updated_at ]
+  end
+
+  def update_condition
+    if !(enabled?)
+      set_condition(Mirco::States::NOTHING,
+                    "Channel is disabled")
+    else
+      if escalation_status.state <= Mirco::States::OK
+        set_condition(Mirco::States::OK,
+                      I18n.t(Mirco::States::OK, scope: 'mirco.condition'))
+      else
+        set_condition(escalation_status.state,
+                      escalation_status.message)
+      end
+    end
+  end
+
 
   private
   def check_enabled

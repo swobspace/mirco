@@ -2,6 +2,14 @@
 
 require 'rails_helper'
 
+class FakeStatus
+  attr_reader :state, :message
+  def initialize(state, message)
+    @state = state
+    @message = message
+  end
+end
+
 RSpec.describe Channel, type: :model do
   let(:channel) { FactoryBot.create(:channel, properties: { name: 'special channel' }) }
   it { is_expected.to belong_to(:server) }
@@ -10,6 +18,7 @@ RSpec.describe Channel, type: :model do
   it { is_expected.to have_many(:channel_counters).dependent(:delete_all) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
   it { is_expected.to have_many(:all_notes).dependent(:destroy) }
+  it { is_expected.to have_many(:escalation_levels).dependent(:destroy) }
   it { is_expected.to validate_presence_of(:uid) }
 
   it 'should get plain factory working' do
@@ -76,4 +85,26 @@ RSpec.describe Channel, type: :model do
     end
   end
 
+  describe "#update_condition" do
+    it { expect(channel.condition).to eq(Mirco::States::OK) }
+
+    describe "with manual check enabled" do
+      it "-> NOTHING" do
+        expect(channel).to receive(:enabled?).and_return(false)
+        expect {
+          channel.update_condition
+        }.to change(channel, :condition).to(Mirco::States::NOTHING)
+      end
+    end
+
+    describe "escalation level WARNING" do
+      it "-> WARNING" do
+        expect(channel).to receive(:escalation_status).at_least(:once).
+          and_return(FakeStatus.new(Mirco::States::WARNING, "some text"))
+        expect {
+          channel.update_condition
+        }.to change(channel, :condition).to(Mirco::States::WARNING)
+      end
+    end
+  end
 end

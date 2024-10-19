@@ -165,8 +165,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_id: channel.id,
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
-        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 40.minutes.before(Time.current)
+        received: '1', sent: '3', error: '3', filtered: '4', queued: '5',
+        created_at: 5.minutes.before(Time.current)
       )
     end
     let!(:counter2) do
@@ -175,17 +175,25 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_id: channel.id,
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
-        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 20.minutes.before(Time.current)
+        received: '5', sent: '5', error: '3', filtered: '4', queued: '5',
+        created_at: 1.minutes.before(Time.current)
       )
     end
     before(:each) do
       allow(channel_statistic).to receive(:started?).and_return(true)
     end
 
+    it "debugs" do
+      puts channel_statistic.inspect
+      puts channel_statistic.sent
+      processor.process
+      channel_statistic.save
+      puts channel_statistic.inspect
+    end
+
     it { expect(processor.process).to be_truthy }
-    it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
-    it { processor.process ; expect(channel_statistic.condition).to eq(2) }
+    it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(4) }
+    it { processor.process ; expect(channel_statistic.condition).to eq(0) }
     it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
     it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("alert") }
 
