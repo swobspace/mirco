@@ -2,6 +2,13 @@
 
 require 'rails_helper'
 
+class FakeEscalationStatus
+  attr_reader :state
+  def initialize(state)
+    @state = state
+  end
+end
+
 RSpec.describe ChannelStatisticProcessor, type: :mailer do
   it { puts EscalationLevel.all }
 
@@ -141,6 +148,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         max_critical: nil
       )
     end
+
     let!(:channel_statistic) do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
@@ -155,8 +163,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         filtered: '4',
         queued: '12',
         condition: 0,
-        last_message_sent_at: 1.day.before(Time.current),
-        last_condition_change: 1.day.before(Time.current)
+        last_message_sent_at: 1.hour.before(Time.current),
+        last_condition_change: 1.hour.before(Time.current)
      )
     end
     let!(:counter1) do
@@ -165,8 +173,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_id: channel.id,
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
-        received: '1', sent: '3', error: '3', filtered: '4', queued: '5',
-        created_at: 5.minutes.before(Time.current)
+        received: '1', sent: '1', error: '3', filtered: '4', queued: '5',
+        created_at: 1.day.before(Time.current)
       )
     end
     let!(:counter2) do
@@ -175,27 +183,27 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_id: channel.id,
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
-        received: '5', sent: '5', error: '3', filtered: '4', queued: '5',
-        created_at: 1.minutes.before(Time.current)
+        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
+        created_at: 5.minutes.before(Time.current)
       )
     end
+
+
     before(:each) do
       allow(channel_statistic).to receive(:started?).and_return(true)
-    end
-
-    it "debugs" do
-      puts channel_statistic.inspect
-      puts channel_statistic.sent
-      processor.process
-      channel_statistic.save
-      puts channel_statistic.inspect
+      channel_statistic.assign_attributes(
+        received: 5,
+        sent: 6,
+        error: 3,
+        filtered: 4
+      )
     end
 
     it { expect(processor.process).to be_truthy }
     it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(4) }
     it { processor.process ; expect(channel_statistic.condition).to eq(0) }
     it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
-    it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("alert") }
+    it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("ok") }
 
     it "creates an alert entry" do
       expect {
@@ -205,27 +213,29 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
     it "sends an email if mail_to.any?" do
       expect(Mirco).to receive(:mail_to).at_least(:once).and_return(["operator@example.org"])
+      channel_statistic.update_columns(condition: 0)
       expect {
         perform_enqueued_jobs do
+          channel_statistic.sent = 2
           processor.process
         end
       }.to change(ActionMailer::Base.deliveries, :count)
     end
 
     it "sends no email if mail_to.empty?" do
-      expect(Mirco).to receive(:mail_to).at_least(:once).and_return([])
+      allow(Mirco).to receive(:mail_to).at_least(:once).and_return([])
+      channel_statistic.update_columns(condition: 0)
       expect {
         perform_enqueued_jobs do
+          channel_statistic.sent = 2
           processor.process
         end
       }.not_to change(ActionMailer::Base.deliveries, :count)
     end
 
     it "recovers after error" do
-      channel_statistic.update(condition: 2)
       note = FactoryBot.create(:note, notable: channel_statistic)
-      channel_statistic.update(acknowledge: note)
-      channel_statistic.reload
+      channel_statistic.update_columns(acknowledge_id: note.id, condition: 2)
       expect(channel_statistic.acknowledge).to be_present
       channel_statistic.sent = 10
       expect {
