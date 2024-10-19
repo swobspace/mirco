@@ -57,7 +57,6 @@ RSpec.describe 'servers/index', type: :view do
 
   it 'renders a list of servers' do
     render
-    puts rendered
     assert_select 'tr>td', text: 'MyServer1'.to_s, count: 1
     assert_select 'tr>td', text: 'MyServer2'.to_s, count: 1
     assert_select 'tr>td', text: '9568b611-63b1-4870-8ee2-c309c16376ae'.to_s, count: 1
