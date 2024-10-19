@@ -39,6 +39,8 @@ class ChannelStatisticAlertProcessor
     # avoid duplicate alerts, one for the destination and one for the channel itself
     return if alert.alertable&.status_type == 'CHANNEL'
     return unless alert.type == 'alert'
+    
+    # send alerts only if last_message_sent_at is escalated too
     if alert.alertable.escalation_status('last_message_sent_at').state <= EscalationLevel::OK   
       return
     end
