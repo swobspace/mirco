@@ -56,16 +56,6 @@ module Statistics
         )
       end
 
-      channel_counter = @channel_statistic.channel_counters.build(
-        server_id: server.id,
-        channel_id: channel.id,
-        meta_data_id: attributes['meta_data_id'],
-        received: attributes['received'],
-        sent: attributes['sent'],
-        error: attributes['error'],
-        filtered: attributes['filtered'],
-        queued: attributes['queued']
-      )
       ChannelStatisticProcessor.new(@channel_statistic).process
     end
     # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
