@@ -11,6 +11,7 @@
         <th><%= t('attributes.condition') %></th>
         <th class="notvisible"><%= t('attributes.condition_message') %></th>
         <th><%= t('attributes.enabled') %></th>
+        <th><%= t('attributes.state') %></th>
         <th><%= t('attributes.server') %></th>
         <th><%= t('attributes.name') %></th>
         <th><%= t('attributes.description') %></th>
@@ -21,6 +22,7 @@
     </thead>
     <tfoot class="search">
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -42,6 +44,7 @@
           </td>
           <td><%= channel.condition_message %></td>
           <td><%= t(channel.enabled?, scope: 'enabled') %></td>
+          <td><%= channel.state %></td>
           <td><%= channel.server %></td>
           <td><%= channel.name %></td>
           <td><%= format(channel.description) %></td>

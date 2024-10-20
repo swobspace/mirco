@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_14_152707) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_20_120852) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
@@ -152,6 +152,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_152707) do
     t.integer "condition", default: 0
     t.string "condition_message", default: ""
     t.bigint "acknowledge_id"
+    t.string "state", default: ""
     t.index ["condition"], name: "index_channels_on_condition"
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["uid"], name: "index_channels_on_uid"

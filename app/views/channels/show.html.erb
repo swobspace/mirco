@@ -42,16 +42,15 @@
         <h4 class="title pt-1">
           <%= t('activerecord.models.channel') %>
         </h4>
-        <% if @channel.disabled? %>
-          <div class="mt-2">
+        <div class="mt-2">
+          <% if @channel.disabled? %>
             <%= Mirco::States.flag(Mirco::States::CRITICAL) %>
             <span class="fw-bold text-danger pt-2">DISABLED</span>
-          </div>
         <% else %>
-          <div class="mt-2">
             <span class="pt-2">enabled</span>
-          </div>
-        <% end %>
+          <% end %>
+          <%= @channel.state %>
+        </div>
         <div role="toolbar">
           <%= back_link %>
           <%= asciidoc_link(@channel) %>

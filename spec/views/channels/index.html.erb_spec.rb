@@ -15,12 +15,14 @@ RSpec.describe 'channels/index', type: :view do
              Channel.create!(
                server: @server,
                uid: '0d612b6b-c4ff-4e88-a34c-f1ca2ece6349',
-               properties: { name: 'VeryFirstChannel' }
+               properties: { name: 'VeryFirstChannel' },
+               state: 'STARTED'
              ),
              Channel.create!(
                server: @server,
                uid: 'fa9c355f-d201-4431-b4af-92dccfd9224b',
-               properties: { name: 'SecondChannel' }
+               properties: { name: 'SecondChannel' },
+               state: 'STARTED'
              )
            ])
   end
@@ -31,5 +33,6 @@ RSpec.describe 'channels/index', type: :view do
     assert_select 'tr>td', text: 'fa9c355f-d201-4431-b4af-92dccfd9224b'.to_s, count: 1
     expect(rendered).to match('VeryFirstChannel')
     expect(rendered).to match('SecondChannel')
+    expect(rendered).to match('STARTED')
   end
 end

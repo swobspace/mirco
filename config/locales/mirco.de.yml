@@ -1,7 +1,7 @@
 de:
   enabled:
-    true: aktiv
-    false: deaktiviert
+    true: enabled
+    false: disabled
   mirco:
     action: Aktion
     add_note: Notiz erstellen
@@ -117,7 +117,7 @@ de:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Anzeigename
-    enabled: aktiviert
+    enabled: enabled
     end_time: Ende
     error: error
     error_last_30min: error (30min)

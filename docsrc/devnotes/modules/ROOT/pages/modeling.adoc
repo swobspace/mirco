@@ -47,6 +47,7 @@ bin/rails g scaffold Channel \
   condition:integer:index \
   condition_message:string \
   acknowledge_id:bigint \
+  state:string \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -75,14 +76,7 @@ bin/rails g scaffold ChannelStatistic \
   acknowledge_id:bigint \
   --no-stylesheets --no-javascripts --no-helper
 ----
-// bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
-// bin/rails g migration AddStatusesFieldsToChannelStatistic \
-//   name:string state:string status_type:string
-// bin/rails g migration AddConditionToChannelStatistic \
-//   condition:string:index last_condition_change:timestamp
-// bin/rails g migration AddLastMessageAtToChannelStatistic \
-//   last_message_received_at:timestamp last_message_sent_at:timestamp \
-//   last_message_error_at:timestamp
+
 
 == Model ChannelCounter
 
