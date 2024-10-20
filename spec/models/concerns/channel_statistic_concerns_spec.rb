@@ -3,8 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe ChannelStatisticConcerns, type: :model do
+  let(:channel) { FactoryBot.create(:channel, state: 'STARTED') }
   let!(:cs) do
     FactoryBot.create(:channel_statistic,
+      channel: channel,
       queued: 53, 
       last_message_received_at: 10.minutes.before(Time.now),
       last_message_sent_at: 30.minutes.before(Time.now),

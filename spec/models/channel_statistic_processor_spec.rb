@@ -19,9 +19,12 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   end
   let!(:channel) do
     FactoryBot.create(:channel,
-                      server: server,
-                      enabled: true,
-                      uid: '445cda00-c847-4198-a9be-eb0dc6b5946d')
+      server: server,
+      enabled: true,
+      properties: { 'name': 'special channel',
+                    'exportData': { 'metadata': { 'enabled': 'true' }}},
+      uid: '445cda00-c847-4198-a9be-eb0dc6b5946d'
+    )
   end
   let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
 
@@ -30,6 +33,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.build(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -61,6 +66,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -114,6 +121,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -153,6 +162,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -251,14 +262,23 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   end
 
   describe "threshold checks" do
-    let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
+    let(:channel_statistic) do
+      FactoryBot.build(:channel_statistic,
+        server_id: server.id,
+        channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
+      )
+    end
     before(:each) do
       allow(channel_statistic).to receive(:started?).and_return(true)
+      allow(channel).to receive(:state).and_return("STARTED")
+      allow(channel).to receive(:enabled).and_return(true)
     end
 
     it "queued: 0, sent_last_30min > 0" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
-      processor.process
+      processor.process; channel.reload
       expect(channel_statistic.condition).to eq(0)
     end
 

@@ -6,7 +6,7 @@ RSpec.describe SoftwareConnectionConcerns, type: :model do
   let!(:host) { FactoryBot.create(:host, ipaddress: '192.0.2.81') }
   let(:source_url) { "tcp://0.0.0.0:1111" }
   let(:destination_url) { "tcp://1.2.3.4:1.2.3.4" }
-  let(:channel) { FactoryBot.create(:channel) }
+  let(:channel) { FactoryBot.create(:channel, state: 'STARTED') }
   let(:conn) do 
     FactoryBot.create(:software_connection, 
       source_url: source_url,

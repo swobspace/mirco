@@ -12,7 +12,17 @@ end
   
 RSpec.describe ChannelStatistic, type: :model do
   let(:ch) { FactoryBot.create(:channel) }
-  let(:cs) { FactoryBot.create(:channel_statistic, name: 'Some Statistics', channel: ch) }
+  let(:cs) do 
+    FactoryBot.create(:channel_statistic, 
+      name: 'Some Statistics', 
+      channel: ch
+    )
+  end
+
+  before(:each) do
+    allow(ch).to receive(:enabled?).and_return(true)
+  end
+
   it { is_expected.to belong_to(:server) }
   it { is_expected.to belong_to(:channel) }
   it { is_expected.to belong_to(:acknowledge).optional }
@@ -159,11 +169,12 @@ RSpec.describe ChannelStatistic, type: :model do
     end
 
     describe "with connector stopped" do
+      it { expect(ch.enabled?).to be_truthy }
+      it { expect(cs.started?).to be_falsey }
       it "-> WARNING" do
-        cs.update_column(:condition, Mirco::States::OK)
-        cs.reload
+        cs.update_columns(condition: Mirco::States::OK, state: 'STOPPED')
         expect(cs.condition).to eq(Mirco::States::OK)
-        expect(cs).to receive(:state).and_return('STOPPED')
+        expect(cs).to receive_message_chain(:channel, :enabled?).and_return(true)
         expect {
           cs.update_condition
         }.to change(cs, :condition).to(Mirco::States::WARNING)

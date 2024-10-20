@@ -25,6 +25,16 @@ module Statistics
     # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Rails/SkipsModelValidations
     def save
       return false if channel.nil?
+      if status_type == 'CHANNEL'
+        unless state == 'STARTED'
+          puts "status type: #{status_type}, state: #{state}"
+        end
+        channel.update(state: state)
+        return true
+      elsif state == 'UNDEPLOYED'
+        # don't create statistics from undeployed channels/connectors
+        return true
+      end
 
       if @channel_statistic.nil?
         Rails.logger.debug("DEBUG:: create new channel statistic")
@@ -80,6 +90,14 @@ module Statistics
         channel_uid: attributes['channel_uid'],
         meta_data_id: attributes['meta_data_id']
       ).first
+    end
+
+    def state
+      attributes['state']
+    end
+
+    def status_type
+      attributes['status_type']
     end
   end
 end

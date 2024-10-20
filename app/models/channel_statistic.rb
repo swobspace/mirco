@@ -65,6 +65,9 @@ class ChannelStatistic < ApplicationRecord
     if !(channel&.enabled?)
       set_condition(Mirco::States::NOTHING,
                     "Channel is disabled")
+    elsif state == "UNDEPLOYED"
+      set_condition(Mirco::States::NOTHING,
+                    "Connector is not deployed")
     elsif !started?
       set_condition(Mirco::States::WARNING,
                     I18n.t(Mirco::States::WARNING, scope: 'mirco.condition') +

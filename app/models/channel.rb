@@ -115,13 +115,31 @@ class Channel < ApplicationRecord
 
 
   private
+
+  # check_enabled
+  # test for exportData first. If missing, use state from channel/statuses
+  #
   def check_enabled
-    if exportData.present? && exportData['metadata'].present? && exportData['metadata']['enabled'] == 'false'
+    if properties.nil?
+      is_enabled = nil
+    else
+      is_enabled = properties.dig('exportData', 'metadata', 'enabled')
+    end
+    if is_enabled == 'true'
+      self[:enabled] = true
+    elsif is_enabled == 'false'
       self[:enabled] = false
     else
-      self[:enabled] = true
+      case state
+      when "STARTED", "STOPPED"
+        self[:enabled] = true
+      when "UNDEPLOYED"
+        self[:enabled] = false
+      else
+        self[:enabled] = false
+      end
     end
   end
-  
+
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex, Rails/InverseOf

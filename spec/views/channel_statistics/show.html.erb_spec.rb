@@ -10,7 +10,7 @@ RSpec.describe 'channel_statistics/show', type: :view do
     allow(controller).to receive(:controller_name) { 'channel_statistics' }
     allow(controller).to receive(:action_name) { 'index' }
     @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth')
-    @channel = FactoryBot.create(:channel, server: @server)
+    @channel = FactoryBot.create(:channel, server: @server, state: 'STARTED')
 
     @channel_statistic = assign(:channel_statistic, ChannelStatistic.create!(
                                                       server: @server,
@@ -29,7 +29,6 @@ RSpec.describe 'channel_statistics/show', type: :view do
                                                       condition: 2,
                                                       last_condition_change: 1.day.before(Time.current)
                                                     ))
-    allow(@channel_statistic).to receive(:condition).and_return(2)
   end
 
   it 'renders attributes in <p>' do
@@ -47,7 +46,7 @@ RSpec.describe 'channel_statistics/show', type: :view do
     expect(rendered).to match(/4/)
     expect(rendered).to match(/5/)
     expect(rendered).to match(/6/)
-    expect(rendered).to match(/CRITICAL/)
+    expect(rendered).to match(/✅ OK/)
     expect(rendered).to match(/#{1.day.before(Time.current).to_fs(:local)}/)
   end
 end

@@ -10,7 +10,7 @@ shared_context "connection variables" do
   end
 
   let!(:ch1) { FactoryBot.create(:channel, id: 4711, properties: properties) }
-  let!(:ch2) { FactoryBot.create(:channel, id: 815) }
+  let!(:ch2) { FactoryBot.create(:channel, id: 815, state: 'STARTED') }
   let!(:ch3) { FactoryBot.create(:channel, id: 816, properties: properties) }
 
   let!(:sg1) { FactoryBot.create(:software_group, name: "SW Group One") }

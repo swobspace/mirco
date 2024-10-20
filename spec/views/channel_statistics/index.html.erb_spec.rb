@@ -10,8 +10,8 @@ RSpec.describe 'channel_statistics/index', type: :view do
     allow(controller).to receive(:controller_name) { 'channel_statistics' }
     allow(controller).to receive(:action_name) { 'index' }
     @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth', manual_update: true)
-    channel1 = FactoryBot.create(:channel, server: @server)
-    channel2 = FactoryBot.create(:channel, server: @server)
+    channel1 = FactoryBot.create(:channel, server: @server, state: 'STARTED')
+    channel2 = FactoryBot.create(:channel, server: @server, state: 'STARTED')
     travel_to Time.now do
       ChannelStatistic.create!(
         server: @server,

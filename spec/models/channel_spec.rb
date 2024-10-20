@@ -11,7 +11,12 @@ class FakeStatus
 end
 
 RSpec.describe Channel, type: :model do
-  let(:channel) { FactoryBot.create(:channel, properties: { name: 'special channel' }) }
+  let(:channel) do 
+    FactoryBot.create(:channel, 
+      properties: { 'name': 'special channel',
+                    'exportData': { 'metadata': { 'enabled': 'true' }}}
+     )
+  end
   it { is_expected.to belong_to(:server) }
   it { is_expected.to have_one(:channel_statistic) }
   it { is_expected.to have_many(:channel_statistics).dependent(:destroy) }
@@ -79,7 +84,7 @@ RSpec.describe Channel, type: :model do
       it "sets enabled if exportData is not available" do
         ch2.properties = nil
         ch2.save; ch2.reload
-        expect(ch2.enabled?).to be_truthy
+        expect(ch2.enabled?).to be_falsey
       end
 
     end
