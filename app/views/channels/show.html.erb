@@ -53,6 +53,11 @@
         </div>
         <div role="toolbar">
           <%= back_link %>
+            <%= render AcknowledgeButtonComponent.new(
+                         notable: @channel, small: false,
+                         readonly: cannot?(:manage, @channel)
+                       )
+             %>
           <%= asciidoc_link(@channel) %>
           <%= link_to(
                 raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),

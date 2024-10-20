@@ -61,7 +61,11 @@
               ) %>
           <td class="text-nowrap text-center">
             <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), problem, class: 'btn btn-secondary btn-sm my-0') %>
-
+              <%= render AcknowledgeButtonComponent.new(
+                           notable: problem,
+                           readonly: cannot?(:manage, problem)
+                         )
+               %>
           </td>
         <% end %>
       <% end %>

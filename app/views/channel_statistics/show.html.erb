@@ -48,6 +48,11 @@
         <div class="d-flex w-100 justify-content-between">
           <h4><%= t('activerecord.models.channel_statistic') %></h4>
           <div role="toolbar">
+            <%= render AcknowledgeButtonComponent.new(
+                         notable: @channel_statistic, small: false,
+                         readonly: cannot?(:manage, @channel_statistic)
+                       )
+             %>
             <%= back_link %>
           </div>
         </div>
