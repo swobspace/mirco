@@ -59,7 +59,13 @@ class ChannelsController < ApplicationController
                       '<br/>' + result.error_messages.join('<br/>').truncate(300)
       Rails.logger.warn(flash[:error])
     end
-    respond_with(@server, render: 'servers/show')
+    respond_with(@server) do |format|
+      if result.success?
+        format.turbo_stream
+      else
+        format.html { render 'servers/show', status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /channels/1

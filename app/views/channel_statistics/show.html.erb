@@ -19,6 +19,12 @@
        &#8227; <%= @channel_statistic.name %>
     </button>
   </li>
+  <li class="nav-item me-2" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @channel_statistic, as_text: false) %>
+    </button>
+  </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="channel_statistic-tab" data-bs-toggle="tab" data-bs-target="#channel_statistic" type="button" role="tab" aria-controls="channel_statistic" aria-selected="false">
       <%= t('attributes.channel_statistic') %>
@@ -103,9 +109,8 @@
           </tr>
           <tr>
             <th><%= t('attributes.condition')%>:</th>
-            <td class="bg-<%= @channel_statistic.condition %>">
-              <%= t(@channel_statistic.condition, scope: 'mirco.condition') %>
-            </td>
+            <td><%= @channel_statistic.condition_message %> </td>
+
             <th><%= t('attributes.last_message_sent_at')%>:</th>
             <%= render TdEscalationComponent.new(
                   escalatable: @channel_statistic,
