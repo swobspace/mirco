@@ -20,6 +20,28 @@ class ChannelStatisticsController < ApplicationController
     respond_with(@channel_statistics)
   end
 
+  def queued
+    @channel_statistics = ChannelStatistic.active.current.queued
+    # just for testing
+    if params[:all]
+     # full display
+    elsif params[:acknowledged]
+      @channel_statistics = @channel_statistics.acknowledged
+    else
+      @channel_statistics = @channel_statistics.not_acknowledged
+    end
+    ordered = @channel_statistics.order('queued desc')
+    @count = ordered.count
+    @pagy, @channel_statistics = pagy(ordered, count: ordered.count)
+
+    respond_with(@channel_statistics)
+  end
+
+  def problems
+    @problems = ChannelStatistic.active.current.escalated.order('condition desc')
+    respond_with(@channel_statistics)
+  end
+
   # GET /channel_statistics/1
   def show
     respond_with(@channel_statistic)

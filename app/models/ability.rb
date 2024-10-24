@@ -8,10 +8,14 @@ class Ability
     alias_action :search, :search_form, to: :read
     # endpoints from channel_statistics_controller for graphs
     alias_action :last_week, :last_month, :today, :current, :current_sent, to: :read
+    alias_action :sindex, :queued, :problems, to: :read
 
     @user = user
     if @user.nil?
       can :read, Home
+      # neccessary for home page
+      can [:queued, :problems], ChannelStatistic
+      can [:sindex], Server
     elsif @user.is_admin?
       can :manage, :all
       cannot %i[update destroy], :roles, ro: true

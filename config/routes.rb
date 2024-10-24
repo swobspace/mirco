@@ -43,6 +43,10 @@ Rails.application.routes.draw do
       get :current
       get :current_sent
     end
+    collection do
+      get :queued
+      get :problems
+    end
     resources :alerts, only: %i[index show], module: :channel_statistics
     resources :notes, module: :channel_statistics
     resources :escalation_levels, module: :channel_statistics

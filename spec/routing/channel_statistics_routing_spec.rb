@@ -8,6 +8,14 @@ RSpec.describe ChannelStatisticsController, type: :routing do
       expect(get: '/channel_statistics').to route_to('channel_statistics#index')
     end
 
+    it 'routes to #queued' do
+      expect(get: '/channel_statistics/queued').to route_to('channel_statistics#queued')
+    end
+
+    it 'routes to #problems' do
+      expect(get: '/channel_statistics/problems').to route_to('channel_statistics#problems')
+    end
+
     it 'routes to #new' do
       pending 'needs more grips'
       expect(get: '/channel_statistics/new').not_to be_routable
