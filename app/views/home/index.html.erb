@@ -18,18 +18,20 @@
 
   <div class="card mt-3">
     <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="pt-1">Potential Message Problems</h4>
-        <div role="toolbar">
+      <div class="row">
+        <div class="col-xs-5 col-md-4 col-ml-3">
+          <h4 class="me-4 pt-1">Potential Message Problems</h4>
+        </div>
+        <div class="d-flex col-xs-7 col-md-8 col-ml-9">
+          <%= render 'problem_states' %>
           <% if current_user&.is_admin? %>
             <%= link_to icon_edit, escalation_levels_path, class: 'btn btn-outline-secondary' %>
           <% end %>
         </div>
-
       </div>
     </div>
     <div>
-      <%= render 'problems', problems: @problems %>
+      <%= turbo_frame_tag("problems", src: problems_channel_statistics_path, refresh: "morph") %>
     </div>
   </div>
 

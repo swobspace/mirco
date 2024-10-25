@@ -22,7 +22,6 @@ class ChannelStatisticsController < ApplicationController
 
   def queued
     @channel_statistics = ChannelStatistic.active.current.queued
-    # just for testing
     if params[:all]
      # full display
     elsif params[:acknowledged]
@@ -38,7 +37,18 @@ class ChannelStatisticsController < ApplicationController
   end
 
   def problems
-    @problems = ChannelStatistic.active.current.escalated.order('condition desc')
+    @current = ChannelStatistic.active.current
+    if params[:condition]
+      @channel_statistics = @current.condition(params[:condition]).not_acknowledged
+    elsif params[:acknowledged]
+      @channel_statistics = @current.escalated.acknowledged
+    else
+      @channel_statistics = @current.escalated.not_acknowledged
+    end
+    ordered = @channel_statistics.order('channel_statistics.condition desc')
+    @count = ordered.count
+    @pagy, @channel_statistics = pagy(ordered, count: ordered.count)
+
     respond_with(@channel_statistics)
   end
 

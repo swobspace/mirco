@@ -1,0 +1,39 @@
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::WARNING,
+                  count: ChannelStatistic.active.current.warning.count,
+                  link:  problems_channel_statistics_path(condition: Mirco::States::WARNING),
+                  myframe: 'problems') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::CRITICAL,
+                  count: ChannelStatistic.active.current.critical.count,
+                  link:  problems_channel_statistics_path(condition: Mirco::States::CRITICAL),
+                  myframe: 'problems') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::UNKNOWN,
+                  count: ChannelStatistic.active.current.unknown.count,
+                  link:  problems_channel_statistics_path(condition: Mirco::States::UNKNOWN),
+                  myframe: 'problems') %>
+</div>
+<div class="me-2">
+  <%= render ConditionBadgeComponent
+             .new(state: Mirco::States::NOTHING,
+                  count: ChannelStatistic.active.current.nothing.count,
+                  link:  problems_channel_statistics_path(condition: Mirco::States::NOTHING),
+                  myframe: 'problems') %>
+</div>
+<div class="me-2">
+  <%= link_to problems_channel_statistics_path(acknowledged: 'true'),
+              class: 'btn btn-outline-secondary',
+              "data-turbo-frame": 'problems' do %>
+    <i class="fa-solid fa-person-digging"></i>
+    <span class="badge text-bg-secondary">
+      <%= ChannelStatistic.active.current.acknowledged.count %>
+    </span>
+  <% end %>
+</div>
+
