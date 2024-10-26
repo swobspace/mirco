@@ -25,7 +25,8 @@
         <div class="d-flex col-xs-7 col-md-8 col-ml-9">
           <%= render 'problem_states' %>
           <% if current_user&.is_admin? %>
-            <%= link_to icon_edit, escalation_levels_path, class: 'btn btn-outline-secondary' %>
+            <%= link_to icon_edit + " Escalation Levels", escalation_levels_path,
+                class: 'btn btn-outline-secondary ms-auto' %>
           <% end %>
         </div>
       </div>
