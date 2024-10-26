@@ -1,6 +1,6 @@
 <%= tag.tr id: dom_id(channel), class: "#{'invalid' unless channel.enabled?}" do %>
 
-  <td>
+  <td class="text-center">
     <%= render ConditionIconComponent.new(item: channel, small: true,
                                                   as_text: true, period: 8.days ) %>
   </td>

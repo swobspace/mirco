@@ -221,23 +221,10 @@
  </div>
 
  <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.channel_statistics') %></h4>
-        <div role="toolbar">
-          <%= button_to(t('mirco.fetch_statistics'),
-                      fetch_all_server_channel_statistics_path(@server),
-                      class: 'btn btn-warning') if can? :manage, @server %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_channel_statistics">
-        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics.active } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("channel_statistics",
+                        src: polymorphic_path([@server, :channel_statistics], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="connectors" role="tabpanel" aria-labelledby="properties-tab">

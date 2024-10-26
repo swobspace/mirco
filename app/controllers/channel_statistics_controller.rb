@@ -13,9 +13,12 @@ class ChannelStatisticsController < ApplicationController
                                             .where('meta_data_id > 0')
                                             .where("last_message_error_at > ?",
                                                    7.days.before(Date.current))
-
+    
     else
       @channel_statistics = ChannelStatistic.all
+    end
+    if params[:active]
+      @channel_statistics = @channel_statistics.active.current
     end
     respond_with(@channel_statistics)
   end

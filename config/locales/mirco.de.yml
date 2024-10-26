@@ -47,10 +47,6 @@ de:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    all_notes: Alle Notizen
-    current_notes: Aktuelle Notizen
-    all_channels: Alle Channels
-    current_channels: Aktive Channels
 
   activerecord:
     errors:
@@ -259,9 +255,16 @@ de:
 
   escalation_times:
     add: Eskalationszeitraum hinzufügen
+  channels:
+    all: Alle Channels
+    current: Aktive Channels
   channel_statistics:
     add: Channelstatistik hinzufügen
+    all: Alle Channelstatistiken
+    current: Aktive Channelstatistiken
   notes:
     acknowledge: Acknowledge
     note: Notiz
     mail: Mail
+    all: Alle Notizen
+    current: Aktuelle Notizen

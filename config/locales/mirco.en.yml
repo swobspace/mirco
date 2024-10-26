@@ -47,10 +47,6 @@ en:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    all_notes: All notes
-    current_notes: Current notes
-    all_channels: All channels
-    current_channels: Active channels
 
   activerecord:
     errors:
@@ -259,9 +255,16 @@ en:
 
   escalation_times:
     add: Add escalation time
+  channels:
+    all: All channels
+    current: Active channels
   channel_statistics:
     add: add Channel statistic
+    all: All channel statistics
+    current: Active channel statistics
   notes:
     acknowledge: Acknowledge
     note: Note
     mail: Mail
+    all: All notes
+    current: Current notes

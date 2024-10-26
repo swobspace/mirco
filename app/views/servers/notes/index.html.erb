@@ -8,13 +8,13 @@
         <div class="d-flex col-xs-7 col-md-8 col-ml-9">
          <% if params[:active].present? %>
           <div>
-            <%= link_to t('mirco.all_notes'), polymorphic_path([@notable, :notes], all: 1),
+            <%= link_to t('notes.all'), polymorphic_path([@notable, :notes], all: 1),
                         class: 'btn btn-outline-secondary me-1',
                         data: {"turbo-frame" => "notes"} %>
           </div>
          <% else %>
           <div>
-            <%= link_to t('mirco.current_notes'), polymorphic_path([@notable, :notes], active: 1),
+            <%= link_to t('notes.current'), polymorphic_path([@notable, :notes], active: 1),
                         class: 'btn btn-outline-secondary me-1',
                         data: {"turbo-frame" => "notes"} %>
           </div>

@@ -8,13 +8,13 @@
         <div class="d-flex col-xs-7 col-md-8 col-ml-9">
           <% if params[:active].present? %>
            <div>
-             <%= link_to t('mirco.all_channels'), polymorphic_path([@server, :channels], all: 1),
+             <%= link_to t('channels.all'), polymorphic_path([@server, :channels], all: 1),
                          class: 'btn btn-outline-secondary me-1',
                          data: {"turbo-frame" => "channels"} %>
            </div>
           <% else %>
            <div>
-             <%= link_to t('mirco.current_channels'), polymorphic_path([@server, :channels], active: 1),
+             <%= link_to t('channels.current'), polymorphic_path([@server, :channels], active: 1),
                          class: 'btn btn-outline-secondary me-1',
                          data: {"turbo-frame" => "channels"} %>
            </div>
