@@ -65,7 +65,7 @@
             <td class="text-nowrap text-center">
               <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
                           channel_statistic,
-                          class: 'btn btn-secondary btn-sm my-0',
+                          class: 'btn btn-secondary btn-sm',
                           data: { "turbo" => false }) if can? :read, channel_statistic
                %>
               <%= render AcknowledgeButtonComponent.new(
