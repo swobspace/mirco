@@ -1,6 +1,6 @@
 <%= turbo_frame_tag("queued") do %>
  <div class="table-responsive-xl">
-  <% if @channel_statistics.size > 0 %> 
+  <% if @channel_statistics.size > 0 %>
     <%= content_tag :table, id: "queuing_table",
           class: "table table-bordered mb-0" do %>
       <thead>
@@ -63,7 +63,10 @@
                   manual_update: channel_statistic.server.manual_update
                 ) %>
             <td class="text-nowrap text-center">
-              <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary btn-sm my-0') %>
+              <%= link_to raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
+                          channel_statistic,
+                          class: 'btn btn-secondary btn-sm my-0',
+                          data: { "turbo" => false } %>
               <% if channel_statistic.condition >= EscalationLevel::WARNING %>
                 <%= render AcknowledgeButtonComponent.new(
                              notable: channel_statistic,

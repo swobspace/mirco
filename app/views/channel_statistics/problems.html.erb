@@ -62,7 +62,10 @@
                   manual_update: problem.server.manual_update
                 ) %>
             <td class="text-nowrap text-center">
-              <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), problem, class: 'btn btn-secondary btn-sm my-0') %>
+              <%= link_to raw(%Q[<i class="fas fa-chart-bar"></i>]), problem,
+                          class: 'btn btn-secondary btn-sm my-0',
+                          data: { "turbo" => false }  %>
+
                 <%= render AcknowledgeButtonComponent.new(
                              notable: problem,
                              readonly: cannot?(:manage, problem)
