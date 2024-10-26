@@ -62,7 +62,11 @@ RSpec.describe ChannelStatisticsController, type: :routing do
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/channel_statistics/1').not_to be_routable
+      expect(delete: '/channel_statistics/outdated').not_to be_routable
+    end
+
+    it 'routes to #delete_outdated' do
+      expect(delete: '/channel_statistics/delete_outdated').to route_to("channel_statistics#delete_outdated")
     end
   end
 end

@@ -8,13 +8,13 @@
         } do %>
     <thead>
       <tr>
-        <% unless server.present? %>
-          <th><%= t('attributes.server') %></th>
-        <% end %>
+        <th><%= t('attributes.condition') %></th>
+        <th class="notvisible"><%= t('attributes.condition_message') %></th>
+        <th><%= t('attributes.server') %></th>
         <th><%= t('attributes.channel') %></th>
         <th><%= t('attributes.connector') %></th>
-        <th><%= t('attributes.state') %></th>
-        <th><%= t('attributes.status_type') %></th>
+        <th class="notvisible"><%= t('attributes.state') %></th>
+        <th class="notvisible"><%= t('attributes.status_type') %></th>
         <th><%= t('attributes.received') %></th>
         <th><%= t('attributes.last_message_received_at') %></th>
         <th><%= t('attributes.sent') %></th>
@@ -23,7 +23,6 @@
         <th><%= t('attributes.last_message_error_at') %></th>
         <th><%= t('attributes.filtered') %></th>
         <th><%= t('attributes.queued') %></th>
-        <th><%= t('attributes.condition') %></th>
         <th><%= t('attributes.last_condition_change') %></th>
         <th><%= t('attributes.updated_at') %></th>
         <th class="nosort"><%= t('mirco.action') %></th>
@@ -31,9 +30,8 @@
     </thead>
     <tfoot class="search">
       <tr>
-        <% unless server.present? %>
-          <th></th>
-        <% end %>
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -55,17 +53,21 @@
     <tbody>
       <% channel_statistics.each do |channel_statistic| %>
         <%= content_tag(:tr, id: dom_id(channel_statistic), class: dom_class(channel_statistic)) do %>
-          <% unless server.present? %>
-            <td><%= link_to(
-                      channel_statistic.server, 
-                      channel_statistic.server,
-                      class: 'primary-link')
+          <td class="text-center">
+            <%= render ConditionIconComponent.new(item: channel_statistic,
+                                                  small: true, as_text: true) %>
+          </td>
+          <td><%= channel_statistic.condition_message %></td>
+          <td><%= link_to(channel_statistic.server,
+                          channel_statistic.server,
+                          "data-turbo-frame": "_top",
+                          class: 'primary-link')
                 %>
           </td>
-          <% end %>
           <td><%= link_to_if(can?(:read, channel_statistic.channel),
                     channel_statistic.channel,
                     channel_path(channel_statistic.channel),
+                    "data-turbo-frame": "_top",
                     class: 'primary-link')
               %>
           </td>
@@ -73,7 +75,8 @@
             <% if channel_statistic.meta_data_id.nil? %>
               -
             <% else %>
-              <%= link_to channel_statistic.name, channel_statistic, 
+              <%= link_to channel_statistic.name, channel_statistic,
+                          "data-turbo-frame": "_top",
                           class: 'primary-link' %>
             <% end %>
           </td>
@@ -103,7 +106,6 @@
                   attrib: 'queued',
                   manual_update: channel_statistic.server.manual_update
               ) %>
-          <td class="text-center"><%= t(channel_statistic.condition, scope: 'mirco.condition') %></td>
           <td><%= channel_statistic.last_condition_change&.to_fs(:local) %></td>
           <%= render TdEscalationComponent.new(
                   escalatable: channel_statistic,
@@ -111,7 +113,10 @@
                   manual_update: channel_statistic.server.manual_update
               ) %>
           <td class="text-nowrap">
-            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), channel_statistic, class: 'btn btn-secondary me-1') if can? :read, channel_statistic %>
+            <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]),
+                        channel_statistic,
+                        "data-turbo-frame": "_top",
+                        class: 'btn btn-secondary me-1') if can? :read, channel_statistic %>
           </td>
         <% end %>
       <% end %>

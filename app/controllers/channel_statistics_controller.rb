@@ -13,7 +13,8 @@ class ChannelStatisticsController < ApplicationController
                                             .where('meta_data_id > 0')
                                             .where("last_message_error_at > ?",
                                                    7.days.before(Date.current))
-    
+    elsif params['outdated'].present?
+      @channel_statistics = outdated_statistics
     else
       @channel_statistics = ChannelStatistic.all
     end
@@ -94,6 +95,11 @@ class ChannelStatisticsController < ApplicationController
                  }
   end
 
+  def delete_outdated
+    outdated_statistics.destroy_all
+    redirect_to channel_statistics_path(outdated: true)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -109,5 +115,17 @@ class ChannelStatisticsController < ApplicationController
 
   def location
     polymorphic_path(@server || @channel_statistic)
+  end
+
+  def outdated
+    # (2*Mirco::grace_period).before(Time.current)
+    1.day.before(Time.current)
+  end
+
+  def outdated_statistics
+    @outdated_statistics =
+      ChannelStatistic.where('channel_statistics.updated_at < ?', outdated)
+                      .joins(:server)
+                      .where('servers.manual_update = ?', false)
   end
 end

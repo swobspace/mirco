@@ -20,26 +20,32 @@
 
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.alerts')), 
+                       t('controller.alerts')),
                   main_app.alerts_path,
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.channels')), 
+                       t('controller.channels')),
                   main_app.channels_path,
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.channel_statistics')), 
+                       t('controller.channel_statistics')),
                   main_app.channel_statistics_path,
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>
       <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
-                       t('mirco.recent_errors')), 
+                       t('channel_statistics.outdated')),
+                  main_app.channel_statistics_path(outdated: true),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
+                       t('mirco.recent_errors')),
                   main_app.channel_statistics_path(recent_errors: 1),
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"

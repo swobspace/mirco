@@ -262,6 +262,7 @@ en:
     add: add Channel statistic
     all: All channel statistics
     current: Active channel statistics
+    outdated: Outdated statistics
   notes:
     acknowledge: Acknowledge
     note: Note

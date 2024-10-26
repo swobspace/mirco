@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       get :current_sent
     end
     collection do
+      delete :delete_outdated
       get :queued
       get :problems
     end

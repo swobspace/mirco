@@ -262,6 +262,7 @@ de:
     add: Channelstatistik hinzufügen
     all: Alle Channelstatistiken
     current: Aktive Channelstatistiken
+    outdated: Veraltete Statistiken
   notes:
     acknowledge: Acknowledge
     note: Notiz
