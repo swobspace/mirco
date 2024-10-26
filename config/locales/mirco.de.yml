@@ -263,6 +263,8 @@ de:
     all: Alle Channelstatistiken
     current: Aktive Channelstatistiken
     outdated: Veraltete Statistiken
+    delete_outdated: Veraltete Statistiken löschen
+    delete_outdated_confirm: Veraltete Statistiken löschen?
   notes:
     acknowledge: Acknowledge
     note: Notiz

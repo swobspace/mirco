@@ -263,6 +263,9 @@ en:
     all: All channel statistics
     current: Active channel statistics
     outdated: Outdated statistics
+    delete_outdated: Delete outdated statistics
+    delete_outdated_confirm: Delete outdated statistics?
+
   notes:
     acknowledge: Acknowledge
     note: Note
