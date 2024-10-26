@@ -179,13 +179,12 @@ en:
     server_version: Mirth system version
     server_settings: Mirth system properties
     show_on_dashboard: show on dashboard
+    since: since
+    sn: Surname
     source: Source
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
-    system_info: System info
-    server_settings: Mirth system settings
-    sn: Surname
     software: Software
     software_connection: Connection
     software_group: Software group
@@ -193,6 +192,7 @@ en:
     start_time: Start time
     state: State
     status_type: Type
+    system_info: System info
     timestamp: When?
     type: Type
     uid: UID
