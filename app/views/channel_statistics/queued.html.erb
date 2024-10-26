@@ -14,7 +14,7 @@
           <th class="text-start"><%= t('attributes.last_message_sent_at') %></th>
           <th class="text-end"><%= t('attributes.queued') %></th>
           <th class="text-center"><%= t('attributes.updated_at') %></th>
-          <th class="nosort text-center"><%= t('mirco.action') %></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -63,19 +63,16 @@
                   manual_update: channel_statistic.server.manual_update
                 ) %>
             <td class="text-nowrap text-center">
-              <%= link_to raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
+              <%= link_to(raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
                           channel_statistic,
                           class: 'btn btn-secondary btn-sm my-0',
-                          data: { "turbo" => false } %>
-              <% if channel_statistic.condition >= EscalationLevel::WARNING %>
-                <%= render AcknowledgeButtonComponent.new(
-                             notable: channel_statistic,
-                             readonly: cannot?(:manage, channel_statistic)
-                           )
-                 %>
-
-               <% end %>
-              <%= render HasCurrentNoteComponent.new(notable: channel_statistic) %>
+                          data: { "turbo" => false }) if can? :read, channel_statistic
+               %>
+              <%= render AcknowledgeButtonComponent.new(
+                           notable: channel_statistic,
+                           readonly: cannot?(:manage, channel_statistic)
+                         )
+               %>
             </td>
           <% end %>
         <% end %>

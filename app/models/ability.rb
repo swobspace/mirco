@@ -16,6 +16,7 @@ class Ability
       # neccessary for home page
       can [:queued, :problems], ChannelStatistic
       can [:sindex], Server
+      can [:read], Note, type: 'acknowledge'
     elsif @user.is_admin?
       can :manage, :all
       cannot %i[update destroy], :roles, ro: true

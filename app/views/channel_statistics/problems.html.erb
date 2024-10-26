@@ -13,7 +13,7 @@
           <th class="text-start"><%= t('attributes.last_message_sent_at') %></th>
           <th class="text-end"><%= t('attributes.queued') %></th>
           <th class="text-center"><%= t('attributes.updated_at') %></th>
-          <th class="nosort text-center"><%= t('mirco.action') %></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -62,15 +62,16 @@
                   manual_update: problem.server.manual_update
                 ) %>
             <td class="text-nowrap text-center">
-              <%= link_to raw(%Q[<i class="fas fa-chart-bar"></i>]), problem,
+              <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), problem,
                           class: 'btn btn-secondary btn-sm my-0',
-                          data: { "turbo" => false }  %>
+                          data: { "turbo" => false }) if can? :read, problem
+               %>
 
-                <%= render AcknowledgeButtonComponent.new(
-                             notable: problem,
-                             readonly: cannot?(:manage, problem)
-                           )
-                 %>
+              <%= render AcknowledgeButtonComponent.new(
+                           notable: problem,
+                           readonly: cannot?(:manage, problem)
+                         )
+               %>
             </td>
           <% end %>
         <% end %>
