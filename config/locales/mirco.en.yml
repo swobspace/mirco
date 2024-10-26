@@ -17,8 +17,10 @@ en:
     new_interface_connector: New connector
     new_location: New location
     new_host: New host
+    new_note: New note
     new_notification_group: New notification group
     new_server: New mirth system
+    new_server_configuration: Backup mirth configuration
     new_software: New software
     new_software_connection: New connection
     new_software_group: New software group
@@ -40,15 +42,15 @@ en:
     destinationConnectors: Destination connectors
     recent_errors: Recent errors
     condition:
-      -1: '-'
+      -1: NOTHING
       0: OK
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    note_types:
-      acknowledge: Acknowledge
-      note: Note
-      mail: Mail
+    all_notes: All notes
+    current_notes: Current notes
+    all_channels: All channels
+    current_channels: Active channels
 
   activerecord:
     errors:
@@ -102,9 +104,11 @@ en:
     channel_uid: Channel UUID
     comment: Comment
     condition: Condition
+    condition_message: Condition
     connector: Connector
     connectors: Connectors
     created_at: created_at
+    creator: Creator
     current_note: Current note
     deployScript: Deploy script
     description: Description
@@ -113,6 +117,7 @@ en:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Display name
+    enabled: enabled
     end_time: End time
     error: Error
     error_last_30min: Error (30min)
@@ -172,6 +177,7 @@ en:
     server_uid: Mirth system UUID
     server_jvm: Mirth system JVM
     server_version: Mirth system version
+    server_settings: Mirth system properties
     show_on_dashboard: show on dashboard
     source: Source
     sourceConnector: Source Connector
@@ -255,3 +261,7 @@ en:
     add: Add escalation time
   channel_statistics:
     add: add Channel statistic
+  notes:
+    acknowledge: Acknowledge
+    note: Note
+    mail: Mail
