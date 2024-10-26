@@ -14,5 +14,9 @@ module Servers
       add_breadcrumb_for([set_alertable, @alert])
     end
 
+    def add_breadcrumb_index
+      # skip
+    end
+
   end
 end
