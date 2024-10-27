@@ -24,6 +24,7 @@
               <%= link_to(
                     problem.channel,
                     channel_path(problem.channel),
+                    "data-turbo-frame": "_top",
                     class: "primary-link")
               %>
             </td>
@@ -31,6 +32,7 @@
               <%= link_to(
                     problem.name,
                     polymorphic_path(problem),
+                    "data-turbo-frame": "_top",
                     class: "primary-link")
               %>
             </td>

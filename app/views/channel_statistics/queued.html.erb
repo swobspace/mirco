@@ -25,6 +25,7 @@
               <%= link_to(
                     channel_statistic.channel,
                     channel_path(channel_statistic.channel),
+                    "data-turbo-frame": "_top",
                     class: "primary-link")
               %>
             </td>
@@ -32,6 +33,7 @@
               <%= link_to(
                     channel_statistic.name,
                     channel_statistic_path(channel_statistic),
+                    "data-turbo-frame": "_top",
                     class: "primary-link")
               %>
             </td>
