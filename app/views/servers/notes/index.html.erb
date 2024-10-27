@@ -1,0 +1,55 @@
+<%= turbo_frame_tag('notes') do %>
+  <div class="card mt-3">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-xs-5 col-md-4 col-ml-3">
+          <h4 class="me-4 pt-1"><%= t('controller.notes')%></h4>
+        </div>
+        <div class="d-flex col-xs-7 col-md-8 col-ml-9">
+         <% if params[:active].present? %>
+          <div>
+            <%= link_to t('notes.all'), polymorphic_path([@notable, :notes], all: 1),
+                        class: 'btn btn-outline-secondary me-1',
+                        data: {"turbo-frame" => "notes"} %>
+          </div>
+         <% else %>
+          <div>
+            <%= link_to t('notes.current'), polymorphic_path([@notable, :notes], active: 1),
+                        class: 'btn btn-outline-secondary me-1',
+                        data: {"turbo-frame" => "notes"} %>
+          </div>
+         <% end %>
+          <div class="ms-auto">
+            <%= link_to t('mirco.new_note'), new_polymorphic_path([@notable, :note]),
+                        class: 'btn btn-outline-secondary',
+                        data: {"turbo-frame" => "modal"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-controller="datatables" class="p-2">
+      <%= content_tag :table, role: :datatable,
+            id: "notes_table",
+            class: "table table-sm table-responsive-xl",
+            # style: 'width: 100%;',
+            data: {
+              order: [[0, 'desc']].to_json
+            } do %>
+        <thead class="table-primary">
+          <tr>
+            <th class="text-center"><%= t('attributes.since') %></th>
+            <th><%= t('attributes.type') %></th>
+            <th><%= t('mirco.for') %></th>
+            <th><%= t('attributes.message') %></th>
+            <th class="text-center"><%= t('attributes.valid_until') %></th>
+            <th><%= t('attributes.creator') %></th>
+            <th class="nosort text-end"><%= t('mirco.action') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @notes %>
+        </tbody>
+      <% end %>
+    </div>
+  </div>
+<% end %>

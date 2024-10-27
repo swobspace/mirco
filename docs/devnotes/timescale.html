@@ -65,16 +65,10 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="podman/index.html">Podman</a>
+    <a class="nav-link" href="podman/production.html">Podman: create an image for production</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="podman/production.html">Production</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="podman/dockerfile-prod.html">Dockerfile for Production</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="podman/network.html">Network</a>
@@ -237,7 +231,7 @@ Use <strong>id: false</strong> to avoid a PRIMARY KEY generation.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">class AddChannelCounterHypertable &lt; ActiveRecord::Migration[6.1]
   def change
-    execute "SELECT create_hypertable('channel_counters', 'created_at');"
+    execute "SELECT create_hypertable('channel_counters', by_range('created_at', INTERVAL '1 day'), migrate_data =&gt; TRUE);"
   end
 end</code></pre>
 </div>

@@ -4,13 +4,15 @@ require 'uri'
 class Server < ApplicationRecord
   include ServerConcerns
   include EscalationStatusConcerns
+  include NotableConcerns
+  include Mirco::Condition
+
   # -- associations
   # belongs_to :location
-  belongs_to :host
+  belongs_to :host, optional: true
   has_many :alerts, dependent: :destroy
   has_many :software_connections, dependent: :destroy
-  has_many :notes, dependent: :destroy
-  has_many :server_notes, -> { where(channel_id: nil) }, class_name: 'Note', dependent: :destroy, inverse_of: :server
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :server
   has_many :channels, dependent: :restrict_with_error
   has_many :channel_statistics, dependent: :restrict_with_error
   has_many :channel_counters, dependent: :destroy
@@ -28,11 +30,12 @@ class Server < ApplicationRecord
   # -- validations and callbacks
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
+  before_save :update_condition
 
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
 
-  delegate :location, :hostname, :ipaddress, to: :host, allow_nil: true
+  delegate :location, :hostname, :ipaddress, :up?, to: :host, allow_nil: true
 
   def uri
     URI(api_url)
@@ -44,6 +47,25 @@ class Server < ApplicationRecord
 
  def escalatable_attributes
     %w[ last_check last_check_ok ]
+  end
+
+  def update_condition
+    if manual_update
+      set_condition(Mirco::States::NOTHING,
+                    "Manual update enabled")
+    elsif host.present? and !up?
+      set_condition(Mirco::States::CRITICAL,
+                    I18n.t(Mirco::States::CRITICAL, scope: 'mirco.condition') +
+                    " Server unreachable, ping failed")
+    else
+      if escalation_status.state <= Mirco::States::OK
+        set_condition(Mirco::States::OK,
+                      I18n.t(Mirco::States::OK, scope: 'mirco.condition'))
+      else
+        set_condition(escalation_status.state,
+                      escalation_status.message)
+      end
+    end
   end
 
 end

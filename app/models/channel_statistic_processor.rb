@@ -3,6 +3,7 @@ class ChannelStatisticProcessor
 
   def initialize(channel_statistic)
     @channel_statistic = channel_statistic
+    @old_condition = channel_statistic.condition
   end
 
   def process
@@ -29,6 +30,7 @@ class ChannelStatisticProcessor
   end
 
   private
+  attr_reader :old_condition
 
   def channel_counter
     channel_statistic.channel_counters.build(
@@ -44,15 +46,17 @@ class ChannelStatisticProcessor
   end
 
   def update_condition
+    channel_statistic.update_condition
+    channel_statistic.save!
     return true unless condition_changed?
     channel_statistic.touch(:last_condition_change) &&
-      channel_statistic.update(condition: current_condition) &&
       ChannelStatisticAlertProcessor.new(channel_statistic).process
     # process some notification
   end
 
   def condition_changed?
-    current_condition != channel_statistic.condition
+    Rails.logger.debug("DEBUG:: condition changed: #{old_condition} -> #{channel_statistic.condition}")
+    old_condition != channel_statistic.condition
   end
 
   def current_condition

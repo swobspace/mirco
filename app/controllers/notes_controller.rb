@@ -2,11 +2,16 @@
 
 class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy]
-  before_action :add_breadcrumb_show, only: [:show]
+  # before_action :add_breadcrumb_show, only: [:show]
 
   # GET /notes
   def index
-    @notes = @notable.notes
+    if params[:all]
+      @notes = @notable.all_notes
+    else
+      @notes = @notable.notes
+    end
+    @notes = @notes.active if params[:active].present?
     respond_with(@notes)
   end
 
@@ -31,7 +36,7 @@ class NotesController < ApplicationController
     respond_with(@note, location: location) do |format|
       if @note.save
         format.turbo_stream
-        add_current_note
+        Notes::Processor.new(note: @note).call(:create)
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -43,6 +48,7 @@ class NotesController < ApplicationController
     respond_with(@note, location: location) do |format|
       if @note.update(note_params)
         format.turbo_stream
+        Notes::Processor.new(note: @note).call(:update)
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -51,10 +57,10 @@ class NotesController < ApplicationController
 
   # DELETE /notes/1
   def destroy
+    @note.destroy!
     respond_with(@note, location: location) do |format|
-      if @note.destroy
-        format.turbo_stream
-      end
+      format.turbo_stream
+      Notes::Processor.new(note: @note).call(:destroy)
     end
   end
 
@@ -67,7 +73,9 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:channel_id, :server_id, :channel_statistic_id, :message, :note, :type)
+    params.require(:note).permit(:channel_id, :server_id, :channel_statistic_id, 
+                                 :notable_id, :notable_type, :message, :type,
+                                 :valid_until)
   end
 
   def default_note_params
@@ -87,8 +95,8 @@ class NotesController < ApplicationController
     polymorphic_path(@notable, anchor: 'notes')
   end
 
-  def add_current_note
-    return unless @notable.respond_to?(:current_note_id)
-    @notable.update(current_note_id: @note.id)
+  def add_breadcrumb_index
+    # skip
   end
+
 end

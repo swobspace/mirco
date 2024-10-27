@@ -14,7 +14,8 @@ RSpec.describe 'channels/show', type: :view do
     @channel = assign(:channel, Channel.create!(
                                   server: @server,
                                   uid: '7a44a44d-44fa-4f83-a381-cf078acf06cb',
-                                  properties: { name: 'FirstChannel' }
+                                  properties: { name: 'FirstChannel' },
+                                  state: 'STARTED'
                                 ))
   end
 
@@ -22,6 +23,7 @@ RSpec.describe 'channels/show', type: :view do
     render
     expect(rendered).to match(/xyzmirth/)
     expect(rendered).to match(/7a44a44d-44fa-4f83-a381-cf078acf06cb/)
-    expect(rendered).to match(/FirstChannel/)
+    expect(rendered).to match(/enabled/)
+    expect(rendered).to match(/STARTED/)
   end
 end

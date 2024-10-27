@@ -1,7 +1,7 @@
 <div data-controller="datatables">
   <%= content_tag :table, role: :datatable,
         id: "connectors_table",
-        class: "table table-bordered table-responsive",
+        class: "table table-striped table-sm table-responsive",
         style: 'width: 100%;',
         data: {
           order: [[0, 'asc']].to_json

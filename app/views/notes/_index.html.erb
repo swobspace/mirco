@@ -2,39 +2,31 @@
   <%= content_tag :table, role: :datatable,
         id: "notes_table",
         class: "table table-striped table-sm table-responsive-xl",
-        style: 'width: 100%;',
+        # style: 'width: 100%;',
         data: {
           order: [[0, 'desc']].to_json
         } do %>
     <thead class="table-primary">
       <tr>
-            <th><%= t('attributes.created_at') %></th>
-            <% if notable.kind_of? Server %>
-              <th><%= t('attributes.channel') %></th>
-              <th><%= t('attributes.channel_detail') %></th>
-            <% elsif notable.kind_of? Channel %>
-              <th><%= t('attributes.channel_detail') %></th>
-            <% end %>
-
+            <th class="text-center"><%= t('attributes.created_at') %></th>
+            <th><%= t('attributes.type') %></th>
+            <th><%= t('mirco.for') %></th>
             <th><%= t('attributes.message') %></th>
-            <th class="notvisible"><%= t('attributes.user') %></th>
-            <th class="notvisible"><%= t('attributes.type') %></th>
+            <th><%= t('attributes.valid_until') %></th>
+            <th class="notvisible"><%= t('attributes.creator') %></th>
             <th class="nosort text-end"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tbody>
       <% notes.each do |note| %>
         <%= content_tag(:tr, id: dom_id(note), class: dom_class(note)) do %>
-          <td><%= note.created_at.localtime.to_fs(:local) %></td>
-          <% if notable.kind_of? Server %>
-            <td><%= note.channel %></td>
-            <td><%= note.channel_statistic %></td>
-          <% elsif notable.kind_of? Channel %>
-            <td><%= note.channel_statistic %></td>
-          <% end %>
+          <td class="text-center"><%= note.created_at.localtime.to_fs(:local) %></td>
+          <td><%= t(note.type, scope: 'notes') %></td>
+          <td><%= note.notable&.fullname %></td>
           <td><%= truncate(strip_tags(note.message.to_s), length: 300) %></td>
+          <td><%= note.valid_until&.localtime&.to_s %></td>
+
           <td><%= note.user %></td>
-          <td><%= note.type %></td>
           <td class="text-nowrap text-end">
           <%= show_link [notable, note], class: 'px-1' %>
           <%= edit_link [notable, note],

@@ -21,11 +21,15 @@
       
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.location')%>:</th>
-          <td><%= link_to @software.location, @software.location %></td>
+          <td><%= link_to @software.location, 
+                          @software.location,
+                          class: 'primary-link'
+               %></td>
           <th class="w-25 pe-3"><%= t('controller.hosts')%> via <%=t('attributes.software_group')%>:</th>
           <td>
             <% @software.software_group.hosts.where(location_id: @software.location_id).each do |host| %>
-              <%= link_to host, host %>
+              <%= link_to host, host, class: 'primary-link'
+               %>
             <% end %>
           </td>
         </tr>
@@ -42,7 +46,10 @@
 
         <tr>
           <th class="w-10 pe-3"><%= t('attributes.software_group')%>:</th>
-          <td><%= link_to @software.software_group, @software.software_group %></td>
+          <td><%= link_to @software.software_group, 
+                          @software.software_group,
+                          class: 'primary-link'
+               %></td>
         </tr>
 
         <tr>

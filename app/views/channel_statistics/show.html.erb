@@ -19,6 +19,12 @@
        &#8227; <%= @channel_statistic.name %>
     </button>
   </li>
+  <li class="nav-item me-2" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @channel_statistic, as_text: false) %>
+    </button>
+  </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="channel_statistic-tab" data-bs-toggle="tab" data-bs-target="#channel_statistic" type="button" role="tab" aria-controls="channel_statistic" aria-selected="false">
       <%= t('attributes.channel_statistic') %>
@@ -42,6 +48,11 @@
         <div class="d-flex w-100 justify-content-between">
           <h4><%= t('activerecord.models.channel_statistic') %></h4>
           <div role="toolbar">
+            <%= render AcknowledgeButtonComponent.new(
+                         notable: @channel_statistic, small: false,
+                         readonly: cannot?(:manage, @channel_statistic)
+                       )
+             %>
             <%= back_link %>
           </div>
         </div>
@@ -103,9 +114,8 @@
           </tr>
           <tr>
             <th><%= t('attributes.condition')%>:</th>
-            <td class="bg-<%= @channel_statistic.condition %>">
-              <%= t(@channel_statistic.condition, scope: 'mirco.condition') %>
-            </td>
+            <td><%= @channel_statistic.condition_message %> </td>
+
             <th><%= t('attributes.last_message_sent_at')%>:</th>
             <%= render TdEscalationComponent.new(
                   escalatable: @channel_statistic,
@@ -195,46 +205,18 @@
   </div>
 
   <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-    <div class="card mt-2">
-      <div class="card-header">
-        <div class="d-flex w-100 justify-content-between">
-          <h4 class="title"><%= t('controller.notes') %></h4>
-          <div role="toolbar">
-            <%= link_to 'Add Note',
-                        new_channel_statistic_note_path(@channel_statistic),
-                        class: "btn btn-outline-secondary btn-sm",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        } %>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div id='ts_notes'>
-          <%= render partial: 'notes/index', locals: {notable: @channel_statistic, notes: @channel_statistic.notes } %>
-        </div>
-      </div>
-    </div>
+    <%= turbo_frame_tag("notes",
+                         src: polymorphic_path([@channel_statistic, :notes], active: 1),
+                         loading: "lazy",
+                         refresh: "morph") %>
   </div>
-
+ 
+ 
   <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
-   <div class="card mt-2">
-     <div class="card-header">
-       <div class="d-flex w-100 justify-content-between">
-         <h4 class="title"><%= t('controller.alerts') %></h4>
-         <div role="toolbar">
-         </div>
-       </div>
-     </div>
-     <div class="card-body">
-       <div id="ts_alerts">
-         <%= render partial: 'alerts/index', locals: {alertable: @channel_statistic, alerts: @channel_statistic.alerts } %>
-       </div>
-     </div>
-   </div>
-  </div>
-
+    <%= turbo_frame_tag("alerts",
+                         src: polymorphic_path([@channel_statistic, :alerts]),
+                         loading: "lazy",
+                         refresh: "morph") %>
+  </div>   
+ 
 </div>

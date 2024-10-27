@@ -1,9 +1,71 @@
-<%= render 'shared/turbo-cache-control' %>
-
-<h1><%= @server %>: <%= t('controller.channels') %></h1>
-
-<%= render partial: 'index', locals: { server: @server, channels: @channels } %>
-
-<br />
-
-<%= back_link %>
+<%= turbo_frame_tag('channels') do %>
+  <div class="card mt-3">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-xs-5 col-md-4 col-ml-3">
+          <h4 class="me-4 pt-1"><%= t('controller.channels')%></h4>
+        </div>
+        <div class="d-flex col-xs-7 col-md-8 col-ml-9">
+          <% if params[:active].present? %>
+           <div>
+             <%= link_to t('channels.all'), polymorphic_path([@server, :channels], all: 1),
+                         class: 'btn btn-outline-secondary me-1',
+                         data: {"turbo-frame" => "channels"} %>
+           </div>
+          <% else %>
+           <div>
+             <%= link_to t('channels.current'), polymorphic_path([@server, :channels], active: 1),
+                         class: 'btn btn-outline-secondary me-1',
+                         data: {"turbo-frame" => "channels"} %>
+           </div>
+          <% end %>
+          <div role="toolbar" class="ms-auto">
+           <%= render Servers::ObsoleteChannelsButtonComponent.new(server: @server) %>
+           <%= button_to(t('mirco.fetch_channels'),
+                       fetch_all_server_channels_path(@server),
+                       class: 'btn btn-warning') if can? :manage, @server %>
+         </div>
+        </div>
+      </div>
+    </div>
+    <div data-controller="datatables" class="p-2">
+      <%= content_tag :table, role: :datatable,
+            id: "channels_table",
+            class: "table table-sm table-responsive-xl",
+            # style: 'width: 100%;',
+            data: {
+              order: [[0, 'desc']].to_json
+            } do %>
+        <thead>
+          <tr>
+            <th><%= t('attributes.condition') %></th>
+            <th class="notvisible"><%= t('attributes.condition_message') %></th>
+            <th><%= t('attributes.enabled') %></th>
+            <th><%= t('attributes.state') %></th>
+            <th><%= t('attributes.name') %></th>  
+            <th><%= t('attributes.description') %></th>
+            <th><%= t('attributes.uid') %></th>
+            <th><%= t('attributes.updated_at') %></th>
+            <th class="nosort"><%= t('mirco.action') %></th>
+          </tr> 
+        </thead>
+        <tfoot class="search">
+          <tr>  
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="nosearch"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <%= render @channels %>
+        </tbody>
+      <% end %>
+    </div>
+  </div>
+<% end %>

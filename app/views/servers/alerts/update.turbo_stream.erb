@@ -1,0 +1,4 @@
+<%= turbo_stream.replace('alerts') do %>
+  <%= turbo_frame_tag("alerts", src: polymorphic_path([@notable, :alerts]),
+                               refresh: "morph") %>
+<% end %>

@@ -7,3 +7,18 @@
 <br />
 
 <%= back_link %>
+<% if params[:outdated] %>
+  <%= button_to(t('channel_statistics.delete_outdated'),
+                delete_outdated_channel_statistics_path(),
+                method: :delete,
+                form: {
+                  data: {
+                    "turbo-frame": "channel_statistics",
+                    "turbo-confirm": t('channel_statistics.delete_outdated_confirm')
+                  }
+                },
+                class: 'btn btn-warning me-1') if current_user.is_admin?
+   %>
+
+<% end %>
+

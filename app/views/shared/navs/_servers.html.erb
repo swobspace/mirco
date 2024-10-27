@@ -1,13 +1,16 @@
 <% if can? :navigate, :servers %>
-  <li class="nav-item dropdown <%= active_class('servers') %>">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle <%= servers_active_class %>" href="#" id="navbarConfigurationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('controller.servers') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-            t('controller.servers')),
-          main_app.servers_path, class: "dropdown-item" %>
+                  t('controller.servers')),
+                  main_app.servers_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
       <% if can? :create, Server %>
         <%= link_to raw('<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                         t('mirco.new_server')),
@@ -17,18 +20,55 @@
 
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.alerts')), 
-                  main_app.alerts_path, class: "dropdown-item" %>
+                       t('channels.current')),
+                  main_app.channels_path(active: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.channels')), 
-                  main_app.channels_path, class: "dropdown-item" %>
+                       t('channels.all')),
+                  main_app.channels_path(all: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fa-solid fa-fw fa-circle-xmark" aria-hidden="true"></span> ' +
+                       t('channels.disabled')),
+                  main_app.channels_path(disabled: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
+                       t('channels.outdated')),
+                  main_app.channels_path(outdated: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.channel_statistics')), 
-                  main_app.channel_statistics_path, class: "dropdown-item" %>
+                       t('controller.channel_statistics')),
+                  main_app.channel_statistics_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
       <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
-                       t('mirco.recent_errors')), 
-                  main_app.channel_statistics_path(recent_errors: 1), class: "dropdown-item" %>
+                       t('channel_statistics.outdated')),
+                  main_app.channel_statistics_path(outdated: true),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
+                       t('mirco.recent_errors')),
+                  main_app.channel_statistics_path(recent_errors: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.alerts')),
+                  main_app.alerts_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
   </li>
 <% end %>
 

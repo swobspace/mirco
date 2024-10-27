@@ -32,13 +32,19 @@ class Server  {
   last_check: timestamp
   last_check_ok: timestamp
   condition: integer
+  condition_message: string
   manual_update: boolean
+  acknowledge_id: bigint
 }
 
 class Channel {
   uid: string
   properties: jsonb
   enabled: boolean
+  condition: integer
+  condition_message: string
+  acknowledge_id: bigint
+  state: string
 }
 
 class ChannelStatistic {
@@ -55,12 +61,13 @@ class ChannelStatistic {
   error: integer
   filtered: integer
   queued: integer
-  condition: integer
   last_condition_change: timestamp
   last_message_received_at: timestamp
   last_message_sent_at: timestamp
   last_message_error_at: timestamp
-  current_note_id
+  condition: integer
+  condition_message: string
+  acknowledge_id: bigint
 }
 
 class ChannelStatisticGroup {
@@ -88,11 +95,14 @@ class Alert {
 }
 
 class Note {
+  notable: polymorpic
+  message: rich_text
+  valid_until: datetime
   channel_id
   server_id
   channel_statistic_id
   user_id
-  type: string : ack, mail
+  type: string
 }
 
 class ServerConfiguration {

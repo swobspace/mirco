@@ -12,60 +12,74 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.name') %></th>
-            <th class="notvisible"><%= t('attributes.uid') %></th>
-            <th><%= t('attributes.location') %></th>
-            <th><%= t('attributes.host') %></th>
-            <th><%= t('attributes.description') %></th>
-            <th class="notvisible"><%= t('attributes.api_url') %></th>
-            <% if current_user.is_admin? %>
-              <th><%= t('attributes.api_user') %></th>
-            <% end %>
-            <th class="notvisible"><%= t('attributes.api_user_has_full_access') %></th>
-            <th class="notvisible"><%= t('attributes.last_channel_update') %></th>
-            <th><%= t('attributes.last_check') %></th>
-            <th><%= t('attributes.last_check_ok') %></th>
-            <th class="notvisible"><%= t('attributes.manual_update') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+        <th><%= t('attributes.condition') %></th>
+        <th class="notvisible"><%= t('attributes.condition_message') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th class="notvisible"><%= t('attributes.uid') %></th>
+        <th><%= t('attributes.location') %></th>
+        <th><%= t('attributes.host') %></th>
+        <th><%= t('attributes.description') %></th>
+        <th class="notvisible"><%= t('attributes.api_url') %></th>
+        <% if current_user.is_admin? %>
+          <th><%= t('attributes.api_user') %></th>
+        <% end %>
+        <th class="notvisible"><%= t('attributes.api_user_has_full_access') %></th>
+        <th class="notvisible"><%= t('attributes.last_channel_update') %></th>
+        <th><%= t('attributes.last_check') %></th>
+        <th><%= t('attributes.last_check_ok') %></th>
+        <th class="notvisible"><%= t('attributes.manual_update') %></th>
+        <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <% if current_user.is_admin? %>
-              <th></th>
-            <% end %>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <% if current_user.is_admin? %>
+          <th></th>
+        <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @servers.each do |server| %>
         <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
-                <td><%= link_to server.name, server %></td>
-                <td><%= server.uid %></td>
-                <td><%= link_to server.location, server.location %></td>
-                <td><%= server.host %></td>
-                <td><%= server.description %></td>
-                <td><%= server.api_url %></td>
-                <% if current_user.is_admin? %>
-                  <td><%= server.api_user %></td>
-                <% end %>
-                <td><%= server.api_user_has_full_access %></td>
-                <td><%= server.last_channel_update %></td>
-                <td><%= server.last_check %></td>
-                <td><%= server.last_check_ok %></td>
-                <td><%= server.manual_update %></td>
-                <td class="text-nowrap">
+          <td class="text-center">
+            <%= render ConditionIconComponent.new(item: server, small: true, as_text: true) %>
+          </td>
+          <td><%= server.condition_message %></td>
+          <td><%= link_to server.name, server, class: 'primary-link' %></td>
+          <td><%= server.uid %></td>
+          <td><%= link_to server.location, server.location, class: 'primary-link' %></td>
+          <td><%= server.host %></td>
+          <td><%= server.description %></td>
+          <td><%= server.api_url %></td>
+          <% if current_user.is_admin? %>
+            <td><%= server.api_user %></td>
+          <% end %>
+          <td><%= server.api_user_has_full_access %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_channel_update) %>
+          </td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_check) %>
+          </td>
+          <td>
+            <%= render IsCurrentComponent.new(item: server, attr: :last_check_ok) %>
+          </td>
+          <td><%= server.manual_update %></td>
+          <td class="text-nowrap">
             <%= show_link server %>
             <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :svg), class: 'btn btn-secondary me-1') %>
             <%= edit_link server %>

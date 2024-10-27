@@ -11,6 +11,13 @@
        &#8227; <%= @channel.name %>
     </button>
   </li>
+  <li class="nav-item me-2" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @channel, as_text: false,
+                                            period: 8.days ) %>
+    </button>
+  </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="channel-tab" data-bs-toggle="tab" data-bs-target="#channel" type="button" role="tab" aria-controls="channel" aria-selected="false">
       <%= t('attributes.channel') %>
@@ -35,18 +42,23 @@
         <h4 class="title pt-1">
           <%= t('activerecord.models.channel') %>
         </h4>
-        <% if @channel.disabled? %>
-          <span class="fw-bold text-danger pt-2">DISABLED</span>
-        <% end %>
+        <div class="mt-2">
+          <% if @channel.disabled? %>
+            <%= Mirco::States.flag(Mirco::States::CRITICAL) %>
+            <span class="fw-bold text-danger pt-2">DISABLED</span>
+        <% else %>
+            <span class="pt-2">enabled</span>
+          <% end %>
+          <%= @channel.state %>
+        </div>
         <div role="toolbar">
           <%= back_link %>
+            <%= render AcknowledgeButtonComponent.new(
+                         notable: @channel, small: false,
+                         readonly: cannot?(:manage, @channel)
+                       )
+             %>
           <%= asciidoc_link(@channel) %>
-          <%= link_to(
-                raw(%Q[<i class="fas fa-fw fa-chart-bar"></i>]),
-                channel_statistic_path(@channel.channel_statistic),
-                class: 'btn btn-secondary me-1'
-              ) if @channel.channel_statistic.present?
-           %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]),
                 channel_path(@channel, format: :svg), class: 'btn btn-secondary me-1') %>
           <%= delete_button([@channel.server, @channel], 'data-turbo': false) %>
@@ -60,46 +72,18 @@
  </div>
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.notes') %></h4>
-        <div role="toolbar">
-            <%= link_to 'Add Note',
-                        new_channel_note_path(@channel),
-                        class: "btn btn-secondary",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        } %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_notes'>
-        <%= render partial: 'notes/index', locals: {notable: @channel, notes: @channel.notes } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("notes", 
+                        src: polymorphic_path([@channel, :notes], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.alerts') %></h4>
-        <div role="toolbar">
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_alerts">
-        <%= render partial: 'alerts/index', locals: {alertable: @channel, alerts: @channel.alerts } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("alerts",
+                        src: polymorphic_path([@channel, :alerts]),
+                        loading: "lazy",
+                        refresh: "morph") %>
+
  </div>
 
 </div>

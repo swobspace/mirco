@@ -24,5 +24,9 @@ module Servers
     def location
       server_path(@server)
     end
+
+    def add_breadcrumb_index
+      # skip
+    end
   end
 end

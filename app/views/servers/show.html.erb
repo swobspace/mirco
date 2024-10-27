@@ -1,12 +1,18 @@
 <%= render 'shared/turbo-cache-control' %>
 
 <div class="row mt-2">
-<%= turbo_frame_tag "host_#{@server.host.id}_ping", src: ping_host_path(@server.host) %>
+<%= turbo_frame_tag "server_#{@server.id}_ping", src: ping_server_path(@server) %>
 </div>
 
 <ul class="nav nav-tabs mt-2" id="myTab" role="tablist" data-controller="bstabs">
   <li class="nav-item" role="presentation">
     <button class="nav-link disabled fs-4 py-0 my-0" type="button" tabindex="-1" aria-disabled="true"><%= @server %></button>
+  </li>
+  <li class="nav-item me-2" role="presentation">
+    <button class="nav-link disabled fs-4 py-0 my-0" type="button"
+            tabindex="-1" aria-disabled="true">
+      <%= render ConditionIconComponent.new(item: @server, as_text: false) %>
+    </button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">
@@ -60,6 +66,11 @@
           <%= doku_link(@server) %>
           <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(@server, format: :svg), class: 'btn btn-secondary me-1') %>
 
+          <%= render AcknowledgeButtonComponent.new(
+                       notable: @server, small: false,
+                       readonly: cannot?(:manage, @server)
+                     )
+           %>
           <%= edit_link(@server) %>
           <%= delete_button(@server) %>
         </div>
@@ -80,12 +91,16 @@
 
         <tr>
           <th><%= t('attributes.location')%>:</th>
-          <td><%= link_to @server.location, location_path(@server.location) %></td>
+          <td><%= link_to(@server.location, location_path(@server.location),
+                          class: 'primary-link') if @server.location.present?
+               %></td>
         </tr>
 
         <tr>
           <th><%= t('attributes.host')%>:</th>
-          <td><%= link_to @server.host, host_path(@server.host) %>
+          <td><%= link_to(@server.host, host_path(@server.host),
+                          class: 'primary-link') if @server.host.present?
+               %></td>
           </td>
         </tr>
 
@@ -118,22 +133,33 @@
 
         <tr>
           <th><%= t('attributes.last_channel_update')%>:</th>
-          <td><%= @server.last_channel_update %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: @server, attr: :last_channel_update) %>
+          </td>
         </tr>
 
         <tr>
           <th><%= t('attributes.last_check')%>:</th>
-          <td><%= @server.last_check %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: @server, attr: :last_check) %>
+          </td>
         </tr>
 
         <tr>
           <th><%= t('attributes.last_check_ok')%>:</th>
-          <td><%= @server.last_check_ok %></td>
+          <td>
+            <%= render IsCurrentComponent.new(item: @server, attr: :last_check_ok) %>
+          </td>
         </tr>
 
         <tr>
           <th><%= t('attributes.manual_update')%>:</th>
           <td><%= @server.manual_update %></td>
+        </tr>
+
+        <tr>
+          <th><%= t('attributes.condition')%>:</th>
+          <td><%= @server.condition_message %></td>
         </tr>
       </table>
     </div>
@@ -188,44 +214,17 @@
  </div>
 
  <div class="tab-pane fade" id="channels" role="tabpanel" aria-labelledby="channels-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.channels') %></h4>
-        <div role="toolbar">
-          <%= render Servers::ObsoleteChannelsButtonComponent.new(server: @server) %>
-          <%= button_to(t('mirco.fetch_channels'),
-                      fetch_all_server_channels_path(@server),
-                      class: 'btn btn-warning') if can? :manage, @server %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_channels">
-        <%= render partial: 'servers/channels/index', locals: {server: @server, channels: @server.channels.active } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("channels",
+                        src: polymorphic_path([@server, :channels], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.channel_statistics') %></h4>
-        <div role="toolbar">
-          <%= button_to(t('mirco.fetch_statistics'),
-                      fetch_all_server_channel_statistics_path(@server),
-                      class: 'btn btn-warning') if can? :manage, @server %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id="ts_channel_statistics">
-        <%= render partial: 'channel_statistics/index', locals: {server: @server, channel_statistics: @server.channel_statistics.active } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("channel_statistics",
+                        src: polymorphic_path([@server, :channel_statistics], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="connectors" role="tabpanel" aria-labelledby="properties-tab">
@@ -234,7 +233,7 @@
       <h4 class="title"><%= t('mirco.sourceConnectors') %></h4>
     </div>
     <div class="card-body">
-      <%= render 'connectors', 
+      <%= render 'connectors',
                  connectors: @server.channels
                                     .map{|c| c.source_connector}
                                     .reject{|conn| conn&.url.nil?}
@@ -247,7 +246,7 @@
       <h4 class="title"><%= t('mirco.destinationConnectors') %></h4>
     </div>
     <div class="card-body">
-      <%= render 'connectors', 
+      <%= render 'connectors',
                  connectors: @server.channels
                                     .map{|c| c.destination_connectors}
                                     .flatten
@@ -259,78 +258,24 @@
  </div>
 
  <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.notes') %></h4>
-        <div role="toolbar">
-            <%= link_to(t('mirco.add_note'),
-                        new_server_note_path(@server),
-                        class: "btn btn-warning",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        }) if can? :create, Note %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_notes'>
-        <%= render partial: 'notes/index', locals: {notable: @server, notes: @server.notes } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("notes",
+                        src: polymorphic_path([@server, :notes], active: 1),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
 
  <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.alerts') %></h4>
-        <div role="toolbar">
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_alerts'>
-        <%= render partial: 'alerts/index', locals: {alertable: @server, alerts: @server.alerts } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("alerts",
+                        src: polymorphic_path([@server, :alerts]),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
 
  <div class="tab-pane fade" id="configurations" role="tabpanel" aria-labelledby="configurations-tab">
-  <div class="card mt-2">
-    <div class="card-header">
-      <div class="d-flex w-100 justify-content-between">
-        <h4 class="title"><%= t('controller.server_configurations') %></h4>
-        <div role="toolbar">
-            <%= link_to(t('mirco.backup_server_configuration'),
-                        new_server_server_configuration_path(@server),
-                        class: "btn btn-warning",
-                        data: {
-                          controller: :modal,
-                          'modal-modal-id-value': 'sharedModal',
-                          action: 'click->modal#open',
-                          'turbo-frame': "modal-body"
-                        }) if can? :create, ServerConfiguration %>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div id='ts_server_configurations'>
-        <%= render partial: 'server_configurations/index', locals: {server: @server, server_configurations: @server.server_configurations } %>
-      </div>
-    </div>
-  </div>
+   <%= turbo_frame_tag("server_configurations",
+                        src: polymorphic_path([@server, :server_configurations]),
+                        loading: "lazy",
+                        refresh: "morph") %>
  </div>
-</div>
-
-<div class="row mt-2">
-  <div role="toolbar">
-    <%= new_link Server %>
-  </div>
 </div>

@@ -26,7 +26,7 @@ module Servers
     describe 'GET /index' do
       it 'renders a successful response' do
         Channel.create! valid_attributes
-        get server_channels_url(server)
+        get server_channels_url(server, all: 1)
         expect(response).to be_successful
         expect(assigns(:channels).count).to eq(1)
       end
@@ -36,7 +36,7 @@ module Servers
       let!(:obsolete) do 
         FactoryBot.create(:channel, 
           server_id: server.id,
-          updated_at: 1.week.before(Date.current)
+          updated_at: 3.week.before(Date.current)
         )
       end
       it 'renders a successful response' do

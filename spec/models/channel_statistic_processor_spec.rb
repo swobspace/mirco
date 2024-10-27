@@ -2,6 +2,13 @@
 
 require 'rails_helper'
 
+class FakeEscalationStatus
+  attr_reader :state
+  def initialize(state)
+    @state = state
+  end
+end
+
 RSpec.describe ChannelStatisticProcessor, type: :mailer do
   it { puts EscalationLevel.all }
 
@@ -12,8 +19,12 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   end
   let!(:channel) do
     FactoryBot.create(:channel,
-                      server: server,
-                      uid: '445cda00-c847-4198-a9be-eb0dc6b5946d')
+      server: server,
+      enabled: true,
+      properties: { 'name': 'special channel',
+                    'exportData': { 'metadata': { 'enabled': 'true' }}},
+      uid: '445cda00-c847-4198-a9be-eb0dc6b5946d'
+    )
   end
   let(:processor) { ChannelStatisticProcessor.new(channel_statistic) }
 
@@ -22,6 +33,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.build(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -53,6 +66,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -106,6 +121,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -140,10 +157,13 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         max_critical: nil
       )
     end
+
     let!(:channel_statistic) do
       FactoryBot.create(:channel_statistic,
         server_id: server.id,
         channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
         meta_data_id: 13,
         name: 'FRITZ',
         state: 'STARTED',
@@ -154,8 +174,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         filtered: '4',
         queued: '12',
         condition: 0,
-        last_message_sent_at: 1.day.before(Time.current),
-        last_condition_change: 1.day.before(Time.current)
+        last_message_sent_at: 1.hour.before(Time.current),
+        last_condition_change: 1.hour.before(Time.current)
      )
     end
     let!(:counter1) do
@@ -164,8 +184,8 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_id: channel.id,
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
-        received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 40.minutes.before(Time.current)
+        received: '1', sent: '1', error: '3', filtered: '4', queued: '5',
+        created_at: 1.day.before(Time.current)
       )
     end
     let!(:counter2) do
@@ -175,15 +195,26 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
         channel_statistic_id: channel_statistic.id,
         meta_data_id: 13,
         received: '1', sent: '2', error: '3', filtered: '4', queued: '5',
-        created_at: 20.minutes.before(Time.current)
+        created_at: 5.minutes.before(Time.current)
+      )
+    end
+
+
+    before(:each) do
+      allow(channel_statistic).to receive(:started?).and_return(true)
+      channel_statistic.assign_attributes(
+        received: 5,
+        sent: 6,
+        error: 3,
+        filtered: 4
       )
     end
 
     it { expect(processor.process).to be_truthy }
-    it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(0) }
-    it { processor.process ; expect(channel_statistic.condition).to eq(2) }
+    it { processor.process ; expect(channel_statistic.sent_last_30min).to eq(4) }
+    it { processor.process ; expect(channel_statistic.condition).to eq(0) }
     it { processor.process ; expect(channel_statistic.last_condition_change > 1.minute.before(Time.now)).to be_truthy }
-    it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("alert") }
+    it { processor.process ; expect(channel_statistic.alerts.last.type).to eq("ok") }
 
     it "creates an alert entry" do
       expect {
@@ -193,35 +224,37 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
 
     it "sends an email if mail_to.any?" do
       expect(Mirco).to receive(:mail_to).at_least(:once).and_return(["operator@example.org"])
+      channel_statistic.update_columns(condition: 0)
       expect {
         perform_enqueued_jobs do
+          channel_statistic.sent = 2
           processor.process
         end
       }.to change(ActionMailer::Base.deliveries, :count)
     end
 
     it "sends no email if mail_to.empty?" do
-      expect(Mirco).to receive(:mail_to).at_least(:once).and_return([])
+      allow(Mirco).to receive(:mail_to).at_least(:once).and_return([])
+      channel_statistic.update_columns(condition: 0)
       expect {
         perform_enqueued_jobs do
+          channel_statistic.sent = 2
           processor.process
         end
       }.not_to change(ActionMailer::Base.deliveries, :count)
     end
 
     it "recovers after error" do
-      channel_statistic.update(condition: 2)
-      note = FactoryBot.create(:note, channel_statistic: channel_statistic)
-      channel_statistic.update(current_note: note)
-      channel_statistic.reload
-      expect(channel_statistic.current_note).to be_present
+      note = FactoryBot.create(:note, notable: channel_statistic)
+      channel_statistic.update_columns(acknowledge_id: note.id, condition: 2)
+      expect(channel_statistic.acknowledge).to be_present
       channel_statistic.sent = 10
       expect {
         processor.process
       }.to change(Alert, :count).by(1)
       expect(channel_statistic.sent_last_30min).to eq(8)
       expect(channel_statistic.condition).to eq(0)
-      expect(channel_statistic.current_note).not_to be_present
+      expect(channel_statistic.acknowledge).not_to be_present
       expect(channel_statistic.last_condition_change > 1.minute.before(Time.current)).to be_truthy
       expect(channel_statistic.alerts.last.type).to eq('ok')
     end
@@ -229,30 +262,42 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
   end
 
   describe "threshold checks" do
-    let(:channel_statistic) { FactoryBot.create(:channel_statistic) }
+    let(:channel_statistic) do
+      FactoryBot.build(:channel_statistic,
+        server_id: server.id,
+        channel_id: channel.id,
+        server_uid: server.uid,
+        channel_uid: channel.uid,
+      )
+    end
+    before(:each) do
+      allow(channel_statistic).to receive(:started?).and_return(true)
+      allow(channel).to receive(:state).and_return("STARTED")
+      allow(channel).to receive(:enabled).and_return(true)
+    end
 
     it "queued: 0, sent_last_30min > 0" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
-      processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      processor.process; channel.reload
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 12, sent_last_30min > 0" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 0, sent_last_30min > 10" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(0)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
 
     it "queued: 12, sent_last_30min > 10" do
       expect(channel_statistic).to receive(:queued).at_least(:once).and_return(12)
       processor.process
-      expect(channel_statistic.condition).to eq(-1)
+      expect(channel_statistic.condition).to eq(0)
     end
   end
 
@@ -275,7 +320,7 @@ RSpec.describe ChannelStatisticProcessor, type: :mailer do
      )
     end
 
-    it { processor.process ; expect(channel_statistic.condition).to eq(-1) }
+    it { processor.process ; expect(channel_statistic.condition).to eq(0) }
     it "does not send a notification mail" do
       expect {
         perform_enqueued_jobs do

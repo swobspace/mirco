@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   # -- breadcrumbs
   include Wobapphelpers::Breadcrumbs
   before_action :add_breadcrumb_index, only: [:index]

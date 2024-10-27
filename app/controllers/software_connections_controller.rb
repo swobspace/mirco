@@ -9,6 +9,7 @@ class SoftwareConnectionsController < ApplicationController
     else
       @software_connections = SoftwareConnection.all
     end
+     @software_connections = @software_connections.includes(:location, :server, :source_connector, :destination_connector)
     if search_params.any?
       @software_connections = Connections::Query.new(@software_connections, search_params).all
     end

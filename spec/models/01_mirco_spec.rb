@@ -20,13 +20,11 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return(nil)
-      allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(nil)
-      allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(nil)
-      allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('grace_period').and_return(nil)
     end
     it {
       expect(Mirco.devise_modules).to contain_exactly(
-        :remote_user_authenticatable,
         :database_authenticatable,
         :registerable,
         :recoverable,
@@ -51,12 +49,15 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_channels).to eq('0 1 * * 6') }
     it { expect(Mirco.cron_fetch_configuration).to eq('15 1 * * 6') }
     it { expect(Mirco.cron_purge_timescale).to eq('30 1 * * 6') }
-    it { expect(Mirco.warning_period).to eq(10) }
-    it { expect(Mirco.queued_warning_level).to eq(10) }
-    it { expect(Mirco.queued_critical_level).to eq(50) }
+    it { expect(Mirco.smtp_settings).to eq(nil) }
+    it { expect(Mirco.grace_period).to eq(15.minutes) }
   end
 
   context ' with existing Settings' do
+    let(:smtp_settings) do
+      { 'address' => 'somehost', 'port' => 25 }
+    end
+
     before(:each) do
       allow(Mirco::CONFIG).to receive(:[]).with('devise_modules').and_return([:brabbel])
       allow(Mirco::CONFIG).to receive(:[]).with('mail_from').and_return('from@example.org')
@@ -73,9 +74,8 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return('* * nix')
-      allow(Mirco::CONFIG).to receive(:[]).with('warning_period').and_return(23)
-      allow(Mirco::CONFIG).to receive(:[]).with('queued_warning_level').and_return(47)
-      allow(Mirco::CONFIG).to receive(:[]).with('queued_critical_level').and_return(71)
+      allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(smtp_settings)
+      allow(Mirco::CONFIG).to receive(:[]).with('grace_period').and_return(20.minutes)
     end
     it { expect(Mirco.devise_modules).to contain_exactly(:brabbel) }
     it { expect(Mirco.host).to eq('myhost') }
@@ -95,9 +95,8 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_channels).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_configuration).to eq('* * nix') }
     it { expect(Mirco.cron_purge_timescale).to eq('* * nix') }
-    it { expect(Mirco.warning_period).to eq(23) }
-    it { expect(Mirco.queued_warning_level).to eq(47) }
-    it { expect(Mirco.queued_critical_level).to eq(71) }
+    it { expect(Mirco.smtp_settings).to include(address: 'somehost', port: 25) }
+    it { expect(Mirco.grace_period).to eq(20.minutes) }
   end
 
   describe '::ldap_options' do
@@ -106,6 +105,7 @@ RSpec.describe Mirco, type: :model do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options').and_return(nil)
       end
       it { expect(Mirco.ldap_options).to be_nil }
+      it { expect(Mirco.enable_ldap_authentication).to be_falsey }
     end
 
     context ' with existing Settings' do
@@ -145,15 +145,34 @@ RSpec.describe Mirco, type: :model do
           }
         }]
       end
+
       it 'returns symbolized keys from Hash' do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
                                             .and_return(ldap_options)
         expect(Mirco.ldap_options).to eq(ldap_options_sym)
       end
+
       it 'returns symbolized keys from Array of Hashes' do
         allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
                                             .and_return(ldap_options_ary)
         expect(Mirco.ldap_options).to eq(ldap_options_sym)
+      end
+
+
+      it "set enable ldap auth to false" do
+        allow(Mirco::CONFIG).to receive(:[]).with('enable_ldap_authentication')
+                                            .and_return(false)
+        allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
+                                            .and_return(ldap_options)
+        expect(Mirco.enable_ldap_authentication).to be_falsey
+      end
+
+      it "set enable ldap auth to true" do
+        allow(Mirco::CONFIG).to receive(:[]).with('enable_ldap_authentication')
+                                            .and_return(true)
+        allow(Mirco::CONFIG).to receive(:[]).with('ldap_options')
+                                            .and_return(ldap_options)
+        expect(Mirco.enable_ldap_authentication).to be_truthy
       end
     end
   end

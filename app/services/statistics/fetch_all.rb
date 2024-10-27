@@ -54,9 +54,6 @@ module Statistics
 
       # create server channels if neccessary
       statuses.each do |stat|
-        # create statistics unless meta_data_id.nil? (connectors only)
-        next if stat.meta_data_id.nil?
-
         creator = Statistics::Creator.new(server: server,
                                           attributes: stat.attributes,
                                           create_channel: create_channel)
@@ -65,6 +62,7 @@ module Statistics
           success = false
         end
       end
+
       if success
         server.touch(:last_check, :last_check_ok)
       else

@@ -4,6 +4,7 @@ require 'rails_helper'
 
 module Servers
   RSpec.describe 'notes/index', type: :view do
+    let!(:ts)  { Time.current }
     let(:user) { FactoryBot.create(:user) }
     let!(:time) { Time.current }
     before(:each) do
@@ -14,22 +15,21 @@ module Servers
       allow(controller).to receive(:action_name) { 'index' }
       @notable = FactoryBot.create(:server, name: 'xyzmirth')
 
-      @note = assign(:note, FactoryBot.create(:note, server_id: @notable.id))
+      # @note = assign(:note, FactoryBot.create(:note, server_id: @notable.id))
 
       assign(:notes, [
                FactoryBot.create(:note,
-                                 server: @notable,
-                                 channel_id: nil,
+                                 notable: @notable,
                                  user: user,
                                  type: 'note',
                                  message: 'some text',
                                  created_at: time),
                FactoryBot.create(:note,
-                                 server: @notable,
-                                 channel_id: nil,
+                                 notable: @notable,
                                  user: user,
                                  type: 'note',
                                  message: 'some text',
+                                 valid_until: '2024-01-01',
                                  created_at: time)
              ])
     end
@@ -37,10 +37,12 @@ module Servers
     it 'renders a list of notes' do
       render
       assert_select 'tr>td', text: time.localtime.to_fs(:local), count: 2
-      assert_select 'tr>td', text: nil.to_s, count: 6
+      assert_select 'tr>td', text: nil.to_s, count: 3
       assert_select 'tr>td', text: user.to_s, count: 2
-      assert_select 'tr>td', text: 'note'.to_s, count: 2
+      assert_select 'tr>td', text: 'Notiz'.to_s, count: 2
       assert_select 'tr>td', text: 'some text'.to_s, count: 2
+      assert_select 'tr>td', text: Regexp.new('2024-01-01'.to_s), count: 1
+
     end
   end
 end

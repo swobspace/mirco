@@ -1,4 +1,6 @@
-= Production
+= Podman: create an image for production
+:author: Wolfgang Barth
+:revdate: 2024-07-17
 
 Just a memo for todos and code snippets ...
 

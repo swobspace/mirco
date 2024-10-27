@@ -37,7 +37,7 @@
 <%= trf.short_type %> / <%= t(trf.enabled, scope: 'enabled') %>
 [source,<%= trf.short_type&.downcase %>]
 ----
-<%= CGI.unescapeHTML(trf.content).html_safe %>
+<%= CGI.unescapeHTML(trf.content.to_s).html_safe %>
 ----
 
   <% end %>

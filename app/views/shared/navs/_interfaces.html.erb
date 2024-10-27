@@ -1,13 +1,15 @@
 <% if can? :navigate, :software %>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarSoftwareDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle <%= software_active_class %>" href="#" id="navbarSoftwareDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
       <%= t('mirco.sw_and_ifaces') %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarSoftwareDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.software_groups')), 
-                  main_app.software_groups_path, class: "dropdown-item" %>
+                       t('controller.software_groups')), main_app.software_groups_path, 
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item" 
+       %>
       <% if can? :create, Software %>
         <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                          t('mirco.new_software_group')), 
@@ -15,17 +17,23 @@
       <% end %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.software')), 
-                  main_app.software_index_path, class: "dropdown-item" %>
+                       t('controller.software')), main_app.software_index_path, 
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item" 
+       %>
       <% if can? :create, Software %>
         <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
-                         t('mirco.new_software')), 
-                    main_app.new_software_path, class: "dropdown-item" %>
+                         t('mirco.new_software')), main_app.new_software_path, 
+                    class: "dropdown-item" 
+       %>
       <% end %>
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software_interfaces')), 
-                  main_app.software_interfaces_path, class: "dropdown-item" %>
+                   main_app.software_interfaces_path, 
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item" 
+       %>
       <% if can? :create, SoftwareInterface %>
         <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                          t('mirco.new_software_interface')), 
@@ -34,16 +42,23 @@
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.interface_connectors')), 
-                  main_app.interface_connectors_path, class: "dropdown-item" %>
+                  main_app.interface_connectors_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item" 
+       %>
       <% if can? :create, InterfaceConnector %>
         <%= link_to raw( '<span class="fas fa-fw fa-plus" aria-hidden="true"></span> ' +
                          t('mirco.new_interface_connector')), 
                     main_app.new_interface_connector_path, class: "dropdown-item" %>
       <% end %>
+
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
                        t('controller.software_connections')), 
-                  main_app.software_connections_path, class: "dropdown-item" %>
+                  main_app.software_connections_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item" 
+       %>
       <%= link_to raw( '<span class="fas fa-fw fa-search" aria-hidden="true"></span> ' +
                        t('mirco.search_software_connections')), 
                   main_app.search_software_connections_path, class: "dropdown-item" %>

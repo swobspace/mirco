@@ -1,7 +1,10 @@
 <div id="<%= dom_id software_connection %>">
   <div class="card-body py-2 border-bottom border-bottom-1">
     <div class="fw-bold">
-      <%= link_to software_connection.to_s, software_connection %>
+      <%= link_to software_connection.to_s, 
+                  software_connection,
+                  class: 'primary-link'
+       %>
     </div>
     <div>
       <%= software_connection.source_url %> == <%= software_connection.destination_url %>

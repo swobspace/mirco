@@ -22,4 +22,6 @@ Wobauth.setup do |config|
   config.ldap_config = File.join( Rails.root, 'config', 'mirco.yml')
   #
   config.custom_stream_actions = true
+
+  config.enable_ldap_authenticatable = Mirco.enable_ldap_authentication
 end

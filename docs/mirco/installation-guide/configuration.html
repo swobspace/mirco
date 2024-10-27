@@ -163,12 +163,20 @@
 <div id="mirco.yml" class="listingblock">
 <div class="title">mirco.yml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># config/mirco.yml
-cron_expression: '*/5 * * * *' <i class="conum" data-value="1"></i><b>(1)</b>
-# check health
-warning_period: 10 <i class="conum" data-value="2"></i><b>(2)</b>
-use_ssl: false <i class="conum" data-value="3"></i><b>(3)</b>
-action_cable_allowed_request_origins: <i class="conum" data-value="4"></i><b>(4)</b>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# config/mirco.yml
+#
+# -- job scheduling
+cron_fetch_statistics: '*/5 * * * *' <i class="conum" data-value="1"></i><b>(1)</b>
+cron_fetch_channels: '0 1 * * 6' <i class="conum" data-value="2"></i><b>(2)</b>
+cron_fetch_configuration: '15 1 * * 6' <i class="conum" data-value="3"></i><b>(3)</b>
+cron_purge_timescale:  '30 1 * * 6' <i class="conum" data-value="4"></i><b>(4)</b>
+
+# -- SSL
+use_ssl: false <i class="conum" data-value="5"></i><b>(5)</b>
+
+# -- action cable request origins
+action_cable_allowed_request_origins: <i class="conum" data-value="6"></i><b>(6)</b>
   - http://mirco.example.com
   - https://mirco.example.com</code></pre>
 </div>
@@ -181,17 +189,54 @@ action_cable_allowed_request_origins: <i class="conum" data-value="4"></i><b>(4)
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Warn if the last successful check is more than 10 minutes old.</td>
+<td>Update channel configuration once per week</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>should be false if you are running mirco behind a reverse proxy.</td>
+<td>Backup mirth configuration (XML only) once per week</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Purge old timescaledb data once per week</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Should be false if you are running Mirco behind a reverse proxy.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>http:// and https:// site Urls accessing Mirco from outside</td>
 </tr>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_ldap_settings"><a class="anchor" href="#_ldap_settings"></a>LDAP settings</h3>
+<div class="paragraph">
+<p>You can use LDAP to create new users and for authentication.
+In most cases you will use both or neither. LDAP is completely
+optional, so you can choose not to use it. <code>ldap_options</code>
+goes directly to Net::LDAP, see the following page for configuration:
+<a href="https://www.rubydoc.info/gems/ruby-net-ldap/Net/LDAP" class="bare">https://www.rubydoc.info/gems/ruby-net-ldap/Net/LDAP</a></p>
+</div>
+<div class="paragraph">
+<p>The LDAP attribute <code>userPrincipalName</code> is mapped to <code>username</code>. LDAP authentication works best with Active Directory. If you are using another directory service, you are on your own.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">enable_ldap_authentication: true
+ldap_options:
+  hosts:
+    - [ dc1.example.com, 3269 ]
+    - [ dc2.example.com, 3269 ]
+  base: dc=example,dc=de
+  encryption: :simple_tls
+  auth:
+    method: :simple
+    username: readonlyuser@example.com
+    password: averystrongsecret</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>

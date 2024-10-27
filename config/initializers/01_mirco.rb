@@ -6,8 +6,26 @@ module Mirco
   CONFIG = config || {}
 
   CONFIGURATION_CONTROLLER = [
-    'servers'
+    'locations',
+    'channel_statistic_groups',
+    'escalation_levels',
+    'notification_groups',
   ].freeze
+
+  SOFTWARE_CONTROLLER = [
+    'software_groups',
+    'software',
+    'software_interfaces',
+    'interface_connectors',
+    'software_connections',
+  ].freeze
+
+  SERVERS_CONTROLLER = [
+    'servers',
+    'alerts',
+    'channels',
+    'channel_statistics',
+  ]
 
   def self.fetch_config(attribute, default_value)
     CONFIG[attribute.to_s].presence || default_value
@@ -15,8 +33,7 @@ module Mirco
 
 
   def self.devise_modules
-    CONFIG['devise_modules'].presence || %i[remote_user_authenticatable
-                                            database_authenticatable
+    CONFIG['devise_modules'].presence || %i[database_authenticatable
                                             registerable
                                             recoverable
                                             rememberable
@@ -34,6 +51,11 @@ module Mirco
         end
       end
     end
+  end
+
+  def self.enable_ldap_authentication
+    return false unless self.ldap_options.present?
+    fetch_config('enable_ldap_authentication', false)
   end
 
   def self.mail_from
@@ -69,21 +91,6 @@ module Mirco
     fetch_config('cron_purge_timescale', '30 1 * * 6')
   end
 
-  # warning if last check is older than warning_period minutes
-  def self.warning_period
-    fetch_config('warning_period', 10)
-  end
-
-  # warning if queued_messages > queued_warning_level
-  def self.queued_warning_level
-    fetch_config('queued_warning_level', 10)
-  end
-
-  # critical if queued_messages > queued_critical_level
-  def self.queued_critical_level
-    fetch_config('queued_critical_level', 50)
-  end
-
   def self.action_cable_allowed_request_origins
     fetch_config('action_cable_allowed_request_origins', 
                  ['http://localhost', 'https://localhost'])
@@ -103,6 +110,14 @@ module Mirco
 
   def self.script_name
     fetch_config('script_name', '/')
+  end
+
+  def self.smtp_settings
+    fetch_config('smtp_settings', nil)&.symbolize_keys
+  end
+
+  def self.grace_period
+    fetch_config('grace_period', 15.minutes)
   end
 
   def self.timescale_license

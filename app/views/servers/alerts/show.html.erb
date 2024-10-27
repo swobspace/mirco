@@ -1,0 +1,35 @@
+<%= render ModalComponent.new(title: t('activerecord.models.alert')) do %>
+
+  <table class="table table-sm table-borderless">
+      <tr>
+        <th><%= t('attributes.server')%>:</th>
+        <td><%= @alert.server %></td>
+      </tr>
+      
+      <tr>
+        <th><%= t('attributes.channel')%>:</th>
+        <td><%= @alert.channel %></td>
+      </tr>
+      
+      <tr>
+        <th><%= t('attributes.channel_detail')%>:</th>
+        <td><%= @alert.channel_statistic %></td>
+      </tr>
+      
+      <tr>
+        <th><%= t('attributes.type')%>:</th>
+        <td><%= @alert.type %></td>
+      </tr>
+      <tr>
+        <th><%= t('attributes.message')%>:</th>
+        <td><%= @alert.message %></td>
+      </tr>
+
+      <tr>
+        <th><%= t('attributes.timestamp')%>:</th>
+        <td><%= @alert.created_at.localtime.to_fs(:local) %></td>
+      </tr>
+
+  </table>
+
+<% end %>

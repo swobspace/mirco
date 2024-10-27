@@ -4,10 +4,21 @@ module ServerConcerns
   extend ActiveSupport::Concern
 
   included do
-    scope :ok, -> { where(condition: EscalationLevel::OK) }
-    scope :warning, -> { where(condition: EscalationLevel::WARNING) }
-    scope :critical, -> { where(condition: EscalationLevel::CRITICAL) }
-    scope :failed, -> { where("servers.condition > ?", EscalationLevel::OK) }
+    scope :condition, -> (state) do
+      where('servers.condition = ?', state)
+    end
+
+    scope :ok, -> { condition(Mirco::States::OK) }
+    scope :warning, -> { condition(Mirco::States::WARNING) }
+    scope :critical, -> { condition(Mirco::States::CRITICAL) }
+    scope :unknown, -> { condition(Mirco::States::UNKNOWN) }
+    scope :nothing, -> { condition(Mirco::States::NOTHING) }
+
+    scope :failed, -> do
+      where("servers.condition > ?", Mirco::States::OK)
+      .where(manual_update: false)
+    end
+
   end
 
   def active_channels

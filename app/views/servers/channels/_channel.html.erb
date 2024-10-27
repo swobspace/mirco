@@ -1,0 +1,26 @@
+<%= tag.tr id: dom_id(channel), class: "#{'invalid' unless channel.enabled?}" do %>
+
+  <td class="text-center">
+    <%= render ConditionIconComponent.new(item: channel, small: true,
+                                                  as_text: true, period: 8.days ) %>
+  </td>
+  <td><%= channel.condition_message %></td>
+  <td><%= t(channel.enabled?, scope: 'enabled') %></td>
+  <td><%= channel.state %></td>
+  <td><%= channel.name %></td>
+  <td><%= format(channel.description) %></td>
+  <td><%= channel.uid %></td>
+  <td><%= channel.updated_at.localtime.to_fs(:local) %></td>
+  <td class="text-owrap">
+    <%= show_link(channel, 
+                  "data-turbo-frame": '_top'
+        )%>
+    <%= link_to(
+          raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), 
+          channel_path(channel, format: :svg), 
+          "data-turbo-frame": '_top',
+          class: 'btn btn-secondary me-1'
+        )%>
+    <%= delete_button [channel.server, channel] %>
+  </td>
+<% end %>

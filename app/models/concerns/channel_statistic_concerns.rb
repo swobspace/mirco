@@ -6,7 +6,8 @@ module ChannelStatisticConcerns
   included do
     # filter enabled channels
     scope :active, -> do
-      joins(:channel).where("channels.enabled = true")
+      joins(channel: :server).where("channels.enabled = true")
+                             .where("servers.manual_update = ?", false)
     end
 
     # filter older statistics
@@ -23,6 +24,20 @@ module ChannelStatisticConcerns
       where('channel_statistics.meta_data_id IS NOT NULL')
       .where("channel_statistics.queued > 0")
     end
+
+    scope :condition, -> (state) do
+      where('channel_statistics.condition = ?', state)
+    end
+    scope :ok, -> { condition(Mirco::States::OK) }
+    scope :warning, -> { condition(Mirco::States::WARNING) }
+    scope :critical, -> { condition(Mirco::States::CRITICAL) }
+    scope :unknown, -> { condition(Mirco::States::UNKNOWN) }
+    scope :nothing, -> { condition(Mirco::States::NOTHING) }
+    scope :failed, -> do
+      where("connectors.condition > ?", Mirco::States::OK)
+      .where(manual_update: false)
+    end
+
 
   end
 

@@ -76,11 +76,19 @@ FactoryBot.define do
   end
 
   factory :note do
-    association :server
-    association :channel
     association :user
     type { 'acknowledge' }
     message { 'some text' }
+    trait :with_server do
+      association :notable, factory: :server
+    end
+    trait :with_channel do
+      association :notable, factory: :channel
+    end
+    trait :with_channel_statistic do
+      association :notable, factory: :channel_statistic
+    end
+
   end
 
   factory :notification_group do
@@ -88,7 +96,6 @@ FactoryBot.define do
   end
 
   factory :server do
-    host
     name { generate(:aname) }
     trait :with_uid do
       uid { `uuid -v 4` }

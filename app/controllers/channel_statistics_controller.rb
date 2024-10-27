@@ -13,10 +13,48 @@ class ChannelStatisticsController < ApplicationController
                                             .where('meta_data_id > 0')
                                             .where("last_message_error_at > ?",
                                                    7.days.before(Date.current))
-
+    elsif params['outdated'].present?
+      @channel_statistics = outdated_statistics
     else
       @channel_statistics = ChannelStatistic.all
     end
+    if params[:active]
+      @channel_statistics = @channel_statistics.active.current
+    end
+    respond_with(@channel_statistics)
+  end
+
+  def queued
+    @channel_statistics = ChannelStatistic.active.current.queued
+    if params[:all]
+     # full display
+    elsif params[:acknowledged]
+      @channel_statistics = @channel_statistics.acknowledged
+    else
+      @channel_statistics = @channel_statistics.not_acknowledged
+    end
+    ordered = @channel_statistics.order('channel_statistics.condition desc, channel_statistics.queued desc')
+    @count = ordered.count
+    @pagy, @channel_statistics = pagy(ordered, count: ordered.count)
+
+    respond_with(@channel_statistics)
+  end
+
+  def problems
+    @current = ChannelStatistic.active.current
+    if params[:condition]
+      @channel_statistics = @current.condition(params[:condition]).not_acknowledged
+    elsif params[:acknowledged]
+      @channel_statistics = @current.escalated.acknowledged
+    else
+      @channel_statistics = @current.escalated.not_acknowledged
+    end
+    ordered = @channel_statistics
+              .order('channel_statistics.condition desc, channel_statistics.queued desc')
+              .includes(channel: :server)
+    @count = ordered.count
+    @pagy, @channel_statistics = pagy(ordered, count: ordered.count)
+
     respond_with(@channel_statistics)
   end
 
@@ -59,6 +97,11 @@ class ChannelStatisticsController < ApplicationController
                  }
   end
 
+  def delete_outdated
+    outdated_statistics.destroy_all
+    redirect_to channel_statistics_path(outdated: true)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -74,5 +117,17 @@ class ChannelStatisticsController < ApplicationController
 
   def location
     polymorphic_path(@server || @channel_statistic)
+  end
+
+  def outdated
+    # (2*Mirco::grace_period).before(Time.current)
+    1.day.before(Time.current)
+  end
+
+  def outdated_statistics
+    @outdated_statistics =
+      ChannelStatistic.where('channel_statistics.updated_at < ?', outdated)
+                      .joins(:server)
+                      .where('servers.manual_update = ?', false)
   end
 end

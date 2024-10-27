@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_27_133800) do
+  create_schema "_timescaledb_cache"
+  create_schema "_timescaledb_catalog"
+  create_schema "_timescaledb_config"
+  create_schema "_timescaledb_debug"
+  create_schema "_timescaledb_functions"
+  create_schema "_timescaledb_internal"
+  create_schema "timescaledb_experimental"
+  create_schema "timescaledb_information"
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -121,11 +130,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.datetime "last_message_sent_at", precision: nil
     t.datetime "last_message_error_at", precision: nil
     t.integer "condition", default: -1
-    t.bigint "current_note_id"
+    t.bigint "old_current_note_id"
+    t.string "condition_message", default: ""
+    t.bigint "acknowledge_id"
     t.index ["channel_id", "meta_data_id"], name: "index_channel_statistics_on_channel_id_and_meta_data_id", unique: true
     t.index ["channel_uid"], name: "index_channel_statistics_on_channel_uid"
     t.index ["condition"], name: "index_channel_statistics_on_condition"
-    t.index ["current_note_id"], name: "index_channel_statistics_on_current_note_id"
+    t.index ["old_current_note_id"], name: "index_channel_statistics_on_old_current_note_id"
     t.index ["oldcondition"], name: "index_channel_statistics_on_oldcondition"
     t.index ["server_id"], name: "index_channel_statistics_on_server_id"
     t.index ["server_uid"], name: "index_channel_statistics_on_server_uid"
@@ -138,6 +149,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "enabled", default: true
+    t.integer "condition", default: 0
+    t.string "condition_message", default: ""
+    t.bigint "acknowledge_id"
+    t.string "state", default: ""
+    t.index ["condition"], name: "index_channels_on_condition"
     t.index ["server_id"], name: "index_channels_on_server_id"
     t.index ["uid"], name: "index_channels_on_uid"
   end
@@ -199,6 +215,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.datetime "enqueued_at"
     t.datetime "discarded_at"
     t.datetime "finished_at"
+    t.datetime "jobs_finished_at"
   end
 
   create_table "good_job_executions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -312,8 +329,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "channel_statistic_id"
+    t.string "notable_type"
+    t.bigint "notable_id"
+    t.datetime "valid_until"
     t.index ["channel_id"], name: "index_notes_on_channel_id"
     t.index ["channel_statistic_id"], name: "index_notes_on_channel_statistic_id"
+    t.index ["notable_type", "notable_id"], name: "index_notes_on_notable"
     t.index ["server_id"], name: "index_notes_on_server_id"
     t.index ["type"], name: "index_notes_on_type"
     t.index ["user_id"], name: "index_notes_on_user_id"
@@ -359,6 +380,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_160630) do
     t.bigint "host_id"
     t.boolean "manual_update", default: false
     t.integer "condition", default: 0
+    t.bigint "acknowledge_id"
+    t.string "condition_message", default: ""
     t.index ["condition"], name: "index_servers_on_condition"
     t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["uid"], name: "index_servers_on_uid"

@@ -13,5 +13,9 @@ module Servers
     def add_breadcrumb_show
       add_breadcrumb_for([set_notable, @note])
     end
+
+    def add_breadcrumb_index
+      # skip
+    end
   end
 end

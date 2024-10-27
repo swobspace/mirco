@@ -21,17 +21,26 @@
       
         <tr>
           <th class="w-25 pe-3"><%= t('attributes.location')%>:</th>
-          <td><%= link_to @software_interface.location, @software_interface.location %></td>
+          <td><%= link_to @software_interface.location, 
+                          @software_interface.location,
+                          class: 'primary-link'
+               %></td>
         </tr>
 
         <tr>
           <th class="w-25 pe-3"><%= t('attributes.software')%>:</th>
-          <td><%= link_to @software_interface.software, @software_interface.software %></td>
+          <td><%= link_to @software_interface.software, 
+                          @software_interface.software,
+                          class: 'primary-link'
+               %></td>
         </tr>
 
         <tr>
           <th class="w-25 pe-3"><%= t('attributes.software_group')%>:</th>
-          <td><%= link_to @software_interface.software.software_group, @software_interface.software.software_group %></td>
+          <td><%= link_to @software_interface.software.software_group, 
+                          @software_interface.software.software_group,
+                          class: 'primary-link'
+               %></td>
         </tr>
 
         <tr>
@@ -41,7 +50,10 @@
 
         <tr>
           <th class="w-25 pe-3"><%= t('attributes.hostname')%>:</th>
-          <td><%= link_to @software_interface.hostname, @software_interface.host %></td>
+          <td><%= link_to @software_interface.hostname, 
+                          @software_interface.host,
+                          class: 'primary-link'
+               %></td>
         </tr>
 
         <tr>

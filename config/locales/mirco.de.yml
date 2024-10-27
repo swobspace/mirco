@@ -17,8 +17,10 @@ de:
     new_interface_connector: Neuer Connector
     new_location: Neuer Standort
     new_host: Neuer Host
+    new_note: Neue Notiz
     new_notification_group: Neue Benachrichtungsgruppe
     new_server: Neues Mirth-System
+    new_server_configuration: Mirth-Konfiguration sichern
     new_software: Neue Software
     new_software_connection: Neue Verbindung
     new_software_group: Neue Software-Gruppe
@@ -40,15 +42,11 @@ de:
     destinationConnectors: Destination Connectors
     recent_errors: Letzte Fehler
     condition:
-      -1: '-'
+      -1: NOTHING
       0: OK
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    note_types:
-      acknowledge: Acknowledge
-      note: Note
-      mail: Mail
 
   activerecord:
     errors:
@@ -102,9 +100,11 @@ de:
     channel_uid: Channel UUID
     comment: Kommentar
     condition: Zustand
+    condition_message: Zustandsinfo
     connector: Connector
     connectors: Connectoren
     created_at: angelegt am
+    creator: Ersteller
     current_note: Aktueller Hinweis
     deployScript: Deploy Script
     description: Beschreibung
@@ -113,6 +113,7 @@ de:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Anzeigename
+    enabled: enabled
     end_time: Ende
     error: error
     error_last_30min: error (30min)
@@ -172,14 +173,14 @@ de:
     server_uid: Mirth Server UUID
     server_jvm: Mirth Server JVM
     server_version: Server Version
+    server_settings: Mirth Server-Einstellungen
     show_on_dashboard: auf dem Dashboard anzeigen
+    since: seit
+    sn: Nachname
     source: Source
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
-    system_info: Systeminfo
-    server_settings: Mirth Server-Einstellungen
-    sn: Nachname
     software: Software
     software_connection: Verbindung
     software_group: Software-Gruppe
@@ -187,6 +188,7 @@ de:
     start_time: Beginn
     state: Status
     status_type: Typ
+    system_info: Systeminfo
     timestamp: Wann?
     type: Typ
     uid: UID
@@ -253,5 +255,23 @@ de:
 
   escalation_times:
     add: Eskalationszeitraum hinzufügen
+  channels:
+    all: Alle Channels
+    current: Aktive Channels
+    outdated: Veraltete Channels
+    disabled: Deaktivierte Channels
+    delete_outdated: Veraltete Channels löschen?
+    delete_outdated_confirm: Veraltete Channels löschen?
   channel_statistics:
     add: Channelstatistik hinzufügen
+    all: Alle Channelstatistiken
+    current: Aktive Channelstatistiken
+    outdated: Veraltete Statistiken
+    delete_outdated: Veraltete Statistiken löschen
+    delete_outdated_confirm: Veraltete Statistiken löschen?
+  notes:
+    acknowledge: Acknowledge
+    note: Notiz
+    mail: Mail
+    all: Alle Notizen
+    current: Aktuelle Notizen

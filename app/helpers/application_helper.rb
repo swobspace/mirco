@@ -1,7 +1,26 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include Pagy::Frontend
   include Wobapphelpers::Helpers::All
+
+  def configuration_active_class
+    if Mirco::CONFIGURATION_CONTROLLER.include?(controller.controller_name.to_s)
+      "active"
+    end
+  end
+
+  def software_active_class
+    if Mirco::SOFTWARE_CONTROLLER.include?(controller.controller_name.to_s)
+      "active"
+    end
+  end
+
+  def servers_active_class
+    if Mirco::SERVERS_CONTROLLER.include?(controller.controller_name.to_s)
+      "active"
+    end
+  end
 
   def format(text, options = {})
     return '' if text.blank?

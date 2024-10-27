@@ -1,4 +1,5 @@
-<%= turbo_frame_tag 'modal-body' do %>
-  <%= render 'form' %>
+<%= render ModalComponent.new(
+  title: t('wobapphelpers.actions.new',
+            model: t('activerecord.models.server_configuration'))) do %>
+  <%= render 'form', server: @server, server_configuration: @server_configuration %>
 <% end %>
-

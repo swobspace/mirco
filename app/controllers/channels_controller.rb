@@ -8,14 +8,22 @@ class ChannelsController < ApplicationController
   # GET /channels
   def index
     if @server
-      if params[:obsolete].present?
-        @channels = @server.obsolete_channels
-      else
-        @channels = @server.channels
-      end
+      @channels = @server.channels
     else
       @channels = Channel.all
     end
+    if params[:all]
+      # all above
+    elsif params[:obsolete].present?
+      @channels = @server.obsolete_channels
+    elsif params[:disabled]
+      @channels = @channels.disabled
+    elsif params['outdated'].present?
+      @channels = outdated_channels
+    else
+      @channels = @channels.active
+    end
+    @channels = @channels.includes(:server)
     respond_with(@channels)
   end
 
@@ -56,7 +64,13 @@ class ChannelsController < ApplicationController
                       '<br/>' + result.error_messages.join('<br/>').truncate(300)
       Rails.logger.warn(flash[:error])
     end
-    respond_with(@server, render: 'servers/show')
+    respond_with(@server) do |format|
+      if result.success?
+        format.turbo_stream
+      else
+        format.html { render 'servers/show', status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /channels/1
@@ -66,6 +80,11 @@ class ChannelsController < ApplicationController
         format.turbo_stream { flash.now[:notice] = "Channel successfully deleted" }
       end
     end
+  end
+
+  def delete_outdated
+    outdated_channels.destroy_all
+    redirect_to channels_path(outdated: true)
   end
 
   private
@@ -97,4 +116,18 @@ class ChannelsController < ApplicationController
   def svgfile
     "#{filebase}.svg"
   end
+
+  def outdated
+    # update interval of channels is once per week
+    #
+    3.weeks.before(Time.current)
+  end
+
+  def outdated_channels
+    @outdated_channels =
+      Channel.where('channels.updated_at < ?', outdated)
+             .joins(:server)
+             .where('servers.manual_update = ?', false)
+  end
+
 end

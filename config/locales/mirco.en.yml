@@ -17,8 +17,10 @@ en:
     new_interface_connector: New connector
     new_location: New location
     new_host: New host
+    new_note: New note
     new_notification_group: New notification group
     new_server: New mirth system
+    new_server_configuration: Backup mirth configuration
     new_software: New software
     new_software_connection: New connection
     new_software_group: New software group
@@ -40,15 +42,11 @@ en:
     destinationConnectors: Destination connectors
     recent_errors: Recent errors
     condition:
-      -1: '-'
+      -1: NOTHING
       0: OK
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    note_types:
-      acknowledge: Acknowledge
-      note: Note
-      mail: Mail
 
   activerecord:
     errors:
@@ -102,9 +100,11 @@ en:
     channel_uid: Channel UUID
     comment: Comment
     condition: Condition
+    condition_message: Condition
     connector: Connector
     connectors: Connectors
     created_at: created_at
+    creator: Creator
     current_note: Current note
     deployScript: Deploy script
     description: Description
@@ -113,6 +113,7 @@ en:
     destination_connector: Destination Connector
     destination_url: Destination URL
     displayname: Display name
+    enabled: enabled
     end_time: End time
     error: Error
     error_last_30min: Error (30min)
@@ -172,14 +173,14 @@ en:
     server_uid: Mirth system UUID
     server_jvm: Mirth system JVM
     server_version: Mirth system version
+    server_settings: Mirth system properties
     show_on_dashboard: show on dashboard
+    since: since
+    sn: Surname
     source: Source
     sourceConnector: Source Connector
     source_connector: Source Connector
     source_url: Source URL
-    system_info: System info
-    server_settings: Mirth system settings
-    sn: Surname
     software: Software
     software_connection: Connection
     software_group: Software group
@@ -187,6 +188,7 @@ en:
     start_time: Start time
     state: State
     status_type: Type
+    system_info: System info
     timestamp: When?
     type: Type
     uid: UID
@@ -253,5 +255,24 @@ en:
 
   escalation_times:
     add: Add escalation time
+  channels:
+    all: All channels
+    current: Active channels
+    disabled: Disabled channels
+    outdated: Outdated channels
+    delete_outdated: Delete outdated channels
+    delete_outdated_confirm: Delete outdated channels?
   channel_statistics:
     add: add Channel statistic
+    all: All channel statistics
+    current: Active channel statistics
+    outdated: Outdated statistics
+    delete_outdated: Delete outdated statistics
+    delete_outdated_confirm: Delete outdated statistics?
+
+  notes:
+    acknowledge: Acknowledge
+    note: Note
+    mail: Mail
+    all: All notes
+    current: Current notes

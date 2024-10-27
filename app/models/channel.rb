@@ -2,13 +2,17 @@
 
 # rubocop:todo Rails/UniqueValidationWithoutIndex, Rails/InverseOf
 class Channel < ApplicationRecord
+  include EscalationStatusConcerns
+  include NotableConcerns
+  include Mirco::Condition
+
   # -- associations
   belongs_to :server
-  has_one :channel_statistic, -> { where(meta_data_id: nil) }
   has_many :channel_statistics, dependent: :destroy
   has_many :channel_counters, dependent: :delete_all
   has_many :alerts, dependent: :destroy
-  has_many :notes, dependent: :destroy
+  has_many :all_notes, class_name: 'Note', dependent: :destroy, inverse_of: :channel
+  has_many :escalation_levels, as: :escalatable, dependent: :destroy
 
   # -- configuration
   store_accessor :properties, :name
@@ -26,10 +30,12 @@ class Channel < ApplicationRecord
   # -- validations and callbacks
   validates :uid, presence: true, uniqueness: { scope: :server_id }
   before_save :check_enabled
+  before_save :update_condition
 
   delegate :location, :ipaddress, to: :server
 
   scope :active, -> { where(enabled: true) }
+  scope :disabled, -> { where(enabled: false) }
 
   def to_s
     name.to_s
@@ -66,7 +72,7 @@ class Channel < ApplicationRecord
         channels << ch
       end
     end
-    channels.compact.flatten
+    channels.compact.flatten.uniq
   end
 
   def puml
@@ -88,14 +94,52 @@ class Channel < ApplicationRecord
     end
   end
 
-  private
-  def check_enabled
-    if exportData.present? && exportData['metadata'].present? && exportData['metadata']['enabled'] == 'false'
-      self[:enabled] = false
+  def escalatable_attributes
+    %w[ updated_at ]
+  end
+
+  def update_condition
+    if !(enabled?)
+      set_condition(Mirco::States::NOTHING,
+                    "Channel is disabled")
     else
-      self[:enabled] = true
+      if escalation_status.state <= Mirco::States::OK
+        set_condition(Mirco::States::OK,
+                      I18n.t(Mirco::States::OK, scope: 'mirco.condition'))
+      else
+        set_condition(escalation_status.state,
+                      escalation_status.message)
+      end
     end
   end
-  
+
+
+  private
+
+  # check_enabled
+  # test for exportData first. If missing, use state from channel/statuses
+  #
+  def check_enabled
+    if properties.nil?
+      is_enabled = nil
+    else
+      is_enabled = properties.dig('exportData', 'metadata', 'enabled')
+    end
+    if is_enabled == 'true'
+      self[:enabled] = true
+    elsif is_enabled == 'false'
+      self[:enabled] = false
+    else
+      case state
+      when "STARTED", "STOPPED"
+        self[:enabled] = true
+      when "UNDEPLOYED"
+        self[:enabled] = false
+      else
+        self[:enabled] = false
+      end
+    end
+  end
+
 end
 # rubocop:enable Rails/UniqueValidationWithoutIndex, Rails/InverseOf

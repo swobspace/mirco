@@ -1,5 +1,14 @@
 = Changelog
 
+=== 1.6.0 / 2024-10-27
+
+----
+* add ldap authentication as devise strategy
+* bugfix: avoid duplicate connections in some diagrams
+* improve dashboard
+* heavy refactoring internal code
+----
+
 === 1.5.0 / 2024-07-16
 
 ----

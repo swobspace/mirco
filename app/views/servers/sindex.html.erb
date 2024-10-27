@@ -1,0 +1,69 @@
+<%= turbo_frame_tag("servers") do %>
+ <div class="table-responsive-xl">
+ <% if @servers.size > 0 %>
+  <%= content_tag :table,
+        id: "servers_table",
+        class: "table mb-0" do %>
+    <thead>
+      <tr class="">
+        <th class="text-center"><%= t('attributes.condition') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('attributes.location') %></th>
+        <th><%= t('attributes.condition_message') %></th>
+        <th class="text-center"><%= t('attributes.last_check') %></th>
+        <th class="text-center"><%= t('attributes.last_check_ok') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @servers.each do |server| %>
+
+        <%= content_tag(:tr, id: dom_id(server), class: dom_class(server)) do %>
+          <td class="text-center">
+            <%= render ConditionIconComponent.new( item: server, 
+                                                   small: true, as_text: false) %>
+          </td>
+          <td><%= link_to(
+                    server.name, 
+                    server_path(server), 
+                    data: { "turbo-frame" => "_top" },
+                    class: "primary-link") %></td>
+          <td><%= server.location&.lid %></td>
+          <td><%= server.condition_message %></td>
+          <%= render TdEscalationComponent.new(
+                       escalatable: server,
+                       attrib: 'last_check',
+                       css: 'text-center',
+                       manual_update: server.manual_update
+                     )
+           %>
+          <%= render TdEscalationComponent.new(
+                       escalatable: server,
+                       attrib: 'last_check_ok',
+                       css: 'text-center',
+                       manual_update: server.manual_update
+                     )
+           %>
+          <td class="text-end text-nowrap">
+              <%= show_link server,
+                            class: 'btn btn-sm btn-outline-secondary me-1',
+                            data: { "turbo" => false } %>
+              <%= render AcknowledgeButtonComponent.new(
+                           notable: server,
+                           readonly: cannot?(:manage, server)
+                         )
+               %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  <% end %>
+
+  <% if @servers_pagy.pages > 1 %>
+    <div class="mt-3 ms-3">
+      <%== pagy_bootstrap_nav(@servers_pagy) %>
+    </div>
+  <% end %>
+ <% end %>
+ </div>
+<% end %>

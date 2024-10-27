@@ -1,36 +1,14 @@
-<%= simple_form_for([@notable, @note],
-  data: {
-    action: "turbo:submit-end->modal#handleSubmit"
-  }) do |f| %>
+<%= simple_form_for([notable, note]) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
-  <div class="modal-header bg-light">
-   <div>
-    <div class="text-muted">
-      <span>
-        <%= t(@note.type, scope: 'mirco.note_types', default: 'Note') %> 
-        <%= t('mirco.for') %>
-      </span>
-    </div>
-    <h5 class="modal-title">
-      <% if @notable.kind_of? ChannelStatistic %>
-        <span><%= @notable.server %> &#x25B8; <%= @notable.channel %> &#x25B8; <%= @notable %></span>
-      <% elsif @notable.kind_of? Channel %>
-        <span><%= @notable.server %> &#x25B8; <%= @notable %></span>
-      <% else %>
-        <span><%= @notable %></span>
-      <% end %>
-    </h5>
-   </div>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-    </button>
-  </div>
-  <div class="modal-body">
-    <%= f.hidden_field :type %>
-    <%= f.input :message, as: :rich_text_area,
+  <div class="form-input">
+    <%= form.hidden_field :type %>
+    <%= form.input :message, as: :rich_text_area,
                 wrapper: :vertical_form
      %>
+    <%= form.input :valid_until, html5: true, wrapper: :horizontal_datetime
+       %>
 
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <%= form.button :submit, class: 'btn btn-primary' %>
   </div>
 <% end %>

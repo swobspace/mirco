@@ -13,5 +13,9 @@ module Servers
     def location
       server_path(@server, anchor: 'channels-tab')
     end
+
+    def add_breadcrumb_index
+      # skip
+    end
   end
 end

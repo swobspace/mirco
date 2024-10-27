@@ -1,0 +1,63 @@
+<%= tag.tr id: dom_id(channel_statistic), 
+           class: "#{'invalid' unless channel_statistic.started?}" do %>
+
+  <td class="text-center">
+    <%= render ConditionIconComponent.new(item: channel_statistic, 
+                                          small: true, as_text: true) %>
+  </td>
+  <td><%= channel_statistic.condition_message %></td>
+  <td><%= link_to_if(can?(:read, channel_statistic.channel),
+            channel_statistic.channel,
+            channel_path(channel_statistic.channel),
+            class: 'primary-link',
+            "data-turbo-frame": '_top')%>
+  </td>
+  <td>
+    <% if channel_statistic.meta_data_id.nil? %>
+      -
+    <% else %>
+      <%= link_to(channel_statistic.name, channel_statistic, 
+                  class: 'primary-link',
+                  "data-turbo-frame": '_top') %>
+
+    <% end %>
+  </td>
+  <td><%= channel_statistic.state %></td>
+  <td><%= channel_statistic.status_type %></td>
+  <td><%= channel_statistic.received %></td>
+  <%= render TdEscalationComponent.new(
+          escalatable: channel_statistic,
+          attrib: 'last_message_received_at',
+          manual_update: channel_statistic.server.manual_update
+      ) %>
+  <td><%= channel_statistic.sent %></td>
+  <%= render TdEscalationComponent.new(
+          escalatable: channel_statistic,
+          attrib: 'last_message_sent_at',
+          manual_update: channel_statistic.server.manual_update
+      ) %>
+  <td><%= channel_statistic.error %></td>
+  <%= render TdEscalationComponent.new(
+          escalatable: channel_statistic,
+          attrib: 'last_message_error_at',
+          manual_update: channel_statistic.server.manual_update
+      ) %>
+  <td><%= channel_statistic.filtered %></td>
+  <%= render TdEscalationComponent.new(
+          escalatable: channel_statistic,
+          attrib: 'queued',
+          manual_update: channel_statistic.server.manual_update
+      ) %>
+  <td><%= channel_statistic.last_condition_change&.to_fs(:local) %></td>
+  <%= render TdEscalationComponent.new(
+          escalatable: channel_statistic,
+          attrib: 'updated_at',
+          manual_update: channel_statistic.server.manual_update
+      ) %>
+  <td class="text-nowrap">
+    <%= link_to(raw(%Q[<i class="fas fa-chart-bar"></i>]), 
+                channel_statistic, 
+                "data-turbo-frame": '_top',
+                class: 'btn btn-secondary me-1') if can? :read, channel_statistic %>
+  </td>
+<% end %>

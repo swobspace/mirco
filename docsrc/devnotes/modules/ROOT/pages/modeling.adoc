@@ -29,6 +29,8 @@ bin/rails g scaffold Server \
   last_check:timestamp last_check_ok:timestamp \
   manual_update:boolean \
   condition:integer:index \
+  condition_message:string \
+  acknowledge_id:bigint \
   --no-stylesheets --no-javascripts --no-helper
 
 ----
@@ -42,6 +44,10 @@ bin/rails g scaffold Channel \
   uid:string:index \
   properties:jsonb \
   enabled:boolean \
+  condition:integer:index \
+  condition_message:string \
+  acknowledge_id:bigint \
+  state:string \
   --no-stylesheets --no-javascripts --no-helper
 ----
 
@@ -61,22 +67,16 @@ bin/rails g scaffold ChannelStatistic \
   error:integer \
   filtered:integer \
   queued:integer \
-  condition:integer:index \
   last_condition_change:timestamp \
   last_message_received_at:timestamp \
   last_message_sent_at:timestamp \
   last_message_error_at:timestamp \
-  current_note:belongs_to \
+  condition:integer:index \
+  condition_message:string \
+  acknowledge_id:bigint \
   --no-stylesheets --no-javascripts --no-helper
 ----
-// bin/rails g migration AddMetaDataIdToChannelStatistic meta_data_id:integer
-// bin/rails g migration AddStatusesFieldsToChannelStatistic \
-//   name:string state:string status_type:string
-// bin/rails g migration AddConditionToChannelStatistic \
-//   condition:string:index last_condition_change:timestamp
-// bin/rails g migration AddLastMessageAtToChannelStatistic \
-//   last_message_received_at:timestamp last_message_sent_at:timestamp \
-//   last_message_error_at:timestamp
+
 
 == Model ChannelCounter
 
@@ -117,11 +117,13 @@ a|`alert`, `recovery`
 [source,sh]
 ----
 bin/rails g scaffold Note \
+  'notable:belongs_to{polymorphic}' \
   server:belongs_to \
   channel:belongs_to \
   channel_statistic:belongs_to \
   user:belongs_to \
   type:string:index \
+  valid_until:datetime \
   --no-stylesheets --no-javascripts --no-helper
 ----
 // bin/rails g migration AddChannelStatisticIdToNote \

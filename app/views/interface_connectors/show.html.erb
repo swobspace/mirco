@@ -27,19 +27,26 @@
 
             <tr>
               <th class="w-10 pe-3"><%= t('attributes.lid')%>:</th>
-              <td><%= link_to @interface_connector.location&.lid, @interface_connector.location %></td>
+              <td><%= link_to @interface_connector.location&.lid, 
+                              @interface_connector.location,
+                              class: 'primary-link'
+                   %></td>
             </tr>
 
             <tr>
               <th class="w-10 pe-3"><%= t('attributes.software')%>:</th>
               <td><%= link_to @interface_connector.sw_name,
-                              @interface_connector.software_interface.software %></td>
+                              @interface_connector.software_interface.software,
+                              class: 'primary-link'
+                   %></td>
             </tr>
 
             <tr>
               <th class="w-10 pe-3"><%= t('attributes.software_interface')%>:</th>
               <td><%= link_to @interface_connector.if_name,
-                              @interface_connector.software_interface %></td>
+                              @interface_connector.software_interface,
+                              class: 'primary-link'
+                   %></td>
             </tr>
 
             <tr>

@@ -1,23 +1,8 @@
-<%= simple_form_for([@server, @server_configuration],
-  data: {
-    action: "turbo:submit-end->modal#handleSubmit"
-  }) do |f| %>
+<%= simple_form_for([server, server_configuration]) do |form| %>
+<%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
 
-  <div class="modal-header bg-light">
-   <div>
-    <div class="text-muted">
-      <span><%= t('activerecord.models.server_configuration') %> <%= t('mirco.for') %></span>
-    </div>
-    <h5 class="modal-title">
-      <%= @server %>
-    </h5>
-   </div>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-    </button>
-  </div>
-  <div class="modal-body">
-    <%= f.input :comment %>
-    <%= f.button :submit, class: 'btn btn-primary' %>
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <div class="form-input">
+    <%= form.input :comment %>
+    <%= form.button :submit, class: 'btn btn-primary' %>
   </div>
 <% end %>

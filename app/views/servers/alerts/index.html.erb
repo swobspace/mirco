@@ -1,0 +1,37 @@
+<%= turbo_frame_tag('alerts') do %>
+  <div class="card mt-3">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-xs-5 col-md-4 col-ml-3">
+          <h4 class="me-4 pt-1"><%= t('controller.alerts')%></h4>
+        </div>
+        <div class="d-flex col-xs-7 col-md-8 col-ml-9">
+        </div>
+      </div>
+    </div>
+    <div data-controller="datatables" class="p-2">
+      <%= content_tag :table, role: :datatable,
+            id: "alerts_table",
+            class: "table table-striped table-sm table-responsive-xl",
+            # style: 'width: 100%;',
+            data: {
+              order: [[0, 'desc']].to_json
+            } do %>
+        <thead class="table-primary">
+          <tr>
+            <th><%= t('attributes.timestamp') %></th>
+            <th><%= t('attributes.type') %></th>
+            <th class="<%= 'notvisible' if @alertable.present? %>"><%= t('attributes.server') %></th>
+            <th class="<%= 'notvisible' if @alertable.kind_of? Channel %>"><%= t('attributes.channel') %></th>
+            <th><%= t('attributes.channel_detail') %></th>
+            <th><%= t('attributes.message') %></th>
+            <th class="nosort text-end"><%= t('mirco.action') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @alerts %>
+        </tbody>
+      <% end %>
+    </div>
+  </div>
+<% end %>
