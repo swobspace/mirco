@@ -78,7 +78,7 @@ gem "devise-remote-user", "~> 1.1"
 
 gem "faker", "~> 3.1"
 
-gem "good_job", "~> 4.1.0"
+gem "good_job", "~> 4.4.0"
 
 # for deployment
 gem "ed25519"
