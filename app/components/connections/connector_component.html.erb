@@ -1,5 +1,12 @@
 <div> 
-  <%= link_to connector.if_name, software_interface_path(connector.software_interface) %>   (<%= link_to connector&.sw_name, software_path(connector.software_interface.software) %>)
+  <%= link_to connector.if_name, 
+              software_interface_path(connector.software_interface),
+              class: 'primary-link'
+   %>   
+ (<%= link_to connector&.sw_name, 
+              software_path(connector.software_interface.software),
+              class: 'primary-link'
+   %>)
 </div>
 <div>
     <%= connector&.hostname %>

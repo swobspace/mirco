@@ -8,7 +8,10 @@
           <% else %>
             <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
           <% end %>
-          <%= link_to interface_connector.name, interface_connector %>
+          <%= link_to interface_connector.name, 
+                      interface_connector,
+                      class: 'primary-link'
+           %>
         </div>
         <div class="ps-4">
           <%= interface_connector.description %>

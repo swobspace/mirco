@@ -12,69 +12,69 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.lid') %></th>
-            <th><%= t('attributes.server') %></th>
-            <th><%= t('attributes.software') %> (SRC)</th>
-            <th><%= t('attributes.software_interface') %> (SRC)</th>
-            <th><%= t('attributes.source_connector') %></th>
-            <th><%= t('attributes.source_url') %></th>
-            <th class="notvisible"><%= t('attributes.host') %></th>
-            <th class="notvisible"><%= t('controller.channels') %></th>
-            <th><%= t('attributes.software') %> (DST)</th>
-            <th><%= t('attributes.software_interface') %> (DST)</th>
-            <th><%= t('attributes.destination_connector') %></th>
-            <th><%= t('attributes.destination_url') %></th>
-            <th class="notvisible"><%= t('attributes.host') %></th>
-            <th><%= t('attributes.ignore') %></th>
-            <th class="notvisible"><%= t('attributes.ignore_reason') %></th>
-            <th><%= t('attributes.description') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+        <th><%= t('attributes.lid') %></th>
+        <th><%= t('attributes.server') %></th>
+        <th><%= t('attributes.software') %> (SRC)</th>
+        <th><%= t('attributes.software_interface') %> (SRC)</th>
+        <th><%= t('attributes.source_connector') %></th>
+        <th><%= t('attributes.source_url') %></th>
+        <th class="notvisible"><%= t('attributes.host') %></th>
+        <th class="notvisible"><%= t('controller.channels') %></th>
+        <th><%= t('attributes.software') %> (DST)</th>
+        <th><%= t('attributes.software_interface') %> (DST)</th>
+        <th><%= t('attributes.destination_connector') %></th>
+        <th><%= t('attributes.destination_url') %></th>
+        <th class="notvisible"><%= t('attributes.host') %></th>
+        <th><%= t('attributes.ignore') %></th>
+        <th class="notvisible"><%= t('attributes.ignore_reason') %></th>
+        <th><%= t('attributes.description') %></th>
+        <th class="text-center nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @software_connections.each do |software_connection| %>
         <%= content_tag(:tr, id: dom_id(software_connection), 
                              class: [dom_class(software_connection), sw_connection_class(software_connection)].join(" ")) do %>
-                <td><%= software_connection.location.lid %></td>
-                <td><%= software_connection.server %></td>
-                <td><%= software_connection.source_connector&.sw_name %></td>
-                <td><%= software_connection.source_connector&.if_name %></td>
-                <td><%= software_connection.source_connector %></td>
-                <td><%= software_connection.source_url %></td>
-                <td><%= software_connection.src_url_host %></td>
-                <td><%= Channel.where(id: software_connection.channel_ids)
-                               .map(&:name).join('<br/>').html_safe
-                     %></td>
-                <td><%= software_connection.destination_connector&.sw_name %></td>
-                <td><%= software_connection.destination_connector&.if_name %></td>
-                <td><%= software_connection.destination_connector %></td>
-                <td><%= software_connection.destination_url %></td>
-                <td><%= software_connection.dst_url_host %></td>
-                <td><%= software_connection.ignore %></td>
-                <td><%= software_connection.ignore_reason %></td>
-                <td><%= software_connection.description %></td>
-                <td class="text-nowrap">
+          <td><%= software_connection.location.lid %></td>
+          <td><%= software_connection.server %></td>
+          <td><%= software_connection.source_connector&.sw_name %></td>
+          <td><%= software_connection.source_connector&.if_name %></td>
+          <td><%= software_connection.source_connector %></td>
+          <td><%= software_connection.source_url %></td>
+          <td><%= software_connection.src_url_host %></td>
+          <td><%= Channel.where(id: software_connection.channel_ids)
+                         .map(&:name).join('<br/>').html_safe
+               %></td>
+          <td><%= software_connection.destination_connector&.sw_name %></td>
+          <td><%= software_connection.destination_connector&.if_name %></td>
+          <td><%= software_connection.destination_connector %></td>
+          <td><%= software_connection.destination_url %></td>
+          <td><%= software_connection.dst_url_host %></td>
+          <td><%= software_connection.ignore %></td>
+          <td><%= software_connection.ignore_reason %></td>
+          <td><%= software_connection.description %></td>
+          <td class="text-center text-nowrap">
             <%= show_link software_connection %>
             <%= edit_link software_connection %>
             <%= delete_link software_connection %>

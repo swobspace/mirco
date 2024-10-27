@@ -12,30 +12,33 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.name') %></th>
-            <th><%= t('attributes.description') %></th>
-            <th class="text-center nosort"><%= t('attributes.software') %></th>
-            <th class="text-center nosort"><%= t('attributes.hosts') %></th>
-            <th class="text-center nosort"><%= t('mirco.action') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('attributes.description') %></th>
+        <th class="text-center nosort"><%= t('attributes.software') %></th>
+        <th class="text-center nosort"><%= t('attributes.hosts') %></th>
+        <th class="text-center nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
-            <th class="nosearch"></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
+        <th class="nosearch"></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @software_groups.each do |software_group| %>
         <%= content_tag(:tr, id: dom_id(software_group), class: dom_class(software_group)) do %>
-                <td><%= link_to software_group.name, software_group %></td>
-                <td><%= software_group.description %></td>
-                <td class="text-center"><%= software_group.software.count %></td>
-                <td class="text-center"><%= software_group.hosts.count %></td>
-                <td class="text-center text-nowrap">
+          <td><%= link_to software_group.name, 
+                  software_group,
+                  class: "primary-link"
+               %></td>
+          <td><%= software_group.description %></td>
+          <td class="text-center"><%= software_group.software.count %></td>
+          <td class="text-center"><%= software_group.hosts.count %></td>
+          <td class="text-center text-nowrap">
             <%= show_link software_group %>
             <%= edit_link software_group %>
             <%= delete_link software_group %>

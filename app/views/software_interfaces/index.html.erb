@@ -12,36 +12,45 @@
         } do %>
     <thead>
       <tr>
-            <th><%= t('attributes.lid') %></th>
-            <th><%= t('attributes.software') %></th>
-            <th><%= t('attributes.name') %></th>
-            <th><%= t('attributes.hostname') %></th>
-            <th><%= t('attributes.ipaddress') %></th>
-            <th><%= t('attributes.description') %></th>
-            <th class="nosort"><%= t('mirco.action') %></th>
+        <th><%= t('attributes.lid') %></th>
+        <th><%= t('attributes.software') %></th>
+        <th><%= t('attributes.name') %></th>
+        <th><%= t('attributes.hostname') %></th>
+        <th><%= t('attributes.ipaddress') %></th>
+        <th><%= t('attributes.description') %></th>
+        <th class="nosort text-center"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th class="nosearch"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th class="nosearch"></th>
       </tr>
     </tfoot>
     <tbody>
       <% @software_interfaces.each do |software_interface| %>
         <%= content_tag(:tr, id: dom_id(software_interface), class: dom_class(software_interface)) do %>
-                <td><%= link_to software_interface.lid, software_interface.location %></td>
-                <td><%= link_to software_interface.software&.name, software_interface.software %></td>
-                <td><%= link_to software_interface.name, software_interface %></td>
-                <td><%= software_interface.hostname %></td>
-                <td><%= software_interface.ipaddress %></td>
-                <td><%= software_interface.description %></td>
-                <td class="text-nowrap">
+          <td><%= link_to software_interface.lid, 
+                          software_interface.location,
+                          class: 'primary-link'
+               %></td>
+          <td><%= link_to software_interface.software&.name,
+                          software_interface.software,
+                          class: 'primary-link'
+               %></td>
+          <td><%= link_to software_interface.name, 
+                          software_interface,
+                          class: 'primary-link'
+               %></td>
+          <td><%= software_interface.hostname %></td>
+          <td><%= software_interface.ipaddress %></td>
+          <td><%= software_interface.description %></td>
+          <td class="text-center text-nowrap">
             <%= show_link software_interface %>
             <%= edit_link software_interface %>
             <%= delete_link software_interface %>

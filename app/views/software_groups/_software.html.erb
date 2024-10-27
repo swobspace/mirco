@@ -2,7 +2,10 @@
   <div class="card-body py-2 border-bottom border-bottom-1">
     <div>
       <div>
-        <span class="fw-bold"><%= link_to software.name, software %></span>
+        <span class="fw-bold">
+          <%= link_to software.name, software, class: 'primary-link'
+           %>
+        </span>
         <span>(<%= software.location&.lid %>)</span>
       </div> 
     </div>
@@ -14,7 +17,12 @@
       <div class="fw-bold pt-2"><%= t('controller.software_interfaces') %></div>
       <ul>
         <% software.software_interfaces.each do |software_interface| %>
-          <li><%= link_to software_interface, software_interface_path(software_interface) %></li> 
+          <li>
+            <%= link_to software_interface, 
+                        software_interface_path(software_interface),
+                        class: 'primary-link'
+             %>
+          </li> 
         <% end %>
       </ul>
      </div>
@@ -31,7 +39,10 @@
                 <% else %>
                   <i class="fas fa-arrow-alt-circle-right fa-lg"></i>
                 <% end %>
-                <%= link_to interface_connector.name, interface_connector %>
+                <%= link_to interface_connector.name, 
+                    interface_connector,
+                    class: 'primary-link'
+                 %>
               </div>
               <div>
                 <%= render Connector::DiagramButtonComponent.new(
