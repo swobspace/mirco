@@ -23,6 +23,7 @@ class ChannelsController < ApplicationController
     else
       @channels = @channels.active
     end
+    @channels = @channels.includes(:server)
     respond_with(@channels)
   end
 

@@ -18,7 +18,6 @@ RSpec.describe Channel, type: :model do
      )
   end
   it { is_expected.to belong_to(:server) }
-  it { is_expected.to have_one(:channel_statistic) }
   it { is_expected.to have_many(:channel_statistics).dependent(:destroy) }
   it { is_expected.to have_many(:channel_counters).dependent(:delete_all) }
   it { is_expected.to have_many(:alerts).dependent(:destroy) }
