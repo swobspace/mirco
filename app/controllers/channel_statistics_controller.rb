@@ -49,7 +49,9 @@ class ChannelStatisticsController < ApplicationController
     else
       @channel_statistics = @current.escalated.not_acknowledged
     end
-    ordered = @channel_statistics.order('channel_statistics.condition desc, channel_statistics.queued desc')
+    ordered = @channel_statistics
+              .order('channel_statistics.condition desc, channel_statistics.queued desc')
+              .includes(channel: :server)
     @count = ordered.count
     @pagy, @channel_statistics = pagy(ordered, count: ordered.count)
 
