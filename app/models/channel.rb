@@ -36,6 +36,7 @@ class Channel < ApplicationRecord
   delegate :location, :ipaddress, to: :server
 
   scope :active, -> { where(enabled: true) }
+  scope :disabled, -> { where(enabled: false) }
 
   def to_s
     name.to_s
