@@ -9,13 +9,14 @@ RSpec.describe 'channel_statistics/index', type: :view do
     allow(controller).to receive(:current_ability) { @ability }
     allow(controller).to receive(:controller_name) { 'channel_statistics' }
     allow(controller).to receive(:action_name) { 'index' }
-    @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth', manual_update: true)
+    @server = FactoryBot.create(:server, :with_uid, name: 'xyzmirth', manual_update: false)
     channel1 = FactoryBot.create(:channel, server: @server, state: 'STARTED')
     channel2 = FactoryBot.create(:channel, server: @server, state: 'STARTED')
     travel_to Time.now do
       ChannelStatistic.create!(
         server: @server,
         channel: channel1,
+        state: 'STARTED',
         server_uid: @server.uid,
         channel_uid: channel1.uid,
         name: 'FRITZ',
@@ -52,7 +53,7 @@ RSpec.describe 'channel_statistics/index', type: :view do
 
   it 'renders a list of channel_statistics' do
     render
-    assert_select 'tr>td', text: @server.to_s, count: 0
+    assert_select 'tr>td', text: @server.to_s, count: 2
     assert_select 'tr>td', text: 'FRITZ', count: 1
     assert_select 'tr>td', text: 'HORST', count: 1
     assert_select 'tr>td', text: 'STOPPED', count: 1
