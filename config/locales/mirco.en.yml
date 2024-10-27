@@ -258,6 +258,10 @@ en:
   channels:
     all: All channels
     current: Active channels
+    disabled: Disabled channels
+    outdated: Outdated channels
+    delete_outdated: Delete outdated channels
+    delete_outdated_confirm: Delete outdated channels?
   channel_statistics:
     add: add Channel statistic
     all: All channel statistics

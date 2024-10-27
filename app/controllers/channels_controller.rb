@@ -20,6 +20,8 @@ class ChannelsController < ApplicationController
       # all above
     elsif params[:disabled]
       @channels = @channels.disabled
+    elsif params['outdated'].present?
+      @channels = outdated_channels
     else
       @channels = @channels.active
     end
@@ -82,6 +84,11 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def delete_outdated
+    outdated_channels.destroy_all
+    redirect_to channels_path(outdated: true)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -111,4 +118,18 @@ class ChannelsController < ApplicationController
   def svgfile
     "#{filebase}.svg"
   end
+
+  def outdated
+    # update interval of channels is once per week
+    #
+    3.weeks.before(Time.current)
+  end
+
+  def outdated_channels
+    @outdated_channels =
+      Channel.where('channels.updated_at < ?', outdated)
+             .joins(:server)
+             .where('servers.manual_update = ?', false)
+  end
+
 end

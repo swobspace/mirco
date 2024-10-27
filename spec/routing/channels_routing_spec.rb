@@ -40,5 +40,9 @@ RSpec.describe ChannelsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/channels/1').to route_to('channels#destroy', id: '1')
     end
+
+    it 'routes to #delete_outdated' do
+      expect(delete: '/channels/delete_outdated').to route_to('channels#delete_outdated')
+    end
   end
 end

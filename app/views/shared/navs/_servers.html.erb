@@ -20,14 +20,26 @@
 
       <div class="dropdown-divider"></div>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.alerts')),
-                  main_app.alerts_path,
+                       t('channels.current')),
+                  main_app.channels_path(active: 1),
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                       t('controller.channels')),
-                  main_app.channels_path,
+                       t('channels.all')),
+                  main_app.channels_path(all: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fa-solid fa-fw fa-circle-xmark" aria-hidden="true"></span> ' +
+                       t('channels.disabled')),
+                  main_app.channels_path(disabled: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
+                       t('channels.outdated')),
+                  main_app.channels_path(outdated: 1),
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>
@@ -47,6 +59,13 @@
       <%= link_to raw( '<span class="fas fa-fw fa-exclamation-triangle" aria-hidden="true"></span> ' +
                        t('mirco.recent_errors')),
                   main_app.channel_statistics_path(recent_errors: 1),
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <div class="dropdown-divider"></div>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                       t('controller.alerts')),
+                  main_app.alerts_path,
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>

@@ -55,6 +55,9 @@ Rails.application.routes.draw do
   resources :channels, only: %i[index show destroy] do
     resources :alerts, only: %i[index show], module: :channels
     resources :notes, module: :channels
+    collection do
+      delete :delete_outdated
+    end
   end
   resources :servers do
     collection do
