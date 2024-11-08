@@ -47,6 +47,8 @@ en:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
+    search_result: Suchergebnis
+    to_much_results: "Zu viele Treffer, bitte schränken Sie die Suche ein"
 
   activerecord:
     errors:
@@ -166,6 +168,7 @@ en:
     received_last_30min: received (30min)
     revision: Revision
     sc_transport_name: transportName
+    search: Search
     sent: sent
     sent_last_30min: sent (30min)
     server: Mirth system
@@ -230,6 +233,7 @@ en:
     notes: Notes
     notification_groups: Notfication groups
     pages: Pages
+    searches: Search
     servers: Mirth systems
     server_configurations: Configuration backups
     servers/alerts: Alerts
@@ -276,3 +280,7 @@ en:
     mail: Mail
     all: All notes
     current: Current notes
+
+  form:
+    search:
+      placeholder: Suche
