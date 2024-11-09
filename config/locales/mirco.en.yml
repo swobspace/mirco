@@ -47,8 +47,8 @@ en:
       1: WARNING
       2: CRITICAL
       3: UNKNOWN
-    search_result: Suchergebnis
-    to_much_results: "Zu viele Treffer, bitte schränken Sie die Suche ein"
+    search_result: Search result
+    to_much_results: "more than 20 results, please narrow your search"
 
   activerecord:
     errors:
@@ -283,4 +283,4 @@ en:
 
   form:
     search:
-      placeholder: Suche
+      placeholder: search

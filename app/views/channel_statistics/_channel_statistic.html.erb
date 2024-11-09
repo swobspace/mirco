@@ -1,1 +1,27 @@
-channel_statistic
+<%= link_to channel_statistic_path(channel_statistic), class: 'list-group-item list-group-item-action' do %>
+  <div class="row subtitle">
+    <div class="col-6 subtitle">
+      <%= t('activerecord.models.channel_statistic') %>:
+      #<%= channel_statistic.id %>
+    </div>
+    <div class="col text-end">
+      <%= t('attributes.updated_at') %>
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+  <div  class="row">
+    <div class="col-6">
+      <span class="text-muted"><%= channel_statistic.channel.server %></span>
+      <span class="text-muted">&#8227; <%= channel_statistic.channel.name %></span>
+      <span class="text-primary">&#8227; <%= channel_statistic.name %></span>
+    </div>
+    <div class="col text-end">
+      <%= render IsCurrentComponent.new(item: channel_statistic, attr: :updated_at) %>
+    </div>
+    <div class="col-1">
+      <%= render ConditionIconComponent.new(item: channel_statistic, as_text: true,
+                                            period: 8.days ) %>
+    </div>
+  </div>
+<% end %>
