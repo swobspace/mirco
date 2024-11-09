@@ -1,8 +1,9 @@
 = Changelog
 
-=== 1.6.1-dev / 2024-10-27
+=== 1.6.1-dev / 2024-11-09
 
 ----
+* simple search for servers, channels and channel statistics
 ----
 
 

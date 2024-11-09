@@ -12,6 +12,10 @@ export default class extends Controller {
   }
 
   connect() {
+    // overcome morph problems
+    this.element.setAttribute("data-action",
+                              "turbo:morph-element->datatables#reconnect"
+                             )
     let _this = this
     let dtOptions = {}
     this.compileOptions(dtOptions)
@@ -20,6 +24,9 @@ export default class extends Controller {
     console.log(table[0].id)
     // prepare options, optional add remote processing (not yet implemented)
     let dtable = $(table).DataTable(dtOptions)
+
+    // catch column visibility change
+    this.colvis_change_listener(dtable)
 
     if (!this.simpleValue) {
       this.setInputFields(dtable.state())
@@ -32,6 +39,9 @@ export default class extends Controller {
       })
     })
   } // connect
+
+  disconnect() {
+  }
 
   // search fields for each column
   setInputFields(state) {
@@ -52,6 +62,7 @@ export default class extends Controller {
   compileOptions(options) {
     // common options
     options.pagingType = "full_numbers"
+    options.responsive = false
     options.stateSave = true
     options.stateDuration = 60 * 60 * 24
     // save state but don't save search filter
@@ -93,7 +104,7 @@ export default class extends Controller {
           className: 'btn btn-outline-secondary btn-sm'
         }
       },
-      buttons: [ 
+      buttons: [
                  { "text": 'Reset',
                     "action": function(e, dt, node, config) {
                                 dt.state.clear();
@@ -118,5 +129,27 @@ export default class extends Controller {
     options.processing = true
     options.serverSide = true
     options.ajax = { "url": this.urlValue, "type": "POST" }
+  }
+
+  // fix morph problems
+  reconnect() {
+    this.disconnect()
+    this.connect()
+  }
+
+  colvis_change_listener(dtable) {
+    let _this = this
+    dtable.on('column-visibility.dt', function (e, settings, column, state) {
+      if (state) {
+        let th = e.target.querySelector('tfoot th[data-dt-column="' + column + '"]')
+        let sf = th.querySelector('input')
+        if (!sf) {
+          th.insertAdjacentHTML('afterbegin', _this.searchField(column, ''))
+        }
+        $('input[name=idx'+column+']').on( 'keyup change', function() {
+          dtable.column(column).search(this.value).draw()
+        })
+      }
+    })
   }
 } // Controller
