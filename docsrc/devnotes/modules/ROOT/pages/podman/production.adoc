@@ -25,7 +25,7 @@ podman run --rm -it mirco /bin/bash
 .Tag image
 [source,sh]
 ----
-podman tag mirco ghcr.io/swobspace/mirco:0.1.0
+podman tag mirco ghcr.io/swobspace/mirco:1.6.1
 podman tag mirco ghcr.io/swobspace/mirco:latest
 ----
 
@@ -36,7 +36,7 @@ podman tag mirco ghcr.io/swobspace/mirco:latest
 ----
 export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
-podman push ghcr.io/swobspace/mirco:0.1.0
+podman push ghcr.io/swobspace/mirco:1.6.1
 podman push ghcr.io/swobspace/mirco:latest
 ----
 
