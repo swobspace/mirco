@@ -43,7 +43,7 @@ class ChannelStatisticsController < ApplicationController
   def problems
     @current = ChannelStatistic.active.current
     if params[:condition]
-      @channel_statistics = @current.condition(params[:condition]).not_acknowledged
+      @channel_statistics = @current.condition(params[:condition])
     elsif params[:acknowledged]
       @channel_statistics = @current.escalated.acknowledged
     else

@@ -1,0 +1,46 @@
+<%= link_to server_path(server), 
+     class: 'list-group-item list-group-item-action bg-warning bg-opacity-10' do %>
+  <div class="row subtitle">
+    <div class="col-2 subtitle">
+      <%= t('activerecord.models.server') %>:
+      #<%= server.id %>
+    </div>
+    <div class="col-4">
+      <%= t('attributes.description') %>
+    </div>
+    <div class="col-1">
+      update
+    </div>
+    <div class="col-2">
+      <%= t('attributes.last_check') %>
+    </div>
+    <div class="col-2">
+      <%= t('attributes.last_check_ok') %>
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+  <div  class="row">
+    <div class="col-2">
+      <span class="text-primary"><%= server.name %></span>
+    </div>
+    <div class="col-4"><%= server.description %></div>
+    <div class="col-1">
+      <% if server.manual_update %>
+        manual
+      <% else %>
+        auto
+      <% end %>
+    </div>
+    <div class="col-2">
+      <%= render IsCurrentComponent.new(item: server, attr: :last_check) %>
+    </div>
+    <div class="col-2">
+      <%= render IsCurrentComponent.new(item: server, attr: :last_check_ok) %>
+    </div>
+    <div class="col-1">
+      <%= render ConditionIconComponent.new(item: server, as_text: true,
+                                            period: 8.days ) %>
+    </div>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get "search", to: 'searches#index'
   resources :channel_statistic_groups do
     resources :escalation_levels, module: :channel_statistic_groups
   end

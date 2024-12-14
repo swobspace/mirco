@@ -1,0 +1,26 @@
+<%= link_to channel_path(channel), 
+    class: 'list-group-item list-group-item-action bg-info bg-opacity-10' do %>
+  <div>
+    <span class="subtitle">
+      <%= t('activerecord.models.channel') %>:
+      #<%= channel.id %>
+    </span>
+  </div>
+  <div  class="row">
+    <div class="col-3">
+      <span class="text-muted"><%= channel.server%></span>
+      <span class="text-primary">&#8227; <%= channel.name %></span>
+    </div>
+    <div class="col-6"><%= channel.description %></div>
+    <div class="col-1">
+          <%= t(channel.enabled?, scope: 'enabled') %>
+    </div>
+    <div class="col-1">
+          <%= channel.state %>
+    </div>
+    <div class="col-1">
+      <%= render ConditionIconComponent.new(item: channel, as_text: true,
+                                            period: 8.days ) %>
+    </div>
+  </div>
+<% end %>
