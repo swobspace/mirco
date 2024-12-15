@@ -127,7 +127,8 @@ RSpec.describe '/servers', type: :request do
           api_user: 'dummy',
           api_user_has_full_access: false,
           api_verify_ssl: true,
-          manual_update: true
+          manual_update: true,
+          disabled: true
         }
       end
 
