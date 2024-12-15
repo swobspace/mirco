@@ -112,6 +112,15 @@ RSpec.describe Server, type: :model do
   describe "#update_condition" do
     it { expect(server.condition).to eq(Mirco::States::OK) }
 
+    describe "with server disabled" do
+      it "-> NOTHING" do
+        expect(server).to receive(:disabled).and_return(true)
+        expect {
+          server.update_condition
+        }.to change(server, :condition).to(Mirco::States::NOTHING)
+      end
+    end
+
     describe "with manual check enabled" do
       it "-> NOTHING" do
         expect(server).to receive(:manual_update).and_return(true)

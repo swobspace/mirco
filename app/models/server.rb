@@ -50,7 +50,10 @@ class Server < ApplicationRecord
   end
 
   def update_condition
-    if manual_update
+    if disabled
+      set_condition(Mirco::States::NOTHING,
+                    "Server is disabled")
+    elsif manual_update
       set_condition(Mirco::States::NOTHING,
                     "Manual update enabled")
     elsif host.present? and !up?
