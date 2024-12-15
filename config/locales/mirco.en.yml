@@ -114,6 +114,7 @@ en:
     destinationConnectors: Destination Connectors
     destination_connector: Destination Connector
     destination_url: Destination URL
+    disabled: disabled
     displayname: Display name
     enabled: enabled
     end_time: End time
