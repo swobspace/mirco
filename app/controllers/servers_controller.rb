@@ -114,7 +114,7 @@ class ServersController < ApplicationController
       :name, :uid, :location_id, :description, :host_id,
       :api_url, :api_user, :api_password,
       :api_user_has_full_access, :api_verify_ssl, 
-      :manual_update
+      :manual_update, :disabled
     )
           .reject { |k, v| k == 'api_password' && v.blank? }
   end

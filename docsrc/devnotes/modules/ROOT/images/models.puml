@@ -34,6 +34,7 @@ class Server  {
   condition: integer
   condition_message: string
   manual_update: boolean
+  disabled: boolean
   acknowledge_id: bigint
 }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_27_133800) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_15_104936) do
   create_schema "_timescaledb_cache"
   create_schema "_timescaledb_catalog"
   create_schema "_timescaledb_config"
@@ -382,6 +382,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_27_133800) do
     t.integer "condition", default: 0
     t.bigint "acknowledge_id"
     t.string "condition_message", default: ""
+    t.boolean "disabled", default: false
     t.index ["condition"], name: "index_servers_on_condition"
     t.index ["host_id"], name: "index_servers_on_host_id"
     t.index ["uid"], name: "index_servers_on_uid"
