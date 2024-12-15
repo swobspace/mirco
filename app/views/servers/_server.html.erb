@@ -24,7 +24,13 @@
     <div class="col-2">
       <span class="text-primary"><%= server.name %></span>
     </div>
-    <div class="col-4"><%= server.description %></div>
+    <div class="col-4">
+      <% if server.disabled %>
+        <%= Mirco::States.flag(Mirco::States::CRITICAL) %>
+        <span> Server is disabled </span><br />
+      <% end %>
+      <%= server.description %>
+    </div>
     <div class="col-1">
       <% if server.manual_update %>
         manual

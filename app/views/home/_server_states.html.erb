@@ -1,35 +1,35 @@
 <div class="me-2">
   <%= render ConditionBadgeComponent
              .new(state: Mirco::States::OK,
-                  count: Server.ok.count,
+                  count: Server.active.ok.count,
                   link:  sindex_servers_path(condition: Mirco::States::OK),
                   myframe: 'servers') %>
 </div>
 <div class="me-2">
   <%= render ConditionBadgeComponent
              .new(state: Mirco::States::WARNING,
-                  count: Server.warning.count,
+                  count: Server.active.warning.count,
                   link:  sindex_servers_path(condition: Mirco::States::WARNING),
                   myframe: 'servers') %>
 </div>
 <div class="me-2">
   <%= render ConditionBadgeComponent
              .new(state: Mirco::States::CRITICAL,
-                  count: Server.critical.count,
+                  count: Server.active.critical.count,
                   link:  sindex_servers_path(condition: Mirco::States::CRITICAL),
                   myframe: 'servers') %>
 </div>
 <div class="me-2">
   <%= render ConditionBadgeComponent
              .new(state: Mirco::States::UNKNOWN,
-                  count: Server.unknown.count,
+                  count: Server.active.unknown.count,
                   link:  sindex_servers_path(condition: Mirco::States::UNKNOWN),
                   myframe: 'servers') %>
 </div>
 <div class="me-2">
   <%= render ConditionBadgeComponent
              .new(state: Mirco::States::NOTHING,
-                  count: Server.nothing.count,
+                  count: Server.active.nothing.count,
                   link:  sindex_servers_path(condition: Mirco::States::NOTHING),
                   myframe: 'servers') %>
 </div>
@@ -39,7 +39,7 @@
               "data-turbo-frame": 'servers' do %>
     <i class="fa-solid fa-person-digging"></i>
     <span class="badge text-bg-secondary">
-      <%= Server.acknowledged.count %>
+      <%= Server.active.acknowledged.count %>
     </span>
   <% end %>
 </div>

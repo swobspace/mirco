@@ -6,7 +6,7 @@ class ServersController < ApplicationController
 
   # GET /servers
   def index
-    @servers = Server.all
+    @servers = Server.active
     respond_with(@servers)
   end
 
@@ -18,7 +18,7 @@ class ServersController < ApplicationController
     else
       @servers = Server.failed.not_acknowledged
     end
-    ordered = @servers.order('name asc')
+    ordered = @servers.active.order('name asc')
     @count = ordered.count
     @servers_pagy, @servers = pagy(ordered, count: ordered.count)
     respond_with(@servers)

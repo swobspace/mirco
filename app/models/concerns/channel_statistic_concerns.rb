@@ -8,6 +8,7 @@ module ChannelStatisticConcerns
     scope :active, -> do
       joins(channel: :server).where("channels.enabled = true")
                              .where("servers.manual_update = ?", false)
+                             .where("servers.disabled = ?", false)
     end
 
     # filter older statistics
