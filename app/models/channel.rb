@@ -64,8 +64,8 @@ class Channel < ApplicationRecord
 
   def subchannels(channel = self)
     channels = []
-    channel.destination_connectors.map do |conn|
-      next unless conn.enabled
+    channel.destination_connectors.each do |conn|
+      next unless conn.enabled?
       if conn.destination_channel_id
         ch = Channel.find(conn.destination_channel_id)
         next if ch.disabled?
