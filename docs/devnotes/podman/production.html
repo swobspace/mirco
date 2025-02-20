@@ -135,6 +135,15 @@
 <h2 id="_handling_images"><a class="anchor" href="#_handling_images"></a>Handling Images</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_update_ruby"><a class="anchor" href="#_update_ruby"></a>Update Ruby</h3>
+<div class="listingblock">
+<div class="title">Update ruby base image</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman pull docker.io/library/ruby:3.2.6-slim</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_build_image"><a class="anchor" href="#_build_image"></a>Build Image</h3>
 <div class="listingblock">
 <div class="title">Build</div>
@@ -154,7 +163,7 @@
 <div class="listingblock">
 <div class="title">Tag image</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman tag mirco ghcr.io/swobspace/mirco:1.6.1
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">podman tag mirco ghcr.io/swobspace/mirco:1.7.0
 podman tag mirco ghcr.io/swobspace/mirco:latest</code></pre>
 </div>
 </div>
@@ -166,7 +175,7 @@ podman tag mirco ghcr.io/swobspace/mirco:latest</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
-podman push ghcr.io/swobspace/mirco:1.6.1
+podman push ghcr.io/swobspace/mirco:1.7.0
 podman push ghcr.io/swobspace/mirco:latest</code></pre>
 </div>
 </div>
