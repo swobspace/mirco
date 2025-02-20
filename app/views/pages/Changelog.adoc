@@ -1,5 +1,13 @@
 = Changelog
 
+=== 1.7.0 / 2025-02-20
+
+----
+* Upgrade to rails 7.2
+* Servers can be disabled and don't show in dashboard and server overview
+* fix channel diagrams: don't show subchannels if destination is disabled
+----
+
 === 1.6.1 / 2024-12-14
 
 ----

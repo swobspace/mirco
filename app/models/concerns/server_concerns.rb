@@ -4,6 +4,8 @@ module ServerConcerns
   extend ActiveSupport::Concern
 
   included do
+
+    scope :active, -> { where(disabled: false) }
     scope :condition, -> (state) do
       where('servers.condition = ?', state)
     end

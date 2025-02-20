@@ -7,7 +7,7 @@ RSpec.describe 'servers/show', type: :view do
   let(:host) do
      FactoryBot.create(:host, 
        name: 'BND03x', 
-       ipaddress: '4.5.6.7',
+       ipaddress: '127.4.5.6',
        location: location
      )
   end
@@ -43,11 +43,12 @@ RSpec.describe 'servers/show', type: :view do
     expect(rendered).to match(/MyServer/)
     expect(rendered).to match(/04170347-f80c-441d-81e6-c963ff80a984/)
     expect(rendered).to match(/LLX: Koka/)
-    expect(rendered).to match(/BND03x \(4.5.6.7\)/)
+    expect(rendered).to match(/BND03x \(127.4.5.6\)/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Api Url/)
     expect(rendered).to match(/Api User/)
     expect(rendered).to match(/false/)
+    expect(rendered).to match(/deaktiviert:/)
     expect(rendered).to match(time_now.to_s.gsub(/\+\d{4}/, '').to_s)
   end
 end

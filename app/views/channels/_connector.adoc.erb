@@ -1,0 +1,46 @@
+== <%= connector.meta_data_id %>: <%= connector.name %>
+=== <%= connector.transportName %> / <%= t(connector.enabled, scope: 'enabled') %>
+
+<% if connector.descriptor.any? %>
+[cols="1,3"]
+|===
+<% connector.descriptor.each do |k,v| %>
+| <%= k %>
+| <%= 
+    if v.kind_of? Array
+      "xref:./#{v[0]}.adoc[#{v[0]}]"
+    else
+      v
+    end
+  %>
+<% end %>
+|===
+<% end %>
+
+<% if connector.filters.any? %>
+=== Filters (<%= connector.filters.size %>)
+  <% connector.filters.each do |f| %>
+<%= f.step %>: <%= f.name %>::
+<%= f.short_type %> / <%= t(f.enabled, scope: 'enabled') %> / <%= f.operator %> 
+[source,<%= f.short_type&.downcase %>]
+----
+<%= CGI.unescapeHTML(f.content).html_safe %>
+----
+
+  <% end %>
+<% end %>
+
+<% if connector.transformers.any? %>
+=== Transformers (<%= connector.transformers.size %>)
+  <% connector.transformers.each do |trf| %>
+<%= trf.step %>: <%= trf.name %>::
+<%= trf.short_type %> / <%= t(trf.enabled, scope: 'enabled') %>
+[source,<%= trf.short_type&.downcase %>]
+----
+<%= CGI.unescapeHTML(trf.content.to_s).html_safe %>
+----
+
+  <% end %>
+<% end %>
+
+

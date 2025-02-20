@@ -28,11 +28,13 @@
         <th><%= t('attributes.last_check') %></th>
         <th><%= t('attributes.last_check_ok') %></th>
         <th class="notvisible"><%= t('attributes.manual_update') %></th>
+        <th class="notvisible"><%= t('attributes.disabled') %></th>
         <th class="nosort"><%= t('mirco.action') %></th>
       </tr>
     </thead>
     <tfoot class="search">
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -79,6 +81,7 @@
             <%= render IsCurrentComponent.new(item: server, attr: :last_check_ok) %>
           </td>
           <td><%= server.manual_update %></td>
+          <td><%= server.disabled %></td>
           <td class="text-nowrap">
             <%= show_link server %>
             <%= link_to(raw(%Q[<i class="fas fa-fw fa-project-diagram"></i>]), server_path(server, format: :svg), class: 'btn btn-secondary me-1') %>

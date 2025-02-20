@@ -9,6 +9,10 @@ class PingComponent < ViewComponent::Base
   private
   attr_reader :pingable, :up, :level, :message
 
+  def render?
+    @pingable&.ipaddress
+  end
+
   def level
     if up
       "info"

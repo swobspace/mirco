@@ -101,4 +101,22 @@ RSpec.describe Connections::Creator, type: :model do
       )
     end
   end
+  describe "server without host" do
+    let(:server) { FactoryBot.create(:server) }
+    
+    describe "#save" do
+      it "missing host does not raise an error" do
+        expect {
+          subject.save
+        }.not_to raise_error
+      end
+
+      it "missing location does not raise an error" do
+        expect(channel).to receive(:location).and_return(nil)
+        expect {
+          subject.save
+        }.not_to raise_error
+      end
+    end
+  end
 end

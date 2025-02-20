@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   # -- breadcrumbs
   include Wobapphelpers::Breadcrumbs
-  before_action :add_breadcrumb_index, only: [:index]
-  # before_action :add_breadcrumb_index,
-  #               :if => proc {|c| !devise_controller? && c.action_name == 'index' }
+  # before_action :add_breadcrumb_index, only: [:index]
+  before_action :add_breadcrumb_index,
+                :if => proc {|c| !devise_controller? && c.action_name == 'index' }
   # before_action :set_paper_trail_whodunnit
 
   # -- flash responder

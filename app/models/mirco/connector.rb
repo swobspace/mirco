@@ -18,6 +18,10 @@ module Mirco
       hash['enabled']
     end
 
+    def enabled?
+      enabled == "true"
+    end
+
     def filter
       hash['filter']
     end

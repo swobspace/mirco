@@ -91,8 +91,6 @@ private
 
   def myrenderer
     ApplicationController.renderer.new(
-      http_host: Mirco.host,
-      script_name: Mirco.script_name,
       https: true
     )
   end

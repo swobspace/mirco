@@ -45,11 +45,11 @@
 
 // Source
 
-<%= render ConnectorAdocComponent.new(connector: @channel.source_connector) %>
+<%# render ConnectorComponent.new(connector: @channel.source_connector) %>
+<%= render partial: 'channels/connector', locals: {connector: @channel.source_connector} %>
 
 // Destinations
 
-<%= render ConnectorAdocComponent.with_collection(@channel.destination_connectors) %>
-
-
+<%# render ConnectorComponent.with_collection(@channel.destination_connectors) %>
+<%= render partial: 'channels/connector', collection: @channel.destination_connectors %>
 

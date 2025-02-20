@@ -6,6 +6,8 @@
 # cron_purge_timescale:  '30 1 * * 6'
 
 # -- authentication modules
+# WARNING: do not change devise_modules unless you know what you are doing
+#
 # devise_modules:
 #   - database_authenticatable
 #   - registerable
@@ -29,3 +31,22 @@
 # mail_to:
 #  - jane.doe@example.org
 
+# -- send mails
+# smtp_settings:
+#   address: smtp.example.com
+#   port: 25
+#   domain: sender.example.com
+#   enable_starttls_auto: false
+ 
+# -- ldap settings: optional
+# enable_ldap_authentication: true
+# ldap_options:
+#   hosts:
+#     - [ dc1.example.com, 3269 ]
+#     - [ dc2.example.com, 3269 ]
+#   base: dc=example,dc=de
+#   encryption: :simple_tls
+#   auth:
+#     method: :simple
+#     username: readonlyuser@example.com
+#     password: averystrongsecret
