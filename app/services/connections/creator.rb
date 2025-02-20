@@ -48,7 +48,7 @@ module Connections
       channel.destination_connectors.each do |dst| 
         next if dst.enabled == 'false'
         if dst.url.present?
-          @connection_attributes << { 'location_id' => location.id,
+          @connection_attributes << { 'location_id' => location&.id,
                                       'source_url' => source_url,
                                       'server_id' => channel.server_id,
                                       'channel_ids'=> channel_ids,
