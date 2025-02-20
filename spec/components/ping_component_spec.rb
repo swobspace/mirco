@@ -3,13 +3,32 @@
 require "rails_helper"
 
 RSpec.describe PingComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "with host" do
+    let(:server) { FactoryBot.create(:server) }
+    let(:host)   { FactoryBot.create(:host, ipaddress: '127.1.2.3') }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    describe "with host" do
+      before(:each) do
+        expect(server).to receive(:host).at_least(:once).and_return(host)
+      end
+
+      it "checks for ping, delivers reachable" do
+        render_inline(described_class.new(pingable: server))
+        expect(page).to have_css('div[class="toast align-items-center border-0 text-white bg-info"]')
+      end
+
+      it "checks for ping, delivers not reachable" do
+        expect(server).to receive(:up?).and_return(false)
+        render_inline(described_class.new(pingable: server))
+        expect(page).to have_css('div[class="toast align-items-center border-0 text-white bg-danger"]')
+      end
+    end
+
+    describe "without host" do
+      it "does not check" do
+        render_inline(described_class.new(pingable: server))
+        expect(page).not_to have_css('div[id="liveToast"]')
+      end
+    end
+  end
 end
