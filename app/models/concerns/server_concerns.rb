@@ -6,6 +6,7 @@ module ServerConcerns
   included do
 
     scope :active, -> { where(disabled: false) }
+    scope :disabled, -> { where(disabled: true) }
     scope :condition, -> (state) do
       where('servers.condition = ?', state)
     end

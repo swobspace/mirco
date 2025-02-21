@@ -2,6 +2,11 @@
 
 === 1.7.1-dev / unreleased
 
+----
+* navigation to disabled mirth systems
+* small fixes
+----
+
 === 1.7.0 / 2025-02-20
 
 ----

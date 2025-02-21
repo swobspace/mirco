@@ -274,13 +274,16 @@ en:
     outdated: Outdated statistics
     delete_outdated: Delete outdated statistics
     delete_outdated_confirm: Delete outdated statistics?
-
   notes:
     acknowledge: Acknowledge
     note: Note
     mail: Mail
     all: All notes
     current: Current notes
+  servers:
+    all: Mirth Systems
+    active: Active Systems
+    disabled: Disabled Systems
 
   form:
     search:
