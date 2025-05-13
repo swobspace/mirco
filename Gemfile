@@ -55,7 +55,7 @@ gem 'lockbox'
 gem 'pp'
 gem 'simple_form'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
-gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'master'
+gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'main'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
 gem 'wobaduser'
 
