@@ -6,7 +6,11 @@ class ServersController < ApplicationController
 
   # GET /servers
   def index
-    @servers = Server.active
+    if params[:disabled]
+      @servers = Server.disabled
+    else
+      @servers = Server.active
+    end
     respond_with(@servers)
   end
 

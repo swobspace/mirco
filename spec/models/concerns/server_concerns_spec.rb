@@ -44,4 +44,11 @@ RSpec.describe ServerConcerns, type: :model do
       it { expect(server.channels.count).to eq(1) }
     end
   end
+
+  describe '#active' do
+    let(:server1) { FactoryBot.create(:server, disabled: false, manual_update: false) }
+    let(:server2) { FactoryBot.create(:server, disabled: false, manual_update: true) }
+    let(:server3) { FactoryBot.create(:server, disabled: true, manual_update: false) }
+    it { expect(Server.active).to contain_exactly(server1) }
+  end
 end

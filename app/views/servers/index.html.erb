@@ -63,7 +63,7 @@
           <td><%= server.condition_message %></td>
           <td><%= link_to server.name, server, class: 'primary-link' %></td>
           <td><%= server.uid %></td>
-          <td><%= link_to server.location, server.location, class: 'primary-link' %></td>
+          <td><%= link_to(server.location, server.location, class: 'primary-link') if server.location %></td>
           <td><%= server.host %></td>
           <td><%= server.description %></td>
           <td><%= server.api_url %></td>

@@ -280,6 +280,10 @@ de:
     mail: Mail
     all: Alle Notizen
     current: Aktuelle Notizen
+  servers:
+    all: Mirth Systeme
+    active: Aktive Systeme
+    disabled: deaktivierte Systeme
 
   form:
     search:

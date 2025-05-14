@@ -6,8 +6,14 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarConfigurationDropdown">
       <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
-                  t('controller.servers')),
+                  t('servers.active')),
                   main_app.servers_path,
+                  "data-turbo-prefetch": false,
+                  class: "dropdown-item"
+       %>
+      <%= link_to raw( '<span class="fas fa-fw fa-table" aria-hidden="true"></span> ' +
+                  t('servers.disabled')),
+                  main_app.servers_path(disabled: 1),
                   "data-turbo-prefetch": false,
                   class: "dropdown-item"
        %>

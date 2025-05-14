@@ -9,7 +9,7 @@ module Channels
     # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
     def perform(options = {})
       options.symbolize_keys!
-      server = options.fetch(:server) { Server.where(manual_update: false).to_a }
+      server = options.fetch(:server) { Server.active.to_a }
 
       if server.is_a? Array
         server.each do |srv|

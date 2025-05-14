@@ -1,10 +1,21 @@
 = Podman: create an image for production
 :author: Wolfgang Barth
-:revdate: 2024-07-17
+:revdate: 2025-05-13
+:mircoversion: 1.8.0
+:rubyversion: 3.3
 
 Just a memo for todos and code snippets ...
 
 == Handling Images
+
+
+=== Update Ruby
+
+.Update ruby base image
+[source,sh,subs="+attributes"]
+----
+podman pull docker.io/library/ruby:{rubyversion}-slim
+----
 
 === Build Image
 
@@ -23,20 +34,20 @@ podman run --rm -it mirco /bin/bash
 === Tag Image
 
 .Tag image
-[source,sh]
+[source,sh,subs="+attributes"]
 ----
-podman tag mirco ghcr.io/swobspace/mirco:1.6.1
+podman tag mirco ghcr.io/swobspace/mirco:{mircoversion}
 podman tag mirco ghcr.io/swobspace/mirco:latest
 ----
 
 === Push Image
 
 .Push image
-[source,sh]
+[source,sh,subs="+attributes"]
 ----
 export CR_PAT=YOUR_TOKEN
 echo $CR_PAT | podman login ghcr.io -u swobspace --password-stdin
-podman push ghcr.io/swobspace/mirco:1.6.1
+podman push ghcr.io/swobspace/mirco:{mircoversion}
 podman push ghcr.io/swobspace/mirco:latest
 ----
 
