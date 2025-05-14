@@ -1,10 +1,10 @@
 = Changelog
 
-=== 1.8.0-dev / unreleased
+=== 1.8.0 / 2025-05-14
 
 ----
 * navigation to disabled mirth systems
-* small fixes
+* minor fixes
 * Ruby 3.3
 ----
 
