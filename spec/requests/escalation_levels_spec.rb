@@ -103,7 +103,7 @@ RSpec.describe "/escalation_levels", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         escalation_level = EscalationLevel.create! valid_attributes
         patch escalation_level_url(escalation_level), params: { escalation_level: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
     end
