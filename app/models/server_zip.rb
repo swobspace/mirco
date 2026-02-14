@@ -64,7 +64,7 @@ private
   end
 
   def add_channel_adoc(zip, channel, dir)
-    name = [dir, "#{channel.name}.adoc"].compact.join("/")
+    name = [dir, "#{channel_name(channel)}.adoc"].compact.join("/")
     zip.get_output_stream(name) do |f|
       rendered = myrenderer.render(
                    assigns: {channel: channel},
@@ -84,7 +84,7 @@ private
   end
 
   def add_channel_diagram(zip, channel, dir)
-    name = [dir, "#{channel.name}.svg"].compact.join("/")
+    name = [dir, "#{channel_name(channel)}.svg"].compact.join("/")
     diagram = Mirco::ChannelDiagram.new(channel)
     zip.add(name, diagram.image(:svg))
   end
@@ -93,5 +93,13 @@ private
     ApplicationController.renderer.new(
       https: true
     )
+  end
+
+  def channel_name(channel)
+    if channel.name.blank?
+      "channel_#{channel.id}"
+    else
+      channel.name
+    end
   end
 end
