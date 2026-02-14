@@ -99,7 +99,7 @@ export default class extends Controller {
     if (this.hasUrlValue) {
       this.remoteOptions(options)
     }
-    this.languageOptions(options)
+    // this.languageOptions(options)
   }
 
   simpleOptions(options) {
