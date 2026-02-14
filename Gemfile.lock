@@ -277,7 +277,9 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    pagy (9.4.0)
+    pagy (43.2.9)
+      json
+      yaml
     pg (1.6.3)
     pp (0.6.3)
       prettyprint
@@ -440,6 +442,7 @@ GEM
       net-ldap
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yaml (0.4.0)
     zeitwerk (2.7.4)
 
 PLATFORMS
@@ -471,7 +474,7 @@ DEPENDENCIES
   lockbox
   net-http
   net-ping
-  pagy (~> 9.0)
+  pagy (~> 43.0)
   pg (~> 1.1)
   pp
   puma

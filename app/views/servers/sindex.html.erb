@@ -61,7 +61,7 @@
 
   <% if @servers_pagy.pages > 1 %>
     <div class="mt-3 ms-3">
-      <%== pagy_bootstrap_nav(@servers_pagy) %>
+      <%== @servers_pagy.series_nav(:bootstrap) %>
     </div>
   <% end %>
  <% end %>
