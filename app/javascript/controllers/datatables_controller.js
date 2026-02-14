@@ -176,7 +176,9 @@ export default class extends Controller {
 	    th.insertAdjacentHTML('afterbegin', _this.searchField(column, ''))
 	  }
         }
-        $('input[name=idx'+column+']').on( 'keyup change', function() {
+        // console.log(dtable.table().node().id)
+        // use node id of table explicit
+        $('table#'+dtable.table().node().id+' input[name=idx'+column+']').on('keyup change', function() {
           search(column, this.value)
         })
       }
@@ -185,8 +187,9 @@ export default class extends Controller {
 
   process_search_input(dtable) {
     const search = this.createSearchWithDebounce(dtable)
+    // console.log(dtable.table().node().id)
     dtable.columns().eq(0).each((colIdx) => {
-      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
+      $('table#'+dtable.table().node().id+' input[name=idx'+colIdx+']').on('keyup change', function() {
 	search(colIdx, this.value)
       })
     })
