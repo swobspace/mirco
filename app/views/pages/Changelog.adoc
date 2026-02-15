@@ -1,8 +1,11 @@
 = Changelog
 
-=== 1.8.1-dev - unreleased
+=== 1.9.1 - 2026-02-15
 
 ----
+* update gems and npms
+* minor bug fixes
+* Ruby 3.4
 ----
 
 === 1.8.0 / 2025-05-14
