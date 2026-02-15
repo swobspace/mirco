@@ -3,12 +3,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '>=2.7.3'
+ruby '>=3.3'
 
 gem 'pg'
 gem 'puma'
-gem 'rails', '~> 8.0.0'
-gem 'redis', '~> 5.0'
+gem 'rails', '~> 8.1.0'
+gem 'redis'
 gem 'propshaft'
 
 gem 'bootsnap', require: false
@@ -19,7 +19,7 @@ group :development, :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'rails-i18n', '~> 8.0.0'
+gem 'rails-i18n', '~> 8.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'turbo-rails'
 gem 'stimulus-rails'
