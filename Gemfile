@@ -8,9 +8,8 @@ ruby '>=2.7.3'
 gem 'pg', '~> 1.1'
 gem 'puma'
 gem 'rails', '~> 7.2.0'
-gem "sprockets-rails"
-# gem 'sassc-rails', require: false
 gem 'redis', '~> 5.0'
+gem 'propshaft'
 
 gem 'bootsnap', require: false
 

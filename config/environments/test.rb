@@ -71,7 +71,8 @@ Rails.application.configure do
   # -- strong parameters
   config.action_controller.action_on_unpermitted_parameters = :raise
 
-  config.cache_store = :memory_store, { size: 32.megabytes }
+  # config.cache_store = :memory_store, { size: 32.megabytes }
+  config.cache_store = :memory_store, { size: 33554432 }
   config.active_job.queue_adapter = :test
   config.action_controller.raise_on_missing_callback_actions = false
 end
