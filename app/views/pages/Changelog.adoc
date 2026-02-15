@@ -1,18 +1,24 @@
 = Changelog
 
+=== 1.9.9-dev 2026-02-15
+
+----
+* Upgrade to Rails 8.1
+----
+
 === 1.9.1 - 2026-02-15
 
 ----
-* update gems and npms
-* minor bug fixes
+* Update gems and npms
+* Minor bug fixes
 * Ruby 3.4
 ----
 
 === 1.8.0 / 2025-05-14
 
 ----
-* navigation to disabled mirth systems
-* minor fixes
+* Navigation to disabled mirth systems
+* Minor fixes
 * Ruby 3.3
 ----
 
@@ -21,7 +27,7 @@
 ----
 * Upgrade to rails 7.2
 * Servers can be disabled and don't show in dashboard and server overview
-* fix channel diagrams: don't show subchannels if destination is disabled
+* Fix channel diagrams: don't show subchannels if destination is disabled
 ----
 
 === 1.6.1 / 2024-12-14
