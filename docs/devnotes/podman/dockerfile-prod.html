@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Dockerfile for Production :: Mirco Dokumentation</title>
-    <meta name="generator" content="Antora 3.1.10">
+    <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
   </head>
@@ -128,17 +128,16 @@
 <div class="listingblock">
 <div class="title">Dockerfile</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># syntax = docker/dockerfile:1
+<pre class="highlightjs highlight"><code class="language-dockerfile hljs" data-lang="dockerfile"># Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.4
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+
 
 # Github Containers
 LABEL org.opencontainers.image.source=https://github.com/swobspace/mirco
 LABEL org.opencontainers.image.description="Mirco"
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.documentation="https://swobspace.github.io/mirco/mirco/index.html"
-
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -157,7 +156,7 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq &amp;&amp; \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips node-gyp libyaml-dev pkg-config python-is-python3
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.10.0
@@ -195,7 +194,7 @@ FROM base
 RUN apt-get update -qq &amp;&amp; \
     apt-get install --no-install-recommends -y \
                       curl libvips postgresql-client iputils-ping uuid \
-                      openjdk-17-jre-headless graphviz &amp;&amp; \
+                      openjdk-21-jre-headless graphviz libcap2-bin &amp;&amp; \
     setcap cap_net_raw+ep `which ping` &amp;&amp; \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -244,7 +243,7 @@ CMD ["./bin/rails", "server"]</code></pre>
 </main>
 </div>
 <footer class="footer">
-  <span>Wolfgang Barth (C) 2021-2024</span>
+  <span>Wolfgang Barth (C) 2021-2026</span>
 </footer>
 <script src="../../_/js/site.js"></script>
 <script async src="../../_/js/vendor/highlight.js"></script>

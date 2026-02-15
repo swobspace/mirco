@@ -69,7 +69,7 @@ RSpec.describe "/notification_groups", type: :request do
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post notification_groups_url, params: { notification_group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     
     end
@@ -101,7 +101,7 @@ RSpec.describe "/notification_groups", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         notification_group = NotificationGroup.create! valid_attributes
         patch notification_group_url(notification_group), params: { notification_group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     
     end

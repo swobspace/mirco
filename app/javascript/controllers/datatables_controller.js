@@ -57,6 +57,8 @@ export default class extends Controller {
 
   // search fields for each column
   setInputFields(dtable) {
+    this.element.querySelectorAll('table tfoot th:not(.nosearch) input')
+        .forEach(f => {f.remove()})
     this.element.querySelectorAll("table tfoot th:not(.nosearch)")
         .forEach((th, idx) => {
           let col = th.getAttribute("data-dt-column")
@@ -71,14 +73,14 @@ export default class extends Controller {
 
   // single search input field
   searchField(idx, text) {
-    return `<input type="text" placeholder="search" name="idx${idx}" value="${text}"/>`
+    return `<input type="text" placeholder="Suche" name="idx${idx}" value="${text}"/>`
   }
 
   // datatables options
   compileOptions(options) {
     // common options
     options.pagingType = "full_numbers"
-    options.responsive = true
+    options.responsive = false
     options.retrieve = true
     options.stateSave = true
     options.stateDuration = 60 * 60 * 24
@@ -101,16 +103,17 @@ export default class extends Controller {
   }
 
   simpleOptions(options) {
-    options.dom =  "<'row '<'col-sm-12'tr>>" +
-                   "<'row mt-2 justify-content-between'<'col-md-auto me-auto mt-1'l><'col-md-auto me-auto mt-2'i><'col-md-auto ms-auto'p>>"
+    options.layout = {
+      topEnd: 'null'
+    }
     options.pagingType = "numbers"
   }
 
 
   buttonOptions(options) {
-    options.dom = "<'row mt-2 justify-content-between'<'col-md-auto me-auto'l><'col-md-auto'B>>" +
-                    "<'row mt-2 justify-content-md-center'<'col-sm-12'tr>>" +
-                    "<'row mt-2 justify-content-between'<'col-md-auto me-auto'i><'col-md-auto ms-auto'p>>"
+    options.layout = {
+      topEnd: 'buttons'
+    }
     options.buttons = {
       dom: {
         button: {
@@ -136,7 +139,8 @@ export default class extends Controller {
 	           "exportOptions": { "columns": ':visible',
 	                              "search": ':applied' } },
                  { "extend": 'print'},
-                 { "extend": 'colvis', "columns": ':gt(0)' }
+                 { "extend": 'colvis', "columns": ':gt(0)',
+                   "text": "Sichbare Spalten" }
                ]
     }
   }
@@ -172,7 +176,9 @@ export default class extends Controller {
 	    th.insertAdjacentHTML('afterbegin', _this.searchField(column, ''))
 	  }
         }
-        $('input[name=idx'+column+']').on( 'keyup change', function() {
+        // console.log(dtable.table().node().id)
+        // use node id of table explicit
+        $('table#'+dtable.table().node().id+' input[name=idx'+column+']').on('keyup change', function() {
           search(column, this.value)
         })
       }
@@ -181,8 +187,9 @@ export default class extends Controller {
 
   process_search_input(dtable) {
     const search = this.createSearchWithDebounce(dtable)
+    // console.log(dtable.table().node().id)
     dtable.columns().eq(0).each((colIdx) => {
-      $('input[name=idx'+colIdx+']').on( 'keyup change', function() {
+      $('table#'+dtable.table().node().id+' input[name=idx'+colIdx+']').on('keyup change', function() {
 	search(colIdx, this.value)
       })
     })

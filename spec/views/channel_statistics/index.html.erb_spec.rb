@@ -16,7 +16,6 @@ RSpec.describe 'channel_statistics/index', type: :view do
       ChannelStatistic.create!(
         server: @server,
         channel: channel1,
-        state: 'STARTED',
         server_uid: @server.uid,
         channel_uid: channel1.uid,
         name: 'FRITZ',

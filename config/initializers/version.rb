@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Mirco
-  VERSION     = '1.8.0'
-  RELEASEDATE = '2025-05-14'
+  VERSION     = '1.9.1'
+  RELEASEDATE = '2026-02-15'
 end

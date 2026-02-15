@@ -84,7 +84,7 @@ RSpec.describe "/channel_statistic_groups", type: :request do
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post channel_statistic_groups_url, params: { channel_statistic_group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     
     end
@@ -116,7 +116,7 @@ RSpec.describe "/channel_statistic_groups", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         channel_statistic_group = ChannelStatisticGroup.create! valid_attributes
         patch channel_statistic_group_url(channel_statistic_group), params: { channel_statistic_group: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     
     end

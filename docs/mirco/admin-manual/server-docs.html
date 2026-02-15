@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Benutzer-Handbuch :: Mirco Dokumentation</title>
+    <title>Server Docs :: Mirco Dokumentation</title>
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -39,8 +39,8 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="index.html">Benutzer-Handbuch</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../user-manual/index.html">Benutzer-Handbuch</a>
   </li>
 </ul>
   </li>
@@ -49,31 +49,31 @@
     <span class="nav-text">Admin Manual</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/scheduling.html">Job Scheduling</a>
+    <a class="nav-link" href="scheduling.html">Job Scheduling</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/timescale.html">TimescaleDB</a>
+    <a class="nav-link" href="timescale.html">TimescaleDB</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">PostgreSQL Maintenance</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../admin-manual/postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
+    <a class="nav-link" href="postgresql/backuprestore.html">Backup &amp; Restore with timescaledb</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../admin-manual/postgresql/upgrade.html">Upgrade mit Timescale</a>
+    <a class="nav-link" href="postgresql/upgrade.html">Upgrade mit Timescale</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../admin-manual/postgresql/migration-to-podman.html">Migrate database to podman containers</a>
+    <a class="nav-link" href="postgresql/migration-to-podman.html">Migrate database to podman containers</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/escalation-levels.html">Escalation Levels</a>
+    <a class="nav-link" href="escalation-levels.html">Escalation Levels</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../admin-manual/server-docs.html">Server Docs</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="server-docs.html">Server Docs</a>
   </li>
 </ul>
   </li>
@@ -146,7 +146,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Mirco</a></li>
-    <li><a href="index.html">Benutzer-Handbuch</a></li>
+    <li>Admin Manual</li>
+    <li><a href="server-docs.html">Server Docs</a></li>
   </ul>
 </nav>
 </div>
@@ -155,9 +156,28 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Benutzer-Handbuch</h1>
+<h1 class="page">Server Docs</h1>
 <div class="paragraph">
-<p><mark>TBD</mark></p>
+<p>Bei jedem Server kann man über den Button <span class="image"><img src="_images/button-docs.png" alt="button docs"></span> ein Dokumentationspaket erstellt (ZIP), das Graphiken und Beschreibungen in Asciidoc zu jedem Channel enthält. Will man die Dokumentationspakete von allen Servern ziehen, empfiehlt sich die Verwendung der Rails-Console mit anschließendem Export der ZIP-Dateien aus dem Container.</p>
+</div>
+<div class="listingblock">
+<div class="title">podman exec -it mirco bin/rails console</div>
+<div class="content">
+<pre>Server.all.each do |srv|
+  puts "### #{srv.name} ###"
+  zip = ServerZip.new(srv, outfile: "/rails/tmp/#{srv.hostname}.zip")
+  zip.pack
+end</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Extrakt der ZIP-Dateien aus dem Container</div>
+<div class="content">
+<pre>podman exec -it mirco /usr/bin/find /rails/tmp -name \*.zip -print0 | xargs -0 -I {} podman cp mirco:{} .</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Die ZIP-Dateien liegen anschließend in dem Verzeichnis, von dem man aus den Extrakt gestartet hat.</p>
 </div>
 </article>
   </div>

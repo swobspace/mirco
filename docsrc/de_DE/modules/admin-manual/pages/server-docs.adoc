@@ -1,0 +1,24 @@
+= Server Docs
+:author: Wolfgang Barth
+:revdate: 2026-02-15
+:imagesdir: ../images
+
+Bei jedem Server kann man über den Button image:button-docs.png[] ein Dokumentationspaket erstellt (ZIP), das Graphiken und Beschreibungen in Asciidoc zu jedem Channel enthält. Will man die Dokumentationspakete von allen Servern ziehen, empfiehlt sich die Verwendung der Rails-Console mit anschließendem Export der ZIP-Dateien aus dem Container.
+
+.podman exec -it mirco bin/rails console
+[src,ruby]
+----
+Server.all.each do |srv|
+  puts "### #{srv.name} ###"
+  zip = ServerZip.new(srv, outfile: "/rails/tmp/#{srv.hostname}.zip")
+  zip.pack
+end
+----
+
+.Extrakt der ZIP-Dateien aus dem Container
+[src,bash]
+----
+podman exec -it mirco /usr/bin/find /rails/tmp -name \*.zip -print0 | xargs -0 -I {} podman cp mirco:{} .
+----
+
+Die ZIP-Dateien liegen anschließend in dem Verzeichnis, von dem man aus den Extrakt gestartet hat.

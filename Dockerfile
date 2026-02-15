@@ -1,14 +1,13 @@
-# syntax = docker/dockerfile:1
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.4
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+
 
 # Github Containers
 LABEL org.opencontainers.image.source=https://github.com/swobspace/mirco
 LABEL org.opencontainers.image.description="Mirco"
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.documentation="https://swobspace.github.io/mirco/mirco/index.html"
-
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -65,7 +64,7 @@ FROM base
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
                       curl libvips postgresql-client iputils-ping uuid \
-                      openjdk-17-jre-headless graphviz && \
+                      openjdk-21-jre-headless graphviz libcap2-bin && \
     setcap cap_net_raw+ep `which ping` && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 

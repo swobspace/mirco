@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '>=2.7.3'
 
 gem 'pg', '~> 1.1'
-gem 'puma', '~> 6.0'
+gem 'puma'
 gem 'rails', '~> 7.2.0'
 gem "sprockets-rails"
 # gem 'sassc-rails', require: false
@@ -78,7 +78,7 @@ gem "devise-remote-user", "~> 1.1"
 
 gem "faker", "~> 3.1"
 
-gem "good_job", "~> 4.9.0"
+gem "good_job", "~> 4.13.0"
 
 # for deployment
 gem "ed25519"
@@ -87,9 +87,9 @@ gem "bcrypt_pbkdf"
 # workaround
 #gem "mail"
 
-# gem 'rubyzip', '~> 3.0'
-gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
+gem 'rubyzip', '~> 3.0'
+# gem 'rubyzip', github: 'rubyzip/rubyzip', branch: 'master'
 
 gem 'net-ping'
-gem "pagy", "~> 9.0"
+gem "pagy", "~> 43.0"
 

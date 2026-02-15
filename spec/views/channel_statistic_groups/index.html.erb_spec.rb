@@ -25,7 +25,7 @@ RSpec.describe "channel_statistic_groups/index", type: :view do
     # cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
     cell_selector = 'tr>td'
     assert_select cell_selector, text: Regexp.new("Name1".to_s), count: 1
-    assert_select cell_selector, text: Regexp.new("Name1".to_s), count: 1
-    assert_select cell_selector, text: Regexp.new("#{cs.server.to_s} >  > TxCWD".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("Name2".to_s), count: 1
+    assert_select cell_selector, text: Regexp.new("#{cs.server.to_s}.*TxCWD".to_s), count: 2
   end
 end
