@@ -6,3 +6,4 @@
 ** xref:postgresql/upgrade.adoc[]
 ** xref:postgresql/migration-to-podman.adoc[]
 * xref:escalation-levels.adoc[]
+* xref:server-docs.adoc[]
