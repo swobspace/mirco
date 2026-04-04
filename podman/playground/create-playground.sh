@@ -36,5 +36,5 @@ podman create --pod play-mirco --name play-mirco-worker \
   --env="FORCE_SSL=false" \
   --restart=on-failure \
   --volume=play-mirco-storage:/rails/storage \
-  ghcr.io/swobspace/mirco:latest good_job start
+  ghcr.io/swobspace/mirco:latest bundle exec good_job start -max-threads=12 --probe-port=7002 --queues="mirco_development_default:4;turbo_streams_development:2;*:1"
 
