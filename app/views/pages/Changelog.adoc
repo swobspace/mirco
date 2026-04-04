@@ -1,9 +1,10 @@
 = Changelog
 
-=== 1.9.9-dev 2026-02-15
+=== 2.0.0 - 2026-04-04
 
 ----
 * Upgrade to Rails 8.1
+* Security updates
 ----
 
 === 1.9.1 - 2026-02-15
