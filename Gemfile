@@ -56,7 +56,7 @@ gem 'simple_form'
 gem 'wobapphelpers', git: 'https://github.com/swobspace/wobapphelpers', branch: 'master'
 gem 'wobauth', git: 'https://github.com/swobspace/wobauth.git', branch: 'main'
 gem 'wobmire', git: 'https://github.com/swobspace/wobmire', branch: 'master'
-gem 'wobaduser'
+gem 'wobaduser', git: 'https://github.com/swobspace/wobaduser', branch: 'master'
 
 gem 'daemons'
 
