@@ -1,8 +1,9 @@
 = Changelog
 
-=== 2.0.2-dev - unreleased
+=== 2.0.2 - 2026-06-28
 
 ----
+* Check for duplicate source connector urls
 * Update gems && npms
 ----
 
