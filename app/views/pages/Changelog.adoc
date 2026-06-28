@@ -1,5 +1,12 @@
 = Changelog
 
+=== 2.0.2 - 2026-06-28
+
+----
+* Check for duplicate source connector urls
+* Update gems && npms
+----
+
 === 2.0.1 - 2026-05-07
 
 ----

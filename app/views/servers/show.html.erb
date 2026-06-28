@@ -238,6 +238,8 @@
       <h4 class="title"><%= t('mirco.sourceConnectors') %></h4>
     </div>
     <div class="card-body">
+      <%= render Servers::DuplicateSourceConnectorComponent.new(server: @server) %>
+
       <%= render 'connectors',
                  conn_type: 'source',
                  connectors: @server.channels

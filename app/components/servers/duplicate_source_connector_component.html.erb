@@ -1,0 +1,8 @@
+<div class="alert alert-danger" role="alert">
+  Duplicate source connectors detected:
+  <ul>
+    <% duplicates.each do |duplicate| %>
+      <li><%= duplicate %></li>
+    <% end %>
+  </ul>
+</div>
