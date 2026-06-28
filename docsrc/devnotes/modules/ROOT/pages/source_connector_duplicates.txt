@@ -1,0 +1,4 @@
+
+srcs = rz.channels.active.map{|c| c.source_connector}
+urls = srcs.map {|s| s.url}.compact.sort
+urls.uniq.select { |url| urls.count(url) > 1 }
