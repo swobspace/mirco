@@ -3,6 +3,7 @@
 === 2.0.2-dev - unreleased
 
 ----
+* Update gems && npms
 ----
 
 === 2.0.1 - 2026-05-07
