@@ -1,5 +1,11 @@
 = Changelog
 
+=== 2.0.3 - 2026-07-14
+
+----
+* update channel_statistics server_uid after server.uid changes
+----
+
 === 2.0.2 - 2026-06-28
 
 ----

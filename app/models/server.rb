@@ -31,6 +31,7 @@ class Server < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, uniqueness: { case_sensitive: false, allow_blank: true }
   before_save :update_condition
+  after_commit :update_channel_statistics, on: :update
 
   alias_attribute :to_s, :name
   alias_attribute :fullname, :name
@@ -68,6 +69,12 @@ class Server < ApplicationRecord
         set_condition(escalation_status.state,
                       escalation_status.message)
       end
+    end
+  end
+
+  def update_channel_statistics
+    if uid_previously_changed?
+      channel_statistics.update_all(server_uid: uid)
     end
   end
 
