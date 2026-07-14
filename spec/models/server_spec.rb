@@ -19,12 +19,13 @@ RSpec.describe Server, type: :model do
       ipaddress: '127.0.0.4'
     )
   end
-  let(:server) do 
+  let!(:server) do 
     FactoryBot.create(:server, 
       host: host,
       name: 'xyzmirth',
       api_url: 'https://127.0.0.4:8443/api',
-      manual_update: false
+      manual_update: false,
+      uid: 'e6dcd001-bc27-4cdd-aaf8-e399fbe24ebd'
     ) 
   end
   it { is_expected.not_to belong_to(:location) }
@@ -159,6 +160,24 @@ RSpec.describe Server, type: :model do
         expect {
           server.save
         }.to change(server, :condition).to(Mirco::States::CRITICAL)
+      end
+    end
+
+    describe "with changed uuid" do
+      let!(:ch) { FactoryBot.create(:channel, server: server) }
+      let!(:cs) do 
+        FactoryBot.create(:channel_statistic, 
+          server: server,
+          channel: ch, 
+          server_uid: server.uid
+        )
+      end
+
+      it "updates channel_statistics" do
+        expect(cs.server_uid).to eq(server.uid)
+        server.update(uid: '06907f84-fc8e-421b-88e7-5b7c99c3b158')
+        cs.reload
+        expect(cs.server_uid).to eq('06907f84-fc8e-421b-88e7-5b7c99c3b158')
       end
     end
   end
