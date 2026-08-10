@@ -8,7 +8,7 @@ ruby '>=3.3'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 8.1.0'
-gem 'redis'
+gem 'redis', '< 6.0.0'
 gem 'propshaft'
 
 gem 'bootsnap', require: false

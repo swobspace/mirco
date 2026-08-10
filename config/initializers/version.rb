@@ -2,5 +2,5 @@
 
 module Mirco
   VERSION     = '2.0.4-dev'
-  RELEASEDATE = '2026-07-15'
+  RELEASEDATE = '2026-08-10'
 end
