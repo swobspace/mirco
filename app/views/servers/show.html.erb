@@ -15,48 +15,48 @@
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab" aria-controls="server" aria-selected="true">
+    <button class="nav-link active" id="server-tab" data-bs-toggle="tab" data-bs-target="#server_t" type="button" role="tab" aria-controls="server" aria-selected="true">
       <%= t('activerecord.models.server') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties" type="button" role="tab" aria-controls="properties" aria-selected="false">
+    <button class="nav-link" id="properties-tab" data-bs-toggle="tab" data-bs-target="#properties_t" type="button" role="tab" aria-controls="properties" aria-selected="false">
       <%= t('attributes.properties') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels" type="button" role="tab" aria-controls="channels" aria-selected="false">
+    <button class="nav-link" id="channels-tab" data-bs-toggle="tab" data-bs-target="#channels_t" type="button" role="tab" aria-controls="channels" aria-selected="false">
       <%= t('controller.channels') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics" type="button" role="tab" aria-controls="statistics" aria-selected="false">
+    <button class="nav-link" id="statistics-tab" data-bs-toggle="tab" data-bs-target="#statistics_t" type="button" role="tab" aria-controls="statistics" aria-selected="false">
       <%= t('controller.channel_statistics') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="connectors-tab" data-bs-toggle="tab" data-bs-target="#connectors" type="button" role="tab" aria-controls="connectors" aria-selected="false">
+    <button class="nav-link" id="connectors-tab" data-bs-toggle="tab" data-bs-target="#connectors_t" type="button" role="tab" aria-controls="connectors" aria-selected="false">
       <%= t('attributes.connectors') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">
+    <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes_t" type="button" role="tab" aria-controls="notes" aria-selected="false">
       <%= t('controller.notes') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts" type="button" role="tab" aria-controls="alerts" aria-selected="false">
+    <button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts_t" type="button" role="tab" aria-controls="alerts" aria-selected="false">
       <%= t('controller.alerts') %>
     </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="configurations-tab" data-bs-toggle="tab" data-bs-target="#configurations" type="button" role="tab" aria-controls="configurations" aria-selected="false">
+    <button class="nav-link" id="configurations-tab" data-bs-toggle="tab" data-bs-target="#configurations_t" type="button" role="tab" aria-controls="configurations" aria-selected="false">
       <%= t('controller.server_configurations') %>
     </button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
- <div class="tab-pane fade show active" id="server" role="tabpanel" aria-labelledby="server-tab">
+ <div class="tab-pane fade show active" id="server_t" role="tabpanel" aria-labelledby="server-tab">
   <div class="card mt-2">
     <div class="card-header">
       <div class="d-flex w-100 justify-content-between">
@@ -171,7 +171,7 @@
   </div>
  </div>
 
- <div class="tab-pane fade" id="properties" role="tabpanel" aria-labelledby="properties-tab">
+ <div class="tab-pane fade" id="properties_t" role="tabpanel" aria-labelledby="properties-tab">
   <div class="card mt-2">
     <div class="card-header">
       <div class="d-flex w-100 justify-content-between">
@@ -218,21 +218,21 @@
   </div>
  </div>
 
- <div class="tab-pane fade" id="channels" role="tabpanel" aria-labelledby="channels-tab">
+ <div class="tab-pane fade" id="channels_t" role="tabpanel" aria-labelledby="channels-tab">
    <%= turbo_frame_tag("channels",
                         src: polymorphic_path([@server, :channels], active: 1),
                         loading: "lazy",
                         refresh: "morph") %>
  </div>
 
- <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
+ <div class="tab-pane fade" id="statistics_t" role="tabpanel" aria-labelledby="statistics-tab">
    <%= turbo_frame_tag("channel_statistics",
                         src: polymorphic_path([@server, :channel_statistics], active: 1),
                         loading: "lazy",
                         refresh: "morph") %>
  </div>
 
- <div class="tab-pane fade" id="connectors" role="tabpanel" aria-labelledby="properties-tab">
+ <div class="tab-pane fade" id="connectors_t" role="tabpanel" aria-labelledby="properties-tab">
   <div class="card mt-2">
     <div class="card-header">
       <h4 class="title"><%= t('mirco.sourceConnectors') %></h4>
@@ -266,7 +266,7 @@
   </div>
  </div>
 
- <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+ <div class="tab-pane fade" id="notes_t" role="tabpanel" aria-labelledby="notes-tab">
    <%= turbo_frame_tag("notes",
                         src: polymorphic_path([@server, :notes], active: 1),
                         loading: "lazy",
@@ -274,14 +274,14 @@
  </div>
 
 
- <div class="tab-pane fade" id="alerts" role="tabpanel" aria-labelledby="alerts-tab">
+ <div class="tab-pane fade" id="alerts_t" role="tabpanel" aria-labelledby="alerts-tab">
    <%= turbo_frame_tag("alerts",
                         src: polymorphic_path([@server, :alerts]),
                         loading: "lazy",
                         refresh: "morph") %>
  </div>
 
- <div class="tab-pane fade" id="configurations" role="tabpanel" aria-labelledby="configurations-tab">
+ <div class="tab-pane fade" id="configurations_t" role="tabpanel" aria-labelledby="configurations-tab">
    <%= turbo_frame_tag("server_configurations",
                         src: polymorphic_path([@server, :server_configurations]),
                         loading: "lazy",
