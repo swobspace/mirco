@@ -1,6 +1,6 @@
 = Changelog
 
-== 2.0.4-dev - unreleased
+== 2.0.4 - 2026-11-14
 
 
 * add system info to server.adoc output
