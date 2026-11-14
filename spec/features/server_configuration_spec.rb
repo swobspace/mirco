@@ -9,7 +9,7 @@ RSpec.describe "Server/server_configurations", type: :feature do
       allow(server).to receive(:up?).and_return(true)
       login_admin
       visit root_path
-      execute_script("$.support.transition = false")
+      # execute_script("$.support.transition = false")
     end
 
     it "switch to server configuration tab" do
