@@ -65,7 +65,6 @@ gem 'daemons'
 gem 'net-http'
 
 gem 'chartkick', '~> 5.0'
-gem 'kramdown'
 
 gem 'responders'
 
