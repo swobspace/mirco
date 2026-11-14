@@ -1,7 +1,8 @@
 = Changelog
 
-== 2.0.4 - 2026-11-14
+== 2.0.5-devel - unreleased
 
+== 2.0.4 - 2026-11-14
 
 * add system info to server.adoc output
 * security updates
@@ -11,40 +12,29 @@
 
 == 2.0.3 - 2026-07-14
 
-
 * update channel_statistics server_uid after server.uid changes
 
-
 == 2.0.2 - 2026-06-28
-
 
 * Check for duplicate source connector urls
 * Update gems && npms
 
-
 == 2.0.1 - 2026-05-07
-
 
 * Update gems && npms
 
-
 == 2.0.0 - 2026-04-04
-
 
 * Upgrade to Rails 8.1
 * Security updates
 
-
 == 1.9.1 - 2026-02-15
-
 
 * Update gems and npms
 * Minor bug fixes
 * Ruby 3.4
 
-
 == 1.8.0 / 2025-05-14
-
 
 * Navigation to disabled mirth systems
 * Minor fixes
