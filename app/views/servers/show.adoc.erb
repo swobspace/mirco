@@ -5,6 +5,20 @@
 
 <%= server_url(@server) %>[<%= @server.name %> in Mirco]
 
+== Properties
+
+[%autowidth]
+|===
+|Was | Wert
+
+|UUID | <%= @server.server_uid %>
+|JVM  | <%= @server.server_jvm %>
+|Mirth-Version  | <%= @server.server_version %>
+
+<%= (@server.system_info || []).map{|k,v| "|#{k} |#{v}"}.join("\n").html_safe %>
+
+|===
+
 == Channel-Übersicht
 
 image::<%= @server.hostname %>/<%= @server.name %>.svg[link={imagesdir}/<%= @server.hostname %>/<%= @server.name %>.svg]

@@ -1,2 +1,3 @@
 * xref:mirth.adoc[]
 * xref:about.adoc[Über Mirco]
+* xref:changelog.adoc[]

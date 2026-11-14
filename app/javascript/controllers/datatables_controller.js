@@ -80,7 +80,7 @@ export default class extends Controller {
   compileOptions(options) {
     // common options
     options.pagingType = "full_numbers"
-    options.responsive = false
+    options.responsive = true
     options.retrieve = true
     options.stateSave = true
     options.stateDuration = 60 * 60 * 24
@@ -99,7 +99,7 @@ export default class extends Controller {
     if (this.hasUrlValue) {
       this.remoteOptions(options)
     }
-    // this.languageOptions(options)
+    this.languageOptions(options)
   }
 
   simpleOptions(options) {
@@ -128,8 +128,7 @@ export default class extends Controller {
                                 window.location.reload();
                               }},
                  { "extend": 'csv',
-	           "exportOptions": { "columns": ':visible',
-                                      "search": ':applied' } },
+	           "exportOptions": { "search": ':applied' } },
                  { "extend": 'excel',
 	           "exportOptions": { "columns": ':visible',
                                       "search": ':applied' } },
@@ -139,7 +138,7 @@ export default class extends Controller {
 	           "exportOptions": { "columns": ':visible',
 	                              "search": ':applied' } },
                  { "extend": 'print'},
-                 { "extend": 'colvis', "columns": ':gt(0)',
+                 { "extend": 'colvis',
                    "text": "Sichbare Spalten" }
                ]
     }
@@ -166,6 +165,7 @@ export default class extends Controller {
 
   colvis_change_listener(dtable) {
     const search = this.createSearchWithDebounce(dtable)
+    const tbl = dtable.table().node()
     let _this = this
     dtable.on('column-visibility.dt', function (e, settings, column, state) {
       if (state) {
@@ -176,22 +176,30 @@ export default class extends Controller {
 	    th.insertAdjacentHTML('afterbegin', _this.searchField(column, ''))
 	  }
         }
-        // console.log(dtable.table().node().id)
-        // use node id of table explicit
-        $('table#'+dtable.table().node().id+' input[name=idx'+column+']').on('keyup change', function() {
-          search(column, this.value)
-        })
+	let sinput = tbl.querySelector(`tfoot tr th input[name="idx${column}"]`)
+	if (sinput) {
+	  ['keyup', 'change'].forEach(eventType => {
+	    sinput.addEventListener(eventType, function() {
+	      search(column, this.value)
+	    })
+	  })
+        }
       }
     })
   }
 
   process_search_input(dtable) {
     const search = this.createSearchWithDebounce(dtable)
-    // console.log(dtable.table().node().id)
+    const tbl = dtable.table().node()
     dtable.columns().eq(0).each((colIdx) => {
-      $('table#'+dtable.table().node().id+' input[name=idx'+colIdx+']').on('keyup change', function() {
-	search(colIdx, this.value)
-      })
+      let sinput = tbl.querySelector(`tfoot tr th input[name="idx${colIdx}"]`)
+      if (sinput) {
+        ['keyup', 'change'].forEach(eventType => {
+          sinput.addEventListener(eventType, function() {
+	    search(colIdx, this.value)
+          })
+        })
+      }
     })
   }
 

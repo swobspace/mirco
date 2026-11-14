@@ -8,6 +8,7 @@ ruby '>=3.3'
 gem 'pg'
 gem 'puma'
 gem 'rails', '~> 8.1.0'
+# gem 'redis', '< 6.0.0'
 gem 'redis'
 gem 'propshaft'
 
@@ -64,7 +65,6 @@ gem 'daemons'
 gem 'net-http'
 
 gem 'chartkick', '~> 5.0'
-gem 'kramdown'
 
 gem 'responders'
 
@@ -77,7 +77,7 @@ gem "rails-controller-testing", "~> 1.0"
 
 gem "faker", "~> 3.1"
 
-gem "good_job", "~> 4.19.0"
+gem "good_job", "~> 4.24.0"
 
 # for deployment
 gem "ed25519"
