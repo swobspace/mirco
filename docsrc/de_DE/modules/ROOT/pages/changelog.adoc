@@ -1,5 +1,7 @@
 = Changelog
 
+== 2.0.6-dev - unreleased
+
 == 2.0.5 - 2026-11-21
 
 * Security Updates (u.a. wegen rubyßhell https://heise.de/-11532469)
