@@ -29,6 +29,11 @@ Rails.application.configure do
         class: "Servers::FetchConfigurationJob",
         description: "Fetch server configurations as backup"
       },
+      fetch_properties: {
+        cron: Mirco.cron_fetch_properties,
+        class: "Servers::FetchPropertiesJob",
+        description: "Fetch server properties"
+      },
       purge_timescale: {
         cron: Mirco.cron_purge_timescale,
         class: "Mirco::PurgeTimescaleJob",

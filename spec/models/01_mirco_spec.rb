@@ -19,6 +19,7 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return(nil)
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_properties').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(nil)
       allow(Mirco::CONFIG).to receive(:[]).with('grace_period').and_return(nil)
@@ -48,6 +49,7 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_statistics).to eq('*/5 * * * *') }
     it { expect(Mirco.cron_fetch_channels).to eq('0 1 * * 6') }
     it { expect(Mirco.cron_fetch_configuration).to eq('15 1 * * 6') }
+    it { expect(Mirco.cron_fetch_properties).to eq('0 2 * * 6') }
     it { expect(Mirco.cron_purge_timescale).to eq('30 1 * * 6') }
     it { expect(Mirco.smtp_settings).to eq(nil) }
     it { expect(Mirco.grace_period).to eq(15.minutes) }
@@ -73,6 +75,7 @@ RSpec.describe Mirco, type: :model do
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_statistics').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_channels').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_configuration').and_return('* * nix')
+      allow(Mirco::CONFIG).to receive(:[]).with('cron_fetch_properties').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('cron_purge_timescale').and_return('* * nix')
       allow(Mirco::CONFIG).to receive(:[]).with('smtp_settings').and_return(smtp_settings)
       allow(Mirco::CONFIG).to receive(:[]).with('grace_period').and_return(20.minutes)
@@ -94,6 +97,7 @@ RSpec.describe Mirco, type: :model do
     it { expect(Mirco.cron_fetch_statistics).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_channels).to eq('* * nix') }
     it { expect(Mirco.cron_fetch_configuration).to eq('* * nix') }
+    it { expect(Mirco.cron_fetch_properties).to eq('* * nix') }
     it { expect(Mirco.cron_purge_timescale).to eq('* * nix') }
     it { expect(Mirco.smtp_settings).to include(address: 'somehost', port: 25) }
     it { expect(Mirco.grace_period).to eq(20.minutes) }

@@ -87,6 +87,10 @@ module Mirco
     fetch_config('cron_fetch_configuration', '15 1 * * 6')
   end
 
+  def self.cron_fetch_properties
+    fetch_config('cron_fetch_properties', '0 2 * * 6')
+  end
+
   def self.cron_purge_timescale
     fetch_config('cron_purge_timescale', '30 1 * * 6')
   end
