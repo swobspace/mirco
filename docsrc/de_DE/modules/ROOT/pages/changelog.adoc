@@ -2,7 +2,7 @@
 
 == 2.0.6-dev - unreleased
 
-* show server properties in index (db, os, jvm version)
+* show server properties in index (system version, db, os, jvm version)
 * fetch properties job for periodic updates (schedule configurable)
 
 == 2.0.5 - 2026-11-21

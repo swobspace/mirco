@@ -29,6 +29,7 @@
         <th><%= t('attributes.last_check_ok') %></th>
         <th class="notvisible"><%= t('attributes.manual_update') %></th>
         <th class="notvisible"><%= t('attributes.disabled') %></th>
+        <th class="notvisible"><%= t('attributes.server_version') %></th>
         <% %w(dbName dbVersion jvmVersion osName osVersion).each do |attr| %>
           <th class="notvisible"><%= attr %></th>
         <% end %>
@@ -49,6 +50,7 @@
         <% if current_user.is_admin? %>
           <th></th>
         <% end %>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -88,6 +90,7 @@
           </td>
           <td><%= server.manual_update %></td>
           <td><%= server.disabled %></td>
+          <td><%= server.server_version %></td>
           <% %w(dbName dbVersion jvmVersion osName osVersion).each do |attr| %>
             <td><%= (server.system_info || {})[attr] %></td>
           <% end %>
