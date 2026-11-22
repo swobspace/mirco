@@ -2,9 +2,12 @@
 
 == 2.0.6-dev - unreleased
 
+* show server properties in index (db, os, jvm version)
+* fetch properties job for periodic updates (schedule configurable)
+
 == 2.0.5 - 2026-11-21
 
-* Security Updates (u.a. wegen rubyßhell https://heise.de/-11532469)
+* security updates (rubyßhell https://heise.de/-11532469)
 
 == 2.0.4 - 2026-11-14
 
