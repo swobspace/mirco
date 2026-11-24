@@ -44,8 +44,9 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_bot_rails'
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdriver'
+  # gem 'selenium-webdriver'
+  gem 'capybara-playwright-driver'
+  # gem 'webdriver'
   gem 'launchy'
 end
 
