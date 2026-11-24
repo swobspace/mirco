@@ -14,20 +14,11 @@ require 'capybara/rspec'
 require 'capybara-playwright-driver'
 
 Capybara.register_driver :my_playwright do |app|
-  # url = "http://#{ENV['SELENIUM_REMOTE_HOST']}:4444/wd/hub"
-  # options = Selenium::WebDriver::Chrome::Options.new
-
-  # options.add_argument("--headless")
-  # options.add_argument("--no-sandbox")
-  # options.add_argument("--disable-dev-shm-usage")
-  # options.add_argument("--window-size=1280x1280")
-  # options.add_argument("disable-gpu")
-
   Capybara::Playwright::Driver.new(
     app,
     browser_type: :chromium,
-    headless: ENV['HEADLESS'] != 'false',
-    vieport: { width: 1280, height: 1280 }
+    headless: true,
+    viewport: { width: 1280, height: 1280 }
   )
 end
 
